@@ -426,11 +426,13 @@
         <h2 class="capture__title">A weekly note, when there is one</h2>
         <p class="capture__dek">Published when there is something worth saying, not to hit a word count. No newsletter backend is wired up yet, so this form says so plainly instead of pretending to sign you up.</p>
       </div>
-      <form class="capture__form" data-capture-form novalidate>
+      <form class="capture__form" data-capture-form novalidate
+            method="post" action="javascript:void 0">
         <label class="vh" for="capture-email">Email address</label>
         <input id="capture-email" type="email" name="email" placeholder="you@example.com" autocomplete="email" required>
         <button class="btn btn--primary" type="submit">Notify me</button>
         <p class="capture__status" data-capture-status hidden></p>
+        <noscript><p class="capture__status" style="display:block">This form does nothing without JavaScript, and it has no server behind it. Nothing is collected either way.</p></noscript>
       </form>
     </div>
   </div>

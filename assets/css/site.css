@@ -1114,3 +1114,82 @@ table.data.sortable th[aria-sort="descending"] .sort-btn::after { content: " \25
   outline-offset: 3px;
   scroll-margin-top: 5rem;
 }
+
+/* ============================================================
+   RESPONSIVE PASS — verify the storefront at 360 / 768 / 1280
+   ============================================================ */
+
+/* Tables already scroll inside .tablewrap; the shelf table needs a
+   hint that it does, because a cut-off "Buy" column looks like a bug. */
+@media (max-width: 760px) {
+  .shelf__bar { align-items: flex-start; }
+  .shelf__table { min-width: 40rem; }
+  .shelf__count { font-size: .68rem; }
+  .shelf__table td, .shelf__table thead th { padding: .7rem .65rem; }
+  .shelf__buy { position: sticky; right: 0; background: var(--paper-card); }
+  .shelf__table tbody tr:hover .shelf__buy { background: #fdfaf4; }
+}
+
+/* Masthead: the brand mark plus five nav items is tight on a 360px screen. */
+@media (max-width: 520px) {
+  .masthead__inner { flex-wrap: wrap; gap: .5rem .9rem; padding-block: .65rem; }
+  .brand { flex: 1 1 100%; }
+  .nav { gap: .75rem; width: 100%; overflow-x: auto; padding-bottom: .1rem; scrollbar-width: none; }
+  .nav::-webkit-scrollbar { display: none; }
+  .nav a { font-size: .74rem; white-space: nowrap; }
+  .brand__name { font-size: 1.2rem; }
+}
+
+/* Hero: the pick card should not lead on small screens, but it must not
+   disappear either — it is the only buy control above the fold there. */
+@media (max-width: 720px) {
+  .hero { padding-block: 1.75rem 1.5rem; }
+  .hero__assure li { font-size: .68rem; padding: .24rem .55rem .26rem; }
+  .pick { padding: 1.1rem 1.1rem 1.2rem; }
+  .pick__figure { max-height: 180px; overflow: hidden; }
+  .pick__figure img { object-fit: cover; object-position: center 40%; }
+  .pick__meta { gap: .9rem; flex-wrap: wrap; }
+}
+
+/* Department rail stacks; each row keeps its count badge. */
+@media (max-width: 779px) {
+  .departments__label { padding-bottom: 0; }
+  .dept { display: grid; grid-template-columns: auto 1fr; gap: 0 .75rem; align-items: start; }
+  .dept__count { grid-row: span 2; align-self: center; margin-bottom: 0; }
+  .dept__name, .dept__sub { grid-column: 2; }
+}
+
+/* Product cards: the figure is 800x520, so let it keep its ratio. */
+@media (max-width: 480px) {
+  .pcard__figcap { font-size: .56rem; padding: .16rem .4rem; }
+  .pcard__rank { top: .5rem; left: .5rem; }
+}
+
+/* Jump bar overlaps the sticky table headers on product pages; keep it
+   below the masthead and give the page a little room at the top. */
+.jumpbar { top: 0; }
+@media (min-width: 900px) { .jumpbar { top: 0; } }
+
+/* Decision cards and unlock cards need to survive narrow columns. */
+@media (max-width: 480px) {
+  .dec { padding: 1rem 1rem 1.1rem; }
+  .dec__head { flex-wrap: wrap; }
+  .dec__score { text-align: left; }
+  .unlock__item { padding: .95rem 1rem 1rem; }
+  .capture { padding: 1.1rem 1.1rem; }
+  .qstat__num { font-size: 1.6rem; }
+}
+
+/* Print: nobody prints a shop, but somebody will print the register. */
+@media print {
+  .masthead, .disclosure, .nav, .footer, .jumpbar, .departments,
+  .shelf__bar, .dec__form, .capture, .nextup { display: none !important; }
+  body { background: #fff; font-size: 11pt; }
+  .wrap { max-width: none; padding: 0; }
+  .tablewrap { overflow: visible; border: 0; }
+  table.data { min-width: 0; font-size: 8.5pt; }
+  table.data th { position: static; }
+  a[href^="http"]::after { content: " (" attr(href) ")"; font-size: 7.5pt; color: #555; }
+  h1, h2, h3 { break-after: avoid; }
+  article, tr { break-inside: avoid; }
+}
