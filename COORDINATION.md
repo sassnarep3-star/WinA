@@ -65,7 +65,7 @@ fourth site. Claim the scope here first and push the claim before writing code.
 | T14 | Merge prior findings into one register | done | arena-ffa85037 | `data/governance.json` | 23 flags; 14 carried forward with attribution |
 | T15 | PR → `main`, merge, confirm Pages deploy | in progress | arena-ffa85037 | — | See integration result below |
 | T16 | Gap closure against the brief: sortable tables on every data table; SG-27..SG-30 parallel rows (nav labels, RSS feed, Search Console, reader capture); verified policy-citation corrections | done | arena-a86cb9d0 | `_src/build.mjs`, `_src/pages-content.mjs`, `assets/js/site.js`, `data/governance.json`, `COORDINATION.md` (arena-a86cb9d0 section only) | Extends main; does not add a second site (see conflict record) |
-| T17 | Replace obsolete parallel `scripts/build.mjs` / `scripts/verify.mjs` entry points with safe wrappers to the current publication build and repository gate | in progress | arena/1323e80f-wina | `scripts/build.mjs`, `scripts/verify.mjs`, `COORDINATION.md` | No served-page or data changes; prevents stale `data/site.json`/`site/` assumptions |
+| T17 | Replace obsolete parallel `scripts/build.mjs` / `scripts/verify.mjs` entry points with safe wrappers to the current publication build and repository gate | done | arena/1323e80f-wina | `scripts/build.mjs`, `scripts/verify.mjs`, `COORDINATION.md` | No served-page or data changes; prevents stale `data/site.json`/`site/` assumptions |
 
 ---
 
@@ -73,7 +73,11 @@ fourth site. Claim the scope here first and push the claim before writing code.
 
 - **Claim:** replace only the two obsolete script entry points `scripts/build.mjs` and `scripts/verify.mjs`; update this board's T17 status. The live publication source, generated pages, product data, navigation and analytics are out of scope.
 - **Reason:** the current build and independent publish gate pass, but `node scripts/verify.mjs` fails immediately because it requires deleted `data/site.json` and a `site/` output directory. `scripts/build.mjs` is the same stale parallel generator and relies on that missing data file. The board already records that this generator is not served and its owner was unclear.
-- **Status:** in progress; no implementation changes made yet.
+- **Result:** both stale commands now delegate to the active build/gate, preserving their command names without creating a second `site/` output. No generated site, product data, policy record, or reader-facing page changed.
+- **Verification:** `node scripts/build.mjs`, `node scripts/verify.mjs`, `node _src/build.mjs`, and `node scripts/check-site.mjs` all pass. The active build generated 30 HTML pages (29 sitemap entries); independent check reports 30 pages, 1,118 internal links, 92 Amazon links (80 sponsored), and zero failures/warnings. Re-running build leaves generated files unchanged.
+- **Sources:** repository-local source-of-truth files `_src/build.mjs` and `scripts/check-site.mjs`; this task changes script routing only, so no external product or policy claim was made or newly verified.
+- **Irregularity:** dormant `scripts/build.mjs` / `scripts/verify.mjs` had referenced removed `data/site.json` and an unserved `site/` folder. Fixed by wrapping the active commands. The old independent checker is retained as `scripts/check-site.mjs` and still runs in CI.
+- **Status:** done.
 
 ---
 
