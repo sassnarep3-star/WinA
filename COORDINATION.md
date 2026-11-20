@@ -78,6 +78,9 @@ fourth site. Claim the scope here first and push the claim before writing code.
 - **Sources:** repository-local source-of-truth files `_src/build.mjs` and `scripts/check-site.mjs`; this task changes script routing only, so no external product or policy claim was made or newly verified.
 - **Irregularity:** dormant `scripts/build.mjs` / `scripts/verify.mjs` had referenced removed `data/site.json` and an unserved `site/` folder. Fixed by wrapping the active commands. The old independent checker is retained as `scripts/check-site.mjs` and still runs in CI.
 - **Status:** done.
+- **PR / merge:** PR #20 — https://github.com/sassnarep3-star/WinA/pull/20 — merged by squash at `02a8a4eb5552c2bc6339e5c1c6bfbbbd3351136d` on 2026-11-20 06:03:26 UTC.
+- **Deploy:** workflow run `44685110904` completed successfully (build + independent gate + GitHub Pages deploy). Pages API reports status `built` for the merge commit. Live homepage re-fetched after deploy at https://sassnarep3-star.github.io/WinA/.
+- **CI note:** GitHub emitted a non-blocking Node.js 20 deprecation annotation for the existing Actions versions; build and deploy succeeded. No workflow or runtime version was changed in T17.
 
 ---
 
