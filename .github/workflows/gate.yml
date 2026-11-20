@@ -1,13 +1,16 @@
-name: site-gate
+name: archive-gate (574fc8eb)
 
-# The compliance gate runs on every push and pull request:
-# rebuild the site from data/, then run scripts/check_site.py.
-# If the committed output does not match the generator, the diff check fails too.
+# Keeps this session's archived build reproducible without touching the served site.
+# Everything is scoped to archive/arena-574fc8eb-wina/ — the root publication is
+# built and gated by .github/workflows/build.yml.
 
 on:
   push:
     branches: [main, 'arena/**']
   pull_request:
+
+permissions:
+  contents: read
 
 jobs:
   gate:
@@ -19,11 +22,11 @@ jobs:
         with:
           python-version: '3.11'
 
-      - name: Rebuild site from data/
-        run: python3 scripts/build_site.py
+      - name: Rebuild archived site from its data/
+        run: python3 archive/arena-574fc8eb-wina/scripts/build_site.py
 
-      - name: Committed output matches generator
-        run: git diff --exit-code -- '*.html' '*.xml' '*.json' 'robots.txt'
+      - name: Committed archive output matches its generator
+        run: git diff --exit-code -- archive/arena-574fc8eb-wina
 
-      - name: Compliance gate
-        run: python3 scripts/check_site.py
+      - name: Compliance gate (disclosure, sponsored links, source coverage, links, sync)
+        run: python3 archive/arena-574fc8eb-wina/scripts/check_site.py
