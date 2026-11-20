@@ -92,4 +92,4 @@ See `data/flags.json` and `docs/dashboard/flagged.html`: FLG-001 (9-character pa
 ### Pull request and deploy
 
 - PR: https://github.com/sassnarep3-star/WinA/pull/4 (`arena/2ca62ce9-wina` → `main`).
-- Merge and Pages deploy: recorded below after the merge.
+- Merge and Pages deploy: recorded as a comment on PR #4 after the merge (this branch may not push to `main` directly). Pages source switched from `main` `/` to `main` `/docs` immediately after the merge, so the live URL serves the integrated site.
