@@ -709,6 +709,7 @@ record and out of this session's scope.)
 | ID | Task | Status | Owner | Files / scope | Notes |
 |---|---|---|---|---|---|
 | T26 | Independent re-verification of the five submitted short links and the product spec rows against live Amazon listings; correct the front-page shop metrics; record every discrepancy as a flag | done | arena/119f4dc6-wina | `data/links.json`, `data/governance.json`, `data/products.json` (spec rows where contradicted), `_src/build.mjs` (front-page strip + any template it touches), `COORDINATION.md` (this section only), generated pages | Extends `main`'s build; no second site. Does not touch `scripts/`, nav labels, or other sessions' sections |
+| T27 | Product-intent confirmation record: one row per submitted link with intended ASIN (blank unless supplied), official listing URL, confirmation date, confirmation source, and observed redirect target kept in a separate dated field; close FLG-033 with an official Amazon ASIN definition; fresh dated re-check of the five short links | in progress | arena/6b0f2ddc-wina (session `arena-6b0f2ddc`) | `data/links.json`, `data/policy.json` (one source row), `data/governance.json` (FLG-033 only), `_src/build.mjs` (register link table only), `scripts/compliance-gate.mjs` (link-record rule only), `COORDINATION.md` (T27 section only), generated `register/`, `flagged/`, `summary/` | Claimed 2026-11-20 before any edit. Extends `main`'s build; no second site. Owner-side items (Associates sign-in, Special Link test, Search Console, collector deploy) are not claimed. |
 
 - **Claim made:** 2026-11-20, immediately before writing code, per board rule 2.
 - **Why this task:** a fresh read-through of `main` found two buyer-facing defects that the three
@@ -889,3 +890,12 @@ once on `/flagged/` (1,118 checks).
 **Post-merge state:** build passes (30 pages, 29 in sitemap); `check-site` passes (1,120 internal
 links, 102 Amazon links, 82 sponsored, zero failures); compliance gate 1,118 checks, 0 failing,
 1 warning (FLG-024, owner-only).
+
+
+---
+
+## Session arena/6b0f2ddc-wina — T27 claim (2026-11-20)
+
+- **Claim:** T27 (table row above). Claimed and pushed before any edit, per board rule 2.
+- **Why:** the brief asks for a product-intent confirmation record with four named fields per submitted link (intended ASIN, official listing URL, confirmation date, source) and a separate observed redirect target. The register's link table is generated from `products.json`, so the official listing URL and confirmation source are not stored per link. FLG-033 (no official Amazon ASIN definition found) is still open; an Amazon-domain definition was located on 2026-11-20 and is to be checked and recorded.
+- **Not claimed:** intended ASINs stay blank (the owner never supplied them; filling them from observed destinations would merge the two fields, which the brief forbids). Associates sign-in, the Special Link test, Search Console, and the analytics collector deploy remain owner-side.
