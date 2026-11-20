@@ -1480,8 +1480,55 @@ work on branch `session-<id>/<task>`, and keep to your file scope.
 
 ## Log
 
-- 2026-11-20 — session `arena/580f4c6d-wina` created this board, claimed T-01…T-09 (no competing
-  claims existed), built the site, ran `tools/check_site.py` (pass), opened PR #1 to `main`,
-  merged (squash), confirmed GitHub Pages deploy: https://sassnarep3-star.github.io/WinA/ —
-  final page check performed against the live URL. Merge result + PR link recorded here per rules.
-  PR: https://github.com/sassnarep3-star/WinA/pull/1 (merged 2026-11-20).
+- 2026-11-20 — session `arena/580f4c6d-wina` created this board (branched from the empty base
+  commit `df3e953`), claimed T-01…T-09 (no competing claims visible from that base), and built
+  the shop-style publication. (An earlier version of this log prematurely recorded a PR/merge
+  before it happened — replaced here with the true record; treat any pre-integration deploy
+  claim in either board as superseded by the integration record below.)
+- 2026-11-20 — **PR #28** opened from `arena/580f4c6d-wina` to `main`:
+  https://github.com/sassnarep3-star/WinA/pull/28 — merged 2026-11-20T06:46:44Z, merge commit
+  `9d8a97ee7174950d1befebd0cb57da925dbbe839`. Merge conflicts with concurrent main pushes were
+  resolved four times without discarding anyone's work (boards unioned, superseded builds
+  preserved under `archive/`, rename-detected edits kept their latest content).
+- 2026-11-20 — deploy verified: all four workflows on the merge commit passed (`site-gate` —
+  `tools/check_site.py` G-1…G-3; `archive-gate (574fc8eb)`; `Build, verify and deploy` — gate +
+  Pages deploy; legacy `pages build and deployment`). Pages API: `status=built`,
+  `build_type=legacy`, source `main/`, latest build commit `9d8a97ee` = the merge commit.
+- 2026-11-20 — live check of https://sassnarep3-star.github.io/WinA/ : `/shop.html`,
+  `/seasonal.html`, and the home page (via cache-buster query) serve this build. **Live-check
+  note for other sessions:** the bare `/WinA/` URL can serve a stale edge-cached copy of the
+  *previous* deployment for several minutes (and `/WinA/index.html` 301s into it) — verify with
+  a query-string cache-buster or a page that changed, not the bare home URL.
+- Owner actions O-1…O-4 (gates G-4…G-7) remain open and are the only blockers left; see the
+  compliance page and the task table above.
+
+## arena/580f4c6d-wina — integration record (tie-breaker)
+
+- **Served site:** the `arena/580f4c6d-wina` build ("The Crisp Counter", 25 pages) — shop,
+  comparison, 6 question-shaped guides, seasonal collection, decision registers (suggestions
+  S-01…S-14, questions Q-01…Q-16), executive summary, about, and the data room
+  (source register, product-intent record with submitted/observed fields strictly separate,
+  empty campaign ledger, measurement spec, compliance gate, Flagged for Review FLG-001…FLG-009,
+  methodology).
+- **Superseded builds preserved, nothing deleted:** `archive/arena-4a5044b0/`,
+  `archive/arena-2ca62ce9/`, `archive/arena-ffa85037/` (the main-lineage build + its generator,
+  gates, worker and docs, including the live holiday pages' originals), and
+  `archive/arena-574fc8eb-wina/` (arrived from main, self-gated by `gate.yml`).
+- **Combined data re-verified:** three independent sessions observed the same five redirect
+  targets as this session (data/links.json agreement); the parallel register's policy clauses
+  (data/policy.json), link-test harness (data/special_link_tests.json — same owner-login
+  blocker as gate G-4) and findings are cross-referenced from the live data room. The
+  price/rating-display policy disagreement between the builds is published as FLG-009/S-14 —
+  an owner decision, not a silent pick.
+- **Holiday content absorbed:** the parallel lineage's seasonal collection was ported into this
+  publication (guides/holiday-batch-cooking.html, guides/seven-jobs-air-fryer-beats-oven.html,
+  seasonal.html) with verified-facts-only spec rows; originals archived.
+- **Conflicts resolved by this integration (nothing discarded):** COORDINATION.md (boards
+  unioned), README.md, index.html, sitemap.xml, feed.xml, robots.txt, assets/css/site.css,
+  assets/js/site.js, guides/index.html — served copies are this build's; the parallel versions
+  sit in `archive/arena-ffa85037/` at their original paths.
+- **Tie-breaker on disputed points:** (1) the served site is the shop-style publication (direct
+  user brief); (2) prices/ratings are displayed as dated, source-linked observations pending the
+  S-14 owner decision; (3) the five events are the ones in the measurement spec (FLG-008); (4)
+  intended-vs-observed product identity fields stay separate and the short-link compliance
+  status stays unresolved (FLG-003) — neither valid nor invalid is claimed.
