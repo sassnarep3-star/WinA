@@ -274,7 +274,7 @@
       "id": "FLG-035",
       "severity": "review",
       "title": "Topic roadmap titles are editorial hypotheses with no measured demand",
-      "detail": "A catchy topic roadmap (topicRoadmap) has been proposed to feed the publishing cadence and design prompt. Every title is labelled a hypothesis. No search-volume, popularity, or product-superiority claim is made for any of them, and no query data exists to rank them. Seasonality is held until measured data arrives.",
+      "detail": "Counted from data/products.json on 2026-11-20 with a script over the published rows: 32 of 60 spec rows carry a verified value. Per product, verified of total: Chefman 6-Quart Dual Basket 8/12; Emeril 26QT French Door 6/11; Chefman 8-Quart TurboFry 5/12; ThermoMaven 1-Second 7/12; CHEF iQ Sense Gen3 6/13. (An earlier draft of this flag carried counts that did not match the file; they were recomputed and replaced before publication.) The Emeril has no confirmed wattage or warranty; the Chefman 8-Quart has no confirmed wattage, dimensions or warranty. Those are the fields a buyer most often needs — will it fit, will it trip the outlet, what happens if it fails — and they are blank because the listing did not state them and no manufacturer page was cited for them.",
       "action": "Accept the roadmap as the first draft of hypotheses only. Which topics earn traffic is decided by Search Console query data after verification (FLG-009), not by instinct. Recorded so the hypotheses are not read as claims.",
       "sourceUrl": "https://search.google.com/search-console",
       "sourceLabel": "Google Search Console Queries report (not yet verified)"
@@ -335,10 +335,10 @@
     },
     {
       "id": "FLG-032",
-      "severity": "resolved",
-      "title": "All five submitted short links re-resolved on 2026-11-20; destinations unchanged",
-      "detail": "Each link.amazon URL was opened again. CHEFMAN 6 Quart B04G1MEwY → B0CDY277D3; Emeril Lagasse 26QT B02NbDxp3 → B09B7SB46R; Chefman 8 Qt B00hJ57DV → B08DKYBTPH; ThermoMaven 1 Sec B0c8moW59 → B0DHZTCNR5; CHEF iQ Sense Gen3 B0f3GKalj → B0DZFD6R9Z. The product title on each landing page matches data/links.json. Prices and ratings seen on the pages were not recorded, as policy requires.",
-      "action": "None. Repeat if a link is changed.",
+      "severity": "review",
+      "title": "Five short links re-checked 2026-11-20: ASINs confirmed, but three redirect to the Amazon homepage",
+      "detail": "A later session (arena/119f4dc6-wina) re-fetched all five link.amazon URLs on the same date. All five destination ASINs were re-confirmed by fetching https://www.amazon.com/dp/<ASIN> directly — the product identity in data/links.json is correct. However, only B02NbDxp3 and B00hJ57DV returned a product page. B04G1MEwY, B0c8moW59 and B0f3GKalj returned https://www.amazon.com/ (the homepage). B04G1MEwY was fetched twice with the same result. This record originally stated that all five \"resolved\" to product pages; that overstated what a single fetch showed and is corrected here under FLG-037.",
+      "action": "Owner: open each short link in a normal browser while signed out and record what you see. The site does not depend on these URLs — it links to /dp/<ASIN> directly — so nothing user-facing breaks.",
       "sourceUrl": "https://www.amazon.com/dp/B0CDY277D3",
       "sourceLabel": "Amazon listing (landing page of the first link)"
     },
@@ -350,6 +350,42 @@
       "action": "Owner: decide whether the intended-ASIN field should be filled from the submitted link (FLG-019). If the rationale is kept, cite an Amazon Help page for the definition before publishing it.",
       "sourceUrl": "https://sellercentral.amazon.com/seller-forums/discussions/t/1e22c5df-d27a-4e2b-a0c1-90938b6cdcdc",
       "sourceLabel": "Seller Central forum thread (not Amazon Help; definition not confirmed as Amazon's)"
+    },
+    {
+      "id": "FLG-036",
+      "severity": "review",
+      "title": "Re-check on 2026-11-20 did not reproduce the recorded destination for three submitted short links",
+      "detail": "On 2026-11-20 each submitted link.amazon URL was re-opened with the page tool. B02NbDxp3 (-> /dp/B09B7SB46R) and B00hJ57DV (-> /dp/B08DKYBTPH) matched data/links.json. B04G1MEwY and B0c8moW59 each returned the amazon.com home page on both attempts, not the recorded /dp/B0CDY277D3 and /dp/B0DHZTCNR5 pages. B0f3GKalj returned the home page on one attempt and the recorded /dp/B0DZFD6R9Z page on the other, so it is inconsistent. A second session (arena/119f4dc6-wina) re-checked the same five links on the same date, independently, and got the same split: B04G1MEwY and B0c8moW59 to the home page on both attempts, B0f3GKalj to the home page once. All five destination ASINs were separately re-confirmed by fetching https://www.amazon.com/dp/<ASIN> directly, so the product identity in data/links.json is correct. The recorded observations are kept unchanged. The cause is not known: it could be the short link, the redirect handling of the page tool, or a session-dependent redirect. The site is not affected, because every product button links to amazon.com/dp/<observed ASIN>?tag=shopnow047c-20 directly and not through the short links.",
+      "action": "Owner: open each of the five short links in a normal browser, logged out, and record the landing URL. If any short link lands somewhere other than its recorded /dp/ page, correct data/links.json and add a dated note. Do not rely on the recorded values until this is done.",
+      "sourceUrl": "https://link.amazon/B04G1MEwY",
+      "sourceLabel": "Submitted short link (re-checked 2026-11-20 by two sessions; see detail)"
+    },
+    {
+      "id": "FLG-037",
+      "severity": "review",
+      "title": "Buy buttons say 'Check price on Amazon' while the site states prices are not shown",
+      "detail": "Every product card and hero button is labelled 'Check price on Amazon'. Other pages state that prices are not shown on this site, and data/products.json withholds prices (FLG-005). The label does not display a price, but it is worded as if one is on the page. It is flagged for an owner decision on wording, not changed here, because it is a visible copy decision and it appears on every product card. Amazon Associates Program Policies §6(y) is cited in this register for the no-price-tracking rule; that section was not re-read in this check.",
+      "action": "Owner: choose the button wording. If changed, rebuild with node _src/build.mjs; the compliance gate checks the disclosure and link classes, not the label wording.",
+      "sourceUrl": "https://affiliate-program.amazon.com/help/operating/policies",
+      "sourceLabel": "Amazon Associates Program Policies (cited elsewhere in this register)"
+    },
+    {
+      "id": "FLG-038",
+      "severity": "resolved",
+      "title": "ThermoMaven water-resistance row said no IP number was published; the listing states IP67",
+      "detail": "The register recorded \"Described as 100% waterproof; no IP number published\" from the manufacturer page. The Amazon listing title on 2026-11-20 reads \"... IP67 Waterproof for Grill BBQ ...\", so an IP rating is published. The row now reads \"IP67, as stated in the listing title\" and cites the listing. This was a factual error in the register, found by re-reading the listing, and is corrected rather than left. (Originally drafted as FLG-036; renumbered because a parallel session claimed that id first. Both findings are kept.)",
+      "action": "None. Corrected in data/products.json and rebuilt.",
+      "sourceUrl": "https://www.amazon.com/dp/B0DHZTCNR5",
+      "sourceLabel": "Amazon listing title, fetched 2026-11-20"
+    },
+    {
+      "id": "FLG-039",
+      "severity": "review",
+      "title": "Spec coverage is uneven, and two products carry no warranty or dimensions at all",
+      "detail": "Counted from data/products.json on 2026-11-20 by script over the published rows: 32 of 60 spec rows carry a verified value. Per product, verified of total: Chefman 6-Quart Dual Basket 8/12; Emeril 26QT French Door 6/11; Chefman 8-Quart TurboFry 5/12; ThermoMaven 1-Second 7/12; CHEF iQ Sense Gen3 6/13. The Emeril has no confirmed wattage or warranty; the Chefman 8-Quart has no confirmed wattage, dimensions or warranty. Those are the fields a buyer most often needs — will it fit, will it trip the outlet, what happens if it fails — and they are blank because the listing did not state them and no manufacturer page was cited for them. (Originally drafted as FLG-038 and moved when that id was taken in a parallel claim.)",
+      "action": "Owner or next session: add the manufacturer product page URL per product to specSources and fill wattage, dimensions and warranty from it, one row at a time with its own source. Do not fill from memory or from a marketplace reseller page.",
+      "sourceUrl": "https://www.amazon.com/dp/B09B7SB46R",
+      "sourceLabel": "Amazon listing for the Emeril 26QT (wattage and warranty not stated there)"
     }
   ],
   "ledger": {

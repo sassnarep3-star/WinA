@@ -1,0 +1,85 @@
+{
+  "note": "Irregularities and unverified items. Published verbatim on /flagged/. Flagged items do not block the merge. Every flag carries its source links for manual review.",
+  "flags": [
+    {
+      "id": "FLG-001",
+      "severity": "High",
+      "title": "Two of five submitted links resolve to a different product category than the other three",
+      "detail": "Three links resolve to Air Fryers (browse node 17659096011); two resolve to Meat thermometers (browse node 289810). Site information architecture must cover both categories until the owner decides scope (Q-01).",
+      "sources": ["S01", "S02", "S03", "S04", "S05"],
+      "status": "open — owner scope decision required"
+    },
+    {
+      "id": "FLG-002",
+      "severity": "High",
+      "title": "All five submitted tokens are 9 characters; Amazon's official ASIN definition is 10 characters",
+      "detail": "Amazon's Creators API documents ASIN as a '10-Character alphanumeric unique identifier assigned by Amazon'. Each submitted token is 9 characters, so none of the tokens is itself an ASIN. Direct /dp/<token> fetches did not render a product page (two independent tokens tested); the /dp/<10-char ASIN> control renders normally.",
+      "sources": ["S11", "S18", "S19"],
+      "status": "open — recorded as observation; no claim that the short links are invalid (see FLG-003)"
+    },
+    {
+      "id": "FLG-003",
+      "severity": "High",
+      "title": "Compliance status of the supplied link.amazon/* short links is unresolved",
+      "detail": "The brief forbids claiming the supplied short links are invalid, and their exact status is unresolved here. What is verified: each token redirects to a live official listing (observed 2026-11-20). What is missing: whether the link.amazon domain and format qualify as a 'Special Link' under Operating Agreement §1 (tagged link formats Amazon provides), and whether the operator of the link.amazon domain is Amazon. Required action: test one link per product in the enrolled Associates workflow, confirm destination and tracking report, then scale (S02 of the brief). Until then the site links to official /dp/ listing URLs with the owner-supplied tracking tag and rel=\"sponsored\".",
+      "sources": ["S06", "S07", "S08", "S09", "S10", "S12"],
+      "status": "open — one-link-per-product Special Link test required"
+    },
+    {
+      "id": "FLG-004",
+      "severity": "Medium",
+      "title": "Commission rates cannot be confirmed from a public official source",
+      "detail": "The official commission schedule redirects to Associates sign-in, so category commission rates are left blank and marked unverified. No commission figure is estimated anywhere on this site.",
+      "sources": ["S14"],
+      "status": "open — read the schedule while signed in (Q-05)"
+    },
+    {
+      "id": "FLG-005",
+      "severity": "Medium",
+      "title": "Tracking ID shopnow047c-20 is owner-supplied and unconfirmed in reports",
+      "detail": "The ID is used on all outbound product links exactly as supplied. Its active status, domain/site association, and appearance in Associates Reports cannot be confirmed without account access.",
+      "sources": ["S11", "S12"],
+      "status": "open — confirm in Associates dashboard (Q-03)"
+    },
+    {
+      "id": "FLG-006",
+      "severity": "Medium",
+      "title": "Intended ASIN is unknown for all five products",
+      "detail": "intended_asin, intended_listing_url, confirmation_date and intent_source are blank for all five rows of the intent record. They stay blank until the owner confirms them, and are never merged with the observed redirect fields.",
+      "sources": ["S11"],
+      "status": "open — owner confirmation (Q-02)"
+    },
+    {
+      "id": "FLG-007",
+      "severity": "Medium",
+      "title": "Prices are point-in-time observations and will change",
+      "detail": "All five prices are buy-box readings taken 2026-11-20 from the official listings. Prices change without notice; no price may be republished without re-verification against the listing on the day of publication (Q-13).",
+      "sources": ["S01", "S02", "S03", "S04", "S05"],
+      "status": "open — standing re-verification rule enforced at publish time"
+    },
+    {
+      "id": "FLG-008",
+      "severity": "Low",
+      "title": "Google Search Console property for this site is not yet added or verified",
+      "detail": "Sitemap and robots files ship with the site, but the Search Console property (owner action) is not created, so no query data exists yet. Topic selection stays evidence-free until it does (Q-09).",
+      "sources": ["S15", "S17"],
+      "status": "open — owner action"
+    },
+    {
+      "id": "FLG-009",
+      "severity": "Low",
+      "title": "The 'five defined events' could not be matched to a canonical list in the repository",
+      "detail": "The brief says 'record the five defined events' but no canonical event list exists in the repository (it started empty). This build defines and documents exactly five events — page_view, outbound_click, affiliate_click, search_query, article_read — in assets/analytics.js and the platform page. If an owner-supplied canonical list exists, it replaces this set (Q-12).",
+      "sources": [],
+      "status": "open — owner confirmation"
+    },
+    {
+      "id": "FLG-010",
+      "severity": "Low",
+      "title": "Self-hosted analytics endpoint cannot run on GitHub Pages",
+      "detail": "GitHub Pages serves static files only (S17). The endpoint code ships in tools/analytics_endpoint.py and the counter queues events in the browser until a first-party endpoint URL is configured. No third-party tracker is used (Q-08).",
+      "sources": ["S17"],
+      "status": "open — deployment target decision"
+    }
+  ]
+}

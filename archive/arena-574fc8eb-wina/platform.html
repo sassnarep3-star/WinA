@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Platform &amp; sources — WinA</title>
+  <meta name="description" content="The WinA pipeline: intake, verify, render, gate, measure — with the five events, endpoint contract, compliance gate, and full source register.">
+  <link rel="canonical" href="https://sassnarep3-star.github.io/WinA/platform.html">
+  <meta property="og:title" content="Platform &amp; sources — WinA">
+  <meta property="og:description" content="The WinA pipeline: intake, verify, render, gate, measure — with the five events, endpoint contract, compliance gate, and full source register.">
+  <meta property="og:url" content="https://sassnarep3-star.github.io/WinA/platform.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="WinA — Kitchen Field Guide">
+  <link rel="alternate" type="application/rss+xml" title="WinA feed" href="feed.xml">
+  <link rel="stylesheet" href="assets/styles.css">
+  <script src="assets/analytics.js" defer></script>
+  <script src="assets/site.js" defer></script>
+</head>
+<body>
+  <header class="masthead">
+    <div class="masthead-inner">
+      <a class="brand" href="index.html">
+        <span class="brand-mark">WinA<span class="dot">.</span></span>
+        <span class="brand-sub">Kitchen Field Guide</span>
+      </a>
+      <nav class="nav-shop" aria-label="Shop">
+        <a href="index.html">Home</a><a href="products.html">Shelf</a><a href="guides/index.html">Guides</a>
+      </nav>
+      <a class="nav-search" href="search.html" aria-label="Search the site">⌕ Search</a>
+    </div>
+  </header>
+
+  <div class="disclosure-strip" role="note">
+    <div class="inner">
+      <span class="pip" aria-hidden="true"></span>
+      <span><strong>As an Amazon Associate I earn from qualifying purchases.</strong></span>
+      <span class="aside">We may earn a commission if you buy through our links — at no extra cost to you.</span>
+    </div>
+  </div>
+
+  <main>
+    <p class="eyebrow">Platform &amp; sources</p>
+    <h1>The machinery — automated where it can be, gated where it cannot</h1>
+    <p class="lede">WinA is built as a small, auditable pipeline: verified data in <span class="mono">data/</span>, a generator (<span class="mono">scripts/build_site.py</span>), and a gate (<span class="mono">scripts/check_site.py</span>) that must pass before anything is pushed. Human decisions — scope, intent, paths — are never automated; they sit on <a href="suggestions.html">the review page</a> and <a href="questions.html">the questions list</a>.</p>
+
+    <h2>The pipeline</h2>
+    <ol class="next-list">
+      <li><strong>Intake</strong> — submitted link + observed redirect + date + source, stored in separate intent/observed fields (<span class="mono">data/intent-record</span> inside <span class="mono">data/products.json</span>).</li>
+      <li><strong>Verify</strong> — fetch the official listing; record title, price, availability, browse node against a source ID in <span class="mono">data/sources.json</span>. Unconfirmable values stay blank + flagged.</li>
+      <li><strong>Render</strong> — generator emits pages, sitemap, feed, search index from the data; no hand-copied numbers.</li>
+      <li><strong>Gate</strong> — checker enforces disclosure, sponsored links, source coverage, link integrity, sitemap/feed coverage, data↔page sync. Exit code non-zero = no push.</li>
+      <li><strong>Measure</strong> — five events via the privacy-preserving counter; ledger rows only from authorized first-party reports.</li>
+    </ol>
+
+    <h2>The five events (recorded, privacy-preserving)</h2>
+    <p class="section-note">FLG-009: no canonical event list existed in the repository; this documented set is the adopted five — replace only on owner confirmation (Q-12). No cookies, no IPs, no fingerprinting; Do Not Track short-circuits everything.</p>
+<div class="suggestion" style="margin-bottom:12px">
+          <div class="sg-head"><span class="sg-id">page_view</span><h3>denominator for every later ratio (views → clicks)</h3></div>
+          <p class="sg-meta">Trigger: any page load · payload: <span class="mono">path, referrer_host, ts</span></p>
+        </div>
+<div class="suggestion" style="margin-bottom:12px">
+          <div class="sg-head"><span class="sg-id">outbound_click</span><h3>measures interest leaving the site (not just affiliate links)</h3></div>
+          <p class="sg-meta">Trigger: click on any external link · payload: <span class="mono">path, host, ts</span></p>
+        </div>
+<div class="suggestion" style="margin-bottom:12px">
+          <div class="sg-head"><span class="sg-id">affiliate_click</span><h3>the outbound-click counter the brief asks for, scoped to monetized links</h3></div>
+          <p class="sg-meta">Trigger: click on a product link carrying the tracking tag · payload: <span class="mono">path, product_id, ts</span></p>
+        </div>
+<div class="suggestion" style="margin-bottom:12px">
+          <div class="sg-head"><span class="sg-id">search_query</span><h3>demand signal from readers; queries themselves are not stored (only length) to stay privacy-preserving</h3></div>
+          <p class="sg-meta">Trigger: site search submitted · payload: <span class="mono">path, q_length, ts</span></p>
+        </div>
+<div class="suggestion" style="margin-bottom:12px">
+          <div class="sg-head"><span class="sg-id">article_read</span><h3>separates landed-from-clicked from actually-read</h3></div>
+          <p class="sg-meta">Trigger: reader scrolls ≥50% of a guide (once per page view) · payload: <span class="mono">path, ts</span></p>
+        </div>
+
+    <h2>Self-hosted endpoint</h2>
+    <div class="table-wrap">
+      <table class="data">
+        <caption>Endpoint contract</caption>
+        <thead><tr><th>Item</th><th>Value</th><th>Detail</th><th>Source</th></tr></thead>
+        <tbody>
+          <tr><td>Ingest</td><td class="mono">POST /e</td><td class="src"><a href="https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site" rel="noopener" class="src">GitHub Pages is static-only (S17)</a> — code ships in <span class="mono">tools/analytics_endpoint.py</span></td></tr>
+          <tr><td>Health</td><td class="mono">GET /healthz</td><td class="small">returns {"ok": true, "events": n}</td><td class="src"><a href="https://github.com/sassnarep3-star/WinA/blob/main/tools/analytics_endpoint.py" rel="noopener" class="src">Endpoint source code (this repository)</a></td></tr>
+          <tr><td>Storage</td><td class="mono">data/analytics-events.ndjson</td><td class="small">append-only NDJSON; no IP or User-Agent stored</td><td class="src"><a href="https://github.com/sassnarep3-star/WinA/blob/main/tools/analytics_endpoint.py" rel="noopener" class="src">Endpoint source code (this repository)</a></td></tr>
+          <tr><td>Deployment</td><td><span class="blank">not set</span><span class="tag-unverified">pending Q-08</span></td><td class="small">owner hosts it anywhere; then set ANALYTICS_ENDPOINT in assets/analytics.js</td><td class="src"><a href="https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site" rel="noopener" class="src">GitHub Pages is static-only (S17)</a></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2>Compliance gate (runs on every build)</h2>
+    <ul>
+      <li>Disclosure strip present above <code>&lt;main&gt;</code> on every page + footer repeat — exact §5 wording (<a href="https://affiliate-program.amazon.com/help/operating/agreement">OA §5</a>).</li>
+      <li>Every <span class="mono">amazon.com</span> anchor carries <code>rel="sponsored nofollow"</code> (<a href="https://developers.google.com/search/docs/crawling-indexing/qualify-outbound-links">Google</a>); every CTA carries <span class="mono">tag=shopnow047c-20</span>.</li>
+      <li>Every data-table row links to an official source; blanks carry an <em>unverified</em> tag.</li>
+      <li>Internal links resolve; sitemap covers every page; feed contains every guide; search index covers every page.</li>
+      <li>No conflict markers, unfinished-work markers, or unresolved placeholders in shipped HTML.</li>
+    </ul>
+    <p class="small muted">API policy checks follow the Operating Agreement (Special Links §1, disclosure §5) and Program Policies (formatted-link requirement). The one-partner test (one link per product) remains gated on Q-04 — this build does not run it because it requires the enrolled Associates account.</p>
+
+    <h2>Search Console checklist (owner action, FLG-008)</h2>
+    <ol>
+      <li>Decide the canonical domain (Q-07) — default is the github.io project URL.</li>
+      <li>Add the property in Search Console and verify ownership (DNS/HTML file/meta — token not available to this build).</li>
+      <li>Submit <span class="mono">https://sassnarep3-star.github.io/WinA/sitemap.xml</span>.</li>
+      <li>After the first query report, choose the next guide from measured queries (SG-18).</li>
+    </ol>
+
+    <h2>Source register</h2>
+    <div class="table-wrap">
+      <table class="data">
+        <caption>Official sources used by this site — all fetched 2026-11-20</caption>
+        <thead><tr><th>ID</th><th>Source</th><th>Publisher</th><th>What it supports</th></tr></thead>
+        <tbody>
+<tr>
+          <td class="mono">S01</td>
+          <td class="src"><a href="https://www.amazon.com/dp/B0CDY277D3" rel="sponsored nofollow" class="src">Amazon listing — CHEFMAN 6 Quart Dual Basket Air Fryer Oven with Easy View Windows (B0CDY277D3)</a></td>
+          <td class="small">Amazon.com</td>
+          <td class="small muted">Title, buy-box price $79.93, In Stock, Ships from/Sold by Amazon.com, breadcrumb Home &amp; Kitchen › Kitchen &amp; Dining › Small Appliances › Fryers › Air Fryers (node 17659096011)</td>
+        </tr>
+<tr>
+          <td class="mono">S02</td>
+          <td class="src"><a href="https://www.amazon.com/dp/B09B7SB46R" rel="sponsored nofollow" class="src">Amazon listing — Emeril Lagasse 26QT French Door Multi-Function Air Fryer Toaster Oven (B09B7SB46R)</a></td>
+          <td class="small">Amazon.com</td>
+          <td class="small muted">Title, buy-box price $149.99, In Stock, Sold by Amazon.com, breadcrumb → Air Fryers (node 17659096011)</td>
+        </tr>
+<tr>
+          <td class="mono">S03</td>
+          <td class="src"><a href="https://www.amazon.com/dp/B08DKYBTPH" rel="sponsored nofollow" class="src">Amazon listing — Chefman Air Fryer 8 Qt TurboFry 4-in-1 (B08DKYBTPH)</a></td>
+          <td class="small">Amazon.com</td>
+          <td class="small muted">Title, buy-box price $69.99, In Stock, Sold by Amazon.com, breadcrumb → Air Fryers (node 17659096011)</td>
+        </tr>
+<tr>
+          <td class="mono">S04</td>
+          <td class="src"><a href="https://www.amazon.com/dp/B0DHZTCNR5" rel="sponsored nofollow" class="src">Amazon listing — ThermoMaven 1 Sec Professional Digital Meat Thermometer (B0DHZTCNR5)</a></td>
+          <td class="small">Amazon.com</td>
+          <td class="small muted">Title, buy-box price $16.99, In Stock, Sold by Amazon.com, breadcrumb → Meat (node 289810)</td>
+        </tr>
+<tr>
+          <td class="mono">S05</td>
+          <td class="src"><a href="https://www.amazon.com/dp/B0DZFD6R9Z" rel="sponsored nofollow" class="src">Amazon listing — CHEF iQ Sense Smart Wireless Meat Thermometer Gen3, 3 probes (B0DZFD6R9Z)</a></td>
+          <td class="small">Amazon.com</td>
+          <td class="small muted">Title, buy-box price $119.99, In Stock, Sold by Amazon.com, breadcrumb → Meat (node 289810)</td>
+        </tr>
+<tr>
+          <td class="mono">S06</td>
+          <td class="src"><a href="https://link.amazon/B04G1MEwY" rel="sponsored nofollow" class="src">Submitted short link — link.amazon/B04G1MEwY</a></td>
+          <td class="small">link.amazon (domain as supplied; resolves to Amazon.com — operator not independently verified, see FLG-003)</td>
+          <td class="small muted">Observed redirect to https://www.amazon.com/dp/B0CDY277D3 (final URL carried btn_ref=srctok-0710b7a4f0d14338)</td>
+        </tr>
+<tr>
+          <td class="mono">S07</td>
+          <td class="src"><a href="https://link.amazon/B02NbDxp3" rel="sponsored nofollow" class="src">Submitted short link — link.amazon/B02NbDxp3</a></td>
+          <td class="small">link.amazon (domain as supplied; resolves to Amazon.com — operator not independently verified, see FLG-003)</td>
+          <td class="small muted">Observed redirect to https://www.amazon.com/dp/B09B7SB46R</td>
+        </tr>
+<tr>
+          <td class="mono">S08</td>
+          <td class="src"><a href="https://link.amazon/B00hJ57DV" rel="sponsored nofollow" class="src">Submitted short link — link.amazon/B00hJ57DV</a></td>
+          <td class="small">link.amazon (domain as supplied; resolves to Amazon.com — operator not independently verified, see FLG-003)</td>
+          <td class="small muted">Observed redirect to https://www.amazon.com/dp/B08DKYBTPH</td>
+        </tr>
+<tr>
+          <td class="mono">S09</td>
+          <td class="src"><a href="https://link.amazon/B0c8moW59" rel="sponsored nofollow" class="src">Submitted short link — link.amazon/B0c8moW59</a></td>
+          <td class="small">link.amazon (domain as supplied; resolves to Amazon.com — operator not independently verified, see FLG-003)</td>
+          <td class="small muted">Observed redirect to https://www.amazon.com/dp/B0DHZTCNR5</td>
+        </tr>
+<tr>
+          <td class="mono">S10</td>
+          <td class="src"><a href="https://link.amazon/B0f3GKalj" rel="sponsored nofollow" class="src">Submitted short link — link.amazon/B0f3GKalj</a></td>
+          <td class="small">link.amazon (domain as supplied; resolves to Amazon.com — operator not independently verified, see FLG-003)</td>
+          <td class="small muted">Observed redirect to https://www.amazon.com/dp/B0DZFD6R9Z</td>
+        </tr>
+<tr>
+          <td class="mono">S11</td>
+          <td class="src"><a href="https://affiliate-program.amazon.com/creatorsapi/docs/en-us/api-reference/operations/get-items" rel="noopener" class="src">Amazon Associates Creators API — GetItems operation (ItemIdType parameter)</a></td>
+          <td class="small">Amazon Associates</td>
+          <td class="small muted">ASIN = &#x27;Amazon Standard Identification Number: 10-Character alphanumeric unique identifier assigned by Amazon&#x27;; partnerTag required (example format xyz-20)</td>
+        </tr>
+<tr>
+          <td class="mono">S12</td>
+          <td class="src"><a href="https://affiliate-program.amazon.com/help/operating/agreement" rel="noopener" class="src">Associates Program Operating Agreement (Updated: October 15, 2025)</a></td>
+          <td class="small">Amazon Associates</td>
+          <td class="small muted">§1 Special Links must properly use the tagged link formats Amazon provides; Program Content definition; §4 no representation of expected traffic or commission income; §5 required disclosure text; §6(a) violation of §5 is a material breach</td>
+        </tr>
+<tr>
+          <td class="mono">S13</td>
+          <td class="src"><a href="https://affiliate-program.amazon.com/help/operating/policies" rel="noopener" class="src">Associates Program Policies (Updated: April 14, 2026)</a></td>
+          <td class="small">Amazon Associates</td>
+          <td class="small muted">Qualifying Purchase session (24 hours from click), 89-day cart attribution, §2(g) purchases from unformatted links are disqualified, §2(e) redirecting links disqualify</td>
+        </tr>
+<tr>
+          <td class="mono">S14</td>
+          <td class="src"><a href="https://affiliate-program.amazon.com/help/operating/schedule" rel="noopener" class="src">Associates Commission schedule (Standard/Special Commission Income)</a></td>
+          <td class="small">Amazon Associates</td>
+          <td class="small muted">Redirects to Associates sign-in — commission rates are NOT publicly verifiable without an account (FLG-004)</td>
+        </tr>
+<tr>
+          <td class="mono">S15</td>
+          <td class="src"><a href="https://developers.google.com/search/docs/crawling-indexing/qualify-outbound-links" rel="noopener" class="src">Google Search Central — Qualify your outbound links to Google (last updated 2025-12-10)</a></td>
+          <td class="small">Google</td>
+          <td class="small muted">rel=&quot;sponsored&quot; marks advertisements or paid placements; multiple rel values allowed as space- or comma-separated list</td>
+        </tr>
+<tr>
+          <td class="mono">S16</td>
+          <td class="src"><a href="https://www.ftc.gov/business-guidance/resources/disclosures-101-social-media-influencers" rel="noopener" class="src">FTC — Disclosures 101 for Social Media Influencers (November 2019)</a></td>
+          <td class="small">Federal Trade Commission</td>
+          <td class="small muted">Disclosure must be hard to miss and placed with the endorsement itself; simple clear language; terms like &#x27;advertisement&#x27;, &#x27;ad&#x27;, &#x27;sponsored&#x27; acceptable</td>
+        </tr>
+<tr>
+          <td class="mono">S17</td>
+          <td class="src"><a href="https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site" rel="noopener" class="src">GitHub Docs — Configuring a publishing source for your GitHub Pages site</a></td>
+          <td class="small">GitHub</td>
+          <td class="small muted">Publish from a branch (root or /docs) or a GitHub Actions workflow; Pages sites are public even when the repository is private</td>
+        </tr>
+<tr>
+          <td class="mono">S18</td>
+          <td class="src"><a href="https://www.amazon.com/dp/B04G1MEwY" rel="sponsored nofollow" class="src">Direct fetch of /dp/B04G1MEwY (submitted token used as ASIN)</a></td>
+          <td class="small">Amazon.com</td>
+          <td class="small muted">Fetch did not render a product page (failed); control /dp/B0CDY277D3 renders normally — observation only, see FLG-002/FLG-003</td>
+        </tr>
+<tr>
+          <td class="mono">S19</td>
+          <td class="src"><a href="https://www.amazon.com/dp/B0f3GKalj" rel="sponsored nofollow" class="src">Direct fetch of /dp/B0f3GKalj (submitted token used as ASIN)</a></td>
+          <td class="small">Amazon.com</td>
+          <td class="small muted">Fetch did not render a product page (failed); second independent token confirming the pattern — observation only, see FLG-002/FLG-003</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-disclosure">As an Amazon Associate I earn from qualifying purchases. Product prices and availability observed on official listings on 2026-11-20 and subject to change.</div>
+      <div class="footer-cols">
+        <div class="footer-brand">
+          <span class="brand-mark">WinA<span class="dot">.</span></span>
+          <p>Kitchen Field Guide — five verified kitchen products, guides written as buyer questions, and a public record of everything we could not verify.</p>
+        </div>
+        <div>
+          <h4>The shop</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="products.html">The shelf</a></li>
+            <li><a href="guides/index.html">Guides</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Dashboard</h4>
+          <ul>
+            <li><a href="platform.html">Platform &amp; sources</a></li>
+            <li><a href="analysis.html">Field Notes (analysis)</a></li>
+            <li><a href="suggestions.html">Suggestions review</a></li>
+            <li><a href="questions.html">Open questions</a></li>
+            <li><a href="executive-summary.html">Executive summary</a></li>
+            <li><a href="flagged.html">Flagged for review</a></li>
+            <li><a href="search.html">Search</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-cols" style="margin-top:22px">
+        <div></div>
+        <div>
+          <h4>Follow &amp; index</h4>
+          <ul>
+            <li><a href="feed.xml">RSS feed</a></li>
+            <li><a href="sitemap.xml">Sitemap</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Legal</h4>
+          <ul>
+            <li><a href="flagged.html">Flagged for review</a></li>
+            <li><a href="questions.html">What we don't know yet</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-legal">
+        <span>© <span data-year>2026</span> WinA. All prices are point-in-time observations from official listings.</span>
+        <span>Tracking ID <span class="mono">shopnow047c-20</span></span>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

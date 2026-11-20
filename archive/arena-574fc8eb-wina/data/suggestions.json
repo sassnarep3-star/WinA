@@ -1,0 +1,258 @@
+{
+  "note": "Suggestions review section. Nothing here is implemented until it is reviewed and chosen on /suggestions/ — the chooser records a choice locally and applies nothing. IDs SG-21..SG-26 are reserved for parallel sessions and are intentionally absent.",
+  "paths": [
+    {
+      "id": "PATH-A",
+      "name": "Path A — Single-category air fryer shop",
+      "summary": "Publish as a focused air-fryer buyers' shop; park the two thermometer links until a later decision.",
+      "consequences": "Fastest route to topical depth and clean internal linking; two verified products (P-04, P-05) stay out of the shop; if the owner intended both categories, this loses the thermometer cluster.",
+      "gates": "Q-01 answered with 'air fryers only'"
+    },
+    {
+      "id": "PATH-B",
+      "name": "Path B — Two-room kitchen publication (current build)",
+      "summary": "Two category rooms under one publication: Air Fryers and Meat Thermometers, each with its own guide cluster and product shelf.",
+      "consequences": "Covers all five verified links; more editorial work per week; category pages and sitemap stay honest about scope; fully reversible to Path A by removing one section.",
+      "gates": "Q-01 answered with 'both' (default while unanswered)"
+    },
+    {
+      "id": "PATH-C",
+      "name": "Path C — Hold publication, dashboard only",
+      "summary": "Ship no buyer-facing guides until the compliance gate (Special Link test, tracking ID confirmation, intended ASINs) is closed; keep only the register and flagged pages public.",
+      "consequences": "Zero compliance exposure while the gate is open; no organic traffic and no click data; misses the publishing window.",
+      "gates": "Q-03, Q-04 answered"
+    }
+  ],
+  "suggestions": [
+    {
+      "id": "SG-01",
+      "title": "Lead with products, not with the verification process",
+      "body": "Rebuild the landing page as a publication front page: product shelf and guides first; every dashboard surface reachable from the footer and one dashboard nav group.",
+      "prerequisite": "none",
+      "effort": "low",
+      "impact": "reader trust + conversion clarity",
+      "status": "implemented in this build",
+      "sources": ["S16"]
+    },
+    {
+      "id": "SG-02",
+      "title": "Publish question-shaped guides on a set cadence",
+      "body": "Working titles (editorial hypotheses, not popularity claims): Basket or oven-style air fryer: what should you compare? · A no-hype checklist for comparing air fryer capacity · How to assess cleanup and counter-space trade-offs · Questions to ask before buying a multi-function kitchen appliance · plus one thermometer guide to cover the second category.",
+      "prerequisite": "Q-01 scope decision (default: both categories)",
+      "effort": "medium",
+      "impact": "organic entry points",
+      "status": "implemented in this build (5 guides shipped)",
+      "sources": ["S01", "S02", "S03", "S04", "S05"]
+    },
+    {
+      "id": "SG-03",
+      "title": "Turn on click and conversion measurement before writing anything else",
+      "body": "Ship the privacy-preserving outbound-click counter, the five documented events, and the self-hosted endpoint code first, so every later article is chosen from measured queries instead of instinct.",
+      "prerequisite": "Q-08 endpoint hosting",
+      "effort": "medium",
+      "impact": "evidence for every later decision",
+      "status": "implemented in this build (endpoint code shipped; deployment pending)",
+      "sources": ["S17"]
+    },
+    {
+      "id": "SG-04",
+      "title": "Disclosure above the fold on every page, repeated in the footer",
+      "body": "A disclosure strip sits under the masthead on every page and is repeated in the footer, using the exact Associates §5 sentence, checked by the build gate.",
+      "prerequisite": "none",
+      "effort": "low",
+      "impact": "compliance (material-breach item under §6(a))",
+      "status": "implemented in this build",
+      "sources": ["S12", "S16"]
+    },
+    {
+      "id": "SG-05",
+      "title": "Mark every outbound product link as sponsored",
+      "body": "All product links carry rel=\"sponsored nofollow\" (Google's paid-link qualification) and the owner-supplied tracking tag; the gate fails the build if either is missing.",
+      "prerequisite": "none",
+      "effort": "low",
+      "impact": "search hygiene + honesty",
+      "status": "implemented in this build",
+      "sources": ["S15"]
+    },
+    {
+      "id": "SG-06",
+      "title": "Build a product-intent confirmation record with never-merged fields",
+      "body": "intended_asin / intended_listing_url / confirmation_date / intent_source stay blank until confirmed; observed redirect target / date / source are stored separately.",
+      "prerequisite": "Q-02 owner confirmation",
+      "effort": "low",
+      "impact": "checkable identifiers, clean audit trail",
+      "status": "implemented in this build (intended fields blank on all five)",
+      "sources": ["S11"]
+    },
+    {
+      "id": "SG-07",
+      "title": "Replace ambiguous outbound links with validated Special Links — one link per product first",
+      "body": "Test one link per product in the enrolled Associates workflow; confirm destination and tracking report before scaling. Do not claim the supplied short links are invalid; their status is unresolved (FLG-003).",
+      "prerequisite": "Q-04 (Special Link test) + Q-03 (tracking ID)",
+      "effort": "medium",
+      "impact": "commission is only paid on properly formatted links",
+      "status": "proposed — gated",
+      "sources": ["S12", "S13"]
+    },
+    {
+      "id": "SG-08",
+      "title": "Keep an empty but well-defined campaign ledger",
+      "body": "Columns: timestamp, source, channel, eligible sessions, clicks, reported orders, provenance. Rows are added only when obtained from authorized first-party reports. No conversion score or revenue forecast is presented anywhere.",
+      "prerequisite": "Q-03/Q-05 (reports access)",
+      "effort": "low",
+      "impact": "evidence-based iteration without invented numbers",
+      "status": "implemented in this build (ledger empty by design)",
+      "sources": ["S13"]
+    },
+    {
+      "id": "SG-09",
+      "title": "Put disclosures and API policy checks into the publishing workflow",
+      "body": "scripts/check_site.py is the gate: disclosure strip present above <main> on every page, footer disclosure present, every product link sponsored + tagged, every data-table row carries a source link, internal links resolve, sitemap covers every page. It must pass before any push.",
+      "prerequisite": "none",
+      "effort": "medium",
+      "impact": "compliance becomes mechanical",
+      "status": "implemented in this build",
+      "sources": ["S12", "S16", "S15"]
+    },
+    {
+      "id": "SG-10",
+      "title": "Offer three complete paths and record the choice without applying it",
+      "body": "The chooser on /suggestions/ compares Path A / B / C on consequences and gates; the control records the chosen path in this browser only and applies no change to the site.",
+      "prerequisite": "Q-01",
+      "effort": "low",
+      "impact": "reviewable decisions before any change",
+      "status": "implemented in this build",
+      "sources": []
+    },
+    {
+      "id": "SG-11",
+      "title": "Keep editorial hypotheses labelled as hypotheses",
+      "body": "Every working title carries the caveat that it is not a claim about popularity, search volume, or product superiority. Titles get replaced by measured queries once Search Console data exists.",
+      "prerequisite": "none (revision gated on Q-09)",
+      "effort": "low",
+      "impact": "no hallucinated demand claims",
+      "status": "implemented in this build",
+      "sources": ["S15"]
+    },
+    {
+      "id": "SG-12",
+      "title": "Source product imagery only from official Program Content",
+      "body": "No hotlinked or scraped images. The build ships a text-forward design; real product imagery is added only through Associates link-builder / PA API output after account approval.",
+      "prerequisite": "Q-11",
+      "effort": "medium",
+      "impact": "publication polish without IP risk",
+      "status": "proposed — gated",
+      "sources": ["S12"]
+    },
+    {
+      "id": "SG-13",
+      "title": "Add the site to Search Console and submit the sitemap",
+      "body": "After the site is live: add the property, verify ownership, submit sitemap.xml, then choose the next topic from measured queries.",
+      "prerequisite": "Q-07 canonical domain, Q-09 owner action",
+      "effort": "low",
+      "impact": "findability + evidence for topic choice",
+      "status": "proposed — gated",
+      "sources": ["S15", "S17"]
+    },
+    {
+      "id": "SG-14",
+      "title": "Ship the RSS feed and internal link clusters on day one",
+      "body": "feed.xml lists every guide; each guide links to its category shelf and sibling guides (air-fryer cluster, thermometer cluster) so crawlers and readers can move in both directions.",
+      "prerequisite": "none",
+      "effort": "low",
+      "impact": "indexation + return readers",
+      "status": "implemented in this build",
+      "sources": ["S15"]
+    },
+    {
+      "id": "SG-15",
+      "title": "Plan seasonal hooks without inventing demand data",
+      "body": "Editorial calendar placeholders: holiday gifting (thermometers), game-day cooking (air fryers), summer grilling. Dates are planning slots only — no volume claims.",
+      "prerequisite": "Q-10 cadence",
+      "effort": "low",
+      "impact": "timing without fabricated trends",
+      "status": "proposed — gated",
+      "sources": []
+    },
+    {
+      "id": "SG-16",
+      "title": "Human editorial pass rule: every claim carries a source or comes out",
+      "body": "Standing rule for all future content: a sentence that cannot point to an official source (or to first-party measurement once available) is deleted, not softened. Product specs come from the listing; comparisons stay structural (capacity, form factor, cleanup), never superiority scores.",
+      "prerequisite": "none",
+      "effort": "continuous",
+      "impact": "anti-slop guarantee",
+      "status": "standing rule in this build",
+      "sources": ["S01", "S02", "S03", "S04", "S05"]
+    },
+    {
+      "id": "SG-17",
+      "title": "Compare with 'who it's for' framing, not numeric scores",
+      "body": "Guides compare form factors and trade-offs in plain language. No star ratings, no scores, no 'best' superlatives — product ratings were not captured from the listings' own rating blocks and stay blank (FLG-007 discipline).",
+      "prerequisite": "none",
+      "effort": "low",
+      "impact": "credibility",
+      "status": "implemented in this build",
+      "sources": ["S01", "S02", "S03", "S04", "S05"]
+    },
+    {
+      "id": "SG-18",
+      "title": "A/B test guide titles from measured queries",
+      "body": "Once Search Console reports queries, re-title underperforming guides from real query wording and measure. Until then, titles stay editorial hypotheses.",
+      "prerequisite": "Q-09",
+      "effort": "medium",
+      "impact": "traffic growth from evidence",
+      "status": "proposed — gated",
+      "sources": ["S15"]
+    },
+    {
+      "id": "SG-19",
+      "title": "Reader capture with a privacy-first provider",
+      "body": "Optional email capture for the guide series; requires a provider decision, a privacy policy line, and an unsubscribe path before any form ships. No form ships in this build.",
+      "prerequisite": "Q-14 provider + privacy review",
+      "effort": "medium",
+      "impact": "owned audience",
+      "status": "proposed — gated",
+      "sources": ["S16"]
+    },
+    {
+      "id": "SG-27",
+      "title": "Publication-style nav labels (parallel-pass row)",
+      "body": "Nav labels read like a magazine, not an admin panel: 'Shelf' for products, 'Guides' for articles, 'Field Notes' for analysis; dashboards live in one footer group.",
+      "prerequisite": "SG-01",
+      "effort": "low",
+      "impact": "reads like a publication",
+      "status": "implemented in this build",
+      "sources": ["S16"]
+    },
+    {
+      "id": "SG-28",
+      "title": "Shipped RSS feed (parallel-pass row)",
+      "body": "feed.xml (RSS 2.0) is generated from the guide registry and listed in the footer; every new guide is added to the feed and sitemap by the build.",
+      "prerequisite": "none",
+      "effort": "low",
+      "impact": "distribution",
+      "status": "implemented in this build",
+      "sources": ["S15"]
+    },
+    {
+      "id": "SG-29",
+      "title": "Search Console (parallel-pass row)",
+      "body": "Checklist ships on the platform page; the actual property add/verify/submit is an owner action (FLG-008, Q-09).",
+      "prerequisite": "Q-07, Q-09",
+      "effort": "low",
+      "impact": "query evidence",
+      "status": "proposed — gated",
+      "sources": ["S15"]
+    },
+    {
+      "id": "SG-30",
+      "title": "Reader capture (parallel-pass row)",
+      "body": "Same gate as SG-19 — provider and privacy review before a single input field appears.",
+      "prerequisite": "Q-14",
+      "effort": "medium",
+      "impact": "owned audience",
+      "status": "proposed — gated",
+      "sources": ["S16"]
+    }
+  ]
+}
