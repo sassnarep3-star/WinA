@@ -208,7 +208,7 @@ export const seo = {
       title: "What is not verified",
       body: `<p>Search Console ownership has not been confirmed, because that requires account access. A placeholder verification token is in the markup and clearly marked as such.</p>
 <p><strong>Until that is replaced, this site has no idea whether it is indexed, what it ranks for, or whether anyone arrives.</strong> It is the single highest-value five-minute task remaining, and it is recorded as an open action rather than described as done.</p>
-<p>No search volume data exists for any of the guide topics. The titles are editorial hypotheses about what people might ask, not evidence about what they do ask. Publishing on a cadence and reading the query report is how that changes.</p>`
+<p>No search volume data exists for any of the published guide topics. The titles are editorial hypotheses about what people might ask, not evidence about what they do ask. Publishing guides on a cadence and reading the query report is how that changes.</p>`
     },
     {
       title: "What we will not do",
@@ -270,7 +270,7 @@ export const promo = {
     },
     {
       slug: "thermomaven-1-sec-thermometer",
-      hook: "The cheap insurance that stops you guessing",
+      hook: "A one-second read for a quick kitchen check",
       social:
         "One second to a reading is the threshold where checking temperature stops feeling like a delay — which is the only reason people actually do it. NIST-certified claim, AAA battery, no app, no account. → [review]",
       newsletter:
