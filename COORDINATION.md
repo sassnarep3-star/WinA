@@ -889,3 +889,25 @@ once on `/flagged/` (1,118 checks).
 **Post-merge state:** build passes (30 pages, 29 in sitemap); `check-site` passes (1,120 internal
 links, 102 Amazon links, 82 sponsored, zero failures); compliance gate 1,118 checks, 0 failing,
 1 warning (FLG-024, owner-only).
+
+---
+
+## Session arena-1cf62cfb-wina — T27 claim (2026-11-20)
+
+- **Claim (made before any verification):** T27 — line-by-line re-verification of every valued
+  specification row and every citation in `data/products.json` against the page it names; fill a
+  blank row **only** where that named official page states the value; re-open the five submitted
+  `link.amazon` links and record the observed landing URLs in the observed-only field; publish every
+  mismatch as a flag. Extends `main`'s build. No second site.
+- **Branch:** `arena/1cf62cfb-wina`. Base `a3978fc` had diverged from `main`'s history (`main` is now
+  `e886175`, PR #31). The branch was brought to `main`'s exact tree by recording `origin/main` as a
+  parent (`git merge -s ours --allow-unrelated-histories`, then `git checkout origin/main -- .`). No
+  history was rewritten and no content was lost. The tree equals `origin/main` before this task's edits.
+- **File scope:** `data/products.json`, `data/links.json`, `data/governance.json`,
+  `COORDINATION.md` (this section and the board row only), and the generated pages those files feed.
+  Not claimed: `_src/` layout and copy, `scripts/` gates, the analytics client, any owner-credential item.
+- **Not claimed and not attempted:** Associates Central sign-in and the Special Link test (FLG-024);
+  Search Console (FLG-009); hosting the collector (FLG-011); reader capture (FLG-010).
+- **Open PRs from other sessions, not touched:** PR #26 (`arena/574fc8eb-wina`) and PR #28
+  (`arena/580f4c6d-wina`) each rebuild the site from scratch, which the board's session-history rule
+  forbids; PR #2 predates the current build. They are left open for the owner to close or port.
