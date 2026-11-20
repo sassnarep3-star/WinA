@@ -369,7 +369,7 @@ function frontPage() {
 <div class="strip">
   <div class="wrap strip__inner">
     <div class="strip__cell"><p class="strip__num">5</p><p class="strip__lab">Products compared</p></div>
-    <div class="strip__cell"><p class="strip__num">4</p><p class="strip__lab">Guides</p></div>
+    <div class="strip__cell"><p class="strip__num">5</p><p class="strip__lab">Guides</p></div>
     <div class="strip__cell"><p class="strip__num">0</p><p class="strip__lab">Products tested</p></div>
     <div class="strip__cell"><p class="strip__num">10</p><p class="strip__lab">Policy checks passed</p></div>
   </div>
@@ -409,7 +409,7 @@ function frontPage() {
   <div class="wrap">
     <div class="section__head">
       <h2 class="section__title">Read before you buy</h2>
-      <p class="section__dek">Four questions that come up before any of these purchases, answered without a verdict at the end.</p>
+      <p class="section__dek">Five questions that come up before any of these purchases, answered without a verdict at the end.</p>
     </div>
     <div class="guides guides--two">
       ${guides
@@ -760,7 +760,7 @@ ${breadcrumb([{ href: url("/"), label: "Home" }, { label: "Guides" }])}
   <div class="wrap">
     <p class="kicker">Buying guides</p>
     <h1 class="article-head__title">The questions people ask before they buy</h1>
-    <p class="article-head__dek">Four guides, each built around one decision. No rankings, no "best of" list, no claim that any of this was tested.</p>
+    <p class="article-head__dek">Five guides, each built around one decision. No rankings, no "best of" list, no claim that any of this was tested.</p>
   </div>
 </div>
 <section class="section">
@@ -793,7 +793,7 @@ ${breadcrumb([{ href: url("/"), label: "Home" }, { label: "Guides" }])}
   pages.push({
     path: "/guides/",
     title: "Buying guides",
-    desc: "Four question-shaped guides to air fryers and thermometers: form factor, capacity, cleanup, and multi-function claims.",
+    desc: "Five question-shaped guides to air fryers and thermometers: form factor, capacity, cleanup, and multi-function claims.",
     html,
     priority: "0.8",
     changefreq: "weekly"
@@ -1490,7 +1490,7 @@ ${breadcrumb([{ href: url("/"), label: "Home" }, { label: "Executive summary" }]
     <h2>What exists</h2>
     <ul>
       <li><strong>A five-product publication</strong> — three air fryers, two thermometers — with individual pages, two category hubs, and a full comparison table.</li>
-      <li><strong>Four question-shaped guides</strong>, written as decisions rather than rankings.</li>
+      <li><strong>Five question-shaped guides</strong>, written as decisions rather than rankings.</li>
       <li><strong>A complete source register</strong>: ${policy.sources.length} primary sources and ${products.reduce(
         (n, p) => n + p.specs.length,
         0
@@ -1539,8 +1539,8 @@ ${breadcrumb([{ href: url("/"), label: "Home" }, { label: "Executive summary" }]
     </ol>
 
     <h2>The honest verdict</h2>
-    <p>What exists is a small, well-documented, compliant publication with four decent guides and five products. It is not yet a business: it has no traffic, no verified affiliate attribution, and no data. It is, however, built so that when those three things arrive, nothing has to be torn down — and so that nothing on it is a lie.</p>
-    <p>The main strategic risk is not technical. It is that four guides is not enough content to rank in a crowded category, and the plan for fixing that is a cadence, not a feature.</p>
+    <p>What exists is a small, well-documented, compliant publication with five decent guides and five products. It is not yet a business: it has no traffic, no verified affiliate attribution, and no data. It is, however, built so that when those three things arrive, nothing has to be torn down — and so that nothing on it is a lie.</p>
+    <p>The main strategic risk is not technical. It is that five guides is not enough content to rank in a crowded category, and the plan for fixing that is a cadence, not a feature.</p>
   </div>
 </section>
 `;

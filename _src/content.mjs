@@ -174,7 +174,7 @@ Multi-function claims are the easiest thing in kitchen retail to inflate and the
     body: `
 <h2>1. Which function is the appliance actually built around?</h2>
 <p>Every multi-function appliance has a native shape. An oven with a fan is an oven first; the air-fry setting is a mode. A drawer with a fan is an air fryer first; the bake setting is a compromise.</p>
-<p>This matters because the secondary functions inherit the limitations of the primary one. The Emeril Lagasse 26QT is a convection oven with 24 presets — as an oven it has real volume for a whole chicken or a sheet of vegetables. Its air-fry mode is genuinely useful, and it is still an oven: it will not heat up like a drawer does.</p>
+<p>This matters because the secondary functions inherit the limitations of the primary one. The Emeril Lagasse 26QT is a convection oven with 25 presets — as an oven it has real volume for a whole chicken or a sheet of vegetables. Its air-fry mode is genuinely useful, and it is still an oven: it will not heat up like a drawer does.</p>
 <p>Ask which function the manufacturer leads with in the product name. That is usually the honest one.</p>
 
 <h2>2. Are the presets programming, or just labels?</h2>

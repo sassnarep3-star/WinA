@@ -127,14 +127,14 @@ Two constraints shape all of it. The site earns nothing until a click converts o
     },
     {
       title: "The content engine: question-shaped guides",
-      body: `<p>Every guide is titled as a question someone would actually type, and answers it without withholding the answer for a click. Four exist. The pattern is what matters, because it is repeatable:</p>
+      body: `<p>Every guide is titled as a question someone would actually type, and answers it without withholding the answer for a click. Five exist. The pattern is what matters, because it is repeatable:</p>
 <ul>
 <li>Name the real decision, not the product category.</li>
 <li>Give the reader a way to decide for themselves, not just an answer.</li>
 <li>Say when the recommendation is the wrong one.</li>
 <li>Link to products only after the decision is clear.</li>
 </ul>
-<p>The current four are hypotheses about what people want to know. None of them is backed by search volume data, because none exists yet. That is stated on the <a href="{BASE}/questions/">open questions</a> page rather than disguised as research.</p>`
+<p>The current five are hypotheses about what people want to know. None of them is backed by search volume data, because none exists yet. That is stated on the <a href="{BASE}/questions/">open questions</a> page rather than disguised as research.</p>`
     },
     {
       title: "Sequence, because order matters",
@@ -208,7 +208,7 @@ export const seo = {
       title: "What is not verified",
       body: `<p>Search Console ownership has not been confirmed, because that requires account access. A placeholder verification token is in the markup and clearly marked as such.</p>
 <p><strong>Until that is replaced, this site has no idea whether it is indexed, what it ranks for, or whether anyone arrives.</strong> It is the single highest-value five-minute task remaining, and it is recorded as an open action rather than described as done.</p>
-<p>No search volume data exists for any of the four guide topics. The titles are editorial hypotheses about what people might ask, not evidence about what they do ask. Publishing four guides and reading the query report is how that changes.</p>`
+<p>No search volume data exists for any of the five guide topics. The titles are editorial hypotheses about what people might ask, not evidence about what they do ask. Publishing five guides and reading the query report is how that changes.</p>`
     },
     {
       title: "What we will not do",
@@ -255,7 +255,7 @@ export const promo = {
         "There is a real fork in this category and it is not brand versus brand. A basket machine gives you a drawer you pull toward you; an oven gives you a box you reach into. The Emeril 26QT is firmly the second: rotisserie, broil, bake and dehydrate in one cavity, 26 quarts, and a footprint that takes a substantial piece of counter. If you want fries in small batches fast, this is the wrong machine. → [review]",
       disclosureNote:
         "Sponsored. As an Amazon Associate I earn from qualifying purchases.",
-      caution: "The preset count is published as 24, 25 and '10-in-1' by different official pages. Do not put a number in a post."
+      caution: "The manufacturer's page currently lists 25 presets; the listing title says '24 One-Touch Preset Options' and the description says '10-in-1'. Do not put a preset number in a post until the discrepancy is resolved."
     },
     {
       slug: "chefman-8-quart-turbofry",

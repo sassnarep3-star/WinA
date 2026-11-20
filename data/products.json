@@ -147,7 +147,7 @@
       "why": [
         "26 quarts is the largest capacity in this set by a wide margin — it takes a whole chicken or a full sheet of vegetables in one pass.",
         "French doors open outward instead of dropping down, so you can reach in with both hands without clearing the counter in front.",
-        "24 one-touch presets cover the modes people actually use nightly, which shortens the learning curve for a big appliance.",
+        "25 one-touch presets cover the modes people actually use nightly, which shortens the learning curve for a big appliance.",
         "Six cooking accessories are included, so the accessories line item is already in the box."
       ],
       "consider": [
@@ -170,7 +170,7 @@
         },
         {
           "label": "Presets",
-          "value": "24 one-touch presets",
+          "value": "25 one-touch presets",
           "status": "verified",
           "source": "manufacturer"
         },
@@ -308,9 +308,9 @@
         },
         {
           "label": "Wattage",
-          "value": null,
-          "status": "unverified",
-          "source": null
+          "value": "1700 W, 120 V",
+          "status": "verified",
+          "source": "manufacturer"
         },
         {
           "label": "Dimensions",
@@ -320,9 +320,9 @@
         },
         {
           "label": "Warranty",
-          "value": null,
-          "status": "unverified",
-          "source": null
+          "value": "1 year (Chefman assurance)",
+          "status": "verified",
+          "source": "manufacturer"
         },
         {
           "label": "Price",
@@ -350,10 +350,20 @@
         "cleanup",
         "basket-vs-oven"
       ],
+      "specSources": {
+        "Wattage": {
+          "url": "https://chefman.com/products/turbofry-8-qt-air-fryer-w-high-fry",
+          "label": "chefman.com specification"
+        },
+        "Warranty": {
+          "url": "https://chefman.com/products/turbofry-8-qt-air-fryer-w-high-fry",
+          "label": "chefman.com specification"
+        }
+      },
       "submittedLink": "https://link.amazon/B00hJ57DV",
       "observedDestination": "https://www.amazon.com/dp/B08DKYBTPH",
       "observedOn": "2026-11-20",
-      "modelAmbiguity": "The 8-qt family spans at least five SKUs. chefman.com publishes RJ38-8T-BLACK (matte black, 8 qt/7.57 L, Hi-Fry 450 F, 1700 W/120 V); the listing re-fetched for this ASIN (12.8 lb, RJ38-SQSS-8T per retailer records) describes a stainless-steel body. Because the colour and model strings disagree, no dimension, weight or wattage is taken from the black SKU's page."
+      "modelAmbiguity": "The 8-qt family spans at least five SKUs. chefman.com publishes RJ38-8T-BLACK (matte black, 8 qt/7.57 L, Hi-Fry 450 F, 1700 W/120 V, one-year assurance); the listing re-fetched for this ASIN (12.8 lb, RJ38-SQSS-8T per retailer records) describes a stainless-steel body. Wattage and warranty are taken from the official page for the black SKU, but may not match this ASIN's variant. Dimensions are not taken from either page."
     },
     {
       "slug": "thermomaven-1-sec-thermometer",
@@ -522,7 +532,7 @@
         {
           "label": "Probes",
           "value": "3 ultra-thin probes",
-          "status": "verified",
+          "status": "claim",
           "source": "manufacturer"
         },
         {
@@ -638,7 +648,8 @@
           "label": "chefiq.com"
         }
       },
-      "modelNumber": "CQ60-1C-Z1-E"
+      "modelNumber": "CQ60-1C-Z1-E",
+      "modelAmbiguity": "chefiq.com defaults to the one-probe model CQ60-1C-Z1-E and offers 1-4 probe configurations. The listing title and this record say three probes, but we could not confirm that this exact ASIN ships the three-probe variant. Probes is flagged pending confirmation of the submitted ASIN's variant."
     }
   ],
   "categories": [
