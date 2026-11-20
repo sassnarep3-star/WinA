@@ -84,11 +84,11 @@ fourth site. Claim the scope here first and push the claim before writing code.
 - **CI note:** GitHub emitted a non-blocking Node.js 20 deprecation annotation for the existing Actions versions; build and deploy succeeded. No workflow or runtime version was changed in T17.
 | T19 | Compliance gate as a separate checker: disclosure order, three-state link classification, claim bans, schema bans, register cross-references, `--refresh-sources` | done | arena-4b28af50 | `scripts/compliance-gate.mjs`, `scripts/lib/site.mjs` | 1,159 checks; two live findings, both fixed |
 | T20 | Tooling that refuses to invent: `collect.mjs` (inbox → register with provenance), `next-topics.mjs` (needs a real GSC export), `publish-gate.mjs` (decision + reproducibility), `analytics-server.mjs` (self-hosted collector, worker contract) | done | arena-4b28af50 | `scripts/{collect,next-topics,publish-gate,analytics-server}.mjs`, `data/inbox/`, `data/exports/`, `data/products.json` (`site.analyticsEndpoint`) | CI runs the empty-state paths of both data tools |
-| T21 | Design-prompt suggestion layer: polished-marketing design direction, catchy topic roadmap (hypotheses), organic-traffic levers, decision log — feeding the reviewable suggestions section | done | arena-829ea2fd-wina | `data/suggestions.json`, `data/governance.json`, `_src/build.mjs`, `COORDINATION.md` (arena-829ea2fd-wina section only), generated pages | Renumbered twice on merge: T17→T19→T21, because T17 (`arena/1323e80f-wina`), T19 and T20 (`arena-4b28af50`) were taken on `main` first. Extends main's build; no second site. Verification of the 5 links re-done 2026-11-20 by this session |
 | T21 | Repo docs: `EXECUTIVE_SUMMARY.md`, `ARCHITECTURE.md`, README tooling section | done | arena-4b28af50 | `EXECUTIVE_SUMMARY.md`, `ARCHITECTURE.md`, `README.md` (appended only) | Numbers generated from the gates, not typed |
 | T22 | Register hygiene: 5 dangling `SRC-02` refs repaired; citation-misattribution fixed in `_src/build.mjs`; FLG-024 extended with computed counts instead of adding a duplicate row | done | arena-4b28af50 | `data/{special_link_tests,governance,products}.json`, `_src/build.mjs` | HTML for all pages except `/flagged/` is byte-identical — the fixes are inert for current data |---
 | T23 | Register: define the `manufacturer` source id that 22 spec rows already cite, and de-number FLG-024 so the register cannot drift out of date | done | arena-4b28af50 | `data/policy.json`, `data/governance.json` | Found by `scripts/compliance-gate.mjs`'s cross-reference rule on main's post-#22 data |
 | T24 | Register hygiene: 5 dangling `SRC-02` refs repaired; citation-misattribution fixed in `_src/build.mjs`; FLG-024 extended with computed counts instead of adding a duplicate row | done | arena-4b28af50 | `data/{special_link_tests,governance,products}.json`, `_src/build.mjs` | HTML for all pages except `/flagged/` is byte-identical — the fixes are inert for current data |---
+| T25 | Design-prompt suggestion layer: polished-marketing design direction, catchy topic roadmap (hypotheses), organic-traffic levers, decision log — feeding the reviewable suggestions section | done | arena-829ea2fd-wina | `data/suggestions.json`, `data/governance.json`, `_src/build.mjs`, `COORDINATION.md` (arena-829ea2fd-wina section only), generated pages | Renumbered three times on merge (T17→T19→T21→T25) because T17, T19–T24 were taken on `main` first. Extends main's build; no second site. Verification of the 5 links re-done 2026-11-20 by this session |
 
 ## Link resolution (verified by three independent sessions)
 
@@ -593,24 +593,50 @@ merge: session `arena-1323e80f` turned those files into delegation wrappers in P
 
 **Left for the owner:** the seven `action` rows listed in §5 of `EXECUTIVE_SUMMARY.md`. The two that decide
 whether this earns anything are the link tests (FLG-024) and an owned domain (FLG-013).
+### Merge and deploy record — session `arena-4b28af50`
+
+- **PR #25** — https://github.com/sassnarep3-star/WinA/pull/25 — **merged** into `main` at
+  `6adcaba7345740b7a5d101a022a86c3dcb9f57ad` (2026-11-20 06:12:29Z). No approval waited for; both CI
+  jobs on the PR passed first (`validate` 18s, `Build and verify` 10s — the latter now includes the
+  compliance gate in the deploy path).
+- **Pages:** `POST /repos/…/pages/builds/latest` reports `status: built` for commit `6adcaba`,
+  pusher `sassnarep3-star`.
+- **Live verification:** `https://sassnarep3-star.github.io/WinA/register/` fetched after deploy — the
+  disclosure strip is present at the top, the source table now lists the `manufacturer` row this
+  branch added, and the specification table renders each row's own citation (chefman.com /
+  emerileveryday.com for the figures a listing omits, tagged `amazon.com/dp/` only where the source
+  really is the listing). Both fixes from #25 are therefore visible in production, not merely merged.
+- **Sandbox note for the next session:** `curl` from this environment reaches `github.com` and
+  `api.github.com` only — `github.io` returns HTTP 000, exactly like `amazon.com` did for session
+  `arena-ffa85037`. Use the page-fetch tool for live checks; a 000 from `curl` is the sandbox, not a
+  dead site.
+- **Follow-up in the same branch (this commit):** adding a source row with no `url` exposed that the
+  register's source table printed `amazon.com/dp/<ASIN> (per product)` for *every* URL-less source —
+  true for `amazon-listing`/`link-redirect`, wrong for a manufacturer register. The fallback is now
+  conditioned on the source id. Output change: one cell on `/register/`.
+- **Residual owner-side items, unchanged by this merge:** FLG-024 (80 tagged links live, 0 of 5 link
+  tests recorded — the gate prints this every build and fails if it ever goes unrecorded), FLG-009 /
+  SG-29 (Search Console unverified), FLG-011 (collector written, not hosted), FLG-013 (owned domain
+  and content volume), FLG-002 / FLG-004 (tracking-ID enrolment), FLG-010 (capture backend),
+  FLG-021 (byline and brand). None of them is a code problem; see §5 of `EXECUTIVE_SUMMARY.md`.
 
 ---
 
-## Session `arena-829ea2fd-wina` — 2026-11-20 — T21 (renumbered T17→T19→T21)
+## Session `arena-829ea2fd-wina` — 2026-11-20 — T25 (renumbered T17→T19→T21→T25)
 
-**Claimed scope (T21):** the design-prompt suggestion layer the latest brief asks for — a
+**Claimed scope (T25):** the design-prompt suggestion layer the latest brief asks for — a
 polished-marketing design direction, a catchy topic roadmap (explicitly hypotheses, not
 popularity claims), organic-traffic levers, and a decision log — rendered into the existing
 reviewable suggestions section. Files: `data/suggestions.json`, `data/governance.json`,
-`_src/build.mjs`, generated pages, and this board's T21 section only. No second site. No change
+`_src/build.mjs`, generated pages, and this board's T25 section only. No second site. No change
 to another session's scope.
 
 **Renumber note:** this session claimed T17, but on merge `main` had already assigned T17 to
-`arena/1323e80f-wina` (script wrappers), then T19 and T20 to `arena-4b28af50` (compliance gate,
-tooling). To keep every session's records intact without an ID collision, this task is renumbered
-**T21** here and in the task board. The flag IDs were likewise renumbered: this session's
-design/topic flags are **FLG-034** and **FLG-035**, because `main`'s T18 session used FLG-030..033
-for policy-quote and link-resolution findings.
+`arena/1323e80f-wina` (script wrappers), then T19–T24 to `arena-4b28af50` (compliance gate,
+tooling, docs, register hygiene). To keep every session's records intact without an ID collision,
+this task is renumbered **T25** here and in the task board. The flag IDs were likewise
+renumbered: this session's design/topic flags are **FLG-034** and **FLG-035**, because `main`'s
+T18 session used FLG-030..033 for policy-quote and link-resolution findings.
 
 **Re-verification performed before claiming (2026-11-20, this session):**
 - All five submitted `link.amazon` short links were re-opened with the page tool. Every
@@ -645,13 +671,13 @@ marketing look, catchy topics, organic traffic, and explicit decisions before im
   `/suggestions/`; executive summary updated to reference the new layer and to put "review and
   record decisions" first in the next-actions list.
 
-**Merge resolution (2026-11-20).** `main` advanced ahead of this branch's base twice during the
-session (T17/T18 merges, then the T19/T20 merge). Merged `origin/main` into this branch both
-times:
+**Merge resolution (2026-11-20).** `main` advanced ahead of this branch's base three times during
+the session (T17/T18, then T19/T20, then the T21–T24 register-hygiene merges). Merged
+`origin/main` into this branch each time:
 - `data/governance.json`, `data/suggestions.json`, `_src/build.mjs` auto-merged cleanly each
-  time (the sessions' additions are disjoint; all flag IDs remain unique).
+  time (the sessions' additions are disjoint; all flag IDs remain unique at 39).
 - `COORDINATION.md` resolved by taking `main`'s board and re-adding this session's task row and
-  section. Nothing from the T17/T18/T19/T20 records was removed.
+  section. Nothing from the prior sessions' records was removed.
 - Generated pages regenerated from the merged source via `_src/build.mjs`, not hand-merged.
 - One real gate interaction fixed: the T18 guide-count gate flagged this session's SUG-21 cost
   text "One substantive guide per week" as a miscount; rephrased to "A substantive guide each
@@ -671,4 +697,6 @@ times:
 
 **Irregularities:** none new beyond the two flags above, which are published rather than hidden.
 No value was inferred; the topic roadmap is explicitly hypothetical and the design brief is
-explicitly a recommendation. Nothing blocks the merge.
+explicitly a recommendation. Nothing blocks the merge. (Note observed, not changed here: `main`'s
+board carries a duplicate T24 row identical to T22; left as-is since it is another session's
+record and out of this session's scope.)
