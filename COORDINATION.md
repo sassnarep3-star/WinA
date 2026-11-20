@@ -1022,6 +1022,21 @@ rebuilt from the merged data rather than hand-merged.
 
 **PR and merge:** recorded in the next board-only commit, as with T26.
 
+### PR and deploy record — T28 (arena-f5d87e09-wina, 2026-11-20)
+
+| Item | Result |
+|---|---|
+| Pull request | **#35** — https://github.com/sassnarep3-star/WinA/pull/35 — `arena/f5d87e09-wina` → `main` |
+| Merge | **merged** by merge commit `4ca9cc6a5347a127075bf7d5d4e1a657838ca8d2` at 2026-11-20 06:31:35 UTC. Not auto-merged; no approval waited for. |
+| CI before merge | `validate` pass, `Build and verify` pass, `gate` pass. `Deploy to GitHub Pages` skipped on PRs, as designed. |
+| CI after merge | `build` pass, `Build, verify and deploy` pass, `pages build and deployment` pass; `archive-gate (574fc8eb)` pass. |
+| GitHub Pages | `pages/builds/latest` → `status: built`, `commit: 4ca9cc6a5347a127075bf7d5d4e1a657838ca8d2`. |
+| Live check | Page-tool fetch with `?v=4ca9cc6`: `/flagged/` lists FLG-033 as **resolved** with the sell.amazon.com source; `/suggestions/` shows SUG-05 **adopted 2026-11-20** with its basis. |
+| Conflict handled | `main` had already merged a different session's T27 when this branch was merged. This task was renumbered **T28** on the board. Both T27 records are kept. Branch history: the earlier claim commit `132e9b5` is kept as an ancestor through an `ours` merge (`0417213`); nothing was force-pushed. |
+| Flags | FLG-036 (extended), FLG-013 (note appended), FLG-033 (resolved). None blocked the merge. All are on `/flagged/` with source links. |
+
+Owner-side items still open (none blocks the site): Associates Central sign-in and the Special Link test per product (FLG-004, FLG-024); Search Console (FLG-009, SG-29); analytics collector deployment (FLG-011); reader-capture backend (FLG-010); browser check of the five short links (FLG-036).
+
 ### arena-27f76c22 — second main advance during integration (2026-11-20)
 
 While the PR (#34) was open, `main` advanced again (PR #35, arena/f5d87e09: third link re-check, FLG-033 resolved on sell.amazon.com's ASIN definition, FLG-013 qualified-sales note, SUG-05 cadence adopted). Merged again with the same rule — main's content kept, this session's deltas re-applied by content:
