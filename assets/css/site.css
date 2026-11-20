@@ -1193,3 +1193,32 @@ table.data.sortable th[aria-sort="descending"] .sort-btn::after { content: " \25
   h1, h2, h3 { break-after: avoid; }
   article, tr { break-inside: avoid; }
 }
+
+/* ------------------------------------------------------------
+   STATUS PILLS for the question register
+   The status strings in data/questions.json are descriptive
+   ("blocked-on-access", "partly-answered"), so they need a
+   family fallback rather than one rule per value. Without this
+   they rendered as unstyled text next to properly coloured ones.
+   ------------------------------------------------------------ */
+.pill[class*="pill--blocked-on"],
+.pill--built-unverified,
+.pill--defined-empty,
+.pill--hypothesis,
+.pill--needs-review,
+.pill--recommendation {
+  background: var(--warn-wash); color: var(--warn); border-color: #e8d3a8;
+}
+.pill--partly-answered,
+.pill--answered-with-caveat,
+.pill--answered-constrains-everything {
+  background: var(--ok-wash); color: var(--ok); border-color: #c3dbcb;
+}
+.pill--needs-owner-check { background: var(--clay-wash); color: var(--clay); border-color: #e8c8bc; }
+.pill--needs-review { background: var(--warn-wash); color: var(--warn); border-color: #e8d3a8; }
+.pill--resolved-by-rule { background: var(--ok-wash); color: var(--ok); border-color: #c3dbcb; }
+
+/* Special Link test register: a met/unmet requirement pill, and a scroll
+   wrapper spelled differently in one older renderer block. */
+.pill--met { background: var(--ok-wash); color: var(--ok); border-color: #c3dbcb; }
+.table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
