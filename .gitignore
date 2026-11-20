@@ -1,4 +1,4 @@
-site/
 node_modules/
 .DS_Store
 *.log
+# v2 build output is committed because GitHub Pages serves it from /v2/.

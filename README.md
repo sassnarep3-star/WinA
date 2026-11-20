@@ -1,74 +1,73 @@
-# Countertop Report
+# WinA — The Counter Guide
 
-A specification-led buying-notes site for five Amazon products in two categories:
-three air fryers and two meat thermometers.
+Publication site for five submitted Amazon listings (three air fryers & ovens, two meat
+thermometers), with question-shaped buyer guides and a dashboard of sources, findings,
+questions, suggestions and flags.
 
-**Live:** https://sassnarep3-star.github.io/WinA/
+- **Live site:** https://sassnarep3-star.github.io/WinA/ — GitHub Pages, source `main` `/`
+- **Preview edition:** https://sassnarep3-star.github.io/WinA/v2/ — a second, deeper build of the
+  same catalogue, kept separate so the owner can compare and choose
+- **Data:** `data/*.json` (single source of truth; every row cites an official source; blanks are
+  unverified and flagged)
 
-It is built to a single rule: **a fact is published only when a primary source states it,
-and that source is linked from the same row.** Anything else says "Not confirmed".
+Associates disclosure: **As an Amazon Associate I earn from qualifying purchases.**
 
 ---
 
-## What is here
+## Two sites, one repository
 
-```
-data/                     the registers — the source of truth
-  products.json           verified specs, each with its own source URL
-  links.json              supplied links, intended ASIN, observed redirect (kept separate)
-  policies.json           Associates + FTC rules, quoted and linked
-  questions.json          24 questions blocking a reasonable decision
-  suggestions.json        12 proposals with options and costs — none implemented
-  flags.json              10 items flagged for review
-  ledger.json             campaign ledger: schema complete, numbers empty
-  events.json             the five measurement events
-  site.json               site name, canonical host, base path, disclosures
+| | Main site (root) | Preview edition (`/v2/`) |
+|---|---|---|
+| Source | `tools/build.py` (Python, no deps) | `v2/src/scripts/build.mjs` (Node, no deps) |
+| Registers | `data/*.json` | `v2/src/data/*.json` |
+| Pages | 19 | 23 |
+| Gate | `scripts/check-site.mjs` | `v2/src/scripts/verify.mjs` + repository gate |
+| Shape | Product-led shop with a dashboard | Typographic publication with per-product spec tables |
 
-content/guides.json       four question-shaped buying guides
+Both are gated. Nothing ships unless every check passes.
 
-scripts/build.mjs         static generator, zero dependencies
-scripts/verify.mjs        the build gate — 15 checks, fails the deploy
-
-assets/styles.css         typographic stylesheet, no web fonts, no images
-assets/analytics.js       privacy-preserving event layer, disabled by default
-assets/config.js          endpoint = null
-
-site/                     generated output (this is what Pages serves)
-```
-
-## Why there are no prices on the site
-
-Amazon's Associates Program Policies permit showing price and availability **only** when
-Amazon serves the link containing that data, or when the data comes from the Creators API /
-PA API. This is a static site, so it satisfies neither condition. Prices were observed and
-are deliberately withheld. See `FLG-001`.
-
-## Build and check
+## Build
 
 ```bash
-node scripts/build.mjs     # writes site/
-node scripts/verify.mjs    # must pass before anything is deploys
+python3 tools/build.py            # main site → repo root (the Pages source)
+node v2/src/scripts/build.mjs     # preview edition → /v2/
+node v2/src/scripts/verify.mjs    # preview edition gate
+node scripts/check-site.mjs       # whole-repository gate — the one that decides ship/no-ship
 ```
 
-The verifier checks disclosure placement, sponsored-link marking, price literals, canonical
-hosts, sitemap↔page parity, broken internal links, the deploy base path, per-row sourcing,
-feed validity and the absence of third-party assets. CI runs both and will not deploy if
-either fails.
+`scripts/check-site.mjs` is the important one. It reads the repository **as it will be served** and
+fails on: a missing or mis-placed disclosure, an unsponsored Amazon link, a price literal in visible
+text, a missing canonical, a broken internal link, a sitemap that does not match the pages, a
+malformed JSON-LD block, a third-party asset, an invalid feed, or an affiliate link inside the feed.
 
-## Deploying
+Current state: **42 pages, 1,405 internal links, 253 Amazon links (all sponsored), zero failures,
+zero warnings.**
 
-Push to `main` → `.github/workflows/pages.yml` runs build → verify → deploy.
-Pages source is the GitHub Actions artifact from `./site`.
+## Deploy
 
-If the site moves to a custom domain: add `site/CNAME`, and change `canonical_host`,
-`base_path` and `name` in `data/site.json`. Nothing else hard-codes the host.
+Push to `main` → `.github/workflows/pages.yml` runs both builds, both gates, a reproducibility
+check, then deploys. The deploy job depends on `verify`, so a failing gate leaves the previous
+version live.
 
-## Reading order for a reviewer
+## Rules this site follows
 
-1. `site/flags/index.html` — what could not be confirmed
-2. `site/suggestions/index.html` — the decision queue
-3. `site/questions/index.html` — what blocks each decision
-4. `COORDINATION.md` — how the verification was performed
+1. A fact is published only when a primary source states it, and that source is linked from the
+   same row. Otherwise the cell says unverified.
+2. Where a listing contradicts itself, the contradiction is printed rather than smoothed over.
+3. No prices. Amazon's Program Policies permit price display only when Amazon supplies the data or
+   it comes from the Creators/PA API; a static site does neither.
+4. Every buyable Amazon link is tagged with the Associates ID and marked `rel="sponsored"`.
+5. No claim of hands-on testing. None of the five products has been held by a human.
 
-Nothing on this site claims hands-on testing. The five products have not been held by a
-human, and no page says otherwise.
+## Where to start reviewing
+
+1. `dashboard/flagged.html` — what could not be confirmed, and why
+2. `v2/flags/index.html` — the same, in the preview edition, with source links
+3. `dashboard/suggestions.html` and `v2/suggestions/index.html` — decisions waiting on the owner;
+   nothing in either list has been implemented
+4. `COORDINATION.md` — every session, its sources, and its verification record
+
+## Archive
+
+`archive/arena-4a5044b0/` and `archive/arena-6bd1be15/` hold earlier root-level sites, preserved
+unchanged and not linked from the live site. `robots.txt` disallows `/archive/`.

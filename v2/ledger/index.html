@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en-US">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Campaign ledger — Countertop Report</title>
+<meta name="description" content="The campaign ledger schema, its definitions, and why every figure is currently empty rather than zero.">
+<link rel="canonical" href="https://sassnarep3-star.github.io/WinA/v2/ledger/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Countertop Report">
+<meta property="og:title" content="Campaign ledger — Countertop Report">
+<meta property="og:description" content="The campaign ledger schema, its definitions, and why every figure is currently empty rather than zero.">
+<meta property="og:url" content="https://sassnarep3-star.github.io/WinA/v2/ledger/">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="alternate" type="application/rss+xml" title="Countertop Report" href="https://sassnarep3-star.github.io/WinA/v2/feed.xml">
+<link rel="stylesheet" href="/WinA/v2/assets/styles.css">
+<script src="/WinA/v2/assets/config.js"></script>
+<script src="/WinA/v2/assets/analytics.js" defer></script>
+
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="masthead">
+  <div class="wrap masthead__inner">
+    <a class="brand" href="/WinA/v2/">
+      <span class="brand__mark" aria-hidden="true">CR</span>
+      <span class="brand__text">
+        <span class="brand__name">Countertop Report</span>
+        <span class="brand__tag">Independent buying notes on the small appliances people actually use</span>
+      </span>
+    </a>
+    <nav class="nav" aria-label="Primary">
+      <ul>
+        <li><a href="/WinA/v2/air-fryers/">Air fryers</a></li>
+        <li><a href="/WinA/v2/thermometers/">Thermometers</a></li>
+        <li><a href="/WinA/v2/guides/">Guides</a></li>
+        <li><a href="/WinA/v2/compare/">Compare</a></li>
+        <li><a href="/WinA/v2/how-we-work/">How we work</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+  <div class="disclosure" role="note" aria-label="Affiliate disclosure">
+    <div class="disclosure__inner">
+      <strong>Affiliate disclosure</strong>
+      <span>As an Amazon Associate I earn from qualifying purchases.</span>
+      <span class="disclosure__more">When you buy through a link here we may earn a commission at no extra cost to you.
+      <a href="/WinA/v2/disclosure/">Read the full disclosure</a>.</span>
+    </div>
+  </div>
+
+<main id="main" class="wrap">
+
+<header class="page-head">
+  <span class="kicker">Dashboard · measurement</span>
+  <h1>Campaign ledger</h1>
+  <p class="standfirst">Structurally complete, numerically empty. A row only exists when an authorised first-party report supplies it. Null means not measured — it does not mean zero, and it is never estimated.</p>
+</header>
+<div class="stat-row">
+  <div class="stat"><span class="stat__n">—</span><span class="stat__l">Eligible sessions</span><span class="micro">not measured</span></div>
+  <div class="stat"><span class="stat__n">—</span><span class="stat__l">Outbound clicks</span><span class="micro">not measured</span></div>
+  <div class="stat"><span class="stat__n">—</span><span class="stat__l">Reported orders</span><span class="micro">not measured</span></div>
+  <div class="stat"><span class="stat__n">0</span><span class="stat__l">Rows in ledger</span><span class="micro">no report pulled</span></div>
+</div>
+<div class="callout callout--warn">
+  <p><b>No conversion score and no revenue forecast appears on this site.</b> Both would require inventing numbers. The schema below is the entire contract for what a valid row looks like once real reports exist.</p>
+</div>
+<section class="section">
+  <h2>Accepted row schema</h2>
+  <table class="spec-table">
+    <thead><tr><th scope="col">Field</th><th scope="col">Type</th><th scope="col">Rule</th></tr></thead>
+    <tbody>
+      <tr><th scope="row"><code>row_id</code></th><td>string</td><td>Required.</td></tr>
+      <tr><th scope="row"><code>period_start_utc</code></th><td>YYYY-MM-DD</td><td>Required. Provenance.</td></tr>
+      <tr><th scope="row"><code>period_end_utc</code></th><td>YYYY-MM-DD</td><td>Required. Provenance.</td></tr>
+      <tr><th scope="row"><code>source</code></th><td>page path</td><td>Required.</td></tr>
+      <tr><th scope="row"><code>channel</code></th><td>organic | direct | rss | social | unknown</td><td>Required.</td></tr>
+      <tr><th scope="row"><code>eligible_sessions</code></th><td>integer | null</td><td>Required.</td></tr>
+      <tr><th scope="row"><code>outbound_clicks</code></th><td>integer | null</td><td>Required.</td></tr>
+      <tr><th scope="row"><code>reported_orders</code></th><td>integer | null</td><td>Required.</td></tr>
+      
+      <tr><th scope="row"><code>provenance</code></th><td>object</td><td>report_name, report_period, pulled_at_utc, pulled_by. A row without all four is invalid.</td></tr>
+    </tbody>
+  </table>
+</section>
+<section class="section">
+  <h2>Definitions fixed in advance</h2>
+  <dl class="defs">
+    <div><dt><code>eligible_session</code></dt><dd>A session in which the page rendered and the disclosure strip entered the viewport at least once. Establishes that the reader had the opportunity to see the material connection.</dd></div>
+    <div><dt><code>outbound_click</code></dt><dd>A click on a link carrying rel=&quot;sponsored&quot; that resolves to an amazon.com destination.</dd></div>
+    <div><dt><code>reported_order</code></dt><dd>A shipped order as counted in an Amazon Associates report for this tag. Not a page view, not an add-to-cart, not our own estimate.</dd></div>
+    <div><dt><code>channel</code></dt><dd>The referral source: organic, direct, rss, social, or unknown.</dd></div>
+    <div><dt><code>source</code></dt><dd>The page path the session started on.</dd></div>
+  </dl>
+</section>
+<section class="section">
+  <h2>Why it is empty</h2>
+  <div class="prose">
+    <p>Two things are missing and both are logged: there is no analytics endpoint (<a href="/WinA/v2/flags/#flg-006">FLG-006</a>) because GitHub Pages cannot execute server code, and no Associates report has been pulled (<a href="/WinA/v2/flags/#flg-010">FLG-010</a>).</p>
+    <p>The event layer that will feed the sessions and clicks columns is already written and shipped — disabled, with five defined events. Choosing an endpoint is <a href="/WinA/v2/suggestions/#sg-02">SG-02</a>.</p>
+  </div>
+</section>
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer__cols">
+      <div class="footer__col">
+        <h2>The catalogue</h2>
+        <ul><li><a href="/WinA/v2/air-fryers/">Air fryers</a></li><li><a href="/WinA/v2/thermometers/">Thermometers</a></li><li><a href="/WinA/v2/compare/">Compare all five</a></li><li><a href="/WinA/v2/guides/">Buying guides</a></li></ul>
+      </div>
+      <div class="footer__col">
+        <h2>The register</h2>
+        <ul><li><a href="/WinA/v2/links/">Source register</a></li><li><a href="/WinA/v2/questions/">Open questions</a></li><li><a href="/WinA/v2/suggestions/">Suggestions</a></li><li><a href="/WinA/v2/flags/">Flagged for review</a></li></ul>
+      </div>
+      <div class="footer__col">
+        <h2>The dashboard</h2>
+        <ul><li><a href="/WinA/v2/ledger/">Campaign ledger</a></li><li><a href="/WinA/v2/events/">Event schema</a></li><li><a href="/WinA/v2/disclosure/">Disclosure</a></li><li><a href="/WinA/v2/feed.xml">RSS feed</a></li></ul>
+      </div>
+    </div>
+    <div class="footer__disclosure">
+      <p class="footer__required"><strong>As an Amazon Associate I earn from qualifying purchases.</strong></p>
+      <p><strong>Affiliate disclosure.</strong> Countertop Report is written by an Amazon Associate. When you buy through a link on this site we may earn a commission, at no extra cost to you. That commission does not change what we write, and it does not change the price you pay. We do not show prices on this site because Amazon&#39;s Associates terms only permit showing price data that Amazon itself supplies.</p>
+      <p class="footer__stat">
+        Tracking ID <code>shopnow047c-20</code> · <span class="unconfirmed">enrollment unverified</span>
+        · Data observed 2026-11-20 · No prices are shown on this site by design.
+      </p>
+      <p class="footer__stat">
+        <a href="/WinA/v2/disclosure/">Disclosure</a> · <a href="/WinA/v2/how-we-work/">How we work</a> ·
+        <a href="/WinA/v2/flags/">Flagged for review</a> · <a href="/WinA/v2/feed.xml">RSS</a>
+      </p>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

@@ -1,8 +1,8 @@
 name: Build, verify and deploy
 
-# The gate has to run before the deploy, not after. If scripts/verify.mjs exits
-# non-zero, the deploy job never starts and the previously published site stays
-# up. A broken build therefore cannot reach readers.
+# Order matters. If any gate fails, the deploy job never starts and the
+# previously published site stays live. A non-compliant or broken build
+# cannot reach readers through this workflow.
 
 on:
   push:
@@ -31,17 +31,41 @@ jobs:
         with:
           node-version: '20'
 
-      - name: Build the site
-        run: node scripts/build.mjs
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
 
-      - name: Verify compliance and link integrity
-        run: node scripts/verify.mjs
+      # Main site: generated at the repo root, which is the Pages source.
+      - name: Build main site
+        run: python3 tools/build.py
+
+      # Preview edition: generated into /v2/ from its own registers.
+      - name: Build v2 edition
+        run: node v2/src/scripts/build.mjs
+
+      # Gate the v2 edition's own invariants.
+      - name: Verify v2 edition
+        run: node v2/src/scripts/verify.mjs
+
+      # Gate the whole repository exactly as it will be served.
+      - name: Verify repository
+        run: node scripts/check-site.mjs
+
+      # The committed output must equal the built output, or reviewers are
+      # reading something different from what ships.
+      - name: Check the build is reproducible
+        run: |
+          if ! git diff --quiet; then
+            echo "::error::Committed files differ from a fresh build. Run python3 tools/build.py and node v2/src/scripts/build.mjs, then commit the result."
+            git --no-pager diff --stat
+            exit 1
+          fi
 
       - name: Upload Pages artifact
         if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./site
+          path: .
 
   deploy:
     name: Deploy to GitHub Pages

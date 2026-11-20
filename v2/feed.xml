@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Countertop Report</title>
+    <link>https://sassnarep3-star.github.io/WinA/v2/</link>
+    <description>Specification-led buying notes on air fryers and meat thermometers. No prices are shown here by design; every claim links to the listing it came from.</description>
+    <language>en-US</language>
+    <lastBuildDate>Fri, 20 Nov 2026 12:00:00 GMT</lastBuildDate>
+    <atom:link href="https://sassnarep3-star.github.io/WinA/v2/feed.xml" rel="self" type="application/rss+xml"/>
+    <item>
+      <title>Basket or oven-style air fryer: what should you compare?</title>
+      <link>https://sassnarep3-star.github.io/WinA/v2/guides/basket-or-oven-air-fryer/</link>
+      <guid isPermaLink="true">https://sassnarep3-star.github.io/WinA/v2/guides/basket-or-oven-air-fryer/</guid>
+      <description>They share a name and almost nothing else. Six things to compare before you decide which shape belongs on your counter.</description>
+      <pubDate>Fri, 20 Nov 2026 09:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>A no-hype checklist for comparing air fryer capacity</title>
+      <link>https://sassnarep3-star.github.io/WinA/v2/guides/air-fryer-capacity-checklist/</link>
+      <guid isPermaLink="true">https://sassnarep3-star.github.io/WinA/v2/guides/air-fryer-capacity-checklist/</guid>
+      <description>Quarts are the least comparable number on the box. Eight questions that get you to a real figure.</description>
+      <pubDate>Fri, 20 Nov 2026 09:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>How to assess cleanup and counter-space trade-offs</title>
+      <link>https://sassnarep3-star.github.io/WinA/v2/guides/cleanup-and-counter-space-tradeoffs/</link>
+      <guid isPermaLink="true">https://sassnarep3-star.github.io/WinA/v2/guides/cleanup-and-counter-space-tradeoffs/</guid>
+      <description>The two costs nobody puts in the comparison table — and the ones that decide whether an appliance gets used or stored.</description>
+      <pubDate>Fri, 20 Nov 2026 09:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Questions to ask before buying a multi-function kitchen appliance</title>
+      <link>https://sassnarep3-star.github.io/WinA/v2/guides/questions-before-buying-multi-function-appliance/</link>
+      <guid isPermaLink="true">https://sassnarep3-star.github.io/WinA/v2/guides/questions-before-buying-multi-function-appliance/</guid>
+      <description>Multi-function usually means one function done well and five done adequately. How to tell which is which before you pay.</description>
+      <pubDate>Fri, 20 Nov 2026 09:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Chefman 6-Quart Dual Basket: Two baskets, two windows, one finish time.</title>
+      <link>https://sassnarep3-star.github.io/WinA/v2/products/chefman-dual-6qt/</link>
+      <guid isPermaLink="true">https://sassnarep3-star.github.io/WinA/v2/products/chefman-dual-6qt/</guid>
+      <description>Cooking a main and a side at different temperatures without owning two appliances.</description>
+      <pubDate>Fri, 20 Nov 2026 08:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Chefman TurboFry 8-Quart: One big square basket, four modes, honest cleanup.</title>
+      <link>https://sassnarep3-star.github.io/WinA/v2/products/chefman-turbofry-8qt/</link>
+      <guid isPermaLink="true">https://sassnarep3-star.github.io/WinA/v2/products/chefman-turbofry-8qt/</guid>
+      <description>Batch cooking for four to six people who want one large chamber and one thing to wash.</description>
+      <pubDate>Fri, 20 Nov 2026 08:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Emeril Lagasse 26QT French Door: An oven that happens to air fry.</title>
+      <link>https://sassnarep3-star.github.io/WinA/v2/products/emeril-french-door-26qt/</link>
+      <guid isPermaLink="true">https://sassnarep3-star.github.io/WinA/v2/products/emeril-french-door-26qt/</guid>
+      <description>Households that want one countertop box to replace a toaster oven and an air fryer basket.</description>
+      <pubDate>Fri, 20 Nov 2026 08:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>ThermoMaven 1-Sec Instant Read: The cheap upgrade that fixes the guesswork.</title>
+      <link>https://sassnarep3-star.github.io/WinA/v2/products/thermomaven-1sec/</link>
+      <guid isPermaLink="true">https://sassnarep3-star.github.io/WinA/v2/products/thermomaven-1sec/</guid>
+      <description>Anyone who already owns an air fryer or oven and keeps overcooking protein.</description>
+      <pubDate>Fri, 20 Nov 2026 08:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>CHEF iQ Sense (Gen3): Set it, walk away, get told when it is done.</title>
+      <link>https://sassnarep3-star.github.io/WinA/v2/products/chefiq-sense-gen3/</link>
+      <guid isPermaLink="true">https://sassnarep3-star.github.io/WinA/v2/products/chefiq-sense-gen3/</guid>
+      <description>Long cooks — smoking, roasting, rotisserie — where you cannot stand at the oven.</description>
+      <pubDate>Fri, 20 Nov 2026 08:00:00 GMT</pubDate>
+    </item>
+  </channel>
+</rss>

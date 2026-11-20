@@ -1,172 +1,176 @@
 {
-  "_meta": {
-    "register_version": "1.0.0",
-    "purpose": "A decision queue. Each entry is a change that would improve the site, the options for making it, the evidence behind it, and what it costs. Nothing here is implemented by default. The reviewer picks a path and only then does the work happen.",
-    "reading_rule": "Priority is the order to decide, not the order to build. 'Blocks' names the questions in questions.json that should be answered first."
-  },
-  "suggestions": [
+  "status": "awaiting-owner-choice",
+  "note": "Suggestions are NOT implemented. Choose one option per item before any change is made. Each option lists its cost and what it would change.",
+  "items": [
     {
-      "id": "SG-01",
-      "priority": 0,
-      "title": "Confirm the tag before anything else",
-      "problem": "Every link on this site may be earning nothing. We cannot tell from the outside.",
-      "evidence": "All five short links resolved to the correct ASINs but none exposed a tag= parameter. FLG-003 / Q02 / Q03.",
+      "id": "S-01",
+      "topic": "Validate the submitted links and Tracking ID",
+      "question": "How should the submitted links be validated?",
       "options": [
-        { "id": "a", "label": "Test one link in the enrolled workflow", "cost": "1 click + 48h wait", "effect": "Confirms or refutes attribution for all five." },
-        { "id": "b", "label": "Regenerate all links with a visible tag", "cost": "15 min", "effect": "Makes attribution auditable and removes the ambiguity permanently." },
-        { "id": "c", "label": "Leave the short links as supplied", "cost": "0", "effect": "Keeps the current uncertainty. Risk: all traffic earns nothing." }
-      ],
-      "recommendation": "a, then b. The test is nearly free and settles a question that invalidates every other effort on this page.",
-      "blocks": ["Q01", "Q02", "Q03", "Q04"]
+        {
+          "id": "a",
+          "label": "Owner runs one link per product in the Associates Product Linking tool and reports destination + tracking",
+          "recommended": true,
+          "changes": "Confirms FLG-001 to FLG-004; the site then uses validated Special Links for each row."
+        },
+        {
+          "id": "b",
+          "label": "Keep the current observed-listing links with the Tracking ID until validation",
+          "recommended": false,
+          "changes": "Already built. Links are unvalidated until option a is done."
+        },
+        {
+          "id": "c",
+          "label": "Remove all outbound Amazon links until validated",
+          "recommended": false,
+          "changes": "Lowest compliance risk; no click path to products."
+        }
+      ]
     },
     {
-      "id": "SG-02",
-      "priority": 1,
-      "title": "Choose the analytics home",
-      "problem": "Measurement was requested as priority zero, but GitHub Pages cannot run an endpoint.",
-      "evidence": "assets/analytics.js ships disabled with no endpoint. Q09. FLG-006.",
+      "id": "S-02",
+      "topic": "Publishing cadence and content volume",
+      "question": "How often should new guides be published?",
       "options": [
-        { "id": "a", "label": "Hosted privacy-friendly analytics", "cost": "low monthly fee", "effect": "Working dashboard in an afternoon; no server to keep alive." },
-        { "id": "b", "label": "Own endpoint on a Cloudflare Worker", "cost": "1-2 days dev", "effect": "Full control, self-hosted, free tier viable, adds a moving part." },
-        { "id": "c", "label": "Server-side endpoint on a small VPS", "cost": "small monthly fee + maintenance", "effect": "Most control, most operational risk for a one-person project." },
-        { "id": "d", "label": "Ship with no analytics", "cost": "0", "effect": "The campaign ledger stays empty and topics stay instinct-driven." }
-      ],
-      "recommendation": "b if the endpoint must be self-hosted as specified; a if time matters more. Either way, enable the shipped event layer rather than writing a new one.",
-      "blocks": ["Q09", "Q14", "Q15", "Q19"]
+        {
+          "id": "a",
+          "label": "Two guides per month, each reviewed against sources before publication",
+          "recommended": true,
+          "changes": "Keeps content recent for Associates review; needs owner time."
+        },
+        {
+          "id": "b",
+          "label": "One guide per month",
+          "recommended": false,
+          "changes": "Lower effort; slower content build-up."
+        },
+        {
+          "id": "c",
+          "label": "Publish only after analytics shows which queries get reads",
+          "recommended": false,
+          "changes": "Requires S-03 first; delays content."
+        }
+      ]
     },
     {
-      "id": "SG-03",
-      "priority": 2,
-      "title": "Move to a real domain",
-      "problem": "The site lives at a github.io subpath, which is a weak signal for search and cannot be branded.",
-      "evidence": "Q08. Pages source is main/root; canonical host is currently the github.io origin.",
+      "id": "S-03",
+      "topic": "Analytics and the five events",
+      "question": "Which hosting and event set should analytics use?",
       "options": [
-        { "id": "a", "label": "Buy a brand domain and add a CNAME", "cost": "one domain registration + 1h", "effect": "Cleanest SEO footing; one canonical host forever; brandable masthead." },
-        { "id": "b", "label": "Stay on github.io", "cost": "0", "effect": "Zero setup, permanently weaker identity, path-based URLs in every citation." }
-      ],
-      "recommendation": "a. The build already reads its canonical host from one config value, so the change is one line plus the CNAME file.",
-      "blocks": ["Q08", "Q17"]
+        {
+          "id": "a",
+          "label": "Small serverless endpoint outside this repo, with the proposed five events",
+          "recommended": true,
+          "changes": "Enables outbound-click counting; needs an external host and an endpoint URL."
+        },
+        {
+          "id": "b",
+          "label": "Owner supplies a different five-event list",
+          "recommended": false,
+          "changes": "Replaces the proposed events in site.json and analytics.js."
+        },
+        {
+          "id": "c",
+          "label": "No analytics; use Search Console only",
+          "recommended": false,
+          "changes": "No outbound-click data."
+        }
+      ]
     },
     {
-      "id": "SG-04",
-      "priority": 3,
-      "title": "Apply for API access to unlock prices and images",
-      "problem": "The site cannot show prices (policy) or product photos (rights), which are the two things a shopper expects most.",
-      "evidence": "S03 forbids printing price without Amazon-served data or API data. Q06 and Q07.",
+      "id": "S-04",
+      "topic": "Brand name",
+      "question": "What should the site be called?",
       "options": [
-        { "id": "a", "label": "Apply for PA API / Creators API", "cost": "free, requires qualifying sales", "effect": "Live price, availability and compliant imagery. The largest single quality jump available." },
-        { "id": "b", "label": "Stay API-free", "cost": "0", "effect": "Site stays price-free and image-free by design. Honest, but visually thinner than competitors." },
-        { "id": "c", "label": "Commission original photography", "cost": "product cost + a day", "effect": "Real photos without API dependency; also unlocks genuine first-hand experience claims." }
-      ],
-      "recommendation": "a as the structural path, c for the one product the owner actually uses. Never pull images from the listing without API compliance.",
-      "blocks": ["Q06", "Q07"]
+        {
+          "id": "a",
+          "label": "Keep 'The Counter Guide' (working name)",
+          "recommended": false,
+          "changes": "No change."
+        },
+        {
+          "id": "b",
+          "label": "Owner supplies a name",
+          "recommended": false,
+          "changes": "Changes masthead, footer and feed title."
+        }
+      ]
     },
     {
-      "id": "SG-05",
-      "priority": 4,
-      "title": "Make the front page lead with one pick, not three",
-      "problem": "The landing page currently helps a reader choose between three appliances without knowing who the reader is.",
-      "evidence": "Q12. The three air fryers serve three different buyer types.",
+      "id": "S-05",
+      "topic": "Product detail data",
+      "question": "How should listing details (dimensions, warranty, returns) be captured?",
       "options": [
-        { "id": "a", "label": "Declare a primary reader and a single 'start here' pick", "cost": "1h copy", "effect": "Front page becomes a recommendation. Higher click-through, clearer identity." },
-        { "id": "b", "label": "Keep the three-way comparison as the lead", "cost": "0", "effect": "Fair and neutral, but a reader still has to decide for themselves." }
-      ],
-      "recommendation": "a. Publications recommend; catalogues list. The moment a site picks, it reads as edited.",
-      "blocks": ["Q12", "Q10"]
+        {
+          "id": "a",
+          "label": "Owner or integration session records each field from the listing's Product information table with the date and URL",
+          "recommended": true,
+          "changes": "Adds verified fields; blank fields stay flagged until then."
+        },
+        {
+          "id": "b",
+          "label": "Leave the fields blank",
+          "recommended": false,
+          "changes": "No change."
+        }
+      ]
     },
     {
-      "id": "SG-06",
-      "priority": 5,
-      "title": "Publish a stated cadence and stick to it",
-      "problem": "A publication with no cadence reads as abandoned on the second visit.",
-      "evidence": "Four question-shaped guide titles were supplied as hypotheses. Q11.",
+      "id": "S-06",
+      "topic": "Prices and ratings",
+      "question": "Should prices and ratings appear on the site?",
       "options": [
-        { "id": "a", "label": "One guide per week for eight weeks, then reassess", "cost": "~3h/week", "effect": "Enough for a search engine to see a live site; enough to learn what lands." },
-        { "id": "b", "label": "Publish all four existing guides now, then pause", "cost": "1 day", "effect": "Immediate depth; no ongoing signal." },
-        { "id": "c", "label": "Wait for analytics before writing", "cost": "0", "effect": "Pure chicken-and-egg: no analytics without traffic, no traffic without content." }
-      ],
-      "recommendation": "a. The first four titles already exist in the repo as drafts, so week one costs almost nothing.",
-      "blocks": ["Q11"]
+        {
+          "id": "a",
+          "label": "Pursue PA-API/Creators API access, then display data per policy",
+          "recommended": false,
+          "changes": "Requires eligibility and the API license; not verified here."
+        },
+        {
+          "id": "b",
+          "label": "No prices or ratings; link to the listing",
+          "recommended": true,
+          "changes": "Matches the current build; complies with Program Policies section 2(b)."
+        }
+      ]
     },
     {
-      "id": "SG-07",
-      "priority": 6,
-      "title": "Answer the honesty question about testing",
-      "problem": "The site is a documented comparison, not a hands-on review. That distinction changes the entire voice.",
-      "evidence": "Q10. No first-person testing claim appears anywhere in the build.",
+      "id": "S-07",
+      "topic": "Reader capture (email)",
+      "question": "Should the site collect email?",
       "options": [
-        { "id": "a", "label": "Stay explicitly a documentation site", "cost": "0", "effect": "Keeps every claim sourceable. Voice stays analytical." },
-        { "id": "b", "label": "Buy or borrow one unit and document it", "cost": "product cost", "effect": "Unlocks real first-person copy for one product, and one honest 'we used this' page." }
-      ],
-      "recommendation": "b for one product only. One genuine hands-on page is worth more than five speculative ones, and it is the only lawful route to 'we tested'.",
-      "blocks": ["Q10"]
+        {
+          "id": "a",
+          "label": "Yes, double opt-in; Special Links allowed only in messages to opted-in readers, with an easy opt-out",
+          "recommended": false,
+          "changes": "Adds a signup form and an email tool; not built."
+        },
+        {
+          "id": "b",
+          "label": "No email; RSS feed only",
+          "recommended": true,
+          "changes": "Matches the current build (feed.xml)."
+        }
+      ]
     },
     {
-      "id": "SG-08",
-      "priority": 7,
-      "title": "Set a data refresh interval and an owner",
-      "problem": "Spec rows and star ratings are timestamped snapshots that will silently rot.",
-      "evidence": "Every record carries observed_at 2026-11-20. Q13.",
+      "id": "S-08",
+      "topic": "Which session's site goes to main",
+      "question": "How should the parallel claim on arena/2b309a82-wina be handled?",
       "options": [
-        { "id": "a", "label": "30-day refresh, single owner", "cost": "30 min/month", "effect": "Specs stay defensible; ratings stay roughly current." },
-        { "id": "b", "label": "90-day refresh", "cost": "30 min/quarter", "effect": "Cheaper, more drift, still honest because timestamps are printed." },
-        { "id": "c", "label": "No scheduled refresh", "cost": "0", "effect": "Guaranteed eventual inaccuracy, and S04 makes that a compliance issue, not just a UX one." }
-      ],
-      "recommendation": "a while the catalogue is five products; it is a coffee's worth of work per month.",
-      "blocks": ["Q13"]
-    },
-    {
-      "id": "SG-09",
-      "priority": 8,
-      "title": "Decide the visual identity question now, not later",
-      "problem": "The site has a typographic identity but no imagery. That is a deliberate constraint, not a finished look.",
-      "evidence": "Q06. No licensed third-party imagery is used anywhere.",
-      "options": [
-        { "id": "a", "label": "Stay imageless and lean into editorial typography", "cost": "0", "effect": "Coherent and fast, but will read as a document rather than a shop." },
-        { "id": "b", "label": "Add API-sourced product imagery once approved", "cost": "dev time after Q07", "effect": "Looks like a shop; requires compliance work." },
-        { "id": "c", "label": "Commission illustration or photography", "cost": "$ to $$$", "effect": "Distinctive and fully owned; slowest." }
-      ],
-      "recommendation": "b, gated on SG-04. Until then a is the honest default, and the site says so rather than pretending.",
-      "blocks": ["Q06", "Q07"]
-    },
-    {
-      "id": "SG-10",
-      "priority": 9,
-      "title": "Open Search Console on day one of the domain",
-      "problem": "There is no way to know which queries reach the site.",
-      "evidence": "Q11. FLG-010.",
-      "options": [
-        { "id": "a", "label": "Verify Search Console and submit the sitemap", "cost": "20 min", "effect": "Real query data within days; topic choice stops being a guess." },
-        { "id": "b", "label": "Skip it and rely on instinct", "cost": "0", "effect": "Permanent blind spot on the one metric that matters most for a new site." }
-      ],
-      "recommendation": "a. Do it the same day the domain resolves — verification is easiest before anything else is configured.",
-      "blocks": ["Q08"]
-    },
-    {
-      "id": "SG-11",
-      "priority": 10,
-      "title": "Add reader capture, but only after disclosure is settled",
-      "problem": "There is no way to bring a reader back, and no RSS subscriber count.",
-      "evidence": "The RSS feed is shipped and valid. No email capture exists.",
-      "options": [
-        { "id": "a", "label": "RSS only", "cost": "0 (done)", "effect": "Zero-friction, very low conversion, no personal data handled." },
-        { "id": "b", "label": "Add a newsletter form via a hosted provider", "cost": "free tier + 1h", "effect": "Real retention; introduces a privacy policy obligation (Q19)." }
-      ],
-      "recommendation": "b once a privacy policy exists. Until then RSS is the honest ceiling.",
-      "blocks": ["Q19"]
-    },
-    {
-      "id": "SG-12",
-      "priority": 11,
-      "title": "Close the flags, don't accumulate them",
-      "problem": "Ten open flags is a to-do list, not a compliance record.",
-      "evidence": "flags.json. Q20.",
-      "options": [
-        { "id": "a", "label": "15-minute weekly flag review", "cost": "15 min/week", "effect": "Flags get closed or formally accepted with a date." },
-        { "id": "b", "label": "Review only when something breaks", "cost": "0", "effect": "The page becomes a permanent apology." }
-      ],
-      "recommendation": "a. The point of publishing the flags is that they are temporary.",
-      "blocks": ["Q20"]
+        {
+          "id": "a",
+          "label": "Merge this branch to main as instructed; mark the other branch's claim as superseded in COORDINATION.md",
+          "recommended": true,
+          "changes": "This site goes live. The other branch's site must be reconciled or closed before its work is merged, otherwise it conflicts."
+        },
+        {
+          "id": "b",
+          "label": "Hold the merge until the owner has compared both COORDINATION.md boards",
+          "recommended": false,
+          "changes": "Delays the live site; the merge instruction was to proceed without waiting."
+        }
+      ]
     }
   ]
 }

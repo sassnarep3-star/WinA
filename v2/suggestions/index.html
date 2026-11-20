@@ -1,0 +1,311 @@
+<!doctype html>
+<html lang="en-US">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Suggestions and decision queue — Countertop Report</title>
+<meta name="description" content="Proposed changes with options, costs and evidence, reviewed before anything is implemented.">
+<link rel="canonical" href="https://sassnarep3-star.github.io/WinA/v2/suggestions/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Countertop Report">
+<meta property="og:title" content="Suggestions and decision queue — Countertop Report">
+<meta property="og:description" content="Proposed changes with options, costs and evidence, reviewed before anything is implemented.">
+<meta property="og:url" content="https://sassnarep3-star.github.io/WinA/v2/suggestions/">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="alternate" type="application/rss+xml" title="Countertop Report" href="https://sassnarep3-star.github.io/WinA/v2/feed.xml">
+<link rel="stylesheet" href="/WinA/v2/assets/styles.css">
+<script src="/WinA/v2/assets/config.js"></script>
+<script src="/WinA/v2/assets/analytics.js" defer></script>
+
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="masthead">
+  <div class="wrap masthead__inner">
+    <a class="brand" href="/WinA/v2/">
+      <span class="brand__mark" aria-hidden="true">CR</span>
+      <span class="brand__text">
+        <span class="brand__name">Countertop Report</span>
+        <span class="brand__tag">Independent buying notes on the small appliances people actually use</span>
+      </span>
+    </a>
+    <nav class="nav" aria-label="Primary">
+      <ul>
+        <li><a href="/WinA/v2/air-fryers/">Air fryers</a></li>
+        <li><a href="/WinA/v2/thermometers/">Thermometers</a></li>
+        <li><a href="/WinA/v2/guides/">Guides</a></li>
+        <li><a href="/WinA/v2/compare/">Compare</a></li>
+        <li><a href="/WinA/v2/how-we-work/">How we work</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+  <div class="disclosure" role="note" aria-label="Affiliate disclosure">
+    <div class="disclosure__inner">
+      <strong>Affiliate disclosure</strong>
+      <span>As an Amazon Associate I earn from qualifying purchases.</span>
+      <span class="disclosure__more">When you buy through a link here we may earn a commission at no extra cost to you.
+      <a href="/WinA/v2/disclosure/">Read the full disclosure</a>.</span>
+    </div>
+  </div>
+
+<main id="main" class="wrap">
+
+<header class="page-head">
+  <span class="kicker">Decision queue · 12 proposals</span>
+  <h1>Suggestions, waiting for a decision</h1>
+  <p class="standfirst">This section exists so that nothing gets implemented before someone chooses a path. Each proposal names the problem, the evidence, the options, the cost and what it gets you. Nothing below has been built.</p>
+</header>
+<div class="callout callout--warn">
+  <p><b>How to use this page.</b> Work top to bottom. Priority is the order to <em>decide</em>, not the order to build — SG-01 costs one click and invalidates five other items if it comes back negative. Pick an option letter, and that is the whole review.</p>
+</div>
+<div class="suggestion-list">
+  <article class="suggestion" id="SG-01">
+  <header>
+    <span class="kicker">SG-01 · priority 0</span>
+    <h3>Confirm the tag before anything else</h3>
+    <p class="lead">Every link on this site may be earning nothing. We cannot tell from the outside.</p>
+  </header>
+  <p class="evidence"><span>Evidence</span> All five short links resolved to the correct ASINs but none exposed a tag= parameter. FLG-003 / Q02 / Q03.</p>
+  <table class="opt-table">
+    <thead><tr><th scope="col">Path</th><th scope="col">Cost</th><th scope="col">What it gets you</th></tr></thead>
+    <tbody>
+      <tr><td><b>a</b> · Test one link in the enrolled workflow</td><td>1 click + 48h wait</td><td>Confirms or refutes attribution for all five.</td></tr>
+      <tr><td><b>b</b> · Regenerate all links with a visible tag</td><td>15 min</td><td>Makes attribution auditable and removes the ambiguity permanently.</td></tr>
+      <tr><td><b>c</b> · Leave the short links as supplied</td><td>0</td><td>Keeps the current uncertainty. Risk: all traffic earns nothing.</td></tr>
+    </tbody>
+  </table>
+  <p class="rec"><span>Recommended</span> a, then b. The test is nearly free and settles a question that invalidates every other effort on this page.</p>
+  <p class="micro">Answer first: <a href="/WinA/v2/questions/#q01">Q01</a>, <a href="/WinA/v2/questions/#q02">Q02</a>, <a href="/WinA/v2/questions/#q03">Q03</a>, <a href="/WinA/v2/questions/#q04">Q04</a></p>
+</article>
+  <article class="suggestion" id="SG-02">
+  <header>
+    <span class="kicker">SG-02 · priority 1</span>
+    <h3>Choose the analytics home</h3>
+    <p class="lead">Measurement was requested as priority zero, but GitHub Pages cannot run an endpoint.</p>
+  </header>
+  <p class="evidence"><span>Evidence</span> assets/analytics.js ships disabled with no endpoint. Q09. FLG-006.</p>
+  <table class="opt-table">
+    <thead><tr><th scope="col">Path</th><th scope="col">Cost</th><th scope="col">What it gets you</th></tr></thead>
+    <tbody>
+      <tr><td><b>a</b> · Hosted privacy-friendly analytics</td><td>low monthly fee</td><td>Working dashboard in an afternoon; no server to keep alive.</td></tr>
+      <tr><td><b>b</b> · Own endpoint on a Cloudflare Worker</td><td>1-2 days dev</td><td>Full control, self-hosted, free tier viable, adds a moving part.</td></tr>
+      <tr><td><b>c</b> · Server-side endpoint on a small VPS</td><td>small monthly fee + maintenance</td><td>Most control, most operational risk for a one-person project.</td></tr>
+      <tr><td><b>d</b> · Ship with no analytics</td><td>0</td><td>The campaign ledger stays empty and topics stay instinct-driven.</td></tr>
+    </tbody>
+  </table>
+  <p class="rec"><span>Recommended</span> b if the endpoint must be self-hosted as specified; a if time matters more. Either way, enable the shipped event layer rather than writing a new one.</p>
+  <p class="micro">Answer first: <a href="/WinA/v2/questions/#q09">Q09</a>, <a href="/WinA/v2/questions/#q14">Q14</a>, <a href="/WinA/v2/questions/#q15">Q15</a>, <a href="/WinA/v2/questions/#q19">Q19</a></p>
+</article>
+  <article class="suggestion" id="SG-03">
+  <header>
+    <span class="kicker">SG-03 · priority 2</span>
+    <h3>Move to a real domain</h3>
+    <p class="lead">The site lives at a github.io subpath, which is a weak signal for search and cannot be branded.</p>
+  </header>
+  <p class="evidence"><span>Evidence</span> Q08. Pages source is main/root; canonical host is currently the github.io origin.</p>
+  <table class="opt-table">
+    <thead><tr><th scope="col">Path</th><th scope="col">Cost</th><th scope="col">What it gets you</th></tr></thead>
+    <tbody>
+      <tr><td><b>a</b> · Buy a brand domain and add a CNAME</td><td>one domain registration + 1h</td><td>Cleanest SEO footing; one canonical host forever; brandable masthead.</td></tr>
+      <tr><td><b>b</b> · Stay on github.io</td><td>0</td><td>Zero setup, permanently weaker identity, path-based URLs in every citation.</td></tr>
+    </tbody>
+  </table>
+  <p class="rec"><span>Recommended</span> a. The build already reads its canonical host from one config value, so the change is one line plus the CNAME file.</p>
+  <p class="micro">Answer first: <a href="/WinA/v2/questions/#q08">Q08</a>, <a href="/WinA/v2/questions/#q17">Q17</a></p>
+</article>
+  <article class="suggestion" id="SG-04">
+  <header>
+    <span class="kicker">SG-04 · priority 3</span>
+    <h3>Apply for API access to unlock prices and images</h3>
+    <p class="lead">The site cannot show prices (policy) or product photos (rights), which are the two things a shopper expects most.</p>
+  </header>
+  <p class="evidence"><span>Evidence</span> S03 forbids printing price without Amazon-served data or API data. Q06 and Q07.</p>
+  <table class="opt-table">
+    <thead><tr><th scope="col">Path</th><th scope="col">Cost</th><th scope="col">What it gets you</th></tr></thead>
+    <tbody>
+      <tr><td><b>a</b> · Apply for PA API / Creators API</td><td>free, requires qualifying sales</td><td>Live price, availability and compliant imagery. The largest single quality jump available.</td></tr>
+      <tr><td><b>b</b> · Stay API-free</td><td>0</td><td>Site stays price-free and image-free by design. Honest, but visually thinner than competitors.</td></tr>
+      <tr><td><b>c</b> · Commission original photography</td><td>product cost + a day</td><td>Real photos without API dependency; also unlocks genuine first-hand experience claims.</td></tr>
+    </tbody>
+  </table>
+  <p class="rec"><span>Recommended</span> a as the structural path, c for the one product the owner actually uses. Never pull images from the listing without API compliance.</p>
+  <p class="micro">Answer first: <a href="/WinA/v2/questions/#q06">Q06</a>, <a href="/WinA/v2/questions/#q07">Q07</a></p>
+</article>
+  <article class="suggestion" id="SG-05">
+  <header>
+    <span class="kicker">SG-05 · priority 4</span>
+    <h3>Make the front page lead with one pick, not three</h3>
+    <p class="lead">The landing page currently helps a reader choose between three appliances without knowing who the reader is.</p>
+  </header>
+  <p class="evidence"><span>Evidence</span> Q12. The three air fryers serve three different buyer types.</p>
+  <table class="opt-table">
+    <thead><tr><th scope="col">Path</th><th scope="col">Cost</th><th scope="col">What it gets you</th></tr></thead>
+    <tbody>
+      <tr><td><b>a</b> · Declare a primary reader and a single &#39;start here&#39; pick</td><td>1h copy</td><td>Front page becomes a recommendation. Higher click-through, clearer identity.</td></tr>
+      <tr><td><b>b</b> · Keep the three-way comparison as the lead</td><td>0</td><td>Fair and neutral, but a reader still has to decide for themselves.</td></tr>
+    </tbody>
+  </table>
+  <p class="rec"><span>Recommended</span> a. Publications recommend; catalogues list. The moment a site picks, it reads as edited.</p>
+  <p class="micro">Answer first: <a href="/WinA/v2/questions/#q12">Q12</a>, <a href="/WinA/v2/questions/#q10">Q10</a></p>
+</article>
+  <article class="suggestion" id="SG-06">
+  <header>
+    <span class="kicker">SG-06 · priority 5</span>
+    <h3>Publish a stated cadence and stick to it</h3>
+    <p class="lead">A publication with no cadence reads as abandoned on the second visit.</p>
+  </header>
+  <p class="evidence"><span>Evidence</span> Four question-shaped guide titles were supplied as hypotheses. Q11.</p>
+  <table class="opt-table">
+    <thead><tr><th scope="col">Path</th><th scope="col">Cost</th><th scope="col">What it gets you</th></tr></thead>
+    <tbody>
+      <tr><td><b>a</b> · One guide per week for eight weeks, then reassess</td><td>~3h/week</td><td>Enough for a search engine to see a live site; enough to learn what lands.</td></tr>
+      <tr><td><b>b</b> · Publish all four existing guides now, then pause</td><td>1 day</td><td>Immediate depth; no ongoing signal.</td></tr>
+      <tr><td><b>c</b> · Wait for analytics before writing</td><td>0</td><td>Pure chicken-and-egg: no analytics without traffic, no traffic without content.</td></tr>
+    </tbody>
+  </table>
+  <p class="rec"><span>Recommended</span> a. The first four titles already exist in the repo as drafts, so week one costs almost nothing.</p>
+  <p class="micro">Answer first: <a href="/WinA/v2/questions/#q11">Q11</a></p>
+</article>
+  <article class="suggestion" id="SG-07">
+  <header>
+    <span class="kicker">SG-07 · priority 6</span>
+    <h3>Answer the honesty question about testing</h3>
+    <p class="lead">The site is a documented comparison, not a hands-on review. That distinction changes the entire voice.</p>
+  </header>
+  <p class="evidence"><span>Evidence</span> Q10. No first-person testing claim appears anywhere in the build.</p>
+  <table class="opt-table">
+    <thead><tr><th scope="col">Path</th><th scope="col">Cost</th><th scope="col">What it gets you</th></tr></thead>
+    <tbody>
+      <tr><td><b>a</b> · Stay explicitly a documentation site</td><td>0</td><td>Keeps every claim sourceable. Voice stays analytical.</td></tr>
+      <tr><td><b>b</b> · Buy or borrow one unit and document it</td><td>product cost</td><td>Unlocks real first-person copy for one product, and one honest &#39;we used this&#39; page.</td></tr>
+    </tbody>
+  </table>
+  <p class="rec"><span>Recommended</span> b for one product only. One genuine hands-on page is worth more than five speculative ones, and it is the only lawful route to &#39;we tested&#39;.</p>
+  <p class="micro">Answer first: <a href="/WinA/v2/questions/#q10">Q10</a></p>
+</article>
+  <article class="suggestion" id="SG-08">
+  <header>
+    <span class="kicker">SG-08 · priority 7</span>
+    <h3>Set a data refresh interval and an owner</h3>
+    <p class="lead">Spec rows and star ratings are timestamped snapshots that will silently rot.</p>
+  </header>
+  <p class="evidence"><span>Evidence</span> Every record carries observed_at 2026-11-20. Q13.</p>
+  <table class="opt-table">
+    <thead><tr><th scope="col">Path</th><th scope="col">Cost</th><th scope="col">What it gets you</th></tr></thead>
+    <tbody>
+      <tr><td><b>a</b> · 30-day refresh, single owner</td><td>30 min/month</td><td>Specs stay defensible; ratings stay roughly current.</td></tr>
+      <tr><td><b>b</b> · 90-day refresh</td><td>30 min/quarter</td><td>Cheaper, more drift, still honest because timestamps are printed.</td></tr>
+      <tr><td><b>c</b> · No scheduled refresh</td><td>0</td><td>Guaranteed eventual inaccuracy, and S04 makes that a compliance issue, not just a UX one.</td></tr>
+    </tbody>
+  </table>
+  <p class="rec"><span>Recommended</span> a while the catalogue is five products; it is a coffee&#39;s worth of work per month.</p>
+  <p class="micro">Answer first: <a href="/WinA/v2/questions/#q13">Q13</a></p>
+</article>
+  <article class="suggestion" id="SG-09">
+  <header>
+    <span class="kicker">SG-09 · priority 8</span>
+    <h3>Decide the visual identity question now, not later</h3>
+    <p class="lead">The site has a typographic identity but no imagery. That is a deliberate constraint, not a finished look.</p>
+  </header>
+  <p class="evidence"><span>Evidence</span> Q06. No licensed third-party imagery is used anywhere.</p>
+  <table class="opt-table">
+    <thead><tr><th scope="col">Path</th><th scope="col">Cost</th><th scope="col">What it gets you</th></tr></thead>
+    <tbody>
+      <tr><td><b>a</b> · Stay imageless and lean into editorial typography</td><td>0</td><td>Coherent and fast, but will read as a document rather than a shop.</td></tr>
+      <tr><td><b>b</b> · Add API-sourced product imagery once approved</td><td>dev time after Q07</td><td>Looks like a shop; requires compliance work.</td></tr>
+      <tr><td><b>c</b> · Commission illustration or photography</td><td>$ to $$$</td><td>Distinctive and fully owned; slowest.</td></tr>
+    </tbody>
+  </table>
+  <p class="rec"><span>Recommended</span> b, gated on SG-04. Until then a is the honest default, and the site says so rather than pretending.</p>
+  <p class="micro">Answer first: <a href="/WinA/v2/questions/#q06">Q06</a>, <a href="/WinA/v2/questions/#q07">Q07</a></p>
+</article>
+  <article class="suggestion" id="SG-10">
+  <header>
+    <span class="kicker">SG-10 · priority 9</span>
+    <h3>Open Search Console on day one of the domain</h3>
+    <p class="lead">There is no way to know which queries reach the site.</p>
+  </header>
+  <p class="evidence"><span>Evidence</span> Q11. FLG-010.</p>
+  <table class="opt-table">
+    <thead><tr><th scope="col">Path</th><th scope="col">Cost</th><th scope="col">What it gets you</th></tr></thead>
+    <tbody>
+      <tr><td><b>a</b> · Verify Search Console and submit the sitemap</td><td>20 min</td><td>Real query data within days; topic choice stops being a guess.</td></tr>
+      <tr><td><b>b</b> · Skip it and rely on instinct</td><td>0</td><td>Permanent blind spot on the one metric that matters most for a new site.</td></tr>
+    </tbody>
+  </table>
+  <p class="rec"><span>Recommended</span> a. Do it the same day the domain resolves — verification is easiest before anything else is configured.</p>
+  <p class="micro">Answer first: <a href="/WinA/v2/questions/#q08">Q08</a></p>
+</article>
+  <article class="suggestion" id="SG-11">
+  <header>
+    <span class="kicker">SG-11 · priority 10</span>
+    <h3>Add reader capture, but only after disclosure is settled</h3>
+    <p class="lead">There is no way to bring a reader back, and no RSS subscriber count.</p>
+  </header>
+  <p class="evidence"><span>Evidence</span> The RSS feed is shipped and valid. No email capture exists.</p>
+  <table class="opt-table">
+    <thead><tr><th scope="col">Path</th><th scope="col">Cost</th><th scope="col">What it gets you</th></tr></thead>
+    <tbody>
+      <tr><td><b>a</b> · RSS only</td><td>0 (done)</td><td>Zero-friction, very low conversion, no personal data handled.</td></tr>
+      <tr><td><b>b</b> · Add a newsletter form via a hosted provider</td><td>free tier + 1h</td><td>Real retention; introduces a privacy policy obligation (Q19).</td></tr>
+    </tbody>
+  </table>
+  <p class="rec"><span>Recommended</span> b once a privacy policy exists. Until then RSS is the honest ceiling.</p>
+  <p class="micro">Answer first: <a href="/WinA/v2/questions/#q19">Q19</a></p>
+</article>
+  <article class="suggestion" id="SG-12">
+  <header>
+    <span class="kicker">SG-12 · priority 11</span>
+    <h3>Close the flags, don&#39;t accumulate them</h3>
+    <p class="lead">Ten open flags is a to-do list, not a compliance record.</p>
+  </header>
+  <p class="evidence"><span>Evidence</span> flags.json. Q20.</p>
+  <table class="opt-table">
+    <thead><tr><th scope="col">Path</th><th scope="col">Cost</th><th scope="col">What it gets you</th></tr></thead>
+    <tbody>
+      <tr><td><b>a</b> · 15-minute weekly flag review</td><td>15 min/week</td><td>Flags get closed or formally accepted with a date.</td></tr>
+      <tr><td><b>b</b> · Review only when something breaks</td><td>0</td><td>The page becomes a permanent apology.</td></tr>
+    </tbody>
+  </table>
+  <p class="rec"><span>Recommended</span> a. The point of publishing the flags is that they are temporary.</p>
+  <p class="micro">Answer first: <a href="/WinA/v2/questions/#q20">Q20</a></p>
+</article>
+</div>
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer__cols">
+      <div class="footer__col">
+        <h2>The catalogue</h2>
+        <ul><li><a href="/WinA/v2/air-fryers/">Air fryers</a></li><li><a href="/WinA/v2/thermometers/">Thermometers</a></li><li><a href="/WinA/v2/compare/">Compare all five</a></li><li><a href="/WinA/v2/guides/">Buying guides</a></li></ul>
+      </div>
+      <div class="footer__col">
+        <h2>The register</h2>
+        <ul><li><a href="/WinA/v2/links/">Source register</a></li><li><a href="/WinA/v2/questions/">Open questions</a></li><li><a href="/WinA/v2/suggestions/">Suggestions</a></li><li><a href="/WinA/v2/flags/">Flagged for review</a></li></ul>
+      </div>
+      <div class="footer__col">
+        <h2>The dashboard</h2>
+        <ul><li><a href="/WinA/v2/ledger/">Campaign ledger</a></li><li><a href="/WinA/v2/events/">Event schema</a></li><li><a href="/WinA/v2/disclosure/">Disclosure</a></li><li><a href="/WinA/v2/feed.xml">RSS feed</a></li></ul>
+      </div>
+    </div>
+    <div class="footer__disclosure">
+      <p class="footer__required"><strong>As an Amazon Associate I earn from qualifying purchases.</strong></p>
+      <p><strong>Affiliate disclosure.</strong> Countertop Report is written by an Amazon Associate. When you buy through a link on this site we may earn a commission, at no extra cost to you. That commission does not change what we write, and it does not change the price you pay. We do not show prices on this site because Amazon&#39;s Associates terms only permit showing price data that Amazon itself supplies.</p>
+      <p class="footer__stat">
+        Tracking ID <code>shopnow047c-20</code> · <span class="unconfirmed">enrollment unverified</span>
+        · Data observed 2026-11-20 · No prices are shown on this site by design.
+      </p>
+      <p class="footer__stat">
+        <a href="/WinA/v2/disclosure/">Disclosure</a> · <a href="/WinA/v2/how-we-work/">How we work</a> ·
+        <a href="/WinA/v2/flags/">Flagged for review</a> · <a href="/WinA/v2/feed.xml">RSS</a>
+      </p>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Flagged for Review &mdash; WinA</title>
+  <meta name="description" content="Flagged for Review page: irregularities and unverified items with source links, published so they can be reviewed after the site is live." />
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <link rel="alternate" type="application/rss+xml" href="feed.xml" title="WinA &mdash; Buying guides feed" />
+</head>
+<body>
+  <div class="site">
+    <header class="masthead">
+      <div class="navbar">
+        <a class="brand" href="index.html">Win<span class="amp">A</span></a>
+        <nav class="nav-links" aria-label="Main navigation"></nav>
+        <a class="btn btn-outline small" href="index.html">Home</a>
+      </div>
+    </header>
+
+    <section class="disclosure-strip" aria-label="Affiliate disclosure">
+      <div class="wrap">
+        <strong>Affiliate disclosure:</strong> As an Amazon Associate we earn from qualifying purchases.
+        Outbound product links on this page are marked <span class="tag-sponsored" aria-hidden="true">sponsored</span>
+        (rel="sponsored"). We may earn a commission if you buy through them, at no extra cost to you.
+        <a href="flagged.html">See flagged items &amp; sources</a>.
+      </div>
+    </section>
+
+    <section class="container">
+      <div class="section-head">
+        <h1>Flagged for Review</h1>
+        <p>Irregularities and unverified items are published here, clearly labeled, with source links so you can
+        review them after the site is live and request changes. Flagged items do not block the merge.</p>
+      </div>
+
+      <h2>Irregularities</h2>
+      <table>
+        <thead><tr><th>#</th><th>Item</th><th>Detail</th><th>Source link (for manual review)</th><th>Severity</th></tr></thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>Amazon product verification blocked</td>
+            <td>Amazon.com is not reachable from this build environment; no Amazon Associates API credentials on file. ASINs, listing URLs, prices, commissions, and images are left blank and unverified&mdash;never inferred.</td>
+            <td><a href="https://affiliate-program.amazon.com" target="_blank" rel="nofollow sponsored">Amazon Associates</a> &middot; <a href="https://docs.github.com/pages" target="_blank" rel="nofollow sponsored">GitHub Pages</a></td>
+            <td><span class="status open">High</span></td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>Short-link codes are 9 characters</td>
+            <td>The codes after link.amazon/ (B04G1MEwY, B02NbDxp3, B00hJ57DV, B0c8moW59, B0f3GKalj) are 9 chars; standard Amazon ASINs are 10 characters. Not treated as ASINs; flagged for review.</td>
+            <td><a href="https://affiliate-program.amazon.com" target="_blank" rel="nofollow sponsored">Amazon Associates (ASIN definition)</a></td>
+            <td><span class="status open">Medium</span></td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>Tracking ID shopnow047c-20</td>
+            <td>Provided by the user; not independently verified against Amazon Associates.</td>
+            <td><a href="https://affiliate-program.amazon.com" target="_blank" rel="nofollow sponsored">Amazon Associates Central</a></td>
+            <td><span class="status open">Medium</span></td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td>Short-link compliance status unresolved</td>
+            <td>Do not claim the supplied short links are invalid; exact compliance status is unresolved (FLG-003). Test one link per product in the enrolled Associates workflow before scaling.</td>
+            <td><a href="https://affiliate-program.amazon.com" target="_blank" rel="nofollow sponsored">Amazon Associates</a></td>
+            <td><span class="status open">Medium</span></td>
+          </tr>
+          <tr>
+            <td>5</td>
+            <td>Greenfield repository</td>
+            <td>No prior content to preserve; everything built from scratch.</td>
+            <td>n/a</td>
+            <td><span class="status done">Info</span></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h2>Unverified items (products)</h2>
+      <p class="muted">All five product rows on products.html are blank/unverified pending Amazon access. Source links below are for
+        manual review once Amazon access is available.</p>
+      <table>
+        <thead><tr><th>#</th><th>Submitted short link</th><th>Intended ASIN</th><th>Official listing URL</th><th>Manual review link</th></tr></thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td class="monospace"><a href="https://link.amazon/B04G1MEwY" target="_blank" rel="nofollow sponsored">https://link.amazon/B04G1MEwY</a></td>
+            <td class="unverified">blank</td>
+            <td class="unverified">blank</td>
+            <td class="monospace"><a href="https://link.amazon/B04G1MEwY" target="_blank" rel="nofollow sponsored">resolve short link</a></td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td class="monospace"><a href="https://link.amazon/B02NbDxp3" target="_blank" rel="nofollow sponsored">https://link.amazon/B02NbDxp3</a></td>
+            <td class="unverified">blank</td>
+            <td class="unverified">blank</td>
+            <td class="monospace"><a href="https://link.amazon/B02NbDxp3" target="_blank" rel="nofollow sponsored">resolve short link</a></td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td class="monospace"><a href="https://link.amazon/B00hJ57DV" target="_blank" rel="nofollow sponsored">https://link.amazon/B00hJ57DV</a></td>
+            <td class="unverified">blank</td>
+            <td class="unverified">blank</td>
+            <td class="monospace"><a href="https://link.amazon/B00hJ57DV" target="_blank" rel="nofollow sponsored">resolve short link</a></td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td class="monospace"><a href="https://link.amazon/B0c8moW59" target="_blank" rel="nofollow sponsored">https://link.amazon/B0c8moW59</a></td>
+            <td class="unverified">blank</td>
+            <td class="unverified">blank</td>
+            <td class="monospace"><a href="https://link.amazon/B0c8moW59" target="_blank" rel="nofollow sponsored">resolve short link</a></td>
+          </tr>
+          <tr>
+            <td>5</td>
+            <td class="monospace"><a href="https://link.amazon/B0f3GKalj" target="_blank" rel="nofollow sponsored">https://link.amazon/B0f3GKalj</a></td>
+            <td class="unverified">blank</td>
+            <td class="unverified">blank</td>
+            <td class="monospace"><a href="https://link.amazon/B0f3GKalj" target="_blank" rel="nofollow sponsored">resolve short link</a></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="callout info">
+        <h4>Next step for reviewer</h4>
+        <p>Once Amazon access is available: resolve each short link, record the intended ASIN (10 chars), official listing URL,
+        confirmation date, and source; observe and separately record the redirect target. Then mark each row verified and remove
+        it from this page.</p>
+      </div>
+    </section>
+
+    <footer>
+      <div class="footer-grid">
+        <div class="footer-col">
+          <h4>Shop</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="products.html">All products</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Learn</h4>
+          <ul>
+            <li><a href="guides.html">Buying guides</a></li>
+            <li><a href="questions.html">Questions &amp; answers</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Community</h4>
+          <ul>
+            <li><a href="suggest.html">Suggestions</a></li>
+            <li><a href="flagged.html">Flagged for review</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Company</h4>
+          <ul>
+            <li><a href="executive-summary.html">Executive summary</a></li>
+            <li><a href="https://www.ftc.gov" target="_blank" rel="nofollow sponsored">FTC guidance</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div>As an Amazon Associate we earn from qualifying purchases.</div>
+        <div><a href="flagged.html">Flagged for review</a> &middot; <a href="https://www.ftc.gov">FTC guidance</a> &middot; <a href="https://docs.github.com/pages">GitHub Pages</a></div>
+      </div>
+    </footer>
+  </div>
+
+  <script src="assets/js/app.js"></script>
+  <script src="assets/js/click-tracker.js"></script>
+</body>
+</html>

@@ -1,0 +1,21 @@
+{
+  "site": {
+    "name": "Countertop Report",
+    "masthead": "Countertop Report",
+    "tagline": "Independent buying notes on the small appliances people actually use",
+    "description": "Specification-led buying notes on air fryers and meat thermometers. No prices are shown here by design; every claim links to the listing it came from.",
+    "canonical_host": "https://sassnarep3-star.github.io/WinA/v2",
+    "base_path": "/WinA/v2",
+    "lang": "en-US",
+    "author": "Countertop Report editorial",
+    "tracking_id": "shopnow047c-20",
+    "disclosure_short": "As an Amazon Associate I earn from qualifying purchases.",
+    "disclosure_long": "Countertop Report is written by an Amazon Associate. When you buy through a link on this site we may earn a commission, at no extra cost to you. That commission does not change what we write, and it does not change the price you pay. We do not show prices on this site because Amazon's Associates terms only permit showing price data that Amazon itself supplies.",
+    "published": "2026-11-20",
+    "updated": "2026-11-20"
+  },
+  "analytics": {
+    "endpoint": null,
+    "note": "Set to a URL to enable the shipped event layer. Leave null to keep it fully disabled."
+  }
+}
