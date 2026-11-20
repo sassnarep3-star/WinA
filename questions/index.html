@@ -7,7 +7,11 @@
 <meta name="description" content="Every question that must be answered before further decisions: what we know, what we do not, and the specific action that would settle each one.">
 <link rel="canonical" href="https://sassnarep3-star.github.io/WinA/questions/">
 <meta name="robots" content="index,follow,max-image-preview:large">
-<meta name="google-site-verification" content="REPLACE_WITH_REAL_TOKEN_FLG009">
+<!-- Search Console verification not configured (FLG-009). No tag is emitted rather than a placeholder. -->
+<meta property="og:image" content="https://sassnarep3-star.github.io/WinAassets/img/og-home.svg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Counter Space — decision-first buying guide">
 <meta property="og:site_name" content="Counter Space">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Open questions — Counter Space">
@@ -17,6 +21,10 @@
 <meta name="twitter:title" content="Open questions — Counter Space">
 <meta name="twitter:description" content="Every question that must be answered before further decisions: what we know, what we do not, and the specific action that would settle each one.">
 <link rel="alternate" type="application/rss+xml" title="Counter Space" href="/WinA/feed.xml">
+<link rel="icon" href="/WinA/assets/img/brand-tile.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/WinA/assets/img/brand-tile.svg">
+<link rel="preload" href="/WinA/assets/fonts/instrument-serif-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/WinA/assets/fonts/instrument-sans-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/WinA/assets/css/site.css">
 <script>window.CS_CONFIG={analyticsEnabled:false,analyticsEndpoint:""};</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"Counter Space","url":"https://sassnarep3-star.github.io/WinA","description":"Kitchen gear, judged by what it does on a Tuesday night."}</script>
@@ -27,11 +35,11 @@
 <header class="masthead">
   <div class="wrap masthead__inner">
     <a class="brand" href="/WinA/">
-      <span class="brand__mark" aria-hidden="true">C</span>
+      <span class="brand__mark" aria-hidden="true"><svg class="mark" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 15c0-2.6 2.9-3 2.9-5.7S6.3 6.4 6.3 4M12 16c0-2.1 2.3-2.4 2.3-4.6S12.3 9.7 12.3 8M18 15c0-2.6 2.9-3 2.9-5.7S18.3 6.4 18.3 4" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><path d="M4 19h15" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/></svg></span>
       <span class="brand__name">Counter Space</span>
       <span class="brand__sub">Kitchen gear, judged honestly</span>
     </a>
-    <nav class="nav" aria-label="Primary"><a href="/WinA/air-fryers/">Air fryers</a><a href="/WinA/thermometers/">Thermometers</a><a href="/WinA/guides/">Guides</a><a href="/WinA/compare/">Compare</a><a href="/WinA/about/">About</a></nav>
+    <nav class="nav" aria-label="Primary"><a href="/WinA/air-fryers/">Air fryers</a><a href="/WinA/thermometers/">Thermometers</a><a href="/WinA/guides/">Guides</a><a href="/WinA/compare/">Compare</a><a href="/WinA/about/">About</a><a href="/WinA/decisions/">Decisions</a></nav>
   </div>
 </header>
 
@@ -63,6 +71,133 @@
         <div class="strip__cell"><p class="strip__num">4</p><p class="strip__lab">Answered</p></div>
         <div class="strip__cell"><p class="strip__num">18</p><p class="strip__lab">Still open</p></div>
       </div>
+    </div>
+
+    <h2 class="section__title" style="margin-top:2.5rem">What would close each gap</h2>
+    <p class="section__dek" style="margin-bottom:1.25rem">Every gap on this site has one thing that would close it. This table names that thing, who has it, and what we would do with it the day it arrives. Rows marked 'does not exist yet' are not waiting on a document — they are waiting on an action nobody has taken.</p>
+    <div class="tablewrap">
+      <table class="data sortable">
+        <caption>One row per gap: the artifact that closes it, who holds that artifact, and what changes the day it arrives. Sort any column.</caption>
+        <thead><tr>
+          <th scope="col">ID</th><th scope="col">What is missing</th><th scope="col">Where we are today</th>
+          <th scope="col">The artifact that closes it</th><th scope="col">Who has it</th>
+          <th scope="col">What changes when it arrives</th><th scope="col">Closes</th><th scope="col">State</th>
+        </tr></thead>
+        <tbody><tr>
+          <td class="mono">D-01</td>
+          <td><strong>Proof that the tracking ID is enrolled and attributing</strong></td>
+          <td class="small">The ID appears on 95 outbound links. Nothing confirms it belongs to an active account.</td>
+          <td class="small">One line in an Associates Central click report</td>
+          <td class="small">Owner — Associates Central login</td>
+          <td class="small">Record the click report date in data/special_link_tests.json and mark FLG-004 resolved. Until then every commission is unverified.</td>
+          <td class="small mono">Q-04 FLG-002 FLG-004</td>
+          <td><span class="pill pill--action">owner only</span></td>
+        </tr><tr>
+          <td class="mono">D-02</td>
+          <td><strong>A per-product Special Link test</strong></td>
+          <td class="small">Five constructed links, tagged and live. Zero recorded tests.</td>
+          <td class="small">Destination + reporting line for one link per product</td>
+          <td class="small">Owner — Associates Central</td>
+          <td class="small">Fill the five rows in data/special_link_tests.json. The compliance gate stops warning the moment a row is marked passed with a date, a destination and a tester.</td>
+          <td class="small mono">Q-06 FLG-003 FLG-024</td>
+          <td><span class="pill pill--action">owner only</span></td>
+        </tr><tr>
+          <td class="mono">D-03</td>
+          <td><strong>Evidence that anyone is searching for this</strong></td>
+          <td class="small">Seven guides chosen as hypotheses. No impression, query or click data of any kind.</td>
+          <td class="small">Search Console: the verification token, then a Performance export</td>
+          <td class="small">Owner — Search Console</td>
+          <td class="small">Run node scripts/next-topics.mjs against the export. It refuses to run without one; with one, it ranks the queries the site already receives.</td>
+          <td class="small mono">Q-07 Q-18 FLG-009 SG-29 FLG-035 FLG-037</td>
+          <td><span class="pill pill--action">owner only</span></td>
+        </tr><tr>
+          <td class="mono">D-04</td>
+          <td><strong>Any measurement at all</strong></td>
+          <td class="small">Five defined events and a written collector. No endpoint, so the client is switched off.</td>
+          <td class="small">A running collector URL</td>
+          <td class="small">Owner — any host that runs Node</td>
+          <td class="small">Set site.analyticsEndpoint in data/products.json. The client enables itself and starts recording page views, outbound clicks, compare views, guide reads and the capture form.</td>
+          <td class="small mono">Q-16 Q-17 FLG-011 FLG-012 SG-30</td>
+          <td><span class="pill pill--action">owner only</span></td>
+        </tr><tr>
+          <td class="mono">D-05</td>
+          <td><strong>The commission each category actually pays</strong></td>
+          <td class="small">Rates are not published without a signed-in Associates session, so every rate on this site is blank.</td>
+          <td class="small">The approved commission schedule for the account</td>
+          <td class="small">Owner — Associates Central</td>
+          <td class="small">Record the rate per category, not per product, with the date read. Rates change; a stale rate is worse than a blank.</td>
+          <td class="small mono">Q-05 FLG-008</td>
+          <td><span class="pill pill--action">owner only</span></td>
+        </tr><tr>
+          <td class="mono">D-06</td>
+          <td><strong>Compliant prices, ratings and product images</strong></td>
+          <td class="small">Specifications from listings and manufacturer pages. No prices, no ratings, no photography.</td>
+          <td class="small">PA-API or Creatives API credentials</td>
+          <td class="small">Owner — requires 3 qualifying sales first</td>
+          <td class="small">Prices and images can be served from the API under its terms. Until then these fields stay absent rather than approximated.</td>
+          <td class="small mono">Q-10 Q-11 Q-12 Q-14 FLG-005 FLG-006 FLG-007</td>
+          <td><span class="pill pill--withheld">blocked on sales</span></td>
+        </tr><tr>
+          <td class="mono">D-07</td>
+          <td><strong>Hands-on evidence</strong></td>
+          <td class="small">No testing. Every page says so, in the byline and in the standards note.</td>
+          <td class="small">A tester with the five products and a method</td>
+          <td class="small">Owner — purchasing decision</td>
+          <td class="small">Only then can a page say 'we tested this'. The copy on every product page would need rewriting, which is the honest cost of that upgrade.</td>
+          <td class="small mono">Q-09 FLG-007</td>
+          <td><span class="pill pill--unverified">does not exist</span></td>
+        </tr><tr>
+          <td class="mono">D-08</td>
+          <td><strong>A brand and a named author</strong></td>
+          <td class="small">The working name Counter Space and a desk byline. Both were chosen by a build, not by the owner.</td>
+          <td class="small">A decision, in writing, on name and byline</td>
+          <td class="small">Owner</td>
+          <td class="small">A rename touches the site name, canonicals, feed and social cards; the build derives all of them from data/products.json, so it is one value and a rebuild.</td>
+          <td class="small mono">Q-20 Q-21 FLG-021 FLG-034</td>
+          <td><span class="pill pill--action">owner only</span></td>
+        </tr><tr>
+          <td class="mono">D-09</td>
+          <td><strong>An owned domain</strong></td>
+          <td class="small">A GitHub Pages project path. Indexable, but the brand lives inside someone else's hostname.</td>
+          <td class="small">A domain and DNS access</td>
+          <td class="small">Owner</td>
+          <td class="small">Change site.origin and site.baseurl, rebuild, and every canonical, sitemap entry and feed URL follows. GitHub Pages serves the custom domain from the same repository.</td>
+          <td class="small mono">Q-19 FLG-013 SUG-07</td>
+          <td><span class="pill pill--action">owner only</span></td>
+        </tr><tr>
+          <td class="mono">D-10</td>
+          <td><strong>Whether paid search is even on the table</strong></td>
+          <td class="small">No ad budget, no account, no plan. Policy forbids bidding on Amazon marks and requires paid results to land on this site.</td>
+          <td class="small">A budget decision</td>
+          <td class="small">Owner</td>
+          <td class="small">Nothing is built for this. It is recorded so the absence is deliberate rather than forgotten.</td>
+          <td class="small mono">Q-15</td>
+          <td><span class="pill pill--unverified">does not exist</span></td>
+        </tr><tr>
+          <td class="mono">D-11</td>
+          <td><strong>Any distribution beyond search</strong></td>
+          <td class="small">No email list, no social accounts, no referral source.</td>
+          <td class="small">An email service provider and a reason to send</td>
+          <td class="small">Owner</td>
+          <td class="small">The capture form exists but stores nothing. Wiring a provider is the last step, not the first — there is nothing to send yet.</td>
+          <td class="small mono">Q-22 FLG-010</td>
+          <td><span class="pill pill--unverified">does not exist</span></td>
+        </tr><tr>
+          <td class="mono">D-12</td>
+          <td><strong>What the requester actually meant to promote</strong></td>
+          <td class="small">Five links, five observed products, two categories. The intent behind them is unrecorded.</td>
+          <td class="small">Confirmation of intent per link</td>
+          <td class="small">Owner — one message</td>
+          <td class="small">If the intent differs from the observed page, the whole register changes. Three sessions verified the destination; none could verify the intent.</td>
+          <td class="small mono">Q-01 Q-02 Q-03</td>
+          <td><span class="pill pill--action">owner only</span></td>
+        </tr></tbody>
+      </table>
+    </div>
+
+    <div class="note mt2">
+      <p class="note__title">Reading the states</p>
+      <p><strong>owner only</strong> — the artifact exists and only the account owner can retrieve it. <strong>blocked on sales</strong> — the artifact cannot be obtained until the account qualifies for API access. <strong>does not exist</strong> — nobody holds it; it has to be created, bought or decided first.</p>
     </div>
 
     <div class="tablewrap">
@@ -207,12 +342,12 @@
   </tr><tr>
     <td><code>Q-08</code></td>
     <td class="small">Demand</td>
-    <td><strong>Which of the five guide topics should be written first?</strong><br><span class="pill pill--medium" style="margin-top:.4rem">medium</span></td>
-    <td class="small">Hypothesis only. The capacity checklist is the best starting bet because it applies to all three air fryers and does not depend on any product outperforming another.</td>
+    <td><strong>Which guide topic should be written first?</strong><br><span class="pill pill--medium" style="margin-top:.4rem">medium</span></td>
+    <td class="small">Hypothesis only. The capacity checklist is the best starting bet because it applies to all three air fryers and does not depend on any product outperforming another. Later guides were added on the same basis — editorial hypothesis, no measured demand.</td>
     <td class="small">Evidence of which question people actually arrive with.</td>
     <td class="small">Ship all five, then let Search Console query data reorder them. See SUG-05.</td>
     <td><span class="pill pill--hypothesis">hypothesis</span></td>
-    <td class="small"><a href="https://sassnarep3-star.github.io/WinA/guides/" rel="noopener" target="_blank">The five guides as published</a></td>
+    <td class="small"><a href="https://sassnarep3-star.github.io/WinA/guides/" rel="noopener" target="_blank">The guides as published</a></td>
   </tr><tr>
     <td><code>Q-11</code></td>
     <td class="small">Editorial</td>
@@ -302,6 +437,8 @@
           <li><a href="/WinA/thermometers/">Thermometers</a></li>
           <li><a href="/WinA/compare/">Compare all five</a></li>
           <li><a href="/WinA/guides/">Buying guides</a></li>
+          <li><a href="/WinA/dinner-in-one-drawer/">Dinner in one drawer</a></li>
+          <li><a href="/WinA/hands-off-the-grill/">Hands off the grill</a></li>
         </ul>
       </div>
       <div>
@@ -322,7 +459,8 @@
           <li><a href="/WinA/dashboard/">Campaign ledger</a></li>
           <li><a href="/WinA/analytics/">Measurement</a></li>
           <li><a href="/WinA/questions/">Open questions</a></li>
-          <li><a href="/WinA/suggestions/">Suggestions</a></li>
+          <li><a href="/WinA/decisions/">Suggestions &amp; decisions</a></li>
+          <li><a href="/WinA/suggestions/">Suggestion detail</a></li>
           <li><a href="/WinA/summary/">Executive summary</a></li>
           <li><a href="/WinA/marketing/">Marketing plan</a></li>
           <li><a href="/WinA/marketing/kit/">Marketing kit</a></li>

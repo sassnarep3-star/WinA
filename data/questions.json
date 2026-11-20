@@ -135,7 +135,7 @@
       "priority": "high",
       "question": "Is anyone searching for these products or these questions?",
       "answer": "Unknown. No search volume data exists for this project, and none has been assumed.",
-      "have": "Five editorial hypotheses for question-shaped guides, written as working titles: the four from the brief plus one thermometer guide.",
+      "have": "Editorial hypotheses for question-shaped guides, written as working titles: the four from the brief plus a thermometer guide, then two more on sizing and app dependence. Every title is labelled a hypothesis on the page where it appears.",
       "missing": "Any impression, click, or query data. Search Console is not verified and the analytics collector is not deployed.",
       "matters": "The brief asks for trending, high-converting topics. Trending is a measurement, not a guess.",
       "howToFind": "Verify Search Console, submit the sitemap, and read the Queries report after 2–4 weeks. That replaces instinct with measured demand.",
@@ -147,15 +147,15 @@
       "id": "Q-08",
       "area": "demand",
       "priority": "medium",
-      "question": "Which of the five guide topics should be written first?",
-      "answer": "Hypothesis only. The capacity checklist is the best starting bet because it applies to all three air fryers and does not depend on any product outperforming another.",
+      "question": "Which guide topic should be written first?",
+      "answer": "Hypothesis only. The capacity checklist is the best starting bet because it applies to all three air fryers and does not depend on any product outperforming another. Later guides were added on the same basis — editorial hypothesis, no measured demand.",
       "have": "Five working titles, deliberately not framed as popularity claims.",
       "missing": "Evidence of which question people actually arrive with.",
       "matters": "Publishing order is the main lever on a new site.",
       "howToFind": "Ship all five, then let Search Console query data reorder them. See SUG-05.",
       "status": "hypothesis",
       "sourceUrl": "https://sassnarep3-star.github.io/WinA/guides/",
-      "sourceLabel": "The five guides as published"
+      "sourceLabel": "The guides as published"
     },
     {
       "id": "Q-09",
@@ -354,5 +354,183 @@
       "sourceUrl": "https://sassnarep3-star.github.io/WinA/feed.xml",
       "sourceLabel": "Published feed, currently unconsumed"
     }
-  ]
+  ],
+  "discovery": {
+    "intro": "Every gap on this site has one thing that would close it. This table names that thing, who has it, and what we would do with it the day it arrives. Rows marked 'does not exist yet' are not waiting on a document — they are waiting on an action nobody has taken.",
+    "rows": [
+      {
+        "id": "D-01",
+        "closes": [
+          "Q-04",
+          "FLG-002",
+          "FLG-004"
+        ],
+        "need": "Proof that the tracking ID is enrolled and attributing",
+        "have": "The ID appears on 95 outbound links. Nothing confirms it belongs to an active account.",
+        "artifact": "One line in an Associates Central click report",
+        "who": "Owner — Associates Central login",
+        "then": "Record the click report date in data/special_link_tests.json and mark FLG-004 resolved. Until then every commission is unverified.",
+        "state": "owner-only"
+      },
+      {
+        "id": "D-02",
+        "closes": [
+          "Q-06",
+          "FLG-003",
+          "FLG-024"
+        ],
+        "need": "A per-product Special Link test",
+        "have": "Five constructed links, tagged and live. Zero recorded tests.",
+        "artifact": "Destination + reporting line for one link per product",
+        "who": "Owner — Associates Central",
+        "then": "Fill the five rows in data/special_link_tests.json. The compliance gate stops warning the moment a row is marked passed with a date, a destination and a tester.",
+        "state": "owner-only"
+      },
+      {
+        "id": "D-03",
+        "closes": [
+          "Q-07",
+          "Q-18",
+          "FLG-009",
+          "SG-29",
+          "FLG-035",
+          "FLG-037"
+        ],
+        "need": "Evidence that anyone is searching for this",
+        "have": "Seven guides chosen as hypotheses. No impression, query or click data of any kind.",
+        "artifact": "Search Console: the verification token, then a Performance export",
+        "who": "Owner — Search Console",
+        "then": "Run node scripts/next-topics.mjs against the export. It refuses to run without one; with one, it ranks the queries the site already receives.",
+        "state": "owner-only"
+      },
+      {
+        "id": "D-04",
+        "closes": [
+          "Q-16",
+          "Q-17",
+          "FLG-011",
+          "FLG-012",
+          "SG-30"
+        ],
+        "need": "Any measurement at all",
+        "have": "Five defined events and a written collector. No endpoint, so the client is switched off.",
+        "artifact": "A running collector URL",
+        "who": "Owner — any host that runs Node",
+        "then": "Set site.analyticsEndpoint in data/products.json. The client enables itself and starts recording page views, outbound clicks, compare views, guide reads and the capture form.",
+        "state": "owner-only"
+      },
+      {
+        "id": "D-05",
+        "closes": [
+          "Q-05",
+          "FLG-008"
+        ],
+        "need": "The commission each category actually pays",
+        "have": "Rates are not published without a signed-in Associates session, so every rate on this site is blank.",
+        "artifact": "The approved commission schedule for the account",
+        "who": "Owner — Associates Central",
+        "then": "Record the rate per category, not per product, with the date read. Rates change; a stale rate is worse than a blank.",
+        "state": "owner-only"
+      },
+      {
+        "id": "D-06",
+        "closes": [
+          "Q-10",
+          "Q-11",
+          "Q-12",
+          "Q-14",
+          "FLG-005",
+          "FLG-006",
+          "FLG-007"
+        ],
+        "need": "Compliant prices, ratings and product images",
+        "have": "Specifications from listings and manufacturer pages. No prices, no ratings, no photography.",
+        "artifact": "PA-API or Creatives API credentials",
+        "who": "Owner — requires 3 qualifying sales first",
+        "then": "Prices and images can be served from the API under its terms. Until then these fields stay absent rather than approximated.",
+        "state": "blocked-on-sales"
+      },
+      {
+        "id": "D-07",
+        "closes": [
+          "Q-09",
+          "FLG-007"
+        ],
+        "need": "Hands-on evidence",
+        "have": "No testing. Every page says so, in the byline and in the standards note.",
+        "artifact": "A tester with the five products and a method",
+        "who": "Owner — purchasing decision",
+        "then": "Only then can a page say 'we tested this'. The copy on every product page would need rewriting, which is the honest cost of that upgrade.",
+        "state": "does-not-exist"
+      },
+      {
+        "id": "D-08",
+        "closes": [
+          "Q-20",
+          "Q-21",
+          "FLG-021",
+          "FLG-034"
+        ],
+        "need": "A brand and a named author",
+        "have": "The working name Counter Space and a desk byline. Both were chosen by a build, not by the owner.",
+        "artifact": "A decision, in writing, on name and byline",
+        "who": "Owner",
+        "then": "A rename touches the site name, canonicals, feed and social cards; the build derives all of them from data/products.json, so it is one value and a rebuild.",
+        "state": "owner-only"
+      },
+      {
+        "id": "D-09",
+        "closes": [
+          "Q-19",
+          "FLG-013",
+          "SUG-07"
+        ],
+        "need": "An owned domain",
+        "have": "A GitHub Pages project path. Indexable, but the brand lives inside someone else's hostname.",
+        "artifact": "A domain and DNS access",
+        "who": "Owner",
+        "then": "Change site.origin and site.baseurl, rebuild, and every canonical, sitemap entry and feed URL follows. GitHub Pages serves the custom domain from the same repository.",
+        "state": "owner-only"
+      },
+      {
+        "id": "D-10",
+        "closes": [
+          "Q-15"
+        ],
+        "need": "Whether paid search is even on the table",
+        "have": "No ad budget, no account, no plan. Policy forbids bidding on Amazon marks and requires paid results to land on this site.",
+        "artifact": "A budget decision",
+        "who": "Owner",
+        "then": "Nothing is built for this. It is recorded so the absence is deliberate rather than forgotten.",
+        "state": "does-not-exist"
+      },
+      {
+        "id": "D-11",
+        "closes": [
+          "Q-22",
+          "FLG-010"
+        ],
+        "need": "Any distribution beyond search",
+        "have": "No email list, no social accounts, no referral source.",
+        "artifact": "An email service provider and a reason to send",
+        "who": "Owner",
+        "then": "The capture form exists but stores nothing. Wiring a provider is the last step, not the first — there is nothing to send yet.",
+        "state": "does-not-exist"
+      },
+      {
+        "id": "D-12",
+        "closes": [
+          "Q-01",
+          "Q-02",
+          "Q-03"
+        ],
+        "need": "What the requester actually meant to promote",
+        "have": "Five links, five observed products, two categories. The intent behind them is unrecorded.",
+        "artifact": "Confirmation of intent per link",
+        "who": "Owner — one message",
+        "then": "If the intent differs from the observed page, the whole register changes. Three sessions verified the destination; none could verify the intent.",
+        "state": "owner-only"
+      }
+    ]
+  }
 }

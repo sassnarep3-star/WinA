@@ -7,7 +7,11 @@
 <meta name="description" content="One site for search engines to index, a stated reason to rank it, and an honest account of what is still unverified.">
 <link rel="canonical" href="https://sassnarep3-star.github.io/WinA/seo/">
 <meta name="robots" content="index,follow,max-image-preview:large">
-<meta name="google-site-verification" content="REPLACE_WITH_REAL_TOKEN_FLG009">
+<!-- Search Console verification not configured (FLG-009). No tag is emitted rather than a placeholder. -->
+<meta property="og:image" content="https://sassnarep3-star.github.io/WinAassets/img/og-home.svg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Counter Space — decision-first buying guide">
 <meta property="og:site_name" content="Counter Space">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Search and findability — Counter Space">
@@ -17,6 +21,10 @@
 <meta name="twitter:title" content="Search and findability — Counter Space">
 <meta name="twitter:description" content="One site for search engines to index, a stated reason to rank it, and an honest account of what is still unverified.">
 <link rel="alternate" type="application/rss+xml" title="Counter Space" href="/WinA/feed.xml">
+<link rel="icon" href="/WinA/assets/img/brand-tile.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/WinA/assets/img/brand-tile.svg">
+<link rel="preload" href="/WinA/assets/fonts/instrument-serif-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/WinA/assets/fonts/instrument-sans-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/WinA/assets/css/site.css">
 <script>window.CS_CONFIG={analyticsEnabled:false,analyticsEndpoint:""};</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"Counter Space","url":"https://sassnarep3-star.github.io/WinA","description":"Kitchen gear, judged by what it does on a Tuesday night."}</script>
@@ -27,11 +35,11 @@
 <header class="masthead">
   <div class="wrap masthead__inner">
     <a class="brand" href="/WinA/">
-      <span class="brand__mark" aria-hidden="true">C</span>
+      <span class="brand__mark" aria-hidden="true"><svg class="mark" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 15c0-2.6 2.9-3 2.9-5.7S6.3 6.4 6.3 4M12 16c0-2.1 2.3-2.4 2.3-4.6S12.3 9.7 12.3 8M18 15c0-2.6 2.9-3 2.9-5.7S18.3 6.4 18.3 4" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><path d="M4 19h15" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/></svg></span>
       <span class="brand__name">Counter Space</span>
       <span class="brand__sub">Kitchen gear, judged honestly</span>
     </a>
-    <nav class="nav" aria-label="Primary"><a href="/WinA/air-fryers/">Air fryers</a><a href="/WinA/thermometers/">Thermometers</a><a href="/WinA/guides/">Guides</a><a href="/WinA/compare/">Compare</a><a href="/WinA/about/">About</a></nav>
+    <nav class="nav" aria-label="Primary"><a href="/WinA/air-fryers/">Air fryers</a><a href="/WinA/thermometers/">Thermometers</a><a href="/WinA/guides/">Guides</a><a href="/WinA/compare/">Compare</a><a href="/WinA/about/">About</a><a href="/WinA/decisions/">Decisions</a></nav>
   </div>
 </header>
 
@@ -68,7 +76,7 @@
 </ul><h2>Why it deserves to rank</h2><p>Not because of technical tricks — those are table stakes and everyone has them. The reason is that each guide answers a question in a way the competing pages do not: it gives the reader a decision procedure instead of a verdict, and it says plainly when the recommended product is wrong for them.</p>
 <p>It also refuses to fabricate. No invented prices, no borrowed star ratings, no claimed testing. On a topic where most pages are generated and interchangeable, a page that is specific about trade-offs and honest about its limits has something no amount of keyword optimisation can imitate.</p><h2>What is not verified</h2><p>Search Console ownership has not been confirmed, because that requires account access. A placeholder verification token is in the markup and clearly marked as such.</p>
 <p><strong>Until that is replaced, this site has no idea whether it is indexed, what it ranks for, or whether anyone arrives.</strong> It is the single highest-value five-minute task remaining, and it is recorded as an open action rather than described as done.</p>
-<p>No search volume data exists for any of the five guide topics. The titles are editorial hypotheses about what people might ask, not evidence about what they do ask. Publishing five guides and reading the query report is how that changes.</p><h2>What we will not do</h2><p>No buying of Amazon trademarks as search keywords, whether through ads or any other mechanism — that is prohibited and would risk the account. No keyword-stuffed doorway pages. No spinning one article into twenty near-duplicate variants to chase long-tail queries; it works briefly and then gets the whole domain discounted. No cloaking the destination of a product link.</p>
+<p>No search volume data exists for any of the guide topics. The titles are editorial hypotheses about what people might ask, not evidence about what they do ask. Publishing the guides and reading the query report is how that changes.</p><h2>What we will not do</h2><p>No buying of Amazon trademarks as search keywords, whether through ads or any other mechanism — that is prohibited and would risk the account. No keyword-stuffed doorway pages. No spinning one article into twenty near-duplicate variants to chase long-tail queries; it works briefly and then gets the whole domain discounted. No cloaking the destination of a product link.</p>
 <p>The build enforces part of this mechanically: a page cannot publish without a unique title and description, and the validation step fails if any outbound Amazon link is missing its sponsored marking.</p>
     </div>
   </div>
@@ -93,6 +101,8 @@
           <li><a href="/WinA/thermometers/">Thermometers</a></li>
           <li><a href="/WinA/compare/">Compare all five</a></li>
           <li><a href="/WinA/guides/">Buying guides</a></li>
+          <li><a href="/WinA/dinner-in-one-drawer/">Dinner in one drawer</a></li>
+          <li><a href="/WinA/hands-off-the-grill/">Hands off the grill</a></li>
         </ul>
       </div>
       <div>
@@ -113,7 +123,8 @@
           <li><a href="/WinA/dashboard/">Campaign ledger</a></li>
           <li><a href="/WinA/analytics/">Measurement</a></li>
           <li><a href="/WinA/questions/">Open questions</a></li>
-          <li><a href="/WinA/suggestions/">Suggestions</a></li>
+          <li><a href="/WinA/decisions/">Suggestions &amp; decisions</a></li>
+          <li><a href="/WinA/suggestions/">Suggestion detail</a></li>
           <li><a href="/WinA/summary/">Executive summary</a></li>
           <li><a href="/WinA/marketing/">Marketing plan</a></li>
           <li><a href="/WinA/marketing/kit/">Marketing kit</a></li>

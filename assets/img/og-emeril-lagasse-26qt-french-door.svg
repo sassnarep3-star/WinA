@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630" role="img" aria-hidden="true" focusable="false">
+<rect width="1200" height="630" fill="#faf6ef"/>
+<rect x="0" y="0" width="1200" height="14" fill="#1c4a3c"/>
+<text x="72" y="112" font-family="ui-sans-serif, system-ui, sans-serif" font-size="24" font-weight="600" letter-spacing="5.5" fill="#b5432a">EMERIL LAGASSE</text>
+<text x="72" y="210" font-family="Georgia, 'Times New Roman', serif" font-size="76" fill="#17130f">Emeril Lagasse 26QT French</text>
+<text x="72" y="296" font-family="Georgia, 'Times New Roman', serif" font-size="76" fill="#17130f">Door</text>
+<path d="M72 528h1056" stroke="#e3d9ca" stroke-width="2"/>
+<text x="72" y="578" font-family="ui-sans-serif, system-ui, sans-serif" font-size="25" letter-spacing="3.2" fill="#6b6157">Counter Space — decision-first buying guide</text>
+<circle cx="1108" cy="572" r="17" fill="#1c4a3c"/>
+<text x="1098" y="580" font-family="Georgia, serif" font-size="21" fill="#faf6ef">C</text>
+</svg>

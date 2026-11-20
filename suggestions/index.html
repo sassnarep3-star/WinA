@@ -7,7 +7,11 @@
 <meta name="description" content="A reviewable decision list: suggestions with rationale, cost, risk and a recommendation, plus a draft design brief, a topic roadmap of hypotheses, and a decision log. Nothing is implemented without a decision.">
 <link rel="canonical" href="https://sassnarep3-star.github.io/WinA/suggestions/">
 <meta name="robots" content="index,follow,max-image-preview:large">
-<meta name="google-site-verification" content="REPLACE_WITH_REAL_TOKEN_FLG009">
+<!-- Search Console verification not configured (FLG-009). No tag is emitted rather than a placeholder. -->
+<meta property="og:image" content="https://sassnarep3-star.github.io/WinAassets/img/og-home.svg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Counter Space — decision-first buying guide">
 <meta property="og:site_name" content="Counter Space">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Suggestions — Counter Space">
@@ -17,6 +21,10 @@
 <meta name="twitter:title" content="Suggestions — Counter Space">
 <meta name="twitter:description" content="A reviewable decision list: suggestions with rationale, cost, risk and a recommendation, plus a draft design brief, a topic roadmap of hypotheses, and a decision log. Nothing is implemented without a decision.">
 <link rel="alternate" type="application/rss+xml" title="Counter Space" href="/WinA/feed.xml">
+<link rel="icon" href="/WinA/assets/img/brand-tile.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/WinA/assets/img/brand-tile.svg">
+<link rel="preload" href="/WinA/assets/fonts/instrument-serif-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/WinA/assets/fonts/instrument-sans-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/WinA/assets/css/site.css">
 <script>window.CS_CONFIG={analyticsEnabled:false,analyticsEndpoint:""};</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"Counter Space","url":"https://sassnarep3-star.github.io/WinA","description":"Kitchen gear, judged by what it does on a Tuesday night."}</script>
@@ -27,11 +35,11 @@
 <header class="masthead">
   <div class="wrap masthead__inner">
     <a class="brand" href="/WinA/">
-      <span class="brand__mark" aria-hidden="true">C</span>
+      <span class="brand__mark" aria-hidden="true"><svg class="mark" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 15c0-2.6 2.9-3 2.9-5.7S6.3 6.4 6.3 4M12 16c0-2.1 2.3-2.4 2.3-4.6S12.3 9.7 12.3 8M18 15c0-2.6 2.9-3 2.9-5.7S18.3 6.4 18.3 4" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><path d="M4 19h15" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/></svg></span>
       <span class="brand__name">Counter Space</span>
       <span class="brand__sub">Kitchen gear, judged honestly</span>
     </a>
-    <nav class="nav" aria-label="Primary"><a href="/WinA/air-fryers/">Air fryers</a><a href="/WinA/thermometers/">Thermometers</a><a href="/WinA/guides/">Guides</a><a href="/WinA/compare/">Compare</a><a href="/WinA/about/">About</a></nav>
+    <nav class="nav" aria-label="Primary"><a href="/WinA/air-fryers/">Air fryers</a><a href="/WinA/thermometers/">Thermometers</a><a href="/WinA/guides/">Guides</a><a href="/WinA/compare/">Compare</a><a href="/WinA/about/">About</a><a href="/WinA/decisions/">Decisions</a></nav>
   </div>
 </header>
 
@@ -63,7 +71,7 @@
         <tbody><tr>
           <td><span class="pill pill--shipped">shipped</span></td>
           <td>Already built on the live site in this pass.</td>
-          <td class="num">2</td>
+          <td class="num">8</td>
         </tr><tr>
           <td><span class="pill pill--recommend">recommend</span></td>
           <td>Highest confidence, do this before the others.</td>
@@ -79,7 +87,7 @@
         </tr><tr>
           <td><span class="pill pill--reject">reject</span></td>
           <td>Would break a rule or mislead a reader.</td>
-          <td class="num">2</td>
+          <td class="num">3</td>
         </tr></tbody>
       </table>
     </div>
@@ -149,6 +157,24 @@
     <td class="small">If the tag is not enrolled, every link still earns nothing. That is the one thing this cannot fix.</td>
     <td class="small">Constructed links are live. The proof step is blocked: it needs the owner's Associates Central sign-in (FLG-024). Next step: click one link per product while signed in and confirm it appears in the tracking report.<br><span class="tiny"><a href="https://affiliate-program.amazon.com/help/operating/policies" rel="noopener" target="_blank">Participation Requirements §6(w)</a></span></td>
   </tr><tr>
+    <td><code>SUG-25</code></td>
+    <td><strong>Ship a self-hosted type system and replace the templated default look</strong></td>
+    <td><span class="pill pill--shipped">shipped</span></td>
+    <td class="num">9</td>
+    <td class="small">A publication is judged before it is read. The previous build used a system font stack and a single accent, which is correct and unremarkable: it looks like a well-made document, not a magazine. Two SIL Open Font License faces (Instrument Serif for display, Instrument Sans for text) give the page a recognisable voice at a cost of 51 KB, served from this repository so no third-party font host is contacted.</td>
+    <td class="small">Two vendored woff2 files plus a type scale. No new dependency, no build step, no network request to a font CDN.</td>
+    <td class="small">Fonts are a design decision, not a ranking factor. If the owner prefers a different face, changing it is two files and a CSS block, and nothing in the content depends on it.</td>
+    <td class="small">Shipped in this pass, because the brief asked for a polished front-of-house and a font stack was the single largest visual lever available without breaching the no-imagery constraint.<br><span class="tiny"><a href="https://openfontlicense.org/open-font-license-official-text/" rel="noopener" target="_blank">SIL Open Font License 1.1</a></span></td>
+  </tr><tr>
+    <td><code>SUG-26</code></td>
+    <td><strong>Draw the imagery instead of borrowing it</strong></td>
+    <td><span class="pill pill--shipped">shipped</span></td>
+    <td class="num">9</td>
+    <td class="small">The site has no product photography and cannot get any lawfully without Creatives API access or manufacturer permission (FLG-007). Leaving the page entirely typographic is defensible but cold. Generated SVG illustrations — form-factor marks, a steam plate, a capacity gauge — give the page visual rhythm while depicting no product at all, which is the only way to add imagery without misrepresenting an item.</td>
+    <td class="small">One module (_src/art.mjs) and about 15 small SVG files, all generated deterministically by the build.</td>
+    <td class="small">An illustration must never imply a product fact. Each plate is captioned in HTML as an illustration and each form mark labels a category, not a model.</td>
+    <td class="small">Shipped in this pass. It resolves the visual coldness without touching FLG-007, which stays open because a manufacturer press asset is still the only route to real product imagery.</td>
+  </tr><tr>
     <td><code>SUG-05</code></td>
     <td><strong>Publish on a real cadence: a new guide every week for eight weeks, then read the query data</strong></td>
     <td><span class="pill pill--recommend">recommend</span></td>
@@ -203,6 +229,24 @@
     <td class="small">Volume without quality control produces the thin content the brief rejects. The build gate stays on.</td>
     <td class="small">Accept the topic roadmap below as the first batch of hypotheses, then let measured demand reorder it.<br><span class="tiny"><a href="https://developers.google.com/search/docs/fundamentals/creating-helpful-content" rel="noopener" target="_blank">Google Search Central — helpful content</a></span></td>
   </tr><tr>
+    <td><code>SUG-27</code></td>
+    <td><strong>Write service pages for the two jobs a reader arrives with</strong></td>
+    <td><span class="pill pill--shipped">shipped</span></td>
+    <td class="num">8</td>
+    <td class="small">Category pages answer 'show me the air fryers'. They do not answer 'which air fryer fits a weeknight' or 'do I need a leave-in probe'. Two service pages now open with the job, put the decision before the product, and end each pick with what would make it wrong for you.</td>
+    <td class="small">Two pages built from the same verified product data. No new product claims.</td>
+    <td class="small">A service page that invents a use case is worse than no page. Both pages are written from the same specifications already on the product pages, and neither adds a claim.</td>
+    <td class="small">Shipped. These are the pages a search engine can rank for a question rather than a product name, which is the only kind of query this site can win without brand authority.<br><span class="tiny"><a href="https://developers.google.com/search/docs/fundamentals/creating-helpful-content" rel="noopener" target="_blank">Google Search Central — helpful content</a></span></td>
+  </tr><tr>
+    <td><code>SUG-28</code></td>
+    <td><strong>Publish the next guides on sizing and app dependence, then stop and measure</strong></td>
+    <td><span class="pill pill--shipped">shipped</span></td>
+    <td class="num">8</td>
+    <td class="small">Size regret and app dependence are the two questions a buyer hits after the obvious ones, and both can be answered from specifications the site already holds. Publishing them extends the set without inventing demand for it.</td>
+    <td class="small">The additions run to roughly 1,800 words. Both are added to the sitemap and the RSS feed in the same build that publishes them.</td>
+    <td class="small">The guide set is still well under the ten-post rule of thumb Amazon publishes for an application, and none of these topics has measured demand behind it (FLG-035). Volume is not a substitute for measurement.</td>
+    <td class="small">Shipped, with the cadence question left open: the next guide should be chosen from Search Console query data, not from instinct.<br><span class="tiny"><a href="https://affiliate-program.amazon.com/help/node/topic/G8TW5AE9XL2VX9VM" rel="noopener" target="_blank">Associates Help — Application Review Process</a></span></td>
+  </tr><tr>
     <td><code>SUG-07</code></td>
     <td><strong>Move to a custom domain before building any authority</strong></td>
     <td><span class="pill pill--recommend">recommend</span></td>
@@ -239,6 +283,24 @@
     <td class="small">None. It only records decisions already being made.</td>
     <td class="small">Accept. The decision log schema below is the record; entries are added as decisions are made.</td>
   </tr><tr>
+    <td><code>SUG-29</code></td>
+    <td><strong>Replace the placeholder Search Console token with nothing until a real one exists</strong></td>
+    <td><span class="pill pill--shipped">shipped</span></td>
+    <td class="num">7</td>
+    <td class="small">Every page carried a meta tag whose content was the literal string REPLACE_WITH_REAL_TOKEN_FLG009. It verified nothing, it was visible in the published HTML, and it made a claim about verification that was not true. Removing it is more honest than keeping a placeholder that looks like configuration.</td>
+    <td class="small">One line in the layout, plus a build rule that refuses to emit the tag unless a real token is supplied in data/products.json.</td>
+    <td class="small">None. The verification tag is only needed at the moment Search Console verification happens, and FLG-009 stays open until the owner does it.</td>
+    <td class="small">Shipped. Set site.searchConsoleToken in data/products.json to a real value and the tag comes back automatically; leave it empty and no tag is emitted.<br><span class="tiny"><a href="https://developers.google.com/search/docs/crawling-indexing/verifying-sites" rel="noopener" target="_blank">Google Search Central — verifying sites</a></span></td>
+  </tr><tr>
+    <td><code>SUG-30</code></td>
+    <td><strong>Put every suggestion and every decision on one reviewable page</strong></td>
+    <td><span class="pill pill--shipped">shipped</span></td>
+    <td class="num">7</td>
+    <td class="small">Suggestions were a long page and decisions were an empty table at the bottom of it. A reviewer could not see, in one view, which suggestions were waiting, which had been accepted, and which had been rejected with a reason. /decisions/ merges the two: one row per suggestion, its state, its cost and the decision record if one exists.</td>
+    <td class="small">One page generated from the two data blocks that already existed. No new data entry.</td>
+    <td class="small">A decision table invites the illusion of progress. The page states how many decisions are recorded and how many suggestions are still waiting, computed from the data, so the emptiness is visible.</td>
+    <td class="small">Shipped. The table is the review interface the brief asked for: someone can read the list, pick a path, and record the decision in one place.</td>
+  </tr><tr>
     <td><code>SUG-09</code></td>
     <td><strong>Add a 'who should not buy this' block to every product page</strong></td>
     <td><span class="pill pill--consider">consider</span></td>
@@ -265,6 +327,15 @@
     <td class="small">An internal-link pass on each new guide.</td>
     <td class="small">Over-linking looks manipulative. Keep links natural and reader-serving.</td>
     <td class="small">Consider. Design the cluster map before writing the second batch.</td>
+  </tr><tr>
+    <td><code>SUG-31</code></td>
+    <td><strong>Do not add a second publication to chase a second niche</strong></td>
+    <td><span class="pill pill--reject">reject</span></td>
+    <td class="num">6</td>
+    <td class="small">The temptation with five products in two categories is to split into two sites and double the surface area. This repository already records five abandoned parallel builds, each of which split the property's indexation. A second site would repeat that failure with the owner's own brand.</td>
+    <td class="small">None. This is a decision not to act.</td>
+    <td class="small">A single site in two adjacent categories is harder to position than a focused one. That risk is real but smaller than the cost of fragmenting what little authority an unlaunched site has.</td>
+    <td class="small">Rejected for now, and recorded so it is not re-litigated. Revisit only if Search Console shows the two categories competing for unrelated queries.<br><span class="tiny"><a href="https://developers.google.com/search/docs/fundamentals/creating-helpful-content" rel="noopener" target="_blank">Google Search Central — helpful content</a></span></td>
   </tr><tr>
     <td><code>SUG-11</code></td>
     <td><strong>Add a short 'how we choose what to recommend' block to the front page</strong></td>
@@ -466,13 +537,23 @@
   <div class="wrap">
     <div class="section__head">
       <h2 class="section__title" style="font-size:1.4rem">Decision log</h2>
-      <p class="section__dek">Review workflow. Nothing is implemented until a suggestion is accepted here. Record a decision with a date and a reason; rejected items stay recorded so they are not re-litigated.</p>
+      <p class="section__dek">Review workflow. Every suggestion has one row on /decisions/ with its current state and, once a decision is recorded below, the date, the decision and the reason. Nothing is implemented on the strength of a suggestion alone.</p>
     </div>
     <div class="tablewrap">
       <table class="data sortable">
         <caption>Accept or reject a suggestion here before implementing it. Recorded so the choice is auditable and rejected items are not re-litigated.</caption>
         <thead><tr><th scope="col">Date</th><th scope="col">Decision</th><th scope="col">Item</th><th scope="col">Reason</th></tr></thead>
-        <tbody><tr><td colspan="4" style="text-align:center;padding:1.5rem;color:var(--ink-mute)"><strong style="display:block;font-family:var(--serif);font-size:1.05rem;color:var(--ink);margin-bottom:.3rem">No decisions recorded yet</strong>Each accepted or rejected suggestion is recorded here with a date and a one-line reason.</td></tr></tbody>
+        <tbody><tr>
+    <td>2026-11-20</td>
+    <td><span class="pill pill--accepted" >accepted</span></td>
+    <td><code></code></td>
+    <td class="small">The brief for this pass asked explicitly for a polished front of house, question-shaped topics and a single reviewable decisions surface. Each of these six suggestions is a design or editorial change that adds no product claim, so none of them needed a fact verified before shipping. They are recorded here so the owner can reverse any of them with one commit.</td>
+  </tr><tr>
+    <td>2026-11-20</td>
+    <td><span class="pill pill--rejected" >rejected</span></td>
+    <td><code></code></td>
+    <td class="small">COORDINATION.md records five separate sessions that each built a parallel site for this repository. Four were deleted and one was archived unserved, because a second front page splits the property's indexation. Adding another deliberately would repeat a documented failure.</td>
+  </tr></tbody>
       </table>
     </div>
 
@@ -511,6 +592,8 @@
           <li><a href="/WinA/thermometers/">Thermometers</a></li>
           <li><a href="/WinA/compare/">Compare all five</a></li>
           <li><a href="/WinA/guides/">Buying guides</a></li>
+          <li><a href="/WinA/dinner-in-one-drawer/">Dinner in one drawer</a></li>
+          <li><a href="/WinA/hands-off-the-grill/">Hands off the grill</a></li>
         </ul>
       </div>
       <div>
@@ -531,7 +614,8 @@
           <li><a href="/WinA/dashboard/">Campaign ledger</a></li>
           <li><a href="/WinA/analytics/">Measurement</a></li>
           <li><a href="/WinA/questions/">Open questions</a></li>
-          <li><a href="/WinA/suggestions/">Suggestions</a></li>
+          <li><a href="/WinA/decisions/">Suggestions &amp; decisions</a></li>
+          <li><a href="/WinA/suggestions/">Suggestion detail</a></li>
           <li><a href="/WinA/summary/">Executive summary</a></li>
           <li><a href="/WinA/marketing/">Marketing plan</a></li>
           <li><a href="/WinA/marketing/kit/">Marketing kit</a></li>

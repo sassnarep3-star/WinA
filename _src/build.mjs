@@ -15,6 +15,8 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(__dirname, "..");
 
 const read = (p) => JSON.parse(fs.readFileSync(path.join(ROOT, p), "utf8"));
+import * as art from "./art.mjs";
+import { services, byline } from "./services.mjs";
 const data = read("data/products.json");
 const policy = read("data/policy.json");
 const gov = read("data/governance.json");
@@ -66,6 +68,34 @@ const url = (p = "/") => `${BASE}${p}`;
 const abs = (p = "/") => `${ORIGIN}${p}`;
 const body = (html) => html.replace(/\{BASE\}/g, BASE);
 
+/**
+ * Reader-copy formatter for the service pages and their FAQ.
+ *
+ * Supports exactly one convention: **bold**. Everything else is escaped, so a
+ * content file can never inject markup into a page. The five banned-phrase
+ * patterns are refused at build time rather than trusted to review, because a
+ * phrase that only sounds like filler is the first thing that makes a page read
+ * as machine-written.
+ */
+const BANNED_PHRASES = [
+  /\bin today's (fast[- ]paced|digital) world\b/i,
+  /\bunlock the (secret|power) of\b/i,
+  /\belevate your\b/i,
+  /\bgame[- ]changer\b/i,
+  /\bwhether you're a (beginner|seasoned)\b/i,
+  /\bnot just [a-z]+, but\b/i,
+  /\blook no further\b/i,
+  /\bdive (deep )?into\b/i
+];
+function inline(text) {
+  const raw = String(text ?? "");
+  for (const re of BANNED_PHRASES) {
+    const m = raw.match(re);
+    if (m) throw new Error(`banned filler phrase in copy: "${m[0]}" — rewrite the sentence instead of templating it`);
+  }
+  return esc(raw).replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>");
+}
+
 /** Constructed Special Link. Destination is always visible in the href. */
 const special = (asin) => `https://www.amazon.com/dp/${asin}?tag=${TAG}`;
 
@@ -99,8 +129,22 @@ const NAV = [
   { href: url("/thermometers/"), label: "Thermometers" },
   { href: url("/guides/"), label: "Guides" },
   { href: url("/compare/"), label: "Compare" },
-  { href: url("/about/"), label: "About" }
+  { href: url("/about/"), label: "About" },
+  { href: url("/decisions/"), label: "Decisions" }
 ];
+
+/* Search Console verification.
+   FLG-025: a placeholder token used to be emitted on every page, which verified nothing and
+   looked like configuration. The tag is now emitted only for a real-looking token supplied in
+   data/products.json. A placeholder-shaped value is a build failure, not a warning. */
+function searchConsoleTag() {
+  const token = String(site.searchConsoleToken || "").trim();
+  if (!token) return "<!-- Search Console verification not configured (FLG-009). No tag is emitted rather than a placeholder. -->";
+  if (/REPLACE|PLACEHOLDER|TODO|XXXX/i.test(token)) {
+    throw new Error(`site.searchConsoleToken looks like a placeholder ("${token}") — set a real token from Search Console or leave it empty (FLG-009/FLG-025)`);
+  }
+  return `<meta name="google-site-verification" content="${esc(token)}">`;
+}
 
 function layout(opts) {
   const {
@@ -111,7 +155,8 @@ function layout(opts) {
     canonical = "/",
     type = "website",
     pageType = "page",
-    jsonld = null
+    jsonld = null,
+    ogImage = "assets/img/og-home.svg"
   } = opts;
 
   const fullTitle = title.includes(site.name) ? title : `${title} — ${site.name}`;
@@ -121,7 +166,9 @@ function layout(opts) {
   ).join("");
 
   const ld = jsonld
-    ? `<script type="application/ld+json">${JSON.stringify(jsonld)}</script>`
+    ? (Array.isArray(jsonld) ? jsonld : [jsonld])
+        .map((j) => `<script type="application/ld+json">${JSON.stringify(j)}</script>`)
+        .join("\n")
     : "";
 
   return `<!doctype html>
@@ -133,7 +180,11 @@ function layout(opts) {
 <meta name="description" content="${esc(desc)}">
 <link rel="canonical" href="${abs(canonical)}">
 <meta name="robots" content="index,follow,max-image-preview:large">
-<meta name="google-site-verification" content="REPLACE_WITH_REAL_TOKEN_FLG009">
+${searchConsoleTag()}
+<meta property="og:image" content="${abs(ogImage)}">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="${esc(site.name)} — decision-first buying guide">
 <meta property="og:site_name" content="${esc(site.name)}">
 <meta property="og:type" content="${type}">
 <meta property="og:title" content="${esc(fullTitle)}">
@@ -143,6 +194,10 @@ function layout(opts) {
 <meta name="twitter:title" content="${esc(fullTitle)}">
 <meta name="twitter:description" content="${esc(desc)}">
 <link rel="alternate" type="application/rss+xml" title="${esc(site.name)}" href="${url("/feed.xml")}">
+<link rel="icon" href="${url("/assets/img/brand-tile.svg")}" type="image/svg+xml">
+<link rel="apple-touch-icon" href="${url("/assets/img/brand-tile.svg")}">
+<link rel="preload" href="${url("/assets/fonts/instrument-serif-latin-400-normal.woff2")}" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="${url("/assets/fonts/instrument-sans-latin-wght-normal.woff2")}" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="${url("/assets/css/site.css")}">
 <script>window.CS_CONFIG={analyticsEnabled:${ANALYTICS_ON},analyticsEndpoint:${JSON.stringify(site.analyticsEndpoint || "")}};</script>
 ${ld}
@@ -153,7 +208,7 @@ ${ld}
 <header class="masthead">
   <div class="wrap masthead__inner">
     <a class="brand" href="${url("/")}">
-      <span class="brand__mark" aria-hidden="true">C</span>
+      <span class="brand__mark" aria-hidden="true">${art.inlineMark()}</span>
       <span class="brand__name">${esc(site.name)}</span>
       <span class="brand__sub">Kitchen gear, judged honestly</span>
     </a>
@@ -194,6 +249,8 @@ ${children}
           <li><a href="${url("/thermometers/")}">Thermometers</a></li>
           <li><a href="${url("/compare/")}">Compare all five</a></li>
           <li><a href="${url("/guides/")}">Buying guides</a></li>
+          <li><a href="${url("/dinner-in-one-drawer/")}">Dinner in one drawer</a></li>
+          <li><a href="${url("/hands-off-the-grill/")}">Hands off the grill</a></li>
         </ul>
       </div>
       <div>
@@ -214,7 +271,8 @@ ${children}
           <li><a href="${url("/dashboard/")}">Campaign ledger</a></li>
           <li><a href="${url("/analytics/")}">Measurement</a></li>
           <li><a href="${url("/questions/")}">Open questions</a></li>
-          <li><a href="${url("/suggestions/")}">Suggestions</a></li>
+          <li><a href="${url("/decisions/")}">Suggestions &amp; decisions</a></li>
+          <li><a href="${url("/suggestions/")}">Suggestion detail</a></li>
           <li><a href="${url("/summary/")}">Executive summary</a></li>
           <li><a href="${url("/marketing/")}">Marketing plan</a></li>
           <li><a href="${url("/marketing/kit/")}">Marketing kit</a></li>
@@ -341,28 +399,32 @@ const breadcrumb = (trail) =>
 function frontPage() {
   const picks = products.slice(0, 3);
   const lead = products[0];
+  const g = guides;
+  const feature = services[0];
+  const second = services[1];
+  const bySlug = Object.fromEntries(products.map((p) => [p.slug, p]));
 
   const html = `
 <section class="hero">
   <div class="wrap hero__grid">
-    <div>
-      <p class="kicker">Air fryers &amp; precision</p>
+    <div class="hero__copy">
+      <p class="kicker">Air fryers &amp; precision thermometers</p>
       <h1>Buy the one that fits your <em>counter</em>, not the one with the biggest number.</h1>
-      <p class="hero__dek">Three air fryers and two thermometers, compared on the things that decide whether you still use them in a year: how many things cook at once, how much counter it takes, and how much of it ends up in the sink.</p>
+      <p class="hero__dek">Five appliances, compared on the things that decide whether you still use them in a year: how many things cook at once, how much counter it takes, and how much of it ends up in the sink.</p>
       <div class="hero__actions">
         <a class="btn btn--primary" href="${url("/air-fryers/")}">See the air fryers</a>
         <a class="btn btn--ghost" href="${url("/guides/basket-vs-oven/")}">Basket or oven? Start here</a>
       </div>
-      <p class="tiny faint" style="margin-top:1.1rem">No testing claims. No invented prices. Every spec is labelled with how it was verified.</p>
+      <p class="tiny faint" style="margin-top:1.1rem">No testing claims. No invented prices. Every specification is labelled with how it was verified.</p>
     </div>
     <aside class="pick">
-      <p class="pick__label">Start here</p>
+      <p class="pick__label">The pick we would start with</p>
       <h2 class="pick__name">${esc(lead.shortName)}</h2>
       <p class="pick__verdict">${esc(lead.verdict)}</p>
       <dl class="pick__meta">
         <div class="pick__stat"><dt>Capacity</dt><dd>6 qt</dd></div>
         <div class="pick__stat"><dt>Chambers</dt><dd>Two</dd></div>
-        <div class="pick__stat"><dt>Best for</dt><dd style="font-size:.86rem;font-family:var(--sans)">Two-part dinners</dd></div>
+        <div class="pick__stat"><dt>Best for</dt><dd class="pick__stat-text">Two-part dinners</dd></div>
       </dl>
       <a class="btn btn--amazon" href="${special(lead.asin)}" rel="sponsored nofollow noopener"
          target="_blank" data-affiliate="${lead.asin}" data-slot="hero">Check price on Amazon →</a>
@@ -380,12 +442,29 @@ function frontPage() {
   </div>
 </div>
 
+<!-- The feature: the editorial story, not the product list -->
+<section class="feature">
+  <div class="wrap feature__grid">
+    <figure class="plate">
+      <img src="${url("/assets/img/plate-steam.svg")}" width="480" height="400" alt="Illustration of steam rising from a plate. No appliance is depicted.">
+      <figcaption>Illustration. We do not publish product photography — see <a href="${url("/disclosure/")}">why</a>.</figcaption>
+    </figure>
+    <div class="feature__copy">
+      <p class="kicker">The decision</p>
+      <h2 class="feature__title"><a href="${url(`/${feature.slug}/`)}">${esc(feature.title)}</a></h2>
+      <p class="feature__dek">${esc(feature.dek)}</p>
+      <p class="feature__body">${esc(feature.lede.split(". ").slice(0, 2).join(". "))}.</p>
+      <p class="feature__more"><a class="section__more" href="${url(`/${feature.slug}/`)}">Read the decision</a></p>
+    </div>
+  </div>
+</section>
+
 <section class="section">
   <div class="wrap">
     <div class="section__head section__head--split">
       <div>
-        <h2 class="section__title">What we'd put on your counter</h2>
-        <p class="section__dek">Three air fryers at three different points on the same trade-off. None of them is the "best" — one of them is right for you, and the other two are wrong in specific ways.</p>
+        <h2 class="section__title">What we would put on your counter</h2>
+        <p class="section__dek">Three air fryers at three different points on the same trade-off. None of them is the &ldquo;best&rdquo; — one of them is right for you, and the other two are wrong in specific ways.</p>
       </div>
       <a class="section__more" href="${url("/air-fryers/")}">All air fryers</a>
     </div>
@@ -410,20 +489,45 @@ function frontPage() {
   </div>
 </section>
 
+<!-- Two service strips: the jobs a reader arrives with, side by side -->
 <section class="section">
   <div class="wrap">
     <div class="section__head">
-      <h2 class="section__title">Read before you buy</h2>
-      <p class="section__dek">The questions that come up before any of these purchases, answered without a verdict at the end.</p>
+      <h2 class="section__title">Start from the job, not the product</h2>
+      <p class="section__dek">Most people arrive with a question, not a shortlist. These two pages take the question first and put the product second.</p>
+    </div>
+    <div class="services">
+      ${services
+        .map(
+          (sv) => `<a class="service" href="${url(`/${sv.slug}/`)}">
+        <span class="service__kicker">${esc(sv.kicker)}</span>
+        <h3 class="service__title">${esc(sv.name)}</h3>
+        <p class="service__dek">${esc(sv.dek)}</p>
+        <span class="service__cta">Which one fits &rarr;</span>
+      </a>`
+        )
+        .join("")}
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="section__head section__head--split">
+      <div>
+        <h2 class="section__title">Read before you buy</h2>
+        <p class="section__dek">The questions that come up before any of these purchases, answered without a verdict at the end.</p>
+      </div>
+      <a class="section__more" href="${url("/guides/")}">All ${guides.length} guides</a>
     </div>
     <div class="guides guides--two">
-      ${guides
+      ${g
         .map(
-          (g) => `<a class="guide-link" href="${url(`/guides/${g.slug}/`)}">
-        <span class="guide-link__num">${g.number}</span>
+          (x) => `<a class="guide-link" href="${url(`/guides/${x.slug}/`)}">
+        <span class="guide-link__num">${x.number}</span>
         <span>
-          <h3 class="guide-link__title">${esc(g.title)}</h3>
-          <p class="guide-link__dek">${esc(g.dek)}</p>
+          <h3 class="guide-link__title">${esc(x.title)}</h3>
+          <p class="guide-link__dek">${esc(x.dek)}</p>
         </span>
       </a>`
         )
@@ -433,11 +537,19 @@ function frontPage() {
 </section>
 
 <section class="section" style="padding-top:0">
-  <div class="wrap narrow">
-    <div class="note note--warn">
-      <p class="note__title">${esc(editorNote.title)}</p>
-      <p>${esc(editorNote.body)}</p>
-      <p class="mt1"><a href="${url("/about/")}">Full editorial standards →</a></p>
+  <div class="wrap">
+    <div class="editorial-band">
+      <div class="editorial-band__copy">
+        <p class="kicker">Standards</p>
+        <h2 class="section__title" style="font-size:clamp(1.6rem,3vw,2.2rem)">${esc(editorNote.title)}</h2>
+        <p>${esc(editorNote.body.split("\n\n")[0])}</p>
+        <p>${esc(editorNote.body.split("\n\n")[2])}</p>
+        <p class="mt1"><a class="section__more" href="${url("/about/")}">Full editorial standards</a></p>
+      </div>
+      <figure class="plate plate--small">
+        <img src="${url("/assets/img/plate-scale.svg")}" width="480" height="400" alt="Illustration of a ten-tick capacity gauge with four ticks filled. It is not a capacity claim about any product.">
+        <figcaption>Illustration. Not a capacity claim.</figcaption>
+      </figure>
     </div>
   </div>
 </section>
@@ -448,6 +560,303 @@ function frontPage() {
     desc: "Three air fryers and two thermometers compared on capacity, batching, cleanup and counter cost. No testing claims, no invented prices, every spec labelled with how it was verified.",
     html,
     priority: "1.0",
+    changefreq: "weekly",
+    ogImage: "assets/img/og-home.svg"
+  });
+}
+
+/* ============================================================
+   SERVICE PAGES — the two jobs a reader arrives with
+   ============================================================ */
+function servicePages() {
+  for (const sv of services) {
+    const cat = categories.find((c) => c.slug === sv.category);
+    const related = guides.filter((g) => g.category === sv.category);
+    const pickRows = sv.picks
+      .map((pk) => {
+        const p = products.find((x) => x.slug === pk.slug);
+        if (!p) throw new Error(`service ${sv.slug}: pick ${pk.slug} matches no product`);
+        return `<article class="pickrow">
+      <div class="pickrow__head">
+        <img class="pickrow__mark" src="${url(`/assets/img/form-${p.formFactor}.svg`)}" width="120" height="120" alt="${esc(
+          p.formFactor.replace(/-/g, " ")
+        )} form-factor mark, drawn not photographed.">
+        <div>
+          <p class="pickrow__kicker">${esc(pk.forWho)}</p>
+          <h3 class="pickrow__name"><a href="${url(`/products/${p.slug}/`)}">${esc(p.shortName)}</a></h3>
+        </div>
+      </div>
+      <dl class="pickrow__body">
+        <div><dt>Why this one</dt><dd>${esc(pk.reason)}</dd></div>
+        <div><dt>What it costs you</dt><dd>${esc(pk.against)}</dd></div>
+      </dl>
+      <div class="pickrow__foot">
+        <a class="btn btn--amazon" href="${special(p.asin)}" rel="sponsored nofollow noopener" target="_blank"
+           data-affiliate="${p.asin}" data-slot="service-pick">Check price on Amazon →</a>
+        <a class="pickrow__link" href="${url(`/products/${p.slug}/`)}">Full specification record</a>
+      </div>
+      <p class="pcard__note">Sponsored. ${esc(site.associateStatement)}</p>
+    </article>`;
+      })
+      .join("");
+
+    const html = `
+${breadcrumb([
+  { href: url("/"), label: "Home" },
+  { href: url(`/${cat.slug}/`), label: cat.name },
+  { label: sv.name }
+])}
+<div class="article-head">
+  <div class="wrap">
+    <p class="kicker">${esc(sv.kicker)} · The decision</p>
+    <h1 class="article-head__title">${esc(sv.title)}</h1>
+    <p class="article-head__dek">${esc(sv.dek)}</p>
+    <div class="byline">
+      <span>${esc(byline.desk)}</span>
+      <span class="byline__dot" aria-hidden="true"></span>
+      <span>${esc(byline.descriptor)}</span>
+      <span class="byline__dot" aria-hidden="true"></span>
+      <span class="unverified">No hands-on testing claimed</span>
+    </div>
+  </div>
+</div>
+
+<div class="wrap layout">
+  <div>
+    <figure class="plate plate--wide">
+      <img src="${url(`/assets/img/plate-${sv.plate}.svg`)}" width="480" height="400" alt="${esc(sv.plateCaption)}">
+      <figcaption>${esc(sv.plateCaption)}</figcaption>
+    </figure>
+
+    <p class="lede" style="margin-top:1.75rem">${esc(sv.lede)}</p>
+
+    <div class="prose">
+      ${sv.sections
+        .map(
+          (sec) => `<h2>${esc(sec.h)}</h2>
+      ${sec.body.map((b) => `<p>${inline(b)}</p>`).join("\n      ")}`
+        )
+        .join("\n      ")}
+    </div>
+
+    <h2 class="section__title" style="font-size:clamp(1.7rem,3vw,2.3rem);margin-top:3rem">Which one fits your week</h2>
+    <p class="section__dek" style="margin-bottom:1.5rem">Three picks, each stated with the trade-off it carries. If the trade-off sounds like your kitchen, the pick is wrong for you — that is the point of writing it down.</p>
+    <div class="pickrows">${pickRows}</div>
+
+    <h2 class="section__title" style="font-size:clamp(1.7rem,3vw,2.3rem);margin-top:3rem">Questions people ask</h2>
+    ${sv.faq
+      .map(
+        (f) => `<details class="faq">
+      <summary>${esc(f.q)}</summary>
+      <p>${inline(f.a)}</p>
+    </details>`
+      )
+      .join("")}
+
+    <div class="note mt2">
+      <p class="note__title">Why no price and no photographs</p>
+      <p>Amazon's program policies restrict displaying current prices, ratings and reviews without its API, and prohibit price tracking outright. Product photography is Program Content and may not be re-hosted. We have no API access and no manufacturer press licence, so the numbers and the photographs are absent rather than approximate. The illustrations on this page depict a form factor, not a model. Both gaps are recorded on the <a href="${url(
+        "/flagged/"
+      )}">flagged for review</a> page.</p>
+    </div>
+
+    ${
+      related.length
+        ? `<h2 class="section__title" style="font-size:1.5rem;margin-top:3rem">Go deeper</h2>
+    <div class="guides">
+      ${related
+        .map(
+          (x) => `<a class="guide-link" href="${url(`/guides/${x.slug}/`)}">
+        <span class="guide-link__num">${x.number}</span>
+        <span><h3 class="guide-link__title">${esc(x.title)}</h3>
+        <p class="guide-link__dek">${esc(x.dek)}</p></span></a>`
+        )
+        .join("")}
+    </div>`
+        : ""
+    }
+  </div>
+
+  <aside class="layout__aside">
+    <div class="buybox">
+      <p class="buybox__label">The three compared</p>
+      ${sv.picks
+        .map((pk) => {
+          const p = products.find((x) => x.slug === pk.slug);
+          return `<p style="margin:0 0 .6rem"><a href="${special(
+            p.asin
+          )}" rel="sponsored nofollow noopener" target="_blank" data-affiliate="${
+            p.asin
+          }" data-slot="service-sidebar" style="font-size:.85rem">${esc(p.shortName)} on Amazon →</a></p>`;
+        })
+        .join("")}
+      <p class="buybox__legal">${esc(site.associateStatement)}</p>
+    </div>
+    <div class="note mt2">
+      <p class="note__title">Who wrote this</p>
+      <p class="small">${esc(byline.why)} <a href="${url("/about/")}">About the desk</a></p>
+    </div>
+    <div class="note mt2">
+      <p class="note__title">These picks are editorial</p>
+      <p class="small">They are argued from published specifications, not from testing, and they are labelled as a recommendation rather than a finding. Where a specification could not be confirmed, it is blank on the product record.</p>
+    </div>
+  </aside>
+</div>
+`;
+    pages.push({
+      path: `/${sv.slug}/`,
+      title: sv.title,
+      desc: sv.dek,
+      html,
+      type: "article",
+      pageType: "service",
+      priority: "0.9",
+      changefreq: "monthly",
+      ogImage: `assets/img/og-home.svg`,
+      jsonld: [
+        {
+          "@context": "https://schema.org",
+          "@type": "Article",
+          headline: sv.title,
+          description: sv.dek,
+          datePublished: site.built,
+          dateModified: site.built,
+          author: { "@type": "Organization", name: site.name },
+          publisher: { "@type": "Organization", name: site.name },
+          isAccessibleForFree: true
+        },
+        {
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          mainEntity: sv.faq.map((f) => ({
+            "@type": "Question",
+            name: f.q,
+            acceptedAnswer: { "@type": "Answer", text: f.a }
+          }))
+        }
+      ]
+    });
+  }
+}
+
+/* ============================================================
+   DECISIONS — one page where a reviewer can see and record
+   ============================================================ */
+function decisionsPage() {
+  const entries = suggestions.decisionLog.entries || [];
+  const bySug = new Map();
+  for (const d of entries) {
+    // A decision names its subject; link it to each suggestion id it mentions.
+    for (const m of String(d.subject || "").matchAll(/SUG-\d{2}/g)) {
+      bySug.set(m[0], [...(bySug.get(m[0]) || []), d]);
+    }
+  }
+  const rows = suggestions.suggestions
+    .map((x) => {
+      const dec = bySug.get(x.id) || [];
+      const decided = dec.length
+        ? dec
+            .map(
+              (d) =>
+                `<span class="pill pill--${d.decision === "accepted" ? "resolved" : "withheld"}">${esc(
+                  d.decision
+                )}</span> <span class="tiny faint">${esc(d.date)} · ${esc(d.id)}</span>`
+            )
+            .join("<br>")
+        : `<span class="faint">waiting</span>`;
+      return `<tr>
+      <td class="mono">${esc(x.id)}</td>
+      <td><strong>${esc(x.title)}</strong><br><span class="tiny muted">${esc(
+        x.decide
+      ).slice(0, 180)}${x.decide.length > 180 ? "…" : ""}</span></td>
+      <td><span class="pill pill--${esc(x.status)}">${esc(x.status)}</span></td>
+      <td>${decided}</td>
+      <td class="tiny">${esc(x.cost)}</td>
+    </tr>`;
+    })
+    .join("");
+
+  const recorded = suggestions.suggestions.filter((x) => bySug.has(x.id)).length;
+  const waiting = suggestions.suggestions.length - recorded;
+  const shipped = suggestions.suggestions.filter((x) => x.status === "shipped").length;
+
+  const html = `
+${breadcrumb([{ href: url("/"), label: "Home" }, { label: "Suggestions & decisions" }])}
+<div class="article-head">
+  <div class="wrap">
+    <p class="kicker">Review</p>
+    <h1 class="article-head__title">Every suggestion, every decision, on one page</h1>
+    <p class="article-head__dek">Pick a path here and it is recorded with a date and a reason. Nothing is implemented on the strength of a suggestion alone.</p>
+  </div>
+</div>
+
+<section class="section">
+  <div class="wrap">
+    <div class="strip strip--inline">
+      <div class="strip__cell"><p class="strip__num">${suggestions.suggestions.length}</p><p class="strip__lab">Suggestions on file</p></div>
+      <div class="strip__cell"><p class="strip__num">${shipped}</p><p class="strip__lab">Already shipped</p></div>
+      <div class="strip__cell"><p class="strip__num">${recorded}</p><p class="strip__lab">With a recorded decision</p></div>
+      <div class="strip__cell"><p class="strip__num">${waiting}</p><p class="strip__lab">Waiting on you</p></div>
+    </div>
+    <p class="small muted" style="margin-top:1rem">These four numbers are computed from <code>data/suggestions.json</code> at build time. They cannot say the work is finished unless the data says so.</p>
+
+    <div class="note note--warn mt2">
+      <p class="note__title">How to use this page</p>
+      <p>${esc(suggestions.decisionLog.note)}</p>
+      <ol style="margin:.5rem 0 0;padding-left:1.1rem">${suggestions.decisionLog.rubric
+        .map((r) => `<li>${esc(r)}</li>`)
+        .join("")}</ol>
+    </div>
+
+    <h2 class="section__title" style="margin-top:2.5rem">The review table</h2>
+    <div class="tablewrap" style="margin-top:1rem">
+      <table class="data sortable">
+        <caption>One row per suggestion. &ldquo;Waiting&rdquo; means no decision has been recorded — it does not mean the suggestion was rejected. Sort any column.</caption>
+        <thead><tr><th scope="col">ID</th><th scope="col">Suggestion</th><th scope="col">Current state</th><th scope="col">Recorded decision</th><th scope="col">What it costs</th></tr></thead>
+        <tbody>${rows}</tbody>
+      </table>
+    </div>
+
+    <h2 class="section__title" style="margin-top:3rem">Decisions on record</h2>
+    ${
+      entries.length
+        ? `<div class="decision-list">${entries
+            .map(
+              (d) => `<article class="decision">
+      <div class="decision__head">
+        <span class="pill pill--${d.decision === "accepted" ? "resolved" : "withheld"}">${esc(d.decision)}</span>
+        <span class="mono tiny">${esc(d.id)}</span>
+        <span class="tiny faint">${esc(d.date)}</span>
+      </div>
+      <h3 class="decision__subject">${esc(d.subject)}</h3>
+      <p class="decision__reason">${esc(d.reason)}</p>
+      <p class="tiny muted"><strong>Evidence:</strong> ${esc(d.evidence)} · <strong>Recorded by:</strong> ${esc(d.decidedBy)}</p>
+    </article>`
+            )
+            .join("")}</div>`
+        : `<p class="muted">No decisions recorded yet.</p>`
+    }
+
+    <h2 class="section__title" style="margin-top:3rem">What would make us drop a suggestion</h2>
+    <ul class="prose" style="padding-left:1.2rem">${suggestions.decisionLog.killCriteria
+      .map((k) => `<li>${esc(k)}</li>`)
+      .join("")}</ul>
+
+    <div class="note mt2">
+      <p class="note__title">The full argument for each suggestion</p>
+      <p>This page is the register. The reasoning behind each row — why, what it costs, what would make it a bad idea — is on the <a href="${url(
+        "/suggestions/"
+      )}">suggestion detail</a> page, unchanged and unedited.</p>
+    </div>
+  </div>
+</section>
+`;
+  pages.push({
+    path: "/decisions/",
+    title: "Suggestions & decisions",
+    desc: "Every suggestion on file with its state, its cost and any recorded decision, on one reviewable page.",
+    html,
+    priority: "0.5",
     changefreq: "weekly"
   });
 }
@@ -554,6 +963,27 @@ ${breadcrumb([
       <div class="fact"><dt>ASIN</dt><dd>${esc(p.asin)}</dd></div>
       <div class="fact"><dt>Form factor</dt><dd>${esc(p.formFactor.replace(/-/g, " "))}</dd></div>
     </dl>
+
+    <div class="verdict-band">
+      <img class="verdict-band__mark" src="${url(`/assets/img/form-${p.formFactor}.svg`)}" width="120" height="120"
+           alt="${esc(p.formFactor.replace(/-/g, " "))} form-factor mark. Drawn, not a product photograph.">
+      <div>
+        <p class="verdict-band__label">The short answer</p>
+        <p class="verdict-band__line">${esc(p.bestFor)}</p>
+        <p class="verdict-band__sub">Main trade-off: ${esc(p.tradeoff)}. Not hands-on tested — see the specification status on every row below.</p>
+      </div>
+      <div class="verdict-band__cta">
+        <a class="btn btn--amazon" href="${special(p.asin)}" rel="sponsored nofollow noopener" target="_blank"
+           data-affiliate="${p.asin}" data-slot="verdict-band">Check price on Amazon →</a>
+        <p class="pcard__note" style="margin:0">Sponsored. ${esc(site.associateStatement)}</p>
+      </div>
+    </div>
+
+    <nav class="pathnav" aria-label="Where to go next">
+      <a href="${url(`/${cat.slug}/`)}"><span class="pathnav__k">Compare</span><span class="pathnav__v">All ${esc(cat.name.toLowerCase())}</span></a>
+      <a href="${url(`/${p.category === "air-fryers" ? "dinner-in-one-drawer" : "hands-off-the-grill"}/`)}"><span class="pathnav__k">Or start from the job</span><span class="pathnav__v">${esc(p.category === "air-fryers" ? "Dinner in one drawer" : "Hands off the grill")}</span></a>
+      <a href="${url("/guides/")}"><span class="pathnav__k">Read first</span><span class="pathnav__v">The buying guides</span></a>
+    </nav>
 
     <div class="prose">
       <h2>Why it is on this list</h2>
@@ -765,7 +1195,7 @@ ${breadcrumb([{ href: url("/"), label: "Home" }, { label: "Guides" }])}
   <div class="wrap">
     <p class="kicker">Buying guides</p>
     <h1 class="article-head__title">The questions people ask before they buy</h1>
-    <p class="article-head__dek">Five guides, each built around one decision. No rankings, no "best of" list, no claim that any of this was tested.</p>
+    <p class="article-head__dek">${guides.length} guides, each built around one decision. No rankings, no &ldquo;best of&rdquo; list, no claim that any of this was tested.</p>
   </div>
 </div>
 <section class="section">
@@ -798,7 +1228,7 @@ ${breadcrumb([{ href: url("/"), label: "Home" }, { label: "Guides" }])}
   pages.push({
     path: "/guides/",
     title: "Buying guides",
-    desc: "Five question-shaped guides to air fryers and thermometers: form factor, capacity, cleanup, and multi-function claims.",
+    desc: "Question-shaped guides to air fryers and thermometers: form factor, capacity, cleanup, multi-function claims, sizing and app dependence.",
     html,
     priority: "0.8",
     changefreq: "weekly"
@@ -1364,6 +1794,40 @@ ${breadcrumb([{ href: url("/"), label: "Home" }, { label: "Open questions" }])}
       </div>
     </div>
 
+    <h2 class="section__title" style="margin-top:2.5rem">What would close each gap</h2>
+    <p class="section__dek" style="margin-bottom:1.25rem">${esc(questions.discovery.intro)}</p>
+    <div class="tablewrap">
+      <table class="data sortable">
+        <caption>One row per gap: the artifact that closes it, who holds that artifact, and what changes the day it arrives. Sort any column.</caption>
+        <thead><tr>
+          <th scope="col">ID</th><th scope="col">What is missing</th><th scope="col">Where we are today</th>
+          <th scope="col">The artifact that closes it</th><th scope="col">Who has it</th>
+          <th scope="col">What changes when it arrives</th><th scope="col">Closes</th><th scope="col">State</th>
+        </tr></thead>
+        <tbody>${questions.discovery.rows
+          .map(
+            (d) => `<tr>
+          <td class="mono">${esc(d.id)}</td>
+          <td><strong>${esc(d.need)}</strong></td>
+          <td class="small">${esc(d.have)}</td>
+          <td class="small">${esc(d.artifact)}</td>
+          <td class="small">${esc(d.who)}</td>
+          <td class="small">${esc(d.then)}</td>
+          <td class="small mono">${d.closes.map((c) => esc(c)).join(" ")}</td>
+          <td><span class="pill pill--${d.state === "owner-only" ? "action" : d.state === "blocked-on-sales" ? "withheld" : "unverified"}">${esc(
+              d.state.replace(/-/g, " ")
+            )}</span></td>
+        </tr>`
+          )
+          .join("")}</tbody>
+      </table>
+    </div>
+
+    <div class="note mt2">
+      <p class="note__title">Reading the states</p>
+      <p><strong>owner only</strong> — the artifact exists and only the account owner can retrieve it. <strong>blocked on sales</strong> — the artifact cannot be obtained until the account qualifies for API access. <strong>does not exist</strong> — nobody holds it; it has to be created, bought or decided first.</p>
+    </div>
+
     <div class="tablewrap">
       <table class="data sortable">
         <caption>Every open question, ordered by how much it blocks. "What is missing" is the honest list of what this build does not know; "how to close it" names the specific action or document.</caption>
@@ -1627,7 +2091,7 @@ ${breadcrumb([{ href: url("/"), label: "Home" }, { label: "Executive summary" }]
     <h2>What exists</h2>
     <ul>
       <li><strong>A five-product publication</strong> — three air fryers, two thermometers — with individual pages, two category hubs, and a full comparison table.</li>
-      <li><strong>Five question-shaped guides</strong>, written as decisions rather than rankings.</li>
+      <li><strong>${guides.length} question-shaped guides</strong>, written as decisions rather than rankings.</li>
       <li><strong>A complete source register</strong>: ${policy.sources.length} primary sources and ${products.reduce(
         (n, p) => n + p.specs.length,
         0
@@ -1682,8 +2146,8 @@ ${breadcrumb([{ href: url("/"), label: "Home" }, { label: "Executive summary" }]
     </ol>
 
     <h2>The honest verdict</h2>
-    <p>What exists is a small, well-documented, compliant publication with five decent guides and five products. It is not yet a business: it has no traffic, no verified affiliate attribution, and no data. It is, however, built so that when those three things arrive, nothing has to be torn down — and so that nothing on it is a lie.</p>
-    <p>The main strategic risk is not technical. It is that five guides is not enough content to rank in a crowded category, and the plan for fixing that is a cadence, not a feature.</p>
+    <p>What exists is a small, well-documented, compliant publication with ${guides.length} guides and ${products.length} products. It is not yet a business: it has no traffic, no verified affiliate attribution, and no data. It is, however, built so that when those three things arrive, nothing has to be torn down — and so that nothing on it is a lie.</p>
+    <p>The main strategic risk is not technical. It is that ${guides.length} guides is not enough content to rank in a crowded category, and the plan for fixing that is a cadence, not a feature.</p>
   </div>
 </section>
 `;
@@ -2011,9 +2475,23 @@ Sitemap: ${abs("/sitemap.xml")}
 }
 
 /* ============================================================
+   ARTWORK — every image on the site is generated here.
+   Deterministic (no randomness, no clock), so a second build
+   produces byte-identical files. Nothing depicts a product.
+   ============================================================ */
+const artFiles = art.files(products);
+for (const [rel, svg] of artFiles) {
+  const dest = path.join(ROOT, rel);
+  fs.mkdirSync(path.dirname(dest), { recursive: true });
+  fs.writeFileSync(dest, svg);
+}
+
+/* ============================================================
    RENDER
    ============================================================ */
 frontPage();
+servicePages();
+decisionsPage();
 categoryPages();
 productPages();
 guidePages();
@@ -2036,6 +2514,7 @@ for (const p of pages) {
     canonical: p.path,
     type: p.type || "website",
     pageType: p.pageType || "page",
+    ogImage: p.ogImage || "assets/img/og-home.svg",
     jsonld: p.jsonld || {
       "@context": "https://schema.org",
       "@type": "WebSite",

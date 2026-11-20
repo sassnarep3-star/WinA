@@ -112,7 +112,7 @@
       "id": "FLG-013",
       "severity": "action",
       "title": "Content volume is below the Associates review bar",
-      "detail": "Amazon's Associates Help, 'Application Review Process' (checked 2026-11-20, US help topic G8TW5AE9XL2VX9VM), says: \"All Sites must have robust original content (even when advertising is removed) – a good rule of thumb is at least 10 posts.\" It also says: \"Content on your website must be recent (generally within the last 60 days).\" This site has 5 guides and 5 product pages. Amazon does not say whether product and hub pages count as posts, but 5 guides is below the rule of thumb on any reading. The account's own status and review history are unknown from here. Carried forward from the parallel-session register (arena-2ca62ce9, FLG-010), which found this first.",
+      "detail": "Amazon's Associates Help, 'Application Review Process' (checked 2026-11-20, US help topic G8TW5AE9XL2VX9VM), says: \"All Sites must have robust original content (even when advertising is removed) – a good rule of thumb is at least 10 posts.\" It also says: \"Content on your website must be recent (generally within the last 60 days).\" This site publishes 7 guides, 5 product pages, 2 category hubs and 2 service pages. Amazon does not say which page types count as posts, and the count of guides alone is below the rule of thumb on any reading. The account's own status and review history are unknown from here. Carried forward from the parallel-session register (arena-2ca62ce9, FLG-010), which found this first.",
       "action": "Do not submit or re-submit for review until the site has at least 10 posts and content dated within the last 60 days. The weekly cadence in the suggestions register (SUG-05) is the proposed path. Recorded as a commercial blocker, not a content-quality one.",
       "sourceUrl": "https://affiliate-program.amazon.com/help/node/topic/G8TW5AE9XL2VX9VM",
       "sourceLabel": "Associates Help: Application Review Process (checked 2026-11-20)"
@@ -175,7 +175,7 @@
       "id": "FLG-020",
       "severity": "withheld",
       "title": "No seasonal content, because there is no seasonal demand data",
-      "detail": "The brief asked for seasons and topic clusters. No seasonal query data was obtained from any source, so no seasonal calendar was invented. The five guides are editorial working titles, not popularity claims. Carried forward from arena-2ca62ce9 (FLG-015).",
+      "detail": "The brief asked for seasons and topic clusters. No seasonal query data was obtained from any source, so no seasonal calendar was invented. The guides published here are editorial working titles, not popularity claims. Carried forward from arena-2ca62ce9 (FLG-015).",
       "action": "Clusters exist as two product categories. Seasons wait for Search Console query data — choosing December topics from instinct is the failure mode being avoided.",
       "sourceUrl": "https://search.google.com/search-console",
       "sourceLabel": "Search Console (not yet verified)"
@@ -218,10 +218,10 @@
     },
     {
       "id": "FLG-025",
-      "severity": "low",
-      "title": "Placeholder site-verification token in every page head",
-      "detail": "Every generated page carries <meta name=\"google-site-verification\" content=\"REPLACE_WITH_REAL_TOKEN_FLG009\">. The value is a placeholder, not a verification token. It is not a credential and it does nothing, but it is a visible defect in the published HTML.",
-      "action": "Remove the tag from the layout in _src/build.mjs, or replace it with a real token from Search Console once the owner verifies the property (FLG-009). Not changed in this session; it belongs to the shared layout.",
+      "severity": "resolved",
+      "title": "Placeholder site-verification token in every page head (fixed in this pass)",
+      "detail": "Every generated page used to carry <meta name=\"google-site-verification\" content=\"REPLACE_WITH_REAL_TOKEN_FLG009\">. The value was a placeholder, it verified nothing, and it was visible in the published HTML. The layout now emits the tag only when data/products.json supplies a real token under site.searchConsoleToken, and the build fails if a placeholder-looking value is present. No tag is emitted today because no real token exists.",
+      "action": "Owner: verify the property in Search Console (FLG-009) and put the real token in data/products.json → site.searchConsoleToken. The tag then appears on every page automatically.",
       "sourceUrl": "https://developers.google.com/search/docs/fundamentals/creating-helpful-content",
       "sourceLabel": "Google Search Central (verification meta tags)"
     },
@@ -350,6 +350,24 @@
       "action": "Owner: decide whether the intended-ASIN field should be filled from the submitted link (FLG-019). If the rationale is kept, cite an Amazon Help page for the definition before publishing it.",
       "sourceUrl": "https://sellercentral.amazon.com/seller-forums/discussions/t/1e22c5df-d27a-4e2b-a0c1-90938b6cdcdc",
       "sourceLabel": "Seller Central forum thread (not Amazon Help; definition not confirmed as Amazon's)"
+    },
+    {
+      "id": "FLG-036",
+      "severity": "review",
+      "title": "Illustrations are drawn, not photographed, and depict no product",
+      "detail": "Every image on this site is a generated SVG diagram: form-factor silhouettes (a single drawer, two drawers, a French door, a probe) and four abstract plates. None of them is product photography and none depicts a specific model. They are captioned in HTML as illustrations. They do not close FLG-007: a reader still cannot see the appliance they are being asked to buy, because Amazon's Program Content rules and copyright prevent us re-hosting a listing photo and no manufacturer has supplied a press asset.",
+      "action": "Owner: request press assets from Chefman, Emeril Lagasse, ThermoMaven and CHEF iQ with written permission to publish, or obtain Creatives API access. Until then the illustrations stand and this row stays open.",
+      "sourceUrl": "https://affiliate-program.amazon.com/help/operating/policies",
+      "sourceLabel": "Amazon Associates Program Policies (Program Content, IP Licence)"
+    },
+    {
+      "id": "FLG-037",
+      "severity": "low",
+      "title": "The two named service pages and the guides added with them state no measured demand",
+      "detail": "/dinner-in-one-drawer/, /hands-off-the-grill/ and guides 06 and 07 were written as editorial hypotheses. No search volume, keyword tool or Search Console report informed the choice of subject, and no page claims a traffic result. This is the same limitation FLG-035 records for the topic roadmap, extended to the pages that were actually published from it.",
+      "action": "Owner: after Search Console verification (FLG-009, SG-29), compare the queries that arrive against the guides that exist and record which hypothesis held. Do not publish a ninth guide from instinct while that report is empty.",
+      "sourceUrl": "https://developers.google.com/search/docs/fundamentals/creating-helpful-content",
+      "sourceLabel": "Google Search Central — Creating helpful, reliable, people-first content"
     }
   ],
   "ledger": {

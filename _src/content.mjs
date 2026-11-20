@@ -249,6 +249,81 @@ Multi-function claims are the easiest thing in kitchen retail to inflate and the
       "Published response and accuracy figures are stated by the seller, not verified by us.",
       "For connected devices, ask what happens when the app stops being supported."
     ]
+  },
+  {
+    slug: "wrong-size",
+    number: "06",
+    title: "The air fryer you bought is the wrong size: how to tell before you buy",
+    dek: "Almost nobody regrets an air fryer's brand. They regret its size — too small to cook the meal, or too big to leave out. Here is the arithmetic that decides it.",
+    category: "air-fryers",
+    readingTime: "5 min",
+    topics: ["capacity", "batch size", "counter space"],
+    intro: `Size regret runs in both directions. Buy small and you cook in relays, resent the machine, and stop using it. Buy big and it occupies a fifth of your counter, so you stop leaving it out, and an appliance in a cupboard is an appliance you do not use.
+
+Neither failure is about the brand. Both are about a number you can work out at the counter with a sheet of paper.`,
+    body: `
+<h2>Start with the meal, not the number</h2>
+<p>Quarts describe a volume. Dinner is not a volume; it is a set of items with a shape. The useful exercise is to name the meal you cook most often and count its parts.</p>
+<p>Two chicken thighs and a handful of broccoli is one drawer's worth in most machines, because both want roughly the same temperature and both can be shaken. Six thighs plus a tray of vegetables for four people is a different job: either two drawers running at once, or a single chamber large enough that the food is not stacked.</p>
+<p>Stacked food steams. That is not a defect in the machine, it is what happens when hot air cannot reach a surface. If your normal batch fills a drawer to the brim, you are not cooking with an air fryer at that moment, you are reheating with one.</p>
+
+<h2>The two-drawer trap</h2>
+<p>Dual-basket machines advertise a total capacity that is really two smaller capacities. A 6-quart dual-basket is two 3-quart drawers. That is genuinely useful if your meals are two components at two temperatures — it is the whole reason the format exists.</p>
+<p>It is not useful if your meals are one big thing. A whole chicken does not fit in a 3-quart drawer no matter what the total on the box says, and a large batch of fries split across two drawers cooks differently than the same batch in one wide drawer, because the surface-to-volume ratio changed.</p>
+<p>So the question is not "how many quarts" but "is my meal one thing or two". Answer that honestly and the capacity number stops being a decision.</p>
+
+<h2>The cost nobody puts on the box</h2>
+<p>Counter space is the specification that decides whether you keep using an appliance, and it is the one least likely to be printed where you will see it. Dual-basket bodies are wide. Oven-style bodies are tall and deep. Neither dimension is reliably published on a retail listing.</p>
+<p>Before you buy, put a sheet of paper on the counter where the machine would live and leave it there for a day. If you have to move it to use the toaster, you have found the real constraint. If it would live in a cupboard, be honest about that too: an appliance you have to lift out is one you will use less.</p>
+
+<h2>When the right answer is "neither"</h2>
+<p>There is a size below which an air fryer is a novelty: one portion, one temperature, no advantage over a pan. And there is a size above which it is an oven with a worse door. If your cooking is mostly one pan on the hob, the honest answer is that this category may not be for you, and no capacity number fixes that.</p>
+<p>The test is the same either way: write down five real dinners, count the parts, and measure the counter. A machine that fits your meals and your counter will be used. One that fits only one of those will not.</p>
+`,
+    takeaways: [
+      "Capacity is a volume; dinner is a set of items. Count the items.",
+      "A dual-basket total is two smaller drawers, not one bigger one.",
+      "Measure the counter with paper before ordering, not after delivery.",
+      "If food fills the drawer to the brim, hot air cannot reach it."
+    ]
+  },
+  {
+    slug: "app-dependence",
+    number: "07",
+    title: "Does a smart thermometer need its app? What to ask before you rely on one",
+    dek: "A wireless probe's best features usually live in software you do not control. That is a real cost, and it belongs in the buying decision next to battery life.",
+    category: "thermometers",
+    readingTime: "5 min",
+    topics: ["connectivity", "software support", "longevity"],
+    intro: `A wireless meat thermometer is two products: a piece of hardware that measures temperature, and a piece of software that turns those measurements into alerts, graphs and history. You buy both at once, but only one of them is guaranteed to keep working.
+
+That asymmetry is worth thinking about before you spend more on a connected probe than on a good instant-read.`,
+    body: `
+<h2>What the app is actually doing</h2>
+<p>On the wireless units in this set, the probe sends readings over Bluetooth or Wi-Fi to a phone, and the phone does the work: showing a live temperature, estimating time to target, alerting you when the food hits a number. Some of that is convenience. Some of it — the alert that fires while you are in another room — is the reason to buy the product at all.</p>
+<p>That means the honest specification for a smart thermometer is not just its sensor accuracy. It is also how the alerts work when the phone is asleep, whether the connection is Bluetooth-only or over Wi-Fi, and what happens to the readings if the app is not running.</p>
+
+<h2>The questions that decide it</h2>
+<ul>
+<li><strong>Does it work with the app closed?</strong> A leave-in probe is only useful hands-off if the alert survives a locked screen and a backgrounded app.</li>
+<li><strong>Bluetooth or Wi-Fi?</strong> Bluetooth range is a room or so. Wi-Fi goes further but depends on your network and on the app's servers, if it uses them.</li>
+<li><strong>What happens when support ends?</strong> Hardware with a companion app has a working life set by the software, not the probe. Ask what happens to a five-year-old unit.</li>
+<li><strong>What do you lose without it?</strong> If the base unit still shows a temperature without a phone, the failure mode is mild. If the app is the only display, the failure mode is the product.</li>
+</ul>
+
+<h2>What we could and could not verify</h2>
+<p>Connectivity claims — Wi-Fi, Bluetooth, number of probes, sensor count — come from the manufacturer's own pages, which is the only official source available for them, and each is labelled as a manufacturer claim on the product page rather than as a verified specification.</p>
+<p>Long-term software support is the part we could not verify for any unit here. No manufacturer publishes a support window for its companion app in a form we could cite, so we do not assert one, and we do not pretend the risk is zero. If an app dependency would be a problem for you, that is a reason to weigh an instant-read more heavily, and a reason to read the support terms yourself before buying.</p>
+
+<h2>A way to decide</h2>
+<p>If your cooking is fast and you want a number, an instant-read has no app to lose. If your cooking is long and hands-off, a connected probe is the only category that does the job, and the app dependency is the price of the capability rather than a defect in it. The mistake is buying the connected version for fast cooking, where it adds setup, a charge to manage and a phone in the loop for a reading you could have taken in one second.</p>
+`,
+    takeaways: [
+      "A smart thermometer is hardware plus software, and only one of them is yours to keep working.",
+      "Ask whether alerts survive a locked screen before you rely on them.",
+      "Bluetooth range and Wi-Fi dependence change how hands-off the tool really is.",
+      "No manufacturer here publishes an app support window we could verify."
+    ]
   }
 ];
 
