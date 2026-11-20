@@ -133,3 +133,50 @@
   var y = document.querySelector("[data-year]");
   if (y) y.textContent = String(new Date().getFullYear());
 })();
+
+/* ----------------------------------------------------------
+   SORTABLE TABLES — every table.data.sortable.
+   Click a column heading (or press Enter / Space on it) to sort
+   by that column. Numbers sort as numbers, text as text. The sort
+   changes only the view: no cell content is altered.
+   ---------------------------------------------------------- */
+(function () {
+  "use strict";
+
+  function read(cell) {
+    var t = (cell ? cell.textContent : "").replace(/\s+/g, " ").trim();
+    var bare = t.replace(/[,%]/g, "");
+    var n = /^[-+]?\d+(\.\d+)?$/.test(bare) ? parseFloat(bare) : NaN;
+    return { t: t, n: n };
+  }
+
+  function enhance(table) {
+    var head = table.tHead && table.tHead.rows[0];
+    var body = table.tBodies[0];
+    if (!head || !body) return;
+    Array.prototype.forEach.call(head.cells, function (th, col) {
+      var label = th.textContent.trim();
+      var btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "sort-btn";
+      btn.textContent = label;
+      th.textContent = "";
+      th.appendChild(btn);
+      th.setAttribute("aria-sort", "none");
+      btn.addEventListener("click", function () {
+        var dir = th.getAttribute("aria-sort") === "ascending" ? -1 : 1;
+        Array.prototype.forEach.call(head.cells, function (h) { h.setAttribute("aria-sort", "none"); });
+        th.setAttribute("aria-sort", dir === 1 ? "ascending" : "descending");
+        var rows = Array.prototype.slice.call(body.rows);
+        rows.sort(function (a, b) {
+          var x = read(a.cells[col]), y = read(b.cells[col]);
+          if (!isNaN(x.n) && !isNaN(y.n)) return (x.n - y.n) * dir;
+          return x.t.localeCompare(y.t, undefined, { numeric: true, sensitivity: "base" }) * dir;
+        });
+        rows.forEach(function (r) { body.appendChild(r); });
+      });
+    });
+  }
+
+  Array.prototype.forEach.call(document.querySelectorAll("table.data.sortable"), enhance);
+})();

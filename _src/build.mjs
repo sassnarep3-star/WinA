@@ -28,7 +28,7 @@ const aiConcept = {
   body: `
 <p><strong>Concept only. Not implemented.</strong> This page describes what a system could do. Nothing here is running. No model, no data feed, no pricing source and no review data is connected to this site, and no output from such a system is published. Every claim on the site is written by hand from a cited source.</p>
 <h2>Five functions, each a candidate design</h2>
-<table class="data">
+<table class="data sortable">
 <thead><tr><th scope="col">Function</th><th scope="col">Concept (not implemented)</th><th scope="col">Requirement before any use</th></tr></thead>
 <tbody>
 <tr><td>Product research</td><td>Collect candidate listings from a permitted source and group them by category.</td><td>Only sources Associates permits. Product data kept separate from intended and observed fields.</td></tr>
@@ -272,7 +272,7 @@ function specTable(p) {
     .join("");
 
   return `<div class="tablewrap">
-  <table class="data">
+  <table class="data sortable">
     <caption>Specifications for the ${esc(p.shortName)}. Status shows how well each value is supported. Nothing is inferred.</caption>
     <thead><tr><th scope="col">Specification</th><th scope="col">Value</th><th scope="col">Status</th><th scope="col">Source</th></tr></thead>
     <tbody>${rows}</tbody>
@@ -835,7 +835,7 @@ ${breadcrumb([{ href: url("/"), label: "Home" }, { label: "Compare" }])}
 <section class="section">
   <div class="wrap">
     <div class="tablewrap">
-      <table class="data">
+      <table class="data sortable">
         <caption>Comparison of all five products. Blank cells are values we could not confirm from an official source; they are not zeroes and not estimates.</caption>
         <thead>
           <tr><th scope="col">Spec</th>${cols
@@ -923,7 +923,7 @@ function specialLinkSection() {
   <div class="wrap">
     <h2 class="section__title" style="font-size:1.4rem">Special Link test, one per product</h2>
     <p class="section__dek" style="margin-bottom:1.25rem">${esc(specialLink.blocker)} Each row needs its test recorded before any further product is added. None is marked as passed. Flags: FLG-003, FLG-024.</p>
-    <div class="table-wrap"><table>
+    <div class="table-wrap"><table class="data sortable">
       <thead><tr><th scope="col">Product</th><th scope="col">Submitted short link</th><th scope="col">Test status</th><th scope="col">Tested on</th><th scope="col">Destination seen</th><th scope="col">Tracking report line</th></tr></thead>
       <tbody>${rows.join("\n      ")}</tbody>
     </table></div>
@@ -1004,7 +1004,7 @@ ${breadcrumb([{ href: url("/"), label: "Home" }, { label: "Source register" }])}
     <h2 class="section__title" style="font-size:1.4rem">Link resolution</h2>
     <p class="section__dek" style="margin-bottom:1.25rem">The five submitted short links, what they resolved to, and the separation between the intended ASIN (never supplied) and the observed destination (recorded by following the link).</p>
     <div class="tablewrap">
-      <table class="data">
+      <table class="data sortable">
         <caption>Submitted link → observed destination. Intended ASIN is a separate field from observed destination and is deliberately blank.</caption>
         <thead><tr><th scope="col">Submitted code</th><th scope="col">Link</th><th scope="col">Observed ASIN</th><th scope="col">Intended ASIN</th><th scope="col">Confirmed</th><th scope="col">Method</th></tr></thead>
         <tbody>${linkRows}</tbody>
@@ -1024,7 +1024,7 @@ ${breadcrumb([{ href: url("/"), label: "Home" }, { label: "Source register" }])}
     <h2 class="section__title" style="font-size:1.4rem">Official sources used</h2>
     <p class="section__dek" style="margin-bottom:1.25rem">Every row of policy text and every specification on this site traces to one of these.</p>
     <div class="tablewrap">
-      <table class="data">
+      <table class="data sortable">
         <caption>Source register. All sources are primary: the publisher's own page, read on the date shown.</caption>
         <thead><tr><th scope="col">ID</th><th scope="col">Type</th><th scope="col">Source</th><th scope="col">What it was used for</th><th scope="col">Read</th><th scope="col">Link</th></tr></thead>
         <tbody>${sourceRows}</tbody>
@@ -1038,7 +1038,7 @@ ${breadcrumb([{ href: url("/"), label: "Home" }, { label: "Source register" }])}
     <h2 class="section__title" style="font-size:1.4rem">Specification register</h2>
     <p class="section__dek" style="margin-bottom:1.25rem">All ${specRows.length} specification rows across the five products, each with its verification status and source.</p>
     <div class="tablewrap">
-      <table class="data">
+      <table class="data sortable">
         <caption>Every specification, with status. verified = confirmed on the official listing; claim = manufacturer's stated figure we could not independently verify; unverified = no confirmed value, left blank; withheld = exists but may not be displayed.</caption>
         <thead><tr><th scope="col">Product</th><th scope="col">Spec</th><th scope="col">Value</th><th scope="col">Status</th><th scope="col">Source</th></tr></thead>
         <tbody>${specRows.join("")}</tbody>
@@ -1053,14 +1053,14 @@ ${specialLinkSection()}
     <h2 class="section__title" style="font-size:1.4rem">Policy checks</h2>
     <p class="section__dek" style="margin-bottom:1.25rem">Ten requirements from Amazon's program terms and the FTC's guidance, each traced to the exact clause and to what the site does about it.</p>
     <div class="tablewrap">
-      <table class="data">
+      <table class="data sortable">
         <caption>Compliance register. Requirement text is quoted from the cited clause; the final column links to the primary source.</caption>
         <thead><tr><th scope="col">ID</th><th scope="col">Requirement</th><th scope="col">What it requires</th><th scope="col">Status</th><th scope="col">How this site meets it</th><th scope="col">Source</th></tr></thead>
         <tbody>${policyRows}</tbody>
       </table>
     </div>
     <div class="tablewrap mt2">
-      <table class="data">
+      <table class="data sortable">
         <caption>Verbatim clause text for each requirement, so it can be checked without trusting our summary.</caption>
         <thead><tr><th scope="col">ID</th><th scope="col">Clause</th><th scope="col">Quoted text</th></tr></thead>
         <tbody>${policy.policy
@@ -1124,7 +1124,7 @@ ${breadcrumb([{ href: url("/"), label: "Home" }, { label: "Flagged for review" }
 <section class="section">
   <div class="wrap">
     <div class="tablewrap" style="margin-bottom:2rem">
-      <table class="data">
+      <table class="data sortable">
         <caption>Summary. "Resolved" means we found the answer and recorded it; "review" means the answer is not knowable from here; "action" means it needs a credential or a deploy; "withheld" means a policy prevents display.</caption>
         <thead><tr><th scope="col">ID</th><th scope="col">Item</th><th scope="col">Severity</th><th scope="col">Source</th></tr></thead>
         <tbody>${items
@@ -1146,7 +1146,7 @@ ${breadcrumb([{ href: url("/"), label: "Home" }, { label: "Flagged for review" }
     <h2 class="section__title" style="font-size:1.4rem;margin-top:2.5rem">Prior audit work on this repository</h2>
     <p class="section__dek" style="margin-bottom:1.25rem">Other sessions built earlier versions of this site on the same repo. Their findings are merged into the register above rather than discarded, and their complete data, toolchain and generated pages are preserved unchanged in <code>archive/</code>. Nothing was deleted.</p>
     <div class="tablewrap">
-      <table class="data">
+      <table class="data sortable">
         <caption>Archived builds. Each is a complete, browsable copy from the commit it was merged at; none is served as the live site any more.</caption>
         <thead><tr><th scope="col">Archive</th><th scope="col">Session</th><th scope="col">Finding</th><th scope="col">Browse</th></tr></thead>
         <tbody>
@@ -1212,7 +1212,7 @@ ${breadcrumb([{ href: url("/"), label: "Home" }, { label: "Campaign ledger" }])}
 <section class="section">
   <div class="wrap">
     <div class="tablewrap">
-      <table class="data">
+      <table class="data sortable">
         <caption>${esc(gov.ledger.provenanceNote)}</caption>
         <thead><tr>${cols
           .map((c) => `<th scope="col">${esc(c)}</th>`)
@@ -1233,7 +1233,7 @@ ${breadcrumb([{ href: url("/"), label: "Home" }, { label: "Campaign ledger" }])}
 
     <h2 class="section__title" style="font-size:1.4rem;margin-top:2.5rem">What makes a row admissible</h2>
     <div class="tablewrap">
-      <table class="data">
+      <table class="data sortable">
         <caption>Rules for adding a ledger row. A row missing any of these is not entered.</caption>
         <thead><tr><th scope="col">Column</th><th scope="col">Rule</th></tr></thead>
         <tbody>
@@ -1253,7 +1253,7 @@ ${breadcrumb([{ href: url("/"), label: "Home" }, { label: "Campaign ledger" }])}
       "/analytics/"
     )}">measurement page</a>.</p>
     <div class="tablewrap">
-      <table class="data">
+      <table class="data sortable">
         <caption>Event definitions. All five are defined; none are currently being recorded, because no collector is deployed.</caption>
         <thead><tr><th scope="col">ID</th><th scope="col">Event</th><th scope="col">Fires when</th><th scope="col">Payload</th><th scope="col">Status</th></tr></thead>
         <tbody>${gov.events
@@ -1342,7 +1342,7 @@ ${breadcrumb([{ href: url("/"), label: "Home" }, { label: "Open questions" }])}
     </div>
 
     <div class="tablewrap">
-      <table class="data">
+      <table class="data sortable">
         <caption>Every open question, ordered by how much it blocks. "What is missing" is the honest list of what this build does not know; "how to close it" names the specific action or document.</caption>
         <thead>
           <tr>
@@ -1409,7 +1409,7 @@ ${breadcrumb([{ href: url("/"), label: "Home" }, { label: "Suggestions" }])}
 <section class="section">
   <div class="wrap">
     <div class="tablewrap" style="margin-bottom:1.5rem">
-      <table class="data">
+      <table class="data sortable">
         <caption>Status key. Anything not marked "shipped" is waiting for a decision — nothing beyond the initial build has been implemented.</caption>
         <thead><tr><th scope="col">Status</th><th scope="col">Meaning</th><th scope="col">Count</th></tr></thead>
         <tbody>${suggestions.statusKey
@@ -1425,7 +1425,7 @@ ${breadcrumb([{ href: url("/"), label: "Home" }, { label: "Suggestions" }])}
     </div>
 
     <div class="tablewrap">
-      <table class="data">
+      <table class="data sortable">
         <caption>Every suggestion, ordered by weight. Weight is our confidence that it is the right next move, not its effort. Read the "risk" column before accepting any of them.</caption>
         <thead>
           <tr>
@@ -1564,7 +1564,7 @@ ${breadcrumb([{ href: url("/"), label: "Home" }, { label: "Measurement" }])}
     <h2 class="section__title" style="font-size:1.4rem;margin-top:2.5rem">The five events</h2>
     <p class="section__dek" style="margin-bottom:1.25rem">Defined before the guides were written, so that the questions come before the answers.</p>
     <div class="tablewrap">
-      <table class="data">
+      <table class="data sortable">
         <caption>Event definitions and payloads. Every payload is deliberately minimal: no cookies, no identifiers, no referrer, no personal data.</caption>
         <thead><tr><th scope="col">ID</th><th scope="col">Event</th><th scope="col">Fires when</th><th scope="col">What it records</th><th scope="col">What question it answers</th></tr></thead>
         <tbody>${gov.events
