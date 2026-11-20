@@ -1,4 +1,19 @@
 #!/usr/bin/env node
+/*
+ * ── INERT SINCE 2026-11-20 ─────────────────────────────────────────────────────
+ * This generator belongs to an archived build ("Countertop Report"). It is kept for
+ * the record, not wired into anything: .github/workflows build.yml and pages.yml run
+ *   node _src/build.mjs            (the live generator)
+ *   node scripts/check-site.mjs    (structural gate)
+ *   node scripts/compliance-gate.mjs  (compliance gate)
+ *
+ * It will not run against today's data/ — it reads data/site.json, data/policies.json
+ * and data/flags.json, which no longer exist in this tree. Do not "fix" it by
+ * re-adding those files: that produces a second site at the root, which the live
+ * build's resurrection guard explicitly fails on. To change a page, edit data/ and
+ * run the live generator.
+ * ────────────────────────────────────────────────────────────────────────────────
+ */
 /**
  * Build gate. Reads the generated site/ and fails loudly if any invariant
  * breaks. Run by .github/workflows/pages.yml before deploy, so a failing

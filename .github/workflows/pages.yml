@@ -46,11 +46,19 @@ jobs:
       - name: Verify repository
         run: node scripts/check-site.mjs
 
+      # The third gate, in the deploy path as well as the PR path: disclosure placement, link
+      # classification, claim bans and register cross-references. A compliance regression should
+      # stop the deployment, not just colour a check red.
+      - name: Compliance gate
+        run: node scripts/compliance-gate.mjs
+
       # Nothing from an earlier site build may survive at the root.
       - name: No stale build artefacts
         run: |
           stale=""
-          for f in shop tools dashboard/analysis.html data/flags.json assets/analytics.js; do
+          # `site` is the output dir of the archived Countertop Report generator (scripts/build.mjs,
+          # now inert). If it ever appears at the root, someone ran a dead script.
+          for f in shop tools site dashboard/analysis.html data/flags.json assets/analytics.js; do
             [ -e "$f" ] && stale="$stale $f"
           done
           if [ -n "$stale" ]; then
