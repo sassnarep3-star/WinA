@@ -1,0 +1,29 @@
+name: site-gate
+
+# The compliance gate runs on every push and pull request:
+# rebuild the site from data/, then run scripts/check_site.py.
+# If the committed output does not match the generator, the diff check fails too.
+
+on:
+  push:
+    branches: [main, 'arena/**']
+  pull_request:
+
+jobs:
+  gate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Rebuild site from data/
+        run: python3 scripts/build_site.py
+
+      - name: Committed output matches generator
+        run: git diff --exit-code -- '*.html' '*.xml' '*.json' 'robots.txt'
+
+      - name: Compliance gate
+        run: python3 scripts/check_site.py
