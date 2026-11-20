@@ -1,0 +1,65 @@
+{
+  "published": "2026-11-20",
+  "guides": [
+    {
+      "slug": "basket-vs-oven-air-fryer",
+      "cluster": "air-fryers-ovens",
+      "title": "Basket or oven-style air fryer: what should you compare?",
+      "label": "Working title",
+      "dek": "Shape decides how much room you need and what you can cook at once. Here is what the register shows for each shape, and what it does not show.",
+      "sections": [
+        {"heading": "Start with the shape", "body": "Two of the five register rows are basket-style listings: P01 (CHEFMAN 6 Quart Dual Basket) and P03 (Chefman 8 Qt TurboFry basket). P02 is listed as a French Door toaster-oven style unit (Emeril Lagasse 26QT). The shape is taken from the listing title only."},
+        {"heading": "Compare what the listing says", "body": "Listing titles give function counts: P02 says '24 One-Touch Preset Options'; P03 says '4-in-1'; P01 mentions 'Hi-Fry' and 'Sync Finish'. These are the seller's claims, not tested results. Check each claim on the live listing before you rely on it."},
+        {"heading": "What this guide does not show", "body": "Cooking performance, cooking times, noise and footprint were not captured or tested. Those fields are blank in the register and are flagged."}
+      ],
+      "checklist": ["Which shape fits the counter you have (measure it; the register has no dimensions)", "How many people you cook for, and whether you need two cooking zones at once", "The listed functions, and which ones you would really use", "Whether the accessories listed come with the unit"],
+      "source_ids": ["SRC-06", "SRC-07", "SRC-08"],
+      "product_ids": ["P01", "P02", "P03"]
+    },
+    {
+      "slug": "air-fryer-capacity-checklist",
+      "cluster": "air-fryers-ovens",
+      "title": "A no-hype checklist for comparing air fryer capacity",
+      "label": "Working title",
+      "dek": "Capacity is written in different ways. This checklist shows how to read it on a listing before you compare two units.",
+      "sections": [
+        {"heading": "Read the stated size", "body": "The register lists these sizes in the titles: P01 '6 Quart' (with '2 Independent 3Qt' baskets), P02 '26QT', P03 '8 Qt'. Each is the seller's wording. P01 gives a per-basket figure in its title; the total is not stated there."},
+        {"heading": "Ask whether the number is total or per basket", "body": "A dual-basket unit can be listed by total size or by each basket. Compare like with like, and check the listing's product information table for the figure the seller uses."},
+        {"heading": "Limits of this guide", "body": "No cooking test was run. The register does not hold dimensions, so this guide does not compare physical footprint."}
+      ],
+      "checklist": ["Write down how many people you usually cook for", "Compare the stated quart figure from the same listing type (basket vs oven)", "Check whether the figure is total or per basket", "Read the product information table on the live listing for dimensions, which this register does not hold"],
+      "source_ids": ["SRC-06", "SRC-07", "SRC-08"],
+      "product_ids": ["P01", "P02", "P03"]
+    },
+    {
+      "slug": "cleanup-and-counter-space",
+      "cluster": "air-fryers-ovens",
+      "title": "How to assess cleanup and counter-space trade-offs",
+      "label": "Working title",
+      "dek": "Dishwasher-safe parts save time, but they do not tell you how much counter the unit takes up. Here is how to check both.",
+      "sections": [
+        {"heading": "Cleanup as the listings describe it", "body": "P01's title says 'Dishwasher Safe Frying Baskets'. P03's title says 'XL Nonstick Dishwasher-Safe Basket'. P02's title says 'Six Cooking Accessories Included', but the register does not say which parts are dishwasher-safe."},
+        {"heading": "Counter space", "body": "No dimension or weight data was captured for any register row. Counter space therefore cannot be compared here. Use the listing's product information table, and record the figure with its date."},
+        {"heading": "Trade-offs to note", "body": "A larger unit may hold more food and take more counter. A unit with more accessories may have more parts to wash. Weigh both against how often you would use it."}
+      ],
+      "checklist": ["Which parts the listing says are dishwasher-safe", "How many removable parts there are", "The unit's dimensions from the product information table (not in the register)", "Where the unit would sit and what you would move to make room"],
+      "source_ids": ["SRC-06", "SRC-07", "SRC-08"],
+      "product_ids": ["P01", "P02", "P03"]
+    },
+    {
+      "slug": "questions-before-multi-function-appliance",
+      "cluster": "air-fryers-ovens",
+      "title": "Questions to ask before buying a multi-function kitchen appliance",
+      "label": "Working title",
+      "dek": "Multi-function appliances bundle many jobs into one box. These are the questions to answer from the listing before you buy.",
+      "sections": [
+        {"heading": "Functions and presets", "body": "Count the functions the listing names. P02's title names 24 one-touch presets; P03's title names 4-in-1; P01's title names Hi-Fry and Sync Finish. Ask which functions you would use every week."},
+        {"heading": "Optional protection plans", "body": "On the observed P01 and P03 pages, an optional '3-Year Protection Plan' is offered from Asurion for a separate charge. It is not part of the product and is not verified here. Read its terms on the listing before you add it."},
+        {"heading": "What to check on the live listing", "body": "Warranty terms, return window and included parts are on the listing or in Amazon's policy pages. None of those were captured in this register."}
+      ],
+      "checklist": ["Which functions you would use every week", "Whether an optional protection plan is offered, and its terms", "Warranty and return terms on the live listing", "Which accessories are included"],
+      "source_ids": ["SRC-06", "SRC-07", "SRC-08"],
+      "product_ids": ["P01", "P02", "P03"]
+    }
+  ]
+}

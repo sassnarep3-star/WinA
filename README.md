@@ -38,6 +38,10 @@ source it is blank and marked `unverified`; where policy forbids display it is m
 ## Layout
 
 ```
+archive/              prior sessions' builds, preserved verbatim (not served)
+  arena-4a5044b0/     first build; recorded Amazon as unreachable (superseded, FLG-017)
+  arena-6bd1be15/     second build; verification log behind FLG-016
+  arena-2ca62ce9/     third build; 18-item flag register + source register SRC-01..11
 data/                 the single source of truth
   products.json       products, specs, verification status, categories, site config
   policy.json         primary sources + compliance register with quoted clauses
@@ -159,6 +163,18 @@ Full detail: `/questions/`, `/suggestions/`, `/summary/`, `/flagged/`.
 
 ## Coordination
 
-`COORDINATION.md` is the shared task board. Read it before starting work in a session that
-may run in parallel with others, claim your scope there, and record the sources and
-verification you performed when you finish.
+`COORDINATION.md` is the shared task board. **Read it before writing anything.** Four sessions
+have already built four different sites on this repo, because each one started a fresh build
+instead of extending what was on `main`. The board records how that happened and what it cost.
+
+If `main` already builds, extend it. Claim your scope on the board and push the claim before
+you write code.
+
+### Archives
+
+`archive/` holds three complete prior builds, preserved unchanged. They are real files under
+`/archive/...` and are linked from `/flagged/`, but they are excluded from the publication
+gate on purpose: the point of an archive is that it stays exactly as it was.
+
+No prior session's finding was deleted. All 18 items from the previous register are folded
+into `data/governance.json` as FLG-013…023, each naming the ID it came from.

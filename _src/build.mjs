@@ -1052,9 +1052,7 @@ function flaggedPage() {
     )}</h3>
     <p style="margin:0 0 .6rem">${esc(f.detail)}</p>
     <p style="margin:0 0 .6rem"><strong>What we did:</strong> ${esc(f.action)}</p>
-    <p class="small" style="margin:0"><a href="${f.sourceUrl}" rel="noopener" target="_blank">${esc(
-        f.sourceLabel
-      )}</a></p>
+    <p class="small" style="margin:0">${cite(f.sourceUrl, esc(f.sourceLabel), f.sourceAsin)}</p>
   </article>`
     )
     .join("");
@@ -1080,7 +1078,7 @@ ${breadcrumb([{ href: url("/"), label: "Home" }, { label: "Flagged for review" }
           <td><code>${esc(f.id)}</code></td>
           <td>${esc(f.title)}</td>
           <td><span class="pill pill--${f.severity}">${esc(f.severity)}</span></td>
-          <td><a href="${f.sourceUrl}" rel="noopener" target="_blank">open</a></td>
+          <td>${cite(f.sourceUrl, "open", f.sourceAsin)}</td>
         </tr>`
           )
           .join("")}</tbody>
@@ -1089,6 +1087,41 @@ ${breadcrumb([{ href: url("/"), label: "Home" }, { label: "Flagged for review" }
 
     <h2 class="section__title" style="font-size:1.4rem">In detail</h2>
     <div style="margin-top:1.25rem">${cards}</div>
+
+    <h2 class="section__title" style="font-size:1.4rem;margin-top:2.5rem">Prior audit work on this repository</h2>
+    <p class="section__dek" style="margin-bottom:1.25rem">Other sessions built earlier versions of this site on the same repo. Their findings are merged into the register above rather than discarded, and their complete data, toolchain and generated pages are preserved unchanged in <code>archive/</code>. Nothing was deleted.</p>
+    <div class="tablewrap">
+      <table class="data">
+        <caption>Archived builds. Each is a complete, browsable copy from the commit it was merged at; none is served as the live site any more.</caption>
+        <thead><tr><th scope="col">Archive</th><th scope="col">Session</th><th scope="col">Finding</th><th scope="col">Browse</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><code>archive/arena-2ca62ce9/</code></td>
+            <td>arena-2ca62ce9</td>
+            <td>Independent verification of the same five ASINs; 18-item flag register; source register SRC-01…SRC-11; its own questions, suggestions and ledger. Fourteen of its findings are folded into this register with attribution.</td>
+            <td><a href="${url("/archive/arena-2ca62ce9/")}">Open archived site</a></td>
+          </tr>
+          <tr>
+            <td><code>archive/arena-2ca62ce9/data/flags.json</code></td>
+            <td>arena-2ca62ce9</td>
+            <td>The original 18-item flag register, unmodified, for line-by-line comparison.</td>
+            <td><a href="${url("/archive/arena-2ca62ce9/data/flags.json")}">View JSON</a></td>
+          </tr>
+          <tr>
+            <td><code>archive/arena-6bd1be15/</code></td>
+            <td>arena-6bd1be15</td>
+            <td>Earlier root-level site, kept for the record. Its verification log is the origin of FLG-016.</td>
+            <td><a href="${url("/archive/arena-6bd1be15/")}">Open archived site</a></td>
+          </tr>
+          <tr>
+            <td><code>archive/arena-4a5044b0/</code></td>
+            <td>arena-4a5044b0</td>
+            <td>First build on this repo. Its claim that Amazon was unreachable is superseded — see FLG-017.</td>
+            <td><a href="${url("/archive/arena-4a5044b0/")}">Open archived site</a></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
 
     <div class="note mt2">
       <p class="note__title">The four that actually matter</p>
@@ -1737,7 +1770,10 @@ const ok = (m) => findings.push({ level: "PASS", m });
 const htmlFiles = [];
 (function walk(dir) {
   for (const e of fs.readdirSync(dir, { withFileTypes: true })) {
-    if (["node_modules", ".git", "_src", "_worker", "assets", "data"].includes(e.name)) continue;
+    // `archive/` holds prior sessions' builds, preserved verbatim and not served
+    // as the live site. They are intentionally excluded from the live gate: the
+    // point of archiving them is to keep them unchanged, not to retrofit them.
+    if (["node_modules", ".git", "_src", "_worker", "assets", "data", "archive"].includes(e.name)) continue;
     const full = path.join(dir, e.name);
     if (e.isDirectory()) walk(full);
     else if (e.name.endsWith(".html")) htmlFiles.push(full);
@@ -1840,6 +1876,18 @@ for (const f of htmlFiles) {
   for (const m of src.matchAll(/href="\/WinA(\/[^"#?]*)"/g)) {
     const target = m[1];
     if (target.startsWith("/assets/") || target.endsWith(".xml") || target.endsWith(".txt")) continue;
+
+    // Archived prior builds are real files on disk, not generated pages.
+    if (target.startsWith("/archive/")) {
+      const onDisk = path.join(ROOT, target.replace(/^\/WinA/, ""));
+      const asDir = path.join(onDisk, "index.html");
+      if (!fs.existsSync(onDisk) && !fs.existsSync(asDir)) {
+        broken++;
+        fail(`broken archive link in ${path.relative(ROOT, f)}: ${target}`);
+      }
+      continue;
+    }
+
     if (!internal.has(target) && target !== "/404.html") {
       broken++;
       fail(`broken internal link in ${path.relative(ROOT, f)}: ${target}`);
