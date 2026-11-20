@@ -65,6 +65,17 @@ fourth site. Claim the scope here first and push the claim before writing code.
 | T14 | Merge prior findings into one register | done | arena-ffa85037 | `data/governance.json` | 23 flags; 14 carried forward with attribution |
 | T15 | PR → `main`, merge, confirm Pages deploy | in progress | arena-ffa85037 | — | See integration result below |
 | T16 | Gap closure against the brief: sortable tables on every data table; SG-27..SG-30 parallel rows (nav labels, RSS feed, Search Console, reader capture); verified policy-citation corrections | done | arena-a86cb9d0 | `_src/build.mjs`, `_src/pages-content.mjs`, `assets/js/site.js`, `data/governance.json`, `COORDINATION.md` (arena-a86cb9d0 section only) | Extends main; does not add a second site (see conflict record) |
+| T17 | Editorial expansion: two new guides (technique + seasonal), seasonal collection page, nav + front-page integration | in progress | arena-27f76c22 | `_src/content.mjs`, `_src/build.mjs`, `data/products.json` (guideTopics only), `assets/img/` | Claimed 2026-11-20 |
+| T18 | Design/marketing polish: hero + seasonal imagery (generated, disclosed, non-product), og:image, CSS extensions | in progress | arena-27f76c22 | `assets/css/site.css`, `assets/img/`, `_src/build.mjs` layout | Claimed 2026-11-20 |
+| T19 | Decision registers: new suggestions (SUG-17+), new questions (Q-23+), new flags (FLG-030+), FLG-020 seasonal update | in progress | arena-27f76c22 | `data/suggestions.json`, `data/questions.json`, `data/governance.json` | Claimed 2026-11-20 |
+| T20 | Executive summary refresh for the editorial pass | in progress | arena-27f76c22 | `_src/build.mjs` (summaryPage only) | Claimed 2026-11-20 |
+| T21 | Line-by-line re-verification: 5 listings re-fetched, policy + manufacturer source URLs re-checked, results logged | in progress | arena-27f76c22 | COORDINATION.md (this session's section), flag register if needed | Claimed 2026-11-20 |
+| T22 | Integration: PR → main, merge, confirm Pages deploy, record PR link + deploy result | in progress | arena-27f76c22 | PR/merge only | Claimed 2026-11-20 |
+
+**Branch note (arena-27f76c22):** the Arena session is bound to branch `arena/27f76c22-wina` and cannot create
+`session-<id>/<task>` branches. All T17–T22 work happens on that one branch, in the scopes listed above, which is
+the same adaptation every prior session made (`arena/<id>-wina` branches). Scopes do not overlap with any other
+session's files.
 
 ---
 
@@ -389,3 +400,11 @@ wanted, port it into `data/` and rebuild.
 - **Parallel generator on `main` (logged, not changed).** `scripts/build.mjs` writes `site/` for a "Countertop Report" site. `.github/workflows/pages.yml` does not run it, so it is not served. Its owner is unclear; the next integration session should retire it or document it.
 - **Gates on the final tree.** `node _src/build.mjs`: PASSED. `node scripts/check-site.mjs`: "repository gate passed — safe to publish".
 - **Sortable coverage (final).** Every data table on every served page is sortable. Two tables added after the rebase were also marked: the concept page table (`_src/build.mjs`) and the Special Link test register table on `/register/`. Checked: no unsortable table left in the served HTML.
+
+---
+
+## Session arena-27f76c22 (this session)
+
+- **2026-11-20 — claim.** Claimed T17–T22 (see task board). Branch: `arena/27f76c22-wina`, base `d7abb68` (= current `main` head at claim time, PR #18 merge). Following the board's lesson: this session **extends** the existing Counter Space build; no new site.
+- **Scope requested by the requester in this session's brief:** polished marketing look, catchy/trendy but honest articles, organic-traffic focus, a reviewed suggestions path, a question/information register, an executive summary, line-by-line verification with links for manual review, then PR → merge → deploy confirmation.
+- **Result sections appended below as work completes.**
