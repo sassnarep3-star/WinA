@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Measurement — Counter Space</title>
+<meta name="description" content="Five defined events, a privacy-preserving self-hosted collector, and an honest statement that nothing is currently being recorded.">
+<link rel="canonical" href="https://sassnarep3-star.github.io/WinA/analytics/">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta name="google-site-verification" content="REPLACE_WITH_REAL_TOKEN_FLG009">
+<meta property="og:site_name" content="Counter Space">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Measurement — Counter Space">
+<meta property="og:description" content="Five defined events, a privacy-preserving self-hosted collector, and an honest statement that nothing is currently being recorded.">
+<meta property="og:url" content="https://sassnarep3-star.github.io/WinA/analytics/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Measurement — Counter Space">
+<meta name="twitter:description" content="Five defined events, a privacy-preserving self-hosted collector, and an honest statement that nothing is currently being recorded.">
+<link rel="alternate" type="application/rss+xml" title="Counter Space" href="/WinA/feed.xml">
+<link rel="stylesheet" href="/WinA/assets/css/site.css">
+<script>window.CS_CONFIG={analyticsEnabled:false,analyticsEndpoint:""};</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"Counter Space","url":"https://sassnarep3-star.github.io/WinA","description":"Kitchen gear, judged by what it does on a Tuesday night."}</script>
+</head>
+<body data-page-type="page">
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="masthead">
+  <div class="wrap masthead__inner">
+    <a class="brand" href="/WinA/">
+      <span class="brand__mark" aria-hidden="true">C</span>
+      <span class="brand__name">Counter Space</span>
+      <span class="brand__sub">Kitchen gear, judged honestly</span>
+    </a>
+    <nav class="nav" aria-label="Primary"><a href="/WinA/air-fryers/">Air fryers</a><a href="/WinA/thermometers/">Thermometers</a><a href="/WinA/guides/">Guides</a><a href="/WinA/compare/">Compare</a><a href="/WinA/about/">About</a></nav>
+  </div>
+</header>
+
+<!-- Disclosure: above the fold on every page (OA §5, FTC Disclosures 101) -->
+<div class="disclosure">
+  <div class="wrap disclosure__inner">
+    <span class="disclosure__tag">Disclosure</span>
+    <span><strong>As an Amazon Associate I earn from qualifying purchases.</strong>
+    Product links are sponsored. Prices and ratings are not shown — see <a href="/WinA/disclosure/">why</a>.</span>
+  </div>
+</div>
+
+<main id="main">
+
+<nav class="wrap breadcrumb" aria-label="Breadcrumb"><a href="/WinA/">Home</a><span aria-hidden="true">/</span><span aria-current="page">Measurement</span></nav>
+<div class="article-head">
+  <div class="wrap">
+    <p class="kicker">Click and conversion measurement</p>
+    <h1 class="article-head__title">Measurement</h1>
+    <p class="article-head__dek">Five events, defined before any content was written, recorded without cookies or identifiers — and currently switched off, because no collector is deployed.</p>
+  </div>
+</div>
+<section class="section">
+  <div class="wrap">
+    <div class="note note--warn">
+      <p class="note__title">Status: not recording</p>
+      <p>No collector endpoint deployed. Client is inert rather than silently failing. The client checks a config flag at load; with no endpoint it returns immediately and nothing is sent anywhere. Nothing is buffered, queued, or forwarded to a third party.</p>
+    </div>
+
+    <h2 class="section__title" style="font-size:1.4rem;margin-top:2.5rem">The five events</h2>
+    <p class="section__dek" style="margin-bottom:1.25rem">Defined before the guides were written, so that the questions come before the answers.</p>
+    <div class="tablewrap">
+      <table class="data">
+        <caption>Event definitions and payloads. Every payload is deliberately minimal: no cookies, no identifiers, no referrer, no personal data.</caption>
+        <thead><tr><th scope="col">ID</th><th scope="col">Event</th><th scope="col">Fires when</th><th scope="col">What it records</th><th scope="col">What question it answers</th></tr></thead>
+        <tbody><tr>
+          <td><code>EV-01</code></td>
+          <td><strong>page_view</strong></td>
+          <td>Once per page load, after the page is visible.</td>
+          <td class="small"><code>path only — no query string, no referrer, no identifier</code></td>
+          <td class="small">Which guides and products are read at all.</td>
+        </tr><tr>
+          <td><code>EV-02</code></td>
+          <td><strong>outbound_click</strong></td>
+          <td>On click of any element marked data-affiliate.</td>
+          <td class="small"><code>asin, page path, position on page</code></td>
+          <td class="small">The one number that matters most: which product earns the click, from which page.</td>
+        </tr><tr>
+          <td><code>EV-03</code></td>
+          <td><strong>guide_read</strong></td>
+          <td>When a guide reaches 75% scroll depth, once per page load.</td>
+          <td class="small"><code>guide slug</code></td>
+          <td class="small">Whether a question-shaped guide is actually read or just landed on.</td>
+        </tr><tr>
+          <td><code>EV-04</code></td>
+          <td><strong>compare_view</strong></td>
+          <td>On load of the comparison table page.</td>
+          <td class="small"><code>page path</code></td>
+          <td class="small">Whether readers want side-by-side or narrative.</td>
+        </tr><tr>
+          <td><code>EV-05</code></td>
+          <td><strong>capture_intent</strong></td>
+          <td>On submit attempt of the reader capture form.</td>
+          <td class="small"><code>page path, form location</code></td>
+          <td class="small">Whether anyone wants a digest, before investing in an ESP.</td>
+        </tr></tbody>
+      </table>
+    </div>
+
+    <h2 class="section__title" style="font-size:1.4rem;margin-top:2.5rem">Why the collector is self-hosted</h2>
+    <div class="prose">
+      <p>Adding a third-party analytics script would mean handing a vendor a record of reader behaviour on a page about buying things, in exchange for a dashboard. The reader gets nothing from that trade. A first-party collector on a small worker keeps the data in one place and keeps the payloads minimal.</p>
+      <p>The stated principles are in the code and on the <a href="/WinA/privacy/">privacy page</a>:</p>
+      <ul><li>No cookies, no fingerprinting, no cross-site identifiers.</li><li>No personal data leaves the browser. The capture form never transmits an address.</li><li>Raw events are not retained beyond 30 days; only daily aggregates persist.</li><li>The counter is first-party and self-hosted, so no third-party processor receives reader behaviour.</li></ul>
+    </div>
+
+    <h2 class="section__title" style="font-size:1.4rem;margin-top:2.5rem">What cannot be measured from here</h2>
+    <div class="prose">
+      <p><strong>Orders and revenue.</strong> Only Amazon can report those, and only to the account holder, inside the Associates dashboard. There is no API path from this site to that number. When a report is exported, its figures are entered by hand into the <a href="/WinA/dashboard/">campaign ledger</a> with the report date attached. Nothing is inferred from clicks, and no click-to-order conversion rate is estimated.</p>
+      <p><strong>Whether the tracking tag is working at all.</strong> Our counter can record that a reader clicked. Only Amazon can confirm the click was attributed to <code>shopnow047c-20</code>. Those are different facts and are stored separately.</p>
+    </div>
+
+    <h2 class="section__title" style="font-size:1.4rem;margin-top:2.5rem">Deploying it</h2>
+    <div class="prose">
+      <p>The collector is in <code>_worker/</code> and is a single small handler with no third-party dependency. Deploy it, set the endpoint in the build config, rebuild, and the flag flips. The exact steps are in the repository README.</p>
+      <p>Until that happens, this page is a plan rather than a report. It is marked as such deliberately, because a measurement page that implies data exists when it does not is worse than no measurement page.</p>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <p class="footer__statement"><strong>As an Amazon Associate I earn from qualifying purchases.</strong>
+    Counter Space is written and published independently and is not endorsed by Amazon or by any brand mentioned here.</p>
+
+    <div class="footer__grid">
+      <div>
+        <p class="footer__brandname">Counter Space</p>
+        <p class="footer__tagline">Kitchen gear, judged by what it does on a Tuesday night.</p>
+        <p class="tiny" style="color:#8d847a;margin:0">Product links open Amazon in a new tab and carry our tracking tag.</p>
+      </div>
+      <div>
+        <h3>Shop</h3>
+        <ul>
+          <li><a href="/WinA/air-fryers/">Air fryers</a></li>
+          <li><a href="/WinA/thermometers/">Thermometers</a></li>
+          <li><a href="/WinA/compare/">Compare all five</a></li>
+          <li><a href="/WinA/guides/">Buying guides</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Publication</h3>
+        <ul>
+          <li><a href="/WinA/about/">About &amp; editorial standards</a></li>
+          <li><a href="/WinA/disclosure/">Affiliate disclosure</a></li>
+          <li><a href="/WinA/privacy/">Privacy</a></li>
+          <li><a href="/WinA/feed.xml">RSS feed</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Record &amp; review</h3>
+        <ul>
+          <li><a href="/WinA/register/">Source register</a></li>
+          <li><a href="/WinA/flagged/">Flagged for review</a></li>
+          <li><a href="/WinA/dashboard/">Campaign ledger</a></li>
+          <li><a href="/WinA/analytics/">Measurement</a></li>
+          <li><a href="/WinA/questions/">Open questions</a></li>
+          <li><a href="/WinA/suggestions/">Suggestions</a></li>
+          <li><a href="/WinA/summary/">Executive summary</a></li>
+          <li><a href="/WinA/marketing/">Marketing plan</a></li>
+          <li><a href="/WinA/seo/">Search &amp; findability</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer__bottom">
+      <p>&copy; <span data-year>2026</span> Counter Space. Built 2026-11-20.</p>
+      <p>Tracking ID shopnow047c-20 · <a href="/WinA/register/">Sources</a></p>
+    </div>
+  </div>
+</footer>
+
+<script src="/WinA/assets/js/site.js" defer></script>
+</body>
+</html>

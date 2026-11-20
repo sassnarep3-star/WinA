@@ -1,0 +1,276 @@
+{
+  "flagged": [
+    {
+      "id": "FLG-001",
+      "severity": "resolved",
+      "title": "Short links carry no ASIN in the code",
+      "detail": "Each submitted link is a /B0.../ short code that is not the ASIN. Product identity could only be established by following the redirect. All five were resolved by observation on 2026-11-20 and the observed destination is stored in its own field, separate from intended ASIN.",
+      "action": "Resolved. Observed destination recorded per product; intended ASIN left null because none was supplied.",
+      "sourceUrl": "https://link.amazon/B04G1MEwY",
+      "sourceLabel": "Example submitted short link"
+    },
+    {
+      "id": "FLG-002",
+      "severity": "action",
+      "title": "Submitted links carry no Associates tag of their own",
+      "detail": "The submitted link.amazon URLs resolve to plain product pages. No tag parameter was observed on them, so they do not by themselves attribute a purchase to shopnow047c-20.",
+      "action": "Every outbound link on this site is constructed as amazon.com/dp/<ASIN>?tag=shopnow047c-20 rather than reusing the submitted short link.",
+      "sourceUrl": "https://affiliate-program.amazon.com/help/operating/policies",
+      "sourceLabel": "Associates Program Policies"
+    },
+    {
+      "id": "FLG-003",
+      "severity": "review",
+      "title": "Compliance status of link.amazon short links is unresolved",
+      "detail": "Whether link.amazon short links satisfy the requirement that a link not obscure the destination is not something we can settle from published policy text. Non-Amazon-owned shorteners are clearly addressed; this is Amazon's own domain. We are not claiming these links are invalid. The question is open.",
+      "action": "Not depended upon. The site links directly to amazon.com product pages instead. Raised for review so the question gets a real answer from Associates support.",
+      "sourceUrl": "https://affiliate-program.amazon.com/help/operating/policies",
+      "sourceLabel": "Participation Requirements §6(w)"
+    },
+    {
+      "id": "FLG-004",
+      "severity": "review",
+      "title": "Tracking ID attribution unverified",
+      "detail": "shopnow047c-20 is applied to every outbound link, but confirming that it is an active, enrolled Associates ID requires signing in to the Associates dashboard. That sign-in cannot be performed from here, and no first-party report was available.",
+      "action": "Test one link per product in the enrolled workflow and confirm the destination and the tracking report before scaling. Until then, treat attribution as unconfirmed.",
+      "sourceUrl": "https://affiliate-program.amazon.com/",
+      "sourceLabel": "Amazon Associates Central (sign-in required)"
+    },
+    {
+      "id": "FLG-005",
+      "severity": "withheld",
+      "title": "No prices shown",
+      "detail": "Amazon requires price data to come from its API so it stays accurate, and prohibits price tracking on the site. No Creatives or PA-API credential exists for this project, so any price printed here would be a guess that goes stale.",
+      "action": "Price fields are marked unverified and left blank. No revenue forecast or conversion score is presented.",
+      "sourceUrl": "https://affiliate-program.amazon.com/help/operating/policies",
+      "sourceLabel": "Participation Requirements §6(y)"
+    },
+    {
+      "id": "FLG-006",
+      "severity": "withheld",
+      "title": "No star ratings or review quotes",
+      "detail": "Program Policies §6(t) forbids displaying customer reviews or star ratings unless they were obtained through Creatives API or PA API. Ratings were visible on the live listings but may not be reproduced here.",
+      "action": "Rating and review-count rows are shown as withheld, with the reason. Not left blank, so nobody fills them in by hand later.",
+      "sourceUrl": "https://affiliate-program.amazon.com/help/operating/policies",
+      "sourceLabel": "Participation Requirements §6(t)"
+    },
+    {
+      "id": "FLG-007",
+      "severity": "review",
+      "title": "No product photography",
+      "detail": "No licensed product images are available. Amazon Program Content may not be copied, stored, or hot-linked outside approved tooling, and stock photography of a different appliance would misrepresent the item.",
+      "action": "Pages are deliberately typographic — colour, type and layout carry the design. The real fix is Creatives API access, which would supply compliant imagery.",
+      "sourceUrl": "https://affiliate-program.amazon.com/help/operating/policies",
+      "sourceLabel": "Participation Requirements §6(a)"
+    },
+    {
+      "id": "FLG-008",
+      "severity": "review",
+      "title": "Commission rates not asserted",
+      "detail": "Category commission rates and fixed bounty amounts change and are published inside the Associates dashboard. We did not find a current public table we could verify at build time.",
+      "action": "No earnings estimate, effective rate, or revenue projection appears anywhere. The commission-potential column in the product register is intentionally absent.",
+      "sourceUrl": "https://affiliate-program.amazon.com/help/operating/policies",
+      "sourceLabel": "Commission Income Statement"
+    },
+    {
+      "id": "FLG-009",
+      "severity": "action",
+      "title": "Search Console not verified",
+      "detail": "The site is indexable and has a sitemap and feed, but no Search Console property has been verified because that requires account access we do not have.",
+      "action": "A placeholder verification tag is present and clearly marked. Replace the token, then submit sitemap.xml. Until then, query data is unavailable and topic choice stays a hypothesis.",
+      "sourceUrl": "https://search.google.com/search-console",
+      "sourceLabel": "Google Search Console"
+    },
+    {
+      "id": "FLG-010",
+      "severity": "action",
+      "title": "Reader capture has no backend",
+      "detail": "The email capture form is present for layout and measurement but no email service provider is connected, so it cannot deliver a subscription.",
+      "action": "The form is inert and says so where a reader would hit it. No address is transmitted or stored.",
+      "sourceUrl": "https://affiliate-program.amazon.com/help/operating/policies",
+      "sourceLabel": "Data disclosure requirement, Participation Requirements §6(e)"
+    },
+    {
+      "id": "FLG-011",
+      "severity": "action",
+      "title": "Analytics endpoint not deployed",
+      "detail": "A self-hosted collector exists in _worker/ and the client is written to POST five defined events. No endpoint is deployed, so the client is switched off rather than sending events into a void.",
+      "action": "Deploy the worker, set SITE_ANALYTICS_ENDPOINT, rebuild. Until then no analytics data exists and the dashboard says so.",
+      "sourceUrl": "https://sassnarep3-star.github.io/WinA/analytics/",
+      "sourceLabel": "This site's measurement page"
+    },
+    {
+      "id": "FLG-012",
+      "severity": "withheld",
+      "title": "Campaign ledger is empty by design",
+      "detail": "There is no authorized first-party report yet. Every ledger row requires a timestamp, source, channel, eligible sessions, clicks and reported orders taken from an Associates report.",
+      "action": "The ledger starts empty with its schema defined, so the first real report can be added without redesigning it. No placeholder numbers.",
+      "sourceUrl": "https://affiliate-program.amazon.com/",
+      "sourceLabel": "Associates reports (sign-in required)"
+    },
+    {
+      "id": "FLG-013",
+      "severity": "action",
+      "title": "Content volume is below the Associates review bar",
+      "detail": "Amazon's Associates help states that applications are reviewed for robust original content, with a rule of thumb of at least 10 posts and recent activity. This site has 4 guides and 5 product pages. The account's own status and review history are unknown from here. Carried forward from the parallel-session register (arena-2ca62ce9, FLG-010), which found this first.",
+      "action": "Do not submit or re-submit for review on four guides. The eight-week cadence in the suggestions register exists to clear this bar. Recorded as a commercial blocker, not a content-quality one.",
+      "sourceUrl": "https://affiliate-program.amazon.com/",
+      "sourceLabel": "Amazon Associates Central (sign-in required)"
+    },
+    {
+      "id": "FLG-014",
+      "severity": "resolved",
+      "title": "Five analytics events were never defined in the request",
+      "detail": "The brief referred to 'the five defined events' but never listed them, leaving the previous session to propose its own set. Carried forward from arena-2ca62ce9 (FLG-007).",
+      "action": "Resolved in this build. Five events are now defined explicitly — page_view, outbound_click, guide_read, compare_view, capture_intent — and documented at /analytics/. The wording differs from the earlier session's proposal; the newer set is what the shipped client emits.",
+      "sourceUrl": "https://sassnarep3-star.github.io/WinA/analytics/",
+      "sourceLabel": "Measurement page"
+    },
+    {
+      "id": "FLG-015",
+      "severity": "resolved",
+      "title": "A self-hosted analytics endpoint cannot run on GitHub Pages",
+      "detail": "GitHub Pages serves static files only, so a collector cannot be deployed there. Carried forward from arena-2ca62ce9 (FLG-008).",
+      "action": "Resolved by design, not deployed. The collector lives in _worker/ as a dependency-free edge handler, deployable anywhere with a fetch signature. It remains undeployed — see FLG-011.",
+      "sourceUrl": "https://docs.github.com/pages",
+      "sourceLabel": "GitHub Pages documentation"
+    },
+    {
+      "id": "FLG-016",
+      "severity": "review",
+      "title": "A prior build merged observed ASINs into the intended-ASIN field",
+      "detail": "An earlier session on this repo (arena-6bd1be15) listed the observed redirect ASIN in a column headed 'Intended ASIN'. A redirect is evidence of where a link currently lands, not of what product was intended. The brief explicitly requires these be kept in separate fields. Found first by arena-2ca62ce9 (FLG-016).",
+      "action": "This build keeps intendedAsin null for all five rows and stores the observed destination in its own field. The register page shows both columns side by side so the distinction is visible rather than asserted.",
+      "sourceUrl": "https://sassnarep3-star.github.io/WinA/register/",
+      "sourceLabel": "Link resolution register"
+    },
+    {
+      "id": "FLG-017",
+      "severity": "resolved",
+      "title": "Conflicting reports about whether Amazon was reachable",
+      "detail": "The first session recorded Amazon.com as unreachable from the sandbox. Two later sessions, including this one, opened the live listing pages successfully with a fetch tool. Both are true: direct curl from the sandbox returns HTTP 000 for amazon.com, while the agent's page-fetch tool resolves it. Carried forward from arena-2ca62ce9 (FLG-017).",
+      "action": "Recorded as an environment distinction rather than an error. All five listings were confirmed by page fetch on 2026-11-20. The earlier statement is superseded, not deleted.",
+      "sourceUrl": "https://www.amazon.com/dp/B08DKYBTPH",
+      "sourceLabel": "Listing confirmed reachable 2026-11-20"
+    },
+    {
+      "id": "FLG-018",
+      "severity": "resolved",
+      "title": "Three independent site builds existed for this repo",
+      "detail": "Two earlier sessions generated root-level sites on main (PR #1, PR #6) and a third (arena-2ca62ce9) built its own. GitHub Pages serves a single source folder, so only one site can occupy the root. This session built a fourth. Carried forward from arena-2ca62ce9 (FLG-018), whose register predicted exactly this collision.",
+      "action": "Converged to one site. The earlier builds' complete data, toolchain and generated pages are preserved unchanged under archive/. Nothing was deleted and no finding was dropped.",
+      "sourceUrl": "https://github.com/sassnarep3-star/WinA",
+      "sourceLabel": "Repository"
+    },
+    {
+      "id": "FLG-019",
+      "severity": "resolved",
+      "title": "Readers had no way to find the dashboard surfaces from the front page",
+      "detail": "The brief required every dashboard surface to stay reachable while the front page led with products. Putting them in the primary navigation would have put the audit in front of the shopper.",
+      "action": "Resolved structurally. The primary navigation carries five reader destinations only; all nine record and review surfaces are grouped in the footer under 'Record & review', so they remain one click from every page.",
+      "sourceUrl": "https://sassnarep3-star.github.io/WinA/",
+      "sourceLabel": "Live front page"
+    },
+    {
+      "id": "FLG-020",
+      "severity": "withheld",
+      "title": "No seasonal content, because there is no seasonal demand data",
+      "detail": "The brief asked for seasons and topic clusters. No seasonal query data was obtained from any source, so no seasonal calendar was invented. The four guides are editorial working titles, not popularity claims. Carried forward from arena-2ca62ce9 (FLG-015).",
+      "action": "Clusters exist as two product categories. Seasons wait for Search Console query data — choosing December topics from instinct is the failure mode being avoided.",
+      "sourceUrl": "https://search.google.com/search-console",
+      "sourceLabel": "Search Console (not yet verified)"
+    },
+    {
+      "id": "FLG-021",
+      "severity": "review",
+      "title": "Author identity and brand name are still placeholders",
+      "detail": "No author was named in the source material, so no byline was invented. 'Counter Space' is a working name chosen for this build and is not a registered brand. Carried forward from arena-2ca62ce9 (FLG-013).",
+      "action": "Both need a decision from the owner. Before adopting the name publicly, check it is not an active trademark in this category. See SUG-06 and Q-20.",
+      "sourceUrl": "https://sassnarep3-star.github.io/WinA/about/",
+      "sourceLabel": "About page"
+    },
+    {
+      "id": "FLG-022",
+      "severity": "low",
+      "title": "Cited register identifiers (S01, S02, S07, S24) do not exist in this repo",
+      "detail": "The brief refers to S01, S02, S07, S24 and FLG-003 as though a source register already existed. It did not. Carried forward from arena-2ca62ce9 (FLG-014).",
+      "action": "This build creates that register from scratch: numbered sources, ten policy checks with quoted clauses, and a per-row verification status. If the owner has a separate register, those identifiers still need mapping to it.",
+      "sourceUrl": "https://sassnarep3-star.github.io/WinA/register/",
+      "sourceLabel": "Source register"
+    },
+    {
+      "id": "FLG-023",
+      "severity": "low",
+      "title": "The word 'Sponsored' appears on two Amazon destination pages",
+      "detail": "The destination pages for two products display 'Sponsored' near the product summary. It is unclear whether it labels the listing itself or a carousel item. Recorded as observed, not interpreted. Carried forward from arena-2ca62ce9 (FLG-006).",
+      "action": "No claim is made about sponsorship status of any listing. Re-check on the live page before publishing anything that depends on it.",
+      "sourceUrl": "https://www.amazon.com/dp/B09B7SB46R",
+      "sourceLabel": "Observed listing page"
+    }
+  ],
+  "ledger": {
+    "schema": [
+      "date",
+      "source",
+      "channel",
+      "eligibleSessions",
+      "clicks",
+      "reportedOrders",
+      "provenance"
+    ],
+    "provenanceNote": "Each row must cite the dated first-party report it came from. Rows are added only from authorized Associates reports; nothing is estimated, modelled, or extrapolated.",
+    "rows": []
+  },
+  "events": [
+    {
+      "id": "EV-01",
+      "name": "page_view",
+      "fires": "Once per page load, after the page is visible.",
+      "payload": "path only — no query string, no referrer, no identifier",
+      "purpose": "Which guides and products are read at all.",
+      "status": "defined"
+    },
+    {
+      "id": "EV-02",
+      "name": "outbound_click",
+      "fires": "On click of any element marked data-affiliate.",
+      "payload": "asin, page path, position on page",
+      "purpose": "The one number that matters most: which product earns the click, from which page.",
+      "status": "defined"
+    },
+    {
+      "id": "EV-03",
+      "name": "guide_read",
+      "fires": "When a guide reaches 75% scroll depth, once per page load.",
+      "payload": "guide slug",
+      "purpose": "Whether a question-shaped guide is actually read or just landed on.",
+      "status": "defined"
+    },
+    {
+      "id": "EV-04",
+      "name": "compare_view",
+      "fires": "On load of the comparison table page.",
+      "payload": "page path",
+      "purpose": "Whether readers want side-by-side or narrative.",
+      "status": "defined"
+    },
+    {
+      "id": "EV-05",
+      "name": "capture_intent",
+      "fires": "On submit attempt of the reader capture form.",
+      "payload": "page path, form location",
+      "purpose": "Whether anyone wants a digest, before investing in an ESP.",
+      "status": "defined"
+    }
+  ],
+  "analytics": {
+    "enabled": false,
+    "reason": "No collector endpoint deployed. Client is inert rather than silently failing.",
+    "principles": [
+      "No cookies, no fingerprinting, no cross-site identifiers.",
+      "No personal data leaves the browser. The capture form never transmits an address.",
+      "Raw events are not retained beyond 30 days; only daily aggregates persist.",
+      "The counter is first-party and self-hosted, so no third-party processor receives reader behaviour."
+    ]
+  }
+}
