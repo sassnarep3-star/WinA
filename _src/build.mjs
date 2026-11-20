@@ -28,7 +28,7 @@ const aiConcept = {
   body: `
 <p><strong>Concept only. Not implemented.</strong> This page describes what a system could do. Nothing here is running. No model, no data feed, no pricing source and no review data is connected to this site, and no output from such a system is published. Every claim on the site is written by hand from a cited source.</p>
 <h2>Five functions, each a candidate design</h2>
-<table class="data">
+<table class="data sortable">
 <thead><tr><th scope="col">Function</th><th scope="col">Concept (not implemented)</th><th scope="col">Requirement before any use</th></tr></thead>
 <tbody>
 <tr><td>Product research</td><td>Collect candidate listings from a permitted source and group them by category.</td><td>Only sources Associates permits. Product data kept separate from intended and observed fields.</td></tr>
@@ -923,7 +923,7 @@ function specialLinkSection() {
   <div class="wrap">
     <h2 class="section__title" style="font-size:1.4rem">Special Link test, one per product</h2>
     <p class="section__dek" style="margin-bottom:1.25rem">${esc(specialLink.blocker)} Each row needs its test recorded before any further product is added. None is marked as passed. Flags: FLG-003, FLG-024.</p>
-    <div class="table-wrap"><table>
+    <div class="table-wrap"><table class="data sortable">
       <thead><tr><th scope="col">Product</th><th scope="col">Submitted short link</th><th scope="col">Test status</th><th scope="col">Tested on</th><th scope="col">Destination seen</th><th scope="col">Tracking report line</th></tr></thead>
       <tbody>${rows.join("\n      ")}</tbody>
     </table></div>

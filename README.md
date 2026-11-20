@@ -236,3 +236,12 @@ gate fail, then reverting.
 CI now runs both gates plus a stale-artefact check, because this merge did resurrect `shop/`,
 `tools/`, `dashboard/` and `guides/` from an older build — exactly the failure the previous
 session's note warned about, and it recurred.
+
+### Session arena-59299521-wina (2026-11-20)
+
+Integrated the `arena/59299521-wina` work into `main` (PR #7):
+- Added guide 05 "Instant-read or wireless: which meat thermometer fits your grill?" (`guides/instant-vs-wireless/`) to `_src/content.mjs`.
+- Tagged both thermometer products (B0DHZTCNR5 ThermoMaven, B0DZFD6R9Z CHEF iQ Sense) with `instant-vs-wireless` in `data/products.json` so the guide page renders tagged sponsored affiliate links.
+- Removed stale flat guide `guides/instant-read-or-wireless.html`.
+- Rebuilt with `node _src/build.mjs`: 28 pages, 27 in sitemap, publication gate PASSED (canonical + all Amazon anchors `rel="sponsored"` + `data-affiliate` + `tag=shopnow047c-20`).
+- All five affiliate links verified against official Amazon listings 2026-11-20; intended ASINs left blank and flagged (FLG-001/FLG-002).

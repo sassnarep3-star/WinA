@@ -1,167 +1,132 @@
-/* WinA — shared frontend
-   - Highlights the active nav item (SG-27: single navigation group).
-   - Injects the disclosure strip above the fold when a page omits it.
-   - Builds footer dashboard link groups so every surface is reachable
-     from the footer and from a single navigation group.
-   - Reader capture (SG-30): local-only newsletter signup (no backend yet).
-   All logic is client-side; no cookies, no PII sent anywhere. */
-
+/* WinA — client-side, privacy-preserving analytics + page behavior
+ *
+ * Design (see /analytics.html):
+ *  - Five defined events: page_view, outbound_click, guide_read, reader_capture, disclosure_view
+ *  - No cookies, no fingerprinting, no IP storage. Only event type, timestamp, page path and a
+ *    small payload are kept.
+ *  - Events are beaconed to the self-hosted endpoint /analytics/collect. GitHub Pages is static
+ *    hosting, so that endpoint is not implemented here; events fall back to localStorage only and
+ *    can be reviewed/exported on /analytics.html. Nothing is sent to third parties.
+ */
 (function () {
-  const NAV_ITEMS = [
-    { href: "index.html", label: "Home" },
-    { href: "products.html", label: "Shop" },
-    { href: "guides.html", label: "Guides" },
-    { href: "suggest.html", label: "Suggestions" },
-    { href: "questions.html", label: "Q&A" },
-    { href: "executive-summary.html", label: "Summary" },
-    { href: "flagged.html", label: "Flagged" },
-  ];
+  var STORAGE_KEY = 'wina_events_v1';
+  var ENDPOINT = '/analytics/collect';
+  var EVENTS = ['page_view', 'outbound_click', 'guide_read', 'reader_capture', 'disclosure_view'];
 
-  const FOOTER_GROUPS = [
-    {
-      title: "Shop",
-      links: [
-        { href: "index.html", label: "Home" },
-        { href: "products.html", label: "All products" },
-        { href: "products.html#air-fryers", label: "Air fryers (3)" },
-        { href: "products.html#thermometers", label: "Meat thermometers (2)" },
-      ],
-    },
-    {
-      title: "Learn",
-      links: [
-        { href: "guides.html", label: "Buying guides" },
-        { href: "questions.html", label: "Questions & answers" },
-      ],
-    },
-    {
-      title: "Community",
-      links: [
-        { href: "suggest.html", label: "Suggestions" },
-        { href: "flagged.html", label: "Flagged for review" },
-      ],
-    },
-    {
-      title: "Company",
-      links: [
-        { href: "executive-summary.html", label: "Executive summary" },
-        { href: "https://www.ftc.gov/business-guidance/resources/ftcs-endorsement-guides-what-people-are-asking", label: "FTC endorsement guidance", ext: true },
-        { href: "https://affiliate-program.amazon.com/help/operating/policies", label: "Amazon Associates policies", ext: true },
-      ],
-    },
-  ];
-
-  const DISCLOSURE_HTML =
-    '<section class="disclosure-strip" aria-label="Affiliate disclosure" style="padding:7px 16px;">\n' +
-    '  <div class="wrap">\n' +
-    '    <strong>Affiliate disclosure:</strong> As an Amazon Associate I earn from qualifying purchases. ' +
-    '    Outbound product links are marked <span class="tag-sponsored" aria-hidden="true"></span> ' +
-    '    (rel="sponsored"). We may earn a commission if you buy through them, at no extra cost to you. ' +
-    '    <a href="flagged.html">See flagged items &amp; sources</a>.\n' +
-    '  </div>\n' +
-    '</section>\n';
-
-  function activeNav() {
-    const path = location.pathname.split("/").pop() || "index.html";
-    const links = document.querySelectorAll(".nav-links a");
-    links.forEach((a) => {
-      const href = a.getAttribute("href");
-      if (href === path) a.classList.add("active");
-      else a.classList.remove("active");
+  function getEvents() {
+    try {
+      return JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+    } catch (e) {
+      return [];
+    }
+  }
+  function save(events) {
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(events));
+    } catch (e) {
+      // storage unavailable — events live only for this page view
+    }
+  }
+  function sendBeacon(ev) {
+    var body = JSON.stringify(ev);
+    if (navigator.sendBeacon) {
+      navigator.sendBeacon(ENDPOINT, new Blob([body], { type: 'application/json' }));
+      return;
+    }
+    fetch(ENDPOINT, {
+      method: 'POST',
+      body: body,
+      credentials: 'omit',
+      keepalive: true
+    }).catch(function () {
+      // endpoint not implemented on static hosting — event remains local only
     });
   }
 
-  function buildNav() {
-    const nav = document.querySelector(".nav-links");
-    if (!nav) return;
-    nav.innerHTML = NAV_ITEMS.map((i) => '<a href="' + i.href + '">' + i.label + "</a>").join("");
-    activeNav();
+  window.winA = {
+    EVENTS: EVENTS,
+    logEvent: function (type, payload) {
+      if (!type || EVENTS.indexOf(type) === -1) return null;
+      var ev = {
+        type: type,
+        ts: new Date().toISOString(),
+        url: location.href,
+        path: location.pathname,
+        payload: payload || {}
+      };
+      var events = getEvents();
+      events.push(ev);
+      save(events);
+      sendBeacon(ev);
+      renderCounter();
+      return ev;
+    },
+    getEvents: getEvents,
+    exportEvents: function () {
+      var events = getEvents();
+      var blob = new Blob([JSON.stringify(events, null, 2)], { type: 'application/json' });
+      var url = URL.createObjectURL(blob);
+      var a = document.createElement('a');
+      a.href = url;
+      a.download = 'wina-events-' + new Date().toISOString().slice(0, 10) + '.json';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    }
+  };
+
+  function renderCounter() {
+    var el = document.getElementById('wina-event-counter');
+    if (!el) return;
+    el.textContent = getEvents().length + ' event(s) logged this session (local only — /analytics/collect not implemented on static hosting)';
   }
 
   function ensureDisclosure() {
-    if (document.querySelector(".disclosure-strip")) return;
-    const hero = document.querySelector(".hero");
-    const container = document.querySelector(".container");
-    const target = hero || container || document.body;
-    target.insertAdjacentHTML("afterbegin", DISCLOSURE_HTML);
+    if (document.querySelector('.disclosure-strip')) return;
+    var html =
+      '<div class="disclosure-strip">' +
+      '<div class="container">' +
+      '<div style="display:flex;align-items:center;gap:1rem;flex-wrap:wrap">' +
+      '<b>Affiliate disclosure:</b> As an Amazon Associate we earn from qualifying purchases. Links marked ' +
+      '<span class="sponsored-chip">sponsored</span> are affiliate links. ' +
+      '<a href="/disclosures.html">Read our full disclosure &amp; Associates statement &rarr;</a>' +
+      '</div></div></div>';
+    var main = document.querySelector('main') || document.body;
+    var frag = document.createElement('div');
+    frag.innerHTML = html;
+    main.parentNode.insertBefore(frag.firstElementChild, main.nextSibling);
   }
 
-  function buildFooter() {
-    const footer = document.querySelector("footer");
-    if (!footer) return;
-    const existing = footer.querySelector(".footer-grid");
-    if (existing) return;
-    const grid = document.createElement("div");
-    grid.className = "footer-grid";
-    grid.innerHTML = FOOTER_GROUPS.map(
-      (g) =>
-        '<div class="footer-col"><h4>' +
-        g.title +
-        '</h4><ul>' +
-        g.links
-          .map(
-            (l) =>
-              '<li><a href="' +
-              l.href +
-              '"' +
-              (l.ext ? ' target="_blank" rel="nofollow sponsored"' : "") +
-              ">" +
-              l.label +
-              "</a></li>"
-          )
-          .join("") +
-        "</ul></div>"
-    ).join("");
-    footer.insertAdjacentElement("afterbegin", grid);
+  function attachClickTracking() {
+    document.addEventListener('click', function (e) {
+      var a = e.target && e.target.closest ? e.target.closest('a[rel~="sponsored"]') : null;
+      if (!a) return;
+      winA.logEvent('outbound_click', {
+        link: a.href,
+        text: (a.textContent || '').trim().slice(0, 80)
+      });
+    }, true);
   }
 
-  function buildFooterBottom() {
-    const footer = document.querySelector("footer");
-    if (!footer) return;
-    if (footer.querySelector(".footer-bottom")) return;
-    const bottom = document.createElement("div");
-    bottom.className = "footer-bottom";
-    bottom.innerHTML =
-      '<div>As an Amazon Associate I earn from qualifying purchases.</div>' +
-      '<div><a href="flagged.html">Flagged for review</a> &middot; <a href="feed.xml">RSS feed</a> &middot; <a href="sitemap.xml">Sitemap</a></div>';
-    footer.appendChild(bottom);
-  }
-
-  /* Reader capture (SG-30): local-only until a mailing provider is connected.
-     Stores the address in localStorage; sends nothing. */
-  function initCapture() {
-    const form = document.getElementById("captureForm");
-    if (!form) return;
-    const email = document.getElementById("captureEmail");
-    const msg = document.getElementById("captureMsg");
-    form.addEventListener("submit", function (e) {
-      e.preventDefault();
-      const value = (email.value || "").trim();
-      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
-        msg.textContent = "Please enter a valid email address.";
-        return;
-      }
-      try {
-        const existing = JSON.parse(localStorage.getItem("wina_subscribers") || "[]");
-        existing.push({ email: value, ts: new Date().toISOString(), source: "front-page-capture" });
-        localStorage.setItem("wina_subscribers", JSON.stringify(existing));
-      } catch (err) {
-        /* storage unavailable; still confirm locally */
-      }
-      msg.textContent = "Thanks — saved in your browser. Connect a mailing provider to receive guides by email (see Suggestions).";
-      if (window.winA && typeof winA.record === "function") {
-        winA.record("suggestion_review", { action: "reader_capture_local" });
-      }
-      form.reset();
-    });
-  }
-
-  document.addEventListener("DOMContentLoaded", function () {
-    buildNav();
+  document.addEventListener('DOMContentLoaded', function () {
     ensureDisclosure();
-    buildFooter();
-    buildFooterBottom();
-    initCapture();
-    if (typeof winAOnReady === "function") winAOnReady();
+    attachClickTracking();
+    var pageType = document.body.dataset.pageType || 'page_view';
+    winA.logEvent(pageType, { referrer: document.referrer });
+    renderCounter();
+
+    var capture = document.getElementById('wina-capture-form');
+    if (capture) {
+      capture.addEventListener('submit', function (e) {
+        e.preventDefault();
+        winA.logEvent('reader_capture', { form: 'newsletter' });
+        var msg = document.getElementById('wina-capture-msg');
+        if (msg) {
+          msg.style.display = 'block';
+          capture.reset();
+        }
+      });
+    }
   });
 })();

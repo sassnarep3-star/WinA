@@ -213,6 +213,42 @@ Multi-function claims are the easiest thing in kitchen retail to inflate and the
       "A function that needs a separately sold accessory is not in the box.",
       "For connected devices, ask what happens when the app stops being supported."
     ]
+  },
+  {
+    slug: "instant-vs-wireless",
+    number: "05",
+    title: "Instant-read or wireless: which meat thermometer fits your grill?",
+    dek: "One answers \"is this done right now?\". The other answers \"tell me when it is done\" while the lid stays shut. The right one depends on how you cook.",
+    category: "thermometers",
+    readingTime: "5 min",
+    topics: ["measurement", "connected devices", "accuracy"],
+    intro: `Two of the five register rows are meat thermometers, and they are often shopped as if they were the same product. They are not. One is a probe with a screen; the other is a monitoring system with an app. This guide is the decision between them — not a verdict on either, and not a claim that either is more accurate than the other.`,
+
+    body: `
+<h2>1. Start with how you actually cook</h2>
+<p>If your cooking is spot checks — a burger on the grill, a chicken breast in the pan, candy on the stove — you want an instant-read: insert, read a number, remove. If your cooking is a long, unattended cook — a roast, a smoker, sous-vide — you want a monitoring system: probes stay in, the lid stays shut, and the app tells you when the number moves.</p>
+<p>That is the whole shape of the decision. Everything else is a detail of one of those two jobs.</p>
+
+<h2>2. What \"one second\" means</h2>
+<p>The ThermoMaven listing states a one-second read (seller's wording). We did not time it, and we are not going to quote a response time we did not measure. Treat any published response figure — including the manufacturer's — as a best case, the same way we treat preheat and heat-up claims elsewhere on this site.</p>
+
+<h2>3. Accuracy claims are stated, not verified</h2>
+<p>The ThermoMaven listing states ±0.5°F accuracy and describes the unit as NIST and NSF certified. Those are meaningful claims, and they are claims: we could not verify the certificates against a published certification record, so our register marks them as stated by the manufacturer, not verified. The CHEF iQ Sense listing states five sensors; same treatment — stated, not independently confirmed.</p>
+<p>If accuracy matters to you — candy, sous-vide, food safety — the checkable version is a calibration certificate or a tolerance you can test yourself (an ice bath reads 32°F). A logo on a listing page is not that.</p>
+
+<h2>4. The question nobody asks about connected appliances</h2>
+<p>The CHEF iQ Sense needs an app, a phone, a network, and a manufacturer that keeps the cloud service running. A probe with a screen needs a battery. The support horizon — how long the app will be updated, whether the device works without it — was not answered by the published listing, and we could not verify it from an official source. Marked unverified in our register rather than assumed.</p>
+<p>Ask directly before buying a connected kitchen device: how long will the app be supported, and does the device still work without it?</p>
+
+<h2>5. Would you use the second function this month?</h2>
+<p>Buy the appliance whose primary function you need; treat everything else as a bonus you may never open. If you will not monitor a long cook in the next thirty days, the wireless features are decoration — not a reason to avoid the product, but a reason not to pay a premium for them.</p>
+`,
+
+    takeaways: [
+      "Spot checks want an instant-read. Long unattended cooks want wireless monitoring.",
+      "Published response and accuracy figures are stated by the seller, not verified by us.",
+      "For connected devices, ask what happens when the app stops being supported."
+    ]
   }
 ];
 

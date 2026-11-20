@@ -60,6 +60,21 @@
       "checklist": ["Which functions you would use every week", "Whether an optional protection plan is offered, and its terms", "Warranty and return terms on the live listing", "Which accessories are included"],
       "source_ids": ["SRC-06", "SRC-07", "SRC-08"],
       "product_ids": ["P01", "P02", "P03"]
+    },
+    {
+      "slug": "instant-read-or-wireless",
+      "cluster": "meat-thermometers",
+      "title": "Instant-read or wireless: which meat thermometer fits your grill?",
+      "label": "Working title",
+      "dek": "One-second reads vs. leave-in probes with WiFi — pick by how you cook. What the register shows, and what it does not.",
+      "sections": [
+        {"heading": "Read type and speed", "body": "P04 (ThermoMaven 1 Sec) is an instant-read, handheld unit: about one second per read, no app, no pairing (seller's wording). P05 (CHEF iQ Sense Gen3) is a wireless leave-in system with three probes and app monitoring (seller's wording). Neither claim is tested here."},
+        {"heading": "Accuracy and connectivity", "body": "P04's listing states ±0.5°F accuracy with NIST certification; IP67 waterproof (seller's wording). P05's listing states five sensors and WiFi range; heat-safe to 1000°F (seller's wording). These are the sellers' claims — check them on the live listing before you rely on them."},
+        {"heading": "What this guide does not show", "body": "Cooking performance, alert reliability, app behavior, battery life and probe durability were not captured or tested. Those fields are blank in the register and are flagged."}
+      ],
+      "checklist": ["Decide how you will use it — spot checks (instant-read) or continuous monitoring (wireless)", "Compare listed accuracy and certification claims on the live listings", "Check probe count, heat limits and waterproof ratings against your cooking", "Consider whether app alerts are worth the higher price for you"],
+      "source_ids": ["SRC-09", "SRC-10"],
+      "product_ids": ["P04", "P05"]
     }
   ]
 }

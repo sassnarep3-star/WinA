@@ -302,6 +302,67 @@ Branch `arena/5a289bff-wina` was merged with `origin/main` at `f421d5c` on 2026-
 
 ---
 
+## Merge record — PR #12 (`arena/41096d21-wina`) — 2026-11-20 05:48:52Z
+
+**Merged.** Merge commit `53f8a98`. Both CI workflows green before merge:
+
+| Check | Result |
+|---|---|
+| `Build and verify` (our workflow) | **pass** (11s) |
+| `validate` (`build.yml`) | **pass** (12s) |
+| `Deploy to GitHub Pages` | skipped on PR, ran on `main` — **success** |
+
+Live verification after deploy, cache-busted (`?v=53f8a98`):
+
+- `/` serves the current homepage — disclosure strip above the fold, all five buy links tagged
+  `?tag=shopnow047c-20` and each labelled *Sponsored*.
+- `/register/` serves the current register: five short links, observed ASINs, intended ASIN
+  correctly blank, 60 spec rows with per-row source.
+- `/v2/` is **gone** — the duplicate edition this session had built was deleted before merge.
+  One site, one canonical host, no duplicate-content risk.
+
+### What this session changed, in one paragraph
+
+It found the site already built and extended it instead of replacing it. The one real defect it
+fixed: the authoring gate matched Amazon anchors only on `https://www.amazon.com`, so the five
+submitted `link.amazon` short links were invisible to it and rendered on `/flagged/`, `/questions/`,
+`/register/` and `/suggestions/` as bare `<a rel="noopener">` — neither sponsored nor declared,
+while the gate asserted that every Amazon anchor was one or the other. Those are live product
+pages, so FTC 16 CFR 255.5 applied and was not met. Fixed in `_src/build.mjs`, plus a second
+independently written gate (`scripts/check-site.mjs`) now runs in CI.
+
+### Still open for the owner
+
+Unchanged by this merge, and none of them blocks publication:
+
+1. **Q03 / FLG-003 — one live click test.** Click a sponsored link from a phone on cellular, then
+   check the Associates click report within 48 hours. This is the only remaining check that
+   requires a human and the only one that can confirm the tracking ID actually attributes.
+2. **FLG-024 — Special Link test per product** (blocked on Associates Central login).
+3. **FLG-011 — analytics host undecided**; collector shipped but not deployed.
+4. **FLG-025 — placeholder `google-site-verification` token** in the shared layout.
+5. **FLG-019 — intended-ASIN policy.** Two registers disagree on whether a resolved ASIN may be
+   promoted into the intent field. Owner's call.
+
+### Note for the next session
+
+Two stale PRs remain open against older branches (#2, #7). Both predate the current build and
+would resurrect superseded sites if merged. Do not merge them as-is; if their content is still
+wanted, port it into `data/` and rebuild.
+
+### Session arena-59299521-wina (this integration, 2026-11-20)
+
+- PR #7: https://github.com/sassnarep3-star/WinA/pull/7 (`arena/59299521-wina` → `main`). Created after resolving an add/add conflict with PR #6; merged into `main` as part of this integration commit, so PR #7's head is contained in `main`.
+- Archive: `archive/arena-59299521-wina/` holds this session's standalone build (publication front page, product register table, guides, campaign ledger, analytics, disclosures, suggestions, flagged-for-review, 404, sitemap/feed/robots, assets), moved unchanged with `git mv`-style rename records. Nothing from this session was discarded.
+- Verification cross-check (fetch tool, official Amazon listings, 2026-11-20): all five submitted short links were re-opened and the observed destinations match `data/products.json` exactly:
+  B04G1MEwY → B0CDY277D3, B02NbDxp3 → B09B7SB46R, B00hJ57DV → B08DKYBTPH, B0c8moW59 → B0DHZTCNR5, B0f3GKalj → B0DZFD6R9Z.
+  Observed ASIN / destination / title / date / source are recorded as observed fields only; intended ASIN remains blank and flagged (FLG-001/FLG-002) per the verification rule — nothing inferred. Prices observed at fetch time are not displayed (Program Policies §2(b)).
+- Irregularities: no new flags. Existing flags (FLG-001 to FLG-018 per their register; FLG-009 overlapping claim noted earlier) are published on `flagged/index.html` and `data/...` and do not block the merge.
+- Build: this integration is committed together with the output of `node _src/build.mjs` so CI's reproducibility check stays green (generated files committed, `git status --porcelain` clean).
+- Guide 05 added: "Instant-read or wireless: which meat thermometer fits your grill?" (`guides/instant-vs-wireless/`). Both thermometer products (B0DHZTCNR5, B0DZFD6R9Z) tagged `instant-vs-wireless` in `data/products.json` so the guide page renders tagged sponsored affiliate links via `productCard()`. Build gate PASSED: canonical present, all Amazon anchors `rel="sponsored"` + `data-affiliate` + `tag=shopnow047c-20`.
+
+---
+
 ## Session arena-a86cb9d0 (this session)
 
 - **2026-11-20 — claim.** Claimed T16 (gap closure). Took a stale-base view first: the branch it was given (`arena/a86cb9d0-wina`, base `df3e953`) predated `main` `f421d5c`. Its own parallel build was not a valid merge target, so it was retained in history and not served.
@@ -320,4 +381,4 @@ Branch `arena/5a289bff-wina` was merged with `origin/main` at `f421d5c` on 2026-
 - **Tried and reverted.** Marking the supplied `link.amazon` short links `rel="sponsored"` failed `scripts/check-site.mjs`, because a sponsored link must carry the Associates tag and the supplied short links carry none. They stay as declared non-affiliate citations. **Owner decision:** whether the untagged supplied links should be used at all (see FLG-024).
 - **Parallel generator on `main` (logged, not changed).** `scripts/build.mjs` writes `site/` for a "Countertop Report" site. `.github/workflows/pages.yml` does not run it, so it is not served. Its owner is unclear; the next integration session should retire it or document it.
 - **Gates on the final tree.** `node _src/build.mjs`: PASSED. `node scripts/check-site.mjs`: "repository gate passed — safe to publish".
-
+- **Sortable coverage (final).** Every data table on every served page is sortable. Two tables added after the rebase were also marked: the concept page table (`_src/build.mjs`) and the Special Link test register table on `/register/`. Checked: no unsortable table left in the served HTML.
