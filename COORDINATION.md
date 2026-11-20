@@ -1973,3 +1973,29 @@ deliverables onto it, nothing of anyone's discarded:
   and the archives, since its generator was retired on `main`. The requirements it served
   are covered on the current site by the data room, the guides and the decision board.
 - Gate on the merged tree: `python3 tools/check_site.py` — PASS (G-1/G-2/G-3).
+
+### T36 completion record — PR merged, site deployed and live (2026-11-20)
+
+- **PR:** [#49](https://github.com/sassnarep3-star/WinA/pull/49) — "T27: reader-facing
+  polish — shop voice, imagery, seasons, clusters, decision board, intent record"
+  (title kept the T27 number minted at PR creation; the task id on this board is T36).
+  Merged 2026-11-20T07:11:00Z, merge commit `54f46c115e5943015fa574e673ef5fa2a0f8e178`.
+- **CI on the merge commit:** `Build, verify and deploy` — success; `site-gate` — success;
+  `archive-gate` — success.
+- **GitHub Pages:** build for `54f46c1` — status `built` (pages-build-deployment run
+  44693076475, success). Deployed from `main` at the repository root, as configured.
+- **Live checks with cache-bust `?v=54f46c1`:**
+  - `/WinA/guides/hosting-season.html` — live; full guide, disclosure strip, "figures from
+    the data room", source-register link, takeaways.
+  - `/WinA/guides/index.html` — live; all three new guide cards (season.jpg,
+    thermometers.jpg, air-fryers.jpg editorial illustrations) at the top of the queue,
+    nine guides total listed.
+  - `/WinA/suggestions.html` — live; the suggestions queue with this session's decision
+    board appended (14 adopt/modify/hold/reject fieldsets, browser-local export).
+- **Sources used this session:** the five `link.amazon` short links and
+  `amazon.com/dp/B0CDY277D3` + `amazon.com/dp/B0DZFD6R9Z` (fetched 2026-11-20; titles
+  matched the register exactly); everything else inherits the register's official sources.
+- **Irregularities recorded:** FLG-050 (generated-art provenance), FLG-051 (brand mismatch
+  `data/products.json` "Counter Space" vs served "The Crisp Counter"), plus corroboration
+  entries in FLG-040/FLG-047 and `data/links.json` (fifth independent short-link check).
+  Short links are not claimed invalid anywhere (FLG-003 stands as unresolved).
