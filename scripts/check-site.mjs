@@ -307,7 +307,48 @@ if (!existsSync(join(ROOT, 'feed.xml'))) {
   }
 }
 
-/* ------------------------------------------------------------ reporting */
+/* --------------------------------------------------- display type on phones */
+/**
+ * A headline that only fits eight characters on a 390px screen is not a style
+ * choice, it is a defect: the hero is the one block every visitor reads first.
+ * Evaluate every clamp() font-size at phone width and fail if a display size
+ * would run past 42px, which is where a serif headline stops reading as prose.
+ *
+ * This caught a 49px hero headline that looked fine on a desktop render.
+ */
+{
+  const cssPath = join(ROOT, 'assets', 'css', 'site.css');
+  if (existsSync(cssPath)) {
+    const css = readFileSync(cssPath, 'utf8');
+    const PHONE = 390;
+    for (const m of css.matchAll(/\{([^}]*font-size:\s*clamp\(([\d.]+)rem,\s*([\d.]+)vw,\s*([\d.]+)rem\)[^}]*)\}/g)) {
+      const [, , lo, vw, hi] = m;
+      const px = Math.min(parseFloat(hi) * 17, Math.max(parseFloat(lo) * 17, (parseFloat(vw) / 100) * PHONE));
+      if (px > 42) {
+        fail(
+          'phone-type',
+          `a clamp() font-size resolves to ${px.toFixed(0)}px at ${PHONE}px wide: ${m[1].slice(0, 60).replace(/\s+/g, ' ')}`
+        );
+      }
+    }
+  }
+}
+
+/* --------------------------------------------------- raw markup in page text */
+/**
+ * A stray "<" in prose, an unclosed tag or a leaked template literal shows up as
+ * visible junk on the page. The build escapes all data, so anything that looks
+ * like markup in a text node is a real defect.
+ */
+for (const p of pages) {
+  const body = p.html.replace(/<script[\s\S]*?<\/script>/g, '').replace(/<style[\s\S]*?<\/style>/g, '');
+  const text = body.replace(/<[^>]+>/g, ' ');
+  for (const bad of ['${', 'undefined', '[object Object]', 'NaN']) {
+    if (text.includes(bad)) fail('page-text', `${p.file}: rendered text contains "${bad}"`);
+  }
+}
+
+/* --------------------------------------------------------------- reporting */
 
 const checks = [
   'disclosure',
@@ -323,6 +364,8 @@ const checks = [
   'sitemap',
   'robots',
   'feed',
+  'phone-type',
+  'page-text',
 ];
 
 console.log('\nRepository publish gate');

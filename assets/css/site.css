@@ -106,6 +106,11 @@ a:hover { color: var(--accent-deep); }
   position: relative;
   z-index: 20;
 }
+@media (max-width: 560px) {
+  .wrap { padding-inline: 1.1rem; }
+  .hero h1 { letter-spacing: -.018em; }
+  .site-foot__cols { grid-template-columns: 1fr 1fr; }
+}
 .masthead__inner {
   display: flex; align-items: center; justify-content: space-between;
   gap: 1.5rem; min-height: 74px; padding-block: .85rem;
@@ -188,7 +193,7 @@ a:hover { color: var(--accent-deep); }
 }
 .hero h1 {
   font-family: var(--serif); font-weight: 400;
-  font-size: clamp(2.9rem, 6.6vw, 5.1rem);
+  font-size: clamp(2.35rem, 7.4vw, 5.1rem);
   line-height: .98; letter-spacing: -.022em;
   margin: 0 0 1.15rem;
 }
@@ -409,7 +414,7 @@ a:hover { color: var(--accent-deep); }
 .article-head { padding-block: clamp(2rem, 4vw, 3rem) 1.5rem; border-bottom: 1px solid var(--rule); }
 .article-head__title {
   font-family: var(--serif); font-weight: 400;
-  font-size: clamp(2.3rem, 5.4vw, 3.9rem); line-height: 1.02;
+  font-size: clamp(1.95rem, 6.1vw, 3.9rem); line-height: 1.02;
   letter-spacing: -.02em; margin: .4rem 0 .9rem; max-width: 50rem;
 }
 .article-head__dek {
@@ -697,7 +702,12 @@ table.data.sortable th[aria-sort="descending"] .sort-btn::after { content: " \25
 }
 .brand__mark svg { width: 26px; height: 26px; display: block; }
 @media (max-width: 620px) {
-  .masthead__inner { flex-wrap: wrap; gap: .5rem 1rem; }
+  @media (max-width: 560px) {
+  .wrap { padding-inline: 1.1rem; }
+  .hero h1 { letter-spacing: -.018em; }
+  .site-foot__cols { grid-template-columns: 1fr 1fr; }
+}
+.masthead__inner { flex-wrap: wrap; gap: .5rem 1rem; }
   .nav { gap: .6rem .9rem; flex-wrap: wrap; }
   .nav a { font-size: .74rem; }
 }
@@ -712,7 +722,7 @@ table.data.sortable th[aria-sort="descending"] .sort-btn::after { content: " \25
 @media (min-width: 880px) { .feature__grid { grid-template-columns: .82fr 1.18fr; } }
 .feature__title {
   font-family: var(--serif); font-weight: 400;
-  font-size: clamp(1.95rem, 4vw, 3.1rem); line-height: 1.04;
+  font-size: clamp(1.72rem, 4.6vw, 3.1rem); line-height: 1.04;
   letter-spacing: -.018em; margin: 0 0 .8rem;
 }
 .feature__title a { color: var(--ink); text-decoration: none; }
