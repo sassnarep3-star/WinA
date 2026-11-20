@@ -112,7 +112,7 @@
       "id": "FLG-013",
       "severity": "action",
       "title": "Content volume is below the Associates review bar",
-      "detail": "Amazon's Associates Help, 'Application Review Process' (checked 2026-11-20, US help topic G8TW5AE9XL2VX9VM), says: \"All Sites must have robust original content (even when advertising is removed) – a good rule of thumb is at least 10 posts.\" It also says: \"Content on your website must be recent (generally within the last 60 days).\" This site has 5 guides and 5 product pages. Amazon does not say whether product and hub pages count as posts, but 5 guides is below the rule of thumb on any reading. The account's own status and review history are unknown from here. Carried forward from the parallel-session register (arena-2ca62ce9, FLG-010), which found this first. Re-checked 2026-11-20 by arena-f5d87e09-wina on the same help topic. The page also says the application is reviewed after sales: \"After you sign up, our Associates team will check your application once you've driven qualified sales (we require at least three within the first 180 days).\" So the review timing depends on qualified sales, not only on content; the action below is unchanged.",
+      "detail": "Amazon's Associates Help, 'Application Review Process' (checked 2026-11-20, US help topic G8TW5AE9XL2VX9VM), says: \"All Sites must have robust original content (even when advertising is removed) – a good rule of thumb is at least 10 posts.\" It also says: \"Content on your website must be recent (generally within the last 60 days).\" This site has 7 guides and 5 product pages. Amazon does not say whether product and hub pages count as posts, but 7 guides is below the rule of thumb on any reading. The account's own status and review history are unknown from here. Carried forward from the parallel-session register (arena-2ca62ce9, FLG-010), which found this first. Re-checked 2026-11-20 by arena-f5d87e09-wina on the same help topic. The page also says the application is reviewed after sales: \"After you sign up, our Associates team will check your application once you've driven qualified sales (we require at least three within the first 180 days).\" So the review timing depends on qualified sales, not only on content; the action below is unchanged.",
       "action": "Do not submit or re-submit for review until the site has at least 10 posts and content dated within the last 60 days. The weekly cadence in the suggestions register (SUG-05) is the proposed path. Recorded as a commercial blocker, not a content-quality one.",
       "sourceUrl": "https://affiliate-program.amazon.com/help/node/topic/G8TW5AE9XL2VX9VM",
       "sourceLabel": "Associates Help: Application Review Process (checked 2026-11-20)"
@@ -173,12 +173,12 @@
     },
     {
       "id": "FLG-020",
-      "severity": "withheld",
-      "title": "No seasonal content, because there is no seasonal demand data",
-      "detail": "The brief asked for seasons and topic clusters. No seasonal query data was obtained from any source, so no seasonal calendar was invented. The five guides are editorial working titles, not popularity claims. Carried forward from arena-2ca62ce9 (FLG-015).",
-      "action": "Clusters exist as two product categories. Seasons wait for Search Console query data — choosing December topics from instinct is the failure mode being avoided.",
-      "sourceUrl": "https://search.google.com/search-console",
-      "sourceLabel": "Search Console (not yet verified)"
+      "severity": "resolved",
+      "title": "Seasonal content shipped as calendar-driven, not demand-driven; a hold position is recorded alongside it",
+      "detail": "The brief asked for seasons and topic clusters, but no seasonal query data was ever obtained, so a seasonal calendar could not be invented. Carried forward from arena-2ca62ce9 (FLG-015). Updated 2026-11-20 by arena-27f76c22: a seasonal collection page (/seasonal/) and a holiday guide (/guides/holiday-batch/) now exist, chosen for the calendar and labelled on the page itself as calendar-driven. The disagreement about this choice is kept visible rather than resolved by one side: SUG-23 (arena-829ea2fd) recommends holding seasonal topics until demand is measured; SUG-25 (this session) records why the cluster shipped anyway — a direct publishing brief asked for seasonal coverage, and the limitation is disclosed on the page itself. The guides remain editorial working titles, not popularity claims.",
+      "action": "Resolved as shipped with its limitation disclosed and the opposing recommendation kept live. The open half is now Q-23: whether the seasonal cluster earns impressions will be known only from Search Console query data (SG-29, FLG-009). Owner decides at Q-25 whether the page earns its annual November refresh or is retired in favour of the hold position. If kept, re-check its linked specs on each refresh.",
+      "sourceUrl": "https://sassnarep3-star.github.io/WinA/seasonal/",
+      "sourceLabel": "The seasonal collection (calendar-driven selection disclosed on-page)"
     },
     {
       "id": "FLG-021",
@@ -344,12 +344,12 @@
     },
     {
       "id": "FLG-033",
-      "severity": "resolved",
-      "title": "ASIN definition confirmed on an Amazon-owned page; it supports a format check only",
-      "detail": "Amazon's own 'Sell on Amazon' site (sell.amazon.com, 'Understanding ASINs', dated 4 June 2025, fetched 2026-11-20) defines an ASIN as \"a unique 10-character alphanumeric code assigned to every product listed in the Amazon store\" and says the format \"typically starts with 'B0'\". That is the definition this site uses. It supports one check: each observed ASIN is 10 characters, A-Z and 0-9, and each observed destination ends in /dp/<ASIN> (data/links.json). It does not show which product a submitted short link was intended to reach, so the intended-ASIN field stays blank. Earlier sessions found only a Seller Central forum thread (not cited as Amazon's definition); this page replaces that source.",
-      "action": "Resolved as to the definition. Whether the intended-ASIN field may be filled from a submitted link is still the owner's decision (FLG-019).",
+      "severity": "review",
+      "title": "ASIN definition confirmed on an Amazon-owned page; that page says it was AI-assisted",
+      "detail": "The brief gives 'Amazon's ASIN definition' as the reason the intended-ASIN field is checkable. Earlier searches on 2026-11-20 found only a Seller Central forum thread, which is not cited. A later search found Amazon's own 'Sell on Amazon' page, Understanding ASINs (sell.amazon.com, dated 4 June 2025; source id amazon-asin-definition in data/policy.json). Both chunks were read on 2026-11-20. It defines an ASIN as \"a unique 10-character alphanumeric code assigned to every product listed in the Amazon store\", says the format \"typically starts with 'B0'\", and says the ASIN appears after '/dp/' in the product URL. It supports one check only: each observed ASIN is 10 characters, A-Z and 0-9, and each observed destination ends in /dp/<ASIN> (data/links.json). It does not show which product a submitted short link was intended to reach, so the intended-ASIN field stays blank. Two caveats keep this at review: the page is seller-education material, not an Amazon Help article or Associates policy; and the page itself says it 'was produced with the assistance of generative artificial intelligence (gen AI)'. Kept at review rather than resolved for that reason, so the owner can accept it or supply a human-written Amazon Help page.",
+      "action": "Owner: accept this AI-assisted Amazon page as the definition source, or find an Amazon Help page for it. Whether the intended-ASIN field may be filled from a submitted link is still the owner's decision (FLG-019), and it must not be filled from the observed destination.",
       "sourceUrl": "https://sell.amazon.com/blog/what-is-an-asin",
-      "sourceLabel": "Sell on Amazon (Amazon-owned): 'Understanding ASINs', 4 Jun 2025 — checked 2026-11-20"
+      "sourceLabel": "Sell on Amazon (Amazon-owned): 'Understanding ASINs', 4 Jun 2025 — checked 2026-11-20; AI-assisted per page"
     },
     {
       "id": "FLG-036",
@@ -386,6 +386,24 @@
       "action": "Owner or next session: add the manufacturer product page URL per product to specSources and fill wattage, dimensions and warranty from it, one row at a time with its own source. Do not fill from memory or from a marketplace reseller page.",
       "sourceUrl": "https://www.amazon.com/dp/B09B7SB46R",
       "sourceLabel": "Amazon listing for the Emeril 26QT (wattage and warranty not stated there)"
+    },
+    {
+      "id": "FLG-040",
+      "severity": "review",
+      "title": "All five short links returned different redirect targets across the three checks recorded for them",
+      "detail": "data/links.json now keeps every observed landing for each submitted link in its own dated list, separate from the intended ASIN. For each of the five links the recorded checks are: the first resolution (as recorded, not reproducible from this file), the T26 re-check of 2026-11-20 (arena/119f4dc6-wina), and the T29 re-check of 2026-11-20 (arena/6b0f2ddc-wina). In every case the three results are not all the same. The T27 fetch returned the amazon.com homepage for B04G1MEwY, B02NbDxp3, B00hJ57DV and B0c8moW59, and a product page for B0f3GKalj. Compared with the T26 re-check, B02NbDxp3 and B00hJ57DV moved from product page to homepage, and B0f3GKalj moved from homepage to product page. The official listing pages for all five ASINs were re-fetched on the same date, and each title matches data/links.json. So the product identity is not in doubt. The short-link landing is not stable across checks, and no check so far explains why. A fourth check on the same date, by arena-f5d87e09-wina, is recorded in data/links.json under verificationLog. It returned the same pattern: four short links to the amazon.com homepage and B0f3GKalj to its product page. Two independent sessions therefore agree on the same-day split. Extends FLG-036, which records the same split for three of the five links.",
+      "action": "Owner: open each of the five short links in a normal browser, logged out, on at least two days, and record each landing URL in data/links.json as a new dated entry. Do not treat any single recorded landing as the link's destination.",
+      "sourceUrl": "https://link.amazon/B04G1MEwY",
+      "sourceLabel": "Submitted short links (fetched 2026-11-20; see data/links.json observedRedirectTargets)"
+    },
+    {
+      "id": "FLG-041",
+      "severity": "review",
+      "title": "The CHEF iQ specification source is a family page whose default variant is not the promoted SKU",
+      "detail": "The chefiq.com page used as the specification source (chefiq.com/products/iq-sense, re-checked 2026-11-20) shows model CQ60-1C-Z1-E, which is the one-probe variant of the Sense line; the store sells one- to four-probe configurations. The promoted Amazon listing (B0DZFD6R9Z) is the three-probe Gen3. The cited spec values — Wi-Fi and Bluetooth connectivity, 4 internal + 1 ambient sensors, 1,000°F heat rating, air-fryer compatibility — are stated on the manufacturer page for the Sense line and match the listing's own claims, so no specification changed. But the source page, as loaded, does not pin the three-probe variant, and the product page carries modelNumber CQ60-1C-Z1-E. Found during the 2026-11-20 re-verification pass by arena-27f76c22 (renumbered three times on merge: main took FLG-034, FLG-038 and FLG-040 while this branch was in flight).",
+      "action": "Left as observed: no value was invented to resolve it. To close it, pick the exact variant URL on chefiq.com for the three-probe model and update specSources — an owner or a later session with the variant URL can do this. No page claim depends on the variant count beyond the listing itself, which already states three probes.",
+      "sourceUrl": "https://chefiq.com/products/iq-sense",
+      "sourceLabel": "CHEF iQ Sense family page (variant selector observed 2026-11-20)"
     }
   ],
   "ledger": {

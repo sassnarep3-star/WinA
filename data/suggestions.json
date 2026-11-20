@@ -1,5 +1,5 @@
 {
-  "intro": "A decision list, not a wish list. Each suggestion states what to do, why, what it costs, and what would make it a bad idea. Nothing here has been implemented beyond what is already live; the ones marked shipped were built in this pass because the brief asked for them directly. Everything else waits for a decision.",
+  "intro": "A decision list, not a wish list. Each suggestion states what to do, why, what it costs, and what would make it a bad idea. Nothing here has been implemented beyond what is already live; the ones marked shipped were built in this pass because the brief asked for them directly. Everything else waits for a decision. The 2026-11-20 editorial pass (arena-27f76c22) added SUG-25 to SUG-29 and shipped SUG-25; SUG-25 and SUG-23 deliberately record opposite positions on seasonal content so the owner can choose with both arguments visible.",
   "statusKey": [
     {
       "id": "shipped",
@@ -243,7 +243,12 @@
       "cost": "One document. The draft is on this page and can be adopted as-is or edited.",
       "risk": "A brief that is too rigid produces sameness. It is a starting point, not a cage.",
       "decide": "Accept. The design brief below is the draft to start from; edit it before implementing.",
-      "links": [{ "label": "Google Search Central — helpful content", "url": "https://developers.google.com/search/docs/fundamentals/creating-helpful-content" }]
+      "links": [
+        {
+          "label": "Google Search Central — helpful content",
+          "url": "https://developers.google.com/search/docs/fundamentals/creating-helpful-content"
+        }
+      ]
     },
     {
       "id": "SUG-18",
@@ -276,7 +281,12 @@
       "cost": "Editorial discipline. Add a banned-phrase list to the editorial standards so the gate can enforce it.",
       "risk": "None. It is the same constraint as SUG-01, applied to wording as well as claims.",
       "decide": "Accept. Add the banned-phrase list to the About page and a build check.",
-      "links": [{ "label": "Google Search Central — helpful content", "url": "https://developers.google.com/search/docs/fundamentals/creating-helpful-content" }]
+      "links": [
+        {
+          "label": "Google Search Central — helpful content",
+          "url": "https://developers.google.com/search/docs/fundamentals/creating-helpful-content"
+        }
+      ]
     },
     {
       "id": "SUG-21",
@@ -287,7 +297,12 @@
       "cost": "A substantive guide each week, with its own verified spec pass.",
       "risk": "Volume without quality control produces the thin content the brief rejects. The build gate stays on.",
       "decide": "Accept the topic roadmap below as the first batch of hypotheses, then let measured demand reorder it.",
-      "links": [{ "label": "Google Search Central — helpful content", "url": "https://developers.google.com/search/docs/fundamentals/creating-helpful-content" }]
+      "links": [
+        {
+          "label": "Google Search Central — helpful content",
+          "url": "https://developers.google.com/search/docs/fundamentals/creating-helpful-content"
+        }
+      ]
     },
     {
       "id": "SUG-22",
@@ -309,7 +324,12 @@
       "cost": "Zero.",
       "risk": "Misses timely traffic in the meantime.",
       "decide": "Hold until Search Console has 2–4 weeks of query data (FLG-009, FLG-020).",
-      "links": [{ "label": "Google Search Console", "url": "https://search.google.com/search-console" }]
+      "links": [
+        {
+          "label": "Google Search Console",
+          "url": "https://search.google.com/search-console"
+        }
+      ]
     },
     {
       "id": "SUG-24",
@@ -320,6 +340,71 @@
       "cost": "A small table on this page, populated by hand.",
       "risk": "None. It only records decisions already being made.",
       "decide": "Accept. The decision log schema below is the record; entries are added as decisions are made.",
+      "links": []
+    },
+    {
+      "id": "SUG-25",
+      "title": "Ship the seasonal cluster now, and refresh it every November — the position opposite SUG-23",
+      "status": "shipped",
+      "weight": 8,
+      "why": "Seasonal intent is the one demand pattern that does not need a query report to justify: holiday cooking questions arrive every November whether or not we can measure them yet. A shipped seasonal page compounds — it can be re-checked, re-linked, and re-published each year instead of rebuilt. This row was built and shipped under a direct publishing brief; SUG-23 (from the same parallel pass) recommends holding until demand is measured, and both rows are kept so the owner decides rather than either session silently winning.",
+      "cost": "A collection page, a holiday guide, two generated brand images, and a navigation label. Built in this pass.",
+      "risk": "SUG-23 is right that a calendar-driven topic may miss the queries people actually type: no Search Console data exists yet, and the limitation is disclosed on the page itself (FLG-020, Q-23). The risk of shipping was reading as speculative; the mitigation was disclosure, not silence.",
+      "decide": "Shipped this pass. Owner decides at Q-25: adopt the annual November refresh (re-check every linked spec against its source each time), or retire the page in favour of SUG-23\\u2019s hold position once real query data exists. Whichever loses is recorded, not deleted.",
+      "links": [
+        {
+          "label": "Seasonal collection",
+          "url": "https://sassnarep3-star.github.io/WinA/seasonal/"
+        }
+      ]
+    },
+    {
+      "id": "SUG-26",
+      "title": "Grow the technique cluster by one article a month — jobs, not verdicts",
+      "status": "recommend",
+      "weight": 8,
+      "why": "Technique questions (what to reheat, what to batch, what belongs on the counter) are evergreen, answerable from published specifications, and never require claiming a hands-on test. They are also the cheapest way to close the Associates 10-post bar (FLG-013): this pass added the technique and holiday guides, leaving roughly three additional substantive posts to reach ten on any reading.",
+      "cost": "A guide per month plus its verification pass — the same cost as the weekly cadence in SUG-05 and SUG-21, at a slower, sustainable rate.",
+      "risk": "Seven guides already cover form factor, capacity, cleanup, multi-function, thermometers, technique, and holidays. A new article must be a new job (reheating, defrost-and-crisp, batch-prep) or it will restate the same trade-offs and read as filler — the exact failure the brief rejects.",
+      "decide": "Recommend. Start next month if the weekly cadence (SUG-05, SUG-21) is not adopted; if it is, slot technique articles into the same calendar. Each new guide enters the sitemap and feed in the same commit, per the standing rule.",
+      "links": []
+    },
+    {
+      "id": "SUG-27",
+      "title": "Expand the brand imagery: one generated counter scene per collection",
+      "status": "consider",
+      "weight": 5,
+      "why": "The two shipped images cover the seasonal cluster and the guides imagery. A consistent illustration per category (air fryers, thermometers, compare) would make the site read as a publication from any entry page, which is SUG-17\\u2019s design-brief requirement made visual.",
+      "cost": "Four generated images and one CSS addition. No ongoing cost.",
+      "risk": "None to compliance as long as the images never depict products, brands, or any appliance that could be mistaken for a listed unit (FLG-007), and each use is labelled on-page. The risk is aesthetic: too many scenes can read as stock.",
+      "decide": "Consider after the seasonal deploy settles. Owner position on generated imagery is Q-26; decide per image, not as a batch, and keep the same warm editorial grade so the set reads as one publication.",
+      "links": [
+        {
+          "label": "Imagery constraint (FLG-007)",
+          "url": "https://sassnarep3-star.github.io/WinA/flagged/"
+        }
+      ]
+    },
+    {
+      "id": "SUG-28",
+      "title": "Buy traffic before conversion measurement exists",
+      "status": "hold",
+      "weight": 9,
+      "why": "Paid acquisition is reasonable only once two things are true: the collector is deployed (FLG-011) so clicks per source are countable, and the Associates tracking report confirms attribution (FLG-004). Neither is true today. Spending before measurement means paying for clicks nobody can trace to an order.",
+      "cost": "Budget, plus the two blockers above.",
+      "risk": "The failure mode is not overspend — it is confidence: unmeasured paid traffic looks identical to organic growth in every report the site currently has.",
+      "decide": "Hold until FLG-011 and FLG-004 close. Re-evaluate in the week after the first Associates report arrives.",
+      "links": []
+    },
+    {
+      "id": "SUG-29",
+      "title": "A dedicated head-to-head thermometer page — only when measurement justifies it",
+      "status": "consider",
+      "weight": 6,
+      "why": "The instant-vs-wireless guide covers the decision narratively. A dedicated side-by-side page would target a different reader — the one who has already decided to compare — and the comparison table already carries the verified spec rows to build it from.",
+      "cost": "One page from existing verified data; no new claims required.",
+      "risk": "It adds another URL competing with the existing guide and compare page for the same intent. Without query data, choosing this topic is instinct — the failure mode SUG-21\\u2019s cadence exists to replace.",
+      "decide": "Consider, gated on measurement: build it only if the query report (Q-24) shows thermometer-comparison impressions. Until then the guide and the table cover the intent.",
       "links": []
     }
   ],
@@ -364,7 +449,10 @@
         "principle": "Keep the disclosure strip and sponsored labels exactly where policy requires, and design around them rather than treating them as an afterthought.",
         "why": "Disclosure placement is a compliance requirement, not a style choice.",
         "constraint": "FTC Disclosures 101 (hard to miss); Associates Operating Agreement §5.",
-        "source": { "label": "FTC Disclosures 101", "url": "https://www.ftc.gov/business-guidance/resources/disclosures-101-social-media-influencers" }
+        "source": {
+          "label": "FTC Disclosures 101",
+          "url": "https://www.ftc.gov/business-guidance/resources/disclosures-101-social-media-influencers"
+        }
       },
       {
         "id": "DB-06",
@@ -372,7 +460,10 @@
         "principle": "Write in a concrete, human, opinionated voice using specifics and named trade-offs. Ban filler phrases and generic marketing boilerplate.",
         "why": "Specificity reads human and is what helpful-content guidance rewards; filler is the other main slop tell.",
         "constraint": "FTC: no experience you do not have. The Associate statement stays verbatim.",
-        "source": { "label": "Google Search Central — Creating Helpful Content", "url": "https://developers.google.com/search/docs/fundamentals/creating-helpful-content" }
+        "source": {
+          "label": "Google Search Central — Creating Helpful Content",
+          "url": "https://developers.google.com/search/docs/fundamentals/creating-helpful-content"
+        }
       },
       {
         "id": "DB-07",
@@ -380,7 +471,10 @@
         "principle": "Until compliant product imagery is available, keep the site typographic: color, type and a defined illustration or pattern system carry the design. Do not hot-link, store, or substitute Amazon imagery, and do not use stock photos of a different appliance.",
         "why": "Unlicensed or misrepresenting imagery would violate program policy and mislead the reader. A confident typographic system can look polished without photos.",
         "constraint": "Participation Requirements §6(a); IP License. See FLG-007.",
-        "source": { "label": "Amazon Associates Program Policies", "url": "https://affiliate-program.amazon.com/help/operating/policies" }
+        "source": {
+          "label": "Amazon Associates Program Policies",
+          "url": "https://affiliate-program.amazon.com/help/operating/policies"
+        }
       },
       {
         "id": "DB-08",
@@ -388,7 +482,10 @@
         "principle": "Make the sponsored status of every outbound product link visible at the link, and keep the Associate statement above the fold on every page.",
         "why": "Reader trust and FTC disclosure both require the material connection to be visible where the endorsement happens.",
         "constraint": "FTC 16 CFR 255.5; Associates OA §5; Program Policies.",
-        "source": { "label": "FTC Disclosures 101", "url": "https://www.ftc.gov/business-guidance/resources/disclosures-101-social-media-influencers" }
+        "source": {
+          "label": "FTC Disclosures 101",
+          "url": "https://www.ftc.gov/business-guidance/resources/disclosures-101-social-media-influencers"
+        }
       }
     ]
   },
@@ -398,22 +495,57 @@
       {
         "id": "AF",
         "name": "Air fryers",
-        "products": ["chefman-6-quart-dual-basket", "chefman-8-quart-turbofry", "emeril-lagasse-26qt-french-door"],
+        "products": [
+          "chefman-6-quart-dual-basket",
+          "chefman-8-quart-turbofry",
+          "emeril-lagasse-26qt-french-door"
+        ],
         "topics": [
-          { "title": "The two-basket air fryer: when cooking two things at once is actually worth it", "intent": "Form-factor decision", "status": "hypothesis" },
-          { "title": "Air fryer vs. toaster oven: which one actually saves your counter?", "intent": "Category decision", "status": "hypothesis" },
-          { "title": "How many quarts do you really need? A rule of thumb for one- and two-person kitchens", "intent": "Capacity decision", "status": "hypothesis" },
-          { "title": "What 'Hi-Fry' actually means — and when the extra heat is worth it", "intent": "Feature decision", "status": "hypothesis" }
+          {
+            "title": "The two-basket air fryer: when cooking two things at once is actually worth it",
+            "intent": "Form-factor decision",
+            "status": "hypothesis"
+          },
+          {
+            "title": "Air fryer vs. toaster oven: which one actually saves your counter?",
+            "intent": "Category decision",
+            "status": "hypothesis"
+          },
+          {
+            "title": "How many quarts do you really need? A rule of thumb for one- and two-person kitchens",
+            "intent": "Capacity decision",
+            "status": "hypothesis"
+          },
+          {
+            "title": "What 'Hi-Fry' actually means — and when the extra heat is worth it",
+            "intent": "Feature decision",
+            "status": "hypothesis"
+          }
         ]
       },
       {
         "id": "TH",
         "name": "Thermometers",
-        "products": ["thermomaven-1-sec-thermometer", "chef-iq-sense-gen3"],
+        "products": [
+          "thermomaven-1-sec-thermometer",
+          "chef-iq-sense-gen3"
+        ],
         "topics": [
-          { "title": "The one number that decides a roast: why your thermometer matters more than your recipe", "intent": "Why-it-matters", "status": "hypothesis" },
-          { "title": "Probe vs. instant-read: matching the tool to the cook", "intent": "Tool-match decision", "status": "hypothesis" },
-          { "title": "Wireless meat thermometer: what to check before you rely on it for a long cook", "intent": "Reliability decision", "status": "hypothesis" }
+          {
+            "title": "The one number that decides a roast: why your thermometer matters more than your recipe",
+            "intent": "Why-it-matters",
+            "status": "hypothesis"
+          },
+          {
+            "title": "Probe vs. instant-read: matching the tool to the cook",
+            "intent": "Tool-match decision",
+            "status": "hypothesis"
+          },
+          {
+            "title": "Wireless meat thermometer: what to check before you rely on it for a long cook",
+            "intent": "Reliability decision",
+            "status": "hypothesis"
+          }
         ]
       },
       {
@@ -421,9 +553,21 @@
         "name": "Cross-category evergreen",
         "products": [],
         "topics": [
-          { "title": "The 5-question checklist before buying any small kitchen appliance", "intent": "General buying framework", "status": "hypothesis" },
-          { "title": "Small-appliance buying mistakes that cost you counter space", "intent": "Mistake avoidance", "status": "hypothesis" },
-          { "title": "How to read a spec sheet without getting sold", "intent": "Literacy framework", "status": "hypothesis" }
+          {
+            "title": "The 5-question checklist before buying any small kitchen appliance",
+            "intent": "General buying framework",
+            "status": "hypothesis"
+          },
+          {
+            "title": "Small-appliance buying mistakes that cost you counter space",
+            "intent": "Mistake avoidance",
+            "status": "hypothesis"
+          },
+          {
+            "title": "How to read a spec sheet without getting sold",
+            "intent": "Literacy framework",
+            "status": "hypothesis"
+          }
         ]
       }
     ]
