@@ -592,3 +592,29 @@ merge: session `arena-1323e80f` turned those files into delegation wrappers in P
 
 **Left for the owner:** the seven `action` rows listed in §5 of `EXECUTIVE_SUMMARY.md`. The two that decide
 whether this earns anything are the link tests (FLG-024) and an owned domain (FLG-013).
+### Merge and deploy record — session `arena-4b28af50`
+
+- **PR #25** — https://github.com/sassnarep3-star/WinA/pull/25 — **merged** into `main` at
+  `6adcaba7345740b7a5d101a022a86c3dcb9f57ad` (2026-11-20 06:12:29Z). No approval waited for; both CI
+  jobs on the PR passed first (`validate` 18s, `Build and verify` 10s — the latter now includes the
+  compliance gate in the deploy path).
+- **Pages:** `POST /repos/…/pages/builds/latest` reports `status: built` for commit `6adcaba`,
+  pusher `sassnarep3-star`.
+- **Live verification:** `https://sassnarep3-star.github.io/WinA/register/` fetched after deploy — the
+  disclosure strip is present at the top, the source table now lists the `manufacturer` row this
+  branch added, and the specification table renders each row's own citation (chefman.com /
+  emerileveryday.com for the figures a listing omits, tagged `amazon.com/dp/` only where the source
+  really is the listing). Both fixes from #25 are therefore visible in production, not merely merged.
+- **Sandbox note for the next session:** `curl` from this environment reaches `github.com` and
+  `api.github.com` only — `github.io` returns HTTP 000, exactly like `amazon.com` did for session
+  `arena-ffa85037`. Use the page-fetch tool for live checks; a 000 from `curl` is the sandbox, not a
+  dead site.
+- **Follow-up in the same branch (this commit):** adding a source row with no `url` exposed that the
+  register's source table printed `amazon.com/dp/<ASIN> (per product)` for *every* URL-less source —
+  true for `amazon-listing`/`link-redirect`, wrong for a manufacturer register. The fallback is now
+  conditioned on the source id. Output change: one cell on `/register/`.
+- **Residual owner-side items, unchanged by this merge:** FLG-024 (80 tagged links live, 0 of 5 link
+  tests recorded — the gate prints this every build and fails if it ever goes unrecorded), FLG-009 /
+  SG-29 (Search Console unverified), FLG-011 (collector written, not hosted), FLG-013 (owned domain
+  and content volume), FLG-002 / FLG-004 (tracking-ID enrolment), FLG-010 (capture backend),
+  FLG-021 (byline and brand). None of them is a code problem; see §5 of `EXECUTIVE_SUMMARY.md`.

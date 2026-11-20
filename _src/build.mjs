@@ -975,7 +975,13 @@ function registerPage() {
     <td>${esc(s.label)}</td>
     <td>${esc(s.note)}</td>
     <td>${esc(s.accessed)}</td>
-    <td>${s.url ? cite(s.url, "Open") : 'amazon.com/dp/<em>ASIN</em> <span class="faint">(per product)</span>'}</td>
+    <td>${
+      s.url
+        ? cite(s.url, "Open")
+        : s.id === "amazon-listing" || s.id === "link-redirect"
+        ? 'amazon.com/dp/<em>ASIN</em> <span class="faint">(per product)</span>'
+        : `<span class="faint">per row — each citation links its own page</span>`
+    }</td>
   </tr>`
     )
     .join("");
