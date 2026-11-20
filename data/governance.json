@@ -238,28 +238,28 @@
       "id": "FLG-027",
       "severity": "review",
       "title": "The 8-quart Chefman's 450°F was presented as its maximum temperature",
-      "detail": "The listing title says '450°F Hi-Fry Option'; the manufacturer states Hi-Fry 'raises the heat to 450°F for the last two minutes', against a normal range topping out at 400°F. This site had recorded 'Max temperature: 450°F (Hi-Fry)' and a guide called it 'the top of the range in this set'. That overstates a two-minute browning finish as a continuous capability.",
-      "action": "Corrected. The row now reads '400°F standard range; 450°F Hi-Fry for the final 2 minutes of a cycle', and the basket-vs-oven guide describes it the same way.",
+      "detail": "The listing title says '450°F Hi-Fry Option'; the manufacturer states Hi-Fry 'raises the heat to 450°F for the last two minutes', against a normal range topping out at 400°F. This site had recorded 'Max temperature: 450°F (Hi-Fry)' and a guide called it 'the top of the range in this set'. That overstates a two-minute browning finish as a continuous capability. Re-read 2026-11-20 (arena/b37e1a98-wina): the 'final two minutes' duration is published only on chefman.com's page for RJ38-8T-BLACK, a 1700 W SKU whose wattage contradicts this ASIN's own listing (1000 W, RJ38-SQSS-8T), so that duration is not a fact about this ASIN.",
+      "action": "Corrected. The row now reads '400°F standard range; 450°F Hi-Fry for the final 2 minutes of a cycle', and the basket-vs-oven guide describes it the same way. Second correction 2026-11-20: the row no longer states a duration and reads '200-400 °F normal range, with a 450 °F Hi-Fry option (the listing does not say how long Hi-Fry runs)', citing this listing only. See FLG-045.",
       "sourceUrl": "https://chefman.com/products/turbofry-8-qt-air-fryer-w-high-fry",
       "sourceLabel": "Chefman product page, Hi-Fry description"
     },
     {
       "id": "FLG-028",
-      "severity": "review",
-      "title": "Chefman's 8-quart family has at least five SKUs and the listing names none of them",
-      "detail": "chefman.com publishes RJ38-8T-BLACK (matte black) for the 8-qt Hi-Fry machine; retailer records for this ASIN give RJ38-SQSS-8T and a stainless-steel body of 12.75 x 13.5 x 10 in at 12.8 lb. The two disagree on colour and model, so no dimension, weight or wattage from either page can be attached to this listing.",
-      "action": "Left blank rather than guessed, and recorded on the product page. The figures are not in dispute; which SKU this listing ships is.",
-      "sourceUrl": "https://chefman.com/products/turbofry-8-qt-air-fryer-w-high-fry",
-      "sourceLabel": "Chefman 8 Qt Hi-Fry page (RJ38-8T-BLACK) vs the Amazon listing"
+      "severity": "resolved",
+      "title": "The 8-quart Chefman's SKU was unresolved; the listing names it in its own bullet points",
+      "detail": "chefman.com publishes RJ38-8T-BLACK (matte black, 1700 W/120 V, 8 qt/7.57 L) for its 8-qt Hi-Fry machine, and earlier sessions could not tell whether that was the SKU behind this ASIN, so dimensions, weight and wattage were left blank. Re-read 2026-11-20: the closing line of this listing's own bullet points states '1000 Watts/120 Volts - RJ38-SQSS-8T', and its product-information table gives 12.75\"D x 13.5\"W x 10\"H, stainless steel, 8 quarts, 200-400°F. These are different SKUs and the listing identifies its own, so the values are now recorded from the listing and none is taken from chefman.com.",
+      "action": "Resolved. data/products.json records modelNumber RJ38-SQSS-8T and fills wattage, dimensions and warranty from this listing. Recorded here so a later session does not 'correct' the wattage to chefman.com's 1700 W for a different SKU.",
+      "sourceUrl": "https://www.amazon.com/dp/B08DKYBTPH",
+      "sourceLabel": "Amazon listing bullet points and product-information table"
     },
     {
       "id": "FLG-029",
-      "severity": "review",
-      "title": "Emeril's own page contradicts the Amazon listing on preset count",
-      "detail": "emerileveryday.com states '25 Cooking Pre-sets' in its specification block and '10-in-1' in the product description; the Amazon listing states 24 one-touch presets. Three different numbers for one feature.",
-      "action": "Recorded as 24 (the listing) with the manufacturer figure noted. Neither is published as settled. Unchanged from FLG-005's finding, now with the third number and its URL.",
-      "sourceUrl": "https://www.emerileveryday.com/products/emeril_lagasse_french_door_airfryer_360",
-      "sourceLabel": "Emeril Everyday specification block"
+      "severity": "resolved",
+      "title": "Emeril's page contradicted the listing on preset count; the owner's manual settles it at 24",
+      "detail": "emerileveryday.com states '25 Cooking Pre-sets' in its specification badge, '24 one-touch cooking presets' in its own product description, and '10-in-1' as a headline feature; the Amazon listing states 24. On 2026-11-20 the owner's manual linked from that same page (FAFO-001) was read: its 'RECOMMENDED ACCESSORY POSITIONS' table lists exactly 24 presets, one row each - Airfry, Fries, Bacon, Grill, Eggs, Fish, Ribs, Defrost, Steak, Vegetables, Wings, Bake, Rotisserie, Toast, Chicken, Pizza, Pastry, Proof, Broil, Slow Cook, Roast, Dehydrate, Reheat, Warm. Counting them row by row gives 24, agreeing with the listing and with the manufacturer's own description.",
+      "action": "Resolved as 24, now cited to the manual rather than to the badge, with all 24 names listed in a second row so the number can be checked instead of trusted. The '10-in-1' figure is a marketing grouping, not a preset count.",
+      "sourceUrl": "https://cdn.shopify.com/s/files/1/0687/4388/8948/files/FAFO-001_VN_32451_EF_IB_T22-5004282-C_1.pdf?v=1777990358",
+      "sourceLabel": "Emeril Lagasse French Door AirFryer 360 owner's manual, accessory-position table"
     },
     {
       "id": "FLG-034",
@@ -274,7 +274,7 @@
       "id": "FLG-035",
       "severity": "review",
       "title": "Topic roadmap titles are editorial hypotheses with no measured demand",
-      "detail": "Counted from data/products.json on 2026-11-20 with a script over the published rows: 32 of 60 spec rows carry a verified value. Per product, verified of total: Chefman 6-Quart Dual Basket 8/12; Emeril 26QT French Door 6/11; Chefman 8-Quart TurboFry 5/12; ThermoMaven 1-Second 7/12; CHEF iQ Sense Gen3 6/13. (An earlier draft of this flag carried counts that did not match the file; they were recomputed and replaced before publication.) The Emeril has no confirmed wattage or warranty; the Chefman 8-Quart has no confirmed wattage, dimensions or warranty. Those are the fields a buyer most often needs — will it fit, will it trip the outlet, what happens if it fails — and they are blank because the listing did not state them and no manufacturer page was cited for them.",
+      "detail": "The topic roadmap on /suggestions/ proposes question-shaped titles by cluster. Every one is an editorial hypothesis: no search-volume source, keyword tool or referral data was available for this project, so none is a claim about demand, ranking difficulty or product superiority. This row's detail previously carried, by copy error, the spec-coverage counts belonging to FLG-039; corrected 2026-11-20, and those counts now live only on FLG-039.",
       "action": "Accept the roadmap as the first draft of hypotheses only. Which topics earn traffic is decided by Search Console query data after verification (FLG-009), not by instinct. Recorded so the hypotheses are not read as claims.",
       "sourceUrl": "https://search.google.com/search-console",
       "sourceLabel": "Google Search Console Queries report (not yet verified)"
@@ -381,9 +381,9 @@
     {
       "id": "FLG-039",
       "severity": "review",
-      "title": "Spec coverage is uneven, and two products carry no warranty or dimensions at all",
-      "detail": "Counted from data/products.json on 2026-11-20 by script over the published rows: 32 of 60 spec rows carry a verified value. Per product, verified of total: Chefman 6-Quart Dual Basket 8/12; Emeril 26QT French Door 6/11; Chefman 8-Quart TurboFry 5/12; ThermoMaven 1-Second 7/12; CHEF iQ Sense Gen3 6/13. The Emeril has no confirmed wattage or warranty; the Chefman 8-Quart has no confirmed wattage, dimensions or warranty. Those are the fields a buyer most often needs — will it fit, will it trip the outlet, what happens if it fails — and they are blank because the listing did not state them and no manufacturer page was cited for them. (Originally drafted as FLG-038 and moved when that id was taken in a parallel claim.) Partially resolved 2026-11-20 (T30): four rows filled from official manufacturer pages, each with its own citation — Emeril Warranty 1 year (emerileveryday.com); CHEF iQ App requirement, Battery life 70 h, Warranty 2 years (chefiq.com + official user guide). Coverage rose 32/60 to 36/60. Remaining open: Emeril Wattage — the official page publishes 120 V product voltage but not wattage, so wattage stays unverified; Chefman 8-Quart Wattage/Dimensions/Warranty — blocked by the FLG-028 SKU ambiguity (RJ38-8T-BLACK vs RJ38-SQSS-8T vs RJ38-SS-8TW), deliberately not borrowed from a non-matching SKU; ThermoMaven Calibration record — no certificate number published by the manufacturer.",
-      "action": "Closed where an official manufacturer page states the value (done in T30 for Emeril warranty and three CHEF iQ rows). Remaining: confirm a wattage figure for the Emeril 26QT from a source that states watts (not only 120 V voltage); resolve the Chefman 8-Quart SKU so its wattage/dimensions/warranty can be tied to the ASIN; obtain a ThermoMaven calibration certificate number if one exists. Do not fill from memory or from a marketplace reseller page.",
+      "title": "Spec coverage is uneven, and one product still has no confirmed warranty",
+      "detail": "50 of 70 spec rows carry a verified value (53 carry any value at all; 17 are blank with a reason). Per product, verified of total: Chefman 6-Quart Dual Basket 10/13; Emeril Lagasse 26QT French Door 9/13; Chefman 8-Quart TurboFry 12/15; ThermoMaven 1-Second Thermometer 9/14; CHEF iQ Sense Gen 3 10/15. Re-counted by script at the end of the 2026-11-20 line-by-line pass, after every valued row was re-checked against the page it cites. Coverage improved because the Chefman 8-Quart listing turned out to state its own wattage, dimensions and warranty, and because the Emeril manual supplied wattage, temperature range and the preset list. A second T35 pass (arena/d248d06c-wina) then filled the CHEF iQ Sense Gen 3 warranty (2 years, activated on first app connection) from the manufacturer's own user guide, cited in specSources — see FLG-048 for the 2-year-vs-1-year source conflict it raises. Still missing: the ThermoMaven calibration record, the CHEF iQ 3-probe model code (FLG-046) and the Emeril accessory count (FLG-043).",
+      "action": "Owner or next session: treat the ThermoMaven calibration record as unverifiable until a certificate number is published. The CHEF iQ warranty row is now cited to the manufacturer user guide (this session); confirm the 2-year term applies to the enrolled ASIN (FLG-048). Do not fill either from memory or from a marketplace reseller page.",
       "sourceUrl": "https://www.amazon.com/dp/B09B7SB46R",
       "sourceLabel": "Amazon listing for the Emeril 26QT (wattage and warranty not stated there)"
     },
@@ -400,8 +400,8 @@
       "id": "FLG-041",
       "severity": "review",
       "title": "The CHEF iQ specification source is a family page whose default variant is not the promoted SKU",
-      "detail": "The chefiq.com page used as the specification source (chefiq.com/products/iq-sense, re-checked 2026-11-20) shows model CQ60-1C-Z1-E, which is the one-probe variant of the Sense line; the store sells one- to four-probe configurations. The promoted Amazon listing (B0DZFD6R9Z) is the three-probe Gen3. The cited spec values — Wi-Fi and Bluetooth connectivity, 4 internal + 1 ambient sensors, 1,000°F heat rating, air-fryer compatibility — are stated on the manufacturer page for the Sense line and match the listing's own claims, so no specification changed. But the source page, as loaded, does not pin the three-probe variant, and the product page carries modelNumber CQ60-1C-Z1-E. Found during the 2026-11-20 re-verification pass by arena-27f76c22 (renumbered three times on merge: main took FLG-034, FLG-038 and FLG-040 while this branch was in flight).",
-      "action": "Left as observed: no value was invented to resolve it. To close it, pick the exact variant URL on chefiq.com for the three-probe model and update specSources — an owner or a later session with the variant URL can do this. No page claim depends on the variant count beyond the listing itself, which already states three probes.",
+      "detail": "The chefiq.com page used as the specification source (chefiq.com/products/iq-sense, re-checked 2026-11-20) shows model CQ60-1C-Z1-E, which is the one-probe variant of the Sense line; the store sells one- to four-probe configurations. The promoted Amazon listing (B0DZFD6R9Z) is the three-probe Gen3. The cited spec values — Wi-Fi and Bluetooth connectivity, 4 internal + 1 ambient sensors, 1,000°F heat rating, air-fryer compatibility — are stated on the manufacturer page for the Sense line and match the listing's own claims, so no specification changed. But the source page, as loaded, does not pin the three-probe variant, and the product page carries modelNumber CQ60-1C-Z1-E. Found during the 2026-11-20 re-verification pass by arena-27f76c22 (renumbered three times on merge: main took FLG-034, FLG-038 and FLG-040 while this branch was in flight). Follow-up 2026-11-20 (arena/b37e1a98-wina): the modelNumber field has been blanked rather than left pointing at the one-probe variant, since this ASIN is the three-probe listing - see FLG-046. No manufacturer page read so far states the three-probe model code.",
+      "action": "Left as observed: no value was invented to resolve it. To close it, pick the exact variant URL on chefiq.com for the three-probe model and update specSources — an owner or a later session with the variant URL can do this. No page claim depends on the variant count beyond the listing itself, which already states three probes. The product page now prints the model number, or states that it is not published, so a reader can see which variant a figure belongs to.",
       "sourceUrl": "https://chefiq.com/products/iq-sense",
       "sourceLabel": "CHEF iQ Sense family page (variant selector observed 2026-11-20)"
     },
@@ -416,6 +416,51 @@
     },
     {
       "id": "FLG-043",
+      "severity": "review",
+      "title": "Emeril page lists six included accessories; its own description says seven",
+      "detail": "The Amazon listing for B09B7SB46R says 'Six Cooking Accessories Included' in its title, and the manufacturer's product page carries a line reading 'Included are 7 premium accessories' in the same description block that also says '24 one-touch cooking presets'. The manual names more accessories than the listing does, but does not say which ship in the box and which are sold separately, so the count cannot be settled from any official page read on 2026-11-20. The row is therefore demoted from 'verified' to 'claim': the number is stated and its source is named, but the sources disagree.",
+      "action": "Published as a claim rather than a fact. Owner: count the accessories in the box, or take the answer from the manufacturer's support team, then set the row to verified against that source. Not filled from the listing alone, because the manufacturer says otherwise.",
+      "sourceUrl": "https://www.emerileveryday.com/products/emeril_lagasse_french_door_airfryer_360",
+      "sourceLabel": "Emeril Everyday product description (six in the listing title, seven here)"
+    },
+    {
+      "id": "FLG-044",
+      "severity": "resolved",
+      "title": "Two ThermoMaven rows cited a product page that does not state them",
+      "detail": "The 'Display' row ('Auto-rotate bright LED') and the 'Battery type' row ('1 x AAA, included') both cited thermomaven.com/products/f1-stealth. Re-read on 2026-11-20, that page's manufacturer copy says only 'ultra-bright LED screen' and says nothing about rotation; AAA batteries appear only in customer-review text. Both facts are in the F1 Stealth owner's manual (HT07) that the same page links: 'Display 0.83\" (H) x 1.61\" (W) LED, rotates 180 degrees' and 'Battery (1) x 1.5 volt AAA'. The rows now cite the manual and state the published figures instead of the vague wording.",
+      "action": "Corrected. Both rows cite the owner's manual and carry its exact figures. Found by opening the cited page for every valued row rather than trusting the citation.",
+      "sourceUrl": "https://cdn.shopify.com/s/files/1/0828/4726/9152/files/HT07_user_manual.pdf?v=1733992221",
+      "sourceLabel": "ThermoMaven F1 Stealth owner's manual, Specifications table"
+    },
+    {
+      "id": "FLG-045",
+      "severity": "review",
+      "title": "chefman.com's 8-quart page is a different SKU from this ASIN, and guide copy had repeated its wording",
+      "detail": "The 8-quart family spans several SKUs. chefman.com sells RJ38-8T-BLACK at 1700 W/120 V, 8 qt/7.57 L; the Amazon listing for B08DKYBTPH states RJ38-SQSS-8T at 1000 W/120 V with 12.75\"D x 13.5\"W x 10\"H. Everything recorded for this product now comes from the listing. The consequence is a wording change: the 'Hi-Fry for the final 2 minutes' phrase is published only on the black SKU's page, so it is no longer stated in the max-temperature row and has been removed from the guide passages that repeated it. A reader comparing this site with chefman.com will see 1000 W here and 1700 W there; both are correct for their own SKU, and the model number is now printed so the difference is checkable.",
+      "action": "Recorded so the discrepancy is not later 'fixed' in the wrong direction. If manufacturer-page figures are wanted, the model number has to change first - which means a different ASIN, not a different number in this row.",
+      "sourceUrl": "https://chefman.com/products/turbofry-8-qt-air-fryer-w-high-fry",
+      "sourceLabel": "chefman.com 8 Qt Hi-Fry page (RJ38-8T-BLACK, 1700 W) versus the Amazon listing (RJ38-SQSS-8T, 1000 W)"
+    },
+    {
+      "id": "FLG-046",
+      "severity": "review",
+      "title": "CHEF iQ Sense model number blanked: the manufacturer page shows a different probe count",
+      "detail": "data/products.json had recorded modelNumber CQ60-1C-Z1-E for the CHEF iQ Sense. That code is real, but chefiq.com's variant selector reads 'Size: 1 Probe' when it displays it, and this ASIN (B0DZFD6R9Z) is the three-probe listing - its title says '3 Ultra-Thin Probes'. Attaching a one-probe model code to a three-probe listing would misidentify the item, so the field is now blank rather than wrong. This is the product-data consequence of FLG-041, which records the source-page problem.",
+      "action": "Owner: read the model code off a three-probe unit or the CHEF iQ support page, then fill the row with that source. Until then the field stays empty, which is the honest state, and the product page says so in words.",
+      "sourceUrl": "https://chefiq.com/products/iq-sense",
+      "sourceLabel": "chefiq.com iQ Sense page (variant selector: 1 Probe, model CQ60-1C-Z1)"
+    },
+    {
+      "id": "FLG-047",
+      "severity": "review",
+      "title": "Fourth re-check of the short links: four of five landed on the Amazon homepage, and the split differed again",
+      "detail": "A further session (arena/b37e1a98-wina) opened all five submitted link.amazon URLs on 2026-11-20 with the page tool. This time B0f3GKalj reached /dp/B0DZFD6R9Z and the other four reached https://www.amazon.com/ - the homepage. Earlier the same day two other sessions saw B02NbDxp3 and B00hJ57DV reach their product pages. The behaviour is therefore not fixed by link: which links reach a product page changes between runs. All five destination ASINs remain confirmed by fetching /dp/<ASIN> directly, so the product identity in data/links.json is right regardless. The cause remains unknown - the short link, the fetch tool's redirect handling, or a session-dependent redirect. Nothing user-facing depends on these URLs, because every buy button links to /dp/<ASIN> tagged directly. No claim is made that the short links are invalid.",
+      "action": "Owner: open each of the five in a normal browser while signed out and record the landing URL; that is the only way to settle it. Recorded so a later session does not read a single fetch as the answer - this record now holds four observations per link, never merged into one value.",
+      "sourceUrl": "https://link.amazon/B04G1MEwY",
+      "sourceLabel": "Submitted short link, re-checked 2026-11-20 by a fourth independent session"
+    },
+    {
+      "id": "FLG-048",
       "severity": "review",
       "title": "CHEF iQ Sense warranty: manufacturer's user guide says 2 years; retailer listings say 1 year",
       "detail": "The CHEF iQ Sense Gen3 (B0DZFD6R9Z) Warranty row was filled from the manufacturer's own user guide PDF (CQ60-ALL-SET-C_UG_OTP_050126, hosted on chefiq.com's CDN), which states: 'RJ Brands, LLC d/b/a CHEF iQ offers a limited 2-year Warranty ... warranted against defects in material and workmanship ... for a period of 2 years from the date the Warranty is activated.' The warranty is activated by connecting the product to the CHEF iQ App. Retailer listings and third-party mirrors of an older user guide state a 1-year limited warranty. The register uses the manufacturer's current document (2 years, activated on first app connection). This is a real source conflict, not a resolved question: the register cannot show both, and the buyer-facing value follows the manufacturer's newest official document. Flagged so the owner can confirm which applies to the enrolled ASIN before the figure is relied on.",
