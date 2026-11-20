@@ -1811,6 +1811,17 @@ the deployed page rather than the diff.
 - **Owner-side items, not claimed, unchanged:** FLG-004/FLG-024 (Associates enrolment + Special Link
   test), FLG-009/SG-29 (Search Console), FLG-011 (analytics collector deploy), FLG-010 (capture backend),
   FLG-003 (short-link compliance status), S-14 (display-posture decision).
+- **PR and deploy record.** **PR #54** — https://github.com/sassnarep3-star/WinA/pull/54 — merged
+  2026-11-20T07:04:42Z by merge commit `022e00ec1d5ff32a19169d3a59eea137e6581abc`; CI on main after merge:
+  site-gate ✓, archive-gate ✓, Build-verify-and-deploy ✓, pages-build-deployment ✓ (`pages/builds/latest`
+  → status `built`, commit 022e00e). Live check of /shop.html (cache-buster) confirmed the FLG-048 fix
+  served. **PR #60** — https://github.com/sassnarep3-star/WinA/pull/60 — the residuals fix, merged
+  2026-11-20T07:07:19Z by merge commit `06ab5a14d314e97300c4148772188243a6d9b6c9`; site-gate ✓,
+  archive-gate ✓, pages-build-deployment ✓ (`pages/builds/latest` → status `built`, commit 06ab5a1).
+  Final live check of /shop.html?v=06ab5a1: buttons read "View on Amazon" (tagged `?tag=shopnow047c-20`,
+  `rel="sponsored nofollow noopener"`), no prices, no list prices, no Deal badges, no star ratings,
+  no review counts, no merchandising badges, CHEF iQ battery claim corrected to 70+ hours (manufacturer
+  claim, chefiq.com), disclosure strip cites §6(t)/§2(b). The site is live and compliant.
 - **Live deploy check + residuals.** After the merge (commit 022e00e) and Pages build, the live
   /shop.html was fetched with a cache-buster: prices, ratings and badges are gone from the served page.
   Three residuals were then found on the live page and fixed in a follow-up commit: 'Deal −NN%'
