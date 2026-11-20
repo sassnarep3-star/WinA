@@ -152,9 +152,9 @@ register, and each finding has its own entry on `/flagged/`.
 | Check | Method | Result |
 | --- | --- | --- |
 | Five destination ASINs | Fetched `https://www.amazon.com/dp/<ASIN>` directly for all five | **All five confirmed.** Title on each page matches `data/links.json`. Product identity is not in doubt. |
-| Five submitted short links | Fetched each `link.amazon/B0…` URL | **2 of 5** returned a product page (`B02NbDxp3`, `B00hJ57DV`). **3 of 5** returned `https://www.amazon.com/` (`B04G1MEwY`, `B0c8moW59`, `B0f3GKalj`). `B04G1MEwY` fetched twice, same result. → **FLG-034** |
+| Five submitted short links | Fetched each `link.amazon/B0…` URL | **2 of 5** returned a product page (`B02NbDxp3`, `B00hJ57DV`). **3 of 5** returned `https://www.amazon.com/` (`B04G1MEwY`, `B0c8moW59`, `B0f3GKalj`). `B04G1MEwY` fetched twice, same result. → **FLG-037** |
 | ThermoMaven water resistance | Read the listing title | Earlier register said "no IP number published". The listing title states **IP67**. Corrected. → **FLG-036** |
-| Spec coverage per product | Script over `data/products.json` | 32 of 60 rows verified. Emeril 26QT has no wattage or warranty; Chefman 8-Quart has no wattage, dimensions or warranty. → **FLG-035** |
+| Spec coverage per product | Script over `data/products.json` | 32 of 60 rows verified. Emeril 26QT has no wattage or warranty; Chefman 8-Quart has no wattage, dimensions or warranty. → **FLG-038** |
 | FLG-032 accuracy | Compared its text with the fetch results above | It claimed all five "resolved" to product pages. Corrected to `review` and rewritten. |
 
 **Three things corrected in this pass**

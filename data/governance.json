@@ -337,7 +337,7 @@
       "id": "FLG-032",
       "severity": "review",
       "title": "Five short links re-checked 2026-11-20: ASINs confirmed, but three redirect to the Amazon homepage",
-      "detail": "A later session (arena/119f4dc6-wina) re-fetched all five link.amazon URLs on the same date. All five destination ASINs were re-confirmed by fetching https://www.amazon.com/dp/<ASIN> directly — the product identity in data/links.json is correct. However, only B02NbDxp3 and B00hJ57DV returned a product page. B04G1MEwY, B0c8moW59 and B0f3GKalj returned https://www.amazon.com/ (the homepage). B04G1MEwY was fetched twice with the same result. This record originally stated that all five \"resolved\" to product pages; that overstated what a single fetch showed and is corrected here under FLG-034.",
+      "detail": "A later session (arena/119f4dc6-wina) re-fetched all five link.amazon URLs on the same date. All five destination ASINs were re-confirmed by fetching https://www.amazon.com/dp/<ASIN> directly — the product identity in data/links.json is correct. However, only B02NbDxp3 and B00hJ57DV returned a product page. B04G1MEwY, B0c8moW59 and B0f3GKalj returned https://www.amazon.com/ (the homepage). B04G1MEwY was fetched twice with the same result. This record originally stated that all five \"resolved\" to product pages; that overstated what a single fetch showed and is corrected here under FLG-037.",
       "action": "Owner: open each short link in a normal browser while signed out and record what you see. The site does not depend on these URLs — it links to /dp/<ASIN> directly — so nothing user-facing breaks.",
       "sourceUrl": "https://www.amazon.com/dp/B0CDY277D3",
       "sourceLabel": "Amazon listing (landing page of the first link)"
@@ -359,6 +359,24 @@
       "action": "None. Corrected in data/products.json and rebuilt.",
       "sourceUrl": "https://www.amazon.com/dp/B0DHZTCNR5",
       "sourceLabel": "Amazon listing title, fetched 2026-11-20"
+    },
+    {
+      "id": "FLG-037",
+      "severity": "review",
+      "title": "Three of the five submitted short links land on the Amazon homepage, not the product page",
+      "detail": "Re-verified 2026-11-20. Fetching https://link.amazon/B04G1MEwY, /B0c8moW59 and /B0f3GKalj returned https://www.amazon.com/ with the home-page title \"Amazon.com. Spend less. Smile more.\", not a product detail page. The other two (B02NbDxp3, B00hJ57DV) returned their product pages. Each short code was only ever an observed redirect, never an intended ASIN (FLG-001, FLG-016). The cause is not determined from here: it may be redirect behaviour for an unauthenticated or automated client rather than a dead link. This is recorded as an observation, not as a claim that the links are broken, invalid, or non-compliant.",
+      "action": "Owner: open the three links in a signed-out browser and note the landing page. If they reach the product, the finding is a tooling artefact and can be closed. The site links to /dp/<ASIN> directly regardless.",
+      "sourceUrl": "https://link.amazon/B04G1MEwY",
+      "sourceLabel": "The submitted short link, fetched 2026-11-20"
+    },
+    {
+      "id": "FLG-038",
+      "severity": "review",
+      "title": "Spec coverage is uneven, and two products carry no warranty or dimensions at all",
+      "detail": "Counted from data/products.json on 2026-11-20 by script over the published rows: 32 of 60 spec rows carry a verified value. Per product, verified of total: Chefman 6-Quart Dual Basket 8/12; Emeril 26QT French Door 6/11; Chefman 8-Quart TurboFry 5/12; ThermoMaven 1-Second 7/12; CHEF iQ Sense Gen3 6/13. The Emeril has no confirmed wattage or warranty; the Chefman 8-Quart has no confirmed wattage, dimensions or warranty. Those are the fields a buyer most often needs — will it fit, will it trip the outlet, what happens if it fails — and they are blank because the listing did not state them and no manufacturer page was cited for them.",
+      "action": "Owner or next session: add the manufacturer product page URL per product to specSources and fill wattage, dimensions and warranty from it, one row at a time with its own source. Do not fill from memory or from a marketplace reseller page.",
+      "sourceUrl": "https://www.amazon.com/dp/B09B7SB46R",
+      "sourceLabel": "Amazon listing for the Emeril 26QT (wattage and warranty not stated there)"
     }
   ],
   "ledger": {

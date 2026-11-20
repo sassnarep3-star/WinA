@@ -151,6 +151,16 @@
           <td><span class="pill pill--review">review</span></td>
           <td><a href="https://sellercentral.amazon.com/seller-forums/discussions/t/1e22c5df-d27a-4e2b-a0c1-90938b6cdcdc" rel="noopener" target="_blank">open</a></td>
         </tr><tr>
+          <td><code>FLG-037</code></td>
+          <td>Three of the five submitted short links land on the Amazon homepage, not the product page</td>
+          <td><span class="pill pill--review">review</span></td>
+          <td><a href="https://link.amazon/B04G1MEwY" rel="nofollow noopener" target="_blank" data-nonaffiliate="true">open</a></td>
+        </tr><tr>
+          <td><code>FLG-038</code></td>
+          <td>Spec coverage is uneven, and two products carry no warranty or dimensions at all</td>
+          <td><span class="pill pill--review">review</span></td>
+          <td><a href="https://www.amazon.com/dp/B09B7SB46R" rel="nofollow noopener" target="_blank" data-nonaffiliate="true">open</a></td>
+        </tr><tr>
           <td><code>FLG-002</code></td>
           <td>Submitted links carry no Associates tag of their own</td>
           <td><span class="pill pill--action">action</span></td>
@@ -364,7 +374,7 @@
   </article><article class="note note--warn" style="margin-bottom:1.25rem">
     <p class="note__title">FLG-032 <span class="pill pill--review">review</span></p>
     <h3 style="font-family:var(--serif);font-size:1.15rem;margin:.2rem 0 .5rem;color:var(--ink)">Five short links re-checked 2026-11-20: ASINs confirmed, but three redirect to the Amazon homepage</h3>
-    <p style="margin:0 0 .6rem">A later session (arena/119f4dc6-wina) re-fetched all five link.amazon URLs on the same date. All five destination ASINs were re-confirmed by fetching https://www.amazon.com/dp/&lt;ASIN&gt; directly — the product identity in data/links.json is correct. However, only B02NbDxp3 and B00hJ57DV returned a product page. B04G1MEwY, B0c8moW59 and B0f3GKalj returned https://www.amazon.com/ (the homepage). B04G1MEwY was fetched twice with the same result. This record originally stated that all five &quot;resolved&quot; to product pages; that overstated what a single fetch showed and is corrected here under FLG-034.</p>
+    <p style="margin:0 0 .6rem">A later session (arena/119f4dc6-wina) re-fetched all five link.amazon URLs on the same date. All five destination ASINs were re-confirmed by fetching https://www.amazon.com/dp/&lt;ASIN&gt; directly — the product identity in data/links.json is correct. However, only B02NbDxp3 and B00hJ57DV returned a product page. B04G1MEwY, B0c8moW59 and B0f3GKalj returned https://www.amazon.com/ (the homepage). B04G1MEwY was fetched twice with the same result. This record originally stated that all five &quot;resolved&quot; to product pages; that overstated what a single fetch showed and is corrected here under FLG-037.</p>
     <p style="margin:0 0 .6rem"><strong>What we did:</strong> Owner: open each short link in a normal browser while signed out and record what you see. The site does not depend on these URLs — it links to /dp/&lt;ASIN&gt; directly — so nothing user-facing breaks.</p>
     <p class="small" style="margin:0"><a href="https://www.amazon.com/dp/B0CDY277D3" rel="nofollow noopener" target="_blank" data-nonaffiliate="true">Amazon listing (landing page of the first link)</a></p>
   </article><article class="note note--warn" style="margin-bottom:1.25rem">
@@ -373,6 +383,18 @@
     <p style="margin:0 0 .6rem">The brief gives 'Amazon's ASIN definition' as the reason the intended-ASIN field is checkable. On 2026-11-20 no Amazon Help page giving that definition was found. The only Amazon-domain result was a Seller Central forum thread; its definition replies were written by sellers, not Amazon staff, so they are not cited as Amazon's definition. What can be checked directly is narrower: all five observed ASINs are 10 characters, A-Z and 0-9, and each observed destination ends in /dp/&lt;ASIN&gt; (data/links.json). This checks the URL format only. It does not show that a submitted link was intended for a particular ASIN, which is why the intended field stays blank.</p>
     <p style="margin:0 0 .6rem"><strong>What we did:</strong> Owner: decide whether the intended-ASIN field should be filled from the submitted link (FLG-019). If the rationale is kept, cite an Amazon Help page for the definition before publishing it.</p>
     <p class="small" style="margin:0"><a href="https://sellercentral.amazon.com/seller-forums/discussions/t/1e22c5df-d27a-4e2b-a0c1-90938b6cdcdc" rel="noopener" target="_blank">Seller Central forum thread (not Amazon Help; definition not confirmed as Amazon's)</a></p>
+  </article><article class="note note--warn" style="margin-bottom:1.25rem">
+    <p class="note__title">FLG-037 <span class="pill pill--review">review</span></p>
+    <h3 style="font-family:var(--serif);font-size:1.15rem;margin:.2rem 0 .5rem;color:var(--ink)">Three of the five submitted short links land on the Amazon homepage, not the product page</h3>
+    <p style="margin:0 0 .6rem">Re-verified 2026-11-20. Fetching https://link.amazon/B04G1MEwY, /B0c8moW59 and /B0f3GKalj returned https://www.amazon.com/ with the home-page title &quot;Amazon.com. Spend less. Smile more.&quot;, not a product detail page. The other two (B02NbDxp3, B00hJ57DV) returned their product pages. Each short code was only ever an observed redirect, never an intended ASIN (FLG-001, FLG-016). The cause is not determined from here: it may be redirect behaviour for an unauthenticated or automated client rather than a dead link. This is recorded as an observation, not as a claim that the links are broken, invalid, or non-compliant.</p>
+    <p style="margin:0 0 .6rem"><strong>What we did:</strong> Owner: open the three links in a signed-out browser and note the landing page. If they reach the product, the finding is a tooling artefact and can be closed. The site links to /dp/&lt;ASIN&gt; directly regardless.</p>
+    <p class="small" style="margin:0"><a href="https://link.amazon/B04G1MEwY" rel="nofollow noopener" target="_blank" data-nonaffiliate="true">The submitted short link, fetched 2026-11-20</a></p>
+  </article><article class="note note--warn" style="margin-bottom:1.25rem">
+    <p class="note__title">FLG-038 <span class="pill pill--review">review</span></p>
+    <h3 style="font-family:var(--serif);font-size:1.15rem;margin:.2rem 0 .5rem;color:var(--ink)">Spec coverage is uneven, and two products carry no warranty or dimensions at all</h3>
+    <p style="margin:0 0 .6rem">Counted from data/products.json on 2026-11-20 by script over the published rows: 32 of 60 spec rows carry a verified value. Per product, verified of total: Chefman 6-Quart Dual Basket 8/12; Emeril 26QT French Door 6/11; Chefman 8-Quart TurboFry 5/12; ThermoMaven 1-Second 7/12; CHEF iQ Sense Gen3 6/13. The Emeril has no confirmed wattage or warranty; the Chefman 8-Quart has no confirmed wattage, dimensions or warranty. Those are the fields a buyer most often needs — will it fit, will it trip the outlet, what happens if it fails — and they are blank because the listing did not state them and no manufacturer page was cited for them.</p>
+    <p style="margin:0 0 .6rem"><strong>What we did:</strong> Owner or next session: add the manufacturer product page URL per product to specSources and fill wattage, dimensions and warranty from it, one row at a time with its own source. Do not fill from memory or from a marketplace reseller page.</p>
+    <p class="small" style="margin:0"><a href="https://www.amazon.com/dp/B09B7SB46R" rel="nofollow noopener" target="_blank" data-nonaffiliate="true">Amazon listing for the Emeril 26QT (wattage and warranty not stated there)</a></p>
   </article><article class="note note--warn" style="margin-bottom:1.25rem">
     <p class="note__title">FLG-002 <span class="pill pill--action">action</span></p>
     <h3 style="font-family:var(--serif);font-size:1.15rem;margin:.2rem 0 .5rem;color:var(--ink)">Submitted links carry no Associates tag of their own</h3>

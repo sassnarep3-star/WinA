@@ -19,7 +19,7 @@
       "reverifiedResult": "homepage",
       "reverifiedFinalUrl": "https://www.amazon.com/",
       "reverifiedTitleSeen": "Amazon.com. Spend less. Smile more.",
-      "reverifiedFlag": "FLG-034"
+      "reverifiedFlag": "FLG-037"
     },
     {
       "submitted": "https://link.amazon/B02NbDxp3",
@@ -34,7 +34,7 @@
       "reverifiedResult": "product-page",
       "reverifiedFinalUrl": "https://www.amazon.com/dp/B09B7SB46R",
       "reverifiedTitleSeen": "Emeril Lagasse 26QT French Door Multi-Function Air Fryer Toaster Oven",
-      "reverifiedFlag": "FLG-034"
+      "reverifiedFlag": "FLG-037"
     },
     {
       "submitted": "https://link.amazon/B00hJ57DV",
@@ -49,7 +49,7 @@
       "reverifiedResult": "product-page",
       "reverifiedFinalUrl": "https://www.amazon.com/dp/B08DKYBTPH",
       "reverifiedTitleSeen": "Chefman Air Fryer 8 Qt | TurboFry 4-in-1",
-      "reverifiedFlag": "FLG-034"
+      "reverifiedFlag": "FLG-037"
     },
     {
       "submitted": "https://link.amazon/B0c8moW59",
@@ -64,7 +64,7 @@
       "reverifiedResult": "homepage",
       "reverifiedFinalUrl": "https://www.amazon.com/",
       "reverifiedTitleSeen": "Amazon.com. Spend less. Smile more.",
-      "reverifiedFlag": "FLG-034"
+      "reverifiedFlag": "FLG-037"
     },
     {
       "submitted": "https://link.amazon/B0f3GKalj",
@@ -79,7 +79,7 @@
       "reverifiedResult": "homepage",
       "reverifiedFinalUrl": "https://www.amazon.com/",
       "reverifiedTitleSeen": "Amazon.com. Spend less. Smile more.",
-      "reverifiedFlag": "FLG-034"
+      "reverifiedFlag": "FLG-037"
     }
   ],
   "unresolved": [
@@ -109,6 +109,6 @@
     "asinsStillCorrect": true,
     "asinsNote": "All five destination ASINs were re-confirmed: each /dp/<ASIN> page was fetched directly and returned the product recorded in this file. The product identity is not in doubt.",
     "shortLinkBehaviour": "3 of 5 (B04G1MEwY, B0c8moW59, B0f3GKalj) resolved to https://www.amazon.com/ rather than to a product page. B04G1MEwY was fetched twice and returned the homepage both times. The cause was not determined from here; it may be Amazon-side redirect behaviour for this client. It is recorded as an open finding, not as a claim that the links are invalid or that the products changed.",
-    "flag": "FLG-034"
+    "flag": "FLG-037"
   }
 }

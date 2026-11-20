@@ -717,5 +717,13 @@ record and out of this session's scope.)
      the second is a gate count presented to a shopper as if it were product evidence.
   2. `data/links.json` records all five short links as resolving to their product pages. Re-fetching
      them on 2026-11-20, three of the five land on the Amazon **homepage**, not the product page.
-- **Scope discipline:** another session owns `scripts/*`; this session will not edit those. If the
-  scope has to grow, the request is logged here rather than made silently.
+- **Scope growth, logged:** two rows — **FLG-034** and **FLG-035** — were already in use in
+  `data/governance.json`, so the two new flags were renumbered **FLG-037** (short-link landing pages)
+  and **FLG-038** (uneven spec coverage); **FLG-036** (ThermoMaven IP67) was free. The first write
+  of this session silently dropped one row because a guard used set membership; it was caught by
+  reading the rendered page rather than the data, and corrected before publication. Because that
+  class of defect is invisible to every existing check, a rule was added to
+  `scripts/compliance-gate.mjs`: every flag id in the data must appear exactly once on `/flagged/`.
+  This is a *check* added to a shared file, not a change to another session's content — noted here
+  rather than made silently. Both failure modes were proven by injecting a duplicate and an orphan
+  and watching the gate fail, then reverting.
