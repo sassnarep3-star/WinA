@@ -364,6 +364,39 @@ function productCard(p, rank) {
 </article>`;
 }
 
+/**
+ * The list view a shopper scans, used on category hubs while the front page
+ * uses cards. Same data, different job: here the point is to compare three
+ * lines and move on, not to read a verdict.
+ */
+function shelfRow(p) {
+  const headline = p.specs.filter((s) => s.value).slice(0, 3);
+  return `<div class="shelf__row">
+    <div class="shelf__art">${art.forProduct(p)}</div>
+    <div class="shelf__main">
+      <p class="shelf__name"><a href="${url(`/products/${p.slug}/`)}">${esc(p.shortName)}</a></p>
+      <p class="shelf__meta">${esc(p.brand)} · ${esc(p.formFactor.replace(/-/g, " "))} · good for ${esc(
+        p.bestFor.toLowerCase()
+      )}</p>
+      <ul class="shelf__facts">
+        ${headline
+          .map(
+            (s) =>
+              `<li><span class="k">${esc(s.label)}</span> ${esc(s.value)}</li>`
+          )
+          .join("")}
+      </ul>
+    </div>
+    <div class="shelf__buy">
+      <a class="btn btn--amazon" href="${special(p.asin)}" rel="sponsored nofollow noopener"
+         target="_blank" data-affiliate="${p.asin}" data-slot="shelf">See it on Amazon →</a>
+      <p class="tiny faint" style="margin:.45rem 0 0">Sponsored · <a href="${url(
+        `/products/${p.slug}/`
+      )}">the full page</a></p>
+    </div>
+  </div>`;
+}
+
 const breadcrumb = (trail) =>
   `<nav class="wrap breadcrumb" aria-label="Breadcrumb">${trail
     .map((t, i) =>
@@ -562,9 +595,14 @@ ${breadcrumb([{ href: url("/"), label: "Home" }, { label: c.name }])}
 <section class="section">
   <div class="wrap">
     <p class="lede" style="margin-bottom:2rem">${esc(c.intro)}</p>
-    <div class="products products--three">
-      ${items.map((p, i) => productCard(p, i + 1)).join("")}
+    <div class="shelf">
+      ${items.map((p) => shelfRow(p)).join("")}
     </div>
+    <p class="tiny faint" style="margin-top:.9rem">Every figure above is a row from the
+      <a href="${url("/register/")}">source register</a>; blanks on a product page mean the number was
+      never published where we could verify it, not that it is unknown to everyone. The drawings are
+      our own schematics, drawn from those rows — not product photographs, and not pictures of the
+      item in anyone's kitchen.</p>
   </div>
 </section>
 <section class="section section--deep">

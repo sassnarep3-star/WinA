@@ -976,3 +976,15 @@ table.data caption { text-align: left; font-size: .78rem; }
 .pcard__chips .chip { white-space: normal; text-align: left; line-height: 1.45; font-size: .74rem; }
 .pcard__chips { min-width: 0; }
 .pcard__body, .pcard { min-width: 0; }
+
+/* --- shelf rows: the facts a scanner needs, inline -------------------- */
+.shelf__facts { list-style: none; margin: .6rem 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: .3rem 1.1rem; }
+.shelf__facts li { font-size: .82rem; color: var(--ink-soft); }
+.shelf__facts .k {
+  font-size: .66rem; letter-spacing: .08em; text-transform: uppercase;
+  color: var(--ink-faint); font-weight: 700; margin-right: .35rem;
+}
+.shelf__main { min-width: 0; }
+.shelf__buy { display: grid; gap: 0; min-width: 0; }
+.shelf__buy .btn { font-size: .78rem; padding: .55rem .8rem; }
+@media (max-width: 400px) { .shelf__art { display: none; } }
