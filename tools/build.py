@@ -433,6 +433,7 @@ for p in PRODUCTS:
         f'<code>{esc(p["observed_asin"])}</code>',
         f'<a href="{esc(p["observed_destination_url"])}" rel="noopener" target="_blank">{esc(p["observed_destination_url"])}</a>',
         esc(p["observed_title"]),
+        f'{esc(p["observed_breadcrumb"])} <span class="small muted">(node {esc(p["observed_browse_node"])})</span>',
         esc(p["observed_date"]),
         f'{unverified()} <span class="small muted">not displayed (§2(b))</span>',
         unverified(),
@@ -442,7 +443,7 @@ for p in PRODUCTS:
 reg_headers = [
     "ID", "Category", "Submitted link", "Intended ASIN", "Official listing URL (intended)",
     "Confirmation date", "Intended source", "Observed ASIN (redirect target)",
-    "Observed destination", "Observed title", "Observed date", "Price", "Rating", "Source", "Flags",
+    "Observed destination", "Observed title", "Observed category (breadcrumb)", "Observed date", "Price", "Rating", "Source", "Flags",
 ]
 page("dashboard/register.html", "Product register", f"""
 <section class="page-head">

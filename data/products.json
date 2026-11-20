@@ -21,7 +21,15 @@
       "source_id": "SRC-06",
       "price_displayed": null,
       "rating_displayed": null,
-      "flags": ["FLG-001", "FLG-002", "FLG-003", "FLG-004"]
+      "flags": [
+        "FLG-001",
+        "FLG-002",
+        "FLG-003",
+        "FLG-004"
+      ],
+      "observed_breadcrumb": "Home & Kitchen › Kitchen & Dining › Small Appliances › Fryers › Air Fryers",
+      "observed_browse_node": "17659096011",
+      "observed_breadcrumb_source": "https://www.amazon.com/dp/B0CDY277D3"
     },
     {
       "id": "P02",
@@ -41,7 +49,16 @@
       "source_id": "SRC-07",
       "price_displayed": null,
       "rating_displayed": null,
-      "flags": ["FLG-001", "FLG-002", "FLG-003", "FLG-004", "FLG-006"]
+      "flags": [
+        "FLG-001",
+        "FLG-002",
+        "FLG-003",
+        "FLG-004",
+        "FLG-006"
+      ],
+      "observed_breadcrumb": "Home & Kitchen › Kitchen & Dining › Small Appliances › Fryers › Air Fryers",
+      "observed_browse_node": "17659096011",
+      "observed_breadcrumb_source": "https://www.amazon.com/dp/B09B7SB46R"
     },
     {
       "id": "P03",
@@ -61,7 +78,15 @@
       "source_id": "SRC-08",
       "price_displayed": null,
       "rating_displayed": null,
-      "flags": ["FLG-001", "FLG-002", "FLG-003", "FLG-004"]
+      "flags": [
+        "FLG-001",
+        "FLG-002",
+        "FLG-003",
+        "FLG-004"
+      ],
+      "observed_breadcrumb": "Home & Kitchen › Kitchen & Dining › Small Appliances › Fryers › Air Fryers",
+      "observed_browse_node": "17659096011",
+      "observed_breadcrumb_source": "https://www.amazon.com/dp/B08DKYBTPH"
     },
     {
       "id": "P04",
@@ -81,7 +106,15 @@
       "source_id": "SRC-09",
       "price_displayed": null,
       "rating_displayed": null,
-      "flags": ["FLG-001", "FLG-002", "FLG-003", "FLG-004"]
+      "flags": [
+        "FLG-001",
+        "FLG-002",
+        "FLG-003",
+        "FLG-004"
+      ],
+      "observed_breadcrumb": "Home & Kitchen › Kitchen & Dining › Kitchen Utensils & Gadgets › Thermometers & Timers › Meat",
+      "observed_browse_node": "289810",
+      "observed_breadcrumb_source": "https://www.amazon.com/dp/B0DHZTCNR5"
     },
     {
       "id": "P05",
@@ -101,7 +134,16 @@
       "source_id": "SRC-10",
       "price_displayed": null,
       "rating_displayed": null,
-      "flags": ["FLG-001", "FLG-002", "FLG-003", "FLG-004", "FLG-006"]
+      "flags": [
+        "FLG-001",
+        "FLG-002",
+        "FLG-003",
+        "FLG-004",
+        "FLG-006"
+      ],
+      "observed_breadcrumb": "Home & Kitchen › Kitchen & Dining › Kitchen Utensils & Gadgets › Thermometers & Timers › Meat",
+      "observed_browse_node": "289810",
+      "observed_breadcrumb_source": "https://www.amazon.com/dp/B0DZFD6R9Z"
     }
   ]
 }

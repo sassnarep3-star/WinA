@@ -1,38 +1,52 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>WinA &mdash; Buying guides</title>
+    <title>WinA — Buying guides</title>
     <link>https://sassnarep3-star.github.io/WinA/</link>
-    <description>Question-shaped buying guides for kitchen appliances. Published on a cadence; each guide added to the sitemap and this feed.</description>
+    <description>Question-shaped buying guides for air fryers and meat thermometers. Published on a cadence; each guide added to the sitemap and this feed.</description>
     <lastBuildDate>Fri, 20 Nov 2026 00:00:00 UTC</lastBuildDate>
     <atom:link href="https://sassnarep3-star.github.io/WinA/feed.xml" rel="self" type="application/rss+xml"/>
     <item>
       <title>Basket or oven-style air fryer: what should you compare?</title>
-      <link>https://sassnarep3-star.github.io/WinA/guides.html</link>
+      <link>https://sassnarep3-star.github.io/WinA/guides.html#basket-oven-air-fryer</link>
       <guid isPermaLink="true">https://sassnarep3-star.github.io/WinA/guides.html#basket-oven-air-fryer</guid>
       <pubDate>Fri, 20 Nov 2026 00:00:00 UTC</pubDate>
-      <description>Form-factor trade-offs, footprint, and which shape fits your counter. Working title&mdash;not a claim about popularity or superiority.</description>
+      <description>Form-factor trade-offs, footprint, and which shape fits your counter. Working title — not a claim about popularity or superiority.</description>
     </item>
     <item>
       <title>A no-hype checklist for comparing air fryer capacity</title>
-      <link>https://sassnarep3-star.github.io/WinA/guides.html</link>
+      <link>https://sassnarep3-star.github.io/WinA/guides.html#capacity-checklist</link>
       <guid isPermaLink="true">https://sassnarep3-star.github.io/WinA/guides.html#capacity-checklist</guid>
       <pubDate>Fri, 20 Nov 2026 00:00:00 UTC</pubDate>
-      <description>Quarts vs. real-world batches, and how to size it for your household. Working title&mdash;not a claim about popularity or superiority.</description>
+      <description>Quarts vs. real-world batches, and how to size it for your household. Working title — not a claim about popularity or superiority.</description>
     </item>
     <item>
       <title>How to assess cleanup and counter-space trade-offs</title>
-      <link>https://sassnarep3-star.github.io/WinA/guides.html</link>
+      <link>https://sassnarep3-star.github.io/WinA/guides.html#cleanup-counter-space</link>
       <guid isPermaLink="true">https://sassnarep3-star.github.io/WinA/guides.html#cleanup-counter-space</guid>
       <pubDate>Fri, 20 Nov 2026 00:00:00 UTC</pubDate>
-      <description>Dishwasher-safe parts, cord storage, and clearing the space you actually have. Working title&mdash;not a claim about popularity or superiority.</description>
+      <description>Dishwasher-safe parts, cord storage, and clearing the space you actually have. Working title — not a claim about popularity or superiority.</description>
     </item>
     <item>
       <title>Questions to ask before buying a multi-function kitchen appliance</title>
-      <link>https://sassnarep3-star.github.io/WinA/guides.html</link>
+      <link>https://sassnarep3-star.github.io/WinA/guides.html#multi-function-questions</link>
       <guid isPermaLink="true">https://sassnarep3-star.github.io/WinA/guides.html#multi-function-questions</guid>
       <pubDate>Fri, 20 Nov 2026 00:00:00 UTC</pubDate>
-      <description>One appliance, many modes&mdash;what you gain, and what you give up. Working title&mdash;not a claim about popularity or superiority.</description>
+      <description>One appliance, many modes — what you gain, and what you give up. Working title — not a claim about popularity or superiority.</description>
+    </item>
+    <item>
+      <title>Instant-read or wireless: which meat thermometer fits your grill?</title>
+      <link>https://sassnarep3-star.github.io/WinA/guides.html#instant-vs-wireless</link>
+      <guid isPermaLink="true">https://sassnarep3-star.github.io/WinA/guides.html#instant-vs-wireless</guid>
+      <pubDate>Fri, 20 Nov 2026 00:00:00 UTC</pubDate>
+      <description>One-second reads vs. leave-in probes with WiFi — pick by how you cook. Working title — not a claim about popularity or superiority.</description>
+    </item>
+    <item>
+      <title>How to check thermometer accuracy before your next cook</title>
+      <link>https://sassnarep3-star.github.io/WinA/guides.html#thermometer-accuracy</link>
+      <guid isPermaLink="true">https://sassnarep3-star.github.io/WinA/guides.html#thermometer-accuracy</guid>
+      <pubDate>Fri, 20 Nov 2026 00:00:00 UTC</pubDate>
+      <description>Ice-water checks, calibration certificates, and what ±0.5°F actually means. Working title — not a claim about popularity or superiority.</description>
     </item>
   </channel>
 </rss>
