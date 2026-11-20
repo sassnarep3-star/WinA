@@ -2,4 +2,9 @@
 User-agent: *
 Allow: /
 
+# Archived editions: preserved as a record, not a second publication.
+# This blocks crawling. It does not by itself remove a URL that is already indexed;
+# links to the archive are also rel="nofollow" and the archive is absent from the sitemap.
+Disallow: /WinA/archive/
+
 Sitemap: https://sassnarep3-star.github.io/WinA/sitemap.xml

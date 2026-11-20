@@ -111,7 +111,9 @@ function layout(opts) {
     canonical = "/",
     type = "website",
     pageType = "page",
-    jsonld = null
+    jsonld = null,
+    ogImage = (site.brand && site.brand.socialImage) || "assets/brand/share-1200x630.png",
+    ogImageAlt = (site.brand && site.brand.socialImageAlt) || site.tagline
   } = opts;
 
   const fullTitle = title.includes(site.name) ? title : `${title} — ${site.name}`;
@@ -139,9 +141,18 @@ function layout(opts) {
 <meta property="og:title" content="${esc(fullTitle)}">
 <meta property="og:description" content="${esc(desc)}">
 <meta property="og:url" content="${abs(canonical)}">
+<meta property="og:image" content="${abs(ogImage)}">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="${esc(ogImageAlt)}">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="${esc(fullTitle)}">
 <meta name="twitter:description" content="${esc(desc)}">
+<meta name="twitter:image" content="${abs(ogImage)}">
+<meta name="theme-color" content="#0f4c5c">
+<link rel="icon" type="image/png" sizes="32x32" href="${url("/assets/brand/favicon-32.png")}">
+<link rel="icon" type="image/png" sizes="512x512" href="${url("/assets/brand/icon-512.png")}">
+<link rel="apple-touch-icon" href="${url("/assets/brand/icon-180.png")}">
 <link rel="alternate" type="application/rss+xml" title="${esc(site.name)}" href="${url("/feed.xml")}">
 <link rel="stylesheet" href="${url("/assets/css/site.css")}">
 <script>window.CS_CONFIG={analyticsEnabled:${ANALYTICS_ON},analyticsEndpoint:${JSON.stringify(site.analyticsEndpoint || "")}};</script>
@@ -298,15 +309,23 @@ function specTable(p) {
 
 function productCard(p, rank) {
   const top = p.specs.filter((s) => s.value).slice(0, 3);
+  const badge =
+    p.formFactor === "dual-basket" ? "Two drawers"
+    : p.formFactor === "oven" || /oven/.test(p.formFactor) ? "Small oven"
+    : p.formFactor === "single-basket" ? "One big drawer"
+    : p.formFactor === "instant-read" ? "Pocket probe"
+    : "Leave-in probe";
   return `<article class="pcard">
-  <div class="pcard__top">
-    ${rank ? `<span class="pcard__rank">${rank}</span>` : "<span></span>"}
-    <span class="pcard__tag">${esc(
-      p.formFactor.replace(/-/g, " ")
-    )}</span>
-  </div>
+  <figure class="pcard__figure">
+    <img src="${url("/" + p.image)}" alt="${esc(p.imageAlt)}" width="800" height="520" loading="lazy" decoding="async">
+    ${rank ? `<span class="pcard__rank">Option ${rank}</span>` : ""}
+    <figcaption class="pcard__figcap">Form-factor diagram, drawn by us. Not a photograph of the product.</figcaption>
+  </figure>
   <div class="pcard__body">
-    <p class="pcard__brand">${esc(p.brand)}</p>
+    <div class="pcard__top">
+      <p class="pcard__brand">${esc(p.brand)}</p>
+      <span class="pcard__tag">${esc(badge)}</span>
+    </div>
     <h3 class="pcard__name"><a href="${url(`/products/${p.slug}/`)}">${esc(p.shortName)}</a></h3>
     <p class="pcard__verdict">${esc(p.verdict)}</p>
     <ul class="pcard__specs">
@@ -320,10 +339,66 @@ function productCard(p, rank) {
   </div>
   <div class="pcard__foot">
     <a class="btn btn--amazon" href="${special(p.asin)}" rel="sponsored nofollow noopener"
-       target="_blank" data-affiliate="${p.asin}" data-slot="card">Check price on Amazon →</a>
+       target="_blank" data-affiliate="${p.asin}" data-slot="card">Check price on Amazon
+       <span class="btn__arrow" aria-hidden="true">→</span></a>
     <p class="pcard__note">Sponsored. ${esc(site.associateStatement)}</p>
+    <p class="pcard__more"><a href="${url(`/products/${p.slug}/`)}">Read the full trade-offs</a></p>
   </div>
 </article>`;
+}
+
+/* The shelf: every product in one sortable, filterable table. This is the shop floor —
+   the register-style readiness detail lives on the product page, not here. */
+function shelf() {
+  const rows = products
+    .map((p) => {
+      const cat = categories.find((c) => c.slug === p.category);
+      const isFryer = p.category === "air-fryers";
+      const keySpec = p.specs.find((s) => s.label === (isFryer ? "Capacity" : "Read time"));
+      return `<tr data-cat="${esc(p.category)}" data-name="${esc((p.brand + " " + p.shortName).toLowerCase())}">
+      <td class="shelf__name">
+        <a href="${url(`/products/${p.slug}/`)}">${esc(p.shortName)}</a>
+        <span class="shelf__sub">${esc(p.brand)} · ${esc(cat ? cat.name : "")}</span>
+      </td>
+      <td>${esc(p.bestFor)}</td>
+      <td>${keySpec && keySpec.value ? esc(keySpec.value) : '<span class="faint">unverified</span>'}</td>
+      <td>${esc(p.tradeoff)}</td>
+      <td class="shelf__buy">
+        <a class="btn btn--amazon btn--sm" href="${special(p.asin)}" rel="sponsored nofollow noopener"
+           target="_blank" data-affiliate="${p.asin}" data-slot="shelf">Amazon <span aria-hidden="true">→</span></a>
+      </td>
+    </tr>`;
+    })
+    .join("");
+
+  return `<div class="shelf" data-shelf>
+  <div class="shelf__bar">
+    <div class="shelf__filters" role="group" aria-label="Filter the shelf by category">
+      <button type="button" class="chip is-on" data-filter="all">All five</button>
+      <button type="button" class="chip" data-filter="air-fryers">Air fryers</button>
+      <button type="button" class="chip" data-filter="thermometers">Thermometers</button>
+    </div>
+    <p class="shelf__count" data-shelf-count aria-live="polite">${products.length} products</p>
+  </div>
+  <div class="tablewrap">
+    <table class="data shelf__table">
+      <caption>Every product on the site, with the reason to buy it and the reason not to. Prices and ratings are deliberately absent — see <a href="${url("/disclosure/")}">why</a>.</caption>
+      <thead>
+        <tr>
+          <th scope="col">Product</th>
+          <th scope="col">Best for</th>
+          <th scope="col">Key spec</th>
+          <th scope="col">The catch</th>
+          <th scope="col"><span class="vh">Buy</span></th>
+        </tr>
+      </thead>
+      <tbody>${rows}</tbody>
+    </table>
+  </div>
+  <p class="shelf__note">Links open Amazon in a new tab and carry our Associates tag. ${esc(
+    site.associateStatement
+  )}</p>
+</div>`;
 }
 
 const breadcrumb = (trail) =>
@@ -339,59 +414,79 @@ const breadcrumb = (trail) =>
    FRONT PAGE — a publication front page, not a dashboard
    ============================================================ */
 function frontPage() {
-  const picks = products.slice(0, 3);
   const lead = products[0];
+  const airFryers = products.filter((p) => p.category === "air-fryers");
+  const thermos = products.filter((p) => p.category === "thermometers");
+  const [gForm, gCap, gClean, gMulti, gProbe] = guides;
 
   const html = `
 <section class="hero">
   <div class="wrap hero__grid">
-    <div>
-      <p class="kicker">Air fryers &amp; precision</p>
+    <div class="hero__copy">
+      <p class="kicker">Kitchen gear, judged honestly</p>
       <h1>Buy the one that fits your <em>counter</em>, not the one with the biggest number.</h1>
-      <p class="hero__dek">Three air fryers and two thermometers, compared on the things that decide whether you still use them in a year: how many things cook at once, how much counter it takes, and how much of it ends up in the sink.</p>
+      <p class="hero__dek">Three air fryers and two thermometers, sorted by the things that decide whether you still use them in a year: how many things cook at once, how much counter it takes, and how much of it ends up in the sink.</p>
       <div class="hero__actions">
-        <a class="btn btn--primary" href="${url("/air-fryers/")}">See the air fryers</a>
-        <a class="btn btn--ghost" href="${url("/guides/basket-vs-oven/")}">Basket or oven? Start here</a>
+        <a class="btn btn--primary" href="#shelf">Browse all five</a>
+        <a class="btn btn--ghost" href="${url(`/guides/${gForm.slug}/`)}">Basket or oven? Start here</a>
       </div>
-      <p class="tiny faint" style="margin-top:1.1rem">No testing claims. No invented prices. Every spec is labelled with how it was verified.</p>
+      <ul class="hero__assure">
+        <li>Nothing here was hands-on tested</li>
+        <li>No prices or ratings copied from listings</li>
+        <li>Every spec labelled with its source</li>
+      </ul>
     </div>
-    <aside class="pick">
-      <p class="pick__label">Start here</p>
-      <h2 class="pick__name">${esc(lead.shortName)}</h2>
+    <aside class="pick" aria-labelledby="pick-title">
+      <p class="pick__label">Our pick for most kitchens</p>
+      <figure class="pick__figure">
+        <img src="${url("/" + lead.image)}" alt="${esc(lead.imageAlt)}" width="800" height="520" decoding="async">
+      </figure>
+      <h2 class="pick__name" id="pick-title">${esc(lead.shortName)}</h2>
       <p class="pick__verdict">${esc(lead.verdict)}</p>
       <dl class="pick__meta">
         <div class="pick__stat"><dt>Capacity</dt><dd>6 qt</dd></div>
         <div class="pick__stat"><dt>Chambers</dt><dd>Two</dd></div>
-        <div class="pick__stat"><dt>Best for</dt><dd style="font-size:.86rem;font-family:var(--sans)">Two-part dinners</dd></div>
+        <div class="pick__stat"><dt>Best for</dt><dd class="pick__stat--sm">Two-part dinners</dd></div>
       </dl>
       <a class="btn btn--amazon" href="${special(lead.asin)}" rel="sponsored nofollow noopener"
-         target="_blank" data-affiliate="${lead.asin}" data-slot="hero">Check price on Amazon →</a>
+         target="_blank" data-affiliate="${lead.asin}" data-slot="hero">Check price on Amazon
+         <span class="btn__arrow" aria-hidden="true">→</span></a>
       <p class="pcard__note">Sponsored. ${esc(site.associateStatement)}</p>
     </aside>
   </div>
 </section>
 
-<div class="strip">
-  <div class="wrap strip__inner">
-    <div class="strip__cell"><p class="strip__num">${products.length}</p><p class="strip__lab">Products compared</p></div>
-    <div class="strip__cell"><p class="strip__num">${guides.length}</p><p class="strip__lab">Guides</p></div>
-    <div class="strip__cell"><p class="strip__num">0</p><p class="strip__lab">Products tested</p></div>
-    <div class="strip__cell"><p class="strip__num">${policy.policy.length}</p><p class="strip__lab">Policy checks passed</p></div>
+<nav class="departments" aria-label="Shop by category">
+  <div class="wrap departments__inner">
+    <p class="departments__label">Shop by</p>
+    <a class="dept" href="${url("/air-fryers/")}">
+      <span class="dept__count">${airFryers.length}</span>
+      <span class="dept__name">Air fryers</span>
+      <span class="dept__sub">Two drawers, one big drawer, or a whole oven</span>
+    </a>
+    <a class="dept" href="${url("/thermometers/")}">
+      <span class="dept__count">${thermos.length}</span>
+      <span class="dept__name">Thermometers</span>
+      <span class="dept__sub">Instant read, or a probe you leave in</span>
+    </a>
+    <a class="dept" href="${url("/compare/")}">
+      <span class="dept__count">5</span>
+      <span class="dept__name">Compare side by side</span>
+      <span class="dept__sub">Every verified spec in one table</span>
+    </a>
   </div>
-</div>
+</nav>
 
-<section class="section">
+<section class="section" id="shelf">
   <div class="wrap">
     <div class="section__head section__head--split">
       <div>
-        <h2 class="section__title">What we'd put on your counter</h2>
-        <p class="section__dek">Three air fryers at three different points on the same trade-off. None of them is the "best" — one of them is right for you, and the other two are wrong in specific ways.</p>
+        <h2 class="section__title">The shelf</h2>
+        <p class="section__dek">Five products, one table, filterable. Each row says what it is for and what it costs you in counter or in cleaning — because both decide whether it stays.</p>
       </div>
-      <a class="section__more" href="${url("/air-fryers/")}">All air fryers</a>
+      <a class="section__more" href="${url("/compare/")}">Full comparison</a>
     </div>
-    <div class="products products--three">
-      ${picks.map((p, i) => productCard(p, i + 1)).join("")}
-    </div>
+    ${shelf()}
   </div>
 </section>
 
@@ -399,45 +494,90 @@ function frontPage() {
   <div class="wrap">
     <div class="section__head section__head--split">
       <div>
-        <h2 class="section__title">The cheapest upgrade in the kitchen</h2>
-        <p class="section__dek">An air fryer you can hear and smell your way through. A roast you cannot. Two ways to stop guessing.</p>
+        <p class="kicker">Department</p>
+        <h2 class="section__title">Air fryers</h2>
+        <p class="section__dek">Three machines at three different points on the same trade-off. None is the best; one is right for you, and the other two are wrong in specific ways.</p>
       </div>
-      <a class="section__more" href="${url("/thermometers/")}">Both thermometers</a>
+      <a class="section__more" href="${url("/air-fryers/")}">All air fryers</a>
     </div>
-    <div class="products">
-      ${products.slice(3).map((p) => productCard(p, null)).join("")}
+    <div class="products products--three">
+      ${airFryers.map((p, i) => productCard(p, i + 1)).join("")}
     </div>
   </div>
 </section>
 
 <section class="section">
   <div class="wrap">
-    <div class="section__head">
-      <h2 class="section__title">Read before you buy</h2>
-      <p class="section__dek">The questions that come up before any of these purchases, answered without a verdict at the end.</p>
+    <div class="section__head section__head--split">
+      <div>
+        <p class="kicker">Department</p>
+        <h2 class="section__title">Thermometers</h2>
+        <p class="section__dek">The cheapest upgrade in the kitchen. One reads in a second; the other watches three cuts while the lid stays shut.</p>
+      </div>
+      <a class="section__more" href="${url("/thermometers/")}">Both thermometers</a>
     </div>
-    <div class="guides guides--two">
-      ${guides
-        .map(
-          (g) => `<a class="guide-link" href="${url(`/guides/${g.slug}/`)}">
-        <span class="guide-link__num">${g.number}</span>
-        <span>
-          <h3 class="guide-link__title">${esc(g.title)}</h3>
-          <p class="guide-link__dek">${esc(g.dek)}</p>
-        </span>
-      </a>`
-        )
-        .join("")}
+    <div class="products products--two">
+      ${thermos.map((p) => productCard(p, null)).join("")}
+    </div>
+    <div class="callout">
+      <h3 class="callout__title">Not sure which kind you need?</h3>
+      <p>${esc(gProbe.dek)}</p>
+      <a class="btn btn--ghost" href="${url(`/guides/${gProbe.slug}/`)}">Instant read or wireless →</a>
     </div>
   </div>
 </section>
 
-<section class="section" style="padding-top:0">
+<section class="section section--paper">
+  <div class="wrap">
+    <div class="section__head section__head--split">
+      <div>
+        <h2 class="section__title">Read before you buy</h2>
+        <p class="section__dek">The questions that come up before any of these purchases, answered without a verdict at the end.</p>
+      </div>
+      <a class="section__more" href="${url("/guides/")}">All guides</a>
+    </div>
+    <div class="feature">
+      <a class="feature__lead" href="${url(`/guides/${gForm.slug}/`)}">
+        <span class="feature__num">Guide ${gForm.number}</span>
+        <h3 class="feature__title">${esc(gForm.title)}</h3>
+        <p class="feature__dek">${esc(gForm.dek)}</p>
+        <span class="feature__meta">${esc(gForm.readingTime)} read · ${esc(gForm.topics.join(" · "))}</span>
+      </a>
+      <div class="feature__list">
+        ${[gCap, gClean, gMulti, gProbe]
+          .map(
+            (g) => `<a class="feature__item" href="${url(`/guides/${g.slug}/`)}">
+          <span class="feature__item-num">${g.number}</span>
+          <span>
+            <span class="feature__item-title">${esc(g.title)}</span>
+            <span class="feature__item-meta">${esc(g.readingTime)} · ${esc(g.topics[0])}</span>
+          </span>
+        </a>`
+          )
+          .join("")}
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
   <div class="wrap narrow">
-    <div class="note note--warn">
+    <div class="note">
       <p class="note__title">${esc(editorNote.title)}</p>
-      <p>${esc(editorNote.body)}</p>
+      <p>${esc(editorNote.body.split("\n\n")[0])}</p>
       <p class="mt1"><a href="${url("/about/")}">Full editorial standards →</a></p>
+    </div>
+    <div class="capture" data-capture-block>
+      <div>
+        <h2 class="capture__title">A weekly note, when there is one</h2>
+        <p class="capture__dek">Published when there is something worth saying, not to hit a word count. No newsletter backend is wired up yet, so this form says so plainly instead of pretending to sign you up.</p>
+      </div>
+      <form class="capture__form" data-capture-form novalidate>
+        <label class="vh" for="capture-email">Email address</label>
+        <input id="capture-email" type="email" name="email" placeholder="you@example.com" autocomplete="email" required>
+        <button class="btn btn--primary" type="submit">Notify me</button>
+        <p class="capture__status" data-capture-status hidden></p>
+      </form>
     </div>
   </div>
 </section>
@@ -460,17 +600,23 @@ function categoryPages() {
     const items = products.filter((p) => p.category === c.slug);
     const html = `
 ${breadcrumb([{ href: url("/"), label: "Home" }, { label: c.name }])}
-<div class="article-head">
-  <div class="wrap">
-    <p class="kicker">${esc(c.kicker)}</p>
-    <h1 class="article-head__title">${esc(c.name)} that earn their counter space</h1>
-    <p class="article-head__dek">${esc(c.dek)}</p>
+<header class="depthead">
+  <div class="wrap depthead__inner">
+    <div>
+      <p class="kicker">${esc(c.kicker)}</p>
+      <h1 class="depthead__title">${esc(c.name)}</h1>
+      <p class="depthead__dek">${esc(c.dek)}</p>
+    </div>
+    <dl class="depthead__stats">
+      <div><dt>In this department</dt><dd>${items.length}</dd></div>
+      <div><dt>Browse the category</dt><dd><a href="${esc(c.browseNodeUrl)}" rel="nofollow noopener" target="_blank" data-nonaffiliate="true">Amazon index</a></dd></div>
+    </dl>
   </div>
-</div>
+</header>
 <section class="section">
   <div class="wrap">
     <p class="lede" style="margin-bottom:2rem">${esc(c.intro)}</p>
-    <div class="products products--three">
+    <div class="products ${items.length === 3 ? "products--three" : "products--two"}">
       ${items.map((p, i) => productCard(p, i + 1)).join("")}
     </div>
   </div>
@@ -498,7 +644,7 @@ ${breadcrumb([{ href: url("/"), label: "Home" }, { label: c.name }])}
 `;
     pages.push({
       path: `/${c.slug}/`,
-      title: `${c.name} — ${site.name}`,
+      title: `${c.name}: ${c.slug === "air-fryers" ? "two drawers, one drawer, or an oven" : "instant read or leave-in"} — ${site.name}`,
       desc: c.dek,
       html,
       priority: "0.9",
@@ -546,6 +692,24 @@ ${breadcrumb([
   </div>
 </div>
 
+<div class="wrap">
+  <figure class="figure">
+    <img src="${url("/" + p.image)}" alt="${esc(p.imageAlt)}" width="800" height="520" decoding="async">
+    <figcaption>Form-factor diagram, drawn for this page. It shows how the shape works, not what this specific product looks like — product photography is withheld under the program policies recorded in <a href="${url("/disclosure/")}">the disclosure</a>.</figcaption>
+  </figure>
+</div>
+
+<div class="wrap jumpbar" data-jumpbar>
+  <nav class="jumpbar__nav" aria-label="On this page">
+    <a href="#why">Why it is here</a>
+    <a href="#check">What to check</a>
+    <a href="#wrong-for">Who it is wrong for</a>
+    <a href="#specs">Specifications</a>
+  </nav>
+  <a class="btn btn--amazon btn--sm" href="${special(p.asin)}" rel="sponsored nofollow noopener"
+     target="_blank" data-affiliate="${p.asin}" data-slot="jumpbar">Check price <span aria-hidden="true">→</span></a>
+</div>
+
 <div class="wrap layout">
   <div>
     <dl class="facts">
@@ -556,17 +720,17 @@ ${breadcrumb([
     </dl>
 
     <div class="prose">
-      <h2>Why it is on this list</h2>
+      <h2 id="why">Why it is on this list</h2>
       <ul>${p.why.map((w) => `<li>${esc(w)}</li>`).join("")}</ul>
 
-      <h2>What to think twice about</h2>
+      <h2 id="check">What to think twice about</h2>
       <ul>${p.consider.map((w) => `<li>${esc(w)}</li>`).join("")}</ul>
 
-      <h2>Who it is wrong for</h2>
+      <h2 id="wrong-for">Who it is wrong for</h2>
       <p>${esc(whoNotFor(p))}</p>
     </div>
 
-    <h2 class="section__title" style="font-size:1.35rem;margin-top:2.5rem">Specifications</h2>
+    <h2 class="section__title" id="specs" style="font-size:1.35rem;margin-top:2.5rem">Specifications</h2>
     <p class="small muted" style="margin-top:-.5rem;margin-bottom:1rem">
       Status key: <span class="pill pill--verified">verified</span> confirmed on the official listing ·
       <span class="pill pill--claim">claim</span> manufacturer's stated figure, not independently verifiable ·
@@ -610,7 +774,7 @@ ${breadcrumb([
 `;
     pages.push({
       path: `/products/${p.slug}/`,
-      title: `${p.name} — review and trade-offs`,
+      title: `${p.shortName}: ${p.category === "air-fryers" ? "capacity, batching and trade-offs" : "read time, probe type and trade-offs"}`,
       desc: p.verdict.slice(0, 155),
       html,
       priority: "0.8",
@@ -1177,25 +1341,25 @@ ${breadcrumb([{ href: url("/"), label: "Home" }, { label: "Flagged for review" }
             <td><code>archive/arena-2ca62ce9/</code></td>
             <td>arena-2ca62ce9</td>
             <td>Independent verification of the same five ASINs; 18-item flag register; source register SRC-01…SRC-11; its own questions, suggestions and ledger. Fourteen of its findings are folded into this register with attribution.</td>
-            <td><a href="${url("/archive/arena-2ca62ce9/")}">Open archived site</a></td>
+            <td><a href="${url("/archive/arena-2ca62ce9/")}" rel="nofollow">Open archived site</a></td>
           </tr>
           <tr>
             <td><code>archive/arena-2ca62ce9/data/flags.json</code></td>
             <td>arena-2ca62ce9</td>
             <td>The original 18-item flag register, unmodified, for line-by-line comparison.</td>
-            <td><a href="${url("/archive/arena-2ca62ce9/data/flags.json")}">View JSON</a></td>
+            <td><a href="${url("/archive/arena-2ca62ce9/data/flags.json")}" rel="nofollow">View JSON</a></td>
           </tr>
           <tr>
             <td><code>archive/arena-6bd1be15/</code></td>
             <td>arena-6bd1be15</td>
             <td>Earlier root-level site, kept for the record. Its verification log is the origin of FLG-016.</td>
-            <td><a href="${url("/archive/arena-6bd1be15/")}">Open archived site</a></td>
+            <td><a href="${url("/archive/arena-6bd1be15/")}" rel="nofollow">Open archived site</a></td>
           </tr>
           <tr>
             <td><code>archive/arena-4a5044b0/</code></td>
             <td>arena-4a5044b0</td>
             <td>First build on this repo. Its claim that Amazon was unreachable is superseded — see FLG-017.</td>
-            <td><a href="${url("/archive/arena-4a5044b0/")}">Open archived site</a></td>
+            <td><a href="${url("/archive/arena-4a5044b0/")}" rel="nofollow">Open archived site</a></td>
           </tr>
         </tbody>
       </table>
@@ -1511,46 +1675,93 @@ function renderDecisionLog() {
    SUGGESTIONS
    ============================================================ */
 function suggestionsPage() {
-  // Highest weight first: these are the moves we are most confident about.
   const items = [...suggestions.suggestions].sort((a, b) => b.weight - a.weight);
   const counts = {};
   for (const s of items) counts[s.status] = (counts[s.status] || 0) + 1;
 
-  const rows = items
-    .map(
-      (s) => `<tr>
-    <td><code>${esc(s.id)}</code></td>
-    <td><strong>${esc(s.title)}</strong></td>
-    <td><span class="pill pill--${esc(s.status)}">${esc(s.status)}</span></td>
-    <td class="num">${esc(s.weight)}</td>
-    <td class="small">${esc(s.why)}</td>
-    <td class="small">${esc(s.cost)}</td>
-    <td class="small">${esc(s.risk)}</td>
-    <td class="small">${esc(s.decide)}${
-        s.links && s.links.length
-          ? `<br><span class="tiny">${s.links
-              .map((l) => cite(l.url, esc(l.label)))
-              .join(" · ")}</span>`
-          : ""
-      }</td>
-  </tr>`
-    )
-    .join("");
+  const STATUS_ORDER = suggestions.statusKey.map((k) => k.id);
+  const grouped = {};
+  for (const s of items) (grouped[s.status] = grouped[s.status] || []).push(s);
+  const nextUp = items.filter((x) => x.status === "recommend").slice(0, 3);
+
+  const card = (x) => `<article class="dec" id="${esc(x.id)}">
+  <header class="dec__head">
+    <div class="dec__id">
+      <span class="pill pill--${esc(x.status)}">${esc(x.status)}</span>
+      <code>${esc(x.id)}</code>
+    </div>
+    <div class="dec__score" title="Impact confidence out of 10, as recorded in the register">
+      <span class="dec__score-num">${esc(x.weight)}</span><span class="dec__score-den">/10</span>
+      <span class="dec__score-lab">weight</span>
+    </div>
+  </header>
+  <h3 class="dec__title">${esc(x.title)}</h3>
+  <dl class="dec__grid">
+    <div><dt>Why</dt><dd>${esc(x.why)}</dd></div>
+    <div><dt>What it costs</dt><dd>${esc(x.cost)}</dd></div>
+    <div class="dec__risk"><dt>What could go wrong</dt><dd>${esc(x.risk)}</dd></div>
+    <div class="dec__decide"><dt>Recommendation</dt><dd>${esc(x.decide)}${
+      x.links && x.links.length
+        ? `<span class="dec__src">Source: ${x.links.map((l) => cite(l.url, esc(l.label))).join(" · ")}</span>`
+        : ""
+    }</dd></div>
+  </dl>
+  <form class="dec__form" data-decision-form>
+    <p class="dec__form-lab">Record a decision</p>
+    <div class="dec__form-row">
+      <label>Reviewer<input type="text" name="reviewer" placeholder="Your name" autocomplete="name"></label>
+      <label>Choice
+        <select name="choice">
+          <option value="">—</option>
+          <option>Accept</option>
+          <option>Hold</option>
+          <option>Reject</option>
+          <option>Needs more info</option>
+        </select>
+      </label>
+      <label>Date<input type="date" name="date"></label>
+    </div>
+    <p class="dec__form-hint">Nothing is saved by typing here. The build has no backend and no account system, so a decision becomes real only when this line is copied into <code>data/suggestions.json</code> &rarr; <code>decisionLog.entries</code> and the page is rebuilt. The form exists to make the decision easy to write down, not to store it.</p>
+  </form>
+</article>`;
 
   const html = `
 ${breadcrumb([{ href: url("/"), label: "Home" }, { label: "Suggestions" }])}
 <div class="article-head">
   <div class="wrap">
     <p class="kicker">Review before implementing</p>
-    <h1 class="article-head__title">Suggestions</h1>
+    <h1 class="article-head__title">Decide the next move</h1>
     <p class="article-head__dek">${esc(suggestions.intro)}</p>
+    <div class="byline">
+      <span>${items.length} suggestions</span>
+      <span class="byline__dot" aria-hidden="true"></span>
+      <span>${counts.shipped || 0} shipped</span>
+      <span class="byline__dot" aria-hidden="true"></span>
+      <span>${items.length - (counts.shipped || 0)} waiting on you</span>
+    </div>
   </div>
 </div>
+
 <section class="section">
   <div class="wrap">
-    <div class="tablewrap" style="margin-bottom:1.5rem">
+    <div class="nextup">
+      <h2 class="nextup__title">If you accept three, accept these</h2>
+      <ol class="nextup__list">
+        ${nextUp
+          .map(
+            (x) => `<li>
+          <a href="#${esc(x.id)}"><strong>${esc(x.id)}</strong> ${esc(x.title)}</a>
+          <span class="nextup__why">${esc(x.why.split(". ")[0])}.</span>
+        </li>`
+          )
+          .join("")}
+      </ol>
+      <p class="tiny faint">Chosen from the register's own weights, not from a new opinion. Everything below is ordered the same way.</p>
+    </div>
+
+    <div class="tablewrap" style="margin:2.5rem 0 1rem">
       <table class="data sortable">
-        <caption>Status key. Anything not marked "shipped" is waiting for a decision — nothing beyond the initial build has been implemented.</caption>
+        <caption>Status key and how many suggestions sit in each state. Anything not marked "shipped" is waiting for a decision.</caption>
         <thead><tr><th scope="col">Status</th><th scope="col">Meaning</th><th scope="col">Count</th></tr></thead>
         <tbody>${suggestions.statusKey
           .map(
@@ -1564,27 +1775,29 @@ ${breadcrumb([{ href: url("/"), label: "Home" }, { label: "Suggestions" }])}
       </table>
     </div>
 
-    <div class="tablewrap">
-      <table class="data sortable">
-        <caption>Every suggestion, ordered by weight. Weight is our confidence that it is the right next move, not its effort. Read the "risk" column before accepting any of them.</caption>
-        <thead>
-          <tr>
-            <th scope="col">ID</th><th scope="col">Suggestion</th><th scope="col">Status</th>
-            <th scope="col">Weight</th><th scope="col">Why</th><th scope="col">Cost</th>
-            <th scope="col">Risk / what could go wrong</th><th scope="col">Decision</th>
-          </tr>
-        </thead>
-        <tbody>${rows}</tbody>
-      </table>
-    </div>
+    ${STATUS_ORDER.filter((st) => grouped[st] && st !== "shipped")
+      .map(
+        (st) => `<section class="decgroup" aria-labelledby="grp-${esc(st)}">
+      <h2 class="decgroup__title" id="grp-${esc(st)}">
+        <span class="pill pill--${esc(st)}">${esc(st)}</span>
+        <span class="decgroup__count">${grouped[st].length}</span>
+      </h2>
+      <div class="decstack">${grouped[st].map(card).join("")}</div>
+    </section>`
+      )
+      .join("")}
 
-    <div class="note mt2">
-      <p class="note__title">If you accept only three</p>
-      <p><strong>SUG-04</strong> — prove one affiliate link actually tracks, because nothing else matters if it does not. <strong>SUG-03</strong> — get API access, which unlocks prices, ratings and images at once. <strong>SUG-05</strong> — publish weekly for eight weeks, then let the query report choose the next topic instead of instinct.</p>
-    </div>
+    ${
+      grouped.shipped
+        ? `<details class="decshipped">
+      <summary><span class="pill pill--shipped">shipped</span> <strong>${grouped.shipped.length} suggestions already built</strong> — open to review what shipped, and why</summary>
+      <div class="decstack" style="margin-top:1.25rem">${grouped.shipped.map(card).join("")}</div>
+    </details>`
+        : ""
+    }
 
-    <div class="note note--stop mt1">
-      <p class="note__title">Two suggestions are rejections</p>
+    <div class="note note--stop mt2">
+      <p class="note__title">Two suggestions are rejections, kept on purpose</p>
       <p><strong>SUG-12</strong> (price tracking) and <strong>SUG-13</strong> (generated near-duplicate pages) are listed so that a future session does not build them in good faith. The first breaches Amazon's program policies outright; the second produces the exact content this publication exists to avoid.</p>
     </div>
   </div>
@@ -1596,8 +1809,8 @@ ${renderDecisionLog()}
 `;
   pages.push({
     path: "/suggestions/",
-    title: "Suggestions",
-    desc: "A reviewable decision list: suggestions with rationale, cost, risk and a recommendation, plus a draft design brief, a topic roadmap of hypotheses, and a decision log. Nothing is implemented without a decision.",
+    title: "Suggestions to review before anything is implemented",
+    desc: "A reviewable decision list: each suggestion with its rationale, cost, risk and recommendation, ordered by weight, plus a design brief, a topic roadmap of hypotheses, and an empty decision log.",
     html,
     priority: "0.6",
     changefreq: "weekly"
@@ -1986,13 +2199,33 @@ ${guides
 `;
   fs.writeFileSync(path.join(ROOT, "feed.xml"), feed);
 
+  // One indexable site. The three archived builds are preserved verbatim as a historical
+  // record and stay reachable for anyone following a link, but they are duplicate editions of
+  // this publication and must not be indexed — four copies of the same guide competing in
+  // search is the exact failure this integration exists to avoid.
   fs.writeFileSync(
     path.join(ROOT, "robots.txt"),
     `# ${site.name}
 User-agent: *
 Allow: /
 
+# Archived editions: preserved as a record, not a second publication.
+# This blocks crawling. It does not by itself remove a URL that is already indexed;
+# links to the archive are also rel="nofollow" and the archive is absent from the sitemap.
+Disallow: /WinA/archive/
+
 Sitemap: ${abs("/sitemap.xml")}
+`
+  );
+
+  // Belt and braces alongside robots.txt: a noindex header for hosts that combine
+  // _headers files (Cloudflare Pages, Netlify). GitHub Pages ignores it, which is why
+  // robots.txt above is the rule that actually runs here.
+  fs.writeFileSync(
+    path.join(ROOT, "_headers"),
+    `# Archived editions are a record, not a second publication.
+/WinA/archive/*
+  X-Robots-Tag: noindex, nofollow
 `
   );
 

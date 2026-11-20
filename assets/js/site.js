@@ -180,3 +180,78 @@
 
   Array.prototype.forEach.call(document.querySelectorAll("table.data.sortable"), enhance);
 })();
+
+/* ----------------------------------------------------------
+   THE SHELF — client-side category filter over the product
+   table. Progressive enhancement only: with JS off, every row
+   is visible and the buttons do nothing harmful. No product
+   data is created here; rows are filtered, never rewritten.
+   ---------------------------------------------------------- */
+(function () {
+  "use strict";
+
+  var shelf = document.querySelector("[data-shelf]");
+  if (!shelf) return;
+
+  var buttons = shelf.querySelectorAll("[data-filter]");
+  var rows = shelf.querySelectorAll("tbody tr[data-cat]");
+  var count = shelf.querySelector("[data-shelf-count]");
+  if (!buttons.length || !rows.length) return;
+
+  function apply(filter) {
+    var shown = 0;
+    Array.prototype.forEach.call(rows, function (row) {
+      var match = filter === "all" || row.getAttribute("data-cat") === filter;
+      if (match) { row.removeAttribute("hidden"); shown++; }
+      else row.setAttribute("hidden", "");
+    });
+    Array.prototype.forEach.call(buttons, function (b) {
+      var on = b.getAttribute("data-filter") === filter;
+      b.classList.toggle("is-on", on);
+      b.setAttribute("aria-pressed", on ? "true" : "false");
+    });
+    if (count) count.textContent = shown + (shown === 1 ? " product" : " products");
+  }
+
+  Array.prototype.forEach.call(buttons, function (b) {
+    b.setAttribute("aria-pressed", b.classList.contains("is-on") ? "true" : "false");
+    b.addEventListener("click", function () { apply(b.getAttribute("data-filter")); });
+  });
+})();
+
+/* ----------------------------------------------------------
+   JUMP BAR — mark the section you are currently reading.
+   Read-only indicator; it never scrolls the page for you.
+   ---------------------------------------------------------- */
+(function () {
+  "use strict";
+
+  var bar = document.querySelector("[data-jumpbar]");
+  if (!bar || !("IntersectionObserver" in window)) return;
+  var links = bar.querySelectorAll('a[href^="#"]');
+  if (!links.length) return;
+
+  var targets = [];
+  Array.prototype.forEach.call(links, function (a) {
+    var el = document.getElementById(a.getAttribute("href").slice(1));
+    if (el) targets.push({ el: el, a: a });
+  });
+  if (!targets.length) return;
+
+  var visible = new Set();
+  var io = new IntersectionObserver(
+    function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) visible.add(e.target); else visible.delete(e.target);
+      });
+      var current = null;
+      targets.forEach(function (t) { if (visible.has(t.el)) current = t.a; });
+      Array.prototype.forEach.call(links, function (a) {
+        if (a === current) a.setAttribute("aria-current", "true");
+        else a.removeAttribute("aria-current");
+      });
+    },
+    { rootMargin: "-40% 0px -55% 0px" }
+  );
+  targets.forEach(function (t) { io.observe(t.el); });
+})();

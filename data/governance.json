@@ -350,6 +350,42 @@
       "action": "Owner: decide whether the intended-ASIN field should be filled from the submitted link (FLG-019). If the rationale is kept, cite an Amazon Help page for the definition before publishing it.",
       "sourceUrl": "https://sellercentral.amazon.com/seller-forums/discussions/t/1e22c5df-d27a-4e2b-a0c1-90938b6cdcdc",
       "sourceLabel": "Seller Central forum thread (not Amazon Help; definition not confirmed as Amazon's)"
+    },
+    {
+      "id": "FLG-036",
+      "severity": "resolved",
+      "title": "The three archived editions were crawlable and indexable duplicates of the live site",
+      "detail": "archive/ holds 48 HTML pages from three earlier builds, including near-duplicate copies of the guides and product pages. None carried a noindex directive, the archive was absent from the sitemap, and the live site linked to it from /flagged/ without rel=nofollow. A crawler that found those links could index up to four competing copies of the same guide under one domain, which is the duplicate-content problem the single-build rule exists to prevent.",
+      "action": "Resolved. robots.txt now disallows /WinA/archive/; every link into the archive carries rel=nofollow; a _headers file adds X-Robots-Tag noindex for hosts that read it; the archived HTML itself is unmodified so the record stays verbatim. Caveat stated on /seo/: robots.txt controls crawling, not indexing (Google: robots.txt is not a mechanism for keeping a page out of Google's index), so this reduces discovery rather than guaranteeing removal. A Search Console removal request is needed for anything already indexed, which requires the verified property in FLG-009.",
+      "sourceUrl": "https://developers.google.com/crawling/docs/robots-txt/robots-txt-spec",
+      "sourceLabel": "Google: How Google interprets the robots.txt specification (read 2026-11-20)"
+    },
+    {
+      "id": "FLG-037",
+      "severity": "review",
+      "title": "Product figures on the site are our own diagrams, not product photography — and a diagram can be mistaken for one",
+      "detail": "FLG-007 withholds product photography because there is no licensed feed for it. This build adds five self-drawn form-factor diagrams to the shelf cards, the front-page pick and each product page, plus a brand icon and share card. The diagrams depict drawers, cavities and probe shapes generically; the share card and icon depict no product at all. A reader who does not read the caption could still take a diagram for a photograph of the specific model.",
+      "action": "Every product figure carries a visible caption saying it is a drawing, not a photograph, and the product-page figure says product photography is withheld under program policy. Do not remove a caption while keeping the image. FLG-007 stays open: no photograph of any product appears anywhere on this site.",
+      "sourceUrl": "https://affiliate-program.amazon.com/help/operating/policies",
+      "sourceLabel": "Associates Program Policies (imagery must come from licensed program content)"
+    },
+    {
+      "id": "FLG-038",
+      "severity": "action",
+      "title": "The suggestion review form cannot store a decision",
+      "detail": "Every suggestion now renders Reviewer / Choice / Date inputs, as the brief asked. The build has no backend and no account system, so nothing typed into those fields is transmitted or saved; the browser discards it on navigation. data/suggestions.json decisionLog.entries is still empty.",
+      "action": "Record decisions by adding an entry to decisionLog.entries in data/suggestions.json and rebuilding. The form is a writing aid, and the page says so directly beneath the fields rather than implying a submission. Closing this needs either a form backend or a CMS, both of which are out of scope for a static GitHub Pages site.",
+      "sourceUrl": "https://docs.github.com/en/pages",
+      "sourceLabel": "GitHub Docs: GitHub Pages (static hosting, no server-side processing)"
+    },
+    {
+      "id": "FLG-039",
+      "severity": "review",
+      "title": "Two suggestion rationales cite a recommendation as if it were a program rule",
+      "detail": "SUG-05 mentions the 60-day recency guidance and SUG-01 the FTC rule against describing experience you do not have. Both figures are correct against the official pages read on 2026-11-20 (Associates Help 'Application Review Process', which says content must be 'generally within the last 60 days', and FTC Disclosures 101). What is not verified is the framing in SUG-05's recommendation, which presents a weekly cadence as a way to stay inside that window. Amazon states the recency expectation for websites; it does not state a cadence that satisfies it.",
+      "action": "Keep the recommendation, but treat it as our inference, not Amazon's instruction. No wording currently claims Amazon requires a weekly cadence, so nothing is misquoted; flagged because a future editor could tighten the sentence into a rule that does not exist.",
+      "sourceUrl": "https://affiliate-program.amazon.com/help/node/topic/G8TW5AE9XL2VX9VM",
+      "sourceLabel": "Associates Help: Application Review Process (read 2026-11-20)"
     }
   ],
   "ledger": {

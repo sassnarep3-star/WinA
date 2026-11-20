@@ -8,7 +8,15 @@
     "marketplace": "amazon.com",
     "built": "2026-11-20",
     "associateStatement": "As an Amazon Associate I earn from qualifying purchases.",
-    "analyticsEndpoint": ""
+    "analyticsEndpoint": "",
+    "brand": {
+      "mark": "C",
+      "wordmark": "Counter Space",
+      "socialImage": "assets/brand/share-1200x630.png",
+      "socialImageAlt": "Counter Space — kitchen gear, judged by what it does on a Tuesday night."
+    },
+    "socialImage": "assets/brand/share-1200x630.png",
+    "socialImageAlt": "Counter Space — kitchen gear, judged by what it does on a Tuesday night."
   },
   "products": [
     {
@@ -133,7 +141,9 @@
           "label": "chefman.com specification"
         }
       },
-      "modelNumber": "RJ38-SQPF-3TDB-2W"
+      "modelNumber": "RJ38-SQPF-3TDB-2W",
+      "image": "assets/brand/diagram-dual-basket.png",
+      "imageAlt": "Dual basket: two independent 3-quart drawers side by side"
     },
     {
       "slug": "emeril-lagasse-26qt-french-door",
@@ -247,7 +257,9 @@
           "url": "https://www.emerileveryday.com/products/emeril_lagasse_french_door_airfryer_360",
           "label": "emerileveryday.com specification"
         }
-      }
+      },
+      "image": "assets/brand/diagram-oven-french-door.png",
+      "imageAlt": "Oven style: one cavity holding two flat trays"
     },
     {
       "slug": "chefman-8-quart-turbofry",
@@ -354,7 +366,9 @@
       "submittedLink": "https://link.amazon/B00hJ57DV",
       "observedDestination": "https://www.amazon.com/dp/B08DKYBTPH",
       "observedOn": "2026-11-20",
-      "modelAmbiguity": "The 8-qt family spans at least five SKUs. chefman.com publishes RJ38-8T-BLACK (matte black, 8 qt/7.57 L, Hi-Fry 450 F, 1700 W/120 V); the listing re-fetched for this ASIN (12.8 lb, RJ38-SQSS-8T per retailer records) describes a stainless-steel body. Because the colour and model strings disagree, no dimension, weight or wattage is taken from the black SKU's page."
+      "modelAmbiguity": "The 8-qt family spans at least five SKUs. chefman.com publishes RJ38-8T-BLACK (matte black, 8 qt/7.57 L, Hi-Fry 450 F, 1700 W/120 V); the listing re-fetched for this ASIN (12.8 lb, RJ38-SQSS-8T per retailer records) describes a stainless-steel body. Because the colour and model strings disagree, no dimension, weight or wattage is taken from the black SKU's page.",
+      "image": "assets/brand/diagram-single-basket.png",
+      "imageAlt": "Single basket: one 8-quart drawer"
     },
     {
       "slug": "thermomaven-1-sec-thermometer",
@@ -495,7 +509,9 @@
           "label": "thermomaven.com"
         }
       },
-      "modelNumber": "HT07"
+      "modelNumber": "HT07",
+      "image": "assets/brand/diagram-instant-read.png",
+      "imageAlt": "Instant read: a folding probe with a display head"
     },
     {
       "slug": "chef-iq-sense-gen3",
@@ -639,7 +655,9 @@
           "label": "chefiq.com"
         }
       },
-      "modelNumber": "CQ60-1C-Z1-E"
+      "modelNumber": "CQ60-1C-Z1-E",
+      "image": "assets/brand/diagram-wireless.png",
+      "imageAlt": "Wireless: a probe that reports to a separate receiver"
     }
   ],
   "categories": [

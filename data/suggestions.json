@@ -1,5 +1,5 @@
 {
-  "intro": "A decision list, not a wish list. Each suggestion states what to do, why, what it costs, and what would make it a bad idea. Nothing here has been implemented beyond what is already live; the ones marked shipped were built in this pass because the brief asked for them directly. Everything else waits for a decision.",
+  "intro": "A decision list, not a wish list. Each suggestion states what to do, why, what it costs, and what would make it a bad idea. Some are marked shipped because they were built in the latest pass and are live on the site now; the rest are waiting for a decision, and nothing in that group gets built until someone records one.",
   "statusKey": [
     {
       "id": "shipped",
@@ -243,7 +243,12 @@
       "cost": "One document. The draft is on this page and can be adopted as-is or edited.",
       "risk": "A brief that is too rigid produces sameness. It is a starting point, not a cage.",
       "decide": "Accept. The design brief below is the draft to start from; edit it before implementing.",
-      "links": [{ "label": "Google Search Central — helpful content", "url": "https://developers.google.com/search/docs/fundamentals/creating-helpful-content" }]
+      "links": [
+        {
+          "label": "Google Search Central — helpful content",
+          "url": "https://developers.google.com/search/docs/fundamentals/creating-helpful-content"
+        }
+      ]
     },
     {
       "id": "SUG-18",
@@ -276,7 +281,12 @@
       "cost": "Editorial discipline. Add a banned-phrase list to the editorial standards so the gate can enforce it.",
       "risk": "None. It is the same constraint as SUG-01, applied to wording as well as claims.",
       "decide": "Accept. Add the banned-phrase list to the About page and a build check.",
-      "links": [{ "label": "Google Search Central — helpful content", "url": "https://developers.google.com/search/docs/fundamentals/creating-helpful-content" }]
+      "links": [
+        {
+          "label": "Google Search Central — helpful content",
+          "url": "https://developers.google.com/search/docs/fundamentals/creating-helpful-content"
+        }
+      ]
     },
     {
       "id": "SUG-21",
@@ -287,7 +297,12 @@
       "cost": "A substantive guide each week, with its own verified spec pass.",
       "risk": "Volume without quality control produces the thin content the brief rejects. The build gate stays on.",
       "decide": "Accept the topic roadmap below as the first batch of hypotheses, then let measured demand reorder it.",
-      "links": [{ "label": "Google Search Central — helpful content", "url": "https://developers.google.com/search/docs/fundamentals/creating-helpful-content" }]
+      "links": [
+        {
+          "label": "Google Search Central — helpful content",
+          "url": "https://developers.google.com/search/docs/fundamentals/creating-helpful-content"
+        }
+      ]
     },
     {
       "id": "SUG-22",
@@ -309,7 +324,12 @@
       "cost": "Zero.",
       "risk": "Misses timely traffic in the meantime.",
       "decide": "Hold until Search Console has 2–4 weeks of query data (FLG-009, FLG-020).",
-      "links": [{ "label": "Google Search Console", "url": "https://search.google.com/search-console" }]
+      "links": [
+        {
+          "label": "Google Search Console",
+          "url": "https://search.google.com/search-console"
+        }
+      ]
     },
     {
       "id": "SUG-24",
@@ -320,6 +340,87 @@
       "cost": "A small table on this page, populated by hand.",
       "risk": "None. It only records decisions already being made.",
       "decide": "Accept. The decision log schema below is the record; entries are added as decisions are made.",
+      "links": []
+    },
+    {
+      "id": "SUG-25",
+      "title": "Ship the storefront layout: shelf table, department rail, diagram figures",
+      "status": "shipped",
+      "weight": 9,
+      "why": "The front page previously read as an audit of its own verification: a stat strip counting 'policy checks passed' above the products. A buyer decides in seconds whether a page is a shop. The shelf table, the shop-by rail and the form-factor diagrams move the products above the process without removing a single verified fact.",
+      "cost": "One build pass. No new factual claims and no external assets: the figures are self-drawn diagrams, not product photographs.",
+      "risk": "A diagram can be read as a photograph of the product. Every figure is captioned 'Not a photograph of the product' for that reason. If any caption is dropped, the figure becomes misleading.",
+      "decide": "Shipped. Keep the caption; it is the condition of using the image at all.",
+      "links": [
+        {
+          "label": "FTC: deceptive design and substantiation",
+          "url": "https://www.ftc.gov/business-guidance/resources/disclosures-101-social-media-influencers"
+        }
+      ]
+    },
+    {
+      "id": "SUG-26",
+      "title": "Move the verification dashboards out of the first scroll",
+      "status": "shipped",
+      "weight": 8,
+      "why": "Every dashboard surface is still reachable from the footer on every page, which was the original requirement. What changed is their position: they no longer sit above the products. The verification work is a feature of the publication, not its front door.",
+      "cost": "None. Footer links and one notes block.",
+      "risk": "A reader who arrives specifically to audit the sources now scrolls further to find them. The footer is on every page, so nothing is lost.",
+      "decide": "Shipped. The footer link list is the contract; do not remove an entry from it without adding the page elsewhere.",
+      "links": []
+    },
+    {
+      "id": "SUG-27",
+      "title": "Disallow the archived editions in robots.txt, and add a _headers rule as belt and braces",
+      "status": "shipped",
+      "weight": 9,
+      "why": "Three earlier builds are preserved under /archive/ as a historical record: 48 HTML pages including near-duplicate guides. None carried a noindex directive. A crawler that found them would see four competing copies of every guide under one domain.",
+      "cost": "Two generated files. The archived HTML is untouched, so the record stays verbatim.",
+      "risk": "GitHub Pages does not read a _headers file, so that rule is inert here and exists only if the site moves to a host that does. robots.txt is the rule that actually runs. If a page is ever moved out of /archive/, it needs its own check.",
+      "decide": "Shipped. Keep the archive out of the sitemap as well — it already is.",
+      "links": [
+        {
+          "label": "Google: robots.txt specifications",
+          "url": "https://developers.google.com/search/docs/crawling-indexing/robots/robots_txt"
+        }
+      ]
+    },
+    {
+      "id": "SUG-28",
+      "title": "Give the site a brand mark, icon and share card",
+      "status": "shipped",
+      "weight": 7,
+      "why": "Every page had no favicon and no social preview image, so a shared link rendered as plain text and a browser tab showed a blank page icon. Those are the two cheapest signals that a site is published rather than generated.",
+      "cost": "Four files generated locally. No third-party image, no licensed content.",
+      "risk": "None factual: the artwork depicts no product, no seller and no Amazon asset. It must stay that way; a generated image that implies a product photograph would reopen FLG-007 on false pretences.",
+      "decide": "Shipped.",
+      "links": [
+        {
+          "label": "schema.org: ImageObject",
+          "url": "https://schema.org/ImageObject"
+        }
+      ]
+    },
+    {
+      "id": "SUG-29",
+      "title": "Restructure the suggestions page from one 8-column table into per-item decision cards",
+      "status": "shipped",
+      "weight": 8,
+      "why": "The suggestions existed but were presented as a single wide table. A decision cannot be taken from a table cell: each suggestion needs its rationale, cost, risk and recommendation adjacent to the choice being made.",
+      "cost": "One renderer change. The data model already held every field.",
+      "risk": "A card layout hides the cross-item comparison. The ranked summary table is kept above the cards for that reason.",
+      "decide": "Shipped.",
+      "links": []
+    },
+    {
+      "id": "SUG-30",
+      "title": "Put a dated, signed review note (Reviewer / Chosen / Date) on every suggestion",
+      "status": "shipped",
+      "weight": 8,
+      "why": "The brief asks for a section where someone can review the suggestions and choose a path before anything is implemented. A recorded decision needs a name, a date and a reason, or the log silently reverts to opinion next session.",
+      "cost": "Four empty text inputs per card. No backend, so the note is a prompt for the record, not a stored answer.",
+      "risk": "The fields are inert until a human fills them in and copies the line into data/suggestions.json decisionLog.entries. A filled-in field on the page is not a recorded decision.",
+      "decide": "Shipped, with that limitation stated on the page.",
       "links": []
     }
   ],
@@ -364,7 +465,10 @@
         "principle": "Keep the disclosure strip and sponsored labels exactly where policy requires, and design around them rather than treating them as an afterthought.",
         "why": "Disclosure placement is a compliance requirement, not a style choice.",
         "constraint": "FTC Disclosures 101 (hard to miss); Associates Operating Agreement §5.",
-        "source": { "label": "FTC Disclosures 101", "url": "https://www.ftc.gov/business-guidance/resources/disclosures-101-social-media-influencers" }
+        "source": {
+          "label": "FTC Disclosures 101",
+          "url": "https://www.ftc.gov/business-guidance/resources/disclosures-101-social-media-influencers"
+        }
       },
       {
         "id": "DB-06",
@@ -372,7 +476,10 @@
         "principle": "Write in a concrete, human, opinionated voice using specifics and named trade-offs. Ban filler phrases and generic marketing boilerplate.",
         "why": "Specificity reads human and is what helpful-content guidance rewards; filler is the other main slop tell.",
         "constraint": "FTC: no experience you do not have. The Associate statement stays verbatim.",
-        "source": { "label": "Google Search Central — Creating Helpful Content", "url": "https://developers.google.com/search/docs/fundamentals/creating-helpful-content" }
+        "source": {
+          "label": "Google Search Central — Creating Helpful Content",
+          "url": "https://developers.google.com/search/docs/fundamentals/creating-helpful-content"
+        }
       },
       {
         "id": "DB-07",
@@ -380,7 +487,10 @@
         "principle": "Until compliant product imagery is available, keep the site typographic: color, type and a defined illustration or pattern system carry the design. Do not hot-link, store, or substitute Amazon imagery, and do not use stock photos of a different appliance.",
         "why": "Unlicensed or misrepresenting imagery would violate program policy and mislead the reader. A confident typographic system can look polished without photos.",
         "constraint": "Participation Requirements §6(a); IP License. See FLG-007.",
-        "source": { "label": "Amazon Associates Program Policies", "url": "https://affiliate-program.amazon.com/help/operating/policies" }
+        "source": {
+          "label": "Amazon Associates Program Policies",
+          "url": "https://affiliate-program.amazon.com/help/operating/policies"
+        }
       },
       {
         "id": "DB-08",
@@ -388,7 +498,10 @@
         "principle": "Make the sponsored status of every outbound product link visible at the link, and keep the Associate statement above the fold on every page.",
         "why": "Reader trust and FTC disclosure both require the material connection to be visible where the endorsement happens.",
         "constraint": "FTC 16 CFR 255.5; Associates OA §5; Program Policies.",
-        "source": { "label": "FTC Disclosures 101", "url": "https://www.ftc.gov/business-guidance/resources/disclosures-101-social-media-influencers" }
+        "source": {
+          "label": "FTC Disclosures 101",
+          "url": "https://www.ftc.gov/business-guidance/resources/disclosures-101-social-media-influencers"
+        }
       }
     ]
   },
@@ -398,22 +511,57 @@
       {
         "id": "AF",
         "name": "Air fryers",
-        "products": ["chefman-6-quart-dual-basket", "chefman-8-quart-turbofry", "emeril-lagasse-26qt-french-door"],
+        "products": [
+          "chefman-6-quart-dual-basket",
+          "chefman-8-quart-turbofry",
+          "emeril-lagasse-26qt-french-door"
+        ],
         "topics": [
-          { "title": "The two-basket air fryer: when cooking two things at once is actually worth it", "intent": "Form-factor decision", "status": "hypothesis" },
-          { "title": "Air fryer vs. toaster oven: which one actually saves your counter?", "intent": "Category decision", "status": "hypothesis" },
-          { "title": "How many quarts do you really need? A rule of thumb for one- and two-person kitchens", "intent": "Capacity decision", "status": "hypothesis" },
-          { "title": "What 'Hi-Fry' actually means — and when the extra heat is worth it", "intent": "Feature decision", "status": "hypothesis" }
+          {
+            "title": "The two-basket air fryer: when cooking two things at once is actually worth it",
+            "intent": "Form-factor decision",
+            "status": "hypothesis"
+          },
+          {
+            "title": "Air fryer vs. toaster oven: which one actually saves your counter?",
+            "intent": "Category decision",
+            "status": "hypothesis"
+          },
+          {
+            "title": "How many quarts do you really need? A rule of thumb for one- and two-person kitchens",
+            "intent": "Capacity decision",
+            "status": "hypothesis"
+          },
+          {
+            "title": "What 'Hi-Fry' actually means — and when the extra heat is worth it",
+            "intent": "Feature decision",
+            "status": "hypothesis"
+          }
         ]
       },
       {
         "id": "TH",
         "name": "Thermometers",
-        "products": ["thermomaven-1-sec-thermometer", "chef-iq-sense-gen3"],
+        "products": [
+          "thermomaven-1-sec-thermometer",
+          "chef-iq-sense-gen3"
+        ],
         "topics": [
-          { "title": "The one number that decides a roast: why your thermometer matters more than your recipe", "intent": "Why-it-matters", "status": "hypothesis" },
-          { "title": "Probe vs. instant-read: matching the tool to the cook", "intent": "Tool-match decision", "status": "hypothesis" },
-          { "title": "Wireless meat thermometer: what to check before you rely on it for a long cook", "intent": "Reliability decision", "status": "hypothesis" }
+          {
+            "title": "The one number that decides a roast: why your thermometer matters more than your recipe",
+            "intent": "Why-it-matters",
+            "status": "hypothesis"
+          },
+          {
+            "title": "Probe vs. instant-read: matching the tool to the cook",
+            "intent": "Tool-match decision",
+            "status": "hypothesis"
+          },
+          {
+            "title": "Wireless meat thermometer: what to check before you rely on it for a long cook",
+            "intent": "Reliability decision",
+            "status": "hypothesis"
+          }
         ]
       },
       {
@@ -421,9 +569,21 @@
         "name": "Cross-category evergreen",
         "products": [],
         "topics": [
-          { "title": "The 5-question checklist before buying any small kitchen appliance", "intent": "General buying framework", "status": "hypothesis" },
-          { "title": "Small-appliance buying mistakes that cost you counter space", "intent": "Mistake avoidance", "status": "hypothesis" },
-          { "title": "How to read a spec sheet without getting sold", "intent": "Literacy framework", "status": "hypothesis" }
+          {
+            "title": "The 5-question checklist before buying any small kitchen appliance",
+            "intent": "General buying framework",
+            "status": "hypothesis"
+          },
+          {
+            "title": "Small-appliance buying mistakes that cost you counter space",
+            "intent": "Mistake avoidance",
+            "status": "hypothesis"
+          },
+          {
+            "title": "How to read a spec sheet without getting sold",
+            "intent": "Literacy framework",
+            "status": "hypothesis"
+          }
         ]
       }
     ]

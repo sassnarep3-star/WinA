@@ -3,19 +3,28 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Suggestions — Counter Space</title>
-<meta name="description" content="A reviewable decision list: suggestions with rationale, cost, risk and a recommendation, plus a draft design brief, a topic roadmap of hypotheses, and a decision log. Nothing is implemented without a decision.">
+<title>Suggestions to review before anything is implemented — Counter Space</title>
+<meta name="description" content="A reviewable decision list: each suggestion with its rationale, cost, risk and recommendation, ordered by weight, plus a design brief, a topic roadmap of hypotheses, and an empty decision log.">
 <link rel="canonical" href="https://sassnarep3-star.github.io/WinA/suggestions/">
 <meta name="robots" content="index,follow,max-image-preview:large">
 <meta name="google-site-verification" content="REPLACE_WITH_REAL_TOKEN_FLG009">
 <meta property="og:site_name" content="Counter Space">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Suggestions — Counter Space">
-<meta property="og:description" content="A reviewable decision list: suggestions with rationale, cost, risk and a recommendation, plus a draft design brief, a topic roadmap of hypotheses, and a decision log. Nothing is implemented without a decision.">
+<meta property="og:title" content="Suggestions to review before anything is implemented — Counter Space">
+<meta property="og:description" content="A reviewable decision list: each suggestion with its rationale, cost, risk and recommendation, ordered by weight, plus a design brief, a topic roadmap of hypotheses, and an empty decision log.">
 <meta property="og:url" content="https://sassnarep3-star.github.io/WinA/suggestions/">
+<meta property="og:image" content="https://sassnarep3-star.github.io/WinAassets/brand/share-1200x630.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Counter Space — kitchen gear, judged by what it does on a Tuesday night.">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Suggestions — Counter Space">
-<meta name="twitter:description" content="A reviewable decision list: suggestions with rationale, cost, risk and a recommendation, plus a draft design brief, a topic roadmap of hypotheses, and a decision log. Nothing is implemented without a decision.">
+<meta name="twitter:title" content="Suggestions to review before anything is implemented — Counter Space">
+<meta name="twitter:description" content="A reviewable decision list: each suggestion with its rationale, cost, risk and recommendation, ordered by weight, plus a design brief, a topic roadmap of hypotheses, and an empty decision log.">
+<meta name="twitter:image" content="https://sassnarep3-star.github.io/WinAassets/brand/share-1200x630.png">
+<meta name="theme-color" content="#0f4c5c">
+<link rel="icon" type="image/png" sizes="32x32" href="/WinA/assets/brand/favicon-32.png">
+<link rel="icon" type="image/png" sizes="512x512" href="/WinA/assets/brand/icon-512.png">
+<link rel="apple-touch-icon" href="/WinA/assets/brand/icon-180.png">
 <link rel="alternate" type="application/rss+xml" title="Counter Space" href="/WinA/feed.xml">
 <link rel="stylesheet" href="/WinA/assets/css/site.css">
 <script>window.CS_CONFIG={analyticsEnabled:false,analyticsEndpoint:""};</script>
@@ -50,20 +59,45 @@
 <div class="article-head">
   <div class="wrap">
     <p class="kicker">Review before implementing</p>
-    <h1 class="article-head__title">Suggestions</h1>
-    <p class="article-head__dek">A decision list, not a wish list. Each suggestion states what to do, why, what it costs, and what would make it a bad idea. Nothing here has been implemented beyond what is already live; the ones marked shipped were built in this pass because the brief asked for them directly. Everything else waits for a decision.</p>
+    <h1 class="article-head__title">Decide the next move</h1>
+    <p class="article-head__dek">A decision list, not a wish list. Each suggestion states what to do, why, what it costs, and what would make it a bad idea. Some are marked shipped because they were built in the latest pass and are live on the site now; the rest are waiting for a decision, and nothing in that group gets built until someone records one.</p>
+    <div class="byline">
+      <span>30 suggestions</span>
+      <span class="byline__dot" aria-hidden="true"></span>
+      <span>8 shipped</span>
+      <span class="byline__dot" aria-hidden="true"></span>
+      <span>22 waiting on you</span>
+    </div>
   </div>
 </div>
+
 <section class="section">
   <div class="wrap">
-    <div class="tablewrap" style="margin-bottom:1.5rem">
+    <div class="nextup">
+      <h2 class="nextup__title">If you accept three, accept these</h2>
+      <ol class="nextup__list">
+        <li>
+          <a href="#SUG-02"><strong>SUG-02</strong> Split into two publications, or pick one category and go deep</a>
+          <span class="nextup__why">Three air fryers and two thermometers are two different buying moments.</span>
+        </li><li>
+          <a href="#SUG-03"><strong>SUG-03</strong> Get PA-API or Creatives access before writing another word</a>
+          <span class="nextup__why">It is the unlock for the three things this site most obviously lacks: prices, ratings, and product images.</span>
+        </li><li>
+          <a href="#SUG-05"><strong>SUG-05</strong> Publish on a real cadence: a new guide every week for eight weeks, then read the query data</a>
+          <span class="nextup__why">Question-shaped guides are the right shape, but five is not a sample.</span>
+        </li>
+      </ol>
+      <p class="tiny faint">Chosen from the register's own weights, not from a new opinion. Everything below is ordered the same way.</p>
+    </div>
+
+    <div class="tablewrap" style="margin:2.5rem 0 1rem">
       <table class="data sortable">
-        <caption>Status key. Anything not marked "shipped" is waiting for a decision — nothing beyond the initial build has been implemented.</caption>
+        <caption>Status key and how many suggestions sit in each state. Anything not marked "shipped" is waiting for a decision.</caption>
         <thead><tr><th scope="col">Status</th><th scope="col">Meaning</th><th scope="col">Count</th></tr></thead>
         <tbody><tr>
           <td><span class="pill pill--shipped">shipped</span></td>
           <td>Already built on the live site in this pass.</td>
-          <td class="num">2</td>
+          <td class="num">8</td>
         </tr><tr>
           <td><span class="pill pill--recommend">recommend</span></td>
           <td>Highest confidence, do this before the others.</td>
@@ -84,243 +118,1089 @@
       </table>
     </div>
 
-    <div class="tablewrap">
-      <table class="data sortable">
-        <caption>Every suggestion, ordered by weight. Weight is our confidence that it is the right next move, not its effort. Read the "risk" column before accepting any of them.</caption>
-        <thead>
-          <tr>
-            <th scope="col">ID</th><th scope="col">Suggestion</th><th scope="col">Status</th>
-            <th scope="col">Weight</th><th scope="col">Why</th><th scope="col">Cost</th>
-            <th scope="col">Risk / what could go wrong</th><th scope="col">Decision</th>
-          </tr>
-        </thead>
-        <tbody><tr>
-    <td><code>SUG-01</code></td>
-    <td><strong>Keep the site in 'how to decide' voice, permanently, until products are actually tested</strong></td>
-    <td><span class="pill pill--shipped">shipped</span></td>
-    <td class="num">10</td>
-    <td class="small">The FTC forbids describing hands-on experience you do not have, and readers detect the fake version instantly. The reliable way to sound human without lying is to write about the decision instead of the verdict: what the drawers are like, what the counter cost is, who the machine is wrong for.</td>
-    <td class="small">None. It is a writing constraint, enforced by the build.</td>
-    <td class="small">A guide that never says 'we tested this' competes poorly against sites that can. That is a real disadvantage and it is the correct one to accept.</td>
-    <td class="small">Accept. Every page already follows it.<br><span class="tiny"><a href="https://www.ftc.gov/business-guidance/resources/disclosures-101-social-media-influencers" rel="noopener" target="_blank">FTC Disclosures 101</a></span></td>
-  </tr><tr>
-    <td><code>SUG-12</code></td>
-    <td><strong>Do not add a price tracker, price alerts, or a deal feed</strong></td>
-    <td><span class="pill pill--reject">reject</span></td>
-    <td class="num">10</td>
-    <td class="small">Prohibited outright by §6(y) regardless of how it is built.</td>
-    <td class="small">Zero.</td>
-    <td class="small">It is the most requested feature on affiliate sites and the most direct route to account termination.</td>
-    <td class="small">Rejected. Documented so no future session builds it.<br><span class="tiny"><a href="https://affiliate-program.amazon.com/help/operating/policies" rel="noopener" target="_blank">Participation Requirements §6(y)</a></span></td>
-  </tr><tr>
-    <td><code>SUG-13</code></td>
-    <td><strong>Do not generate volumes of near-duplicate pages to chase long-tail queries</strong></td>
-    <td><span class="pill pill--reject">reject</span></td>
-    <td class="num">10</td>
-    <td class="small">Template-spun variants of the same article are the definition of the thin, generated content the brief rejects, and they dilute the pages that could rank.</td>
-    <td class="small">Zero.</td>
-    <td class="small">It works briefly, then gets the whole domain discounted.</td>
-    <td class="small">Rejected. The build gate refuses pages without unique content fields.</td>
-  </tr><tr>
-    <td><code>SUG-02</code></td>
-    <td><strong>Split into two publications, or pick one category and go deep</strong></td>
-    <td><span class="pill pill--recommend">recommend</span></td>
-    <td class="num">9</td>
-    <td class="small">Three air fryers and two thermometers are two different buying moments. Search engines reward a site that owns one topic. A small site trying to own 'kitchen gear' owns nothing.</td>
-    <td class="small">Splitting means two domains, two sitemaps, twice the setup. Going deep on air fryers means the thermometers get a single supporting page.</td>
-    <td class="small">If the thermometer affiliate offers a better commission or a bounty, narrowing too early gives up real money.</td>
-    <td class="small">Recommend: keep one site, make air fryers the front section, and treat thermometers as the accessory section — which is what the current structure already does. Confirm before adding a third category.</td>
-  </tr><tr>
-    <td><code>SUG-03</code></td>
-    <td><strong>Get PA-API or Creatives access before writing another word</strong></td>
-    <td><span class="pill pill--recommend">recommend</span></td>
-    <td class="num">9</td>
-    <td class="small">It is the unlock for the three things this site most obviously lacks: prices, ratings, and product images. All three are currently blank because the rules require API-sourced data. One credential fixes all of it at once.</td>
-    <td class="small">Eligibility requires qualifying sales first — a chicken-and-egg problem for a new account.</td>
-    <td class="small">None to the site. The risk is waiting on access and shipping nothing meanwhile, which is why the current build ships without it.</td>
-    <td class="small">Apply as soon as the account qualifies. Track it in the questions register as Q-11 and Q-12.<br><span class="tiny"><a href="https://affiliate-program.amazon.com/help/operating/policies" rel="noopener" target="_blank">Associates Program Policies</a></span></td>
-  </tr><tr>
-    <td><code>SUG-04</code></td>
-    <td><strong>Replace the submitted short links with constructed Special Links (done); prove one works (blocked)</strong></td>
-    <td><span class="pill pill--shipped">shipped</span></td>
-    <td class="num">9</td>
-    <td class="small">The submitted links carried no visible tag and their compliance status is unsettled. Constructing amazon.com/dp/&lt;ASIN&gt;?tag=shopnow047c-20 is unambiguous, keeps the destination visible in the status bar, and satisfies the link-clarity requirement.</td>
-    <td class="small">None.</td>
-    <td class="small">If the tag is not enrolled, every link still earns nothing. That is the one thing this cannot fix.</td>
-    <td class="small">Constructed links are live. The proof step is blocked: it needs the owner's Associates Central sign-in (FLG-024). Next step: click one link per product while signed in and confirm it appears in the tracking report.<br><span class="tiny"><a href="https://affiliate-program.amazon.com/help/operating/policies" rel="noopener" target="_blank">Participation Requirements §6(w)</a></span></td>
-  </tr><tr>
-    <td><code>SUG-05</code></td>
-    <td><strong>Publish on a real cadence: a new guide every week for eight weeks, then read the query data</strong></td>
-    <td><span class="pill pill--recommend">recommend</span></td>
-    <td class="num">8</td>
-    <td class="small">Question-shaped guides are the right shape, but five is not a sample. A weekly cadence for two months produces enough pages and enough query impressions to see which question people actually arrive with, which is the only way to stop guessing topics.</td>
-    <td class="small">A substantive guide per week. Each needs its own verified spec pass.</td>
-    <td class="small">Cadence without quality control produces the thin content the brief explicitly rejects. The build gate must stay on.</td>
-    <td class="small">Recommend a fixed day and a fixed length. A weekly cadence also keeps content inside the 60-day recency window that Amazon's Associates Help describes (FLG-013). Add each new guide to the sitemap and feed in the same commit, then measure at week eight.</td>
-  </tr><tr>
-    <td><code>SUG-06</code></td>
-    <td><strong>Add a real author byline with a named person</strong></td>
-    <td><span class="pill pill--recommend">recommend</span></td>
-    <td class="num">8</td>
-    <td class="small">Unattributed buying advice reads as generated, which is precisely the failure the brief names. A byline with a short bio and a stated method is the cheapest credibility signal available.</td>
-    <td class="small">Requires a real person willing to be named and accountable.</td>
-    <td class="small">A byline attached to content the person did not write is worse than no byline.</td>
-    <td class="small">Decision needed from the requester. Cannot be fabricated.</td>
-  </tr><tr>
-    <td><code>SUG-17</code></td>
-    <td><strong>Adopt a written design brief and treat it as the single source for every visual change</strong></td>
-    <td><span class="pill pill--recommend">recommend</span></td>
-    <td class="num">8</td>
-    <td class="small">Without one, every page drifts toward the same templated look that reads as generated. A brief that states the visual system, the layout rules and the anti-slop constraints gives every later change a consistent target instead of a mood.</td>
-    <td class="small">One document. The draft is on this page and can be adopted as-is or edited.</td>
-    <td class="small">A brief that is too rigid produces sameness. It is a starting point, not a cage.</td>
-    <td class="small">Accept. The design brief below is the draft to start from; edit it before implementing.<br><span class="tiny"><a href="https://developers.google.com/search/docs/fundamentals/creating-helpful-content" rel="noopener" target="_blank">Google Search Central — helpful content</a></span></td>
-  </tr><tr>
-    <td><code>SUG-18</code></td>
-    <td><strong>Replace generic visual defaults with an opinionated editorial type and color system</strong></td>
-    <td><span class="pill pill--recommend">recommend</span></td>
-    <td class="num">8</td>
-    <td class="small">A confident serif-display / sans-body system with a restrained palette and one accent reads as a real publication. Generic system fonts, blue-to-purple gradients and neon highlights are the most common tells of an AI-generated marketing page.</td>
-    <td class="small">CSS and type work in the shared stylesheet.</td>
-    <td class="small">Over-design can crowd small screens. Mobile-first and readable tables must survive the change.</td>
-    <td class="small">Accept the direction. Implement in assets/css/site.css behind the existing design tokens.</td>
-  </tr><tr>
-    <td><code>SUG-20</code></td>
-    <td><strong>Write in a concrete, human voice and ban filler phrases</strong></td>
-    <td><span class="pill pill--recommend">recommend</span></td>
-    <td class="num">8</td>
-    <td class="small">Generic marketing boilerplate is the other main slop tell. Specificity — named trade-offs, concrete numbers, a real point of view — reads human and is what helpful-content guidance rewards.</td>
-    <td class="small">Editorial discipline. Add a banned-phrase list to the editorial standards so the gate can enforce it.</td>
-    <td class="small">None. It is the same constraint as SUG-01, applied to wording as well as claims.</td>
-    <td class="small">Accept. Add the banned-phrase list to the About page and a build check.<br><span class="tiny"><a href="https://developers.google.com/search/docs/fundamentals/creating-helpful-content" rel="noopener" target="_blank">Google Search Central — helpful content</a></span></td>
-  </tr><tr>
-    <td><code>SUG-21</code></td>
-    <td><strong>Publish to a topic roadmap on a cadence, adding each new guide to the sitemap and feed in the same commit</strong></td>
-    <td><span class="pill pill--recommend">recommend</span></td>
-    <td class="num">8</td>
-    <td class="small">Catchy, question-shaped topics are the traffic engine. A fixed cadence plus a feed keeps search and subscribers fresh, and the build already adds each guide to the sitemap and RSS automatically — that was a requirement, not a convenience.</td>
-    <td class="small">A substantive guide each week, with its own verified spec pass.</td>
-    <td class="small">Volume without quality control produces the thin content the brief rejects. The build gate stays on.</td>
-    <td class="small">Accept the topic roadmap below as the first batch of hypotheses, then let measured demand reorder it.<br><span class="tiny"><a href="https://developers.google.com/search/docs/fundamentals/creating-helpful-content" rel="noopener" target="_blank">Google Search Central — helpful content</a></span></td>
-  </tr><tr>
-    <td><code>SUG-07</code></td>
-    <td><strong>Move to a custom domain before building any authority</strong></td>
-    <td><span class="pill pill--recommend">recommend</span></td>
-    <td class="num">7</td>
-    <td class="small">A /WinA/ subpath reads as a side project, and moving later discards whatever equity accumulated. Doing it now costs a domain and one setting.</td>
-    <td class="small">Domain registration plus DNS. About an hour.</td>
-    <td class="small">Slight setup friction with HTTPS and the CNAME file.</td>
-    <td class="small">Recommend. The build already keeps the origin in one config value, so the change is small.</td>
-  </tr><tr>
-    <td><code>SUG-08</code></td>
-    <td><strong>Deploy the analytics collector, and accept that orders cannot be counted yet</strong></td>
-    <td><span class="pill pill--recommend">recommend</span></td>
-    <td class="num">7</td>
-    <td class="small">Click data is available today and is the fastest honest feedback loop. Order data has to come from Associates reports, which arrive later. Separating the two keeps the ledger truthful.</td>
-    <td class="small">One worker deploy and a secret.</td>
-    <td class="small">A self-hosted collector is a privacy obligation. The current design stores no identifiers, which keeps that burden small.</td>
-    <td class="small">Recommend deploying to close FLG-011. Do not import a third-party tracker as a shortcut.<br><span class="tiny"><a href="https://sassnarep3-star.github.io/WinA/analytics/" rel="noopener" target="_blank">Measurement page</a></span></td>
-  </tr><tr>
-    <td><code>SUG-19</code></td>
-    <td><strong>Vary page layouts; stop repeating the same card grid in every section</strong></td>
-    <td><span class="pill pill--recommend">recommend</span></td>
-    <td class="num">7</td>
-    <td class="small">Identical repeated card grids are a primary tell of templated generation. A strong editorial hero, a reading column for guides, and at least one non-card treatment per page read as designed rather than emitted.</td>
-    <td class="small">Template work in the build.</td>
-    <td class="small">More layout code to maintain; keep tables and cards accessible.</td>
-    <td class="small">Accept. Front page and the two category hubs first.</td>
-  </tr><tr>
-    <td><code>SUG-24</code></td>
-    <td><strong>Add a decision log so suggestions are accepted or rejected with a recorded reason and date</strong></td>
-    <td><span class="pill pill--recommend">recommend</span></td>
-    <td class="num">7</td>
-    <td class="small">The brief asks for a reviewable path before implementing anything. A log makes each choice auditable, captures why something was rejected, and stops the same suggestion being re-litigated next session.</td>
-    <td class="small">A small table on this page, populated by hand.</td>
-    <td class="small">None. It only records decisions already being made.</td>
-    <td class="small">Accept. The decision log schema below is the record; entries are added as decisions are made.</td>
-  </tr><tr>
-    <td><code>SUG-09</code></td>
-    <td><strong>Add a 'who should not buy this' block to every product page</strong></td>
-    <td><span class="pill pill--consider">consider</span></td>
-    <td class="num">6</td>
-    <td class="small">The single most useful thing a buying guide can say, and the thing competitors skip. It also converts better, because readers trust a page that talked them out of something.</td>
-    <td class="small">A short block per product.</td>
-    <td class="small">None. It requires actually understanding the trade-off, which is why most sites omit it.</td>
-    <td class="small">Consider. The current pages carry a trade-off line; expanding it to a full block is the natural next edit.</td>
-  </tr><tr>
-    <td><code>SUG-10</code></td>
-    <td><strong>Build a real comparison table with measured dimensions</strong></td>
-    <td><span class="pill pill--consider">consider</span></td>
-    <td class="num">6</td>
-    <td class="small">The comparison page exists but is thin because dimensions are unverified. Counter footprint is the number that actually decides a purchase, and nobody publishes it clearly.</td>
-    <td class="small">Researching dimensions from manufacturer spec sheets, with a source link per number.</td>
-    <td class="small">A wrong dimension is worse than a blank. Only add numbers with a source.</td>
-    <td class="small">Consider once manufacturer sheets are gathered. Until then the table shows what is verified and says what is not.</td>
-  </tr><tr>
-    <td><code>SUG-22</code></td>
-    <td><strong>Use topic clusters and deliberate internal linking, not standalone pages</strong></td>
-    <td><span class="pill pill--consider">consider</span></td>
-    <td class="num">6</td>
-    <td class="small">A cluster (pillar + related guides + product pages) gives each page something to rank for and something natural to link to, and concentrates topical authority instead of spreading it across unrelated pages.</td>
-    <td class="small">An internal-link pass on each new guide.</td>
-    <td class="small">Over-linking looks manipulative. Keep links natural and reader-serving.</td>
-    <td class="small">Consider. Design the cluster map before writing the second batch.</td>
-  </tr><tr>
-    <td><code>SUG-11</code></td>
-    <td><strong>Add a short 'how we choose what to recommend' block to the front page</strong></td>
-    <td><span class="pill pill--consider">consider</span></td>
-    <td class="num">5</td>
-    <td class="small">Readers arriving cold need one sentence on why these five products and not others. It also pre-empts the 'is this an ad' reflex.</td>
-    <td class="small">Three sentences.</td>
-    <td class="small">Can tip into self-referential process talk, which the brief explicitly wants kept off the front page. Keep it to a single block low on the page.</td>
-    <td class="small">Consider. The About page currently carries this.</td>
-  </tr><tr>
-    <td><code>SUG-14</code></td>
-    <td><strong>Hold the email capture until there is something to send</strong></td>
-    <td><span class="pill pill--hold">hold</span></td>
-    <td class="num">5</td>
-    <td class="small">Collecting addresses with no ESP and no publishing cadence means collecting nothing. The form is currently inert and says so.</td>
-    <td class="small">Saves an ESP subscription.</td>
-    <td class="small">Capture opportunities are lost while waiting.</td>
-    <td class="small">Hold until SUG-05 produces a cadence. Then wire one ESP and one welcome email.</td>
-  </tr><tr>
-    <td><code>SUG-15</code></td>
-    <td><strong>Hold all paid search</strong></td>
-    <td><span class="pill pill--hold">hold</span></td>
-    <td class="num">5</td>
-    <td class="small">No bid is permitted on Amazon marks, and a new site with no conversion data cannot tell whether an ad is profitable. Advertising before measurement is guessing with a budget.</td>
-    <td class="small">Zero.</td>
-    <td class="small">Slower initial traffic.</td>
-    <td class="small">Hold until the ledger has real click and order data.<br><span class="tiny"><a href="https://affiliate-program.amazon.com/help/operating/policies" rel="noopener" target="_blank">Participation Requirements §6(f)</a></span></td>
-  </tr><tr>
-    <td><code>SUG-16</code></td>
-    <td><strong>Publish a dated 'last checked' line on every product page</strong></td>
-    <td><span class="pill pill--consider">consider</span></td>
-    <td class="num">5</td>
-    <td class="small">Specifications and availability change. A visible date tells the reader how much to trust the page, and forces the site to actually re-check.</td>
-    <td class="small">One field, refreshed on a schedule.</td>
-    <td class="small">A stale date is a public admission of neglect. That is the point.</td>
-    <td class="small">Consider. Pages currently record the observation date in the register rather than on the page.</td>
-  </tr><tr>
-    <td><code>SUG-23</code></td>
-    <td><strong>Hold seasonal topics until measured demand exists</strong></td>
-    <td><span class="pill pill--hold">hold</span></td>
-    <td class="num">5</td>
-    <td class="small">Choosing December topics from instinct is exactly the failure FLG-020 warns against. Seasonality is a measurement, and there is no query data yet.</td>
-    <td class="small">Zero.</td>
-    <td class="small">Misses timely traffic in the meantime.</td>
-    <td class="small">Hold until Search Console has 2–4 weeks of query data (FLG-009, FLG-020).<br><span class="tiny"><a href="https://search.google.com/search-console" rel="noopener" target="_blank">Google Search Console</a></span></td>
-  </tr></tbody>
-      </table>
+    <section class="decgroup" aria-labelledby="grp-recommend">
+      <h2 class="decgroup__title" id="grp-recommend">
+        <span class="pill pill--recommend">recommend</span>
+        <span class="decgroup__count">12</span>
+      </h2>
+      <div class="decstack"><article class="dec" id="SUG-02">
+  <header class="dec__head">
+    <div class="dec__id">
+      <span class="pill pill--recommend">recommend</span>
+      <code>SUG-02</code>
     </div>
-
-    <div class="note mt2">
-      <p class="note__title">If you accept only three</p>
-      <p><strong>SUG-04</strong> — prove one affiliate link actually tracks, because nothing else matters if it does not. <strong>SUG-03</strong> — get API access, which unlocks prices, ratings and images at once. <strong>SUG-05</strong> — publish weekly for eight weeks, then let the query report choose the next topic instead of instinct.</p>
+    <div class="dec__score" title="Impact confidence out of 10, as recorded in the register">
+      <span class="dec__score-num">9</span><span class="dec__score-den">/10</span>
+      <span class="dec__score-lab">weight</span>
     </div>
+  </header>
+  <h3 class="dec__title">Split into two publications, or pick one category and go deep</h3>
+  <dl class="dec__grid">
+    <div><dt>Why</dt><dd>Three air fryers and two thermometers are two different buying moments. Search engines reward a site that owns one topic. A small site trying to own 'kitchen gear' owns nothing.</dd></div>
+    <div><dt>What it costs</dt><dd>Splitting means two domains, two sitemaps, twice the setup. Going deep on air fryers means the thermometers get a single supporting page.</dd></div>
+    <div class="dec__risk"><dt>What could go wrong</dt><dd>If the thermometer affiliate offers a better commission or a bounty, narrowing too early gives up real money.</dd></div>
+    <div class="dec__decide"><dt>Recommendation</dt><dd>Recommend: keep one site, make air fryers the front section, and treat thermometers as the accessory section — which is what the current structure already does. Confirm before adding a third category.</dd></div>
+  </dl>
+  <form class="dec__form" data-decision-form>
+    <p class="dec__form-lab">Record a decision</p>
+    <div class="dec__form-row">
+      <label>Reviewer<input type="text" name="reviewer" placeholder="Your name" autocomplete="name"></label>
+      <label>Choice
+        <select name="choice">
+          <option value="">—</option>
+          <option>Accept</option>
+          <option>Hold</option>
+          <option>Reject</option>
+          <option>Needs more info</option>
+        </select>
+      </label>
+      <label>Date<input type="date" name="date"></label>
+    </div>
+    <p class="dec__form-hint">Nothing is saved by typing here. The build has no backend and no account system, so a decision becomes real only when this line is copied into <code>data/suggestions.json</code> &rarr; <code>decisionLog.entries</code> and the page is rebuilt. The form exists to make the decision easy to write down, not to store it.</p>
+  </form>
+</article><article class="dec" id="SUG-03">
+  <header class="dec__head">
+    <div class="dec__id">
+      <span class="pill pill--recommend">recommend</span>
+      <code>SUG-03</code>
+    </div>
+    <div class="dec__score" title="Impact confidence out of 10, as recorded in the register">
+      <span class="dec__score-num">9</span><span class="dec__score-den">/10</span>
+      <span class="dec__score-lab">weight</span>
+    </div>
+  </header>
+  <h3 class="dec__title">Get PA-API or Creatives access before writing another word</h3>
+  <dl class="dec__grid">
+    <div><dt>Why</dt><dd>It is the unlock for the three things this site most obviously lacks: prices, ratings, and product images. All three are currently blank because the rules require API-sourced data. One credential fixes all of it at once.</dd></div>
+    <div><dt>What it costs</dt><dd>Eligibility requires qualifying sales first — a chicken-and-egg problem for a new account.</dd></div>
+    <div class="dec__risk"><dt>What could go wrong</dt><dd>None to the site. The risk is waiting on access and shipping nothing meanwhile, which is why the current build ships without it.</dd></div>
+    <div class="dec__decide"><dt>Recommendation</dt><dd>Apply as soon as the account qualifies. Track it in the questions register as Q-11 and Q-12.<span class="dec__src">Source: <a href="https://affiliate-program.amazon.com/help/operating/policies" rel="noopener" target="_blank">Associates Program Policies</a></span></dd></div>
+  </dl>
+  <form class="dec__form" data-decision-form>
+    <p class="dec__form-lab">Record a decision</p>
+    <div class="dec__form-row">
+      <label>Reviewer<input type="text" name="reviewer" placeholder="Your name" autocomplete="name"></label>
+      <label>Choice
+        <select name="choice">
+          <option value="">—</option>
+          <option>Accept</option>
+          <option>Hold</option>
+          <option>Reject</option>
+          <option>Needs more info</option>
+        </select>
+      </label>
+      <label>Date<input type="date" name="date"></label>
+    </div>
+    <p class="dec__form-hint">Nothing is saved by typing here. The build has no backend and no account system, so a decision becomes real only when this line is copied into <code>data/suggestions.json</code> &rarr; <code>decisionLog.entries</code> and the page is rebuilt. The form exists to make the decision easy to write down, not to store it.</p>
+  </form>
+</article><article class="dec" id="SUG-05">
+  <header class="dec__head">
+    <div class="dec__id">
+      <span class="pill pill--recommend">recommend</span>
+      <code>SUG-05</code>
+    </div>
+    <div class="dec__score" title="Impact confidence out of 10, as recorded in the register">
+      <span class="dec__score-num">8</span><span class="dec__score-den">/10</span>
+      <span class="dec__score-lab">weight</span>
+    </div>
+  </header>
+  <h3 class="dec__title">Publish on a real cadence: a new guide every week for eight weeks, then read the query data</h3>
+  <dl class="dec__grid">
+    <div><dt>Why</dt><dd>Question-shaped guides are the right shape, but five is not a sample. A weekly cadence for two months produces enough pages and enough query impressions to see which question people actually arrive with, which is the only way to stop guessing topics.</dd></div>
+    <div><dt>What it costs</dt><dd>A substantive guide per week. Each needs its own verified spec pass.</dd></div>
+    <div class="dec__risk"><dt>What could go wrong</dt><dd>Cadence without quality control produces the thin content the brief explicitly rejects. The build gate must stay on.</dd></div>
+    <div class="dec__decide"><dt>Recommendation</dt><dd>Recommend a fixed day and a fixed length. A weekly cadence also keeps content inside the 60-day recency window that Amazon's Associates Help describes (FLG-013). Add each new guide to the sitemap and feed in the same commit, then measure at week eight.</dd></div>
+  </dl>
+  <form class="dec__form" data-decision-form>
+    <p class="dec__form-lab">Record a decision</p>
+    <div class="dec__form-row">
+      <label>Reviewer<input type="text" name="reviewer" placeholder="Your name" autocomplete="name"></label>
+      <label>Choice
+        <select name="choice">
+          <option value="">—</option>
+          <option>Accept</option>
+          <option>Hold</option>
+          <option>Reject</option>
+          <option>Needs more info</option>
+        </select>
+      </label>
+      <label>Date<input type="date" name="date"></label>
+    </div>
+    <p class="dec__form-hint">Nothing is saved by typing here. The build has no backend and no account system, so a decision becomes real only when this line is copied into <code>data/suggestions.json</code> &rarr; <code>decisionLog.entries</code> and the page is rebuilt. The form exists to make the decision easy to write down, not to store it.</p>
+  </form>
+</article><article class="dec" id="SUG-06">
+  <header class="dec__head">
+    <div class="dec__id">
+      <span class="pill pill--recommend">recommend</span>
+      <code>SUG-06</code>
+    </div>
+    <div class="dec__score" title="Impact confidence out of 10, as recorded in the register">
+      <span class="dec__score-num">8</span><span class="dec__score-den">/10</span>
+      <span class="dec__score-lab">weight</span>
+    </div>
+  </header>
+  <h3 class="dec__title">Add a real author byline with a named person</h3>
+  <dl class="dec__grid">
+    <div><dt>Why</dt><dd>Unattributed buying advice reads as generated, which is precisely the failure the brief names. A byline with a short bio and a stated method is the cheapest credibility signal available.</dd></div>
+    <div><dt>What it costs</dt><dd>Requires a real person willing to be named and accountable.</dd></div>
+    <div class="dec__risk"><dt>What could go wrong</dt><dd>A byline attached to content the person did not write is worse than no byline.</dd></div>
+    <div class="dec__decide"><dt>Recommendation</dt><dd>Decision needed from the requester. Cannot be fabricated.</dd></div>
+  </dl>
+  <form class="dec__form" data-decision-form>
+    <p class="dec__form-lab">Record a decision</p>
+    <div class="dec__form-row">
+      <label>Reviewer<input type="text" name="reviewer" placeholder="Your name" autocomplete="name"></label>
+      <label>Choice
+        <select name="choice">
+          <option value="">—</option>
+          <option>Accept</option>
+          <option>Hold</option>
+          <option>Reject</option>
+          <option>Needs more info</option>
+        </select>
+      </label>
+      <label>Date<input type="date" name="date"></label>
+    </div>
+    <p class="dec__form-hint">Nothing is saved by typing here. The build has no backend and no account system, so a decision becomes real only when this line is copied into <code>data/suggestions.json</code> &rarr; <code>decisionLog.entries</code> and the page is rebuilt. The form exists to make the decision easy to write down, not to store it.</p>
+  </form>
+</article><article class="dec" id="SUG-17">
+  <header class="dec__head">
+    <div class="dec__id">
+      <span class="pill pill--recommend">recommend</span>
+      <code>SUG-17</code>
+    </div>
+    <div class="dec__score" title="Impact confidence out of 10, as recorded in the register">
+      <span class="dec__score-num">8</span><span class="dec__score-den">/10</span>
+      <span class="dec__score-lab">weight</span>
+    </div>
+  </header>
+  <h3 class="dec__title">Adopt a written design brief and treat it as the single source for every visual change</h3>
+  <dl class="dec__grid">
+    <div><dt>Why</dt><dd>Without one, every page drifts toward the same templated look that reads as generated. A brief that states the visual system, the layout rules and the anti-slop constraints gives every later change a consistent target instead of a mood.</dd></div>
+    <div><dt>What it costs</dt><dd>One document. The draft is on this page and can be adopted as-is or edited.</dd></div>
+    <div class="dec__risk"><dt>What could go wrong</dt><dd>A brief that is too rigid produces sameness. It is a starting point, not a cage.</dd></div>
+    <div class="dec__decide"><dt>Recommendation</dt><dd>Accept. The design brief below is the draft to start from; edit it before implementing.<span class="dec__src">Source: <a href="https://developers.google.com/search/docs/fundamentals/creating-helpful-content" rel="noopener" target="_blank">Google Search Central — helpful content</a></span></dd></div>
+  </dl>
+  <form class="dec__form" data-decision-form>
+    <p class="dec__form-lab">Record a decision</p>
+    <div class="dec__form-row">
+      <label>Reviewer<input type="text" name="reviewer" placeholder="Your name" autocomplete="name"></label>
+      <label>Choice
+        <select name="choice">
+          <option value="">—</option>
+          <option>Accept</option>
+          <option>Hold</option>
+          <option>Reject</option>
+          <option>Needs more info</option>
+        </select>
+      </label>
+      <label>Date<input type="date" name="date"></label>
+    </div>
+    <p class="dec__form-hint">Nothing is saved by typing here. The build has no backend and no account system, so a decision becomes real only when this line is copied into <code>data/suggestions.json</code> &rarr; <code>decisionLog.entries</code> and the page is rebuilt. The form exists to make the decision easy to write down, not to store it.</p>
+  </form>
+</article><article class="dec" id="SUG-18">
+  <header class="dec__head">
+    <div class="dec__id">
+      <span class="pill pill--recommend">recommend</span>
+      <code>SUG-18</code>
+    </div>
+    <div class="dec__score" title="Impact confidence out of 10, as recorded in the register">
+      <span class="dec__score-num">8</span><span class="dec__score-den">/10</span>
+      <span class="dec__score-lab">weight</span>
+    </div>
+  </header>
+  <h3 class="dec__title">Replace generic visual defaults with an opinionated editorial type and color system</h3>
+  <dl class="dec__grid">
+    <div><dt>Why</dt><dd>A confident serif-display / sans-body system with a restrained palette and one accent reads as a real publication. Generic system fonts, blue-to-purple gradients and neon highlights are the most common tells of an AI-generated marketing page.</dd></div>
+    <div><dt>What it costs</dt><dd>CSS and type work in the shared stylesheet.</dd></div>
+    <div class="dec__risk"><dt>What could go wrong</dt><dd>Over-design can crowd small screens. Mobile-first and readable tables must survive the change.</dd></div>
+    <div class="dec__decide"><dt>Recommendation</dt><dd>Accept the direction. Implement in assets/css/site.css behind the existing design tokens.</dd></div>
+  </dl>
+  <form class="dec__form" data-decision-form>
+    <p class="dec__form-lab">Record a decision</p>
+    <div class="dec__form-row">
+      <label>Reviewer<input type="text" name="reviewer" placeholder="Your name" autocomplete="name"></label>
+      <label>Choice
+        <select name="choice">
+          <option value="">—</option>
+          <option>Accept</option>
+          <option>Hold</option>
+          <option>Reject</option>
+          <option>Needs more info</option>
+        </select>
+      </label>
+      <label>Date<input type="date" name="date"></label>
+    </div>
+    <p class="dec__form-hint">Nothing is saved by typing here. The build has no backend and no account system, so a decision becomes real only when this line is copied into <code>data/suggestions.json</code> &rarr; <code>decisionLog.entries</code> and the page is rebuilt. The form exists to make the decision easy to write down, not to store it.</p>
+  </form>
+</article><article class="dec" id="SUG-20">
+  <header class="dec__head">
+    <div class="dec__id">
+      <span class="pill pill--recommend">recommend</span>
+      <code>SUG-20</code>
+    </div>
+    <div class="dec__score" title="Impact confidence out of 10, as recorded in the register">
+      <span class="dec__score-num">8</span><span class="dec__score-den">/10</span>
+      <span class="dec__score-lab">weight</span>
+    </div>
+  </header>
+  <h3 class="dec__title">Write in a concrete, human voice and ban filler phrases</h3>
+  <dl class="dec__grid">
+    <div><dt>Why</dt><dd>Generic marketing boilerplate is the other main slop tell. Specificity — named trade-offs, concrete numbers, a real point of view — reads human and is what helpful-content guidance rewards.</dd></div>
+    <div><dt>What it costs</dt><dd>Editorial discipline. Add a banned-phrase list to the editorial standards so the gate can enforce it.</dd></div>
+    <div class="dec__risk"><dt>What could go wrong</dt><dd>None. It is the same constraint as SUG-01, applied to wording as well as claims.</dd></div>
+    <div class="dec__decide"><dt>Recommendation</dt><dd>Accept. Add the banned-phrase list to the About page and a build check.<span class="dec__src">Source: <a href="https://developers.google.com/search/docs/fundamentals/creating-helpful-content" rel="noopener" target="_blank">Google Search Central — helpful content</a></span></dd></div>
+  </dl>
+  <form class="dec__form" data-decision-form>
+    <p class="dec__form-lab">Record a decision</p>
+    <div class="dec__form-row">
+      <label>Reviewer<input type="text" name="reviewer" placeholder="Your name" autocomplete="name"></label>
+      <label>Choice
+        <select name="choice">
+          <option value="">—</option>
+          <option>Accept</option>
+          <option>Hold</option>
+          <option>Reject</option>
+          <option>Needs more info</option>
+        </select>
+      </label>
+      <label>Date<input type="date" name="date"></label>
+    </div>
+    <p class="dec__form-hint">Nothing is saved by typing here. The build has no backend and no account system, so a decision becomes real only when this line is copied into <code>data/suggestions.json</code> &rarr; <code>decisionLog.entries</code> and the page is rebuilt. The form exists to make the decision easy to write down, not to store it.</p>
+  </form>
+</article><article class="dec" id="SUG-21">
+  <header class="dec__head">
+    <div class="dec__id">
+      <span class="pill pill--recommend">recommend</span>
+      <code>SUG-21</code>
+    </div>
+    <div class="dec__score" title="Impact confidence out of 10, as recorded in the register">
+      <span class="dec__score-num">8</span><span class="dec__score-den">/10</span>
+      <span class="dec__score-lab">weight</span>
+    </div>
+  </header>
+  <h3 class="dec__title">Publish to a topic roadmap on a cadence, adding each new guide to the sitemap and feed in the same commit</h3>
+  <dl class="dec__grid">
+    <div><dt>Why</dt><dd>Catchy, question-shaped topics are the traffic engine. A fixed cadence plus a feed keeps search and subscribers fresh, and the build already adds each guide to the sitemap and RSS automatically — that was a requirement, not a convenience.</dd></div>
+    <div><dt>What it costs</dt><dd>A substantive guide each week, with its own verified spec pass.</dd></div>
+    <div class="dec__risk"><dt>What could go wrong</dt><dd>Volume without quality control produces the thin content the brief rejects. The build gate stays on.</dd></div>
+    <div class="dec__decide"><dt>Recommendation</dt><dd>Accept the topic roadmap below as the first batch of hypotheses, then let measured demand reorder it.<span class="dec__src">Source: <a href="https://developers.google.com/search/docs/fundamentals/creating-helpful-content" rel="noopener" target="_blank">Google Search Central — helpful content</a></span></dd></div>
+  </dl>
+  <form class="dec__form" data-decision-form>
+    <p class="dec__form-lab">Record a decision</p>
+    <div class="dec__form-row">
+      <label>Reviewer<input type="text" name="reviewer" placeholder="Your name" autocomplete="name"></label>
+      <label>Choice
+        <select name="choice">
+          <option value="">—</option>
+          <option>Accept</option>
+          <option>Hold</option>
+          <option>Reject</option>
+          <option>Needs more info</option>
+        </select>
+      </label>
+      <label>Date<input type="date" name="date"></label>
+    </div>
+    <p class="dec__form-hint">Nothing is saved by typing here. The build has no backend and no account system, so a decision becomes real only when this line is copied into <code>data/suggestions.json</code> &rarr; <code>decisionLog.entries</code> and the page is rebuilt. The form exists to make the decision easy to write down, not to store it.</p>
+  </form>
+</article><article class="dec" id="SUG-07">
+  <header class="dec__head">
+    <div class="dec__id">
+      <span class="pill pill--recommend">recommend</span>
+      <code>SUG-07</code>
+    </div>
+    <div class="dec__score" title="Impact confidence out of 10, as recorded in the register">
+      <span class="dec__score-num">7</span><span class="dec__score-den">/10</span>
+      <span class="dec__score-lab">weight</span>
+    </div>
+  </header>
+  <h3 class="dec__title">Move to a custom domain before building any authority</h3>
+  <dl class="dec__grid">
+    <div><dt>Why</dt><dd>A /WinA/ subpath reads as a side project, and moving later discards whatever equity accumulated. Doing it now costs a domain and one setting.</dd></div>
+    <div><dt>What it costs</dt><dd>Domain registration plus DNS. About an hour.</dd></div>
+    <div class="dec__risk"><dt>What could go wrong</dt><dd>Slight setup friction with HTTPS and the CNAME file.</dd></div>
+    <div class="dec__decide"><dt>Recommendation</dt><dd>Recommend. The build already keeps the origin in one config value, so the change is small.</dd></div>
+  </dl>
+  <form class="dec__form" data-decision-form>
+    <p class="dec__form-lab">Record a decision</p>
+    <div class="dec__form-row">
+      <label>Reviewer<input type="text" name="reviewer" placeholder="Your name" autocomplete="name"></label>
+      <label>Choice
+        <select name="choice">
+          <option value="">—</option>
+          <option>Accept</option>
+          <option>Hold</option>
+          <option>Reject</option>
+          <option>Needs more info</option>
+        </select>
+      </label>
+      <label>Date<input type="date" name="date"></label>
+    </div>
+    <p class="dec__form-hint">Nothing is saved by typing here. The build has no backend and no account system, so a decision becomes real only when this line is copied into <code>data/suggestions.json</code> &rarr; <code>decisionLog.entries</code> and the page is rebuilt. The form exists to make the decision easy to write down, not to store it.</p>
+  </form>
+</article><article class="dec" id="SUG-08">
+  <header class="dec__head">
+    <div class="dec__id">
+      <span class="pill pill--recommend">recommend</span>
+      <code>SUG-08</code>
+    </div>
+    <div class="dec__score" title="Impact confidence out of 10, as recorded in the register">
+      <span class="dec__score-num">7</span><span class="dec__score-den">/10</span>
+      <span class="dec__score-lab">weight</span>
+    </div>
+  </header>
+  <h3 class="dec__title">Deploy the analytics collector, and accept that orders cannot be counted yet</h3>
+  <dl class="dec__grid">
+    <div><dt>Why</dt><dd>Click data is available today and is the fastest honest feedback loop. Order data has to come from Associates reports, which arrive later. Separating the two keeps the ledger truthful.</dd></div>
+    <div><dt>What it costs</dt><dd>One worker deploy and a secret.</dd></div>
+    <div class="dec__risk"><dt>What could go wrong</dt><dd>A self-hosted collector is a privacy obligation. The current design stores no identifiers, which keeps that burden small.</dd></div>
+    <div class="dec__decide"><dt>Recommendation</dt><dd>Recommend deploying to close FLG-011. Do not import a third-party tracker as a shortcut.<span class="dec__src">Source: <a href="https://sassnarep3-star.github.io/WinA/analytics/" rel="noopener" target="_blank">Measurement page</a></span></dd></div>
+  </dl>
+  <form class="dec__form" data-decision-form>
+    <p class="dec__form-lab">Record a decision</p>
+    <div class="dec__form-row">
+      <label>Reviewer<input type="text" name="reviewer" placeholder="Your name" autocomplete="name"></label>
+      <label>Choice
+        <select name="choice">
+          <option value="">—</option>
+          <option>Accept</option>
+          <option>Hold</option>
+          <option>Reject</option>
+          <option>Needs more info</option>
+        </select>
+      </label>
+      <label>Date<input type="date" name="date"></label>
+    </div>
+    <p class="dec__form-hint">Nothing is saved by typing here. The build has no backend and no account system, so a decision becomes real only when this line is copied into <code>data/suggestions.json</code> &rarr; <code>decisionLog.entries</code> and the page is rebuilt. The form exists to make the decision easy to write down, not to store it.</p>
+  </form>
+</article><article class="dec" id="SUG-19">
+  <header class="dec__head">
+    <div class="dec__id">
+      <span class="pill pill--recommend">recommend</span>
+      <code>SUG-19</code>
+    </div>
+    <div class="dec__score" title="Impact confidence out of 10, as recorded in the register">
+      <span class="dec__score-num">7</span><span class="dec__score-den">/10</span>
+      <span class="dec__score-lab">weight</span>
+    </div>
+  </header>
+  <h3 class="dec__title">Vary page layouts; stop repeating the same card grid in every section</h3>
+  <dl class="dec__grid">
+    <div><dt>Why</dt><dd>Identical repeated card grids are a primary tell of templated generation. A strong editorial hero, a reading column for guides, and at least one non-card treatment per page read as designed rather than emitted.</dd></div>
+    <div><dt>What it costs</dt><dd>Template work in the build.</dd></div>
+    <div class="dec__risk"><dt>What could go wrong</dt><dd>More layout code to maintain; keep tables and cards accessible.</dd></div>
+    <div class="dec__decide"><dt>Recommendation</dt><dd>Accept. Front page and the two category hubs first.</dd></div>
+  </dl>
+  <form class="dec__form" data-decision-form>
+    <p class="dec__form-lab">Record a decision</p>
+    <div class="dec__form-row">
+      <label>Reviewer<input type="text" name="reviewer" placeholder="Your name" autocomplete="name"></label>
+      <label>Choice
+        <select name="choice">
+          <option value="">—</option>
+          <option>Accept</option>
+          <option>Hold</option>
+          <option>Reject</option>
+          <option>Needs more info</option>
+        </select>
+      </label>
+      <label>Date<input type="date" name="date"></label>
+    </div>
+    <p class="dec__form-hint">Nothing is saved by typing here. The build has no backend and no account system, so a decision becomes real only when this line is copied into <code>data/suggestions.json</code> &rarr; <code>decisionLog.entries</code> and the page is rebuilt. The form exists to make the decision easy to write down, not to store it.</p>
+  </form>
+</article><article class="dec" id="SUG-24">
+  <header class="dec__head">
+    <div class="dec__id">
+      <span class="pill pill--recommend">recommend</span>
+      <code>SUG-24</code>
+    </div>
+    <div class="dec__score" title="Impact confidence out of 10, as recorded in the register">
+      <span class="dec__score-num">7</span><span class="dec__score-den">/10</span>
+      <span class="dec__score-lab">weight</span>
+    </div>
+  </header>
+  <h3 class="dec__title">Add a decision log so suggestions are accepted or rejected with a recorded reason and date</h3>
+  <dl class="dec__grid">
+    <div><dt>Why</dt><dd>The brief asks for a reviewable path before implementing anything. A log makes each choice auditable, captures why something was rejected, and stops the same suggestion being re-litigated next session.</dd></div>
+    <div><dt>What it costs</dt><dd>A small table on this page, populated by hand.</dd></div>
+    <div class="dec__risk"><dt>What could go wrong</dt><dd>None. It only records decisions already being made.</dd></div>
+    <div class="dec__decide"><dt>Recommendation</dt><dd>Accept. The decision log schema below is the record; entries are added as decisions are made.</dd></div>
+  </dl>
+  <form class="dec__form" data-decision-form>
+    <p class="dec__form-lab">Record a decision</p>
+    <div class="dec__form-row">
+      <label>Reviewer<input type="text" name="reviewer" placeholder="Your name" autocomplete="name"></label>
+      <label>Choice
+        <select name="choice">
+          <option value="">—</option>
+          <option>Accept</option>
+          <option>Hold</option>
+          <option>Reject</option>
+          <option>Needs more info</option>
+        </select>
+      </label>
+      <label>Date<input type="date" name="date"></label>
+    </div>
+    <p class="dec__form-hint">Nothing is saved by typing here. The build has no backend and no account system, so a decision becomes real only when this line is copied into <code>data/suggestions.json</code> &rarr; <code>decisionLog.entries</code> and the page is rebuilt. The form exists to make the decision easy to write down, not to store it.</p>
+  </form>
+</article></div>
+    </section><section class="decgroup" aria-labelledby="grp-consider">
+      <h2 class="decgroup__title" id="grp-consider">
+        <span class="pill pill--consider">consider</span>
+        <span class="decgroup__count">5</span>
+      </h2>
+      <div class="decstack"><article class="dec" id="SUG-09">
+  <header class="dec__head">
+    <div class="dec__id">
+      <span class="pill pill--consider">consider</span>
+      <code>SUG-09</code>
+    </div>
+    <div class="dec__score" title="Impact confidence out of 10, as recorded in the register">
+      <span class="dec__score-num">6</span><span class="dec__score-den">/10</span>
+      <span class="dec__score-lab">weight</span>
+    </div>
+  </header>
+  <h3 class="dec__title">Add a 'who should not buy this' block to every product page</h3>
+  <dl class="dec__grid">
+    <div><dt>Why</dt><dd>The single most useful thing a buying guide can say, and the thing competitors skip. It also converts better, because readers trust a page that talked them out of something.</dd></div>
+    <div><dt>What it costs</dt><dd>A short block per product.</dd></div>
+    <div class="dec__risk"><dt>What could go wrong</dt><dd>None. It requires actually understanding the trade-off, which is why most sites omit it.</dd></div>
+    <div class="dec__decide"><dt>Recommendation</dt><dd>Consider. The current pages carry a trade-off line; expanding it to a full block is the natural next edit.</dd></div>
+  </dl>
+  <form class="dec__form" data-decision-form>
+    <p class="dec__form-lab">Record a decision</p>
+    <div class="dec__form-row">
+      <label>Reviewer<input type="text" name="reviewer" placeholder="Your name" autocomplete="name"></label>
+      <label>Choice
+        <select name="choice">
+          <option value="">—</option>
+          <option>Accept</option>
+          <option>Hold</option>
+          <option>Reject</option>
+          <option>Needs more info</option>
+        </select>
+      </label>
+      <label>Date<input type="date" name="date"></label>
+    </div>
+    <p class="dec__form-hint">Nothing is saved by typing here. The build has no backend and no account system, so a decision becomes real only when this line is copied into <code>data/suggestions.json</code> &rarr; <code>decisionLog.entries</code> and the page is rebuilt. The form exists to make the decision easy to write down, not to store it.</p>
+  </form>
+</article><article class="dec" id="SUG-10">
+  <header class="dec__head">
+    <div class="dec__id">
+      <span class="pill pill--consider">consider</span>
+      <code>SUG-10</code>
+    </div>
+    <div class="dec__score" title="Impact confidence out of 10, as recorded in the register">
+      <span class="dec__score-num">6</span><span class="dec__score-den">/10</span>
+      <span class="dec__score-lab">weight</span>
+    </div>
+  </header>
+  <h3 class="dec__title">Build a real comparison table with measured dimensions</h3>
+  <dl class="dec__grid">
+    <div><dt>Why</dt><dd>The comparison page exists but is thin because dimensions are unverified. Counter footprint is the number that actually decides a purchase, and nobody publishes it clearly.</dd></div>
+    <div><dt>What it costs</dt><dd>Researching dimensions from manufacturer spec sheets, with a source link per number.</dd></div>
+    <div class="dec__risk"><dt>What could go wrong</dt><dd>A wrong dimension is worse than a blank. Only add numbers with a source.</dd></div>
+    <div class="dec__decide"><dt>Recommendation</dt><dd>Consider once manufacturer sheets are gathered. Until then the table shows what is verified and says what is not.</dd></div>
+  </dl>
+  <form class="dec__form" data-decision-form>
+    <p class="dec__form-lab">Record a decision</p>
+    <div class="dec__form-row">
+      <label>Reviewer<input type="text" name="reviewer" placeholder="Your name" autocomplete="name"></label>
+      <label>Choice
+        <select name="choice">
+          <option value="">—</option>
+          <option>Accept</option>
+          <option>Hold</option>
+          <option>Reject</option>
+          <option>Needs more info</option>
+        </select>
+      </label>
+      <label>Date<input type="date" name="date"></label>
+    </div>
+    <p class="dec__form-hint">Nothing is saved by typing here. The build has no backend and no account system, so a decision becomes real only when this line is copied into <code>data/suggestions.json</code> &rarr; <code>decisionLog.entries</code> and the page is rebuilt. The form exists to make the decision easy to write down, not to store it.</p>
+  </form>
+</article><article class="dec" id="SUG-22">
+  <header class="dec__head">
+    <div class="dec__id">
+      <span class="pill pill--consider">consider</span>
+      <code>SUG-22</code>
+    </div>
+    <div class="dec__score" title="Impact confidence out of 10, as recorded in the register">
+      <span class="dec__score-num">6</span><span class="dec__score-den">/10</span>
+      <span class="dec__score-lab">weight</span>
+    </div>
+  </header>
+  <h3 class="dec__title">Use topic clusters and deliberate internal linking, not standalone pages</h3>
+  <dl class="dec__grid">
+    <div><dt>Why</dt><dd>A cluster (pillar + related guides + product pages) gives each page something to rank for and something natural to link to, and concentrates topical authority instead of spreading it across unrelated pages.</dd></div>
+    <div><dt>What it costs</dt><dd>An internal-link pass on each new guide.</dd></div>
+    <div class="dec__risk"><dt>What could go wrong</dt><dd>Over-linking looks manipulative. Keep links natural and reader-serving.</dd></div>
+    <div class="dec__decide"><dt>Recommendation</dt><dd>Consider. Design the cluster map before writing the second batch.</dd></div>
+  </dl>
+  <form class="dec__form" data-decision-form>
+    <p class="dec__form-lab">Record a decision</p>
+    <div class="dec__form-row">
+      <label>Reviewer<input type="text" name="reviewer" placeholder="Your name" autocomplete="name"></label>
+      <label>Choice
+        <select name="choice">
+          <option value="">—</option>
+          <option>Accept</option>
+          <option>Hold</option>
+          <option>Reject</option>
+          <option>Needs more info</option>
+        </select>
+      </label>
+      <label>Date<input type="date" name="date"></label>
+    </div>
+    <p class="dec__form-hint">Nothing is saved by typing here. The build has no backend and no account system, so a decision becomes real only when this line is copied into <code>data/suggestions.json</code> &rarr; <code>decisionLog.entries</code> and the page is rebuilt. The form exists to make the decision easy to write down, not to store it.</p>
+  </form>
+</article><article class="dec" id="SUG-11">
+  <header class="dec__head">
+    <div class="dec__id">
+      <span class="pill pill--consider">consider</span>
+      <code>SUG-11</code>
+    </div>
+    <div class="dec__score" title="Impact confidence out of 10, as recorded in the register">
+      <span class="dec__score-num">5</span><span class="dec__score-den">/10</span>
+      <span class="dec__score-lab">weight</span>
+    </div>
+  </header>
+  <h3 class="dec__title">Add a short 'how we choose what to recommend' block to the front page</h3>
+  <dl class="dec__grid">
+    <div><dt>Why</dt><dd>Readers arriving cold need one sentence on why these five products and not others. It also pre-empts the 'is this an ad' reflex.</dd></div>
+    <div><dt>What it costs</dt><dd>Three sentences.</dd></div>
+    <div class="dec__risk"><dt>What could go wrong</dt><dd>Can tip into self-referential process talk, which the brief explicitly wants kept off the front page. Keep it to a single block low on the page.</dd></div>
+    <div class="dec__decide"><dt>Recommendation</dt><dd>Consider. The About page currently carries this.</dd></div>
+  </dl>
+  <form class="dec__form" data-decision-form>
+    <p class="dec__form-lab">Record a decision</p>
+    <div class="dec__form-row">
+      <label>Reviewer<input type="text" name="reviewer" placeholder="Your name" autocomplete="name"></label>
+      <label>Choice
+        <select name="choice">
+          <option value="">—</option>
+          <option>Accept</option>
+          <option>Hold</option>
+          <option>Reject</option>
+          <option>Needs more info</option>
+        </select>
+      </label>
+      <label>Date<input type="date" name="date"></label>
+    </div>
+    <p class="dec__form-hint">Nothing is saved by typing here. The build has no backend and no account system, so a decision becomes real only when this line is copied into <code>data/suggestions.json</code> &rarr; <code>decisionLog.entries</code> and the page is rebuilt. The form exists to make the decision easy to write down, not to store it.</p>
+  </form>
+</article><article class="dec" id="SUG-16">
+  <header class="dec__head">
+    <div class="dec__id">
+      <span class="pill pill--consider">consider</span>
+      <code>SUG-16</code>
+    </div>
+    <div class="dec__score" title="Impact confidence out of 10, as recorded in the register">
+      <span class="dec__score-num">5</span><span class="dec__score-den">/10</span>
+      <span class="dec__score-lab">weight</span>
+    </div>
+  </header>
+  <h3 class="dec__title">Publish a dated 'last checked' line on every product page</h3>
+  <dl class="dec__grid">
+    <div><dt>Why</dt><dd>Specifications and availability change. A visible date tells the reader how much to trust the page, and forces the site to actually re-check.</dd></div>
+    <div><dt>What it costs</dt><dd>One field, refreshed on a schedule.</dd></div>
+    <div class="dec__risk"><dt>What could go wrong</dt><dd>A stale date is a public admission of neglect. That is the point.</dd></div>
+    <div class="dec__decide"><dt>Recommendation</dt><dd>Consider. Pages currently record the observation date in the register rather than on the page.</dd></div>
+  </dl>
+  <form class="dec__form" data-decision-form>
+    <p class="dec__form-lab">Record a decision</p>
+    <div class="dec__form-row">
+      <label>Reviewer<input type="text" name="reviewer" placeholder="Your name" autocomplete="name"></label>
+      <label>Choice
+        <select name="choice">
+          <option value="">—</option>
+          <option>Accept</option>
+          <option>Hold</option>
+          <option>Reject</option>
+          <option>Needs more info</option>
+        </select>
+      </label>
+      <label>Date<input type="date" name="date"></label>
+    </div>
+    <p class="dec__form-hint">Nothing is saved by typing here. The build has no backend and no account system, so a decision becomes real only when this line is copied into <code>data/suggestions.json</code> &rarr; <code>decisionLog.entries</code> and the page is rebuilt. The form exists to make the decision easy to write down, not to store it.</p>
+  </form>
+</article></div>
+    </section><section class="decgroup" aria-labelledby="grp-hold">
+      <h2 class="decgroup__title" id="grp-hold">
+        <span class="pill pill--hold">hold</span>
+        <span class="decgroup__count">3</span>
+      </h2>
+      <div class="decstack"><article class="dec" id="SUG-14">
+  <header class="dec__head">
+    <div class="dec__id">
+      <span class="pill pill--hold">hold</span>
+      <code>SUG-14</code>
+    </div>
+    <div class="dec__score" title="Impact confidence out of 10, as recorded in the register">
+      <span class="dec__score-num">5</span><span class="dec__score-den">/10</span>
+      <span class="dec__score-lab">weight</span>
+    </div>
+  </header>
+  <h3 class="dec__title">Hold the email capture until there is something to send</h3>
+  <dl class="dec__grid">
+    <div><dt>Why</dt><dd>Collecting addresses with no ESP and no publishing cadence means collecting nothing. The form is currently inert and says so.</dd></div>
+    <div><dt>What it costs</dt><dd>Saves an ESP subscription.</dd></div>
+    <div class="dec__risk"><dt>What could go wrong</dt><dd>Capture opportunities are lost while waiting.</dd></div>
+    <div class="dec__decide"><dt>Recommendation</dt><dd>Hold until SUG-05 produces a cadence. Then wire one ESP and one welcome email.</dd></div>
+  </dl>
+  <form class="dec__form" data-decision-form>
+    <p class="dec__form-lab">Record a decision</p>
+    <div class="dec__form-row">
+      <label>Reviewer<input type="text" name="reviewer" placeholder="Your name" autocomplete="name"></label>
+      <label>Choice
+        <select name="choice">
+          <option value="">—</option>
+          <option>Accept</option>
+          <option>Hold</option>
+          <option>Reject</option>
+          <option>Needs more info</option>
+        </select>
+      </label>
+      <label>Date<input type="date" name="date"></label>
+    </div>
+    <p class="dec__form-hint">Nothing is saved by typing here. The build has no backend and no account system, so a decision becomes real only when this line is copied into <code>data/suggestions.json</code> &rarr; <code>decisionLog.entries</code> and the page is rebuilt. The form exists to make the decision easy to write down, not to store it.</p>
+  </form>
+</article><article class="dec" id="SUG-15">
+  <header class="dec__head">
+    <div class="dec__id">
+      <span class="pill pill--hold">hold</span>
+      <code>SUG-15</code>
+    </div>
+    <div class="dec__score" title="Impact confidence out of 10, as recorded in the register">
+      <span class="dec__score-num">5</span><span class="dec__score-den">/10</span>
+      <span class="dec__score-lab">weight</span>
+    </div>
+  </header>
+  <h3 class="dec__title">Hold all paid search</h3>
+  <dl class="dec__grid">
+    <div><dt>Why</dt><dd>No bid is permitted on Amazon marks, and a new site with no conversion data cannot tell whether an ad is profitable. Advertising before measurement is guessing with a budget.</dd></div>
+    <div><dt>What it costs</dt><dd>Zero.</dd></div>
+    <div class="dec__risk"><dt>What could go wrong</dt><dd>Slower initial traffic.</dd></div>
+    <div class="dec__decide"><dt>Recommendation</dt><dd>Hold until the ledger has real click and order data.<span class="dec__src">Source: <a href="https://affiliate-program.amazon.com/help/operating/policies" rel="noopener" target="_blank">Participation Requirements §6(f)</a></span></dd></div>
+  </dl>
+  <form class="dec__form" data-decision-form>
+    <p class="dec__form-lab">Record a decision</p>
+    <div class="dec__form-row">
+      <label>Reviewer<input type="text" name="reviewer" placeholder="Your name" autocomplete="name"></label>
+      <label>Choice
+        <select name="choice">
+          <option value="">—</option>
+          <option>Accept</option>
+          <option>Hold</option>
+          <option>Reject</option>
+          <option>Needs more info</option>
+        </select>
+      </label>
+      <label>Date<input type="date" name="date"></label>
+    </div>
+    <p class="dec__form-hint">Nothing is saved by typing here. The build has no backend and no account system, so a decision becomes real only when this line is copied into <code>data/suggestions.json</code> &rarr; <code>decisionLog.entries</code> and the page is rebuilt. The form exists to make the decision easy to write down, not to store it.</p>
+  </form>
+</article><article class="dec" id="SUG-23">
+  <header class="dec__head">
+    <div class="dec__id">
+      <span class="pill pill--hold">hold</span>
+      <code>SUG-23</code>
+    </div>
+    <div class="dec__score" title="Impact confidence out of 10, as recorded in the register">
+      <span class="dec__score-num">5</span><span class="dec__score-den">/10</span>
+      <span class="dec__score-lab">weight</span>
+    </div>
+  </header>
+  <h3 class="dec__title">Hold seasonal topics until measured demand exists</h3>
+  <dl class="dec__grid">
+    <div><dt>Why</dt><dd>Choosing December topics from instinct is exactly the failure FLG-020 warns against. Seasonality is a measurement, and there is no query data yet.</dd></div>
+    <div><dt>What it costs</dt><dd>Zero.</dd></div>
+    <div class="dec__risk"><dt>What could go wrong</dt><dd>Misses timely traffic in the meantime.</dd></div>
+    <div class="dec__decide"><dt>Recommendation</dt><dd>Hold until Search Console has 2–4 weeks of query data (FLG-009, FLG-020).<span class="dec__src">Source: <a href="https://search.google.com/search-console" rel="noopener" target="_blank">Google Search Console</a></span></dd></div>
+  </dl>
+  <form class="dec__form" data-decision-form>
+    <p class="dec__form-lab">Record a decision</p>
+    <div class="dec__form-row">
+      <label>Reviewer<input type="text" name="reviewer" placeholder="Your name" autocomplete="name"></label>
+      <label>Choice
+        <select name="choice">
+          <option value="">—</option>
+          <option>Accept</option>
+          <option>Hold</option>
+          <option>Reject</option>
+          <option>Needs more info</option>
+        </select>
+      </label>
+      <label>Date<input type="date" name="date"></label>
+    </div>
+    <p class="dec__form-hint">Nothing is saved by typing here. The build has no backend and no account system, so a decision becomes real only when this line is copied into <code>data/suggestions.json</code> &rarr; <code>decisionLog.entries</code> and the page is rebuilt. The form exists to make the decision easy to write down, not to store it.</p>
+  </form>
+</article></div>
+    </section><section class="decgroup" aria-labelledby="grp-reject">
+      <h2 class="decgroup__title" id="grp-reject">
+        <span class="pill pill--reject">reject</span>
+        <span class="decgroup__count">2</span>
+      </h2>
+      <div class="decstack"><article class="dec" id="SUG-12">
+  <header class="dec__head">
+    <div class="dec__id">
+      <span class="pill pill--reject">reject</span>
+      <code>SUG-12</code>
+    </div>
+    <div class="dec__score" title="Impact confidence out of 10, as recorded in the register">
+      <span class="dec__score-num">10</span><span class="dec__score-den">/10</span>
+      <span class="dec__score-lab">weight</span>
+    </div>
+  </header>
+  <h3 class="dec__title">Do not add a price tracker, price alerts, or a deal feed</h3>
+  <dl class="dec__grid">
+    <div><dt>Why</dt><dd>Prohibited outright by §6(y) regardless of how it is built.</dd></div>
+    <div><dt>What it costs</dt><dd>Zero.</dd></div>
+    <div class="dec__risk"><dt>What could go wrong</dt><dd>It is the most requested feature on affiliate sites and the most direct route to account termination.</dd></div>
+    <div class="dec__decide"><dt>Recommendation</dt><dd>Rejected. Documented so no future session builds it.<span class="dec__src">Source: <a href="https://affiliate-program.amazon.com/help/operating/policies" rel="noopener" target="_blank">Participation Requirements §6(y)</a></span></dd></div>
+  </dl>
+  <form class="dec__form" data-decision-form>
+    <p class="dec__form-lab">Record a decision</p>
+    <div class="dec__form-row">
+      <label>Reviewer<input type="text" name="reviewer" placeholder="Your name" autocomplete="name"></label>
+      <label>Choice
+        <select name="choice">
+          <option value="">—</option>
+          <option>Accept</option>
+          <option>Hold</option>
+          <option>Reject</option>
+          <option>Needs more info</option>
+        </select>
+      </label>
+      <label>Date<input type="date" name="date"></label>
+    </div>
+    <p class="dec__form-hint">Nothing is saved by typing here. The build has no backend and no account system, so a decision becomes real only when this line is copied into <code>data/suggestions.json</code> &rarr; <code>decisionLog.entries</code> and the page is rebuilt. The form exists to make the decision easy to write down, not to store it.</p>
+  </form>
+</article><article class="dec" id="SUG-13">
+  <header class="dec__head">
+    <div class="dec__id">
+      <span class="pill pill--reject">reject</span>
+      <code>SUG-13</code>
+    </div>
+    <div class="dec__score" title="Impact confidence out of 10, as recorded in the register">
+      <span class="dec__score-num">10</span><span class="dec__score-den">/10</span>
+      <span class="dec__score-lab">weight</span>
+    </div>
+  </header>
+  <h3 class="dec__title">Do not generate volumes of near-duplicate pages to chase long-tail queries</h3>
+  <dl class="dec__grid">
+    <div><dt>Why</dt><dd>Template-spun variants of the same article are the definition of the thin, generated content the brief rejects, and they dilute the pages that could rank.</dd></div>
+    <div><dt>What it costs</dt><dd>Zero.</dd></div>
+    <div class="dec__risk"><dt>What could go wrong</dt><dd>It works briefly, then gets the whole domain discounted.</dd></div>
+    <div class="dec__decide"><dt>Recommendation</dt><dd>Rejected. The build gate refuses pages without unique content fields.</dd></div>
+  </dl>
+  <form class="dec__form" data-decision-form>
+    <p class="dec__form-lab">Record a decision</p>
+    <div class="dec__form-row">
+      <label>Reviewer<input type="text" name="reviewer" placeholder="Your name" autocomplete="name"></label>
+      <label>Choice
+        <select name="choice">
+          <option value="">—</option>
+          <option>Accept</option>
+          <option>Hold</option>
+          <option>Reject</option>
+          <option>Needs more info</option>
+        </select>
+      </label>
+      <label>Date<input type="date" name="date"></label>
+    </div>
+    <p class="dec__form-hint">Nothing is saved by typing here. The build has no backend and no account system, so a decision becomes real only when this line is copied into <code>data/suggestions.json</code> &rarr; <code>decisionLog.entries</code> and the page is rebuilt. The form exists to make the decision easy to write down, not to store it.</p>
+  </form>
+</article></div>
+    </section>
 
-    <div class="note note--stop mt1">
-      <p class="note__title">Two suggestions are rejections</p>
+    <details class="decshipped">
+      <summary><span class="pill pill--shipped">shipped</span> <strong>8 suggestions already built</strong> — open to review what shipped, and why</summary>
+      <div class="decstack" style="margin-top:1.25rem"><article class="dec" id="SUG-01">
+  <header class="dec__head">
+    <div class="dec__id">
+      <span class="pill pill--shipped">shipped</span>
+      <code>SUG-01</code>
+    </div>
+    <div class="dec__score" title="Impact confidence out of 10, as recorded in the register">
+      <span class="dec__score-num">10</span><span class="dec__score-den">/10</span>
+      <span class="dec__score-lab">weight</span>
+    </div>
+  </header>
+  <h3 class="dec__title">Keep the site in 'how to decide' voice, permanently, until products are actually tested</h3>
+  <dl class="dec__grid">
+    <div><dt>Why</dt><dd>The FTC forbids describing hands-on experience you do not have, and readers detect the fake version instantly. The reliable way to sound human without lying is to write about the decision instead of the verdict: what the drawers are like, what the counter cost is, who the machine is wrong for.</dd></div>
+    <div><dt>What it costs</dt><dd>None. It is a writing constraint, enforced by the build.</dd></div>
+    <div class="dec__risk"><dt>What could go wrong</dt><dd>A guide that never says 'we tested this' competes poorly against sites that can. That is a real disadvantage and it is the correct one to accept.</dd></div>
+    <div class="dec__decide"><dt>Recommendation</dt><dd>Accept. Every page already follows it.<span class="dec__src">Source: <a href="https://www.ftc.gov/business-guidance/resources/disclosures-101-social-media-influencers" rel="noopener" target="_blank">FTC Disclosures 101</a></span></dd></div>
+  </dl>
+  <form class="dec__form" data-decision-form>
+    <p class="dec__form-lab">Record a decision</p>
+    <div class="dec__form-row">
+      <label>Reviewer<input type="text" name="reviewer" placeholder="Your name" autocomplete="name"></label>
+      <label>Choice
+        <select name="choice">
+          <option value="">—</option>
+          <option>Accept</option>
+          <option>Hold</option>
+          <option>Reject</option>
+          <option>Needs more info</option>
+        </select>
+      </label>
+      <label>Date<input type="date" name="date"></label>
+    </div>
+    <p class="dec__form-hint">Nothing is saved by typing here. The build has no backend and no account system, so a decision becomes real only when this line is copied into <code>data/suggestions.json</code> &rarr; <code>decisionLog.entries</code> and the page is rebuilt. The form exists to make the decision easy to write down, not to store it.</p>
+  </form>
+</article><article class="dec" id="SUG-04">
+  <header class="dec__head">
+    <div class="dec__id">
+      <span class="pill pill--shipped">shipped</span>
+      <code>SUG-04</code>
+    </div>
+    <div class="dec__score" title="Impact confidence out of 10, as recorded in the register">
+      <span class="dec__score-num">9</span><span class="dec__score-den">/10</span>
+      <span class="dec__score-lab">weight</span>
+    </div>
+  </header>
+  <h3 class="dec__title">Replace the submitted short links with constructed Special Links (done); prove one works (blocked)</h3>
+  <dl class="dec__grid">
+    <div><dt>Why</dt><dd>The submitted links carried no visible tag and their compliance status is unsettled. Constructing amazon.com/dp/&lt;ASIN&gt;?tag=shopnow047c-20 is unambiguous, keeps the destination visible in the status bar, and satisfies the link-clarity requirement.</dd></div>
+    <div><dt>What it costs</dt><dd>None.</dd></div>
+    <div class="dec__risk"><dt>What could go wrong</dt><dd>If the tag is not enrolled, every link still earns nothing. That is the one thing this cannot fix.</dd></div>
+    <div class="dec__decide"><dt>Recommendation</dt><dd>Constructed links are live. The proof step is blocked: it needs the owner's Associates Central sign-in (FLG-024). Next step: click one link per product while signed in and confirm it appears in the tracking report.<span class="dec__src">Source: <a href="https://affiliate-program.amazon.com/help/operating/policies" rel="noopener" target="_blank">Participation Requirements §6(w)</a></span></dd></div>
+  </dl>
+  <form class="dec__form" data-decision-form>
+    <p class="dec__form-lab">Record a decision</p>
+    <div class="dec__form-row">
+      <label>Reviewer<input type="text" name="reviewer" placeholder="Your name" autocomplete="name"></label>
+      <label>Choice
+        <select name="choice">
+          <option value="">—</option>
+          <option>Accept</option>
+          <option>Hold</option>
+          <option>Reject</option>
+          <option>Needs more info</option>
+        </select>
+      </label>
+      <label>Date<input type="date" name="date"></label>
+    </div>
+    <p class="dec__form-hint">Nothing is saved by typing here. The build has no backend and no account system, so a decision becomes real only when this line is copied into <code>data/suggestions.json</code> &rarr; <code>decisionLog.entries</code> and the page is rebuilt. The form exists to make the decision easy to write down, not to store it.</p>
+  </form>
+</article><article class="dec" id="SUG-25">
+  <header class="dec__head">
+    <div class="dec__id">
+      <span class="pill pill--shipped">shipped</span>
+      <code>SUG-25</code>
+    </div>
+    <div class="dec__score" title="Impact confidence out of 10, as recorded in the register">
+      <span class="dec__score-num">9</span><span class="dec__score-den">/10</span>
+      <span class="dec__score-lab">weight</span>
+    </div>
+  </header>
+  <h3 class="dec__title">Ship the storefront layout: shelf table, department rail, diagram figures</h3>
+  <dl class="dec__grid">
+    <div><dt>Why</dt><dd>The front page previously read as an audit of its own verification: a stat strip counting 'policy checks passed' above the products. A buyer decides in seconds whether a page is a shop. The shelf table, the shop-by rail and the form-factor diagrams move the products above the process without removing a single verified fact.</dd></div>
+    <div><dt>What it costs</dt><dd>One build pass. No new factual claims and no external assets: the figures are self-drawn diagrams, not product photographs.</dd></div>
+    <div class="dec__risk"><dt>What could go wrong</dt><dd>A diagram can be read as a photograph of the product. Every figure is captioned 'Not a photograph of the product' for that reason. If any caption is dropped, the figure becomes misleading.</dd></div>
+    <div class="dec__decide"><dt>Recommendation</dt><dd>Shipped. Keep the caption; it is the condition of using the image at all.<span class="dec__src">Source: <a href="https://www.ftc.gov/business-guidance/resources/disclosures-101-social-media-influencers" rel="noopener" target="_blank">FTC: deceptive design and substantiation</a></span></dd></div>
+  </dl>
+  <form class="dec__form" data-decision-form>
+    <p class="dec__form-lab">Record a decision</p>
+    <div class="dec__form-row">
+      <label>Reviewer<input type="text" name="reviewer" placeholder="Your name" autocomplete="name"></label>
+      <label>Choice
+        <select name="choice">
+          <option value="">—</option>
+          <option>Accept</option>
+          <option>Hold</option>
+          <option>Reject</option>
+          <option>Needs more info</option>
+        </select>
+      </label>
+      <label>Date<input type="date" name="date"></label>
+    </div>
+    <p class="dec__form-hint">Nothing is saved by typing here. The build has no backend and no account system, so a decision becomes real only when this line is copied into <code>data/suggestions.json</code> &rarr; <code>decisionLog.entries</code> and the page is rebuilt. The form exists to make the decision easy to write down, not to store it.</p>
+  </form>
+</article><article class="dec" id="SUG-27">
+  <header class="dec__head">
+    <div class="dec__id">
+      <span class="pill pill--shipped">shipped</span>
+      <code>SUG-27</code>
+    </div>
+    <div class="dec__score" title="Impact confidence out of 10, as recorded in the register">
+      <span class="dec__score-num">9</span><span class="dec__score-den">/10</span>
+      <span class="dec__score-lab">weight</span>
+    </div>
+  </header>
+  <h3 class="dec__title">Disallow the archived editions in robots.txt, and add a _headers rule as belt and braces</h3>
+  <dl class="dec__grid">
+    <div><dt>Why</dt><dd>Three earlier builds are preserved under /archive/ as a historical record: 48 HTML pages including near-duplicate guides. None carried a noindex directive. A crawler that found them would see four competing copies of every guide under one domain.</dd></div>
+    <div><dt>What it costs</dt><dd>Two generated files. The archived HTML is untouched, so the record stays verbatim.</dd></div>
+    <div class="dec__risk"><dt>What could go wrong</dt><dd>GitHub Pages does not read a _headers file, so that rule is inert here and exists only if the site moves to a host that does. robots.txt is the rule that actually runs. If a page is ever moved out of /archive/, it needs its own check.</dd></div>
+    <div class="dec__decide"><dt>Recommendation</dt><dd>Shipped. Keep the archive out of the sitemap as well — it already is.<span class="dec__src">Source: <a href="https://developers.google.com/search/docs/crawling-indexing/robots/robots_txt" rel="noopener" target="_blank">Google: robots.txt specifications</a></span></dd></div>
+  </dl>
+  <form class="dec__form" data-decision-form>
+    <p class="dec__form-lab">Record a decision</p>
+    <div class="dec__form-row">
+      <label>Reviewer<input type="text" name="reviewer" placeholder="Your name" autocomplete="name"></label>
+      <label>Choice
+        <select name="choice">
+          <option value="">—</option>
+          <option>Accept</option>
+          <option>Hold</option>
+          <option>Reject</option>
+          <option>Needs more info</option>
+        </select>
+      </label>
+      <label>Date<input type="date" name="date"></label>
+    </div>
+    <p class="dec__form-hint">Nothing is saved by typing here. The build has no backend and no account system, so a decision becomes real only when this line is copied into <code>data/suggestions.json</code> &rarr; <code>decisionLog.entries</code> and the page is rebuilt. The form exists to make the decision easy to write down, not to store it.</p>
+  </form>
+</article><article class="dec" id="SUG-26">
+  <header class="dec__head">
+    <div class="dec__id">
+      <span class="pill pill--shipped">shipped</span>
+      <code>SUG-26</code>
+    </div>
+    <div class="dec__score" title="Impact confidence out of 10, as recorded in the register">
+      <span class="dec__score-num">8</span><span class="dec__score-den">/10</span>
+      <span class="dec__score-lab">weight</span>
+    </div>
+  </header>
+  <h3 class="dec__title">Move the verification dashboards out of the first scroll</h3>
+  <dl class="dec__grid">
+    <div><dt>Why</dt><dd>Every dashboard surface is still reachable from the footer on every page, which was the original requirement. What changed is their position: they no longer sit above the products. The verification work is a feature of the publication, not its front door.</dd></div>
+    <div><dt>What it costs</dt><dd>None. Footer links and one notes block.</dd></div>
+    <div class="dec__risk"><dt>What could go wrong</dt><dd>A reader who arrives specifically to audit the sources now scrolls further to find them. The footer is on every page, so nothing is lost.</dd></div>
+    <div class="dec__decide"><dt>Recommendation</dt><dd>Shipped. The footer link list is the contract; do not remove an entry from it without adding the page elsewhere.</dd></div>
+  </dl>
+  <form class="dec__form" data-decision-form>
+    <p class="dec__form-lab">Record a decision</p>
+    <div class="dec__form-row">
+      <label>Reviewer<input type="text" name="reviewer" placeholder="Your name" autocomplete="name"></label>
+      <label>Choice
+        <select name="choice">
+          <option value="">—</option>
+          <option>Accept</option>
+          <option>Hold</option>
+          <option>Reject</option>
+          <option>Needs more info</option>
+        </select>
+      </label>
+      <label>Date<input type="date" name="date"></label>
+    </div>
+    <p class="dec__form-hint">Nothing is saved by typing here. The build has no backend and no account system, so a decision becomes real only when this line is copied into <code>data/suggestions.json</code> &rarr; <code>decisionLog.entries</code> and the page is rebuilt. The form exists to make the decision easy to write down, not to store it.</p>
+  </form>
+</article><article class="dec" id="SUG-29">
+  <header class="dec__head">
+    <div class="dec__id">
+      <span class="pill pill--shipped">shipped</span>
+      <code>SUG-29</code>
+    </div>
+    <div class="dec__score" title="Impact confidence out of 10, as recorded in the register">
+      <span class="dec__score-num">8</span><span class="dec__score-den">/10</span>
+      <span class="dec__score-lab">weight</span>
+    </div>
+  </header>
+  <h3 class="dec__title">Restructure the suggestions page from one 8-column table into per-item decision cards</h3>
+  <dl class="dec__grid">
+    <div><dt>Why</dt><dd>The suggestions existed but were presented as a single wide table. A decision cannot be taken from a table cell: each suggestion needs its rationale, cost, risk and recommendation adjacent to the choice being made.</dd></div>
+    <div><dt>What it costs</dt><dd>One renderer change. The data model already held every field.</dd></div>
+    <div class="dec__risk"><dt>What could go wrong</dt><dd>A card layout hides the cross-item comparison. The ranked summary table is kept above the cards for that reason.</dd></div>
+    <div class="dec__decide"><dt>Recommendation</dt><dd>Shipped.</dd></div>
+  </dl>
+  <form class="dec__form" data-decision-form>
+    <p class="dec__form-lab">Record a decision</p>
+    <div class="dec__form-row">
+      <label>Reviewer<input type="text" name="reviewer" placeholder="Your name" autocomplete="name"></label>
+      <label>Choice
+        <select name="choice">
+          <option value="">—</option>
+          <option>Accept</option>
+          <option>Hold</option>
+          <option>Reject</option>
+          <option>Needs more info</option>
+        </select>
+      </label>
+      <label>Date<input type="date" name="date"></label>
+    </div>
+    <p class="dec__form-hint">Nothing is saved by typing here. The build has no backend and no account system, so a decision becomes real only when this line is copied into <code>data/suggestions.json</code> &rarr; <code>decisionLog.entries</code> and the page is rebuilt. The form exists to make the decision easy to write down, not to store it.</p>
+  </form>
+</article><article class="dec" id="SUG-30">
+  <header class="dec__head">
+    <div class="dec__id">
+      <span class="pill pill--shipped">shipped</span>
+      <code>SUG-30</code>
+    </div>
+    <div class="dec__score" title="Impact confidence out of 10, as recorded in the register">
+      <span class="dec__score-num">8</span><span class="dec__score-den">/10</span>
+      <span class="dec__score-lab">weight</span>
+    </div>
+  </header>
+  <h3 class="dec__title">Put a dated, signed review note (Reviewer / Chosen / Date) on every suggestion</h3>
+  <dl class="dec__grid">
+    <div><dt>Why</dt><dd>The brief asks for a section where someone can review the suggestions and choose a path before anything is implemented. A recorded decision needs a name, a date and a reason, or the log silently reverts to opinion next session.</dd></div>
+    <div><dt>What it costs</dt><dd>Four empty text inputs per card. No backend, so the note is a prompt for the record, not a stored answer.</dd></div>
+    <div class="dec__risk"><dt>What could go wrong</dt><dd>The fields are inert until a human fills them in and copies the line into data/suggestions.json decisionLog.entries. A filled-in field on the page is not a recorded decision.</dd></div>
+    <div class="dec__decide"><dt>Recommendation</dt><dd>Shipped, with that limitation stated on the page.</dd></div>
+  </dl>
+  <form class="dec__form" data-decision-form>
+    <p class="dec__form-lab">Record a decision</p>
+    <div class="dec__form-row">
+      <label>Reviewer<input type="text" name="reviewer" placeholder="Your name" autocomplete="name"></label>
+      <label>Choice
+        <select name="choice">
+          <option value="">—</option>
+          <option>Accept</option>
+          <option>Hold</option>
+          <option>Reject</option>
+          <option>Needs more info</option>
+        </select>
+      </label>
+      <label>Date<input type="date" name="date"></label>
+    </div>
+    <p class="dec__form-hint">Nothing is saved by typing here. The build has no backend and no account system, so a decision becomes real only when this line is copied into <code>data/suggestions.json</code> &rarr; <code>decisionLog.entries</code> and the page is rebuilt. The form exists to make the decision easy to write down, not to store it.</p>
+  </form>
+</article><article class="dec" id="SUG-28">
+  <header class="dec__head">
+    <div class="dec__id">
+      <span class="pill pill--shipped">shipped</span>
+      <code>SUG-28</code>
+    </div>
+    <div class="dec__score" title="Impact confidence out of 10, as recorded in the register">
+      <span class="dec__score-num">7</span><span class="dec__score-den">/10</span>
+      <span class="dec__score-lab">weight</span>
+    </div>
+  </header>
+  <h3 class="dec__title">Give the site a brand mark, icon and share card</h3>
+  <dl class="dec__grid">
+    <div><dt>Why</dt><dd>Every page had no favicon and no social preview image, so a shared link rendered as plain text and a browser tab showed a blank page icon. Those are the two cheapest signals that a site is published rather than generated.</dd></div>
+    <div><dt>What it costs</dt><dd>Four files generated locally. No third-party image, no licensed content.</dd></div>
+    <div class="dec__risk"><dt>What could go wrong</dt><dd>None factual: the artwork depicts no product, no seller and no Amazon asset. It must stay that way; a generated image that implies a product photograph would reopen FLG-007 on false pretences.</dd></div>
+    <div class="dec__decide"><dt>Recommendation</dt><dd>Shipped.<span class="dec__src">Source: <a href="https://schema.org/ImageObject" rel="noopener" target="_blank">schema.org: ImageObject</a></span></dd></div>
+  </dl>
+  <form class="dec__form" data-decision-form>
+    <p class="dec__form-lab">Record a decision</p>
+    <div class="dec__form-row">
+      <label>Reviewer<input type="text" name="reviewer" placeholder="Your name" autocomplete="name"></label>
+      <label>Choice
+        <select name="choice">
+          <option value="">—</option>
+          <option>Accept</option>
+          <option>Hold</option>
+          <option>Reject</option>
+          <option>Needs more info</option>
+        </select>
+      </label>
+      <label>Date<input type="date" name="date"></label>
+    </div>
+    <p class="dec__form-hint">Nothing is saved by typing here. The build has no backend and no account system, so a decision becomes real only when this line is copied into <code>data/suggestions.json</code> &rarr; <code>decisionLog.entries</code> and the page is rebuilt. The form exists to make the decision easy to write down, not to store it.</p>
+  </form>
+</article></div>
+    </details>
+
+    <div class="note note--stop mt2">
+      <p class="note__title">Two suggestions are rejections, kept on purpose</p>
       <p><strong>SUG-12</strong> (price tracking) and <strong>SUG-13</strong> (generated near-duplicate pages) are listed so that a future session does not build them in good faith. The first breaches Amazon's program policies outright; the second produces the exact content this publication exists to avoid.</p>
     </div>
   </div>
