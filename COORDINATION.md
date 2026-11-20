@@ -901,3 +901,10 @@ links, 102 Amazon links, 82 sponsored, zero failures); compliance gate 1,118 che
   section before the file is edited.
 - **Base:** `e886175` (equals `main` at session start). No second site will be built.
 - **Status:** in progress.
+- **Scope extension logged before editing (2026-11-20, per the claim's own rule):**
+  `data/governance.json` only — two flag rows: (a) **FLG-033 moved to resolved**, because this
+  session found and fetched two official Amazon pages that state the ASIN definition the flag said
+  was missing (Associates Central Help and Sell on Amazon); (b) **FLG-036 detail extended** with
+  this session's third independent re-check of the five short links. Regenerated `flagged/`,
+  `summary/` and any page these feed via `node _src/build.mjs` (never hand-edited). No product
+  spec rows, nav, register data, suggestions, questions or generator logic will be changed.
