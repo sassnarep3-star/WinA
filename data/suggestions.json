@@ -1,11 +1,31 @@
 {
   "intro": "A decision list, not a wish list. Each suggestion states what to do, why, what it costs, and what would make it a bad idea. Nothing here has been implemented beyond what is already live; the ones marked shipped were built in this pass because the brief asked for them directly. Everything else waits for a decision.",
   "statusKey": [
-    { "id": "shipped", "label": "Shipped", "note": "Already built on the live site in this pass." },
-    { "id": "recommend", "label": "Recommend next", "note": "Highest confidence, do this before the others." },
-    { "id": "consider", "label": "Consider", "note": "Worth doing, but depends on an earlier decision." },
-    { "id": "hold", "label": "Hold", "note": "Do not do this yet. Reason given." },
-    { "id": "reject", "label": "Rejected", "note": "Would break a rule or mislead a reader." }
+    {
+      "id": "shipped",
+      "label": "Shipped",
+      "note": "Already built on the live site in this pass."
+    },
+    {
+      "id": "recommend",
+      "label": "Recommend next",
+      "note": "Highest confidence, do this before the others."
+    },
+    {
+      "id": "consider",
+      "label": "Consider",
+      "note": "Worth doing, but depends on an earlier decision."
+    },
+    {
+      "id": "hold",
+      "label": "Hold",
+      "note": "Do not do this yet. Reason given."
+    },
+    {
+      "id": "reject",
+      "label": "Rejected",
+      "note": "Would break a rule or mislead a reader."
+    }
   ],
   "suggestions": [
     {
@@ -17,7 +37,12 @@
       "cost": "None. It is a writing constraint, enforced by the build.",
       "risk": "A guide that never says 'we tested this' competes poorly against sites that can. That is a real disadvantage and it is the correct one to accept.",
       "decide": "Accept. Every page already follows it.",
-      "links": [{ "label": "FTC Disclosures 101", "url": "https://www.ftc.gov/business-guidance/resources/disclosures-101-social-media-influencers" }]
+      "links": [
+        {
+          "label": "FTC Disclosures 101",
+          "url": "https://www.ftc.gov/business-guidance/resources/disclosures-101-social-media-influencers"
+        }
+      ]
     },
     {
       "id": "SUG-02",
@@ -39,28 +64,38 @@
       "cost": "Eligibility requires qualifying sales first — a chicken-and-egg problem for a new account.",
       "risk": "None to the site. The risk is waiting on access and shipping nothing meanwhile, which is why the current build ships without it.",
       "decide": "Apply as soon as the account qualifies. Track it in the questions register as Q-11 and Q-12.",
-      "links": [{ "label": "Associates Program Policies", "url": "https://affiliate-program.amazon.com/help/operating/policies" }]
+      "links": [
+        {
+          "label": "Associates Program Policies",
+          "url": "https://affiliate-program.amazon.com/help/operating/policies"
+        }
+      ]
     },
     {
       "id": "SUG-04",
-      "title": "Replace the submitted short links with constructed Special Links and prove one works",
+      "title": "Replace the submitted short links with constructed Special Links (done); prove one works (blocked)",
       "status": "shipped",
       "weight": 9,
       "why": "The submitted links carried no visible tag and their compliance status is unsettled. Constructing amazon.com/dp/<ASIN>?tag=shopnow047c-20 is unambiguous, keeps the destination visible in the status bar, and satisfies the link-clarity requirement.",
       "cost": "None.",
       "risk": "If the tag is not enrolled, every link still earns nothing. That is the one thing this cannot fix.",
-      "decide": "Already done. Next step is the proof: click one link per product while signed in, and confirm it appears in the tracking report.",
-      "links": [{ "label": "Participation Requirements §6(w)", "url": "https://affiliate-program.amazon.com/help/operating/policies" }]
+      "decide": "Constructed links are live. The proof step is blocked: it needs the owner's Associates Central sign-in (FLG-024). Next step: click one link per product while signed in and confirm it appears in the tracking report.",
+      "links": [
+        {
+          "label": "Participation Requirements §6(w)",
+          "url": "https://affiliate-program.amazon.com/help/operating/policies"
+        }
+      ]
     },
     {
       "id": "SUG-05",
-      "title": "Publish on a real cadence: one guide a week for eight weeks, then read the query data",
+      "title": "Publish on a real cadence: a new guide every week for eight weeks, then read the query data",
       "status": "recommend",
       "weight": 8,
-      "why": "Question-shaped guides are the right shape, but four is not a sample. A weekly cadence for two months produces enough pages and enough query impressions to see which question people actually arrive with, which is the only way to stop guessing topics.",
-      "cost": "One substantive guide per week. Each needs its own verified spec pass.",
+      "why": "Question-shaped guides are the right shape, but five is not a sample. A weekly cadence for two months produces enough pages and enough query impressions to see which question people actually arrive with, which is the only way to stop guessing topics.",
+      "cost": "A substantive guide per week. Each needs its own verified spec pass.",
       "risk": "Cadence without quality control produces the thin content the brief explicitly rejects. The build gate must stay on.",
-      "decide": "Recommend a fixed day and a fixed length. Add each new guide to the sitemap and feed in the same commit, then measure at week eight.",
+      "decide": "Recommend a fixed day and a fixed length. A weekly cadence also keeps content inside the 60-day recency window that Amazon's Associates Help describes (FLG-013). Add each new guide to the sitemap and feed in the same commit, then measure at week eight.",
       "links": []
     },
     {
@@ -94,7 +129,12 @@
       "cost": "One worker deploy and a secret.",
       "risk": "A self-hosted collector is a privacy obligation. The current design stores no identifiers, which keeps that burden small.",
       "decide": "Recommend deploying to close FLG-011. Do not import a third-party tracker as a shortcut.",
-      "links": [{ "label": "Measurement page", "url": "https://sassnarep3-star.github.io/WinA/analytics/" }]
+      "links": [
+        {
+          "label": "Measurement page",
+          "url": "https://sassnarep3-star.github.io/WinA/analytics/"
+        }
+      ]
     },
     {
       "id": "SUG-09",
@@ -138,7 +178,12 @@
       "cost": "Zero.",
       "risk": "It is the most requested feature on affiliate sites and the most direct route to account termination.",
       "decide": "Rejected. Documented so no future session builds it.",
-      "links": [{ "label": "Participation Requirements §6(y)", "url": "https://affiliate-program.amazon.com/help/operating/policies" }]
+      "links": [
+        {
+          "label": "Participation Requirements §6(y)",
+          "url": "https://affiliate-program.amazon.com/help/operating/policies"
+        }
+      ]
     },
     {
       "id": "SUG-13",
@@ -171,7 +216,12 @@
       "cost": "Zero.",
       "risk": "Slower initial traffic.",
       "decide": "Hold until the ledger has real click and order data.",
-      "links": [{ "label": "Participation Requirements §6(f)", "url": "https://affiliate-program.amazon.com/help/operating/policies" }]
+      "links": [
+        {
+          "label": "Participation Requirements §6(f)",
+          "url": "https://affiliate-program.amazon.com/help/operating/policies"
+        }
+      ]
     },
     {
       "id": "SUG-16",

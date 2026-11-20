@@ -368,10 +368,10 @@ function frontPage() {
 
 <div class="strip">
   <div class="wrap strip__inner">
-    <div class="strip__cell"><p class="strip__num">5</p><p class="strip__lab">Products compared</p></div>
-    <div class="strip__cell"><p class="strip__num">4</p><p class="strip__lab">Guides</p></div>
+    <div class="strip__cell"><p class="strip__num">${products.length}</p><p class="strip__lab">Products compared</p></div>
+    <div class="strip__cell"><p class="strip__num">${guides.length}</p><p class="strip__lab">Guides</p></div>
     <div class="strip__cell"><p class="strip__num">0</p><p class="strip__lab">Products tested</p></div>
-    <div class="strip__cell"><p class="strip__num">10</p><p class="strip__lab">Policy checks passed</p></div>
+    <div class="strip__cell"><p class="strip__num">${policy.policy.length}</p><p class="strip__lab">Policy checks passed</p></div>
   </div>
 </div>
 
@@ -409,7 +409,7 @@ function frontPage() {
   <div class="wrap">
     <div class="section__head">
       <h2 class="section__title">Read before you buy</h2>
-      <p class="section__dek">Four questions that come up before any of these purchases, answered without a verdict at the end.</p>
+      <p class="section__dek">The questions that come up before any of these purchases, answered without a verdict at the end.</p>
     </div>
     <div class="guides guides--two">
       ${guides
@@ -760,7 +760,7 @@ ${breadcrumb([{ href: url("/"), label: "Home" }, { label: "Guides" }])}
   <div class="wrap">
     <p class="kicker">Buying guides</p>
     <h1 class="article-head__title">The questions people ask before they buy</h1>
-    <p class="article-head__dek">Four guides, each built around one decision. No rankings, no "best of" list, no claim that any of this was tested.</p>
+    <p class="article-head__dek">Five guides, each built around one decision. No rankings, no "best of" list, no claim that any of this was tested.</p>
   </div>
 </div>
 <section class="section">
@@ -793,7 +793,7 @@ ${breadcrumb([{ href: url("/"), label: "Home" }, { label: "Guides" }])}
   pages.push({
     path: "/guides/",
     title: "Buying guides",
-    desc: "Four question-shaped guides to air fryers and thermometers: form factor, capacity, cleanup, and multi-function claims.",
+    desc: "Five question-shaped guides to air fryers and thermometers: form factor, capacity, cleanup, and multi-function claims.",
     html,
     priority: "0.8",
     changefreq: "weekly"
@@ -1490,7 +1490,7 @@ ${breadcrumb([{ href: url("/"), label: "Home" }, { label: "Executive summary" }]
     <h2>What exists</h2>
     <ul>
       <li><strong>A five-product publication</strong> — three air fryers, two thermometers — with individual pages, two category hubs, and a full comparison table.</li>
-      <li><strong>Four question-shaped guides</strong>, written as decisions rather than rankings.</li>
+      <li><strong>Five question-shaped guides</strong>, written as decisions rather than rankings.</li>
       <li><strong>A complete source register</strong>: ${policy.sources.length} primary sources and ${products.reduce(
         (n, p) => n + p.specs.length,
         0
@@ -1533,14 +1533,14 @@ ${breadcrumb([{ href: url("/"), label: "Home" }, { label: "Executive summary" }]
       <li>Sign in to Associates and confirm one product link per product appears in the tracking report.</li>
       <li>Deploy the collector in <code>_worker/</code> and set the endpoint, then rebuild.</li>
       <li>Verify Search Console, replace the placeholder token, submit the sitemap.</li>
-      <li>Publish one guide a week for eight weeks.</li>
+      <li>Publish a new guide every week for eight weeks.</li>
       <li>At week eight, read the query report and replace the topic hypotheses with measured demand.</li>
       <li>Apply for Product Advertising API access once the account qualifies — it unlocks prices, ratings and images together.</li>
     </ol>
 
     <h2>The honest verdict</h2>
-    <p>What exists is a small, well-documented, compliant publication with four decent guides and five products. It is not yet a business: it has no traffic, no verified affiliate attribution, and no data. It is, however, built so that when those three things arrive, nothing has to be torn down — and so that nothing on it is a lie.</p>
-    <p>The main strategic risk is not technical. It is that four guides is not enough content to rank in a crowded category, and the plan for fixing that is a cadence, not a feature.</p>
+    <p>What exists is a small, well-documented, compliant publication with five decent guides and five products. It is not yet a business: it has no traffic, no verified affiliate attribution, and no data. It is, however, built so that when those three things arrive, nothing has to be torn down — and so that nothing on it is a lie.</p>
+    <p>The main strategic risk is not technical. It is that five guides is not enough content to rank in a crowded category, and the plan for fixing that is a cadence, not a feature.</p>
   </div>
 </section>
 `;
@@ -1994,6 +1994,23 @@ if (!statementMissing) ok(`every page carries the exact statement required by OA
 if (!canonicalMissing) ok("every page declares a canonical URL");
 if (!amazonUnsponsored) ok(`every Amazon anchor is either a tagged sponsored link or a declared non-affiliate citation`);
 if (!ratingShown) ok("no star ratings or review quotes displayed anywhere");
+
+// guide-count guard: any count word stated next to "guide(s)" must equal the published count
+{
+  const WORD_NUM = { one: 1, two: 2, three: 3, four: 4, five: 5, six: 6, seven: 7, eight: 8, nine: 9, ten: 10 };
+  const re = /\b(one|two|three|four|five|six|seven|eight|nine|ten|\d+)[ \t]+(?:[a-z-]+[ \t]+){0,3}guides?\b/gi;
+  const mismatch = [];
+  for (const f of htmlFiles) {
+    const text = fs.readFileSync(f, "utf8").replace(/<[^>]+>/g, "\n");
+    for (const m of text.matchAll(re)) {
+      const w = m[1].toLowerCase();
+      const n = WORD_NUM[w] ?? Number(w);
+      if (n !== guides.length) mismatch.push(`${path.relative(ROOT, f)}: "${m[0]}"`);
+    }
+  }
+  if (mismatch.length) fail(`prose states a guide count that does not match the ${guides.length} published: ${mismatch.slice(0, 5).join("; ")}`);
+  else ok(`every stated guide count matches the ${guides.length} guides published`);
+}
 
 // fabrication guard: no unverified spec may have a value
 let fabricated = 0;
