@@ -1,28 +1,20 @@
 {
-  "$comment": "TEMPLATE — rename a copy of this file to <product-id>.json before filling it in. This file is ignored by the collector because its name starts with 'example'.",
-  "id": "PRD-01",
-  "asin": "PASTE-A-REAL-10-CHAR-ASIN",
-  "official_listing_url": "https://www.amazon.com/dp/PASTE-A-REAL-10-CHAR-ASIN",
-  "title": "Exactly what the listing calls it",
-  "brand": "Exactly what the listing calls the brand",
-  "category": "air-fryers",
-  "price": null,
-  "currency": "USD",
-  "star_rating": null,
-  "rating_count": null,
-  "availability": null,
-  "commission_category": null,
-  "spec_sheet": { "watts": null, "capacity_quarts": null, "dimensions_cm": null, "dishwasher_safe_parts": null },
-  "source": "product detail page, opened by <name> at 2026-xx-xx",
-  "retrievedAt": "2026-xx-xx",
-  "confirmed_by": null,
-  "observed_redirect_targets": null,
-  "observed_at": null,
-  "observed_method": null,
-  "$field_rules": [
-    "null means 'not obtained'. Never write a guess, and never write 0 to mean none.",
-    "price / star_rating / rating_count / availability stay null unless they were read off this listing on retrievedAt — and even then the site's default is to print none of them (Q-13).",
-    "observed_* belongs to the observation block of the intent record and is never merged into intent.",
-    "commission_category comes from the Associates Commission Income Statement for your locale, not from a blog post about rates."
+  "$comment": "TEMPLATE — copy to data/inbox/<product-slug>.json. Files starting with 'example' are ignored by scripts/collect.mjs.",
+  "slug": "chefman-6-quart-dual-basket",
+  "asin": "B0CDY277D3",
+  "source": "amazon-listing",
+  "accessed": "2026-11-20",
+  "fields": {
+    "Capacity": "6 qt total (2 × 3 qt)",
+    "Wattage": null,
+    "Weight": null
+  },
+  "observed_destination": "https://www.amazon.com/dp/B0CDY277D3",
+  "$rules": [
+    "source must be an id defined in data/policy.json; a value with no traceable source is the failure mode this whole project exists to prevent",
+    "accessed is the date YOU read the page, and it is what the 90-day review window is measured from",
+    "null means 'not obtained'. Never write a guess, never write 0 to mean none.",
+    "price, star_rating, rating_count and availability are refused: Program Policies §6(t) and §6(y)",
+    "observed_destination updates the observation field on data/links.json and never the intended ASIN"
   ]
 }

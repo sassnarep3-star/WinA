@@ -1,20 +1,22 @@
 {
-  "name": "wina-the-preheat",
-  "version": "1.0.0",
+  "name": "counter-space",
   "private": true,
+  "version": "0.0.0",
+  "description": "Counter Space \u2014 an Amazon affiliate publication with a source register, a compliance gate and a self-hosted collector. Zero runtime dependencies.",
   "type": "module",
-  "description": "The Preheat — an affiliate kitchen-gear publication with a verification register, a compliance gate, and a measurement spec. Static site built into docs/ for GitHub Pages.",
-  "engines": { "node": ">=20" },
+  "engines": {
+    "node": ">=20"
+  },
   "scripts": {
-    "build": "node site/build.mjs",
-    "check:links": "node tools/validate-links.mjs",
-    "check:compliance": "node tools/compliance-gate.mjs",
-    "check:data": "node tools/validate-data.mjs",
-    "check": "npm run check:data && npm run build && npm run check:links && npm run check:compliance",
-    "gate": "node tools/publish-gate.mjs",
-    "collect": "node tools/collect.mjs",
-    "topics": "node tools/next-topics.mjs",
-    "analytics": "node tools/analytics-server.mjs"
+    "build": "node _src/build.mjs",
+    "check": "node scripts/publish-gate.mjs",
+    "compliance": "node scripts/compliance-gate.mjs",
+    "refresh": "node scripts/compliance-gate.mjs --refresh-sources",
+    "collect": "node scripts/collect.mjs",
+    "topics": "node scripts/next-topics.mjs",
+    "serve": "node _src/serve.mjs",
+    "analytics": "node scripts/analytics-server.mjs",
+    "pages:status": "gh api repos/sassnarep3-star/WinA/pages/builds/latest --jq '{status:.status,commit:.commit,created_at:.created_at}'"
   },
   "license": "UNLICENSED"
 }

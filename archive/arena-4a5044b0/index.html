@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>WinA — Smart kitchen picks, tested for your counter</title>
+  <meta name="description" content="Buyer-first guides and verified product picks for kitchen appliances. Amazon Associate disclosure above the fold. Outbound links marked sponsored." />
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <link rel="alternate" type="application/rss+xml" href="feed.xml" title="WinA — Buying guides feed" />
+  <link rel="sitemap" href="sitemap.xml" />
+</head>
+<body>
+  <div class="site">
+    <header class="masthead">
+      <div class="navbar">
+        <a class="brand" href="index.html">Win<span class="amp">A</span></a>
+        <nav class="nav-links" aria-label="Main navigation"></nav>
+        <a class="btn btn-outline small" href="products.html">Shop products</a>
+      </div>
+    </header>
+
+    <!-- Disclosure strip: above the fold, under the masthead, repeated in footer -->
+    <section class="disclosure-strip" aria-label="Affiliate disclosure">
+      <div class="wrap">
+        <strong>Affiliate disclosure:</strong> As an Amazon Associate we earn from qualifying purchases.
+        Outbound product links on this page are marked <span class="tag-sponsored" aria-hidden="true">sponsored</span>
+        (rel="sponsored"). We may earn a commission if you buy through them, at no extra cost to you.
+        <a href="flagged.html">See flagged items &amp; sources</a>.
+      </div>
+    </section>
+
+    <section class="hero">
+      <div class="hero-inner">
+        <span class="kicker">Publication &middot; Buyer&rsquo;s guides</span>
+        <h1>Air fryers, decoded.</h1>
+        <p class="lead">Basket or oven style? Capacity, cleanup, and counter-space trade-offs&mdash;without the hype.
+          Question-shaped guides and validated product picks so you can decide, then buy.</p>
+        <div class="cta-group">
+          <a class="btn btn-primary" href="guides.html">Read the guides</a>
+          <a class="btn btn-outline" href="products.html">View all products</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="container">
+      <div class="section-head">
+        <h2>Featured picks</h2>
+        <p>Leading with the products, not the verification process. Every outbound link is tagged
+          <strong>sponsored</strong> and points to a validated destination where possible.</p>
+      </div>
+      <div class="product-grid" id="productGrid">
+        <!-- Products injected by winA.products script below -->
+      </div>
+      <div class="center" style="margin-top: 24px;">
+        <a class="btn btn-outline" href="products.html">See the full product table &rarr;</a>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-head center">
+        <h2>Start with a question</h2>
+        <p>Buyer-first, human-sounding guides. Working titles&mdash;not claims about popularity or superiority.</p>
+      </div>
+      <div class="guide-grid">
+        <article class="guide-card">
+          <h3>Basket or oven-style air fryer: what should you compare?</h3>
+          <p>Form-factor trade-offs, footprint, and which shape fits your counter.</p>
+          <a class="btn btn-outline small" href="guides.html">Read guide</a>
+        </article>
+        <article class="guide-card">
+          <h3>A no-hype checklist for comparing air fryer capacity</h3>
+          <p>Quarts vs. real-world batches, and how to size it for your household.</p>
+          <a class="btn btn-outline small" href="guides.html">Read guide</a>
+        </article>
+        <article class="guide-card">
+          <h3>How to assess cleanup and counter-space trade-offs</h3>
+          <p>Dishwasher-safe parts, cord storage, and clearing the space you actually have.</p>
+          <a class="btn btn-outline small" href="guides.html">Read guide</a>
+        </article>
+        <article class="guide-card">
+          <h3>Questions to ask before buying a multi-function kitchen appliance</h3>
+          <p>One appliance, many modes&mdash;what you gain, and what you give up.</p>
+          <a class="btn btn-outline small" href="guides.html">Read guide</a>
+        </article>
+      </div>
+    </section>
+
+    <footer>
+      <div class="footer-grid">
+        <div class="footer-col">
+          <h4>Shop</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="products.html">All products</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Learn</h4>
+          <ul>
+            <li><a href="guides.html">Buying guides</a></li>
+            <li><a href="questions.html">Questions &amp; answers</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Community</h4>
+          <ul>
+            <li><a href="suggest.html">Suggestions</a></li>
+            <li><a href="flagged.html">Flagged for review</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Company</h4>
+          <ul>
+            <li><a href="executive-summary.html">Executive summary</a></li>
+            <li><a href="https://www.ftc.gov" target="_blank" rel="nofollow sponsored">FTC guidance</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div>As an Amazon Associate we earn from qualifying purchases.</div>
+        <div><a href="flagged.html">Flagged for review</a> &middot; <a href="https://www.ftc.gov">FTC guidance</a> &middot; <a href="https://docs.github.com/pages">GitHub Pages</a></div>
+      </div>
+    </footer>
+  </div>
+
+  <script src="assets/js/app.js"></script>
+  <script src="assets/js/click-tracker.js"></script>
+  <script>
+    /* Product-led front page: featured product cards. Values intentionally blank where
+       unverified (Amazon not reachable from this build environment &mdash; see flagged.html). */
+    const featured = [
+      { id: "p1", short: "https://link.amazon/B04G1MEwY", title: "Unverified", asin: "&mdash;", price: "&mdash;" },
+      { id: "p2", short: "https://link.amazon/B02NbDxp3", title: "Unverified", asin: "&mdash;", price: "&mdash;" },
+      { id: "p3", short: "https://link.amazon/B00hJ57DV", title: "Unverified", asin: "&mdash;", price: "&mdash;" },
+      { id: "p4", short: "https://link.amazon/B0c8moW59", title: "Unverified", asin: "&mdash;", price: "&mdash;" },
+      { id: "p5", short: "https://link.amazon/B0f3GKalj", title: "Unverified", asin: "&mdash;", price: "&mdash;" },
+    ];
+    const grid = document.getElementById("productGrid");
+    grid.innerHTML = featured.map(function (p) {
+      return [
+        '<article class="product-card">',
+        '<div class="placeholder" aria-label="Product image pending">Image pending verification</div>',
+        '<div class="product-badge"><span class="tag" aria-hidden="true"></span>Sponsored link &middot; ASIN unverified</div>',
+        '<h3>' + p.title + '</h3>',
+        '<div class="note">ASIN: <span class="monospace">' + p.asin + '</span> &middot; Price: <span class="monospace">' + p.price + '</span></div>',
+        '<div class="actions">',
+        '<a class="btn btn-primary small" href="' + p.short + '" target="_blank" rel="nofollow sponsored" data-event="product_click">View on Amazon &rarr;</a>',
+        '</div>',
+        '</article>',
+      ].join("");
+    }).join("");
+  </script>
+</body>
+</html>

@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Suggestions — WinA</title>
+<meta name="description" content="WinA's suggestions section: proposed improvements reviewed before implementation. Each suggestion carries a status (proposed / under review / accepted / declined) and the decision needed before any change is made. As an Amazon Associate we earn from qualifying purchases.">
+<link rel="canonical" href="https://sassnarep3-star.github.io/WinA/suggestions.html">
+<link rel="sitemap" href="/sitemap.xml">
+<link rel="alternate" type="application/rss+xml" title="WinA — Recent guides" href="/feed.xml">
+<link rel="stylesheet" href="/assets/css/style.css">
+</head>
+<body data-page-type="page_view">
+<a class="skip-link" href="#content">Skip to content</a>
+
+<header class="masthead">
+  <div class="container">
+    <div style="display:flex;align-items:center;gap:1rem">
+      <a class="brand" href="/">WinA<span style="font-weight:400;font-size:.75rem;color:#94a3b8;margin-left:.35rem">· suggestions</span></a>
+    </div>
+    <nav class="nav-group">
+      <a href="/">Home</a>
+      <a href="/products/">Product register</a>
+      <a href="/guides/">Guides</a>
+      <a href="/campaign-ledger.html">Campaign ledger</a>
+      <a href="/analytics.html">Analytics</a>
+      <a href="/disclosures.html">Disclosures</a>
+      <a class="active" href="/suggestions.html">Suggestions</a>
+      <a href="/flagged-review.html">Flagged for review</a>
+    </nav>
+  </div>
+</header>
+
+<div class="disclosure-strip">
+  <div class="container">
+    <div style="display:flex;align-items:center;gap:1rem;flex-wrap:wrap">
+      <b>Affiliate disclosure:</b> As an Amazon Associate we earn from qualifying purchases. Links marked
+      <span class="sponsored-chip">sponsored</span> are affiliate links — clicking one may earn us a commission at no extra cost to you.
+      <a href="/disclosures.html">Read our full disclosure &amp; Associates statement &rarr;</a>
+    </div>
+  </div>
+</div>
+
+<main id="content">
+  <div class="container">
+    <nav style="margin-bottom:1.5rem;font-size:.9rem;color:var(--muted)">
+      <a href="/">&larr; Home</a>
+    </nav>
+
+    <h1 class="section-title">Suggestions — review before implementing <span class="rule"></span></h1>
+    <div class="note">
+      <b>No change goes live without a recorded decision here.</b> Review each suggestion, choose Accepted or Declined, record the chosen path, and only then implement. Statuses flow: Proposed &rarr; Under review &rarr; Accepted / Declined. Statuses are set by hand in this file before any change is implemented.
+    </div>
+
+    <table class="register">
+      <thead>
+        <tr>
+          <th style="width:6%">#</th>
+          <th style="width:34%">Suggestion</th>
+          <th style="width:14%">Status</th>
+          <th style="width:20%">Decision needed</th>
+          <th style="width:26%">Chosen path / notes</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>S-01</td>
+          <td>Add official product imagery to product cards (Amazon Associates SiteStrip / associate images, per Amazon image policy)</td>
+          <td><span class="status-tag status-proposed">Proposed</span></td>
+          <td>Approve imagery source and confirm compliance with Amazon Associates image policy before adding</td>
+          <td>Not yet implemented — cards use text only to avoid unlicensed imagery</td>
+        </tr>
+        <tr>
+          <td>S-02</td>
+          <td>Test one link per product in the enrolled Associates workflow; confirm destination and tracking report before scaling to Valid Special Links</td>
+          <td><span class="status-tag status-proposed">Proposed</span></td>
+          <td>Run the Associates Special Link test; do not claim supplied short links are invalid (status unresolved)</td>
+          <td>Awaiting enrolled workflow access</td>
+        </tr>
+        <tr>
+          <td>S-03</td>
+          <td>Implement server-side <code>/analytics/collect</code> endpoint when moving off static GitHub Pages hosting</td>
+          <td><span class="status-tag status-proposed">Proposed</span></td>
+          <td>Confirm hosting can run the endpoint; client beacon code is already written</td>
+          <td>Pending hosting decision</td>
+        </tr>
+        <tr>
+          <td>S-04</td>
+          <td>Connect Google Search Console so guide topics are chosen from measured queries</td>
+          <td><span class="status-tag status-proposed">Proposed</span></td>
+          <td>Verify site ownership in Search Console; link sitemap</td>
+          <td>Sitemap and RSS feed already published at /sitemap.xml and /feed.xml</td>
+        </tr>
+        <tr>
+          <td>S-05</td>
+          <td>Add a meat-thermometer guide using the same question-shaped format</td>
+          <td><span class="status-tag status-proposed">Proposed</span></td>
+          <td>Draft working title; mark as hypothesis; add to sitemap + RSS on publication</td>
+          <td>Two thermometer products already in register (B0DHZTCNR5, B0DZFD6R9Z)</td>
+        </tr>
+        <tr>
+          <td>S-06</td>
+          <td>Add commission-rate column to product register once first-party Associates report obtained</td>
+          <td><span class="status-tag status-proposed">Proposed</span></td>
+          <td>Obtain authorized first-party report; record rate per category without inferring</td>
+          <td>Ledger empty — no report yet (see campaign ledger)</td>
+        </tr>
+        <tr>
+          <td>S-07</td>
+          <td>Publish disclosures and API policy checks in the publishing workflow (Operating Agreement + FTC guidance)</td>
+          <td><span class="status-tag status-proposed">Proposed</span></td>
+          <td>Add disclosure placement + endorsement context checklist to each new guide's pre-publish step</td>
+          <td>Compliance gate documented on /disclosures.html</td>
+        </tr>
+        <tr>
+          <td>S-08</td>
+          <td>Integrate reader-capture form with a backend (email stored only with consent)</td>
+          <td><span class="status-tag status-proposed">Proposed</span></td>
+          <td>Choose backend; confirm no third-party tracking; flagged FLG-007 until done</td>
+          <td>Client-only form live on /analytics.html</td>
+        </tr>
+        <tr>
+          <td>S-09</td>
+          <td>Weekly publishing cadence: one new question-shaped guide per week, added to sitemap + RSS</td>
+          <td><span class="status-tag status-proposed">Proposed</span></td>
+          <td>Set calendar; measure queries before choosing each topic</td>
+          <td>4 guides published 2026-11-20</td>
+        </tr>
+        <tr>
+          <td>S-10</td>
+          <td>Add “Basket vs oven” image-free comparison diagram (CSS only) to the first guide</td>
+          <td><span class="status-tag status-proposed">Proposed</span></td>
+          <td>Design review before adding; keep it accessible</td>
+          <td>Not yet implemented</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p class="small" style="margin-top:2rem">To propose a new suggestion or record a decision, open an issue on the <a href="https://github.com/sassnarep3-star/WinA">GitHub repository</a>.</p>
+  </div>
+</main>
+
+<footer>
+  <div class="container">
+    <div>
+      <h5>WinA</h5>
+      <p class="small">Buying guides and verified register. Amazon Associate tracking ID: shopnow047c-20.</p>
+    </div>
+    <nav class="nav-group" style="flex-direction:column;gap:.5rem;align-items:flex-start">
+      <h5 style="margin-bottom:0">Navigate</h5>
+      <a href="/">Home</a>
+      <a href="/products/">Product register</a>
+      <a href="/guides/">Guides</a>
+      <a href="/campaign-ledger.html">Campaign ledger</a>
+      <a href="/analytics.html">Analytics</a>
+      <a href="/disclosures.html">Disclosures</a>
+      <a href="/suggestions.html">Suggestions</a>
+      <a href="/flagged-review.html">Flagged for review</a>
+    </nav>
+    <div>
+      <p class="small" style="margin-top:.5rem"><a href="/executive-summary.html">Executive summary</a> &middot; <a href="/questions.html">Questions &amp; answers</a></p>
+      <div class="disclosure-repeat">
+        <b>Affiliate disclosure:</b> As an Amazon Associate we earn from qualifying purchases. Links marked sponsored are affiliate links. <a href="/disclosures.html">Full statement &rarr;</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="/assets/js/app.js"></script>
+</body>
+</html>

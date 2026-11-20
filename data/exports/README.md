@@ -1,11 +1,12 @@
-# `data/exports/` — measured data, nothing else
+# `data/exports/` — measured data, nothing estimated
 
-Drop a Search Console Performance CSV here (`Query,Clicks,Impressions,Position`) and run
-`npm run topics`. The topic tool ranks candidates from it and refuses to rank anything without it.
+`node scripts/next-topics.mjs` ranks candidate guides from a Search Console Performance export
+dropped here (`Query,Clicks,Impressions,Position`). No file, no ranking: the tool says so instead
+of inventing demand, because an invented volume figure would be the first unverified claim on a
+property whose only asset is that its claims are checkable.
 
-Also acceptable: an Associates Central report export, since the campaign ledger may only be filled
-from those. Name files with the date they cover, e.g. `gsc-queries-2026-12-04.csv`, so any number
-in the ledger can be traced back to a file.
+Name files with the date they cover — `gsc-queries-2026-12-04.csv` — so a number can be traced to
+a file long after it stopped being interesting.
 
-Not acceptable: third-party volume estimates, competitor dashboards, or any figure you would not
-want read aloud during an account review.
+An Associates Central report export also belongs here: it is the only authorized source for
+clicks, orders and earnings, and it is what the ledger will accept.
