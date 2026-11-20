@@ -20,7 +20,7 @@ Current branch: `arena/6bd1be15-wina` (branched from `48af6e0` on `main`, PR #1 
 | arena-4a5044b0-wina | GitHub Pages enable + PR + merge | done | .nojekyll, repo settings | 2026-11-20 | 2026-11-20 | PR #1 and PR #3 merged; Pages https://sassnarep3-star.github.io/WinA/ |
 | arena-6bd1be15-wina | Product verification: all 5 submitted links vs official Amazon listings | done | products.html, flagged.html, COORDINATION.md | 2026-11-20 | 2026-11-20 | Amazon listing pages; full verification log below |
 | arena-6bd1be15-wina | Publication polish: shop front page, product clusters, guides, SEO | done | index.html, products.html, guides.html, suggest.html, questions.html, executive-summary.html, flagged.html, assets/css/style.css, assets/js/app.js, sitemap.xml, feed.xml, robots.txt | 2026-11-20 | 2026-11-20 | Amazon listings; Associates policies (2026-04-14); FTC Endorsement Guides |
-| arena-6bd1be15-wina | Final integration: build/link checks, PR, merge, Pages confirmation | in progress | COORDINATION.md, all site files | 2026-11-20 | — | local checks pass; PR #6 open; Pages deploy confirmation pending |
+| arena-6bd1be15-wina | Final integration: build/link checks, PR, merge, Pages confirmation | done | COORDINATION.md, all site files | 2026-11-20 | 2026-11-20 | PR #6 merged at 9cc0b88; Pages build status built; live site verified |
 
 ## Rules for this board
 - Claim a task by writing your session ID + file scope, then commit and push that claim immediately.
@@ -111,9 +111,11 @@ Confirmation date for all five rows: 2026-11-20. Source: official Amazon.com lis
 - GitHub Pages docs: https://docs.github.com/pages — live site: https://sassnarep3-star.github.io/WinA/
 
 ## Integration complete
-- PR #1 (https://github.com/sassnarep3-star/WinA/pull/1) merged into `main` at commit 48af6e0.
-- GitHub Pages enabled on `main`, path `/`; site built and live: https://sassnarep3-star.github.io/WinA/
-- Homepage, products, guides, suggestions, Q&A, executive summary, Flagged for Review, sitemap.xml, and feed.xml all verified live with no broken internal links.
-- Flagged irregularities and unverified items are published on flagged.html and do not block the merge; reviewer can request changes after the site is live.
+- Prior PR #1 (https://github.com/sassnarep3-star/WinA/pull/1) merged at 48af6e0; PR #3 from the prior session merged at 6e4f09d.
+- This session's PR #6 (https://github.com/sassnarep3-star/WinA/pull/6) merged into `main` at 2026-11-20 05:34 UTC; merge commit `9cc0b88b7e8992bebae602155fc68661300cf0b5`.
+- GitHub Pages source remains `main` `/`; Pages build API reported `built` for `9cc0b88` at 2026-11-20 05:34 UTC.
+- Cache-busted live verification (`?v=9cc0b88`) confirmed product cards now show the verified 3-air-fryer + 2-thermometer mix, exact disclosure, the confirmation register, Flagged for Review, and all six RSS guide items.
+- Local checks passed: seven HTML pages have above-fold disclosure and footer repeat; outbound external links are sponsored; XML sitemap/feed parse; internal links exist; no displayed prices/ratings or Amazon hotlinked images; local preview returned HTTP 200 for index, products, and guides.
+- Flagged irregularities remain published on `flagged.html` and do not block the merge; they include tracking ID verification, Special Link workflow (FLG-003), analytics endpoint, Search Console, and reader capture. Reviewers can request changes after the site is live.
 
 ---
