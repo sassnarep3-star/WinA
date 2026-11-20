@@ -298,3 +298,53 @@ Branch `arena/5a289bff-wina` was merged with `origin/main` at `f421d5c` on 2026-
 - Pages: source `main` `/`. Build for `6fa1112`: status **built**. Live check: `https://sassnarep3-star.github.io/WinA/concept/` serves the concept page (cache-busted fetch).
 - Flagged items did not block the merge. They stay on the Flagged for Review page.
 - Still open for the owner (none blocks the merge): run the Special Link test per product (FLG-024); confirm the tracking ID in Associates Central (FLG-004); decide the analytics host (FLG-011); remove or replace the placeholder token (FLG-025); choose the Pages-source handling (see requests above).
+
+---
+
+## Merge record — PR #12 (`arena/41096d21-wina`) — 2026-11-20 05:48:52Z
+
+**Merged.** Merge commit `53f8a98`. Both CI workflows green before merge:
+
+| Check | Result |
+|---|---|
+| `Build and verify` (our workflow) | **pass** (11s) |
+| `validate` (`build.yml`) | **pass** (12s) |
+| `Deploy to GitHub Pages` | skipped on PR, ran on `main` — **success** |
+
+Live verification after deploy, cache-busted (`?v=53f8a98`):
+
+- `/` serves the current homepage — disclosure strip above the fold, all five buy links tagged
+  `?tag=shopnow047c-20` and each labelled *Sponsored*.
+- `/register/` serves the current register: five short links, observed ASINs, intended ASIN
+  correctly blank, 60 spec rows with per-row source.
+- `/v2/` is **gone** — the duplicate edition this session had built was deleted before merge.
+  One site, one canonical host, no duplicate-content risk.
+
+### What this session changed, in one paragraph
+
+It found the site already built and extended it instead of replacing it. The one real defect it
+fixed: the authoring gate matched Amazon anchors only on `https://www.amazon.com`, so the five
+submitted `link.amazon` short links were invisible to it and rendered on `/flagged/`, `/questions/`,
+`/register/` and `/suggestions/` as bare `<a rel="noopener">` — neither sponsored nor declared,
+while the gate asserted that every Amazon anchor was one or the other. Those are live product
+pages, so FTC 16 CFR 255.5 applied and was not met. Fixed in `_src/build.mjs`, plus a second
+independently written gate (`scripts/check-site.mjs`) now runs in CI.
+
+### Still open for the owner
+
+Unchanged by this merge, and none of them blocks publication:
+
+1. **Q03 / FLG-003 — one live click test.** Click a sponsored link from a phone on cellular, then
+   check the Associates click report within 48 hours. This is the only remaining check that
+   requires a human and the only one that can confirm the tracking ID actually attributes.
+2. **FLG-024 — Special Link test per product** (blocked on Associates Central login).
+3. **FLG-011 — analytics host undecided**; collector shipped but not deployed.
+4. **FLG-025 — placeholder `google-site-verification` token** in the shared layout.
+5. **FLG-019 — intended-ASIN policy.** Two registers disagree on whether a resolved ASIN may be
+   promoted into the intent field. Owner's call.
+
+### Note for the next session
+
+Two stale PRs remain open against older branches (#2, #7). Both predate the current build and
+would resurrect superseded sites if merged. Do not merge them as-is; if their content is still
+wanted, port it into `data/` and rebuild.
