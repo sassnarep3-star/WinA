@@ -1039,7 +1039,40 @@ links, 102 Amazon links, 82 sponsored, zero failures); compliance gate 1,118 che
 
 *Not done, and why:* the intended ASIN is not filled (owner has not supplied it; filling it from the observed value would merge the two fields). Associates sign-in and the Special Link test (FLG-004, FLG-024), Search Console (FLG-009) and the collector deploy (FLG-011) need owner credentials and are not attempted.
 
-**Status:** done. PR and merge record to follow in a board-only follow-up, as in earlier sessions.
+**Status:** done. Merged; merge and deploy record below.
+
+### PR and merge record — T29 (arena/6b0f2ddc-wina, 2026-11-20)
+
+- **PR #37** — https://github.com/sassnarep3-star/WinA/pull/37 — **merged** into `main` by merge commit
+  `d03a2ce908e95cf6008ed23f11d5678dfb23b135` (2026-11-20 06:34:34 UTC). Checks on the final head
+  `19d81a3`: `validate` pass, `gate` pass, `Build and verify` pass; `Deploy to GitHub Pages` skipped on the PR, as designed.
+  No approval was waited for.
+- **Process notes, recorded rather than hidden.** (1) PR #37 was first opened while its branch still
+  pointed at the pre-merge commit, so GitHub showed it as conflicting; the branch was then pushed as a
+  fast-forward and the PR updated. (2) A `git pull --rebase` attempt during this push stopped on a conflict
+  and was aborted with `git rebase --abort`; nothing was lost, and the push was a plain fast-forward.
+  (3) `gh pr edit` failed on a GraphQL deprecation of classic Projects, so the title and body were set through
+  the REST API instead.
+- **Deploy.** The Pages run for `d03a2ce` was **cancelled**, not failed: a later push (`bbc09a3`, PR #39)
+  superseded it. The runs for `bbc09a3` and then `b2a9376` (PR #34 + follow-on) completed `success`, and
+  `pages/builds/latest` reports `built` for `b2a9376`, which contains `d03a2ce`.
+- **Live check** (page-tool fetch with `?v=d03a2ce`, 2026-11-20): `/register/` shows the four-field link
+  table with `not supplied` intended ASINs and the observed landing column; `/flagged/` shows FLG-033 at
+  review and FLG-040. Both pages match the build.
+- **Current `main` (`b2a9376`) after the other merges:** `node _src/build.mjs` → 33 pages, rebuild
+  byte-identical; `node scripts/compliance-gate.mjs` → 1,314 checks, 0 failing, 1 warning (FLG-024, owner-only);
+  `node scripts/check-site.mjs` → 1,289 internal links, 121 Amazon links (99 sponsored), zero failures;
+  45 flags, 45 unique ids.
+- **Board conflicts, resolved without discarding anything.** T27 was claimed here and taken on `main`
+  first by arena/574fc8eb-wina (PR #26); T28 was then taken by arena-f5d87e09-wina (PR #35). This session's
+  row is T29. In `data/governance.json`, FLG-033 was resolved by two sessions with different framing; the
+  merged record keeps the definition, the quotation and the format-only limit from the other session, and
+  keeps the AI-assisted caveat from this one. It stays at `review` for that reason, and the owner can
+  change it. FLG-040 cites the other session's same-day `verificationLog` as a fourth check.
+
+**Owner-side, still not attempted (no credentials here):** Associates sign-in and the one-link-per-product
+Special Link test (FLG-004, FLG-024); Search Console (FLG-009, SG-29); deploying the analytics collector
+(FLG-011); the owner browser check of the five short links (FLG-036, FLG-040).
 
 ---
 
