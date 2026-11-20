@@ -18,12 +18,12 @@ unverified, and Search Console has never been verified (FLG-009).
 | Surface | State |
 | --- | --- |
 | Reader pages | 33 total: front page + 404, 7 guides, a seasonal cluster, 2 category hubs, 5 product pages, compare, register, a marketing kit, and the operations set (flagged, questions, suggestions, summary, dashboard, analytics, disclosure, privacy, about, seo, marketing, concept) |
-| Data registers | 5 products · 60 spec rows · 6 policy sources · 10 policy clauses quoted · 46 flag rows · 26 questions · 29 suggestions |
-| Verification mix | 32 `verified` · 14 `unverified` · 10 `withheld` · 4 `claim`; **36 rows carry a value, 24 are blank with a reason**, and 22 of the valued rows cite a manufacturer page directly rather than the listing |
-| Compliance | OA §5 statement verbatim on all 30 pages; the disclosure precedes the first sponsored link on every page (asserted by byte offset, not by eyeball); `rel="sponsored nofollow noopener"` + `?tag=shopnow047c-20` on all 82 product links; the 8 submitted short links render as declared non-affiliate citations (`rel="nofollow"`, no tag). Counts from `scripts/compliance-gate.mjs`, cross-checked by `scripts/check-site.mjs` at 102 Amazon links / 82 sponsored |
+| Data registers | 5 products · 60 spec rows · 8 policy sources · 10 policy clauses quoted · 47 flag rows · 26 questions · 29 suggestions |
+| Verification mix | 34 `verified` · 12 `unverified` · 10 `withheld` · 4 `claim`; **38 rows carry a value, 22 are blank with a reason**, and 22 of the valued rows cite a manufacturer page directly rather than the listing |
+| Compliance | OA §5 statement verbatim on all 33 pages; the disclosure precedes the first sponsored link on every page (asserted by byte offset, not by eyeball); `rel="sponsored nofollow noopener"` + `?tag=shopnow047c-20` on all 101 product links; the 8 submitted short links render as declared non-affiliate citations (`rel="nofollow"`, no tag). Counts from `scripts/compliance-gate.mjs`, cross-checked by `scripts/check-site.mjs` at 127 Amazon links / 101 sponsored |
 | Measurement | Five events defined; collector written but **not deployed**, so the client is inert by design. Its contract is now executed rather than asserted: `scripts/analytics-selftest.mjs` starts the collector and checks it end to end, and runs in CI (FLG-042) |
 | Money | **Zero** revenue claims; ledger holds 0 rows, by policy |
-| Gates | Three checkers, all green (~1,497 compliance assertions, 1,289 internal links verified, the builder's own 9 gates), plus the collector self-test. CI fails if generated output is not committed, the build is not reproducible, or a compliance rule breaks — and Pages' deploy job now runs the compliance gate too, so a regression stops the release rather than reddening a check |
+| Gates | Three checkers, all green (1,518 compliance assertions, 1,295 internal links verified, the builder's own 9 gates), plus the collector self-test. CI fails if generated output is not committed, the build is not reproducible, or a compliance rule breaks — and Pages' deploy job now runs the compliance gate too, so a regression stops the release rather than reddening a check |
 | History | Four prior session builds preserved under `archive/` (83 files), nothing deleted |
 
 ## 2. What the product question turned out to be
@@ -116,7 +116,7 @@ unrecorded, so nobody can close the flag quietly. A duplicate row this session n
 | You | A domain you own: Amazon's review criteria include “You must own your website”, so a `github.io/WinA` sub-path is staging, not the submission (FLG-013) |
 | You | Content volume: ~10 original posts are expected at review; 5 guides + 5 product pages is thin (FLG-013). A cadence was adopted on 2026-11-20 — one new guide every Monday for eight weeks, each added to the sitemap and feed in the same commit (SUG-05 in the decision log) |
 | You | Choose a real byline and a brand that isn't a placeholder (FLG-021), and decide whether to buy the products for photography (FLG-007) |
-| No one | The 20 `unverified` spec rows: wattage, dimensions and warranty for all five products are *knowable* from the listing but were not captured; `npm run collect` is the route |
+| No one | The 12 `unverified` spec rows: five price rows (prices are not displayed, Program Policies §2(b)), wattage for the Emeril and the Chefman 8-Quart, the Emeril's preset count and included accessories (sources conflict, FLG-029), the ThermoMaven calibration record, and CHEF iQ's app requirement and warranty; `npm run collect` is the route for whatever an official page does state |
 
 ## 6. What is deliberately absent, and why that is the feature
 

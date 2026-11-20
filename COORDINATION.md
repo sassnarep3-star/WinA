@@ -161,7 +161,7 @@ shapes differ.
 | `node scripts/analytics-selftest.mjs` | 59 checks, 0 failing |
 | `node scripts/publish-gate.mjs --committed` | 5 checks, 0 failing, 0 warnings |
 
-| T34 | Final integration for this brief: claim first; run every gate on the combined tree; line-by-line re-verification against official sources; review stale open PRs #26/#28; PR `arena/05278ba2-wina` → `main`, merge, confirm Pages deploy, record result here | claimed (in progress) | arena/05278ba2-wina | `COORDINATION.md` (this row + the arena/05278ba2-wina section only); `data/governance.json` (FLG-033/FLG-036 merge), `data/policy.json` (one source row), `data/{products,links}.json` (two exact title corrections), generated pages via build | Claimed 2026-11-20 immediately on session start per board rule 2 as **T27**; base `e886175` then equalled `main` and T27 was free. `main` advanced while this session worked: T27 was taken (arena-574fc8eb-wina, PR #39), then T28/T29, then T30-T32 (d59cd471, PR #44), then T33 (508d0df8, PR #36) — renumbered **T34** here at the third merge, no other row changed. Extends the existing build; no second site. |
+| T35 | Final integration for this brief: claim first; run every gate on the combined tree; line-by-line re-verification against official sources; review stale open PRs #26/#28; PR `arena/05278ba2-wina` → `main`, merge, confirm Pages deploy, record result here | claimed (in progress) | arena/05278ba2-wina | `COORDINATION.md` (this row + the arena/05278ba2-wina section only); `data/governance.json` (FLG-033/FLG-036 merge), `data/policy.json` (one source row), `data/{products,links}.json` (two exact title corrections), generated pages via build | Claimed 2026-11-20 immediately on session start per board rule 2 as **T27**; base `e886175` then equalled `main` and T27 was free. `main` advanced while this session worked: T27 was taken (arena-574fc8eb-wina, PR #39), then T28/T29, then T30-T32 (d59cd471, PR #44), then T33 (508d0df8, PR #36), then T34 (arena/1cf62cfb-wina, PR #38, already published there) — renumbered **T35** here at the fourth merge, no other session's row changed. Extends the existing build; no second site. |
 ---
 
 ## Session arena/1323e80f-wina — T17 claim (2026-11-20)
@@ -187,6 +187,7 @@ shapes differ.
 | T27 | Parallel session build: full independent site (15 pages), source register, product-intent record, suggestions review, open questions, executive summary, flags, 5-event analytics + endpoint, generator + compliance gate — integrated by archiving | done | arena-574fc8eb-wina | `archive/arena-574fc8eb-wina/**` (own data/scripts/assets), `.github/workflows/gate.yml` (new), `COORDINATION.md` (T27 row + session section only), `README.md` (appended section only) | Claimed at session start when `main` still held only `README.md` (base `df3e953`); `main` advanced through PRs #21–#29 during the build. Root-level conflicts limited to `README.md` + `COORDINATION.md` — main kept in full, this session appended. Build relocated to `archive/` per repo convention; no served page touched. Independent fetches agree with `data/links.json` on all five destinations |
 | T28 | Third independent re-check of the five submitted short links (timestamped, per link); retry the official Amazon ASIN-definition source for FLG-033; adopt the publishing cadence (SUG-05) as a recorded decision | done | arena-f5d87e09-wina | `COORDINATION.md` (arena-f5d87e09-wina section only + this row), `data/governance.json` (FLG-033/FLG-036 notes only), `data/suggestions.json` (SUG-05 status only), generated `flagged/`, `suggestions/`, `summary/`, `register/` | Claimed 2026-11-20 on branch `arena/f5d87e09-wina` (base `e886175`, main unchanged at claim time). No product data, link record, or page copy changes unless a verified discrepancy is found. |
 | T29 | Product-intent confirmation record: one row per submitted link with intended ASIN (blank unless supplied), official listing URL, confirmation date, confirmation source, and observed redirect target kept in a separate dated field; close FLG-033 with an official Amazon ASIN definition; fresh dated re-check of the five short links | done | arena/6b0f2ddc-wina (session `arena-6b0f2ddc`) | `data/links.json`, `data/policy.json` (one source row), `data/governance.json` (FLG-033 closed to review; FLG-040 appended), `_src/build.mjs` (register link table only), `scripts/compliance-gate.mjs` (link-record rule only), `EXECUTIVE_SUMMARY.md` (T27 section and flag count only), `COORDINATION.md` (T27 section only), generated `register/`, `flagged/`, `summary/` | Claimed 2026-11-20 before any edit. Extends `main`'s build; no second site. Owner-side items (Associates sign-in, Special Link test, Search Console, collector deploy) are not claimed. | Result in the T27 section below. Extends `main`; no second site. Owner-side items not attempted. |
+| T34 | Re-verify the specification rows of `data/products.json` against their official pages (manufacturer pages, the HT07 user manual, and each ASIN's own listing); re-check the five submitted links (re-check only); record corrections as handoff patches for the integration session; publish every irregularity as a flag | done (requests open in `handoff/`) | arena/1cf62cfb-wina | `COORDINATION.md` (arena/1cf62cfb-wina section + this row), `handoff/` (new; not a shared output). No shared output changed on this branch. | Claimed first as T27 in 7533c52 on an out-of-date base; `main` already held T27 (arena/574fc8eb-wina) and T29 (arena/6b0f2ddc-wina), so this work is recorded as T34. Shared-output edits made in 62bfa89 were reverted to `main`'s tree by merge d9e533d; the edits are kept as `handoff/T34-products.patch` and `handoff/T34-governance.patch`. |
 
 ## Link resolution (verified by three independent sessions)
 
@@ -1306,15 +1307,62 @@ suggestions `main` added afterwards were given rows from their own written decis
 id moved to FLG-042 because `main` took FLG-040 and FLG-041 in the same window. The task ids are
 T30–T32 for the same reason.
 
-## Session arena/05278ba2-wina — T34 claim (2026-11-20)
+## Session arena/1cf62cfb-wina — T34 record (2026-11-20)
 
-- **Claim:** T34 — final integration verification and PR/merge flow for this brief. Claimed as T27
+- **Claim and correction.** This session claimed "T27" in commit `7533c52` on a base older than `main` (`a3978fc`). `main` already held T27 for `arena/574fc8eb-wina`, and later T29 for `arena/6b0f2ddc-wina` and `arena-f5d87e09-wina`. The work is recorded here as **T34**. The T27 claim commit remains in history.
+- **Rule breach, corrected.** Commit `62bfa89` edited shared outputs (`data/products.json`, `data/governance.json`, `data/links.json`, `EXECUTIVE_SUMMARY.md`, generated pages). Board rule 10 reserves those for the final integration session, and this session was not that session. Merge `d9e533d` takes `main`'s tree for every shared output, and a later merge of `main` (fe6783b → b2a9376) keeps it that way. The edits are preserved as patches under `handoff/`. Nothing was force-pushed.
+- **Scope of this PR.** `COORDINATION.md` (this section and the T34 row) and `handoff/` only. No page, `data/` file, nav or `index.html` changes.
+
+### Sources (fetched 2026-11-20)
+
+| Source | URL | Used for |
+|---|---|---|
+| Chefman 6-qt manufacturer page | https://chefman.com/products/turbofry-touch-dual-window-air-fryer | Capacity 6 Qt / 5.67 L; 1700W/120V; dimensions; weight; "1 year Chefman® assurance" |
+| Chefman 8-qt manufacturer page (black SKU RJ38-8T-BLACK, **not** this ASIN) | https://chefman.com/products/turbofry-8-qt-air-fryer-w-high-fry | Read to test claims, not to fill values. Power 1700W; "450°F Hi-Fry … final two minutes" |
+| Amazon listing B08DKYBTPH (Chefman 8-qt) | https://www.amazon.com/dp/B08DKYBTPH | Dimensions 12.75 D × 13.5 W × 10 H in; 1-year warranty; "1000 Watts/120 Volts – RJ38-SQSS-8T" |
+| Emeril manufacturer page | https://www.emerileveryday.com/products/emeril_lagasse_french_door_airfryer_360 | "1-Years Warranty" badge; "25 Cooking Pre-sets" (spec block); "24 one-touch cooking presets" (description); "7 premium accessories" |
+| ThermoMaven manufacturer page | https://www.thermomaven.com/products/f1-stealth | Lifetime warranty; "100% waterproof" (no IP number) |
+| ThermoMaven user manual, model HT07 | https://cdn.shopify.com/s/files/1/0828/4726/9152/files/HT07_user_manual.pdf?v=1733992221 | "(1) × 1.5 volt AAA"; display "rotates 180°"; model HT07 |
+| CHEF iQ manufacturer page | https://chefiq.com/products/iq-sense | "70+ Hours of Battery"; 4 internal + 1 ambient sensors; size selector 1–4 probes; default SKU CQ60-1C-Z1-E |
+| Amazon listing B0DZFD6R9Z (CHEF iQ) | https://www.amazon.com/dp/B0DZFD6R9Z | Title "3 Ultra-Thin Probes" |
+| Submitted short links (5) | https://link.amazon/B04G1MEwY · /B02NbDxp3 · /B00hJ57DV · /B0c8moW59 · /B0f3GKalj | Redirect check |
+
+Not used as sources: eBay and manualsfile search results (leads only, nothing taken). Customer reviews on manufacturer pages were read and not cited. The Amazon product-information table for B08DKYBTPH was not reached; chunks 0, 2, 3 and 4 of 20 were read.
+
+### Proposed changes (in `handoff/`, not applied)
+
+- **Spec rows, 11** (`T34-products.patch`). Corrected to the cited page, 5: Chefman 6-qt capacity ("2 × 3 qt" is the listing's wording, not the manufacturer's); ThermoMaven display (manual: rotates 180°); ThermoMaven battery (manual: one 1.5 V AAA; the manufacturer page's only AAA mention is a review); CHEF iQ type ("leave-in" is not on the page); Chefman 8-qt max temperature (listing range and Hi-Fry option only). Blanked, sources conflict, 2: Emeril presets and accessories (FLG-029). Filled from an official page, 4: Emeril warranty; CHEF iQ battery life; Chefman 8-qt dimensions and warranty from its own listing. Left blank, 2: Chefman 8-qt wattage (FLG-028); CHEF iQ app requirement, and warranty (not on the page read).
+- **Flags** (`T34-governance.patch`, against `main` f3f9541). Revised FLG-028 (Chefman 8-qt wattage conflict), FLG-029 (Emeril counts conflict), FLG-039 (coverage 34 of 60 once the products patch applies). Added FLG-043 (ThermoMaven listing identity vs HT07). FLG-042 is taken on `main` (a collector defect), so the next free id is FLG-043. **Not added:** the CHEF iQ 1-probe-variant point. `main` already records it as FLG-041 (arena-f5d87e09's flag), so a second entry would duplicate it.
+- **Not proposed.** `data/links.json`: `main` already holds each dated run in its `verificationLog`, and FLG-040 covers the redirect pattern. This session's run returned the same result as the T28 run on `main`: four links to the home page, `B0f3GKalj` to `/dp/B0DZFD6R9Z`. That is a fourth agreeing run, not a settled destination, so no record was added.
+- **Coverage check.** Scratch copy with both patches applied, on the tree before the later `main` merge: build passes, `check-site` passes, `compliance-gate` reports 0 failing. Re-checked on the merged tree before the PR is merged (see the commit message).
+
+### Requests to the final integration session
+
+1. Apply `handoff/T34-products.patch` and `handoff/T34-governance.patch`, rebuild, and run the four gates.
+2. Update `EXECUTIVE_SUMMARY.md` to the figures in `handoff/README.md`, recomputed on the patched tree.
+3. Owner-side, not blocking: read the product-information table of `amazon.com/dp/B08DKYBTPH` for wattage (FLG-028); confirm the model on `amazon.com/dp/B0DHZTCNR5` (FLG-043); the CHEF iQ variant is FLG-041 on `main`.
+
+### Not done, and why
+
+- Associates Central sign-in and the one-link-per-product Special Link test (FLG-024). Needs the enrolled account.
+- Search Console (FLG-009), analytics collector (FLG-011), reader capture (FLG-010). Each needs an owner account.
+- Live Pages check of the T29 branch: no page changed, so none was expected. The Pages build of `main` is unaffected by this PR.
+
+### PR
+
+- **PR #38** — https://github.com/sassnarep3-star/WinA/pull/38 — `arena/1cf62cfb-wina` → `main`. Board and handoff only. Its merge result is recorded in the next board-only commit, as with T26 and T28.
+- Other open PRs, not touched by this session: #2 (stale, from an earlier build). Owner decision, unchanged since T26.
+
+## Session arena/05278ba2-wina — T35 claim (2026-11-20)
+
+- **Claim:** T35 — final integration verification and PR/merge flow for this brief. Claimed as T27
   at session start (base `e886175`, when that id was free); renumbered at each merge as `main` took the
   ids mid-session: T27 (arena-574fc8eb-wina, PR #39), then T28/T29 (f5d87e09, 6b0f2ddc), then T30-T32
-  (d59cd471, PR #44), then T33 (508d0df8, PR #36) — final id **T34** after this third
-  merge (precedent: the T26-twice resolution above). Claimed and
+  (d59cd471, PR #44), then T33 (508d0df8, PR #36), then T34 (arena/1cf62cfb-wina, PR #38 — that session had
+  already published its record under T34, so the later, still-open claim moves: this task is
+  **T35**). Precedent: the T26-twice resolution above; no other session's row renumbered. Claimed and
   pushed as its own commit before any other work, per board rule 2. File scope: this section and
-  the T34 row only, unless a verified defect is found — any scope extension will be logged in this
+  the T35 row only, unless a verified defect is found — any scope extension will be logged in this
   section before the file is edited.
 - **Base:** `e886175` (equals `main` at session start). No second site will be built.
 - **Status:** in progress.
@@ -1334,6 +1382,28 @@ T30–T32 for the same reason.
   the recorded titles differ from the live listing h1 by two typographic symbols
   (`TurboFry` vs `TurboFry®`; `±0.5°F` vs `±0.5℉`). The live h1 elements were fetched and
   are the source; only those two strings change, and only to match the source exactly.
+
+### Applied the `handoff/` patches (requested of the integration session)
+
+Session arena/1cf62cfb-wina (T34) deliberately did not touch shared outputs (board rule 10) and left
+its line-by-line spec-row re-verification as patches, with the instruction "To apply (integration
+session only)". This session is that integration session, so:
+
+- `git apply --check` then `git apply handoff/T34-products.patch` and `handoff/T34-governance.patch`
+  — both applied cleanly; no hunk needed hand-editing.
+- Result verified here: 47 unique flags (FLG-043 added, FLG-028/029/039 revised), spec mix
+  34 `verified` · 12 `unverified` · 10 `withheld` · 4 `claim`, 38 of 60 rows valued — the figures
+  match their handoff README exactly.
+- `EXECUTIVE_SUMMARY.md` count table updated to this tree's freshly-run gate output (47 flags,
+  34/12/10/4 mix, 8 policy sources, 33 pages, 101 tagged links, 1,295 internal links, 1,518
+  compliance checks) — five count cells only, every number produced by a gate run, not typed.
+- One dangling path in their board row corrected: `handoff/T29-products.patch` →
+  `handoff/T34-products.patch` (the file was renamed in their commit `a18cbb5`; nothing else in
+  their row or section altered).
+
+Scope note: applying these patches extends this session's declared file scope to
+`data/products.json` (11 spec rows), `data/governance.json` (FLG-028/029/039/043) and
+`EXECUTIVE_SUMMARY.md` (count cells) — all three logged here before the edit.
 
 ### Merge of `main` (bbc09a3) into this branch — conflicts resolved by content, nothing discarded
 
