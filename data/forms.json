@@ -1,0 +1,18 @@
+{
+  "$comment": "Reader capture. The component is built and disabled; enabling it is a decision, not a default. Nothing on the site transmits anything while enabled is false.",
+  "enabled": false,
+  "provider": null,
+  "double_opt_in": null,
+  "retention": null,
+  "privacy_page_updated_for_this": false,
+  "blocks": [
+    "config.contact.email is unset (a monitored address is required before collection starts)",
+    "no processor is chosen, so the privacy page cannot name one",
+    "no consent or retention rule has been decided (Q-10)"
+  ],
+  "to_enable": [
+    "choose a processor and write its name, the retention rule and the deletion route into /privacy/",
+    "set enabled=true, double_opt_in=true, and add the event to the endpoint allow-list (already defined: newsletter_signup)",
+    "confirm the gate passes, then record the decision in COORDINATION.md"
+  ]
+}

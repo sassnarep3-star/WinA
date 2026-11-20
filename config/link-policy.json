@@ -1,0 +1,41 @@
+{
+  "$comment": "What the link validator is allowed to see in a built page. Product hosts and citation hosts are separated on purpose: a citation is not a referral and must never carry a tag. affiliate-program.amazon.in is admitted only because FLG-012 quotes the Indian copy of the agreement to show that clause numbering differs by locale.",
+  "citationHosts": [
+    "affiliate-program.amazon.com",
+    "sell.amazon.com",
+    "affiliate-program.amazon.in",
+    "sellercentral.amazon.com",
+    "webservices.amazon.com",
+    "www.amazon.com",
+    "www.amazon.ca",
+    "www.ftc.gov",
+    "www.ecfr.gov",
+    "www.fsis.usda.gov",
+    "developers.google.com",
+    "docs.github.com",
+    "search.google.com",
+    "www.uspto.gov",
+    "www.sitemaps.org",
+    "www.rssboard.org",
+    "github.com"
+  ],
+  "productHosts": [
+    "www.amazon.com",
+    "www.amazon.co.uk",
+    "amzn.to",
+    "amzn.eu.dk",
+    "link.amazon"
+  ],
+  "forbiddenEverywhere": [
+    "link.amazon",
+    "http://"
+  ],
+  "requireRel": "sponsored",
+  "relExtraAllowed": [
+    "nofollow",
+    "noopener",
+    "noreferrer",
+    "external"
+  ],
+  "maxInternalDepth": 4
+}

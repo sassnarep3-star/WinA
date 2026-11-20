@@ -1,0 +1,6 @@
+# The Preheat
+User-agent: *
+Allow: /
+Disallow: /404.html
+
+Sitemap: https://sassnarep3-star.github.io/WinA/sitemap.xml

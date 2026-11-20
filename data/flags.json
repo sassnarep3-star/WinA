@@ -1,0 +1,186 @@
+{
+  "$comment": "Flagged for review. Anything the site could not confirm, contradicted itself, or deliberately refused to guess. Publishing these is not a failure state — it is the gate leaving a receipt. Rows are never deleted; flip status to resolved and record the proof.",
+  "flags": [
+    {
+      "id": "FLG-001",
+      "title": "All five submitted product IDs are 9 characters; an ASIN is 10",
+      "severity": "blocking",
+      "status": "open",
+      "area": "Monetization",
+      "what_we_found": "B04G1MEwY, B02NbDxp3, B00hJ57DV, B0c8moW59, B0f3GKalj — each exactly 9 characters. Amazon defines an ASIN as “a unique 10-character alphanumeric code”, typically starting “B0”.",
+      "consequence": "No listing can be cited, priced, described, or linked. Every product field in the register is blank by policy, not by omission.",
+      "how_to_clear": "Re-copy each ID from the product page URL (the ten characters after /dp/) or use the Associates link builder, then replace the values in data/products.json and data/product-intent.json and run npm run check.",
+      "sources": [{ "label": "Amazon — Understanding ASINs", "url": "https://sell.amazon.com/blog/what-is-an-asin" }]
+    },
+    {
+      "id": "FLG-002",
+      "title": "link.amazon is not an Amazon product host and carries no tag parameter",
+      "severity": "blocking",
+      "status": "open",
+      "area": "Monetization",
+      "what_we_found": "Product pages live at https://www.amazon.com/dp/<ASIN>; Associates tagging is a `tag=` parameter inside that link (Policy §2(a): the Associates ID must appear “as a parameter in the URL of each link”). The submitted URLs have neither.",
+      "consequence": "Even if the ID were well-formed, the supplied form could not be shown to attribute a click to the account, and it could not be reviewed for policy compliance.",
+      "how_to_clear": "Rebuild the five links inside Associates Central so the tag is embedded, then run the Link-Checker step in SG-05 before scaling to the rest of the catalogue.",
+      "sources": [
+        { "label": "Amazon — Associates Program Policies", "url": "https://affiliate-program.amazon.com/help/operating/policies" },
+        { "label": "Amazon — tagged product links (Help)", "url": "https://affiliate-program.amazon.com/help/node/topic/G8TW5AE9XL2VX9VM" }
+      ]
+    },
+    {
+      "id": "FLG-003",
+      "title": "Compliance status of the supplied short links is unresolved — do not call them invalid",
+      "severity": "open question",
+      "status": "needs review",
+      "area": "Compliance",
+      "what_we_found": "The brief asks that these links not be declared invalid. Nothing here can see where they redirect, so the honest state is unknown: not valid, not invalid, unobserved.",
+      "consequence": "Any copy that asserted either way would be a fabrication. The site therefore prints “not observed” and leaves the redirect field empty rather than inferring a destination.",
+      "how_to_clear": "Open one link logged out, in a clean browser profile, record the final URL in the observation block of data/product-intent.json, and note the date. That single step moves the row from unobserved to evidence.",
+      "sources": [
+        { "label": "Amazon — Associates Program Operating Agreement §1", "url": "https://affiliate-program.amazon.com/help/operating/agreement" }
+      ]
+    },
+    {
+      "id": "FLG-004",
+      "title": "The niche (air fryers / multi-function kitchen appliances) is inferred from the editorial hypotheses, not from the listings",
+      "severity": "medium",
+      "status": "open",
+      "area": "Editorial",
+      "what_we_found": "The brief's working titles concern air fryers and multi-function appliances. No submitted link resolves to a product, so no link confirms the cluster.",
+      "consequence": "Section pages publish the buyer frameworks and hold the five intake records as pending rather than filing products into sections they may not belong to.",
+      "how_to_clear": "Confirm the five product titles, then set each product's category in data/products.json; the build files them automatically.",
+      "sources": []
+    },
+    {
+      "id": "FLG-005",
+      "title": "No demand data behind any headline",
+      "severity": "medium",
+      "status": "open",
+      "area": "Findability",
+      "what_we_found": "Titles such as “Basket or oven-style air fryer: what should you compare?” are editorial hypotheses. There is no search-volume, click-through, or ranking data in this repository to justify a popularity claim.",
+      "consequence": "Copy never says “popular”, “trending”, or “most searched”. The topic-selection tool (tools/next-topics.mjs) stays empty until a Search Console export is dropped into data/exports/.",
+      "how_to_clear": "Verify the property in Search Console, publish for two weeks, export the Queries report, and re-run npm run topics.",
+      "sources": [{ "label": "Google — Search Console sitemaps & reports", "url": "https://search.google.com/search-console" }]
+    },
+    {
+      "id": "FLG-006",
+      "title": "GitHub Pages cannot run the click endpoint or hold account credentials",
+      "severity": "high",
+      "status": "open",
+      "area": "Measurement",
+      "what_we_found": "Pages serves committed static files. A counting endpoint and a PA-API caller both need a server and a secret store, which this host does not provide.",
+      "consequence": "The measurement layer ships as a tested local reference implementation plus the runbook for the host decision (Q-09). No page on this site claims that analytics are live.",
+      "how_to_clear": "Pick a runtime (small VPS, a worker platform, or a self-hosted Umami), point the site's data-collect-url at it, and keep the Associates credential server-side only.",
+      "sources": [{ "label": "GitHub Docs — configuring a publishing source", "url": "https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site" }]
+    },
+    {
+      "id": "FLG-007",
+      "title": "No conversion score, EPC, or revenue forecast is published anywhere",
+      "severity": "informational",
+      "status": "by design",
+      "area": "Measurement",
+      "what_we_found": "The campaign ledger is empty and its columns may only be filled from authorized first-party reports. Nothing on the site projects earnings, and none of the numbers a forecast needs exist yet.",
+      "consequence": "A reader — or a future session — cannot mistake a modelled number for a measured one. The trade-off is that the site offers no revenue promise, which is the point.",
+      "how_to_clear": "Nothing to clear. It becomes meaningful when the first dated row lands from Associates Central Reports.",
+      "sources": [{ "label": "Amazon — Associates Central Reports", "url": "https://affiliate-program.amazon.com/cp/reports" }]
+    },
+    {
+      "id": "FLG-008",
+      "title": "The suggestion board is a menu, not an approved plan",
+      "severity": "informational",
+      "status": "by design",
+      "area": "Operations",
+      "what_we_found": "Thirty suggestions sit in /suggestions/ with effort, risk, and the decision each unlocks. Only the subset marked shipped or in progress has been built.",
+      "consequence": "Code that a session invented but nobody chose never reaches the reader-facing site without a recorded decision.",
+      "how_to_clear": "Tick a path (A, B, or C) on /suggestions/ and change the chosen rows' status; the board is the decision record.",
+      "sources": []
+    },
+    {
+      "id": "FLG-009",
+      "title": "Brand name “The Preheat” is not cleared",
+      "severity": "medium",
+      "status": "open",
+      "area": "Brand",
+      "what_we_found": "No trademark or collision search was run. The name also has to stay clear of Amazon's mark usage rules — the site must not imply Amazon sponsorship (Operating Agreement §5).",
+      "consequence": "The name is a working title used consistently across the build so it can be swapped in one file if it must change.",
+      "how_to_clear": "Search USPTO TESS and a general web search for the name in the publishing/review space; if clear, register the domain and update config/site.config.json.",
+      "sources": [{ "label": "USPTO trademark search", "url": "https://www.uspto.gov/trademarks/search" }]
+    },
+    {
+      "id": "FLG-010",
+      "title": "Bylines are a desk byline, not a person",
+      "severity": "high",
+      "status": "open",
+      "area": "Trust",
+      "what_we_found": "Guides are drafted with AI assistance and edited here. Inventing a credentialed human reviewer would be a fabricated endorsement — squarely inside what the FTC's honesty principle covers.",
+      "consequence": "Every article prints an honest authorship note and states that no product was tested. The page that would normally carry the byline is /editorial-standards/.",
+      "how_to_clear": "Name a real, consenting human editor, add their bio and review scope to data/people.json, and change config.brand.byline.",
+      "sources": [{ "label": "FTC — Endorsement Guides honesty principle", "url": "https://www.ftc.gov/business-guidance/resources/ftcs-endorsement-guides-what-people-are-asking" }]
+    },
+    {
+      "id": "FLG-011",
+      "title": "Imagery is generated editorial illustration, not product photography or test photos",
+      "severity": "medium",
+      "status": "open",
+      "area": "Brand",
+      "what_we_found": "The site's illustrations were made for this build. They are not photographs of the submitted products and are not documentation of a test kitchen.",
+      "consequence": "Captions say what the picture is, and no image is presented as evidence that a product was used. Product imagery from Amazon's Program Content may only be used under the license Amazon supplies (Program Content, OA §1).",
+      "how_to_clear": "Either keep illustrations labelled as illustrations, or shoot your own photos of the product in your kitchen — which is also the single biggest trust upgrade available (SG-16).",
+      "sources": [{ "label": "Amazon — Operating Agreement (Program Content)", "url": "https://affiliate-program.amazon.com/help/operating/agreement" }]
+    },
+    {
+      "id": "FLG-012",
+      "title": "Quoted policy text carries a revision date that must be re-checked at every publish",
+      "severity": "medium",
+      "status": "open",
+      "area": "Compliance",
+      "what_we_found": "The Operating Agreement read here is dated “Updated: October 15, 2025”. Section numbering differs across locales (the Amazon.in agreement puts the same disclosure clause at §10), so section numbers are cited with their locale.",
+      "consequence": "The gate stores the retrieval date with every quotation; a stale quote is a compliance bug, not a typo.",
+      "how_to_clear": "Re-run node tools/compliance-gate.mjs --refresh-sources monthly; it re-checks each row in data/sources.json against the live page.",
+      "sources": [{ "label": "Amazon — Operating Agreement (US, dated Oct 15 2025)", "url": "https://affiliate-program.amazon.com/help/operating/agreement" }, { "label": "Amazon — Operating Agreement (IN, different numbering)", "url": "https://affiliate-program.amazon.in/help/operating/agreement/" }]
+    },
+    {
+      "id": "FLG-013",
+      "title": "Publishing under a github.io sub-directory vs a domain you own",
+      "severity": "high",
+      "status": "open",
+      "area": "Monetization",
+      "what_we_found": "Amazon's review criteria state plainly: “You must own your website.” A site at user.github.io/repo sits inside somebody else's domain, which is a foreseeable reason for an application to be rejected — and a rejection cannot be re-assessed for that application.",
+      "consequence": "The site is fully built so it can be deployed to a domain you control with a one-line config change; the Pages URL is treated as a staging surface, not the application asset.",
+      "how_to_clear": "Buy the domain, add a CNAME + custom domain in Pages settings, set config.baseUrl, rebuild, and submit that URL to Associates Central.",
+      "sources": [{ "label": "Amazon — application review process", "url": "https://affiliate-program.amazon.com/help/node/topic/G8TW5AE9XL2VX9VM" }, { "label": "GitHub Docs — custom domains for Pages", "url": "https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site" }]
+    },
+    {
+      "id": "FLG-014",
+      "title": "Zero traffic, zero backlinks, zero history",
+      "severity": "informational",
+      "status": "open",
+      "area": "Findability",
+      "what_we_found": "This domain/path has no index history, so there is no baseline to compare against and no ranking to promise.",
+      "consequence": "The plan is expressed in editorial output and measured queries rather than in projected sessions.",
+      "how_to_clear": "Submit the sitemap, let it crawl, and the ledger starts collecting real rows.",
+      "sources": [{ "label": "Google — Sitemap report", "url": "https://search.google.com/search-console/sitemaps" }]
+    },
+    {
+      "id": "FLG-015",
+      "title": "No contact address, no privacy policy commitment, no newsletter storage decision",
+      "severity": "medium",
+      "status": "open",
+      "area": "Operations",
+      "what_we_found": "config.contact.email is unset, and the reader-capture form in SG-30 has nowhere lawful-and-configured to send addresses. A publication that collects emails without a stated policy is worse than one that collects nothing.",
+      "consequence": "The signup block ships as a disabled component with a visible “not wired” note. No form on this site transmits anything.",
+      "how_to_clear": "Add a monitored address, choose where addresses are stored, publish a privacy page naming that processor, then set config.contact.email and flip data/forms.json enabled=true.",
+      "sources": [{ "label": "Amazon — Operating Agreement §4 warranties (compliance with applicable law)", "url": "https://affiliate-program.amazon.com/help/operating/agreement" }]
+    },
+    {
+      "id": "FLG-016",
+      "title": "Repo was empty: the brief's earlier artefact IDs have no backing files",
+      "severity": "informational",
+      "status": "open",
+      "area": "Operations",
+      "what_we_found": "The brief references rows like SG-27..SG-30, FLG-003, S01/S07/S24 and a prior source register, but the branch history contains one commit and one file (README.md, “# WinA”).",
+      "consequence": "Those IDs were re-derived here rather than trusted: SG-27..SG-30 and FLG-003 exist as described, S-numbers are unmapped because no prior spec file survives to map them against.",
+      "how_to_clear": "If an earlier register exists in another branch or repo, drop it in data/legacy/ and re-run the build; the board will merge by ID.",
+      "sources": [{ "label": "Repository history", "url": "https://github.com/sassnarep3-star/WinA/commits/main" }]
+    }
+  ]
+}

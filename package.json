@@ -1,0 +1,20 @@
+{
+  "name": "wina-the-preheat",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "The Preheat — an affiliate kitchen-gear publication with a verification register, a compliance gate, and a measurement spec. Static site built into docs/ for GitHub Pages.",
+  "engines": { "node": ">=20" },
+  "scripts": {
+    "build": "node site/build.mjs",
+    "check:links": "node tools/validate-links.mjs",
+    "check:compliance": "node tools/compliance-gate.mjs",
+    "check:data": "node tools/validate-data.mjs",
+    "check": "npm run check:data && npm run build && npm run check:links && npm run check:compliance",
+    "gate": "node tools/publish-gate.mjs",
+    "collect": "node tools/collect.mjs",
+    "topics": "node tools/next-topics.mjs",
+    "analytics": "node tools/analytics-server.mjs"
+  },
+  "license": "UNLICENSED"
+}

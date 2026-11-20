@@ -1,0 +1,101 @@
+{
+  "$comment": "The campaign ledger. Empty on purpose, with the rules for filling it. Columns may only be populated from authorized first-party reports; a row with no provenance is rejected by tools/validate-data.mjs.",
+  "policy": {
+    "allowed_sources": [
+      "Amazon Associates Central > Reports (link clicks, items added, ordered revenue, units)",
+      "Amazon Associates Central > Earnings report, exported",
+      "Search Console > Performance export (queries, pages, clicks, impressions, position)",
+      "The self-hosted event endpoint (page views, impressions, outbound clicks, gate blocks, signups)"
+    ],
+    "forbidden": [
+      "third-party estimates",
+      "competitor screenshots",
+      "modelled revenue",
+      "any number computed from an assumption and then quoted as measured"
+    ],
+    "null_semantics": "null means not yet obtained. 0 means measured as zero. They are never interchangeable.",
+    "attribution_window": "Associates defines Qualifying Purchase and Session inside the Operating Agreement, and the timing windows quoted there (a session ending 24 hours after the click or on an order; the 89-day order window) come from the public Amazon.in copy of the agreement, which was readable from here. The US text has not been quoted into this ledger: re-read affiliate-program.amazon.com before printing either window to a reader (FLG-012).",
+    "review_cadence": "weekly, dated",
+    "window_status": "unverified-for-US-locale"
+  },
+  "columns": [
+    {
+      "key": "date",
+      "type": "ISO date",
+      "meaning": "the day the row's numbers describe",
+      "source_required": false
+    },
+    {
+      "key": "source",
+      "type": "string",
+      "meaning": "which authorized report the numbers came from",
+      "source_required": true
+    },
+    {
+      "key": "channel",
+      "type": "string",
+      "meaning": "tracking ID or traffic channel the row covers",
+      "source_required": true
+    },
+    {
+      "key": "eligible_sessions",
+      "type": "integer|null",
+      "meaning": "Sessions that could have earned",
+      "source_required": true
+    },
+    {
+      "key": "clicks",
+      "type": "integer|null",
+      "meaning": "link clicks reported by Amazon",
+      "source_required": true
+    },
+    {
+      "key": "items_added",
+      "type": "integer|null",
+      "meaning": "units added to basket via your links",
+      "source_required": true
+    },
+    {
+      "key": "orders",
+      "type": "integer|null",
+      "meaning": "reported orders",
+      "source_required": true
+    },
+    {
+      "key": "units",
+      "type": "integer|null",
+      "meaning": "units shipped",
+      "source_required": true
+    },
+    {
+      "key": "commission_income",
+      "type": "decimal|null",
+      "meaning": "earned commission as reported",
+      "source_required": true
+    },
+    {
+      "key": "provenance",
+      "type": "string",
+      "meaning": "export filename or screenshot reference + who pulled it",
+      "source_required": true
+    }
+  ],
+  "rows": [],
+  "derived_metrics": {
+    "rule": "click-through rate, conversion rate and EPC are computed from rows at render time and are printed only when every input is non-null. With zero rows they render as a dash, not a zero.",
+    "definitions": [
+      {
+        "name": "CTR to Amazon",
+        "formula": "clicks / page_views (endpoint)"
+      },
+      {
+        "name": "Orders per 100 clicks",
+        "formula": "orders / clicks * 100"
+      },
+      {
+        "name": "EPC",
+        "formula": "commission_income / clicks"
+      }
+    ]
+  }
+}

@@ -1,0 +1,228 @@
+{
+  "$comment": "Decision brief: what must be answered before a decision is reasonable. Each row names the tool or report that produces the answer, so nobody has to guess where to look.",
+  "updated": "2026-11-20",
+  "answer_format_key": {
+    "value": "give me the literal value",
+    "yes_no": "a yes/no, with the date checked",
+    "file": "a file dropped into data/inbox/ or data/exports/",
+    "choice": "pick an option; the default in the last column is what happens if you say nothing",
+    "account": "a state you can read only while logged in"
+  },
+  "questions": [
+    {
+      "id": "Q-01",
+      "blocker": true,
+      "question": "What are the five real ASINs, and what are the products?",
+      "why_it_matters": "Everything monetizable, and every product claim on the site, waits on this. The supplied values are 9 characters and cannot resolve to a listing.",
+      "what_we_have": "Five strings and a non-Amazon host, plus a niche hypothesis from the editorial titles in the brief.",
+      "missing": "10-character ASINs or the /dp/ URLs, product names, and the marketplace.",
+      "where_to_get_it": "Open each product page and copy the ten characters after /dp/ — or search the product in Associates Central and use the link builder (affiliate-program.amazon.com/home/productlinks/search).",
+      "answer_format": "value",
+      "who": "Repository owner",
+      "default_if_unanswered": "Links stay locked; product fields stay blank; the site publishes buyer frameworks only.",
+      "blocks": [
+        "SG-25",
+        "T-03",
+        "T-04",
+        "PATH-B"
+      ]
+    },
+    {
+      "id": "Q-02",
+      "blocker": true,
+      "question": "Does tracking ID “shopnow047c-20” exist in your Associates account, and is this site's URL registered against it?",
+      "why_it_matters": "A tag that is not registered to the account earns nothing and can flag the site during review. The value's shape (ends -20, 15 chars, lowercase alphanumerics) is plausible, which is all this environment can say.",
+      "what_we_have": "The string, from the brief.",
+      "missing": "Confirmation that it is one of your Tracking IDs and that the site URL is listed under Account Settings → Site & Channel IDs.",
+      "where_to_get_it": "Associates Central → Account Settings → Manage your Tracking IDs, and the Sites list.",
+      "answer_format": "account",
+      "who": "Repository owner",
+      "default_if_unanswered": "Links are not built. No tag is printed anywhere in the site's hrefs.",
+      "blocks": [
+        "SG-25",
+        "PATH-B"
+      ]
+    },
+    {
+      "id": "Q-03",
+      "blocker": true,
+      "question": "Is the account fully approved, and have the three qualifying sales in the first 180 days happened?",
+      "why_it_matters": "Amazon reviews the application only once three qualifying sales land (personal orders do not count), and PA-API access is offered only to accepted associates. The account state decides whether any automation of product data is possible at all.",
+      "what_we_have": "The published criteria, quoted in data/sources.json (SRC-06, SRC-09).",
+      "missing": "Your account state and the clock remaining.",
+      "where_to_get_it": "Associates Central home page state, and Reports → Earnings for qualifying sales.",
+      "answer_format": "account",
+      "who": "Repository owner",
+      "default_if_unanswered": "Assume no PA-API. The collector reads pasted JSON from data/inbox/ instead of calling the API.",
+      "blocks": [
+        "SG-15",
+        "SG-25",
+        "PATH-B"
+      ]
+    },
+    {
+      "id": "Q-04",
+      "question": "Which marketplace do the links point at?",
+      "why_it_matters": "ASINs are marketplace-specific; amazon.com and amazon.co.uk can carry different ASINs for the same box, and commission categories differ by locale.",
+      "what_we_have": "The -20 suffix implies a US Store ID, so the config assumes www.amazon.com.",
+      "missing": "Confirmation, and the marketplace for each listing.",
+      "where_to_get_it": "The listing URL you copied the ASIN from; and Associates Central → Account Settings for the account's marketplace.",
+      "answer_format": "choice",
+      "who": "Repository owner",
+      "default_if_unanswered": "US marketplace assumed and labelled as an assumption in the config.",
+      "blocks": [
+        "T-03"
+      ]
+    },
+    {
+      "id": "Q-05",
+      "question": "Where will the site actually live — the Pages sub-path or a domain you own?",
+      "why_it_matters": "“You must own your website.” is a published review criterion, and a rejection is not re-assessed. It also decides canonical URLs, the OneLink question, and whether a click endpoint can share the origin.",
+      "what_we_have": "A working Pages URL and a build that takes one config line to move.",
+      "missing": "A domain, or the decision to stay on Pages.",
+      "where_to_get_it": "Your registrar, then GitHub Pages custom-domain settings.",
+      "answer_format": "choice",
+      "who": "Repository owner",
+      "default_if_unanswered": "Publish on the Pages URL as staging; do not submit it as the application property.",
+      "blocks": [
+        "SG-26",
+        "Q-09"
+      ]
+    },
+    {
+      "id": "Q-06",
+      "question": "Are the five products air fryers at all?",
+      "why_it_matters": "Sections, internal links, seasonal clusters and the whole editorial angle assume the air-fryer/multi-cooker cluster from the brief's titles.",
+      "what_we_have": "Four editorial hypotheses naming air fryers and multi-function appliances.",
+      "missing": "Product titles to file them under.",
+      "where_to_get_it": "The listing pages, once Q-01 is answered.",
+      "answer_format": "value",
+      "who": "Repository owner",
+      "default_if_unanswered": "Sections keep their buyer frameworks; the five records sit in an explicit pending bucket.",
+      "blocks": [
+        "T-03",
+        "FLG-004"
+      ]
+    },
+    {
+      "id": "Q-07",
+      "question": "Who is the named human behind the byline, if anyone?",
+      "why_it_matters": "A publication needs a person who stands behind the claims; a fake expert byline is a fabricated endorsement. Until then the desk byline plus an “AI-drafted, human-edited” note is the honest state.",
+      "what_we_have": "Desk byline and an explicit note on every guide.",
+      "missing": "A real, consenting editor with a stated review scope.",
+      "where_to_get_it": "You, or the person you appoint; their bio and photo are the only inputs.",
+      "answer_format": "value",
+      "who": "Repository owner",
+      "default_if_unanswered": "Desk byline stays; no credentials claimed anywhere.",
+      "blocks": [
+        "SG-31"
+      ]
+    },
+    {
+      "id": "Q-08",
+      "question": "Is the brand name cleared?",
+      "why_it_matters": "The site prints a masthead; a name that collides with an existing mark or implies Amazon affiliation is a rename at the worst moment. Amazon's own agreement bars implying sponsorship (SRC-03).",
+      "what_we_have": "“The Preheat” as a working title, defined once in config.",
+      "missing": "A trademark search and a domain check.",
+      "where_to_get_it": "USPTO search plus a general search for the name in the review/publishing space; then your registrar.",
+      "answer_format": "yes_no",
+      "who": "Repository owner (with counsel if it matters commercially)",
+      "default_if_unanswered": "Name stays, flagged as unclipped in /flagged/, and the config keeps renaming to one line.",
+      "blocks": [
+        "SG-34",
+        "SG-26"
+      ]
+    },
+    {
+      "id": "Q-09",
+      "question": "Where does the event endpoint run?",
+      "why_it_matters": "Pages is static. Click and conversion measurement needs a runtime, and the choice decides whether the site can 302 through a counter or must count client-side.",
+      "what_we_have": "A tested reference implementation that runs on localhost and writes day-bucketed aggregates.",
+      "missing": "A host: small VPS, a worker platform, self-hosted Umami/Plausible, or “none — Associates reporting only”.",
+      "where_to_get_it": "Your infrastructure preference and budget; the implementation is host-agnostic.",
+      "answer_format": "choice",
+      "who": "Repository owner",
+      "default_if_unanswered": "Client-side aggregate counting with the endpoint URL unset; nothing is measured until it is set.",
+      "blocks": [
+        "T-09",
+        "T-10",
+        "SG-22",
+        "PATH-C"
+      ]
+    },
+    {
+      "id": "Q-10",
+      "question": "What is the privacy posture for anything the site collects?",
+      "why_it_matters": "Once a form accepts an email, or an endpoint stores a count, the site has obligations that a static page does not. Amazon's warranty section requires operating the Site in accordance with applicable law (SRC-03 family).",
+      "what_we_have": "No cookies, no third-party scripts, no IP retention, no live form.",
+      "missing": "A privacy policy statement, a processor choice if emails are collected, and double opt-in or not.",
+      "where_to_get_it": "Your own legal review; the inputs are the two lines above plus what the endpoint stores (see /measurement/).",
+      "answer_format": "choice",
+      "who": "Repository owner",
+      "default_if_unanswered": "Capture stays disabled and /privacy/ states that nothing is collected.",
+      "blocks": [
+        "SG-30"
+      ]
+    },
+    {
+      "id": "Q-11",
+      "question": "How many hours per week will editorial actually get?",
+      "why_it_matters": "Cadence is the constraint on findability, and the 60-day recency expectation in Amazon's own criteria makes an abandoned site a compliance problem as well as a traffic one.",
+      "what_we_have": "A proposed two-per-week rhythm and a queue of titles.",
+      "missing": "A number you will sustain.",
+      "where_to_get_it": "Your calendar.",
+      "answer_format": "choice",
+      "who": "Repository owner",
+      "default_if_unanswered": "One guide per fortnight, marked as a proposal in config, with the review dates that follow from it.",
+      "blocks": [
+        "SG-14",
+        "PATH-C"
+      ]
+    },
+    {
+      "id": "Q-12",
+      "question": "Will you buy the products for first-hand use and photography?",
+      "why_it_matters": "It is the only route to an original opinion and original images, which is the difference between a publication and a mirror of the catalogue — and it changes what the guide is allowed to say.",
+      "what_we_have": "Zero testing, stated on every page. Budget question open.",
+      "missing": "A yes/no and, if yes, which of the five.",
+      "where_to_get_it": "Your budget; note that personal purchases never count toward the qualifying-sales requirement.",
+      "answer_format": "yes_no",
+      "who": "Repository owner",
+      "default_if_unanswered": "No testing claims; guides stay framework-led and the calculator does the arithmetic.",
+      "blocks": [
+        "SG-36"
+      ]
+    },
+    {
+      "id": "Q-13",
+      "question": "How will you handle a price or availability change we cannot see?",
+      "why_it_matters": "Prices move daily; a stale printed price is a factual error on a page whose whole promise is being careful. There is no PA-API here, so nothing refreshes automatically.",
+      "what_we_have": "A decision to print no price at all, and a 90-day review interval on every guide.",
+      "missing": "Refresh appetite: manual quarterly, PA-API when access exists, or a “check the listing for current price” pattern permanently.",
+      "where_to_get_it": "Associates Central → Tools → Product Advertising API (once accepted) or the manual pattern.",
+      "answer_format": "choice",
+      "who": "Repository owner",
+      "default_if_unanswered": "Never print a price; always point to the listing and say why.",
+      "blocks": [
+        "T-03",
+        "SG-15"
+      ]
+    },
+    {
+      "id": "Q-14",
+      "question": "Which path do you want this programme on — A, B, or C?",
+      "why_it_matters": "The three paths optimise different things and cannot all be first: polish, revenue plumbing, or traffic compounding.",
+      "what_we_have": "All three sequenced on /suggestions/ with exit criteria.",
+      "missing": "A choice, or a mixture with an order.",
+      "where_to_get_it": "You. If the account clock is running, B first; if the URL will be shared now, A first.",
+      "answer_format": "choice",
+      "who": "Repository owner",
+      "default_if_unanswered": "A then B, which is what this branch already ships: a real publication with the money path fully specified and locked.",
+      "blocks": [
+        "PATH-A",
+        "PATH-B",
+        "PATH-C"
+      ]
+    }
+  ]
+}

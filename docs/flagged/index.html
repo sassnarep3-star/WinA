@@ -1,0 +1,256 @@
+<!doctype html>
+<html lang="en-US">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Flagged for review | The Preheat</title>
+<meta name="description" content="Every unconfirmed value, blocked step and open question, with the source link and the minimum action to close it.">
+<link rel="canonical" href="https://sassnarep3-star.github.io/WinA/flagged/">
+
+<meta property="og:site_name" content="The Preheat">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Flagged for review | The Preheat">
+<meta property="og:description" content="Every unconfirmed value, blocked step and open question, with the source link and the minimum action to close it.">
+<meta property="og:url" content="https://sassnarep3-star.github.io/WinA/flagged/">
+<meta property="og:image" content="https://sassnarep3-star.github.io/WinA/assets/img/hero-countertop.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#f7f2ea">
+<link rel="alternate" type="application/rss+xml" title="The Preheat — guides" href="https://sassnarep3-star.github.io/WinA/feed.xml">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../assets/styles.css">
+
+</head>
+<body class="t-ops" data-base=".." data-endpoint="" data-brand="The Preheat">
+<a class="skip" href="#main">Skip to the main text</a>
+<header class="masthead">
+  <div class="wrap masthead__row">
+    <a class="brand" href="../index.html">
+      <span class="brand__mark"><svg viewBox="0 0 32 32" aria-hidden="true" focusable="false"><circle cx="16" cy="16" r="13.2" fill="none" stroke="currentColor" stroke-width="2.1"/><path d="M16 16 21.3 9.6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/><circle cx="16" cy="16" r="2" fill="currentColor"/><path d="M5.4 20.5A11 11 0 0 0 11 26.4" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" opacity=".55"/></svg></span>
+      <span class="brand__name">The Preheat</span>
+      <span class="brand__kicker">Kitchen gear, checked twice</span>
+    </a>
+    <button class="menubtn" aria-expanded="false" aria-controls="mainnav">Menu</button>
+    
+  <nav class="mainnav" id="mainnav" aria-label="Sections">
+    <div class="mainnav__reader"><a href="../guides/">Guides</a><a href="../section/air-fryers/">Air Fryers</a><a href="../section/multi-cookers/">Multi-Cookers &amp; One-Pot</a><a href="../section/cleanup-and-counter/">Cleanup &amp; Counter Space</a><a href="../section/kitchen-gear-basics/">Kitchen Gear Basics</a><a href="../picks/">The shelf</a><a href="../tools/">Tools</a></div>
+    <div class="mainnav__ops">
+      <span class="mainnav__opslabel">Inside the numbers</span>
+      <a href="../executive-summary/">Executive summary</a><a href="../dashboard/">Dashboard</a><a href="../verify/">How we verified</a><a href="../flagged/" aria-current="page">Flagged for review</a><a href="../suggestions/">Suggestion board</a><a href="../decision-brief/">Decision brief</a><a href="../measurement/">Measurement</a>
+    </div>
+  </nav>
+  </div>
+  
+  <aside class="disclosure" id="disclosure-strip">
+    <p>
+      <strong>Reader-supported.</strong> As an Amazon Associate I earn from qualifying purchases. Links to Amazon are paid links — if you buy through one we may earn a commission, at no cost to you.
+      <a href="../disclosure/">How disclosure works here</a>.
+    </p>
+  </aside>
+</header>
+
+<main id="main" class="wrap ">
+
+<header class="pagehead">
+  <p class="kicker">Flagged for review</p>
+  <h1>Everything this site could not confirm</h1>
+  <p class="pagehead__dek">This page is not a disclaimer and not a to-do list for a future author. It is the working surface: what was checked, what failed, and the shortest route to closing each item. A reader is entitled to know that a buying guide has gaps, and a site that cannot say where it is unsure has no business recommending anything.</p>
+  <p class="notice notice--block">2 blocking items, 3 high, 6 medium, 2 recorded as by-design. Rows are never deleted here — clear one and it gets a resolution note instead of a vanished history.</p>
+</header>
+<section class="flaggroup"><h2>Blocking — nothing monetizable until these clear</h2><article class="flag" id="flg-001">
+  <header><span class="flag__id">FLG-001</span><h3>All five submitted product IDs are 9 characters; an ASIN is 10</h3>
+    <p class="flag__meta"><span class="chip chip--bad">blocking</span> <span class="chip">Monetization</span> <span class="chip chip--status">open</span></p>
+  </header>
+  <dl>
+    <div><dt>What was found</dt><dd>B04G1MEwY, B02NbDxp3, B00hJ57DV, B0c8moW59, B0f3GKalj — each exactly 9 characters. Amazon defines an ASIN as “a unique 10-character alphanumeric code”, typically starting “B0”.</dd></div>
+    <div><dt>Why it matters</dt><dd>No listing can be cited, priced, described, or linked. Every product field in the register is blank by policy, not by omission.</dd></div>
+    <div><dt>How to clear it</dt><dd>Re-copy each ID from the product page URL (the ten characters after /dp/) or use the Associates link builder, then replace the values in data/products.json and data/product-intent.json and run npm run check.</dd></div>
+    <div><dt>Sources for the check</dt><dd><a href="https://sell.amazon.com/blog/what-is-an-asin" target="_blank" rel="noopener">Amazon — Understanding ASINs</a></dd></div>
+  </dl>
+</article><article class="flag" id="flg-002">
+  <header><span class="flag__id">FLG-002</span><h3>link.amazon is not an Amazon product host and carries no tag parameter</h3>
+    <p class="flag__meta"><span class="chip chip--bad">blocking</span> <span class="chip">Monetization</span> <span class="chip chip--status">open</span></p>
+  </header>
+  <dl>
+    <div><dt>What was found</dt><dd>Product pages live at https://www.amazon.com/dp/&lt;ASIN&gt;; Associates tagging is a `tag=` parameter inside that link (Policy §2(a): the Associates ID must appear “as a parameter in the URL of each link”). The submitted URLs have neither.</dd></div>
+    <div><dt>Why it matters</dt><dd>Even if the ID were well-formed, the supplied form could not be shown to attribute a click to the account, and it could not be reviewed for policy compliance.</dd></div>
+    <div><dt>How to clear it</dt><dd>Rebuild the five links inside Associates Central so the tag is embedded, then run the Link-Checker step in SG-05 before scaling to the rest of the catalogue.</dd></div>
+    <div><dt>Sources for the check</dt><dd><a href="https://affiliate-program.amazon.com/help/operating/policies" target="_blank" rel="noopener">Amazon — Associates Program Policies</a> · <a href="https://affiliate-program.amazon.com/help/node/topic/G8TW5AE9XL2VX9VM" target="_blank" rel="noopener">Amazon — tagged product links (Help)</a></dd></div>
+  </dl>
+</article></section><section class="flaggroup"><h2>High</h2><article class="flag" id="flg-006">
+  <header><span class="flag__id">FLG-006</span><h3>GitHub Pages cannot run the click endpoint or hold account credentials</h3>
+    <p class="flag__meta"><span class="chip chip--bad">high</span> <span class="chip">Measurement</span> <span class="chip chip--status">open</span></p>
+  </header>
+  <dl>
+    <div><dt>What was found</dt><dd>Pages serves committed static files. A counting endpoint and a PA-API caller both need a server and a secret store, which this host does not provide.</dd></div>
+    <div><dt>Why it matters</dt><dd>The measurement layer ships as a tested local reference implementation plus the runbook for the host decision (Q-09). No page on this site claims that analytics are live.</dd></div>
+    <div><dt>How to clear it</dt><dd>Pick a runtime (small VPS, a worker platform, or a self-hosted Umami), point the site's data-collect-url at it, and keep the Associates credential server-side only.</dd></div>
+    <div><dt>Sources for the check</dt><dd><a href="https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site" target="_blank" rel="noopener">GitHub Docs — configuring a publishing source</a></dd></div>
+  </dl>
+</article><article class="flag" id="flg-010">
+  <header><span class="flag__id">FLG-010</span><h3>Bylines are a desk byline, not a person</h3>
+    <p class="flag__meta"><span class="chip chip--bad">high</span> <span class="chip">Trust</span> <span class="chip chip--status">open</span></p>
+  </header>
+  <dl>
+    <div><dt>What was found</dt><dd>Guides are drafted with AI assistance and edited here. Inventing a credentialed human reviewer would be a fabricated endorsement — squarely inside what the FTC's honesty principle covers.</dd></div>
+    <div><dt>Why it matters</dt><dd>Every article prints an honest authorship note and states that no product was tested. The page that would normally carry the byline is /editorial-standards/.</dd></div>
+    <div><dt>How to clear it</dt><dd>Name a real, consenting human editor, add their bio and review scope to data/people.json, and change config.brand.byline.</dd></div>
+    <div><dt>Sources for the check</dt><dd><a href="https://www.ftc.gov/business-guidance/resources/ftcs-endorsement-guides-what-people-are-asking" target="_blank" rel="noopener">FTC — Endorsement Guides honesty principle</a></dd></div>
+  </dl>
+</article><article class="flag" id="flg-013">
+  <header><span class="flag__id">FLG-013</span><h3>Publishing under a github.io sub-directory vs a domain you own</h3>
+    <p class="flag__meta"><span class="chip chip--bad">high</span> <span class="chip">Monetization</span> <span class="chip chip--status">open</span></p>
+  </header>
+  <dl>
+    <div><dt>What was found</dt><dd>Amazon's review criteria state plainly: “You must own your website.” A site at user.github.io/repo sits inside somebody else's domain, which is a foreseeable reason for an application to be rejected — and a rejection cannot be re-assessed for that application.</dd></div>
+    <div><dt>Why it matters</dt><dd>The site is fully built so it can be deployed to a domain you control with a one-line config change; the Pages URL is treated as a staging surface, not the application asset.</dd></div>
+    <div><dt>How to clear it</dt><dd>Buy the domain, add a CNAME + custom domain in Pages settings, set config.baseUrl, rebuild, and submit that URL to Associates Central.</dd></div>
+    <div><dt>Sources for the check</dt><dd><a href="https://affiliate-program.amazon.com/help/node/topic/G8TW5AE9XL2VX9VM" target="_blank" rel="noopener">Amazon — application review process</a> · <a href="https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site" target="_blank" rel="noopener">GitHub Docs — custom domains for Pages</a></dd></div>
+  </dl>
+</article></section><section class="flaggroup"><h2>Medium</h2><article class="flag" id="flg-004">
+  <header><span class="flag__id">FLG-004</span><h3>The niche (air fryers / multi-function kitchen appliances) is inferred from the editorial hypotheses, not from the listings</h3>
+    <p class="flag__meta"><span class="chip chip--wait">medium</span> <span class="chip">Editorial</span> <span class="chip chip--status">open</span></p>
+  </header>
+  <dl>
+    <div><dt>What was found</dt><dd>The brief's working titles concern air fryers and multi-function appliances. No submitted link resolves to a product, so no link confirms the cluster.</dd></div>
+    <div><dt>Why it matters</dt><dd>Section pages publish the buyer frameworks and hold the five intake records as pending rather than filing products into sections they may not belong to.</dd></div>
+    <div><dt>How to clear it</dt><dd>Confirm the five product titles, then set each product's category in data/products.json; the build files them automatically.</dd></div>
+    <div><dt>Sources for the check</dt><dd>Internal finding — nothing external to cite, and no external claim depends on it.</dd></div>
+  </dl>
+</article><article class="flag" id="flg-005">
+  <header><span class="flag__id">FLG-005</span><h3>No demand data behind any headline</h3>
+    <p class="flag__meta"><span class="chip chip--wait">medium</span> <span class="chip">Findability</span> <span class="chip chip--status">open</span></p>
+  </header>
+  <dl>
+    <div><dt>What was found</dt><dd>Titles such as “Basket or oven-style air fryer: what should you compare?” are editorial hypotheses. There is no search-volume, click-through, or ranking data in this repository to justify a popularity claim.</dd></div>
+    <div><dt>Why it matters</dt><dd>Copy never says “popular”, “trending”, or “most searched”. The topic-selection tool (tools/next-topics.mjs) stays empty until a Search Console export is dropped into data/exports/.</dd></div>
+    <div><dt>How to clear it</dt><dd>Verify the property in Search Console, publish for two weeks, export the Queries report, and re-run npm run topics.</dd></div>
+    <div><dt>Sources for the check</dt><dd><a href="https://search.google.com/search-console" target="_blank" rel="noopener">Google — Search Console sitemaps &amp; reports</a></dd></div>
+  </dl>
+</article><article class="flag" id="flg-009">
+  <header><span class="flag__id">FLG-009</span><h3>Brand name “The Preheat” is not cleared</h3>
+    <p class="flag__meta"><span class="chip chip--wait">medium</span> <span class="chip">Brand</span> <span class="chip chip--status">open</span></p>
+  </header>
+  <dl>
+    <div><dt>What was found</dt><dd>No trademark or collision search was run. The name also has to stay clear of Amazon's mark usage rules — the site must not imply Amazon sponsorship (Operating Agreement §5).</dd></div>
+    <div><dt>Why it matters</dt><dd>The name is a working title used consistently across the build so it can be swapped in one file if it must change.</dd></div>
+    <div><dt>How to clear it</dt><dd>Search USPTO TESS and a general web search for the name in the publishing/review space; if clear, register the domain and update config/site.config.json.</dd></div>
+    <div><dt>Sources for the check</dt><dd><a href="https://www.uspto.gov/trademarks/search" target="_blank" rel="noopener">USPTO trademark search</a></dd></div>
+  </dl>
+</article><article class="flag" id="flg-011">
+  <header><span class="flag__id">FLG-011</span><h3>Imagery is generated editorial illustration, not product photography or test photos</h3>
+    <p class="flag__meta"><span class="chip chip--wait">medium</span> <span class="chip">Brand</span> <span class="chip chip--status">open</span></p>
+  </header>
+  <dl>
+    <div><dt>What was found</dt><dd>The site's illustrations were made for this build. They are not photographs of the submitted products and are not documentation of a test kitchen.</dd></div>
+    <div><dt>Why it matters</dt><dd>Captions say what the picture is, and no image is presented as evidence that a product was used. Product imagery from Amazon's Program Content may only be used under the license Amazon supplies (Program Content, OA §1).</dd></div>
+    <div><dt>How to clear it</dt><dd>Either keep illustrations labelled as illustrations, or shoot your own photos of the product in your kitchen — which is also the single biggest trust upgrade available (SG-16).</dd></div>
+    <div><dt>Sources for the check</dt><dd><a href="https://affiliate-program.amazon.com/help/operating/agreement" target="_blank" rel="noopener">Amazon — Operating Agreement (Program Content)</a></dd></div>
+  </dl>
+</article><article class="flag" id="flg-012">
+  <header><span class="flag__id">FLG-012</span><h3>Quoted policy text carries a revision date that must be re-checked at every publish</h3>
+    <p class="flag__meta"><span class="chip chip--wait">medium</span> <span class="chip">Compliance</span> <span class="chip chip--status">open</span></p>
+  </header>
+  <dl>
+    <div><dt>What was found</dt><dd>The Operating Agreement read here is dated “Updated: October 15, 2025”. Section numbering differs across locales (the Amazon.in agreement puts the same disclosure clause at §10), so section numbers are cited with their locale.</dd></div>
+    <div><dt>Why it matters</dt><dd>The gate stores the retrieval date with every quotation; a stale quote is a compliance bug, not a typo.</dd></div>
+    <div><dt>How to clear it</dt><dd>Re-run node tools/compliance-gate.mjs --refresh-sources monthly; it re-checks each row in data/sources.json against the live page.</dd></div>
+    <div><dt>Sources for the check</dt><dd><a href="https://affiliate-program.amazon.com/help/operating/agreement" target="_blank" rel="noopener">Amazon — Operating Agreement (US, dated Oct 15 2025)</a> · <a href="https://affiliate-program.amazon.in/help/operating/agreement/" target="_blank" rel="noopener">Amazon — Operating Agreement (IN, different numbering)</a></dd></div>
+  </dl>
+</article><article class="flag" id="flg-015">
+  <header><span class="flag__id">FLG-015</span><h3>No contact address, no privacy policy commitment, no newsletter storage decision</h3>
+    <p class="flag__meta"><span class="chip chip--wait">medium</span> <span class="chip">Operations</span> <span class="chip chip--status">open</span></p>
+  </header>
+  <dl>
+    <div><dt>What was found</dt><dd>config.contact.email is unset, and the reader-capture form in SG-30 has nowhere lawful-and-configured to send addresses. A publication that collects emails without a stated policy is worse than one that collects nothing.</dd></div>
+    <div><dt>Why it matters</dt><dd>The signup block ships as a disabled component with a visible “not wired” note. No form on this site transmits anything.</dd></div>
+    <div><dt>How to clear it</dt><dd>Add a monitored address, choose where addresses are stored, publish a privacy page naming that processor, then set config.contact.email and flip data/forms.json enabled=true.</dd></div>
+    <div><dt>Sources for the check</dt><dd><a href="https://affiliate-program.amazon.com/help/operating/agreement" target="_blank" rel="noopener">Amazon — Operating Agreement §4 warranties (compliance with applicable law)</a></dd></div>
+  </dl>
+</article></section><section class="flaggroup"><h2>Open questions</h2><article class="flag" id="flg-003">
+  <header><span class="flag__id">FLG-003</span><h3>Compliance status of the supplied short links is unresolved — do not call them invalid</h3>
+    <p class="flag__meta"><span class="chip chip--wait">open question</span> <span class="chip">Compliance</span> <span class="chip chip--status">needs review</span></p>
+  </header>
+  <dl>
+    <div><dt>What was found</dt><dd>The brief asks that these links not be declared invalid. Nothing here can see where they redirect, so the honest state is unknown: not valid, not invalid, unobserved.</dd></div>
+    <div><dt>Why it matters</dt><dd>Any copy that asserted either way would be a fabrication. The site therefore prints “not observed” and leaves the redirect field empty rather than inferring a destination.</dd></div>
+    <div><dt>How to clear it</dt><dd>Open one link logged out, in a clean browser profile, record the final URL in the observation block of data/product-intent.json, and note the date. That single step moves the row from unobserved to evidence.</dd></div>
+    <div><dt>Sources for the check</dt><dd><a href="https://affiliate-program.amazon.com/help/operating/agreement" target="_blank" rel="noopener">Amazon — Associates Program Operating Agreement §1</a></dd></div>
+  </dl>
+</article></section><section class="flaggroup"><h2>By design, so nobody mistakes the state for an oversight</h2><article class="flag" id="flg-007">
+  <header><span class="flag__id">FLG-007</span><h3>No conversion score, EPC, or revenue forecast is published anywhere</h3>
+    <p class="flag__meta"><span class="chip chip--neutral">informational</span> <span class="chip">Measurement</span> <span class="chip chip--status">by design</span></p>
+  </header>
+  <dl>
+    <div><dt>What was found</dt><dd>The campaign ledger is empty and its columns may only be filled from authorized first-party reports. Nothing on the site projects earnings, and none of the numbers a forecast needs exist yet.</dd></div>
+    <div><dt>Why it matters</dt><dd>A reader — or a future session — cannot mistake a modelled number for a measured one. The trade-off is that the site offers no revenue promise, which is the point.</dd></div>
+    <div><dt>How to clear it</dt><dd>Nothing to clear. It becomes meaningful when the first dated row lands from Associates Central Reports.</dd></div>
+    <div><dt>Sources for the check</dt><dd><a href="https://affiliate-program.amazon.com/cp/reports" target="_blank" rel="noopener">Amazon — Associates Central Reports</a></dd></div>
+  </dl>
+</article><article class="flag" id="flg-008">
+  <header><span class="flag__id">FLG-008</span><h3>The suggestion board is a menu, not an approved plan</h3>
+    <p class="flag__meta"><span class="chip chip--neutral">informational</span> <span class="chip">Operations</span> <span class="chip chip--status">by design</span></p>
+  </header>
+  <dl>
+    <div><dt>What was found</dt><dd>Thirty suggestions sit in /suggestions/ with effort, risk, and the decision each unlocks. Only the subset marked shipped or in progress has been built.</dd></div>
+    <div><dt>Why it matters</dt><dd>Code that a session invented but nobody chose never reaches the reader-facing site without a recorded decision.</dd></div>
+    <div><dt>How to clear it</dt><dd>Tick a path (A, B, or C) on /suggestions/ and change the chosen rows' status; the board is the decision record.</dd></div>
+    <div><dt>Sources for the check</dt><dd>Internal finding — nothing external to cite, and no external claim depends on it.</dd></div>
+  </dl>
+</article><article class="flag" id="flg-014">
+  <header><span class="flag__id">FLG-014</span><h3>Zero traffic, zero backlinks, zero history</h3>
+    <p class="flag__meta"><span class="chip chip--neutral">informational</span> <span class="chip">Findability</span> <span class="chip chip--status">open</span></p>
+  </header>
+  <dl>
+    <div><dt>What was found</dt><dd>This domain/path has no index history, so there is no baseline to compare against and no ranking to promise.</dd></div>
+    <div><dt>Why it matters</dt><dd>The plan is expressed in editorial output and measured queries rather than in projected sessions.</dd></div>
+    <div><dt>How to clear it</dt><dd>Submit the sitemap, let it crawl, and the ledger starts collecting real rows.</dd></div>
+    <div><dt>Sources for the check</dt><dd><a href="https://search.google.com/search-console/sitemaps" target="_blank" rel="noopener">Google — Sitemap report</a></dd></div>
+  </dl>
+</article><article class="flag" id="flg-016">
+  <header><span class="flag__id">FLG-016</span><h3>Repo was empty: the brief's earlier artefact IDs have no backing files</h3>
+    <p class="flag__meta"><span class="chip chip--neutral">informational</span> <span class="chip">Operations</span> <span class="chip chip--status">open</span></p>
+  </header>
+  <dl>
+    <div><dt>What was found</dt><dd>The brief references rows like SG-27..SG-30, FLG-003, S01/S07/S24 and a prior source register, but the branch history contains one commit and one file (README.md, “# WinA”).</dd></div>
+    <div><dt>Why it matters</dt><dd>Those IDs were re-derived here rather than trusted: SG-27..SG-30 and FLG-003 exist as described, S-numbers are unmapped because no prior spec file survives to map them against.</dd></div>
+    <div><dt>How to clear it</dt><dd>If an earlier register exists in another branch or repo, drop it in data/legacy/ and re-run the build; the board will merge by ID.</dd></div>
+    <div><dt>Sources for the check</dt><dd><a href="https://github.com/sassnarep3-star/WinA/commits/main" target="_blank" rel="noopener">Repository history</a></dd></div>
+  </dl>
+</article></section>
+<section class="flaghow">
+  <h2>How an item gets on this page</h2>
+  <ol class="numbers numbers--tight">
+    <li>A value is needed for a table row or a piece of copy.</li>
+    <li>An official source is looked for, and the clause is read rather than summarised.</li>
+    <li>If nothing confirms the value, the field stays blank and the data validator requires a flag ID on the row.</li>
+    <li>The flag states the check that was run, so the next reader does not repeat it — and so clearing it is a task, not an archaeology project.</li>
+  </ol>
+  <p class="actions"><a class="btn" href="../decision-brief/">The questions these flags turn into</a> <a class="btn ghost" href="../verify/">The register they came from</a></p>
+</section>
+</main>
+
+  <footer class="sitefoot">
+    <div class="wrap footgrid">
+      <nav class="footcol" aria-label="Sections"><h3>Sections</h3><ul><li><a href="../section/air-fryers/">Air Fryers</a></li><li><a href="../section/multi-cookers/">Multi-Cookers &amp; One-Pot</a></li><li><a href="../section/cleanup-and-counter/">Cleanup &amp; Counter Space</a></li><li><a href="../section/kitchen-gear-basics/">Kitchen Gear Basics</a></li></ul></nav>
+      <nav class="footcol" aria-label="Guides"><h3>Guides</h3><ul><li><a href="../guides/reading-a-review-without-getting-played/">How to read an appliance review without getting played</a></li><li><a href="../guides/no-hype-capacity-checklist/">A no-hype checklist for comparing air fryer capacity</a></li><li><a href="../guides/cleanup-and-counter-space/">How to assess cleanup and counter-space trade-offs</a></li><li><a href="../guides/before-you-buy-a-multi-cooker/">Questions to ask before buying a multi-function kitchen appliance</a></li><li><a href="../guides/basket-or-oven-air-fryer/">Basket or oven-style air fryer</a></li><li><a href="../guides/">All guides</a></li></ul></nav>
+      <nav class="footcol" aria-label="Inside the numbers"><h3>Inside the numbers</h3><ul><li><a href="../executive-summary/">Executive summary</a></li><li><a href="../dashboard/">Dashboard</a></li><li><a href="../verify/">How we verified</a></li><li><a href="../flagged/">Flagged for review</a></li><li><a href="../suggestions/">Suggestion board</a></li><li><a href="../decision-brief/">Decision brief</a></li><li><a href="../measurement/">Measurement</a></li><li><a href="../dashboard/#ledger">Campaign ledger</a></li><li><a href="../verify/">Source register</a></li></ul></nav>
+      <nav class="footcol" aria-label="The fine print"><h3>The fine print</h3><ul><li><a href="../disclosure/">Amazon disclosure</a></li><li><a href="../editorial-standards/">Editorial standards</a></li><li><a href="../privacy/">Privacy</a></li><li><a href="../about/">About this publication</a></li><li><a href="../contact/">Contact</a></li><li><a href="../feed.xml">RSS feed</a></li><li><a href="../sitemap.xml">Sitemap</a></li></ul></nav>
+    </div>
+    <div class="wrap footend">
+      
+  <aside class="disclosure disclosure--foot" id="disclosure-strip">
+    <p>
+      <strong>Reader-supported.</strong> As an Amazon Associate I earn from qualifying purchases. Links to Amazon are paid links — if you buy through one we may earn a commission, at no cost to you.
+      <a href="../disclosure/">How disclosure works here</a>.
+    </p>
+  </aside>
+      <p class="footmeta">
+        <span class="brand-inline"><svg viewBox="0 0 32 32" aria-hidden="true" focusable="false"><circle cx="16" cy="16" r="13.2" fill="none" stroke="currentColor" stroke-width="2.1"/><path d="M16 16 21.3 9.6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/><circle cx="16" cy="16" r="2" fill="currentColor"/><path d="M5.4 20.5A11 11 0 0 0 11 26.4" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" opacity=".55"/></svg><span>The Preheat</span></span>
+        An independent, reader-supported buying guide for air fryers, multi-cookers and the counter space around them.. No hands-on testing. Nothing on this site says a product was used, measured, or compared side by side, because none was. Built from sassnarep3-star/WinA;
+        published Nov 20, 2026. No product was tested in the making of this site.
+      </p>
+    </div>
+  </footer>
+<script src="../assets/app.js" defer></script>
+</body>
+</html>

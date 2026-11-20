@@ -1,0 +1,29 @@
+{
+  "$comment": "Seasonal clusters. Guides opt into these by tag; a cluster with no guides is skipped at build time so the site never ships an empty shelf.",
+  "seasons": {
+    "holiday-cooking": {
+      "name": "Holiday cooking",
+      "why": "The one week a year when a second oven stops being a luxury and starts being a plan."
+    },
+    "weeknight": {
+      "name": "Weeknight",
+      "why": "Fast, quiet, and washable — the three things that decide whether a gadget survives February."
+    },
+    "batch-cooking": {
+      "name": "Batch cooking",
+      "why": "Volume, single-layer truth, and what you do with four trays on a Sunday."
+    },
+    "small-kitchen": {
+      "name": "Small kitchens",
+      "why": "Where clearance and cord length outrank every feature on the box."
+    },
+    "dorm-and-rental": {
+      "name": "Dorm & rental",
+      "why": "Low wattage, one hand on the controls, and nothing that needs a landlord's approval."
+    },
+    "evergreen": {
+      "name": "Evergreen",
+      "why": "The reading skills and thresholds that do not go out of date."
+    }
+  }
+}

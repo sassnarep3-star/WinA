@@ -1,0 +1,279 @@
+{
+  "$comment": "The register. One row per official document actually read from this environment. `quote` is copied from the live page body, not from a search snippet, unless read_level says otherwise. Everything the site asserts traces to a row here.",
+  "retrieved": "2026-11-20",
+  "sources": [
+    {
+      "id": "SRC-01",
+      "issuer": "Amazon — Associates Central (official)",
+      "title": "Associates Program Operating Agreement",
+      "url": "https://affiliate-program.amazon.com/help/operating/agreement",
+      "clause": "§1 Description of the Associates Program",
+      "quote": "The links must properly use the special “tagged” link formats we provide and comply with this Agreement (“Special Links”).",
+      "read_level": "full page read",
+      "page_dated": "Updated: October 15, 2025",
+      "supports": [
+        "Special Links are mandatory",
+        "links must use a provided tagged format"
+      ]
+    },
+    {
+      "id": "SRC-02",
+      "issuer": "Amazon — Associates Central (official)",
+      "title": "Associates Program Operating Agreement",
+      "url": "https://affiliate-program.amazon.com/help/operating/agreement",
+      "clause": "§5 Identifying Yourself as an Associate",
+      "quote": "You must clearly and prominently state the following, or any substantially similar statement previously allowed under this Agreement, on your Site or any other location where Amazon may authorize your display or other use of Program Content: “As an Amazon Associate I earn from qualifying purchases.”",
+      "read_level": "full page read",
+      "page_dated": "Updated: October 15, 2025",
+      "supports": [
+        "the exact disclosure sentence this site prints",
+        "it must be clear and prominent"
+      ]
+    },
+    {
+      "id": "SRC-03",
+      "issuer": "Amazon — Associates Central (official)",
+      "title": "Associates Program Operating Agreement",
+      "url": "https://affiliate-program.amazon.com/help/operating/agreement",
+      "clause": "§5 (second paragraph) and §6 (termination)",
+      "quote": "You will not misrepresent or embellish our relationship with you (including by expressing or implying that we support, sponsor, or endorse you) … any violation of Section 5 and as specified in the Program Policies will be deemed a material breach of this Agreement.",
+      "read_level": "full page read",
+      "supports": [
+        "no 'Amazon recommends' framing anywhere",
+        "disclosure failures are a material breach, which is why they are gated in CI rather than left to memory"
+      ]
+    },
+    {
+      "id": "SRC-04",
+      "issuer": "Amazon — Associates Central (official)",
+      "title": "Associates Program Policies — Participation Requirements, Links on Your Site",
+      "url": "https://affiliate-program.amazon.com/help/operating/policies",
+      "clause": "§2(a) Special Links / §2(b) General Requirements",
+      "quote": "you must include your Associates ID or “tag” (appearing as XXXXX-##, or such other format as we may designate) as a parameter in the URL of each link you place on your Site to an Amazon Site … All Special Links must be accessed directly from your Site … You must not encourage customers to bookmark your Special Links.",
+      "read_level": "official-domain excerpt (page is gated behind the help hub; text matched by search index of the same URL)",
+      "supports": [
+        "tag as a URL parameter, not as a redirect wrapper",
+        "no bookmark prompts",
+        "no intermediate link pages"
+      ]
+    },
+    {
+      "id": "SRC-05",
+      "issuer": "Amazon — Associates Central (official)",
+      "title": "Associates Program Policies — no per-user sub-tagging",
+      "url": "https://affiliate-program.amazon.com/help/operating/policies",
+      "clause": "§2(b) General Requirements Applicable to All Special Links",
+      "quote": "Under no circumstances may you associate any sub-tag, other ID or reporting provided in connection with the Associates Program with a specific end user of your Site (e.g., you may not dynamically assign sub-tags to users as they arrive on your Site for purposes of monitoring such users’ behavior).",
+      "read_level": "official-domain excerpt",
+      "supports": [
+        "the click counter is aggregate-by-day on purpose — per-user joining would breach this clause"
+      ]
+    },
+    {
+      "id": "SRC-06",
+      "issuer": "Amazon — Associates Central (official)",
+      "title": "Help: What is the application review process?",
+      "url": "https://affiliate-program.amazon.com/help/node/topic/G8TW5AE9XL2VX9VM",
+      "clause": "Application review + FAQs",
+      "quote": "After you sign up, our Associates team will check your application once you’ve driven qualified sales (we require at least three within the first 180 days). Please note that personal orders do not qualify. … All Sites must have robust original content (even when advertising is removed) – a good rule of thumb is at least 10 posts. … Content on your website must be recent (generally within the last 60 days). You must own your website.",
+      "read_level": "full page read",
+      "supports": [
+        "why the site launches with six substantial guides instead of a shell",
+        "the 3-in-180 clock that makes monetization time-sensitive",
+        "'you must own your website' is why FLG-013 exists"
+      ]
+    },
+    {
+      "id": "SRC-07",
+      "issuer": "Amazon — Associates Central (official)",
+      "title": "Help: What is the application review process? — tagged links",
+      "url": "https://affiliate-program.amazon.com/help/node/topic/G8TW5AE9XL2VX9VM",
+      "clause": "Application FAQs",
+      "quote": "Associates special links are the identifiers (e.g. abcd-20) embedded in Amazon product links. These tags must be embedded in your Amazon product links on the site(s) declared in your application.",
+      "read_level": "full page read",
+      "supports": [
+        "the -20 suffix expectation for a US ID",
+        "tagging lives inside the product link, so a wrapper redirect is the wrong shape"
+      ]
+    },
+    {
+      "id": "SRC-08",
+      "issuer": "Amazon — Sell on Amazon (official Amazon blog)",
+      "title": "Understanding ASINs: Your guide to Amazon’s product identification system",
+      "url": "https://sell.amazon.com/blog/what-is-an-asin",
+      "clause": "What does “ASIN” mean? / How to find and use ASIN numbers",
+      "quote": "It’s a unique 10-character alphanumeric code assigned to every product listed in the Amazon store. … The format of an ASIN code typically starts with “B0,” or in the case of books begins with a number. … URL method: Look at the URL for a product detail page in the Amazon store. The ASIN appears after \"/dp/\".",
+      "read_level": "full page read",
+      "page_dated": "Jun 4, 2025",
+      "supports": [
+        "FLG-001: the five submitted identifiers are 9 characters and therefore cannot be ASINs",
+        "the /dp/ shape used by the validator regex"
+      ]
+    },
+    {
+      "id": "SRC-09",
+      "issuer": "Amazon — Product Advertising API docs (official)",
+      "title": "Register for Product Advertising API (PA-API 5.0)",
+      "url": "https://webservices.amazon.com/paapi5/documentation/register-for-pa-api.html",
+      "clause": "Sign up steps",
+      "quote": "Before you register for the Product Advertising API, you must have Amazon Associates account that has been reviewed and received final acceptance in to the Amazon Associates Program. … Only the primary account owner of the Amazon Associate account can sign up for the Product Advertising API. … You can have a maximum of two access key pairs at a time.",
+      "read_level": "official-domain excerpt",
+      "supports": [
+        "automated product data is gated behind account state, so the collector is built but idle",
+        "credentials handling rules in the runbook"
+      ]
+    },
+    {
+      "id": "SRC-10",
+      "issuer": "U.S. Federal Trade Commission (official)",
+      "title": "FTC’s Endorsement Guides: What People Are Asking",
+      "url": "https://www.ftc.gov/business-guidance/resources/ftcs-endorsement-guides-what-people-are-asking",
+      "clause": "Introduction",
+      "quote": "the Guides say, if there’s a connection between an endorser and the marketer that a significant minority of consumers wouldn’t expect and it would affect how they evaluate the endorsement, that connection should be disclosed clearly and conspicuously.",
+      "read_level": "full page read",
+      "supports": [
+        "disclosure placement above the fold, not only in a footer or a policy page"
+      ]
+    },
+    {
+      "id": "SRC-11",
+      "issuer": "U.S. Federal Trade Commission (official)",
+      "title": "FTC’s Endorsement Guides: What People Are Asking",
+      "url": "https://www.ftc.gov/business-guidance/resources/ftcs-endorsement-guides-what-people-are-asking",
+      "clause": "About the Endorsement Guides / honesty",
+      "quote": "The Guides, at their core, reflect the basic truth-in-advertising principle that endorsements must be honest and not misleading. An endorsement must reflect the honest opinion of the endorser and can’t be used to make a claim the marketer of the product couldn’t legally make.",
+      "read_level": "full page read",
+      "supports": [
+        "why no product is called 'best' on this site, and why there is no test score to invent"
+      ]
+    },
+    {
+      "id": "SRC-12",
+      "issuer": "U.S. Federal Trade Commission (official)",
+      "title": "FTC’s Endorsement Guides: What People Are Asking",
+      "url": "https://www.ftc.gov/business-guidance/resources/ftcs-endorsement-guides-what-people-are-asking",
+      "clause": "Exceptional results principle",
+      "quote": "Another principle in the Guides applies to ads that feature endorsements from people who achieved exceptional, or even above average, results. … an ad featuring that endorser must make clear to the audience what the generally expected results of following that same regimen are.",
+      "read_level": "full page read",
+      "supports": [
+        "no results claims: no 'cut cooking time in half', no 'crispiest you will ever eat'"
+      ]
+    },
+    {
+      "id": "SRC-13",
+      "issuer": "eCFR (official U.S. regulation text)",
+      "title": "16 CFR Part 255 — Guides Concerning the Use of Endorsements and Testimonials in Advertising",
+      "url": "https://www.ecfr.gov/current/title-16/chapter-I/subchapter-B/part-255",
+      "clause": "Part 255 (as linked from the FTC guidance above)",
+      "quote": "Linked from the FTC guidance as the latest version of the Endorsement Guides, revised in 2023 with new or revised principles, examples, and definitions, including a new definition of “clearly and conspicuously.”",
+      "read_level": "reference chain only — the FTC page links and dates it; the CFR text itself was not re-read line by line from this environment",
+      "supports": [
+        "the revision year and the definition that drives the gate's placement rule"
+      ]
+    },
+    {
+      "id": "SRC-14",
+      "issuer": "USDA FSIS (official)",
+      "title": "Safe Minimum Internal Temperature Chart",
+      "url": "https://www.fsis.usda.gov/food-safety/safe-food-handling-and-preparation/food-safety-basics/safe-temperature-chart",
+      "clause": "Temperature table",
+      "quote": "All Poultry (Breasts, Whole Bird, Legs, Thighs, Wings, Ground Poultry, Giblets and Stuffing) 165 degrees F (73.9 degrees C) … Ground Meats 160 degrees F (71.1 degrees C) … Beef, Pork, Veal and Lamb Steaks, Chops and Roasts 145 degrees F (62.8 degrees C) and allow to rest for at least 3 minutes … Leftovers 165 degrees F (73.9 degrees C). Cook all food to these minimum internal temperatures, as measured with a food thermometer, before removing food from the heat source.",
+      "read_level": "full page read",
+      "page_dated": "Last Updated: Apr 14, 2025",
+      "supports": [
+        "the only numeric food-safety table published on the site"
+      ]
+    },
+    {
+      "id": "SRC-15",
+      "issuer": "Google Search Central (official)",
+      "title": "Evolving “nofollow” — new ways to identify the nature of links",
+      "url": "https://developers.google.com/search/blog/2019/09/evolving-nofollow-new-ways-to-identify",
+      "clause": "rel=\"sponsored\"",
+      "quote": "Use the sponsored attribute to identify links on your site that were created as part of advertisements, sponsorships or other compensation agreements.",
+      "read_level": "official-domain excerpt (page fetch blocked from this sandbox; text matched the index copy of the same URL)",
+      "supports": [
+        "every outbound product link ships with rel=\"sponsored nofollow\", enforced by the gate"
+      ]
+    },
+    {
+      "id": "SRC-16",
+      "issuer": "Google Search Central (official)",
+      "title": "Spam policies for Google web search — Link spam",
+      "url": "https://developers.google.com/search/docs/essentials/spam-policies",
+      "clause": "Link spam",
+      "quote": "It's not a violation of our policies to have such links as long as they are qualified with a rel=\"nofollow\" or rel=\"sponsored\" attribute value to the <a> tag.",
+      "read_level": "official-domain excerpt",
+      "supports": [
+        "qualified paid links are permitted, not hidden — the site labels rather than disguises"
+      ]
+    },
+    {
+      "id": "SRC-17",
+      "issuer": "GitHub Docs (official)",
+      "title": "Configuring a publishing source for your GitHub Pages site",
+      "url": "https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site",
+      "clause": "About publishing sources",
+      "quote": "the source folder can either be the root of the repository (/) on the source branch or a /docs folder on the source branch. Whenever changes are pushed to the source branch, the changes in the source folder will be published to your GitHub Pages site.",
+      "read_level": "full page read",
+      "supports": [
+        "the build commits to docs/ and Pages deploys main:/docs — no external build service in the loop"
+      ]
+    },
+    {
+      "id": "SRC-18",
+      "issuer": "Amazon — Associates Central (official)",
+      "title": "Create special “tagged” product links (link builder)",
+      "url": "https://affiliate-program.amazon.com/home/productlinks/search",
+      "clause": "Tool referenced by the help page",
+      "quote": "Click here to create special “tagged” product links. (link in Help: What is the application review process?)",
+      "read_level": "referenced from SRC-06; the tool itself is behind sign-in",
+      "supports": [
+        "the one-link-per-product test in SG-05 runs here, not in a hand-written URL"
+      ]
+    },
+    {
+      "id": "SRC-19",
+      "issuer": "Amazon — Associates Central (official)",
+      "title": "Associates Program Operating Agreement — Amazon Customers",
+      "url": "https://affiliate-program.amazon.com/help/operating/agreement",
+      "clause": "§3 Amazon Customers",
+      "quote": "You will not handle or address any contacts with any of our customers, and, if contacted by any of our customers for a matter relating to interaction with an Amazon Site, you will state that those customers must follow contact directions on that Amazon Site to address customer service issues.",
+      "read_level": "full page read",
+      "page_dated": "Updated: October 15, 2025",
+      "supports": [
+        "why /contact/ routes order and delivery questions to Amazon rather than answering them here"
+      ]
+    },
+    {
+      "id": "SRC-20",
+      "issuer": "Amazon — Associates Central (official, CA help)",
+      "title": "Associates FAQ — link checker",
+      "url": "https://www.amazon.ca/b?ie=UTF8&node=81986289011",
+      "clause": "Reports / Product Advertising API FAQ",
+      "quote": "The Link Checker provided in Associates Central does not work correctly with links that are copied from Associate Central or the Site Stripe. It is designed only to check the tagging for a URL linking to Amazon.com. This tool is intended primarily for people constructing or modifying their own Associate links to Amazon.com.",
+      "read_level": "official-domain excerpt (Amazon's own Associates FAQ page; the US copy of the same help was not opened from this environment)",
+      "supports": [
+        "the SG-25 test procedure: the link builder is the source of a correctly tagged link, and the built-in checker is meant for hand-constructed links"
+      ],
+      "caveat": "Locale-specific help text; re-read the US equivalent before relying on it for the account test."
+    }
+  ],
+  "referenced_standards": [
+    {
+      "name": "Sitemap XML protocol",
+      "url": "https://www.sitemaps.org/protocol.html",
+      "status": "referenced, not re-read from this environment"
+    },
+    {
+      "name": "RSS 2.0 specification",
+      "url": "https://www.rssboard.org/rss-specification",
+      "status": "referenced, not re-read from this environment"
+    },
+    {
+      "name": "Google Search Console sitemap report",
+      "url": "https://search.google.com/search-console/sitemaps",
+      "status": "requires the owner's verified property"
+    }
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "$comment": "The five events the measurement layer records. Kept aggregate-by-day so no event can be joined to a person, which is also what the Associates sub-tag rule requires (SRC-05).",
+  "transport": {
+    "endpoint": "POST /e",
+    "click_redirect": "GET /c/<linkId> (302 to the tagged Amazon URL, counted on the way out)",
+    "payload": "1x1 no-store response; body is {e, p, l, t} where t is a day key, not a timestamp",
+    "identity": "no cookie, no localStorage id, no IP retained, no user-agent string stored",
+    "sampling": "none; the volume this site expects is trivial"
+  },
+  "events": [
+    {
+      "name": "page_view",
+      "fires": "once per document, after the disclosure strip has painted",
+      "properties": { "p": "page path", "ref": "host of document.referrer or 'none'" },
+      "informs": "which guide earns arrival; decides the next topic alongside Search Console queries"
+    },
+    {
+      "name": "product_card_impression",
+      "fires": "when a product card is at least half visible for one second",
+      "properties": { "p": "page path", "l": "product id" },
+      "informs": "whether the reader scrolls to the shelf at all — separates a copy problem from a placement problem"
+    },
+    {
+      "name": "outbound_click",
+      "fires": "on any Amazon link, captured before navigation so the count does not race the unload",
+      "properties": { "p": "page path", "l": "product id", "slot": "hero|shelf|in-text|comparison|footer" },
+      "informs": "click-through rate by slot; the only honest input to deciding where the buy button belongs. Never carries a per-user identifier."
+    },
+    {
+      "name": "gate_block",
+      "fires": "when a reader clicks a product control that the compliance gate has locked",
+      "properties": { "p": "page path", "l": "product id", "reason": "unverified-listing" },
+      "informs": "how much demand the verification backlog is actually costing — the number that justifies clearing FLG-001 first"
+    },
+    {
+      "name": "newsletter_signup",
+      "fires": "on submit of the reader-capture form, only when data/forms.json enabled=true",
+      "properties": { "p": "page path", "l": "form variant" },
+      "informs": "whether a reader wants a second email; carries no address, which stays only in the chosen processor"
+    }
+  ]
+}
