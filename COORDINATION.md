@@ -7139,8 +7139,6 @@ caused the incident.
 **Left open for the owner, none of it blocking:** the 38 flags not printed on the Flagged page;
 R-02's untagged-undeclared blind spot; which register is authoritative for a reader-facing count;
 and the `shop.html` *"most-reviewed thermometer"* phrase this branch would not have written.
-**Status:** done — PR, merge and deploy record appended below.
-
 ---
 
 ## Session arena/126174a5-wina — T42 claim (2026-11-20)
