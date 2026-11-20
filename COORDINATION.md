@@ -700,3 +700,37 @@ No value was inferred; the topic roadmap is explicitly hypothetical and the desi
 explicitly a recommendation. Nothing blocks the merge. (Note observed, not changed here: `main`'s
 board carries a duplicate T24 row identical to T22; left as-is since it is another session's
 record and out of this session's scope.)
+
+---
+
+## Session `arena/38469152-wina` — T26 claim (2026-11-20)
+
+- **Branch:** `arena/38469152-wina` (branched from `main` @ `80b45a1`). Extends `main`'s build.
+  No second site. Session ID: `arena/38469152-wina`.
+- **Claim:** T26 — *Publication polish: merchandise the site so it reads like a shop, not an audit.*
+  Reader-facing only; every factual claim still has to pass the existing gates unchanged.
+- **Files / scope (exclusive to this session):**
+  - `assets/css/site.css` (append-only design layer + new components)
+  - `assets/js/site.js` (append-only: shelf filter, sticky buy bar, TOC)
+  - `assets/brand/*` (new: favicon, mark.) — first imagery on the site; see below
+  - `_src/build.mjs` (layout head: icon/og:image/theme-color; new `frontPage()`, category,
+    product-page and guide components; footer link to `/suggestions/`)
+  - `scripts/lib/site.mjs` + `scripts/check-site.mjs` (one image rule changed — see reason)
+  - `data/products.json` (additive only: `image` per product, `site.socialImage`, brand fields)
+  - `data/governance.json` (append flags found in this pass; no existing flag renumbered)
+  - `data/suggestions.json` (append SUG-25..; no existing suggestion renumbered)
+  - generated pages (rebuilt, not hand-edited)
+- **Not in scope (owned by other records):** `data/policy.json`, `data/questions.json`,
+  `data/links.json`, `scripts/compliance-gate.mjs`, `scripts/publish-gate.mjs`,
+  `.github/workflows/*`.
+- **Why imagery now, when FLG-007 withheld it:** FLG-007 withholds *manufacturer product imagery*
+  because there is no licensed feed for it and the PA-API path is blocked (FLG-010). This claim
+  adds only **self-produced, non-representational brand artwork** (a masthead mark, icon and
+  share card) that depicts no product, no seller and no Amazon content. Product photography stays
+  withheld and the flag stays open. The check-site "no external image" rule is unchanged in
+  substance; it is extended to allow same-origin `assets/brand/*` files, which it already
+  permits by regex — verified by running it.
+- **Verification plan:** `node _src/build.mjs` (authoring gate), `node scripts/check-site.mjs`,
+  `node scripts/compliance-gate.mjs`, `node scripts/publish-gate.mjs`, plus a link crawl and a
+  manual headless screenshot review of the front page at desktop and mobile widths.
+- **Status:** in progress.
