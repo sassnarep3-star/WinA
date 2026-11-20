@@ -11,16 +11,21 @@ automated (gates G-1..G-3 on data-room/compliance-gate.html):
   R-04  every internal link and asset reference resolves to a real file,
         and cross-page #fragments exist in their target
   R-05  every page has lang, <title>, meta description and a canonical link
-  R-06  no placeholder text (TODO/FIXME/Lorem) ships
+  R-06  no placeholder text (TODO/FIXME/Lorem) or unresolved merge-conflict
+        markers ship
   R-07  sitemap.xml covers exactly the indexable pages
   R-08  feed.xml parses and its item links resolve
   R-09  every page repeats the Amazon Associate statement in the footer
-  R-10  no price figures ship (Associates IP License §2(b): pricing data only
-        via PA API; §6(y): no price tracking/alerting) — see FLG-044
+  R-10  no price figures ship (Participation Requirements §2(b): prices and
+        availability only via API-served links; §6(y): no price tracking/alerting)
+        — see FLG-044/FLG-048/FLG-051
   R-11  no star ratings, review counts, review stars, "Amazon's Choice" badges
         or popularity badges ship (Participation Requirements §6(t): customer
         reviews and star ratings only via Creators API/PA API) — see FLG-044
-  R-12  counts stated in reviewer prose match the register they describe
+R-12  counts stated in reviewer prose match the register they describe
+  R-13   every data/*.json parses and carries no conflict markers (the machine
+        register drives the tools; found the hard way 2026-11-20 when a merge
+        committed unresolved markers into data/links.json)
 
 Checked scope: the served site only. `archive/` holds superseded session builds
 (see COORDINATION.md) and `data/` is not a published surface either, but R-12 reads
@@ -201,10 +206,39 @@ def check_head(path, text, collector):
 
 # ------------------------------------------------------------------------ R-06
 PLACEHOLDER = re.compile(r"\b(TODO|FIXME|XXX|Lorem ipsum)\b")
+CONFLICT_MARKER = re.compile(r"^(<{7}( |$)|={7}$|>{7}( |$))", re.M)
 
 def check_placeholders(path, text):
     for m in PLACEHOLDER.finditer(text):
         fail("R-06", path, f"placeholder text ships: {m.group(1)}")
+
+
+def check_conflict_markers(path, text):
+    for m in CONFLICT_MARKER.finditer(text):
+        fail("R-06", path, f"unresolved merge-conflict marker ships: {m.group(0).strip()!r}")
+
+
+# ------------------------------------------------------------------------ R-13
+# The machine register drives the gates and the tools. A data file that does not
+# parse is worse than an empty one: it fails silently downstream. (Found the hard
+# way on 2026-11-20, when a merge committed conflict markers into data/links.json.)
+def check_data_json():
+    import json as _json
+    data_dir = os.path.join(ROOT, "data")
+    if not os.path.isdir(data_dir):
+        return
+    for name in sorted(os.listdir(data_dir)):
+        if not name.endswith(".json"):
+            continue
+        path = os.path.join(data_dir, name)
+        raw = open(path, encoding="utf-8").read()
+        if CONFLICT_MARKER.search(raw):
+            fail("R-13", path, "conflict markers in a data file — merge was committed unresolved")
+            continue
+        try:
+            _json.loads(raw)
+        except Exception as exc:
+            fail("R-13", path, f"data JSON does not parse: {exc}")
 
 
 # -------------------------------------------------------- R-10 / R-11
@@ -395,11 +429,13 @@ def main():
         check_table_rows(path, text)
         check_head(path, text, collector)
         check_placeholders(path, text)
+        check_conflict_markers(path, text)
         check_figures(path, text)
     for path in pages:
         check_links(path, cache[path], cache)
     check_sitemap_and_feed()
     check_stated_counts(pages)
+    check_data_json()
 
     print(f"checked {len(pages)} HTML pages")
     for note in notes:
