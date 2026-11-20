@@ -1973,3 +1973,22 @@ deliverables onto it, nothing of anyone's discarded:
   and the archives, since its generator was retired on `main`. The requirements it served
   are covered on the current site by the data room, the guides and the decision board.
 - Gate on the merged tree: `python3 tools/check_site.py` — PASS (G-1/G-2/G-3).
+
+### T35 — third live-page fix (arena/b37e1a98-wina, 2026-11-20)
+
+Reading the deployed `compare.html` after the board-only merge turned up two more stale cells, both
+created by merges landing out of order rather than by any single session being wrong:
+
+- **Warranty row** still read `unverified` twice and was captioned "Warranty (claimed)", although the
+  flagged page — same site, same commit — said all five had terms and cited five pages. Now: row
+  renamed to "Warranty", the Chefman 6QT cites chefman.com's 1-year assurance, the Emeril shows the
+  manufacturer's warranty seal, the ThermoMaven cites its manual (lifetime, register within 30 days),
+  and the CHEF iQ cell is left as the other session set it.
+- **FLG-039's title** still said "one product still has no confirmed warranty" while its own detail
+  said the CHEF iQ warranty had since been filled from the manufacturer's user guide (`FLG-048`
+  records the 2-year-vs-1-year conflict that raises). Title corrected to "three fields are still
+  unconfirmed", matching the detail.
+
+This is the third consecutive defect found by reading the *deployed page* rather than the diff, after
+the unverified-values table and the weight row. All three were contradictions between two parts of the
+same site that no single diff could show. `tools/check_site.py` → PASS.
