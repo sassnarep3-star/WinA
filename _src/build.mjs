@@ -21,6 +21,11 @@ const gov = read("data/governance.json");
 const questions = read("data/questions.json");
 const suggestions = read("data/suggestions.json");
 const specialLink = read("data/special_link_tests.json");
+
+// Analytics is enabled only when both halves agree: the governance decision and an endpoint that
+// exists. A client switched on against an empty endpoint is a silent failure, which is worse than
+// an inert one, so the build resolves the pair and the gate asserts it.
+const ANALYTICS_ON = Boolean(gov.analytics.enabled && (site.analyticsEndpoint || "").trim());
 // AI-platform concept (framed as a concept only; nothing here is implemented)
 const aiConcept = {
   title: "AI-platform concept",
@@ -94,7 +99,6 @@ const NAV = [
   { href: url("/thermometers/"), label: "Thermometers" },
   { href: url("/guides/"), label: "Guides" },
   { href: url("/compare/"), label: "Compare" },
-  { href: url("/seasonal/"), label: "Holiday" },
   { href: url("/about/"), label: "About" }
 ];
 
@@ -135,15 +139,12 @@ function layout(opts) {
 <meta property="og:title" content="${esc(fullTitle)}">
 <meta property="og:description" content="${esc(desc)}">
 <meta property="og:url" content="${abs(canonical)}">
-<meta property="og:image" content="${abs("/assets/img/holiday-counter.jpg")}">
-<meta property="og:image:alt" content="A kitchen counter set for holiday cooking: seasonal ingredients, herbs and prep tools on a wooden surface.">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="${abs("/assets/img/holiday-counter.jpg")}">
 <meta name="twitter:title" content="${esc(fullTitle)}">
 <meta name="twitter:description" content="${esc(desc)}">
 <link rel="alternate" type="application/rss+xml" title="${esc(site.name)}" href="${url("/feed.xml")}">
 <link rel="stylesheet" href="${url("/assets/css/site.css")}">
-<script>window.CS_CONFIG={analyticsEnabled:${gov.analytics.enabled},analyticsEndpoint:""};</script>
+<script>window.CS_CONFIG={analyticsEnabled:${ANALYTICS_ON},analyticsEndpoint:${JSON.stringify(site.analyticsEndpoint || "")}};</script>
 ${ld}
 </head>
 <body data-page-type="${pageType}">
@@ -409,31 +410,11 @@ function frontPage() {
   </div>
 </section>
 
-<section class="section section--deep">
-  <div class="wrap">
-    <div class="banner">
-      <figure class="banner__media">
-        <img src="${url("/assets/img/holiday-counter.jpg")}" alt="A kitchen counter set for holiday cooking prep: seasonal produce, herbs and tools on a wooden surface." width="1384" height="768" loading="lazy">
-      </figure>
-      <div class="banner__body">
-        <p class="kicker">Seasonal · updated for November</p>
-        <h2 class="section__title">One oven, four dishes, a table that won&rsquo;t move</h2>
-        <p class="section__dek">The holiday problem is scheduling, not recipe choice. Where a second countertop chamber fits the plan, what to move off the oven first, and the two-temperature trick to check before you buy.</p>
-        <div class="hero__actions" style="margin-top:1.2rem">
-          <a class="btn btn--primary" href="${url("/seasonal/")}">Read the holiday guide</a>
-          <a class="btn btn--ghost" href="${url("/guides/not-burn-the-rolls/")}">Where an air fryer beats a second oven</a>
-        </div>
-        <p class="tiny faint" style="margin-top:1rem">Seasonal topics follow the calendar, not demand data — that limitation is logged as <a href="${url("/flagged/")}">FLG-020</a>, not hidden.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
 <section class="section">
   <div class="wrap">
     <div class="section__head">
       <h2 class="section__title">Read before you buy</h2>
-      <p class="section__dek">The questions that come up before — and during — any of these purchases, answered without a verdict at the end.</p>
+      <p class="section__dek">The questions that come up before any of these purchases, answered without a verdict at the end.</p>
     </div>
     <div class="guides guides--two">
       ${guides
@@ -784,7 +765,7 @@ ${breadcrumb([{ href: url("/"), label: "Home" }, { label: "Guides" }])}
   <div class="wrap">
     <p class="kicker">Buying guides</p>
     <h1 class="article-head__title">The questions people ask before they buy</h1>
-    <p class="article-head__dek">Seven guides, each built around one decision. No rankings, no "best of" list, no claim that any of this was tested.</p>
+    <p class="article-head__dek">Five guides, each built around one decision. No rankings, no "best of" list, no claim that any of this was tested.</p>
   </div>
 </div>
 <section class="section">
@@ -817,7 +798,7 @@ ${breadcrumb([{ href: url("/"), label: "Home" }, { label: "Guides" }])}
   pages.push({
     path: "/guides/",
     title: "Buying guides",
-    desc: "Seven question-shaped guides to air fryers and thermometers: form factor, capacity, cleanup, technique, and multi-function claims.",
+    desc: "Five question-shaped guides to air fryers and thermometers: form factor, capacity, cleanup, and multi-function claims.",
     html,
     priority: "0.8",
     changefreq: "weekly"
@@ -967,6 +948,11 @@ function specialLinkSection() {
 `;
 }
 
+// A row's citation must be the source the row *names*, not always the product listing.
+// Before this, any spec with a source rendered a tagged amazon.com/dp/ link, so a row citing a
+// manual or a USDA table would have pointed at a store page instead — and every verification click
+// would have carried a tag. Only the listing source may be tagged, because only that one is a
+
 function registerPage() {
   const specRows = [];
   for (const p of products) {
@@ -989,7 +975,13 @@ function registerPage() {
     <td>${esc(s.label)}</td>
     <td>${esc(s.note)}</td>
     <td>${esc(s.accessed)}</td>
-    <td>${s.url ? cite(s.url, "Open") : 'amazon.com/dp/<em>ASIN</em> <span class="faint">(per product)</span>'}</td>
+    <td>${
+      s.url
+        ? cite(s.url, "Open")
+        : s.id === "amazon-listing" || s.id === "link-redirect"
+        ? 'amazon.com/dp/<em>ASIN</em> <span class="faint">(per product)</span>'
+        : `<span class="faint">per row — each citation links its own page</span>`
+    }</td>
   </tr>`
     )
     .join("");
@@ -1399,6 +1391,123 @@ ${breadcrumb([{ href: url("/"), label: "Home" }, { label: "Open questions" }])}
 }
 
 /* ============================================================
+   SUGGESTIONS — design brief, topic roadmap, decision log
+   ============================================================ */
+function renderDesignBrief() {
+  const db = suggestions.designBrief;
+  const rows = db.principles
+    .map((p) => `<tr>
+    <td><code>${esc(p.id)}</code></td>
+    <td class="small">${esc(p.area)}</td>
+    <td class="small"><strong>${esc(p.principle)}</strong></td>
+    <td class="small">${esc(p.why)}</td>
+    <td class="small">${esc(p.constraint)}</td>
+    <td class="small">${
+      p.source ? cite(p.source.url, esc(p.source.label)) : '<span class="faint">recommendation — no source</span>'
+    }</td>
+  </tr>`)
+    .join("");
+  return `<section class="section section--deep">
+  <div class="wrap">
+    <div class="section__head">
+      <h2 class="section__title" style="font-size:1.4rem">Draft design brief</h2>
+      <p class="section__dek">${esc(db.intro)}</p>
+    </div>
+    <div class="tablewrap">
+      <table class="data sortable">
+        <caption>Visual and editorial direction to feed a design prompt. These are recommendations, not verified facts. Each principle names the constraint it respects.</caption>
+        <thead><tr><th scope="col">ID</th><th scope="col">Area</th><th scope="col">Principle</th><th scope="col">Why</th><th scope="col">Constraint</th><th scope="col">Source</th></tr></thead>
+        <tbody>${rows}</tbody>
+      </table>
+    </div>
+  </div>
+</section>`;
+}
+
+function renderTopicRoadmap() {
+  const tr = suggestions.topicRoadmap;
+  const rows = tr.clusters
+    .flatMap((c) =>
+      c.topics.map(
+        (t) => `<tr>
+      <td><strong>${esc(c.name)}</strong><br><span class="tiny muted">${esc(
+          c.products.length ? c.products.join(" · ") : "no product tie-in"
+        )}</span></td>
+      <td>${esc(t.title)}</td>
+      <td class="small">${esc(t.intent)}</td>
+      <td><span class="pill pill--claim">${esc(t.status)}</span></td>
+    </tr>`
+      )
+    )
+    .join("");
+  return `<section class="section">
+  <div class="wrap">
+    <div class="section__head">
+      <h2 class="section__title" style="font-size:1.4rem">Topic roadmap</h2>
+      <p class="section__dek">${esc(tr.note)}</p>
+    </div>
+    <div class="tablewrap">
+      <table class="data sortable">
+        <caption>Candidate catchy, question-shaped topics by cluster. All are hypotheses; none is a claim about search volume, popularity or product superiority.</caption>
+        <thead><tr><th scope="col">Cluster</th><th scope="col">Topic (hypothesis)</th><th scope="col">Decision it serves</th><th scope="col">Status</th></tr></thead>
+        <tbody>${rows}</tbody>
+      </table>
+    </div>
+  </div>
+</section>`;
+}
+
+function renderDecisionLog() {
+  const dl = suggestions.decisionLog;
+  const entries = dl.entries;
+  const rows = entries
+    .map(
+      (e) => `<tr>
+    <td>${esc(e.date)}</td>
+    <td><span class="pill pill--${esc(e.decision)}" >${esc(e.decision)}</span></td>
+    <td><code>${esc(e.item)}</code></td>
+    <td class="small">${esc(e.reason)}</td>
+  </tr>`
+    )
+    .join("");
+  return `<section class="section section--deep">
+  <div class="wrap">
+    <div class="section__head">
+      <h2 class="section__title" style="font-size:1.4rem">Decision log</h2>
+      <p class="section__dek">${esc(dl.note)}</p>
+    </div>
+    <div class="tablewrap">
+      <table class="data sortable">
+        <caption>Accept or reject a suggestion here before implementing it. Recorded so the choice is auditable and rejected items are not re-litigated.</caption>
+        <thead><tr><th scope="col">Date</th><th scope="col">Decision</th><th scope="col">Item</th><th scope="col">Reason</th></tr></thead>
+        <tbody>${
+          rows ||
+          `<tr><td colspan="4" style="text-align:center;padding:1.5rem;color:var(--ink-mute)"><strong style="display:block;font-family:var(--serif);font-size:1.05rem;color:var(--ink);margin-bottom:.3rem">No decisions recorded yet</strong>Each accepted or rejected suggestion is recorded here with a date and a one-line reason.</td></tr>`
+        }</tbody>
+      </table>
+    </div>
+
+    <div class="tablewrap mt2">
+      <table class="data sortable">
+        <caption>How to review and choose. Score each suggestion, read the risk, then accept or reject in writing.</caption>
+        <thead><tr><th scope="col">Step</th><th scope="col">Rule</th></tr></thead>
+        <tbody>${dl.rubric
+          .map((r, i) => `<tr><td class="num">${i + 1}</td><td class="small">${esc(r)}</td></tr>`)
+          .join("")}</tbody>
+      </table>
+    </div>
+
+    <div class="note note--warn mt2">
+      <p class="note__title">Kill criteria</p>
+      <ul style="margin:.3rem 0 0;padding-left:1.1rem">${dl.killCriteria
+        .map((k) => `<li>${esc(k)}</li>`)
+        .join("")}</ul>
+    </div>
+  </div>
+</section>`;
+}
+
+/* ============================================================
    SUGGESTIONS
    ============================================================ */
 function suggestionsPage() {
@@ -1480,11 +1589,15 @@ ${breadcrumb([{ href: url("/"), label: "Home" }, { label: "Suggestions" }])}
     </div>
   </div>
 </section>
+
+${renderDesignBrief()}
+${renderTopicRoadmap()}
+${renderDecisionLog()}
 `;
   pages.push({
     path: "/suggestions/",
     title: "Suggestions",
-    desc: "A reviewable decision list: sixteen suggestions with rationale, cost, risk, and a recommendation — nothing implemented without a decision.",
+    desc: "A reviewable decision list: suggestions with rationale, cost, risk and a recommendation, plus a draft design brief, a topic roadmap of hypotheses, and a decision log. Nothing is implemented without a decision.",
     html,
     priority: "0.6",
     changefreq: "weekly"
@@ -1514,9 +1627,7 @@ ${breadcrumb([{ href: url("/"), label: "Home" }, { label: "Executive summary" }]
     <h2>What exists</h2>
     <ul>
       <li><strong>A five-product publication</strong> — three air fryers, two thermometers — with individual pages, two category hubs, and a full comparison table.</li>
-      <li><strong>Seven question-shaped guides</strong>, written as decisions rather than rankings, including a technique cluster and a seasonal cluster.</li>
-      <li><strong>A seasonal collection page</strong> carrying the holiday cluster in the navigation, with the calendar-driven (not demand-driven) topic choice disclosed on the page itself.</li>
-      <li><strong>Publisher imagery</strong> — generated kitchen-counter scenes used as brand photography and labelled on-page as illustrations, so no page claims to show the products.</li>
+      <li><strong>Five question-shaped guides</strong>, written as decisions rather than rankings.</li>
       <li><strong>A complete source register</strong>: ${policy.sources.length} primary sources and ${products.reduce(
         (n, p) => n + p.specs.length,
         0
@@ -1531,6 +1642,9 @@ ${breadcrumb([{ href: url("/"), label: "Home" }, { label: "Executive summary" }]
       <li><strong>A publication gate</strong> in the build: it fails if any page loses its disclosure, or if any Amazon link loses its sponsored marking.</li>
       <li><strong>SEO foundations</strong>: sitemap, RSS feed, canonical URLs, structured data, and descriptions written for humans.</li>
       <li><strong>A defined measurement plan</strong>: five events, a self-hosted collector, and a ledger schema.</li>
+      <li><strong>A design-prompt suggestion layer</strong>: a draft design brief for a polished-marketing look, a topic roadmap of catchy question-shaped hypotheses, organic-traffic levers, and a decision log — all on <a href="${url(
+        "/suggestions/"
+      )}">the suggestions page</a> for review before anything is implemented.</li>
     </ul>
 
     <h2>What does not exist, and why</h2>
@@ -1556,18 +1670,20 @@ ${breadcrumb([{ href: url("/"), label: "Home" }, { label: "Executive summary" }]
 
     <h2>What to do next, in order</h2>
     <ol>
+      <li>Review the suggestions, the draft design brief and the topic roadmap on <a href="${url(
+        "/suggestions/"
+      )}">/suggestions/</a>, and record accept / reject decisions in the decision log before implementing anything.</li>
       <li>Sign in to Associates and confirm one product link per product appears in the tracking report.</li>
       <li>Deploy the collector in <code>_worker/</code> and set the endpoint, then rebuild.</li>
       <li>Verify Search Console, replace the placeholder token, submit the sitemap.</li>
-      <li>Publish a new guide every week for eight weeks — the technique cluster proposed in <a href="${url("/suggestions/")}">SUG-18</a> supplies the topics.</li>
-      <li>At week eight, read the query report and replace the topic hypotheses with measured demand — including whether the seasonal cluster earns its annual refresh (Q-23).</li>
-      <li>Refresh <a href="${url("/seasonal/")}">the seasonal page</a> every November if the cadence is adopted (Q-25), re-checking its linked specs on each refresh.</li>
+      <li>Publish a new guide every week for eight weeks.</li>
+      <li>At week eight, read the query report and replace the topic hypotheses with measured demand.</li>
       <li>Apply for Product Advertising API access once the account qualifies — it unlocks prices, ratings and images together.</li>
     </ol>
 
     <h2>The honest verdict</h2>
-    <p>What exists is a small, well-documented, compliant publication with seven decent guides, a seasonal collection, and five products. It is not yet a business: it has no traffic, no verified affiliate attribution, and no data. It is, however, built so that when those three things arrive, nothing has to be torn down — and so that nothing on it is a lie.</p>
-    <p>The main strategic risk is not technical. It is that seven guides is still not enough content to rank in a crowded category, and the plan for fixing that is a cadence, not a feature. The two decisions blocking that cadence are owner calls recorded in the questions register: the seasonal cadence (Q-25) and generated brand imagery (Q-26).</p>
+    <p>What exists is a small, well-documented, compliant publication with five decent guides and five products. It is not yet a business: it has no traffic, no verified affiliate attribution, and no data. It is, however, built so that when those three things arrive, nothing has to be torn down — and so that nothing on it is a lie.</p>
+    <p>The main strategic risk is not technical. It is that five guides is not enough content to rank in a crowded category, and the plan for fixing that is a cadence, not a feature.</p>
   </div>
 </section>
 `;
@@ -1824,148 +1940,6 @@ ${breadcrumb([
   });
 }
 
-/* ============================================================
-   SEASONAL COLLECTION — the hub that carries the seasonal
-   cluster. Topic chosen for the calendar (November), not from
-   demand data; that limitation is FLG-020 and is stated here.
-   ============================================================ */
-function seasonalPage() {
-  const fryers = products.filter((p) => p.category === "air-fryers");
-  const holidayGuide = guides.find((g) => g.slug === "holiday-batch");
-  const techniqueGuide = guides.find((g) => g.slug === "not-burn-the-rolls");
-  const thermometer = products.find((p) => p.formFactor === "wireless-leave-in");
-  const instantRead = products.find((p) => p.formFactor === "instant-read");
-
-  const html = `
-${breadcrumb([{ href: url("/"), label: "Home" }, { label: "Holiday" }])}
-<div class="article-head article-head--image">
-  <img class="article-head__img" src="${url("/assets/img/counter-plan.jpg")}" alt="" role="presentation" width="1384" height="768" loading="lazy">
-  <div class="article-head__scrim"></div>
-  <div class="wrap article-head__inner">
-    <p class="kicker">Seasonal collection · November &amp; December</p>
-    <h1 class="article-head__title">Holiday cooking, planned around a second chamber</h1>
-    <p class="article-head__dek">One oven, four dishes, a table that will not move. The fix is not a bigger oven — it is a smaller one on the counter, with its own clock.</p>
-  </div>
-</div>
-
-<section class="section">
-  <div class="wrap narrow prose">
-    <p>Every holiday kitchen runs into the same wall: the roast owns the main oven for hours at one temperature, and everything else wants something different. Sides want high heat fast. Rolls want a final hot burst exactly when guests arrive. Reheating wants crisp back in minutes. The main oven cannot be in four places, and a written schedule only stretches so far.</p>
-    <p>A second, small chamber breaks the constraint instead of managing it. This collection gathers the seasonal decision in one place: the sequence to follow, the products that fit the two jobs a holiday kitchen actually creates, and the honest limits of what we know.</p>
-    <div class="note">
-      <p class="note__title">What this page is not</p>
-      <p>It is not a claim that anything was cooked, tested, or measured. No page on this site claims hands-on experience — the FTC forbids describing experience you do not have, and none took place. It is also not a demand-driven topic pick: seasonal pages follow the calendar, because no Search Console query data exists yet (<a href="${url("/flagged/")}">FLG-020</a>, <a href="${url("/questions/")}">Q-23</a>).</p>
-    </div>
-  </div>
-</section>
-
-<section class="section section--deep">
-  <div class="wrap">
-    <div class="section__head">
-      <h2 class="section__title">The sequence, in one screen</h2>
-      <p class="section__dek">Work backwards from dinner. The roast keeps the oven; the counter chamber takes everything that wants hot, fast, small, or reheated.</p>
-    </div>
-    <ol class="steps">
-      <li><strong>Claim the oven for the long, inflexible dish.</strong> The roast, the covered braise, anything slow by design. Its clock is the least movable.</li>
-      <li><strong>Give high-heat, single-layer sides to the counter chamber.</strong> Sprouts, potatoes, roasted vegetables — browned by moving air, held warm in a covered bowl while the rest finishes.</li>
-      <li><strong>Make the counter chamber the reheat station.</strong> Anything that finished early comes back crisp there, not in the oven you are fighting for.</li>
-      <li><strong>Reserve the final burst for the counter chamber too.</strong> Rolls, gratin top-ups, biscuit refreshes — the short, hot jobs that land exactly when the oven is full.</li>
-      <li><strong>Write the two clocks down the night before.</strong> Oven schedule on one line, counter schedule on the next. The most common holiday failure is scheduling, and paper is the cheapest fix.</li>
-    </ol>
-  </div>
-</section>
-
-<section class="section">
-  <div class="wrap">
-    <div class="section__head section__head--split">
-      <div>
-        <h2 class="section__title">The machines that fit the two jobs</h2>
-        <p class="section__dek">Two small drawers that finish together, or one large chamber that <em>is</em> a second oven. The details below come from the official listings; nothing here is tested.</p>
-      </div>
-      <a class="section__more" href="${url("/air-fryers/")}">All air fryers</a>
-    </div>
-    <div class="products products--three">
-      ${fryers.map((p, i) => productCard(p, i + 1)).join("")}
-    </div>
-    <div class="note mt2">
-      <p class="note__title">Reading the two options</p>
-      <p>The dual-basket unit solves two temperatures at small scale — 6 quarts total, two 3-quart cooks, Sync Finish holds the faster basket so both plates land together. The 26-quart French-door chamber is the second-oven answer: full trays, a small bird of its own, at the cost of most of a counter. Measure the counter in October, not December.</p>
-    </div>
-  </div>
-</section>
-
-<section class="section">
-  <div class="wrap">
-    <div class="section__head">
-      <h2 class="section__title">The other holiday failure is guesswork</h2>
-      <p class="section__dek">A crowded kitchen pulls birds early and opens doors too often. A thermometer takes the guess out for less than the price of a side dish.</p>
-    </div>
-    <div class="products">
-      ${[instantRead, thermometer].filter(Boolean).map((p) => productCard(p, null)).join("")}
-    </div>
-  </div>
-</section>
-
-<section class="section section--deep">
-  <div class="wrap">
-    <div class="section__head">
-      <h2 class="section__title">The guides behind this page</h2>
-      <p class="section__dek">The seasonal cluster, written as decisions rather than rankings.</p>
-    </div>
-    <div class="guides guides--two">
-      ${
-        [holidayGuide, techniqueGuide]
-          .filter(Boolean)
-          .map(
-            (g) => `<a class="guide-link" href="${url(`/guides/${g.slug}/`)}">
-        <span class="guide-link__num">${g.number}</span>
-        <span>
-          <h3 class="guide-link__title">${esc(g.title)}</h3>
-          <p class="guide-link__dek">${esc(g.dek)}</p>
-        </span>
-      </a>`
-          )
-          .join("")
-      }
-    </div>
-    <div class="note mt2">
-      <p class="note__title">The imagery on this page</p>
-      <p>The photographs here are generated illustrations of a kitchen counter, not photos of the products. No product photography appears anywhere on this site — reproducing Amazon listing images outside approved tooling is not permitted, and stock photos of a different appliance would misrepresent the item. See <a href="${url("/flagged/")}">FLG-007</a> for the full constraint.</p>
-    </div>
-  </div>
-</section>
-`;
-
-  pages.push({
-    path: "/seasonal/",
-    title: "Holiday cooking, planned around a second chamber",
-    desc: "The seasonal collection: what to move off the oven, in what order, and the two machines that fit the two jobs a holiday kitchen creates.",
-    html,
-    priority: "0.8",
-    changefreq: "weekly",
-    jsonld: {
-      "@context": "https://schema.org",
-      "@type": "CollectionPage",
-      name: "Holiday cooking, planned around a second chamber",
-      description: "Seasonal collection: sequencing a second countertop chamber for holiday cooking.",
-      datePublished: site.built,
-      dateModified: site.built,
-      author: { "@type": "Organization", name: site.name },
-      publisher: { "@type": "Organization", name: site.name },
-      isAccessibleForFree: true,
-      mainEntity: {
-        "@type": "ItemList",
-        itemListElement: fryers.map((p, i) => ({
-          "@type": "ListItem",
-          position: i + 1,
-          url: abs(`/products/${p.slug}/`),
-          name: p.name
-        }))
-      }
-    }
-  });
-}
-
 function feeds() {
   // Deterministic: the declared build date, not the wall clock. A build that
   // embeds `new Date()` can never pass a "is the output committed?" check.
@@ -2043,7 +2017,6 @@ frontPage();
 categoryPages();
 productPages();
 guidePages();
-seasonalPage();
 comparePage();
 registerPage();
 flaggedPage();
@@ -2305,4 +2278,6 @@ console.log(`\nGenerated ${htmlFiles.length} pages, ${pages.length} in sitemap.`
 console.log(fails.length ? `FAILED: ${fails.length} issue(s)` : "PASSED: all gates clear");
 for (const f of fails.slice(0, 20)) console.log(`  FAIL ${f.m}`);
 for (const w of warns.slice(0, 10)) console.log(`  WARN ${w.m}`);
+if (gov.analytics.enabled && !(site.analyticsEndpoint || "").trim())
+  warn("governance.analytics.enabled is true but site.analyticsEndpoint is empty — the client is held inert by the build; set the endpoint or switch the decision off");
 if (fails.length) process.exitCode = 1;

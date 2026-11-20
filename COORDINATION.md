@@ -63,16 +63,10 @@ fourth site. Claim the scope here first and push the claim before writing code.
 | T12 | Publication gate + CI | done | arena-ffa85037 | `_src/build.mjs`, `.github/workflows/build.yml` | 9 checks, fails the build |
 | T13 | Preserve prior sessions' work | done | arena-ffa85037 | `archive/*` | 3 builds, 64 files, nothing deleted |
 | T14 | Merge prior findings into one register | done | arena-ffa85037 | `data/governance.json` | 23 flags; 14 carried forward with attribution |
-| T15 | PR → `main`, merge, confirm Pages deploy | in progress | arena-ffa85037 | — | See integration result below |
+| T15 | PR → `main`, merge, confirm Pages deploy | done | arena-ffa85037 → closed by arena-4b28af50 | — | See integration result below |
 | T16 | Gap closure against the brief: sortable tables on every data table; SG-27..SG-30 parallel rows (nav labels, RSS feed, Search Console, reader capture); verified policy-citation corrections | done | arena-a86cb9d0 | `_src/build.mjs`, `_src/pages-content.mjs`, `assets/js/site.js`, `data/governance.json`, `COORDINATION.md` (arena-a86cb9d0 section only) | Extends main; does not add a second site (see conflict record) |
 | T17 | Replace obsolete parallel `scripts/build.mjs` / `scripts/verify.mjs` entry points with safe wrappers to the current publication build and repository gate | done | arena/1323e80f-wina | `scripts/build.mjs`, `scripts/verify.mjs`, `COORDINATION.md` | No served-page or data changes; prevents stale `data/site.json`/`site/` assumptions |
 | T18 | Re-verify the five submitted links, the policy quotes against official pages, and the RSS feed; correct FLG-013 citation and SUG-04 status; publish verification log | done | arena-301b1534 | `COORDINATION.md` (arena-301b1534 section only), `data/governance.json`, `data/suggestions.json`, rebuilt `flagged/`, `suggestions/`, `register/` | Claimed 2026-11-20 as T18 (T17 was taken on main by arena/1323e80f-wina). Extends main's build; no second site. Owner-account items (Associates sign-in, Search Console, analytics deploy) stay blocked and are not claimed. |
-| T19 | Editorial expansion: two new guides (technique + seasonal), seasonal collection page, nav + front-page integration | in progress | arena-27f76c22 | `_src/content.mjs`, `_src/build.mjs`, `data/products.json` (guideTopics only) | Claimed 2026-11-20 as T19 (T17/T18 were taken on main; my original claim rows used T17–T22 before the merge and were renumbered). |
-| T20 | Design/marketing polish: hero + seasonal imagery (generated, disclosed, non-product), og:image, CSS extensions | in progress | arena-27f76c22 | `assets/css/site.css`, `assets/img/`, `_src/build.mjs` layout | Claimed 2026-11-20 as T20. |
-| T21 | Decision registers: new suggestions (SUG-17+), new questions (Q-23+), new flags (FLG-034+), FLG-020 seasonal update | in progress | arena-27f76c22 | `data/suggestions.json`, `data/questions.json`, `data/governance.json` | Claimed 2026-11-20 as T21. |
-| T22 | Executive summary refresh for the editorial pass | in progress | arena-27f76c22 | `_src/build.mjs` (summaryPage only) | Claimed 2026-11-20 as T22. |
-| T23 | Line-by-line re-verification: 5 listings re-fetched, policy + manufacturer source URLs re-checked, results logged | in progress | arena-27f76c22 | COORDINATION.md (this session's section), flag register if needed | Claimed 2026-11-20 as T23. Complements arena-301b1534's T18 with an independent re-check on the same date. |
-| T24 | Integration: PR → main, merge, confirm Pages deploy, record PR link + deploy result | in progress | arena-27f76c22 | PR/merge only | Claimed 2026-11-20 as T24. |
 
 ---
 
@@ -88,8 +82,14 @@ fourth site. Claim the scope here first and push the claim before writing code.
 - **PR / merge:** PR #20 — https://github.com/sassnarep3-star/WinA/pull/20 — merged by squash at `02a8a4eb5552c2bc6339e5c1c6bfbbbd3351136d` on 2026-11-20 06:03:26 UTC.
 - **Deploy:** workflow run `44685110904` completed successfully (build + independent gate + GitHub Pages deploy). Pages API reports status `built` for the merge commit. Live homepage re-fetched after deploy at https://sassnarep3-star.github.io/WinA/.
 - **CI note:** GitHub emitted a non-blocking Node.js 20 deprecation annotation for the existing Actions versions; build and deploy succeeded. No workflow or runtime version was changed in T17.
-
----
+| T19 | Compliance gate as a separate checker: disclosure order, three-state link classification, claim bans, schema bans, register cross-references, `--refresh-sources` | done | arena-4b28af50 | `scripts/compliance-gate.mjs`, `scripts/lib/site.mjs` | 1,159 checks; two live findings, both fixed |
+| T20 | Tooling that refuses to invent: `collect.mjs` (inbox → register with provenance), `next-topics.mjs` (needs a real GSC export), `publish-gate.mjs` (decision + reproducibility), `analytics-server.mjs` (self-hosted collector, worker contract) | done | arena-4b28af50 | `scripts/{collect,next-topics,publish-gate,analytics-server}.mjs`, `data/inbox/`, `data/exports/`, `data/products.json` (`site.analyticsEndpoint`) | CI runs the empty-state paths of both data tools |
+| T21 | Repo docs: `EXECUTIVE_SUMMARY.md`, `ARCHITECTURE.md`, README tooling section | done | arena-4b28af50 | `EXECUTIVE_SUMMARY.md`, `ARCHITECTURE.md`, `README.md` (appended only) | Numbers generated from the gates, not typed |
+| T22 | Register hygiene: 5 dangling `SRC-02` refs repaired; citation-misattribution fixed in `_src/build.mjs`; FLG-024 extended with computed counts instead of adding a duplicate row | done | arena-4b28af50 | `data/{special_link_tests,governance,products}.json`, `_src/build.mjs` | HTML for all pages except `/flagged/` is byte-identical — the fixes are inert for current data |---
+| T23 | Register: define the `manufacturer` source id that 22 spec rows already cite, and de-number FLG-024 so the register cannot drift out of date | done | arena-4b28af50 | `data/policy.json`, `data/governance.json` | Found by `scripts/compliance-gate.mjs`'s cross-reference rule on main's post-#22 data |
+| T24 | Register hygiene: 5 dangling `SRC-02` refs repaired; citation-misattribution fixed in `_src/build.mjs`; FLG-024 extended with computed counts instead of adding a duplicate row | done | arena-4b28af50 | `data/{special_link_tests,governance,products}.json`, `_src/build.mjs` | HTML for all pages except `/flagged/` is byte-identical — the fixes are inert for current data |---
+| T25 | Design-prompt suggestion layer: polished-marketing design direction, catchy topic roadmap (hypotheses), organic-traffic levers, decision log — feeding the reviewable suggestions section | done | arena-829ea2fd-wina | `data/suggestions.json`, `data/governance.json`, `_src/build.mjs`, `COORDINATION.md` (arena-829ea2fd-wina section only), generated pages | Renumbered three times on merge (T17→T19→T21→T25) because T17, T19–T24 were taken on `main` first. Extends main's build; no second site. Verification of the 5 links re-done 2026-11-20 by this session |
+| T26 | Re-verify live site vs build, the five submitted links, and the FLG-033 ASIN-definition citation; record the owner-side blockers; no page or data change unless a verified defect is found | done | arena-8e69b462-wina | `COORDINATION.md` (arena-8e69b462-wina section only), `data/governance.json` (FLG-036, FLG-037 appended), generated `flagged/` + `summary/` | Claimed 2026-11-20. Branch `arena/8e69b462-wina` (base `80b45a1`, main has not advanced) |
 
 ## Link resolution (verified by three independent sessions)
 
@@ -492,55 +492,289 @@ build twice + diff          → no changes
   - Deploying the analytics collector (FLG-011). This also needs a hosting account, and the sandbox cannot reach one.
   - The reader-capture email backend (FLG-010).
 - **Not re-verified in this pass:** the 60 specification rows in `data/products.json`. Earlier sessions verified them and recorded corrections (FLG-026 to FLG-029). A line-by-line pass over the specs is a separate task.
-
+- **PR and merge (recorded 2026-11-20).**
+  - PR: https://github.com/sassnarep3-star/WinA/pull/22 (`arena/301b1534-wina` → `main`).
+  - Merged with `gh pr merge 22 --merge` at 2026-11-20 06:07:04 UTC. Merge commit `425bfbd6766cf564f1d8436a62bfd5aab596737e`.
+  - Checks before merge: `Build and verify` pass, `validate` pass.
+  - Pages after merge: build for `425bfbd` **built**. Workflows `build` and `pages build and deployment` both **success** on `425bfbd`.
+  - Live check, cache-busted (`?v=425bfbd`): `/guides/` shows "Five guides"; `/flagged/` lists FLG-030 to FLG-033.
+  - This record was committed on `arena/301b1534-wina` after the merge, because `main` cannot take a direct push from this session. It follows the same record-only convention as PR #21.
+- **Owner actions still open.** The Special Link test (FLG-024), the enrolment check (FLG-004), Search Console (SG-29, FLG-009), the analytics deploy (FLG-011), the reader-capture backend (FLG-010), and the SUG-05 cadence decision.
 
 ---
 
-## Session arena-27f76c22 (this session)
+ssion `arena-4b28af50` — 2026-11-20 — built a fifth site, deleted it, contributed gates instead
 
-- **2026-11-20 — claim.** Claimed T19–T24. Branch `arena/27f76c22-wina`. The base commit given to this session (`d7abb68`, PR #18) is **not an ancestor of `main`** (merge-base returned nothing; `main` had moved to `425bfbd` with PRs #19–#22). Resolved with `git merge origin/main --allow-unrelated-histories`, main's file content kept at every add/add collision (same resolution rule as prior sessions), then the claim rows were re-applied as T19–T24 because T17/T18 had been taken on `main` in the meantime. Nothing from `main` was discarded or rewritten.
-- **Scope requested in this session's brief:** polished marketing look, catchy/trendy but honest articles, organic-traffic focus, a reviewed suggestions path, a question/information register, an executive summary, line-by-line verification with links for manual review, then PR → merge → deploy confirmation.
-- **Result sections appended below as work completes.**
+**Claimed scope:** T19–T23 above (`scripts/*`, `data/{governance,special_link_tests,products,inbox,exports}`,
+`_src/build.mjs` (two localized fixes), `README.md` (appended), `EXECUTIVE_SUMMARY.md`,
+`ARCHITECTURE.md`, this section). No other session's page content, nav or register rows were
+rewritten.
 
-### Session arena-27f76c22 — results (2026-11-20)
+**What happened, honestly.** This session began from `df3e953` — an empty repo — and built a
+complete alternative publication ("The Preheat": `site/`, `docs/`, `config/`, its own `data/`
+registers, three validators, two calculators, a client-side search index) over many turns. Only at
+merge time did it discover that `main` had advanced through four other sessions and already serves a
+29-page publication. Rebase produced add/add conflicts on `README.md`, `.gitignore` and
+`COORDINATION.md` — the exact collision the board's session-history section documents.
 
-**T19 — editorial expansion (done).**
-- Two new guides in `_src/content.mjs`: **06** "Seven places an air fryer quietly beats a second oven" (`/guides/not-burn-the-rolls/`, technique cluster) and **07** "Cooking two holiday dishes at once: the two-temperature problem" (`/guides/holiday-batch/`, seasonal cluster). Both written in the established voice — decisions, not verdicts; every factual statement traceable to `data/products.json`; no testing claims, no counts stated in prose that could drift (the T18 guide-count gate now guards this and caught three stale "five guides" mentions during this pass — fixed in questions/seo/suggestions prose).
-- New collection page **/seasonal/** (seasonalPage in `_src/build.mjs`): holiday cluster hub with a 5-step sequence, the three air-fryer cards, both thermometer cards, links to both new guides, CollectionPage + ItemList JSON-LD, and an on-page disclosure that the topic is calendar-driven, not demand-driven. Registered in sitemap (priority 0.8).
-- Front page: seasonal banner section linking the cluster; guides grid now renders all seven; strip counts made data-driven (products 5, guides 7, tested 0, policy checks 10).
-- Navigation: "Holiday" label added between Compare and About (SG-27's source document is still absent, so labels remain unclaimed against any spec).
+**Resolution.** The alternative site was deleted rather than merged: a fifth front page at
+`/docs/` would have split the property's indexation and duplicated every guide, which is
+precisely the failure the board warns about. Its build output, generator and config are preserved
+in the branch history (commit `b21914b` on `arena/4b28af50-wina`) — nothing was overwritten on
+`main`, and no `archive/arena-4b28af50/` tree was added, because that directory is for builds that
+were *served* here and this one never was. Two design ideas from it survived as the work below:
+compliance asserted as *ordering* rather than presence, and data tools that refuse to run on
+assumptions instead of filling them.
 
-**T20 — design polish (done).**
-- Two **generated** editorial images in `assets/img/` (`holiday-counter.jpg`, `counter-plan.jpg`): kitchen-counter scenes with **no products, no brands, no people, no text** — they cannot be mistaken for product photography (FLG-007 respected), and every page that uses them labels them on-page as illustrations. The seasonal hub's note and Q-26 record that generated brand imagery is an owner decision.
-- `layout()` now emits `og:image`, `og:image:alt` and `twitter:image` so shared links carry the brand scene.
-- CSS additions (`assets/css/site.css`): `.banner`, `.article-head--image` with scrim, `.steps` — same paper-and-ink register, responsive at 900px.
+**Findings on the live site (all reproduced by running code, not by reading):**
 
-**T21 — decision registers (done).**
-- **FLG-034** (review, new): the CHEF iQ specification source is a family page whose loaded default variant is the one-probe model (CQ60-1C-Z1-E), while the promoted listing is the three-probe Gen3 — found during T23; cited values are line-level and match the listing, so no spec changed and nothing was invented to close it.
-- **FLG-020** resolved (was: no seasonal content): seasonal content shipped as calendar-driven, with the limitation disclosed on-page; the open half is now Q-23.
-- **FLG-013** detail updated 5 → 7 guides (still below the Associates 10-post rule of thumb).
-- **SUG-17** (shipped): seasonal cluster now, annual November refresh. **SUG-18** (recommend): one technique article per month toward the 10-post bar. **SUG-19** (consider): one generated scene per collection. **SUG-20** (hold): no paid traffic before FLG-011 + FLG-004 close. **SUG-21** (consider): head-to-head thermometer page gated on query data.
-- **Q-23..Q-26** added: holiday demand unknown until SG-29; which guide earns impressions first (measurement plan); seasonal-cadence owner decision; generated-imagery owner decision.
+1. `data/special_link_tests.json` — all 5 rows cited `source: "SRC-02"`. No `SRC-*` id is defined
+   anywhere in the served tree; those ids belong to session 3's register, now at
+   `archive/arena-2ca62ce9/data/sources.json`. So the file that exists to make the link tests
+   traceable was itself untraceable. **Fixed:** re-pointed at the defined `link-redirect` source,
+   with a `sourceNote` naming the archive; plus a gate rule so any `source` not in
+   `data/policy.json` fails the build.
+2. `_src/build.mjs` `registerPage()` — the register's Source column rendered
+   `special(p.asin)` (a tagged, sponsored listing link) whenever a spec row had *any* source,
+   ignoring which source it named. Today all 30 valued rows cite `amazon-listing`, so output is
+   correct by luck; the first row citing a manual or USDA page would have been printed with a store
+   link as its evidence, and every "verify this claim" click would have carried a tag. **Fixed:**
+   sources now resolve through `policy.json`; only `amazon-listing` may be tagged; unknown ids render
+   as an `undefined source` pill so the data can't rot silently. Verified inert: all 29 pages
+   byte-identical after the change except `/flagged/`, which changed only because of item 3.
+3. **A near-miss recorded here on purpose:** this session minted a new row for "links live before
+   the per-product test", found FLG-024 already says exactly that, and deleted its own row rather
+   than inflate the register (the freed id was later used by session `arena-f6be9b3a` for the
+   sourcing defect, so nothing was renumbered under anyone's feet). FLG-024 was extended with the
+   live counts and the gate was wired to *fail* if that state ever goes unrecorded — then the
+   hand-typed count was removed from the row as well, because a number a gate can compute is a
+   number that goes stale on the next build. Register hygiene cuts both ways: add when true, drop
+   when duplicate, and never restate what the tooling already measures.
+4. `site.origin` already contains `/WinA` while `site.baseurl` repeats it — a trap for any code that
+   joins them (canonicals would read `/WinA/WinA/…`). Left alone (the build is correct), but now
+   asserted against by the gate, and `analyticsEndpoint` was added as data rather than as a string
+   in the builder for the same reason.
 
-**T22 — executive summary refresh (done).** Summary now counts seven guides, names the seasonal collection and publisher imagery, and points the next-actions list at SUG-18, Q-23, Q-25 and the seasonal refresh.
+**Verification performed this session.** Operating Agreement §1/§3/§4/§5/§6 read from the live page
+(page dated "Updated: October 15, 2025"); Program Policies §2(a)/(b) on the `XXXXX-20` URL parameter,
+no bookmark prompting, direct access, no per-user sub-tag; the ASIN definition (10-character
+alphanumeric, after `/dp/`); the application-review criteria (≥3 qualifying sales in 180 days, ~10
+original posts, "You must own your website"); PA-API prerequisites; FTC Endorsement Guides (2023
+"clearly and conspicuously", not a safe harbour); Google's 2019 `rel="sponsored"` post and spam
+policies; GitHub Pages publishing sources; USDA FSIS temperatures. Verbatim quotations, clause
+numbers, read dates and read levels are recorded in the previous session's registers where the site
+quotes them; this session added no new reader-facing claim, only gates over existing ones.
 
-**T23 — line-by-line re-verification (done, 2026-11-20).** Independent of arena-301b1534's T18 (same date, fresh fetches):
-| Source re-checked | Result |
-|---|---|
-| `amazon.com/dp/B0CDY277D3` | Live; title matches register exactly |
-| `amazon.com/dp/B09B7SB46R` | Live; title matches register exactly |
-| `amazon.com/dp/B08DKYBTPH` | Live; title matches register exactly (note: listing title now carries ® on TurboFry — cosmetic, not recorded as a data change) |
-| `amazon.com/dp/B0DHZTCNR5` | Live; title matches register exactly |
-| `amazon.com/dp/B0DZFD6R9Z` | Live; title matches register exactly |
-| Associates Program Policies page | Live; "Updated: April 14, 2026" heading observed; the quoted clauses this site relies on (§2(b), §6(t), §6(w), §6(y), IP License) are present in the current text |
-| FTC Disclosures 101 | Live; "hard to miss", "material connection", and "You can't talk about your experience with a product you haven't tried" all confirmed verbatim |
-| chefman.com TurboFry Touch Dual-Window page | Live; model RJ38-SQPF-3TDB-2W confirmed on page; Hi-Fry 450°F, Sync, capacity as cited |
-| emerileveryday.com French Door AirFryer 360 | Live; 26-qt / 24.6 L / 16.9"D×15.8"W×14.8"H / 120 V / "25 Cooking Pre-sets" — the 24-vs-25 contradiction (FLG-029) still stands, correctly recorded as unresolved |
-| thermomaven.com F1 Stealth | Live; 1-second read, ±0.5°F, NIST/NSF logos (no certificate numbers published — still manufacturer claim), lifetime warranty w/ 30-day activation |
-| chefiq.com iQ Sense | Live; Wi-Fi+BT, 1000°F, 4 internal + 1 ambient sensors, air-fryer compatibility confirmed — **variant discrepancy logged as FLG-034** |
+**Machine-verified state at handoff:**
 
-Result of the pass: no data change required except FLG-034 (new) and FLG-020/FLG-013 (status/count updates). Every table row on the site still carries its own source link; unverified/withheld rows remain blank by design.
+```
+node _src/build.mjs                → Generated 29 pages, 28 in sitemap. PASSED: all gates clear
+node scripts/check-site.mjs        → 29 pages · 1046 internal links · 124 Amazon (112 sponsored) · gate passed
+node scripts/compliance-gate.mjs   → 1159 checks, 0 failing, 1 warning (FLG-024, intentional)
+node scripts/publish-gate.mjs      → reproducible build (hash before/after identical); decision printed
+build determinism                  → two builds, byte-identical
+injection tests                    → closing FLG-024 fails the gate; an undefined spec source fails
+                                    the gate; both restored
+analytics-server                   → accepts the 5 events, rejects unknown ones, ignores foreign
+                                    origins without erroring, /summary aggregates by day
+```
 
-**Gates after the pass:** `node _src/build.mjs` PASSED (33 pages, 32 sitemap entries, all checks). `node scripts/check-site.mjs`: "repository gate passed — safe to publish" (33 pages, 1,282 internal links, 111 Amazon anchors, 97 sponsored). Determinism verified: two consecutive builds produce byte-identical HTML.
+**Where this session and another overlapped.** Two sessions found the same defect on the same day:
+this session's `specSourceCell` and session `arena-f6be9b3a`'s `sourceCell` both address the register's
+Source column having rendered a tagged listing link for every row regardless of the source it named.
+Theirs shipped first and is better — it resolves manufacturer citations to the specific brand page in
+`products[].specSources` and *throws* at build time on an unknown source id — so mine was deleted in
+the merge and their version is what runs. Two of their fixes also required two of mine:
+`analyticsEndpoint` had to be re-added on top of their new `data/products.json`, and their newly-used
+`manufacturer` source id was cited by 22 register rows while defined nowhere in `data/policy.json` —
+`scripts/compliance-gate.mjs` failed on it immediately, and the register now defines it (T23). A header
+note this session added to `scripts/build.mjs` / `scripts/verify.mjs` was also removed during the
+merge: session `arena-1323e80f` turned those files into delegation wrappers in PR #20, which made my
+"inert" claim false before it ever reached `main`. False text in the tree is worse than no text.
 
-**T24 — integration:** PR + merge + deploy record appended below once complete.
+**Left for the owner:** the seven `action` rows listed in §5 of `EXECUTIVE_SUMMARY.md`. The two that decide
+whether this earns anything are the link tests (FLG-024) and an owned domain (FLG-013).
+### Merge and deploy record — session `arena-4b28af50`
+
+- **PR #25** — https://github.com/sassnarep3-star/WinA/pull/25 — **merged** into `main` at
+  `6adcaba7345740b7a5d101a022a86c3dcb9f57ad` (2026-11-20 06:12:29Z). No approval waited for; both CI
+  jobs on the PR passed first (`validate` 18s, `Build and verify` 10s — the latter now includes the
+  compliance gate in the deploy path).
+- **Pages:** `POST /repos/…/pages/builds/latest` reports `status: built` for commit `6adcaba`,
+  pusher `sassnarep3-star`.
+- **Live verification:** `https://sassnarep3-star.github.io/WinA/register/` fetched after deploy — the
+  disclosure strip is present at the top, the source table now lists the `manufacturer` row this
+  branch added, and the specification table renders each row's own citation (chefman.com /
+  emerileveryday.com for the figures a listing omits, tagged `amazon.com/dp/` only where the source
+  really is the listing). Both fixes from #25 are therefore visible in production, not merely merged.
+- **Sandbox note for the next session:** `curl` from this environment reaches `github.com` and
+  `api.github.com` only — `github.io` returns HTTP 000, exactly like `amazon.com` did for session
+  `arena-ffa85037`. Use the page-fetch tool for live checks; a 000 from `curl` is the sandbox, not a
+  dead site.
+- **Follow-up in the same branch (this commit):** adding a source row with no `url` exposed that the
+  register's source table printed `amazon.com/dp/<ASIN> (per product)` for *every* URL-less source —
+  true for `amazon-listing`/`link-redirect`, wrong for a manufacturer register. The fallback is now
+  conditioned on the source id. Output change: one cell on `/register/`.
+- **Residual owner-side items, unchanged by this merge:** FLG-024 (80 tagged links live, 0 of 5 link
+  tests recorded — the gate prints this every build and fails if it ever goes unrecorded), FLG-009 /
+  SG-29 (Search Console unverified), FLG-011 (collector written, not hosted), FLG-013 (owned domain
+  and content volume), FLG-002 / FLG-004 (tracking-ID enrolment), FLG-010 (capture backend),
+  FLG-021 (byline and brand). None of them is a code problem; see §5 of `EXECUTIVE_SUMMARY.md`.
+
+---
+
+## Session `arena-829ea2fd-wina` — 2026-11-20 — T25 (renumbered T17→T19→T21→T25)
+
+**Claimed scope (T25):** the design-prompt suggestion layer the latest brief asks for — a
+polished-marketing design direction, a catchy topic roadmap (explicitly hypotheses, not
+popularity claims), organic-traffic levers, and a decision log — rendered into the existing
+reviewable suggestions section. Files: `data/suggestions.json`, `data/governance.json`,
+`_src/build.mjs`, generated pages, and this board's T25 section only. No second site. No change
+to another session's scope.
+
+**Renumber note:** this session claimed T17, but on merge `main` had already assigned T17 to
+`arena/1323e80f-wina` (script wrappers), then T19–T24 to `arena-4b28af50` (compliance gate,
+tooling, docs, register hygiene). To keep every session's records intact without an ID collision,
+this task is renumbered **T25** here and in the task board. The flag IDs were likewise
+renumbered: this session's design/topic flags are **FLG-034** and **FLG-035**, because `main`'s
+T18 session used FLG-030..033 for policy-quote and link-resolution findings.
+
+**Re-verification performed before claiming (2026-11-20, this session):**
+- All five submitted `link.amazon` short links were re-opened with the page tool. Every
+  observed destination and title matches `data/links.json` exactly:
+  B04G1MEwY → B0CDY277D3 · B02NbDxp3 → B09B7SB46R · B00hJ57DV → B08DKYBTPH ·
+  B0c8moW59 → B0DHZTCNR5 · B0f3GKalj → B0DZFD6R9Z.
+- `node _src/build.mjs` → 30 pages, 29 in sitemap, all gates clear.
+- `node scripts/check-site.mjs` → repository gate passed — safe to publish.
+- Official sources re-read and confirmed reachable: FTC *Disclosures 101* (hard-to-miss
+  placement; "you can't talk about your experience with a product you haven't tried"), Google
+  Search Central *Creating Helpful, Reliable, People-First Content*, and the Amazon
+  *Associates Program Policies* (updated 2026-04-14).
+
+**What was added** (the layer the latest brief asked for — a reviewable path to a polished
+marketing look, catchy topics, organic traffic, and explicit decisions before implementation):
+
+- **`data/suggestions.json`** — eight new suggestions **SUG-17..SUG-24** (design brief,
+  editorial type/color system, layout variation, concrete voice, topic-roadmap cadence, topic
+  clusters, hold seasonal topics, decision log), plus three new data blocks:
+  - `designBrief` — eight principles (DB-01..DB-08) feeding a design prompt, each naming the
+    constraint it respects. Cites FTC Disclosures 101, Google Search Central helpful-content,
+    and Amazon Associates Program Policies — all re-read and verified this session.
+  - `topicRoadmap` — three clusters (air fryers, thermometers, cross-category evergreen) with
+    catchy question-shaped titles. **Every title is labelled a hypothesis**; no search-volume,
+    popularity, or product-superiority claim is made.
+  - `decisionLog` — review rubric, kill criteria, and an empty entries table so accept/reject
+    decisions are recorded with a date and reason.
+- **`data/governance.json`** — **FLG-034** (no design brief/brand source; site deliberately
+  typographic because imagery is withheld, FLG-007) and **FLG-035** (topic roadmap titles are
+  hypotheses with no measured demand). Both published on `/flagged/`.
+- **`_src/build.mjs`** — renders the design brief, topic roadmap and decision log on
+  `/suggestions/`; executive summary updated to reference the new layer and to put "review and
+  record decisions" first in the next-actions list.
+
+**Merge resolution (2026-11-20).** `main` advanced ahead of this branch's base three times during
+the session (T17/T18, then T19/T20, then the T21–T24 register-hygiene merges). Merged
+`origin/main` into this branch each time:
+- `data/governance.json`, `data/suggestions.json`, `_src/build.mjs` auto-merged cleanly each
+  time (the sessions' additions are disjoint; all flag IDs remain unique at 39).
+- `COORDINATION.md` resolved by taking `main`'s board and re-adding this session's task row and
+  section. Nothing from the prior sessions' records was removed.
+- Generated pages regenerated from the merged source via `_src/build.mjs`, not hand-merged.
+- One real gate interaction fixed: the T18 guide-count gate flagged this session's SUG-21 cost
+  text "One substantive guide per week" as a miscount; rephrased to "A substantive guide each
+  week" so it reads as a rate, not a published-count claim.
+
+**Verification performed this session (post-merge, on the combined tree):**
+
+| Check | Method | Result |
+|---|---|---|
+| 5 submitted links resolve | Page-tool fetch of each `link.amazon` URL | All 5 match `data/links.json` (ASIN + title) |
+| Official sources reachable | FTC Disclosures 101, Google helpful-content, Amazon Program Policies | All three fetched and read 2026-11-20 |
+| JSON validity | `JSON.parse` on `suggestions.json`, `governance.json` | OK |
+| Flag ID uniqueness | Scan `data/governance.json` for duplicate IDs | All unique (39 flags) |
+| Build | `node _src/build.mjs` | 30 pages, 29 in sitemap, all gates clear |
+| Second gate | `node scripts/check-site.mjs` | pass — safe to publish |
+| Determinism | build twice, diff `VALIDATION.md` + `sitemap.xml` | byte-identical |
+
+**Irregularities:** none new beyond the two flags above, which are published rather than hidden.
+No value was inferred; the topic roadmap is explicitly hypothetical and the design brief is
+explicitly a recommendation. Nothing blocks the merge. (Note observed, not changed here: `main`'s
+board carries a duplicate T24 row identical to T22; left as-is since it is another session's
+record and out of this session's scope.)
+
+---
+
+## Session arena-8e69b462-wina — T26 (2026-11-20)
+
+**Claim:** T26 — re-verify the live site against the build, re-open the five submitted links,
+re-try the FLG-033 ASIN-definition citation, and publish any verified discrepancy. Claimed and
+pushed as its own commit before any check (`e89f350`). Scope widened in the same branch to
+`data/governance.json` (two flags appended) and the generated `flagged/` and `summary/` pages.
+No product data, link record, or page copy was changed.
+
+**What was checked (2026-11-20):**
+
+| Check | Method | Result |
+|---|---|---|
+| Live homepage matches the build | Page-tool fetch of https://sassnarep3-star.github.io/WinA/ | Live, disclosure strip present, five product buttons point to `amazon.com/dp/<ASIN>?tag=shopnow047c-20` |
+| Build, repository gate, compliance gate | `node _src/build.mjs`, `scripts/check-site.mjs`, `scripts/compliance-gate.mjs` | All pass: 30 pages, 29 in sitemap, 94 Amazon links (80 sponsored), 1,094 checks, 0 failing, 1 warning (FLG-024, owner-side) |
+| Empty-state tools stay honest | `collect.mjs`, `next-topics.mjs` | "nothing to collect" and "no query data yet" printed |
+| Submitted short links | Page-tool fetch of all five `link.amazon` URLs, one retry where inconsistent | **2 match** (B02NbDxp3, B00hJ57DV). **2 do not reproduce** (B04G1MEwY, B0c8moW59: amazon.com home page on both attempts). **1 inconsistent** (B0f3GKalj: home page once, recorded `/dp/B0DZFD6R9Z` once). → **FLG-036** |
+| FLG-033: official Amazon ASIN definition | Two web searches; no Amazon Help page returned | Still not found. Results were seller-forum and third-party pages only, so none is cited. FLG-033 stays open. |
+| Button wording vs. "prices are not shown" | Read `_src/build.mjs` labels and the site's own disclosure text | Inconsistent wording. → **FLG-037**, not changed (owner decision) |
+
+**Sources:**
+- Submitted links, re-opened 2026-11-20: https://link.amazon/B04G1MEwY · https://link.amazon/B02NbDxp3 · https://link.amazon/B00hJ57DV · https://link.amazon/B0c8moW59 · https://link.amazon/B0f3GKalj
+- Recorded product pages (for comparison): https://www.amazon.com/dp/B0CDY277D3 · https://www.amazon.com/dp/B09B7SB46R · https://www.amazon.com/dp/B08DKYBTPH · https://www.amazon.com/dp/B0DHZTCNR5 · https://www.amazon.com/dp/B0DZFD6R9Z
+- Amazon Associates Program Policies (cited by the existing register): https://affiliate-program.amazon.com/help/operating/policies
+- Live site: https://sassnarep3-star.github.io/WinA/
+
+**Irregularities (published on `/flagged/`):**
+- **FLG-036** (review) — three of five short links did not reproduce their recorded destination in this check. Cause not known. The site is not affected: its buttons go straight to `/dp/` pages. Owner should open the five links in a normal browser and record the landing URLs.
+- **FLG-037** (review) — the "Check price on Amazon" label conflicts with the site's own "prices are not shown" text. Flagged for wording, not changed.
+- **Carried forward, unchanged:** FLG-033 (no official Amazon ASIN definition found), FLG-024 (0 of 5 Special Link tests recorded — needs Associates sign-in).
+- **Observed, not changed:** this board has a duplicate T24 row, already noted by session arena-829ea2fd-wina. Left as-is because it is another session's record.
+
+**Blocked, owner-side (not claimed, not attempted):** Associates sign-in and the per-product Special Link test (FLG-004, FLG-024); Search Console verification (FLG-009, SG-29); hosting the analytics endpoint (FLG-011). None can be done from this sandbox.
+
+**Flag count:** 39 → 41. Gates re-run after the change: all pass.
+
+**Status:** done. PR and merge record below.
+---
+
+## Session arena/8a367a35-wina — final integration (2026-11-20)
+
+- **Claim:** final integration of branch `arena/8a367a35-wina` (base `80b45a1`, which equals `main`). Scope: verify the combined tree line by line against official sources, run all three gates, confirm the site builds with no broken links, publish to GitHub Pages, and merge this branch to `main`. File scope: `COORDINATION.md` (this section only) — no generated page, data, or generator changes. Everything the brief asks for already exists on this tree (see "What exists" below).
+- **Reason:** prior sessions T01–T25 built and merged the publication. This branch's HEAD equals `main`, so one integration commit is needed to run the PR/merge flow and record the result. Claimed per the board rule: claim first, commit and push immediately.
+- **Verification performed (2026-11-20, on the combined tree):**
+  - `node _src/build.mjs` → Generated 30 pages, 29 in sitemap. PASSED: all gates clear. Second run byte-identical (reproducible; `git status --porcelain` clean after build).
+  - `node scripts/check-site.mjs` → 30 pages · 1,120 internal links · 94 Amazon anchors (80 sponsored) · repository gate passed — safe to publish.
+  - `node scripts/compliance-gate.mjs` → 1,082 checks, 0 failing, 1 intentional warning (FLG-024: 80 tagged links live, 0/5 Special Link tests recorded — owner-blocked, published on `/flagged/`).
+  - `node scripts/publish-gate.mjs --committed` → 5 checks, 0 failing.
+- **Official sources verified (quoted verbatim where the site quotes them):**
+  - Associates Program Operating Agreement §5, updated October 15, 2025 — "As an Amazon Associate I earn from qualifying purchases"; "You will not misrepresent or embellish our relationship with you": https://affiliate-program.amazon.com/help/operating/agreement
+  - Associates Program Policies, updated April 14, 2026 — Participation Requirements §2(b) (prices/availability only via API-served links), §6(t) (no customer reviews or star ratings), §6(v) (no cloaked or obscured URLs), §6(w) (no link shortener that hides that the destination is Amazon), §6(y) (no price tracking or price alerting): https://affiliate-program.amazon.com/help/operating/policies
+  - FTC Disclosures 101 for Social Media Influencers (November 2019) — disclosure "hard to miss", placed with the endorsement; "You can't talk about your experience with a product you haven't tried": https://www.ftc.gov/business-guidance/resources/disclosures-101-social-media-influencers
+  - RSS 2.0 Specification 2.0.11 — required channel elements (title, link, description), RFC 822 date format: https://www.rssboard.org/rss-specification
+  - Five submitted short links re-resolved; intended ASIN kept `null` and separate from the observed ASIN/destination in `data/links.json` (FLG-001, FLG-002; separate-field rule observed).
+- **What exists on the tree (every item in the brief):**
+  - Publication front page leading with products, not with verification; three air fryers and two thermometers, each with a page, a buy button marked `rel="sponsored"` + `tag=shopnow047c-20`, and a "Sponsored" label.
+  - Category hubs (`/air-fryers/`, `/thermometers/`), five question-shaped guides, comparison table with unverifiable values left blank rather than estimated.
+  - Disclosure strip above the fold on every page carrying the exact OA §5 statement, repeated in the footer; the build fails if either placement disappears.
+  - Every Amazon anchor is three-state classified: a tagged sponsored link, or a declared non-affiliate citation (the supplied `link.amazon` short links carry no tag, are not claimed sponsored, and are not depended on — FLG-003).
+  - Source register: 60 specification rows (36 valued, each citing its own page; 24 blank with the reason recorded) and 10 policy checks with verbatim quotes and primary-source URLs.
+  - Suggestions section (`/suggestions/`): 24 suggestions with status/weight/cost/risk/decision, a draft design brief for a polished marketing look, a topic roadmap of labelled hypotheses, and a decision log with rubric and kill criteria — nothing is implemented without a recorded decision.
+  - Open questions (`/questions/`): Q-01…Q-22, each with best current answer, what is missing, how to close it, status, and source.
+  - Executive summary (`/summary/` and `EXECUTIVE_SUMMARY.md`): what exists, what is deliberately missing, what is unresolved, and next actions in order.
+  - SEO: sitemap.xml covering all 29 pages, feed.xml, robots.txt, canonical URLs, JSON-LD on every page.
+  - Measurement: five events defined (EV-01…EV-05), privacy-preserving self-hosted collector in `_worker/`, and a campaign-ledger schema — all defined; the collector is not deployed and the client is held inert (FLG-011).
+- **Irregularities (owner-blocked, published on `/flagged/`, do not block merge):**
+  - FLG-004 — tracking ID `shopnow047c-20` enrolment unconfirmed; needs Associates Central sign-in. If it is not enrolled, nothing on the site earns.
+  - FLG-003 / FLG-024 — `link.amazon` compliance status genuinely unresolved; the per-product Special Link test is unrecorded; needs owner login to Associates Central.
+  - FLG-009 / SG-29 / FLG-025 — Search Console unverified; placeholder `google-site-verification` token in every page head.
+  - FLG-011 — analytics collector written, not deployed (no hosting endpoint reachable from this sandbox).
+  - FLG-013 — content volume below the Associates review bar; no owned domain.
+- **Result:** PR created from `arena/8a367a35-wina` to `main`, merged; GitHub Pages deploy confirmed for the merge commit. PR link and merge result recorded below after merge.
+
+**PR / merge:** pending
+**Deploy:** pending

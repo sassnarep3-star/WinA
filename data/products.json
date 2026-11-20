@@ -7,7 +7,8 @@
     "trackingId": "shopnow047c-20",
     "marketplace": "amazon.com",
     "built": "2026-11-20",
-    "associateStatement": "As an Amazon Associate I earn from qualifying purchases."
+    "associateStatement": "As an Amazon Associate I earn from qualifying purchases.",
+    "analyticsEndpoint": ""
   },
   "products": [
     {

@@ -1,5 +1,5 @@
 {
-  "intro": "Every open question this build ran into, with what we can answer today, what we cannot, and how to close it. Nothing here is resolved by assumption. Where an answer exists, it cites the source. Where it does not, the row says so and names the specific thing that would settle it. Q-23 to Q-26 were added by the 2026-11-20 editorial pass (arena-27f76c22).",
+  "intro": "Every open question this build ran into, with what we can answer today, what we cannot, and how to close it. Nothing here is resolved by assumption. Where an answer exists, it cites the source. Where it does not, the row says so and names the specific thing that would settle it.",
   "areas": [
     {
       "id": "identity",
@@ -147,7 +147,7 @@
       "id": "Q-08",
       "area": "demand",
       "priority": "medium",
-      "question": "Which of the published guide topics should be written first?",
+      "question": "Which of the five guide topics should be written first?",
       "answer": "Hypothesis only. The capacity checklist is the best starting bet because it applies to all three air fryers and does not depend on any product outperforming another.",
       "have": "Five working titles, deliberately not framed as popularity claims.",
       "missing": "Evidence of which question people actually arrive with.",
@@ -155,7 +155,7 @@
       "howToFind": "Ship all five, then let Search Console query data reorder them. See SUG-05.",
       "status": "hypothesis",
       "sourceUrl": "https://sassnarep3-star.github.io/WinA/guides/",
-      "sourceLabel": "The guides index as published"
+      "sourceLabel": "The five guides as published"
     },
     {
       "id": "Q-09",
@@ -353,62 +353,6 @@
       "status": "unanswered",
       "sourceUrl": "https://sassnarep3-star.github.io/WinA/feed.xml",
       "sourceLabel": "Published feed, currently unconsumed"
-    },
-    {
-      "id": "Q-23",
-      "area": "demand",
-      "priority": "high",
-      "question": "Does anyone actually search for holiday air-fryer scheduling content?",
-      "answer": "Unknown. The seasonal cluster was chosen for the calendar, not from demand data, and the page says so.",
-      "have": "A published seasonal collection (/seasonal/), a holiday guide, and a disclosed, calendar-driven selection rationale.",
-      "missing": "Any impressions or query data at all. Search Console has never been verified for this property (SG-29, FLG-009).",
-      "matters": "It decides whether the seasonal page earns its annual refresh or becomes a one-off. Shipping it without measuring repeats the instinct-driven pattern the cadence exists to replace.",
-      "howToFind": "Verify the Search Console property, submit the sitemap, and read the query report after the cluster is indexed. Compare seasonal-page impressions against the evergreen guides.",
-      "status": "unanswered",
-      "sourceUrl": "https://search.google.com/search-console",
-      "sourceLabel": "Google Search Console (verification pending, SG-29)"
-    },
-    {
-      "id": "Q-24",
-      "area": "demand",
-      "priority": "high",
-      "question": "Which of the seven guides earns impressions first?",
-      "answer": "Unknown until the property is verified and the query report populates.",
-      "have": "Seven live guides in the sitemap and feed, each with a defined topic cluster and an event definition (guide_read) waiting for the collector.",
-      "missing": "The first query report. Nothing else can rank the hypotheses.",
-      "matters": "This is the metric that replaces editorial instinct: the first guide to earn impressions defines where the next article goes (SUG-18, SUG-21).",
-      "howToFind": "After SG-29 closes, read the query report at week four and week eight. Record the ranking in this register with the date read.",
-      "status": "unanswered",
-      "sourceUrl": "https://sassnarep3-star.github.io/WinA/guides/",
-      "sourceLabel": "The guides index (all seven live)"
-    },
-    {
-      "id": "Q-25",
-      "area": "brand",
-      "priority": "medium",
-      "question": "Will the owner adopt the seasonal cadence — refresh /seasonal/ every November?",
-      "answer": "Not decided. The page is built to be refreshed: one dated spec re-check per linked product and a re-read of the linked guides.",
-      "have": "The shipped seasonal page and the annual-refresh recommendation (SUG-17).",
-      "missing": "The owner’s decision, and a calendar entry for the first refresh.",
-      "matters": "An unrefreshed seasonal page is worse than none: it dates the whole publication and contradicts the \"recent content\" guidance the Associates review uses (FLG-013).",
-      "howToFind": "Owner decision. If adopted, log the refresh date in the coordination board each year; if declined, the page should state its season explicitly rather than imply currency.",
-      "status": "decision-needed",
-      "sourceUrl": "https://sassnarep3-star.github.io/WinA/seasonal/",
-      "sourceLabel": "The seasonal collection page"
-    },
-    {
-      "id": "Q-26",
-      "area": "brand",
-      "priority": "medium",
-      "question": "Are generated, labelled kitchen-scene illustrations acceptable brand imagery for this publication?",
-      "answer": "Not decided by the owner. This pass shipped two generated counter scenes, each labelled on-page as illustrations that do not depict the products.",
-      "have": "Two shipped images, an on-page labelling convention, and the constraint that no page may show or imply product photography (FLG-007).",
-      "missing": "The owner’s position on AI-generated imagery in a publication whose whole premise is honesty about what is known.",
-      "matters": "The labelling makes the images defensible; the owner’s taste decides whether they stay. Nobody else can decide whether generated imagery fits the brand.",
-      "howToFind": "Owner decision. If rejected, remove the two images and revert to the typographic design — the site was fully compliant before they existed. If accepted, SUG-19 proposes one scene per collection.",
-      "status": "decision-needed",
-      "sourceUrl": "https://sassnarep3-star.github.io/WinA/flagged/",
-      "sourceLabel": "FLG-007: the imagery constraint"
     }
   ]
 }
