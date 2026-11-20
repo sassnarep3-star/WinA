@@ -65,7 +65,7 @@ fourth site. Claim the scope here first and push the claim before writing code.
 | T14 | Merge prior findings into one register | done | arena-ffa85037 | `data/governance.json` | 23 flags; 14 carried forward with attribution |
 | T15 | PR → `main`, merge, confirm Pages deploy | in progress | arena-ffa85037 | — | See integration result below |
 | T16 | Gap closure against the brief: sortable tables on every data table; SG-27..SG-30 parallel rows (nav labels, RSS feed, Search Console, reader capture); verified policy-citation corrections | done | arena-a86cb9d0 | `_src/build.mjs`, `_src/pages-content.mjs`, `assets/js/site.js`, `data/governance.json`, `COORDINATION.md` (arena-a86cb9d0 section only) | Extends main; does not add a second site (see conflict record) |
-| T17 | Design-prompt suggestion layer: polished-marketing design direction, catchy topic roadmap (hypotheses), organic-traffic levers, decision log — feeding the reviewable suggestions section | in progress | arena-829ea2fd-wina | `data/suggestions.json`, `data/governance.json`, `_src/build.mjs`, `COORDINATION.md` (T17 section only), generated pages | Extends main's build; no second site. Verification of the 5 links re-done 2026-11-20 by this session |
+| T17 | Design-prompt suggestion layer: polished-marketing design direction, catchy topic roadmap (hypotheses), organic-traffic levers, decision log — feeding the reviewable suggestions section | done | arena-829ea2fd-wina | `data/suggestions.json`, `data/governance.json`, `_src/build.mjs`, `COORDINATION.md` (T17 section only), generated pages | Extends main's build; no second site. Verification of the 5 links re-done 2026-11-20 by this session |
 
 ---
 
@@ -418,3 +418,41 @@ to another session's scope.
 merged. Treated as complete here. Stale PRs #2 and #7 remain open against older branches and
 must not be merged as-is (see the `arena-59299521-wina` record). This session pushes only to
 the current branch and opens a PR from it.
+
+### T17 result — arena-829ea2fd-wina (2026-11-20)
+
+**What was added** (the layer the latest brief asked for — a reviewable path to a polished
+marketing look, catchy topics, organic traffic, and explicit decisions before implementation):
+
+- **`data/suggestions.json`** — eight new suggestions **SUG-17..SUG-24** (design brief,
+  editorial type/color system, layout variation, concrete voice, topic-roadmap cadence, topic
+  clusters, hold seasonal topics, decision log), plus three new data blocks:
+  - `designBrief` — eight principles (DB-01..DB-08) feeding a design prompt, each naming the
+    constraint it respects. Cites FTC Disclosures 101, Google Search Central helpful-content,
+    and Amazon Associates Program Policies — all re-read and verified this session.
+  - `topicRoadmap` — three clusters (air fryers, thermometers, cross-category evergreen) with
+    catchy question-shaped titles. **Every title is labelled a hypothesis**; no search-volume,
+    popularity, or product-superiority claim is made.
+  - `decisionLog` — review rubric, kill criteria, and an empty entries table so accept/reject
+    decisions are recorded with a date and reason.
+- **`data/governance.json`** — **FLG-030** (no design brief/brand source; site deliberately
+  typographic because imagery is withheld, FLG-007) and **FLG-031** (topic roadmap titles are
+  hypotheses with no measured demand). Both published on `/flagged/`.
+- **`_src/build.mjs`** — renders the design brief, topic roadmap and decision log on
+  `/suggestions/`; executive summary updated to reference the new layer and to put "review and
+  record decisions" first in the next-actions list.
+
+**Verification performed this session:**
+
+| Check | Method | Result |
+|---|---|---|
+| 5 submitted links resolve | Page-tool fetch of each `link.amazon` URL | All 5 match `data/links.json` (ASIN + title) |
+| Official sources reachable | FTC Disclosures 101, Google helpful-content, Amazon Program Policies | All three fetched and read 2026-11-20 |
+| JSON validity | `JSON.parse` on `suggestions.json`, `governance.json` | OK |
+| Build | `node _src/build.mjs` | 30 pages, 29 in sitemap, all gates clear |
+| Second gate | `node scripts/check-site.mjs` | pass — safe to publish |
+| Determinism | build twice, diff `VALIDATION.md` + `sitemap.xml` | byte-identical |
+
+**Irregularities:** none new beyond the two flags above, which are published rather than hidden.
+No value was inferred; the topic roadmap is explicitly hypothetical and the design brief is
+explicitly a recommendation. Nothing blocks the merge.
