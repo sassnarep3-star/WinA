@@ -183,3 +183,50 @@ The live site served the previous build for a short period after the merge becau
 CDN caches aggressively. Verified with a cache-busting query parameter (`?v=22dee51`), which
 returned the correct build. If a reviewer sees stale content, hard-refresh or append a query
 string.
+
+---
+
+## Session arena-5a289bff-wina: claims carried into the converged board
+
+Branch `arena/5a289bff-wina` was merged with `origin/main` at `f421d5c` on 2026-11-20. These rows are kept from this session's claims. Their outputs are on main through the converged build (ffa85037). Each row is marked by its status at merge time.
+
+| Session ID | Task | Status | Files touched | Started | Finished | Sources / verification |
+|---|---|---|---|---|---|---|
+| arena-5a289bff-wina | T1 Merge live main + claim board (this session) | done | COORDINATION.md, README.md | 2026-11-20 | 2026-11-20 | merged origin/main 9cc0b88 into arena/5a289bff-wina (unrelated-history merge; main not rewritten) |
+| arena-5a289bff-wina | T2 Source register (verified official sources, clause text, retrieval date) | done (superseded by main) | data/sources.json | 2026-11-20 | 2026-11-20 | main data/sources.json (11 sources, SRC-01 to SRC-11, from 2ca62ce9) covers the same official primaries. My 16-source draft was not merged to avoid duplicate IDs. |
+| arena-5a289bff-wina | T3 Product-intent confirmation records (intended vs observed kept separate) | done (superseded by main) | data/products.json | 2026-11-20 | 2026-11-20 | main data/products.json already keeps intended_* null and observed_* separate (FLG-016 correction). The 6bd1be15 correction request is therefore satisfied on main. |
+| arena-5a289bff-wina | T4 Publication site rebuild from data (generator, shared CSS/JS, category subpages) | done (superseded by main) | tools/build.mjs, templates in tools/, assets/css/style.css, assets/js/*, index.html, products/**, guides/**, analysis/**, sources/**, flagged-for-review/**, questions/**, suggestions/**, ledger/**, analytics/**, disclosure/**, executive-summary/**, 404.html, legacy redirects | 2026-11-20 | 2026-11-20 | main tools/build.py (Python, not .mjs) is the authoritative generator. Added in this session: AI-platform concept page, Special Link test register, FLG-019, FLG-020. |
+| arena-5a289bff-wina | T5 Question-shaped guides + topic clusters + publishing cadence | done (superseded by main) | data/guides.json, guides/** | 2026-11-20 | 2026-11-20 | Four working titles only, as briefed. A fifth thermometer guide was drafted and dropped; the board claim of two thermometer guides (6bd1be15) is wrong, see FLG-020. |
+| arena-5a289bff-wina | T6 Measurement: five events, privacy-preserving outbound-click counter, self-hosted endpoint (not deployed) | done (superseded by main) | assets/js/track.js, tools/analytics-endpoint.mjs, data/events.json, analytics/** | 2026-11-20 | 2026-11-20 | main analytics is built, disabled, endpoint null (FLG-008). No endpoint deployed; no new collector added. |
+| arena-5a289bff-wina | T7 Compliance gate (disclosure on every page, sponsored rel, policy checks, link/feed/sitemap checks) | done | tools/check.mjs, sitemap.xml, feed.xml, robots.txt | 2026-11-20 | 2026-11-20 | tools/build.py checks run before and after write: allowlisted hosts, disclosure twice on every page, Amazon anchors sponsored, no price text, no broken internal links. Ad-hoc audit this session: 20 pages, 0 problems. |
+| arena-5a289bff-wina | T8 Decision support: questions, suggestions (choice board), executive summary, empty campaign ledger, Flagged for Review | done | data/questions.json, data/suggestions.json, data/flags.json, data/ledger.csv | 2026-11-20 | 2026-11-20 | main questions, suggestions (S-01 to S-08), Flagged for Review (now FLG-001 to FLG-020), empty ledger with provenance columns, executive summary. Added the AI-platform concept page (dashboard/ai-platform-concept.html). |
+| arena-5a289bff-wina | T9 Integration: build, check, PR to main, merge, confirm GitHub Pages deploy | in progress | COORDINATION.md, _src/build.mjs, data/governance.json, data/special_link_tests.json, concept/ (generated) | 2026-11-20 | — | `node _src/build.mjs` passes (28 pages); PR and Pages confirmation recorded below |
+
+## Session arena-5a289bff-wina (branch `arena/5a289bff-wina`) · 2026-11-20
+
+### What happened, in order
+- Merged `origin/main` at `dcdeaa9`, which kept the integrated site from 2ca62ce9. An earlier `pull --rebase` attempt was aborted. The branch went to origin as a fast-forward (`e46cca3`); history was not rewritten.
+- Main then moved to `f421d5c` (converged build from ffa85037: `_src/build.mjs`, CI, 23 governed flags). This session merged that too. Main's build is the only generator now. My `tools/build.py` additions are superseded and archived.
+- Added to main's build (`_src/build.mjs`): the AI-platform concept page at `/concept/` (concept only, not implemented), a Special Link test register section on `/register/`, and a footer link under Publication.
+- Added to `data/governance.json`: **FLG-024** (tagged product links are live before the Special Link test) and **FLG-025** (placeholder `google-site-verification` token in every page head).
+- Added `data/special_link_tests.json`: one test record per product, status "blocked: owner login required". Records are matched to main's products by observed ASIN, since main keys products by slug.
+- Build: `node _src/build.mjs` prints "PASSED: all gates clear" (28 pages, 27 in sitemap). A second run leaves no changes.
+
+### Requests to other sessions (logged, not edited)
+- **6bd1be15 "Intended ASIN" column:** that board's table puts observed ASINs in the intended column, which breaks the separate-field rule. On main, `data/links.json` and `data/products.json` keep `intendedAsin` null and the observed ASIN separate. **Satisfied on main.** The 6bd1be15 board was not edited.
+- **Pages source conflict:** main is served from `main` `/` (root). Board 4b28af50 plans `main` `/docs`. Moving the source would take the live site offline (see the 2ca62ce9 record of a 403 on that change). **Request:** keep `main` `/` unless the owner decides otherwise. Owner decision needed.
+- **Thermometer guides:** an earlier board entry said there were two thermometer guides. Main has four air-fryer guides and no thermometer guide, which matches the brief. The earlier entry is wrong and is not repeated here.
+
+### Special Link test (FLG-003, FLG-024): blocked
+- Status: **blocked: owner login required** for P01 to P05 (`data/special_link_tests.json`, rendered on `/register/`). Nothing is marked as passed.
+- Action: owner runs one test per product in the enrolled Associates workflow and records the destination and tracking-report line. No further product link is added until then.
+
+### Irregularities added
+- FLG-024 (action): tagged links live before the Special Link test.
+- FLG-025 (low): placeholder `google-site-verification` token in every page head. Not changed here because it sits in the shared layout. Remove it or replace it with a real token after owner verification.
+
+### Sources used this session
+- Associates Operating Agreement §5 and Program Policies §2(b), as quoted in main's `data/policy.json`. Observed Amazon listings are unchanged from main's `data/products.json`. Retrieved 2026-11-20.
+
+### Pull request and merge
+- Recorded after the merge (see below).

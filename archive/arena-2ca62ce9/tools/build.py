@@ -255,6 +255,7 @@ DASHBOARD_PAGES = [
     ("ledger", "Campaign ledger"),
     ("analytics", "Analytics status"),
     ("executive-summary", "Executive summary"),
+    ("ai-platform-concept", "AI-platform concept"),
 ]
 
 
@@ -412,6 +413,7 @@ hub_items = [
     ("ledger", "Campaign ledger", "Empty by design until authorized first-party reports exist."),
     ("analytics", "Analytics status", "Proposed events and endpoint status (currently disabled)."),
     ("executive-summary", "Executive summary", "One-page overview of status, risks and decisions."),
+    ("ai-platform-concept", "AI-platform concept", "A concept only, not implemented: research, pricing, content, links, tracking."),
 ]
 hub_cards = "".join(
     f'<a class="card cat" href="{slug}.html"><h3>{label}</h3><p>{desc}</p></a>' for slug, label, desc in hub_items
@@ -424,6 +426,32 @@ page("dashboard/index.html", "Dashboard", f"""
 </section>
 <section class="section"><div class="grid grid-3">{hub_cards}</div></section>
 """, "dashboard", "Register, sources, findings, questions, suggestions, flags.")
+
+# Special Link test register (FLG-003, FLG-019): one test per product before scaling
+SL_DOC = load("special_link_tests.json")
+SL_BY_ID = {t["product_id"]: t for t in SL_DOC["tests"]}
+for p in PRODUCTS:
+    if p["id"] not in SL_BY_ID:
+        err(f"{p['id']}: no Special Link test record")
+sl_rows = []
+for t in SL_DOC["tests"]:
+    if t["product_id"] not in {p["id"] for p in PRODUCTS}:
+        err(f"special link test for unknown product {t['product_id']}")
+    sl_rows.append([
+        esc(t["product_id"]),
+        f'<code>{esc(t["submitted_url"])}</code>',
+        f'<span class="badge badge-warn">{esc(t["test_status"])}</span>',
+        esc(t["tested_on"] or "Not tested"),
+        esc(t["destination_seen"] or "Not recorded"),
+        esc(t["tracking_report_line_seen"] or "Not recorded"),
+        flag_links(["FLG-003", "FLG-019"], "../"),
+    ])
+sl_section = (
+    '<section class="section"><h2>Special Link test, one per product</h2>'
+    f'<p class="lede">{esc(SL_DOC["blocker"])} Before any further product is added, each row needs its test recorded. The status is not marked passed.</p>'
+    + table(["Product", "Submitted short link (not validated)", "Test status", "Tested on", "Destination seen", "Tracking report line", "Flags"], sl_rows)
+    + '</section>'
+)
 
 # Register
 reg_rows = []
@@ -458,6 +486,7 @@ page("dashboard/register.html", "Product register", f"""
   <p class="lede">Intended ASIN and the observed redirect target are kept in separate columns and never merged. Blank values are unverified and flagged.</p>
 </section>
 <section class="section">{table(reg_headers, reg_rows)}</section>
+{sl_section}
 <section class="section"><h2>Submitted short links</h2>
 <p class="small muted">The five submitted link paths are 9 characters long. Amazon's ASIN is described as 10 characters (SRC-11, forum-level support; see FLG-001 and FLG-011).</p></section>
 """, "dashboard", "Product register with sources and flags.")
@@ -591,6 +620,32 @@ page("dashboard/analytics.html", "Analytics status", f"""
 <section class="section"><h2>Proposed events (not recording)</h2>{table(["Event", "Fires when", "Personal data"], ev_rows)}
 <p class="small muted">{esc(site["analytics"]["policy_note"])} Five events are proposed because the request did not list them (FLG-007).</p></section>
 """, "dashboard", "Analytics status and proposed events.")
+
+# AI-platform concept (framed as a concept; nothing here is implemented)
+page("dashboard/ai-platform-concept.html", "AI-platform concept", f"""
+<section class="page-head">
+  <p class="kicker"><a href="index.html">Dashboard</a> / AI-platform concept</p>
+  <h1>AI-platform concept</h1>
+  <p class="lede"><strong>Concept only. Not implemented.</strong> This page describes a possible system for a publication like this one. Nothing on the site runs any of it. No model, data feed, pricing source or review data is connected, and no output of such a system is published.</p>
+</section>
+<section class="section prose">
+  <h2>What the concept would do</h2>
+  <p>Five functions, each a candidate design. Each one needs an owner decision, a permitted data source and a human check before any output is used.</p>
+  <table class="data"><thead><tr><th scope="col">Function</th><th scope="col">Concept (not implemented)</th><th scope="col">Requirement before use</th></tr></thead><tbody>
+  <tr><td>Product research</td><td>Collect candidate listings from a permitted source and group them by category.</td><td>Only Amazon Associates-permitted sources. Product data kept separate from intent and observed fields (Program Policies §2).</td></tr>
+  <tr><td>Pricing and review analysis</td><td>Summarise price and review data for comparison.</td><td>Prices and star ratings may be shown only through Creators API or PA API (Program Policies §2(b)). Currently not displayed (FLG-005, FLG-006).</td></tr>
+  <tr><td>Content generation</td><td>Draft guide text from the source register and listing titles.</td><td>Every claim cites a source. A person checks each draft before publication. No invented specs, dates or performance claims (Google helpful-content guidance, SRC-07).</td></tr>
+  <tr><td>Link management</td><td>Build and check outbound links; mark them sponsored; detect broken links.</td><td>Each product passes a Special Link test first (FLG-003, FLG-019). Short-link status is unresolved and not claimed invalid.</td></tr>
+  <tr><td>Tracking</td><td>Count outbound clicks and sessions, with no personal data and no sub-tag per reader.</td><td>Endpoint not deployed (FLG-008). Five events not confirmed (FLG-007). Campaign ledger accepts only authorised first-party reports.</td></tr>
+  </tbody></table>
+</section>
+<section class="section callout"><h2>What it is not</h2>
+  <p>It is not a recommendation engine, a conversion predictor, a revenue forecast, or a source of product claims. It makes no statement about how any product performs. The working titles and guides are written by hand from listing titles and cited sources.</p>
+</section>
+<section class="section"><h2>Open decisions</h2>
+  <p>Whether to build any part of this at all is an owner decision. See <a href="suggestions.html">Suggestions</a> (S-01 to S-08) and <a href="flagged.html">Flagged for Review</a>.</p>
+</section>
+""", "dashboard", "AI-platform concept only, not implemented.")
 
 # Executive summary
 page("dashboard/executive-summary.html", "Executive summary", f"""

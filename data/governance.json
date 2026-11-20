@@ -206,6 +206,24 @@
       "action": "No claim is made about sponsorship status of any listing. Re-check on the live page before publishing anything that depends on it.",
       "sourceUrl": "https://www.amazon.com/dp/B09B7SB46R",
       "sourceLabel": "Observed listing page"
+    },
+    {
+      "id": "FLG-024",
+      "severity": "action",
+      "title": "Tagged product links are live before the one-per-product Special Link test",
+      "detail": "Product buy-boxes and the register link to amazon.com/dp/<observed ASIN>?tag=shopnow047c-20 for all five products. The per-product test required before scaling (FLG-003) has not been run; it needs Associates Central sign-in, which this build does not have. The site does not claim the submitted short links are invalid. The test is recorded as blocked on the Special Link test register.",
+      "action": "Owner runs one test per product in the enrolled Associates workflow and records the destination and tracking-report line in data/special_link_tests.json. Until then no further product link is added. If a test fails, the owner chooses the link method.",
+      "sourceUrl": "https://affiliate-program.amazon.com/help/operating/policies",
+      "sourceLabel": "Participation Requirements §2(b) (Special Links use the Associates ID)"
+    },
+    {
+      "id": "FLG-025",
+      "severity": "low",
+      "title": "Placeholder site-verification token in every page head",
+      "detail": "Every generated page carries <meta name=\"google-site-verification\" content=\"REPLACE_WITH_REAL_TOKEN_FLG009\">. The value is a placeholder, not a verification token. It is not a credential and it does nothing, but it is a visible defect in the published HTML.",
+      "action": "Remove the tag from the layout in _src/build.mjs, or replace it with a real token from Search Console once the owner verifies the property (FLG-009). Not changed in this session; it belongs to the shared layout.",
+      "sourceUrl": "https://developers.google.com/search/docs/fundamentals/creating-helpful-content",
+      "sourceLabel": "Google Search Central (verification meta tags)"
     }
   ],
   "ledger": {
