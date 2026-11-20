@@ -190,7 +190,7 @@ shapes differ.
 | T29 | Product-intent confirmation record: one row per submitted link with intended ASIN (blank unless supplied), official listing URL, confirmation date, confirmation source, and observed redirect target kept in a separate dated field; close FLG-033 with an official Amazon ASIN definition; fresh dated re-check of the five short links | done | arena/6b0f2ddc-wina (session `arena-6b0f2ddc`) | `data/links.json`, `data/policy.json` (one source row), `data/governance.json` (FLG-033 closed to review; FLG-040 appended), `_src/build.mjs` (register link table only), `scripts/compliance-gate.mjs` (link-record rule only), `EXECUTIVE_SUMMARY.md` (T27 section and flag count only), `COORDINATION.md` (T27 section only), generated `register/`, `flagged/`, `summary/` | Claimed 2026-11-20 before any edit. Extends `main`'s build; no second site. Owner-side items (Associates sign-in, Special Link test, Search Console, collector deploy) are not claimed. | Result in the T27 section below. Extends `main`; no second site. Owner-side items not attempted. |
 | T34 | Re-verify the specification rows of `data/products.json` against their official pages (manufacturer pages, the HT07 user manual, and each ASIN's own listing); re-check the five submitted links (re-check only); record corrections as handoff patches for the integration session; publish every irregularity as a flag | done (requests open in `handoff/`) | arena/1cf62cfb-wina | `COORDINATION.md` (arena/1cf62cfb-wina section + this row), `handoff/` (new; not a shared output). No shared output changed on this branch. | Claimed first as T27 in 7533c52 on an out-of-date base; `main` already held T27 (arena/574fc8eb-wina) and T29 (arena/6b0f2ddc-wina), so this work is recorded as T34. Shared-output edits made in 62bfa89 were reverted to `main`'s tree by merge d9e533d; the edits are kept as `handoff/T29-products.patch` and `handoff/T34-governance.patch`. |
 | T35 | Apply the line-by-line verification instead of proposing it: every valued spec row re-checked against its own cited page, every quoted policy clause against the official text, five rows corrected or blanked, five flags added, reader copy corrected where it repeated a withdrawn claim | done | arena/b37e1a98-wina | `data/products.json`, `data/links.json`, `data/governance.json`, `data-room/{flagged,source-register}.html`, `compare.html`, `questions.html`, `guides/*.html`, `seasonal.html`, `COORDINATION.md` (this row + section) | Claimed as T27 on base `e886175`, renumbered twice on merge (T27 → T33 → T35) as `main` took T27–T34 while the branch was in flight. T34 proposed these corrections as patches under `handoff/`; this session applied them to the live tree and extended them with the policy-quote check. Gate `tools/check_site.py` passes. |
-| T36 | Line-by-line verification of the reviewer-facing documents against the register; repair every stale figure; add a gate so the figures cannot drift again. Rescoped mid-task after PR #28 replaced the served site | in progress | arena/f14580cb-wina | `data-room/flagged.html`, `executive-summary.html`, `data-room/compliance-gate.html`, `README.md`, `tools/check_site.py` (new rule R-10), `COORDINATION.md` (this row + T36 section only) | Claimed 2026-11-20. Claimed as T26 on this branch's base, but `main` had already assigned T26 twice (arena-8e69b462-wina and arena/119f4dc6-wina), so it is recorded here as T36. Owner-credential items (Associates sign-in, Search Console, analytics deploy) stay blocked and are not claimed. |
+| T36 | Line-by-line verification of the reviewer-facing documents against the register; repair every stale figure; add a gate so the figures cannot drift again. Rescoped mid-task after PR #28 replaced the served site | done | arena/f14580cb-wina | `data-room/flagged.html`, `executive-summary.html`, `data-room/compliance-gate.html`, `README.md`, `tools/check_site.py` (new rule R-10), `COORDINATION.md` (this row + T36 section only) | Claimed 2026-11-20. Claimed as T26 on this branch's base, but `main` had already assigned T26 twice (arena-8e69b462-wina and arena/119f4dc6-wina), so it is recorded here as T36. Owner-credential items (Associates sign-in, Search Console, analytics deploy) stay blocked and are not claimed. |
 
 ## Link resolution (verified by three independent sessions)
 
@@ -1764,7 +1764,7 @@ ships, so the redesign stays a decision for the owner.
 
 | # | Where | Says | Actual | How the actual figure was obtained |
 |---|---|---|---|---|
-| 1 | `data-room/flagged.html` caption | "Seventeen more are open in the register" | **38 more** (26 still open) | `data/governance.json` holds 51 flags; the table shows 13 |
+| 1 | `data-room/flagged.html` caption | "Seventeen more are open in the register" | **37 more** (25 still open) | `data/governance.json` holds 51 flags; the table shows 14 |
 | 2 | `executive-summary.html` | "a suggestions queue (**13 proposals**…)" | **14** | distinct `S-01…S-14` on `suggestions.html` |
 | 3 | `data-room/compliance-gate.html` | "Disclosure strip … on all **20 pages**" | **23** | 23 HTML files outside `archive/` |
 | 4 | `README.md` | "**4 question-shaped buyer guides**" | **6** | 6 guide pages in `guides/`, excluding `index.html` |
@@ -1775,9 +1775,9 @@ ships, so the redesign stays a decision for the owner.
 **dated provenance row** recording what that session shipped. Rewriting a dated log to match the
 present would be its own defect.
 
-**Flagged for review rather than fixed:** `data-room/flagged.html` shows 13 of the 51 flags in
+**Flagged for review rather than fixed:** `data-room/flagged.html` shows 14 of the 51 flags in
 `data/governance.json` and links to that file as the register. The caption discloses the remainder,
-so the page is not false — but 38 findings, including all four `SG-27…SG-30` rows, are one click
+so the page is not false — but 37 findings, including all four `SG-27…SG-30` rows, are one click
 away rather than on the page. Rendering them means redesigning that table, which the brief reserves
 for a decision, so it is recorded here instead of shipped.
 
@@ -1795,7 +1795,48 @@ undeclared-link incident, enforces the converse direction too; this one does not
 | Merge safety | `git diff --name-only origin/main` after resolving | 0 files — branch adds nothing, removes nothing |
 | Live gate before any edit | `python3 tools/check_site.py` | PASS — 23 HTML pages, gates G-1/G-2/G-3 |
 | Amazon link classification | every `<a>` on the 23 served pages, three-way sort | 27 sponsored · 146 declared · 0 bare · 0 misclassified |
-| Register vs page | `data/governance.json` ids vs ids in `data-room/flagged.html` | 51 in register, 13 on page, 0 on page that are not in the register |
+| Register vs page | `data/governance.json` ids vs `<th scope="row">` ids in `data-room/flagged.html` | 51 in register, 14 on page, 0 on page that are not in the register |
 | Figures | counted from the pages themselves, not from prose | 14 proposals, 16 questions, 6 guides, 23 pages |
 
-**Status:** in progress — claim pushed before any file in scope was edited.
+### What shipped, and how it was verified
+
+Four figures corrected, one rule added. Six files, all inside the claimed scope.
+
+| Check | Method | Result |
+|---|---|---|
+| Live gate before any edit | `python3 tools/check_site.py` | PASS — 23 HTML pages, gates G-1/G-2/G-3 |
+| Live gate after the edits | `python3 tools/check_site.py` | PASS — 23 HTML pages |
+| R-10 bites | each of the four figures reverted to its stale value in turn | 4/4 fail with the page and both numbers; all restored → PASS |
+| R-10 counting detail | the first draft counted every flag id on the page | **the gate caught my own error**: it read 37 where I had written 38, because the table prints 14 rows, not 13. Corrected. |
+| CI, all three workflows | run locally exactly as written | `site.yml` / `pages.yml` → PASS; `gate.yml` → archive rebuild byte-identical, `git diff --exit-code` clean, archive gate PASS (15/15 pages) |
+| Amazon link classification | every `<a>` on the 23 served pages | 27 sponsored · 146 declared · 0 bare · 0 misclassified |
+| Register vs page | `data/governance.json` ids vs `<th scope="row">` ids | 51 in register · 14 on page · 0 on page that are not in the register |
+
+**Sources.** Every figure above was counted from the repository itself — the pages, `data/*.json`,
+`guides/`, `sitemap.xml` — by running a script, not by reading a sentence. No external page was
+cited and no product, policy or price claim was made or changed. The only reader-facing claims
+touched are four counts, and each was recomputed from the artefact it describes.
+
+**Irregularities found, all published:**
+
+1. The four stale figures above — corrected, and now gated by R-10 so they cannot drift again.
+2. **37 of the 51 flags are not on `/data-room/flagged.html`.** The caption discloses them and
+   links to `data/governance.json`, so the page is not false, but rendering them means redesigning
+   that table — which the brief reserves for a decision. Recorded here rather than shipped.
+3. **R-02 has a blind spot.** It fails an Amazon link that has a tag and lacks `rel="sponsored"`;
+   an Amazon product link with *no tag and no `rel`* passes without comment. There are none today
+   (0 bare across 23 pages), so this is a gap in the rule, not a live defect — but it is the
+   direction the Counter Space gate was written to close after an undeclared-link incident, and
+   this one does not close it.
+4. **`data/*.json` and the served registers have diverged on purpose and by drift.** The root
+   register holds 51 flags, 26 questions and 29 suggestions; the served pages print 14, 16 and 14.
+   The Flagged page discloses its subset. `executive-summary.html` did not, and that was finding
+   #2 above. Which register is authoritative for a reader-facing count is an owner decision, so it
+   is recorded rather than picked.
+
+**Deliberately not done:** no page was restructured, no flag was added to or removed from any
+register, no figure outside the four was rewritten, and no owner-credential item was attempted
+(Associates Central, Search Console, the analytics collector). Nothing here blocks the merge;
+items 2–4 are published for review.
+
+**Status:** done — PR, merge and deploy record appended below.
