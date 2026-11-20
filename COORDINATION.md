@@ -776,5 +776,6 @@ No product data, link record, or page copy was changed.
   - FLG-013 — content volume below the Associates review bar; no owned domain.
 - **Result:** PR created from `arena/8a367a35-wina` to `main`, merged; GitHub Pages deploy confirmed for the merge commit. PR link and merge result recorded below after merge.
 
-**PR / merge:** pending
-**Deploy:** pending
+**PR / merge:** PR #30 — https://github.com/sassnarep3-star/WinA/pull/30 — merged into `main` at `ee56e52c2fdd7d6a52d46068813caaf434571750` on 2026-11-20 (merge commit, not squashed). All CI gates green before merge (build, repository gate, compliance gate, empty-state tools, reproducibility); merged without waiting for approval per the brief.
+
+**Deploy:** GitHub Pages build for `ee56e52`: **built**, no errors, 17 s. Live site at https://sassnarep3-star.github.io/WinA/ — cache-busted fetch confirmed the disclosure strip above the fold, the five product buttons tagged `tag=shopnow047c-20` each labelled “Sponsored”, and the merged build serving.
