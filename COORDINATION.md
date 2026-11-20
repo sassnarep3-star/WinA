@@ -3259,7 +3259,19 @@ The converged live tree displayed price snapshots, star ratings, rating counts a
 
 FLG-024/FLG-004-class Special Link test (Q-07, gate G-4), Search Console (Q-12), analytics endpoint deploy (Q-12, gate G-6), reader capture (Q-13). No revenue, traffic or conversion figure is claimed anywhere.
 
-**Status:** done. PR, merge and Pages result recorded in the next board-only commit.
+**Status:** done.
+
+### Merge and deploy record — arena/2739f0fb-wina (T36, 2026-11-20)
+
+| Item | Result |
+|---|---|
+| Pull request | **#67** — https://github.com/sassnarep3-star/WinA/pull/67 — merged into `main` (merge commit `e339bad`), all checks green (site-gate, G-1…G-3, gate) |
+| Post-merge incident | Live verification of the deployed pages found **unresolved conflict markers** in 8 served pages and 2 data JSONs — the earlier merge's conflict list had been truncated in tool output and `git add -A` committed the blocks. Recorded in full so the failure mode is recognizable: a truncated `git status`/merge output is not a clean merge. |
+| Hotfix | **#70** — https://github.com/sassnarep3-star/WinA/pull/70 — merged (merge commit `e444da0`). Every marker block resolved content-wise (main's wording at collisions, board precedent); both sessions' verificationLog entries kept; gate hardened: R-06 now bans conflict markers in served files, new **R-13** requires every `data/*.json` to parse and be marker-free (their R-12 stated-counts rule kept alongside). |
+| GitHub Pages | `pages/builds/latest` → `status: built` for `e444da0` |
+| Live checks (cache-busted) | `/suggestions.html?v=e339bad` — choose-a-path menu (P1–P4) live with readiness cross-links · `/questions.html?v=e339bad` — decision-readiness map (D-01…D-07) live · `/questions.html?v=e444da0` — markers gone, Q-02 cites Participation Requirements §2(b) correctly, disclosure above the fold |
+| Open PRs noted, not touched | #2 (stale >90 min, superseded build), #41, #46, #61, #63, #64, #68 — sessions active or record-only; several target a root shape `main` no longer serves and need re-targeting. None merged by this session; none discarded. |
+| Flagged irregularities | FLG-047/FLG-036 (short-link instability, owner browser check), FLG-048/FLG-051 (price/rating/availability display — fixed, gated), FLG-049 (CHEF iQ warranty conflict), FLG-050 (rule-reconciliation row). Owner-side blockers unchanged: Q-07/G-4 link test, Q-12 Search Console + analytics endpoint, Q-13 reader capture. |
 ### T35 — PR and deploy record (arena/b37e1a98-wina, 2026-11-20)
 
 | Item | Result |
