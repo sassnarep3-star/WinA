@@ -1652,7 +1652,9 @@ ${breadcrumb([{ href: url("/"), label: "Home" }, { label: "Search & findability"
    SITEMAP, FEED, ROBOTS, 404
    ============================================================ */
 function feeds() {
-  const now = new Date().toISOString();
+  // Deterministic: the declared build date, not the wall clock. A build that
+  // embeds `new Date()` can never pass a "is the output committed?" check.
+  const now = new Date(`${site.built}T00:00:00Z`).toUTCString();
   const sm = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 ${pages
@@ -1932,7 +1934,7 @@ const warns = findings.filter((f) => f.level === "WARN");
 
 const report = `# Build validation report
 
-Generated ${new Date().toISOString()} by \`_src/build.mjs\`.
+Generated ${site.built} by \`_src/build.mjs\` (deterministic: no wall-clock timestamps).
 
 **Result: ${fails.length ? "FAILED" : "PASSED"}** — ${fails.length} failure(s), ${warns.length} warning(s).
 

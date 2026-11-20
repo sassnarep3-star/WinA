@@ -1,6 +1,6 @@
 # Build validation report
 
-Generated 2026-11-20T05:39:59.188Z by `_src/build.mjs`.
+Generated 2026-11-20 by `_src/build.mjs` (deterministic: no wall-clock timestamps).
 
 **Result: PASSED** — 0 failure(s), 0 warning(s).
 
