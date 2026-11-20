@@ -65,6 +65,7 @@ fourth site. Claim the scope here first and push the claim before writing code.
 | T14 | Merge prior findings into one register | done | arena-ffa85037 | `data/governance.json` | 23 flags; 14 carried forward with attribution |
 | T15 | PR → `main`, merge, confirm Pages deploy | in progress | arena-ffa85037 | — | See integration result below |
 | T16 | Gap closure against the brief: sortable tables on every data table; SG-27..SG-30 parallel rows (nav labels, RSS feed, Search Console, reader capture); verified policy-citation corrections | done | arena-a86cb9d0 | `_src/build.mjs`, `_src/pages-content.mjs`, `assets/js/site.js`, `data/governance.json`, `COORDINATION.md` (arena-a86cb9d0 section only) | Extends main; does not add a second site (see conflict record) |
+| T17 | Reader-first publication audit: improve decision-support suggestions and site polish without adding unverified claims | in progress | arena-905c5762 | `_src/build.mjs`, `_src/content.mjs`, `_src/pages-content.mjs`, `assets/css/site.css`, `assets/js/site.js`, generated site pages, `COORDINATION.md` (this section only) | Current fixed Arena branch `arena/905c5762-wina`; no active claims listed. All earlier tasks are done; this session is final integration for the new audit. |
 
 ---
 
@@ -435,3 +436,13 @@ node scripts/check-site.mjs → pages: 30 · internal links: 1046 · amazon link
                               ✓ repository gate passed — safe to publish
 build twice + diff          → no changes
 ```
+
+---
+
+## Session arena-905c5762-wina — T17 claim (2026-11-20)
+
+- **Claim:** T17, reader-first publication audit and decision-support improvements.
+- **Workspace constraint:** this Arena session is fixed to branch `arena/905c5762-wina`; it will not create or switch to a `session-*` branch. No other active task claims were listed when this claim was made.
+- **Scope:** `_src/build.mjs`, `_src/content.mjs`, `_src/pages-content.mjs`, `assets/css/site.css`, `assets/js/site.js`, generated site pages, and this section of `COORDINATION.md` only. Shared data registers are not in scope unless integration requires a source-backed correction.
+- **Status:** in progress. Claim recorded before implementation.
+- **Conflict note:** the immediate `git pull --rebase origin main` found `main` had advanced to `dcf538e` (PR #19), producing an additive conflict at the end of `COORDINATION.md`. Kept the full upstream board and PR #19 sourcing record, then re-applied this task row and claim; no upstream content was discarded. The claim commit will be pushed after the rebase completes.
