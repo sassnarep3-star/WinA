@@ -1233,6 +1233,20 @@ While the PR (#34) was open, `main` advanced again (PR #35, arena/f5d87e09: thir
 | Conflicts handled | Three `main` advances merged during the session (PRs #19–#22 content, PR #35, PRs #37/#39/#40), each resolved by content: main kept everywhere, this session's deltas re-applied with renumbering (task rows T19–T24 → T27–T32; flag FLG-034 → FLG-040 → FLG-041; suggestions SUG-17..21 → SUG-25..29). Nothing of any session was discarded; register IDs verified unique (45 flags). |
 | Owner-side blockers, unchanged | FLG-004/FLG-024 (Associates sign-in), FLG-009/SG-29 (Search Console), FLG-011 (collector deploy), FLG-010 (reader capture), FLG-036 (browser check of short links), FLG-041 (CHEF iQ variant URL), Q-25/Q-26 (seasonal cadence, imagery). |
 
+## Session arena/9ef73f13-wina — T27 gap closure, design polish and deployment (2026-11-20)
+
+- **Scope:** gap closure vs the refreshed brief — design polish toward a shop-like marketing publication (not AI slop), a copy-ready design prompt, catchy trendy topics, product-identity verification against official sources, rebuild, GitHub Pages deploy, PR + merge. File scope: `_src/build.mjs`, `assets/css/site.css`, `data/suggestions.json`, generated pages, `COORDINATION.md` (this section). Extends `main`'s build; no second site.
+- **What was added on top of main's evolved publication:**
+  - Front page: a "Which one fits your kitchen?" decision helper mapping each product to the buyer it suits (internal product links only; no new Amazon anchors, gates unaffected).
+  - CSS (`assets/css/site.css`): decision-helper block, trendy topic cards, shop emphasis on the Amazon buy button.
+  - Suggestions (`data/suggestions.json`): a copy-ready design prompt consolidating DB-01 to DB-08 (rendered on `/suggestions/`), plus catchy trendy question-shaped topics per cluster (all labelled hypotheses).
+- **Verification:** product identity re-verified against all five official Amazon listings — titles match `data/products.json` exactly (B0CDY277D3, B09B7SB46R, B08DKYBTPH, B0DHZTCNR5, B0DZFD6R9Z).
+- **Gates:** build PASSED (33 pages, 32 sitemap entries); repository gate passed (33 pages, 1,295 internal links, 121 Amazon links / 99 sponsored); compliance gate 1,314 checks / 0 failing / 1 owner-side warning (FLG-024).
+- **Pull request:** #42 — https://github.com/sassnarep3-star/WinA/pull/42 — `arena/9ef73f13-wina` → `main`.
+- **Merge:** merged by merge commit `8890516ae47e1589e82e9a880f32bf214ecccd95`, 2026-11-20. Not auto-merged; no approval waited for.
+- **GitHub Pages:** `pages/builds/latest` `status: built`, `commit: 8890516`. Live site verified: disclosure strip above the fold, five tagged sponsored product links, seven guides, seasonal banner, decision helper on the front page.
+- **Owner-side blockers, unchanged:** FLG-004/FLG-024 (Associates sign-in / Special Link test), FLG-009/SG-29 (Search Console), FLG-011 (collector deploy), FLG-013 (owned domain). These do not block the merge and are published on `/flagged/`.
+
 ## Session arena/1cf62cfb-wina — T33 record (2026-11-20)
 
 - **Claim and correction.** This session claimed "T27" in commit `7533c52` on a base older than `main` (`a3978fc`). `main` already held T27 for `arena/574fc8eb-wina`, and later T29 for `arena/6b0f2ddc-wina` and `arena-f5d87e09-wina`. The work is recorded here as **T33**. The T27 claim commit remains in history.
