@@ -2,16 +2,29 @@
 //
 // The project's stated measurement plan needs one thing the repository cannot supply: a server.
 // This is a complete one, with no dependencies, so "we have no collector" (FLG-011) is a choice
-// about where to run this file rather than a missing feature. It accepts exactly what the
-// Cloudflare worker accepts and stores exactly what it stores, so switching hosts is a config
-// change and not a re-instrumentation.
+// about where to run this file rather than a missing feature.
+//
+// The contract it implements is the one the browser client actually speaks (assets/js/site.js):
+//
+//   POST /e   {"e":"outbound_click","p":{"path":"/…","asin":"B0…","slot":"buybox"},"w":"m"}
+//
+// Props nested under "p", exactly as the worker reads them, and the stored row has the worker's
+// field names and length limits — day, event, path, asin, slot, viewport. Switching hosts is a
+// config change, not a re-instrumentation.
+//
+// Two deliberate differences from the worker, neither of which changes what is collected:
+// this server answers with a 1×1 pixel instead of 204, and it refuses an unregistered event with
+// 400 instead of a silent 204. A beacon ignores both; an operator does not.
 //
 //   node scripts/analytics-server.mjs
 //   HOST=0.0.0.0 PORT=8080 STATE_DIR=/var/lib/cs DATA_DAYS=30 node scripts/analytics-server.mjs
 //
-// Privacy, in one line: a row is (day, event, path, asin, viewport class) — nothing that survives
-// a day boundary, and nothing that can be joined to a person. Amazon's Program Policies prohibit
-// associating a sub-tag with a specific end user; this design cannot do that even by accident.
+// Privacy, in one line: a row is (day, event, path, asin, slot, viewport class) — nothing that
+// survives a day boundary, and nothing that can be joined to a person. Amazon's Program Policies
+// prohibit associating a sub-tag with a specific end user; this design cannot do that even by
+// accident.
+//
+// scripts/analytics-selftest.mjs drives this file end to end and is run in CI.
 import { createServer } from "node:http";
 import { readFileSync, writeFileSync, mkdirSync, appendFileSync, existsSync, readdirSync, rmSync } from "node:fs";
 import { join } from "node:path";
@@ -22,7 +35,14 @@ const PORT = Number(process.env.PORT || 8787);
 const STATE = process.env.STATE_DIR || join(ROOT, ".analytics-state");
 const KEEP_DAYS = Number(process.env.DATA_DAYS || 30);          // worker's documented retention
 const SITE_ORIGIN = new URL(cfg.site.origin).origin; // browsers send scheme+host only, never the /WinA path
-const ALLOWED_ORIGIN = new Set((process.env.ALLOWED_ORIGINS || [SITE_ORIGIN, "null"]).map((s) => s.trim()));
+// ALLOWED_ORIGINS is a comma-separated environment string. The default allows this site's own
+// origin and "null" (an opaque origin, e.g. a file:// page). Setting it replaces the default
+// outright, so an operator can lock the collector down to one origin.
+const ALLOWED_ORIGIN = new Set(
+  (process.env.ALLOWED_ORIGINS ? process.env.ALLOWED_ORIGINS.split(",") : [SITE_ORIGIN, "null"])
+    .map((s) => s.trim())
+    .filter(Boolean)
+);
 const EVENTS = new Set(cfg.governance.events.map((e) => e.name || e));
 const ALLOWED_KEYS = new Set(["path", "asin", "slot", "e", "p", "w"]);
 const MAX_BODY = 1024;
@@ -58,11 +78,11 @@ function summary(days = 14) {
     const rows = readDay(d);
     const by = {}, pages = {}, asins = {}, slots = {};
     for (const r of rows) {
-      by[r.e] = (by[r.e] || 0) + 1;
+      by[r.event] = (by[r.event] || 0) + 1;
       if (r.path) pages[r.path] = (pages[r.path] || 0) + 1;
       if (r.asin) asins[r.asin] = (asins[r.asin] || 0) + 1;
-      if (r.slot) slots[`${r.e}:${r.slot}`] = (slots[`${r.e}:${r.slot}`] || 0) + 1;
-      out.totals[r.e] = (out.totals[r.e] || 0) + 1;
+      if (r.slot) slots[`${r.event}:${r.slot}`] = (slots[`${r.event}:${r.slot}`] || 0) + 1;
+      out.totals[r.event] = (out.totals[r.event] || 0) + 1;
     }
     out.days.push({ day: d, events: rows.length, by_event: by, top_pages: top(pages, 8), top_asins: top(asins, 8), slots: top(slots, 12) });
   }
@@ -96,10 +116,22 @@ const server = createServer((req, res) => {
   req.on("end", () => {
     let p;
     try { p = JSON.parse(body || "{}"); } catch { return send(res, 400, JSON.stringify({ error: "invalid json" }), cors); }
-    // exactly the worker's allow-list: a future client cannot widen what is collected by sending more
-    const row = { day: /^\d{4}-\d{2}-\d{2}$/.test(p.t) ? p.t : dayKey(), e: scrub(p.e, 40), path: scrub(p.path, 180), asin: scrub(p.asin, 16), slot: scrub(p.slot, 24), p: scrub(p.p, 24), w: scrub(p.w, 12) };
+    // The client sends its props nested under "p" (assets/js/site.js) — the same shape the
+    // Cloudflare worker reads. A flat body is accepted as a fallback for a hand-written caller;
+    // nothing else is read, so a future client cannot widen what is collected by sending more.
+    const props = p.p && typeof p.p === "object" ? p.p : p;
+    // Exactly the worker's row: a day bucket, the event name, a page path, an ASIN, a slot and a
+    // coarse viewport class. Same field names, same length limits, same scrubbing.
+    const row = {
+      day: /^\d{4}-\d{2}-\d{2}$/.test(p.t) ? p.t : dayKey(),
+      event: scrub(p.e, 40),
+      path: scrub(props.path, 120),
+      asin: scrub(props.asin, 12),
+      slot: scrub(props.slot, 24),
+      viewport: ["s", "m", "l"].includes(p.w) ? p.w : "l"
+    };
     for (const k of Object.keys(row)) if (!row[k]) delete row[k];
-    if (!EVENTS.has(row.e)) return send(res, 400, JSON.stringify({ error: `unknown event "${row.e}"`, allowed: [...EVENTS] }), cors);
+    if (!EVENTS.has(row.event)) return send(res, 400, JSON.stringify({ error: `unknown event "${row.event}"`, allowed: [...EVENTS] }), cors);
     if (store) record(row);
     // A rejected origin gets the same 200 and the same pixel: a beacon must never fail visibly.
     res.writeHead(200, { "content-type": "image/gif", "cache-control": "no-store", ...cors });

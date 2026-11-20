@@ -67,6 +67,100 @@ fourth site. Claim the scope here first and push the claim before writing code.
 | T16 | Gap closure against the brief: sortable tables on every data table; SG-27..SG-30 parallel rows (nav labels, RSS feed, Search Console, reader capture); verified policy-citation corrections | done | arena-a86cb9d0 | `_src/build.mjs`, `_src/pages-content.mjs`, `assets/js/site.js`, `data/governance.json`, `COORDINATION.md` (arena-a86cb9d0 section only) | Extends main; does not add a second site (see conflict record) |
 | T17 | Replace obsolete parallel `scripts/build.mjs` / `scripts/verify.mjs` entry points with safe wrappers to the current publication build and repository gate | done | arena/1323e80f-wina | `scripts/build.mjs`, `scripts/verify.mjs`, `COORDINATION.md` | No served-page or data changes; prevents stale `data/site.json`/`site/` assumptions |
 | T18 | Re-verify the five submitted links, the policy quotes against official pages, and the RSS feed; correct FLG-013 citation and SUG-04 status; publish verification log | done | arena-301b1534 | `COORDINATION.md` (arena-301b1534 section only), `data/governance.json`, `data/suggestions.json`, rebuilt `flagged/`, `suggestions/`, `register/` | Claimed 2026-11-20 as T18 (T17 was taken on main by arena/1323e80f-wina). Extends main's build; no second site. Owner-account items (Associates sign-in, Search Console, analytics deploy) stay blocked and are not claimed. |
+| T30 | Reconcile the executive summary with the current gate output, state indexing precisely, and add a decision path an owner can act on | done | arena/d59cd471-wina | `EXECUTIVE_SUMMARY.md`, `COORDINATION.md` (this session section only) | Documentation only; no generated page, shared data or product claim changed. |
+| T31 | Populate the suggestions decision log from the decisions already written in the suggestion register, with a token legend and live counts | done | arena/d59cd471-wina | `data/suggestions.json`, `_src/build.mjs`, `assets/css/site.css`, `scripts/compliance-gate.mjs` | The reviewer surface the brief asks for. Every row mirrors a written decision; the gate now requires one dated row per suggestion and a token the register's status allows. |
+| T32 | End-to-end self-test of the collector contract, run in CI | done | arena/d59cd471-wina | `scripts/analytics-selftest.mjs`, `scripts/analytics-server.mjs`, `data/governance.json`, `.github/workflows/build.yml`, `package.json`, `README.md` | Found two real defects in the never-executed collector (FLG-041), both fixed. Nothing deployed; the client stays inert and FLG-011 stays open. |
+
+
+---
+
+## Session arena/d59cd471-wina — T30/T31/T32 (2026-11-20)
+
+- **Claim:** (T30) reconcile `EXECUTIVE_SUMMARY.md` with the current gate output and add a decision
+  path; (T31) populate the `/suggestions/` decision log from the decisions the register already
+  records, and make the gate enforce that agreement; (T32) execute the collector contract end to
+  end in CI. Owner-account items (Associates sign-in and the Special Link tests, Search Console,
+  deploying the collector) stay blocked and are not claimed.
+- **Base and conflicts:** started from `e886175`. `main` advanced twice while this session worked
+  (PRs #26/#31–#39: sessions `arena/574fc8eb-wina`, `arena/6b0f2ddc-wina`, `arena-f5d87e09-wina`).
+  Two conflicts were hit and resolved without discarding anyone's work:
+  1. **`EXECUTIVE_SUMMARY.md`** — another session extended the document (sections 8 and 9). The
+     reconciliation was re-applied *on top of* that document instead of replacing it: the existing
+     sections are intact, and this session's decision table and recommended path are section 10.
+  2. **`data/governance.json` and the flag id space** — `main` took `FLG-040` (redirect instability,
+     `arena/6b0f2ddc-wina`) and then `FLG-041` (CHEF iQ source variant, `arena-27f76c22`) while this
+     session was working, so the collector finding is numbered **FLG-042**. The task ids were
+     renumbered T30–T32 for the same reason (T27–T29 were taken on `main`).
+  3. **`data/suggestions.json`** — `main` had already recorded one decision (SUG-05, publishing
+     cadence adopted 2026-11-20, token `decision`). That row is **kept**, with its reason text
+     intact; the token vocabulary was widened so it reads `adopted`, and the remaining suggestions
+     were given rows that mirror their own written `decide` line. `main` later added five more
+     suggestions (SUG-25–SUG-29: the seasonal cluster, a technique cluster, brand imagery, paid
+     traffic, a head-to-head thermometer page); the gate caught their missing rows on the first
+     run, and each was given a row from its own written decision — no new recommendation invented.
+
+### T30 — executive summary reconciled
+
+- "indexed-by-sitemap" removed: a published sitemap is not an indexing receipt, and Search Console
+  has never been verified (FLG-009). The summary now says so and points at the verification step.
+- Counts refreshed to the current gate output, including the one place where the document still
+  said "80 tagged product links" while the site ships 82.
+- **New section 10**: a decision table (known / missing / discovery step) for eight decision gates,
+  plus a five-step path ordered by dependency, and a paragraph on what this session changed.
+- The document's other session records (sections 8 and 9) were left untouched.
+
+### T31 — the decision log, populated and enforced
+
+- `/suggestions/` now shows a dated row for each of the 29 suggestions, a legend of what each
+  decision state means (accepted, adopted, recommended, open, hold, rejected) and how many
+  suggestions sit in each.
+- **No new recommendation was invented.** Each row mirrors the `decide` line and `status` already
+  in the register. One register correction: SUG-24 (the decision log itself) was `recommend` while
+  the log was live and populated — it is now `shipped`.
+- **The gate prevents drift.** `scripts/compliance-gate.mjs` requires exactly one log row per
+  suggestion, an ISO date, a reason, a defined token, and a token the suggestion's status allows.
+  It caught two mismatches on the first run (SUG-06, SUG-24), which is how the SUG-24 correction
+  was found rather than shipped.
+
+### T32 — the collector contract, executed instead of asserted
+
+FLG-011 says no collector is deployed. Both collector implementations (`_worker/collector.js`,
+`scripts/analytics-server.mjs`) had never been executed against a request, so "deploy the
+collector" was a claim about untested code. `scripts/analytics-selftest.mjs` starts the server on
+an ephemeral port with a temporary state directory and drives it the way the browser does —
+**59 checks**, now run in CI.
+
+**Two real defects found, both fixed (FLG-042):**
+
+1. **The server did not speak the client's payload.** `assets/js/site.js` sends props nested under
+   `p` (and so does the Cloudflare worker); the server read `path`, `asin` and `slot` from the top
+   level of the body. Every click would have been recorded with no product, no page and no slot —
+   the one number the measurement plan exists to produce would never have existed. The server now
+   reads the nested shape, stores the worker's row (day, event, path, asin, slot, viewport) with
+   the same limits and scrubbing, and the self-test asserts that a click keeps its ASIN.
+2. **The server crashed on start when an origin allow-list was set.** `ALLOWED_ORIGINS` was parsed
+   with `Array.map` on a string, so the exact command its own startup message recommends
+   (`ALLOWED_ORIGINS=… node scripts/analytics-server.mjs`) threw on line 25.
+
+**Parity is now enforced.** The self-test reads both collector sources and fails if the worker's
+event list drifts from the register, if the two key allow-lists differ, or if the two stored row
+shapes differ.
+
+- **Nothing was deployed and nothing was enabled.** `site.analyticsEndpoint` stays unset and the
+  client stays inert; FLG-011 remains an open owner action, now reduced to "choose a host".
+- README documents both collectors, both environment variable names (`ALLOWED_ORIGIN` for the
+  worker, `ALLOWED_ORIGINS` for the server) and the self-test; `/analytics/` now names both.
+
+### Verification after the merge
+
+| Command | Result |
+| --- | --- |
+| `node _src/build.mjs` | 33 pages, 32 sitemap URLs; all build gates clear |
+| `node scripts/check-site.mjs` | 33 pages, 1,289 internal links, 121 Amazon anchors (99 tagged); 0 failures |
+| `node scripts/compliance-gate.mjs` | 1,497 checks, 0 failing, 1 owner-side warning (FLG-024) |
+| `node scripts/analytics-selftest.mjs` | 59 checks, 0 failing |
+| `node scripts/publish-gate.mjs --committed` | 5 checks, 0 failing, 0 warnings |
+
 
 ---
 

@@ -37,6 +37,12 @@ jobs:
           node scripts/next-topics.mjs | tee /tmp/topics.log
           grep -q "no query data yet" /tmp/topics.log
 
+      - name: Collector contract self-test
+        # The collector is not deployed, so nothing else exercises it. This starts it on an
+        # ephemeral port with a temporary state directory and asserts the contract the privacy
+        # story depends on: five events, an allow-list, no identifiers, a token-protected summary.
+        run: node scripts/analytics-selftest.mjs
+
       - name: Verify the build is reproducible and committed
         run: |
           if [ -n "$(git status --porcelain)" ]; then
