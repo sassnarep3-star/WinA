@@ -61,36 +61,6 @@
         <caption>Summary. "Resolved" means we found the answer and recorded it; "review" means the answer is not knowable from here; "action" means it needs a credential or a deploy; "withheld" means a policy prevents display.</caption>
         <thead><tr><th scope="col">ID</th><th scope="col">Item</th><th scope="col">Severity</th><th scope="col">Source</th></tr></thead>
         <tbody><tr>
-          <td><code>FLG-001</code></td>
-          <td>Short links carry no ASIN in the code</td>
-          <td><span class="pill pill--resolved">resolved</span></td>
-          <td><a href="https://link.amazon/B04G1MEwY" rel="noopener" target="_blank">open</a></td>
-        </tr><tr>
-          <td><code>FLG-014</code></td>
-          <td>Five analytics events were never defined in the request</td>
-          <td><span class="pill pill--resolved">resolved</span></td>
-          <td><a href="https://sassnarep3-star.github.io/WinA/analytics/" rel="noopener" target="_blank">open</a></td>
-        </tr><tr>
-          <td><code>FLG-015</code></td>
-          <td>A self-hosted analytics endpoint cannot run on GitHub Pages</td>
-          <td><span class="pill pill--resolved">resolved</span></td>
-          <td><a href="https://docs.github.com/pages" rel="noopener" target="_blank">open</a></td>
-        </tr><tr>
-          <td><code>FLG-017</code></td>
-          <td>Conflicting reports about whether Amazon was reachable</td>
-          <td><span class="pill pill--resolved">resolved</span></td>
-          <td><a href="https://www.amazon.com/dp/B08DKYBTPH" rel="nofollow noopener" target="_blank" data-nonaffiliate="true">open</a></td>
-        </tr><tr>
-          <td><code>FLG-018</code></td>
-          <td>Three independent site builds existed for this repo</td>
-          <td><span class="pill pill--resolved">resolved</span></td>
-          <td><a href="https://github.com/sassnarep3-star/WinA" rel="noopener" target="_blank">open</a></td>
-        </tr><tr>
-          <td><code>FLG-019</code></td>
-          <td>Readers had no way to find the dashboard surfaces from the front page</td>
-          <td><span class="pill pill--resolved">resolved</span></td>
-          <td><a href="https://sassnarep3-star.github.io/WinA/" rel="noopener" target="_blank">open</a></td>
-        </tr><tr>
           <td><code>FLG-003</code></td>
           <td>Compliance status of link.amazon short links is unresolved</td>
           <td><span class="pill pill--review">review</span></td>
@@ -175,48 +145,42 @@
           <td>The word 'Sponsored' appears on two Amazon destination pages</td>
           <td><span class="pill pill--low">low</span></td>
           <td><a href="https://www.amazon.com/dp/B09B7SB46R" rel="nofollow noopener" target="_blank" data-nonaffiliate="true">open</a></td>
+        </tr><tr>
+          <td><code>FLG-001</code></td>
+          <td>Short links carry no ASIN in the code</td>
+          <td><span class="pill pill--resolved">resolved</span></td>
+          <td><a href="https://link.amazon/B04G1MEwY" rel="noopener" target="_blank">open</a></td>
+        </tr><tr>
+          <td><code>FLG-014</code></td>
+          <td>Five analytics events were never defined in the request</td>
+          <td><span class="pill pill--resolved">resolved</span></td>
+          <td><a href="https://sassnarep3-star.github.io/WinA/analytics/" rel="noopener" target="_blank">open</a></td>
+        </tr><tr>
+          <td><code>FLG-015</code></td>
+          <td>A self-hosted analytics endpoint cannot run on GitHub Pages</td>
+          <td><span class="pill pill--resolved">resolved</span></td>
+          <td><a href="https://docs.github.com/pages" rel="noopener" target="_blank">open</a></td>
+        </tr><tr>
+          <td><code>FLG-017</code></td>
+          <td>Conflicting reports about whether Amazon was reachable</td>
+          <td><span class="pill pill--resolved">resolved</span></td>
+          <td><a href="https://www.amazon.com/dp/B08DKYBTPH" rel="nofollow noopener" target="_blank" data-nonaffiliate="true">open</a></td>
+        </tr><tr>
+          <td><code>FLG-018</code></td>
+          <td>Three independent site builds existed for this repo</td>
+          <td><span class="pill pill--resolved">resolved</span></td>
+          <td><a href="https://github.com/sassnarep3-star/WinA" rel="noopener" target="_blank">open</a></td>
+        </tr><tr>
+          <td><code>FLG-019</code></td>
+          <td>Readers had no way to find the dashboard surfaces from the front page</td>
+          <td><span class="pill pill--resolved">resolved</span></td>
+          <td><a href="https://sassnarep3-star.github.io/WinA/" rel="noopener" target="_blank">open</a></td>
         </tr></tbody>
       </table>
     </div>
 
     <h2 class="section__title" style="font-size:1.4rem">In detail</h2>
-    <div style="margin-top:1.25rem"><article class="note " style="margin-bottom:1.25rem">
-    <p class="note__title">FLG-001 <span class="pill pill--resolved">resolved</span></p>
-    <h3 style="font-family:var(--serif);font-size:1.15rem;margin:.2rem 0 .5rem;color:var(--ink)">Short links carry no ASIN in the code</h3>
-    <p style="margin:0 0 .6rem">Each submitted link is a /B0.../ short code that is not the ASIN. Product identity could only be established by following the redirect. All five were resolved by observation on 2026-11-20 and the observed destination is stored in its own field, separate from intended ASIN.</p>
-    <p style="margin:0 0 .6rem"><strong>What we did:</strong> Resolved. Observed destination recorded per product; intended ASIN left null because none was supplied.</p>
-    <p class="small" style="margin:0"><a href="https://link.amazon/B04G1MEwY" rel="noopener" target="_blank">Example submitted short link</a></p>
-  </article><article class="note " style="margin-bottom:1.25rem">
-    <p class="note__title">FLG-014 <span class="pill pill--resolved">resolved</span></p>
-    <h3 style="font-family:var(--serif);font-size:1.15rem;margin:.2rem 0 .5rem;color:var(--ink)">Five analytics events were never defined in the request</h3>
-    <p style="margin:0 0 .6rem">The brief referred to 'the five defined events' but never listed them, leaving the previous session to propose its own set. Carried forward from arena-2ca62ce9 (FLG-007).</p>
-    <p style="margin:0 0 .6rem"><strong>What we did:</strong> Resolved in this build. Five events are now defined explicitly — page_view, outbound_click, guide_read, compare_view, capture_intent — and documented at /analytics/. The wording differs from the earlier session's proposal; the newer set is what the shipped client emits.</p>
-    <p class="small" style="margin:0"><a href="https://sassnarep3-star.github.io/WinA/analytics/" rel="noopener" target="_blank">Measurement page</a></p>
-  </article><article class="note " style="margin-bottom:1.25rem">
-    <p class="note__title">FLG-015 <span class="pill pill--resolved">resolved</span></p>
-    <h3 style="font-family:var(--serif);font-size:1.15rem;margin:.2rem 0 .5rem;color:var(--ink)">A self-hosted analytics endpoint cannot run on GitHub Pages</h3>
-    <p style="margin:0 0 .6rem">GitHub Pages serves static files only, so a collector cannot be deployed there. Carried forward from arena-2ca62ce9 (FLG-008).</p>
-    <p style="margin:0 0 .6rem"><strong>What we did:</strong> Resolved by design, not deployed. The collector lives in _worker/ as a dependency-free edge handler, deployable anywhere with a fetch signature. It remains undeployed — see FLG-011.</p>
-    <p class="small" style="margin:0"><a href="https://docs.github.com/pages" rel="noopener" target="_blank">GitHub Pages documentation</a></p>
-  </article><article class="note " style="margin-bottom:1.25rem">
-    <p class="note__title">FLG-017 <span class="pill pill--resolved">resolved</span></p>
-    <h3 style="font-family:var(--serif);font-size:1.15rem;margin:.2rem 0 .5rem;color:var(--ink)">Conflicting reports about whether Amazon was reachable</h3>
-    <p style="margin:0 0 .6rem">The first session recorded Amazon.com as unreachable from the sandbox. Two later sessions, including this one, opened the live listing pages successfully with a fetch tool. Both are true: direct curl from the sandbox returns HTTP 000 for amazon.com, while the agent's page-fetch tool resolves it. Carried forward from arena-2ca62ce9 (FLG-017).</p>
-    <p style="margin:0 0 .6rem"><strong>What we did:</strong> Recorded as an environment distinction rather than an error. All five listings were confirmed by page fetch on 2026-11-20. The earlier statement is superseded, not deleted.</p>
-    <p class="small" style="margin:0"><a href="https://www.amazon.com/dp/B08DKYBTPH" rel="nofollow noopener" target="_blank" data-nonaffiliate="true">Listing confirmed reachable 2026-11-20</a></p>
-  </article><article class="note " style="margin-bottom:1.25rem">
-    <p class="note__title">FLG-018 <span class="pill pill--resolved">resolved</span></p>
-    <h3 style="font-family:var(--serif);font-size:1.15rem;margin:.2rem 0 .5rem;color:var(--ink)">Three independent site builds existed for this repo</h3>
-    <p style="margin:0 0 .6rem">Two earlier sessions generated root-level sites on main (PR #1, PR #6) and a third (arena-2ca62ce9) built its own. GitHub Pages serves a single source folder, so only one site can occupy the root. This session built a fourth. Carried forward from arena-2ca62ce9 (FLG-018), whose register predicted exactly this collision.</p>
-    <p style="margin:0 0 .6rem"><strong>What we did:</strong> Converged to one site. The earlier builds' complete data, toolchain and generated pages are preserved unchanged under archive/. Nothing was deleted and no finding was dropped.</p>
-    <p class="small" style="margin:0"><a href="https://github.com/sassnarep3-star/WinA" rel="noopener" target="_blank">Repository</a></p>
-  </article><article class="note " style="margin-bottom:1.25rem">
-    <p class="note__title">FLG-019 <span class="pill pill--resolved">resolved</span></p>
-    <h3 style="font-family:var(--serif);font-size:1.15rem;margin:.2rem 0 .5rem;color:var(--ink)">Readers had no way to find the dashboard surfaces from the front page</h3>
-    <p style="margin:0 0 .6rem">The brief required every dashboard surface to stay reachable while the front page led with products. Putting them in the primary navigation would have put the audit in front of the shopper.</p>
-    <p style="margin:0 0 .6rem"><strong>What we did:</strong> Resolved structurally. The primary navigation carries five reader destinations only; all nine record and review surfaces are grouped in the footer under 'Record &amp; review', so they remain one click from every page.</p>
-    <p class="small" style="margin:0"><a href="https://sassnarep3-star.github.io/WinA/" rel="noopener" target="_blank">Live front page</a></p>
-  </article><article class="note note--warn" style="margin-bottom:1.25rem">
+    <div style="margin-top:1.25rem"><article class="note note--warn" style="margin-bottom:1.25rem">
     <p class="note__title">FLG-003 <span class="pill pill--review">review</span></p>
     <h3 style="font-family:var(--serif);font-size:1.15rem;margin:.2rem 0 .5rem;color:var(--ink)">Compliance status of link.amazon short links is unresolved</h3>
     <p style="margin:0 0 .6rem">Whether link.amazon short links satisfy the requirement that a link not obscure the destination is not something we can settle from published policy text. Non-Amazon-owned shorteners are clearly addressed; this is Amazon's own domain. We are not claiming these links are invalid. The question is open.</p>
@@ -318,6 +282,42 @@
     <p style="margin:0 0 .6rem">The destination pages for two products display 'Sponsored' near the product summary. It is unclear whether it labels the listing itself or a carousel item. Recorded as observed, not interpreted. Carried forward from arena-2ca62ce9 (FLG-006).</p>
     <p style="margin:0 0 .6rem"><strong>What we did:</strong> No claim is made about sponsorship status of any listing. Re-check on the live page before publishing anything that depends on it.</p>
     <p class="small" style="margin:0"><a href="https://www.amazon.com/dp/B09B7SB46R" rel="nofollow noopener" target="_blank" data-nonaffiliate="true">Observed listing page</a></p>
+  </article><article class="note " style="margin-bottom:1.25rem">
+    <p class="note__title">FLG-001 <span class="pill pill--resolved">resolved</span></p>
+    <h3 style="font-family:var(--serif);font-size:1.15rem;margin:.2rem 0 .5rem;color:var(--ink)">Short links carry no ASIN in the code</h3>
+    <p style="margin:0 0 .6rem">Each submitted link is a /B0.../ short code that is not the ASIN. Product identity could only be established by following the redirect. All five were resolved by observation on 2026-11-20 and the observed destination is stored in its own field, separate from intended ASIN.</p>
+    <p style="margin:0 0 .6rem"><strong>What we did:</strong> Resolved. Observed destination recorded per product; intended ASIN left null because none was supplied.</p>
+    <p class="small" style="margin:0"><a href="https://link.amazon/B04G1MEwY" rel="noopener" target="_blank">Example submitted short link</a></p>
+  </article><article class="note " style="margin-bottom:1.25rem">
+    <p class="note__title">FLG-014 <span class="pill pill--resolved">resolved</span></p>
+    <h3 style="font-family:var(--serif);font-size:1.15rem;margin:.2rem 0 .5rem;color:var(--ink)">Five analytics events were never defined in the request</h3>
+    <p style="margin:0 0 .6rem">The brief referred to 'the five defined events' but never listed them, leaving the previous session to propose its own set. Carried forward from arena-2ca62ce9 (FLG-007).</p>
+    <p style="margin:0 0 .6rem"><strong>What we did:</strong> Resolved in this build. Five events are now defined explicitly — page_view, outbound_click, guide_read, compare_view, capture_intent — and documented at /analytics/. The wording differs from the earlier session's proposal; the newer set is what the shipped client emits.</p>
+    <p class="small" style="margin:0"><a href="https://sassnarep3-star.github.io/WinA/analytics/" rel="noopener" target="_blank">Measurement page</a></p>
+  </article><article class="note " style="margin-bottom:1.25rem">
+    <p class="note__title">FLG-015 <span class="pill pill--resolved">resolved</span></p>
+    <h3 style="font-family:var(--serif);font-size:1.15rem;margin:.2rem 0 .5rem;color:var(--ink)">A self-hosted analytics endpoint cannot run on GitHub Pages</h3>
+    <p style="margin:0 0 .6rem">GitHub Pages serves static files only, so a collector cannot be deployed there. Carried forward from arena-2ca62ce9 (FLG-008).</p>
+    <p style="margin:0 0 .6rem"><strong>What we did:</strong> Resolved by design, not deployed. The collector lives in _worker/ as a dependency-free edge handler, deployable anywhere with a fetch signature. It remains undeployed — see FLG-011.</p>
+    <p class="small" style="margin:0"><a href="https://docs.github.com/pages" rel="noopener" target="_blank">GitHub Pages documentation</a></p>
+  </article><article class="note " style="margin-bottom:1.25rem">
+    <p class="note__title">FLG-017 <span class="pill pill--resolved">resolved</span></p>
+    <h3 style="font-family:var(--serif);font-size:1.15rem;margin:.2rem 0 .5rem;color:var(--ink)">Conflicting reports about whether Amazon was reachable</h3>
+    <p style="margin:0 0 .6rem">The first session recorded Amazon.com as unreachable from the sandbox. Two later sessions, including this one, opened the live listing pages successfully with a fetch tool. Both are true: direct curl from the sandbox returns HTTP 000 for amazon.com, while the agent's page-fetch tool resolves it. Carried forward from arena-2ca62ce9 (FLG-017).</p>
+    <p style="margin:0 0 .6rem"><strong>What we did:</strong> Recorded as an environment distinction rather than an error. All five listings were confirmed by page fetch on 2026-11-20. The earlier statement is superseded, not deleted.</p>
+    <p class="small" style="margin:0"><a href="https://www.amazon.com/dp/B08DKYBTPH" rel="nofollow noopener" target="_blank" data-nonaffiliate="true">Listing confirmed reachable 2026-11-20</a></p>
+  </article><article class="note " style="margin-bottom:1.25rem">
+    <p class="note__title">FLG-018 <span class="pill pill--resolved">resolved</span></p>
+    <h3 style="font-family:var(--serif);font-size:1.15rem;margin:.2rem 0 .5rem;color:var(--ink)">Three independent site builds existed for this repo</h3>
+    <p style="margin:0 0 .6rem">Two earlier sessions generated root-level sites on main (PR #1, PR #6) and a third (arena-2ca62ce9) built its own. GitHub Pages serves a single source folder, so only one site can occupy the root. This session built a fourth. Carried forward from arena-2ca62ce9 (FLG-018), whose register predicted exactly this collision.</p>
+    <p style="margin:0 0 .6rem"><strong>What we did:</strong> Converged to one site. The earlier builds' complete data, toolchain and generated pages are preserved unchanged under archive/. Nothing was deleted and no finding was dropped.</p>
+    <p class="small" style="margin:0"><a href="https://github.com/sassnarep3-star/WinA" rel="noopener" target="_blank">Repository</a></p>
+  </article><article class="note " style="margin-bottom:1.25rem">
+    <p class="note__title">FLG-019 <span class="pill pill--resolved">resolved</span></p>
+    <h3 style="font-family:var(--serif);font-size:1.15rem;margin:.2rem 0 .5rem;color:var(--ink)">Readers had no way to find the dashboard surfaces from the front page</h3>
+    <p style="margin:0 0 .6rem">The brief required every dashboard surface to stay reachable while the front page led with products. Putting them in the primary navigation would have put the audit in front of the shopper.</p>
+    <p style="margin:0 0 .6rem"><strong>What we did:</strong> Resolved structurally. The primary navigation carries five reader destinations only; all nine record and review surfaces are grouped in the footer under 'Record &amp; review', so they remain one click from every page.</p>
+    <p class="small" style="margin:0"><a href="https://sassnarep3-star.github.io/WinA/" rel="noopener" target="_blank">Live front page</a></p>
   </article></div>
 
     <h2 class="section__title" style="font-size:1.4rem;margin-top:2.5rem">Prior audit work on this repository</h2>
