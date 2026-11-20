@@ -1,0 +1,183 @@
+{
+  "retrieved": "2026-11-20",
+  "flags": [
+    {
+      "id": "FLG-001",
+      "severity": "high",
+      "title": "Submitted short links are not in 10-character ASIN form",
+      "detail": "Each submitted link path (e.g. B04G1MEwY) has 9 characters. Amazon's ASIN is described as 10 characters (SRC-11, forum-level support only). The path therefore cannot be treated as an ASIN. Intended ASIN is left blank for all five rows.",
+      "sources": [
+        "SRC-11"
+      ],
+      "action": "Owner to confirm the intended product for each submitted link from the Associates Product Linking tool or the original source of each link."
+    },
+    {
+      "id": "FLG-002",
+      "severity": "high",
+      "title": "Intended ASIN and observed redirect target differ in kind and are kept in separate fields",
+      "detail": "Each short link resolved to a different Amazon product page than its path suggests. The intended ASIN field is blank; the observed ASIN is recorded separately with its date and source.",
+      "sources": [
+        "SRC-06",
+        "SRC-07",
+        "SRC-08",
+        "SRC-09",
+        "SRC-10"
+      ],
+      "action": "Owner to confirm which product each link should point to."
+    },
+    {
+      "id": "FLG-003",
+      "severity": "high",
+      "title": "Compliance status of the submitted short links is unresolved",
+      "detail": "The request says the supplied short links are not to be called invalid; their compliance status is unresolved (FLG-003 in the request). This repo does not contain that source register, so the reference could not be checked. Site CTAs point to the observed Amazon listing with the Tracking ID instead of the short links, pending Special Link validation.",
+      "sources": [
+        "SRC-01",
+        "SRC-02"
+      ],
+      "action": "Test one link per product in the enrolled Associates workflow and confirm destination and tracking report before scaling."
+    },
+    {
+      "id": "FLG-004",
+      "severity": "high",
+      "title": "Tracking ID not verified against the Associates account",
+      "detail": "Tracking ID shopnow047c-20 was supplied by the owner. The Operating Agreement and Participation Requirements show the tag as 'XXXXX-##' (or another format Amazon designates). The ID's enrollment, format and report data could not be verified from this sandbox (no Associates login).",
+      "sources": [
+        "SRC-02"
+      ],
+      "action": "Owner to confirm the ID in Associates Central and check that the Special Link tracking report records clicks from the site."
+    },
+    {
+      "id": "FLG-005",
+      "severity": "medium",
+      "title": "Prices, ratings, availability and shipping are not displayed",
+      "detail": "Program Policies section 2(b) limit price and availability display to Amazon-served links or PA-API/Creators API data. No PA-API access was verified, so price and rating fields are blank everywhere on the site, and no price comparison is published.",
+      "sources": [
+        "SRC-02"
+      ],
+      "action": "Decide whether PA-API/Creators API access will be pursued (Suggestion S-06)."
+    },
+    {
+      "id": "FLG-006",
+      "severity": "low",
+      "title": "'Sponsored' text observed on two Amazon pages",
+      "detail": "The page text on the destination pages for P02 and P05 includes the word 'Sponsored' near the product summary. It is not clear whether it labels the listing itself or a carousel item. Recorded as observed; not interpreted.",
+      "sources": [
+        "SRC-07",
+        "SRC-10"
+      ],
+      "action": "Review on the live listing before publishing any claim about that item."
+    },
+    {
+      "id": "FLG-007",
+      "severity": "medium",
+      "title": "Five analytics events were requested but never defined",
+      "detail": "The request asks for 'the five defined events' but does not list them. The site uses a proposed set (page_view, outbound_click, guide_view, nav_click, feed_subscribe_click). The analytics endpoint is not deployed; events are not recorded.",
+      "sources": [],
+      "action": "Confirm or replace the proposed events (Suggestion S-03)."
+    },
+    {
+      "id": "FLG-008",
+      "severity": "medium",
+      "title": "Self-hosted analytics endpoint cannot run on GitHub Pages",
+      "detail": "GitHub Pages serves static files only. The outbound-click counter is built but disabled (endpoint = null in site.json). Enabling it requires an endpoint on a server outside this repo.",
+      "sources": [],
+      "action": "Choose hosting for the endpoint (Suggestion S-03)."
+    },
+    {
+      "id": "FLG-009",
+      "severity": "medium",
+      "title": "Parallel session claim overlaps this work",
+      "detail": "Branch arena/2b309a82-wina on origin (commit 94a8bd3) already claims the same publication-site task in its COORDINATION.md. This session is on arena/2ca62ce9-wina and does not edit that branch. Two independent site builds would conflict when merged to main.",
+      "sources": [],
+      "action": "Owner to choose which branch's site to merge, or to have the integration session reconcile both COORDINATION.md logs."
+    },
+    {
+      "id": "FLG-010",
+      "severity": "medium",
+      "title": "Content volume may be below the Associates review bar",
+      "detail": "Associates Help says applications are checked for robust original content (a rule of thumb of at least 10 posts) and recent content (generally within 60 days). This site has 4 guide pages and 5 product rows; the Associates account status is unknown.",
+      "sources": [
+        "SRC-03"
+      ],
+      "action": "Plan original content before any application or re-application (Suggestion S-02)."
+    },
+    {
+      "id": "FLG-011",
+      "severity": "medium",
+      "title": "ASIN definition not found on an Amazon help article",
+      "detail": "Two searches did not return an Amazon help article defining the ASIN. Support is limited to Seller Central forum posts (SRC-11). The ASIN length claim is therefore only partially verified.",
+      "sources": [
+        "SRC-11"
+      ],
+      "action": "Locate Amazon's help article or accept the forum source for the length check."
+    },
+    {
+      "id": "FLG-012",
+      "severity": "medium",
+      "title": "Reader capture, Search Console and RSS subscribers not verified",
+      "detail": "No Search Console property has been verified (requires owner access). No newsletter or reader-capture form is built; no email collection is in place. Only the RSS feed is shipped.",
+      "sources": [],
+      "action": "Owner to verify the GitHub Pages URL in Search Console; choose the reader-capture method (Suggestion S-07)."
+    },
+    {
+      "id": "FLG-013",
+      "severity": "low",
+      "title": "Author identity and brand name are placeholders",
+      "detail": "No author was identified in the source material. Articles are attributed to 'Editorial team'. 'The Counter Guide' is a working site name and not a registered brand.",
+      "sources": [],
+      "action": "Choose the brand and the byline (Suggestions S-04 and S-05)."
+    },
+    {
+      "id": "FLG-014",
+      "severity": "low",
+      "title": "Source-register references in the request are not in this repository",
+      "detail": "The request cites S01, S02, S07, S24 and FLG-003. The repository has no such register. Sources used here are SRC-01 to SRC-11 and are linked directly.",
+      "sources": [],
+      "action": "Owner to supply the missing register if it is needed."
+    },
+    {
+      "id": "FLG-015",
+      "severity": "low",
+      "title": "Seasonal and cluster content not planned from measured data",
+      "detail": "The request asks for seasons and clusters. No seasonal demand data was obtained, so no seasonal dates are set. Clusters are the two product categories plus the four guide titles, which are working titles.",
+      "sources": [],
+      "action": "Use measured query data once analytics is live (Suggestion S-03)."
+    },
+    {
+      "id": "FLG-016",
+      "severity": "high",
+      "title": "Prior root-level site filled 'Intended ASIN' with observed redirect ASINs",
+      "detail": "Session arena-6bd1be15 (PR #6, merged to main) lists the observed redirect ASIN (e.g. B0CDY277D3) in its 'Intended ASIN' column. The redirect is an observation of where the submitted link currently lands, not confirmation of the intended product, and the submitted paths are not 10-character ASINs. This integration keeps intended fields blank and keeps observed targets in separate fields. The archived prior site is at archive/arena-6bd1be15/.",
+      "sources": [
+        "SRC-06",
+        "SRC-07",
+        "SRC-08",
+        "SRC-09",
+        "SRC-10"
+      ],
+      "action": "Owner to confirm the intended product for each row (S-01); do not copy observed ASINs into intended fields without that confirmation."
+    },
+    {
+      "id": "FLG-017",
+      "severity": "low",
+      "title": "Prior-session claims about Amazon reachability conflict",
+      "detail": "Session arena-4a5044b0 wrote that Amazon.com was unreachable. Session arena-6bd1be15 and this session both opened the observed Amazon pages with the fetch tool on 2026-11-20. curl from the sandbox still cannot reach link.amazon (HTTP 000). The earlier statement is recorded as superseded, not deleted.",
+      "sources": [
+        "SRC-06",
+        "SRC-07",
+        "SRC-08",
+        "SRC-09",
+        "SRC-10"
+      ],
+      "action": "None required; kept for the record."
+    },
+    {
+      "id": "FLG-018",
+      "severity": "medium",
+      "title": "Three independent site builds existed on main or on branches",
+      "detail": "PR #1 (arena-4a5044b0) and PR #6 (arena-6bd1be15) built root-level sites on main; this branch (arena-2ca62ce9) builds docs/. Only one site can be served by GitHub Pages from one folder. The integrated site is served from docs/; the two earlier root-level sites are archived unchanged under archive/.",
+      "sources": [],
+      "action": "Owner to confirm the integrated site is the one to keep (S-08)."
+    }
+  ]
+}
