@@ -71,8 +71,8 @@
     <div class="strip strip--inline">
       <div class="strip__cell"><p class="strip__num">34</p><p class="strip__lab">Suggestions on file</p></div>
       <div class="strip__cell"><p class="strip__num">4</p><p class="strip__lab">Already shipped</p></div>
-      <div class="strip__cell"><p class="strip__num">3</p><p class="strip__lab">With a recorded decision</p></div>
-      <div class="strip__cell"><p class="strip__num">31</p><p class="strip__lab">Waiting on you</p></div>
+      <div class="strip__cell"><p class="strip__num">4</p><p class="strip__lab">With a recorded decision</p></div>
+      <div class="strip__cell"><p class="strip__num">30</p><p class="strip__lab">Waiting on you</p></div>
     </div>
     <p class="small muted" style="margin-top:1rem">These four numbers are computed from <code>data/suggestions.json</code> at build time. They cannot say the work is finished unless the data says so.</p>
 
@@ -209,7 +209,7 @@
       <td class="mono">SUG-05</td>
       <td><strong>Publish on a real cadence: a new guide every week for eight weeks, then read the query data</strong><br><span class="tiny muted">Adopted 2026-11-20 as the publishing cadence; see the decision log. A new guide every Monday (New York time) for eight weeks. Basis, checked on Amazon Associates Help: content shou…</span></td>
       <td><span class="pill pill--recommend">recommend</span></td>
-      <td><span class="faint">waiting</span></td>
+      <td><span class="pill pill--resolved">accepted</span> <span class="tiny faint">2026-11-20 · DEC-01</span></td>
       <td class="tiny">A substantive guide per week. Each needs its own verified spec pass.</td>
     </tr><tr>
       <td class="mono">SUG-06</td>
@@ -329,7 +329,7 @@
       <td class="mono">SUG-25</td>
       <td><strong>Ship the seasonal cluster now, and refresh it every November — the position opposite SUG-23</strong><br><span class="tiny muted">Shipped this pass. Owner decides at Q-25: adopt the annual November refresh (re-check every linked spec against its source each time), or retire the page in favour of SUG-23\u2019s…</span></td>
       <td><span class="pill pill--shipped">shipped</span></td>
-      <td><span class="pill pill--resolved">accepted</span> <span class="tiny faint">2026-11-20 · DEC-02</span></td>
+      <td><span class="faint">waiting</span></td>
       <td class="tiny">A collection page, a holiday guide, two generated brand images, and a navigation label. Built in this pass.</td>
     </tr><tr>
       <td class="mono">SUG-26</td>
@@ -377,7 +377,7 @@
       <td class="mono">SUG-33</td>
       <td><strong>Add a 'what would change this recommendation' line to every pick</strong><br><span class="tiny muted">Consider after the first measured data arrives, so the conditions can name a real signal rather than a hypothetical one.</span></td>
       <td><span class="pill pill--consider">consider</span></td>
-      <td><span class="faint">waiting</span></td>
+      <td><span class="pill pill--resolved">accepted</span> <span class="tiny faint">2026-11-20 · DEC-02</span></td>
       <td class="tiny">One short paragraph per product, written from the specification record that already exists. No new data required.</td>
     </tr><tr>
       <td class="mono">SUG-34</td>
@@ -392,20 +392,20 @@
     <h2 class="section__title" style="margin-top:3rem">Decisions on record</h2>
     <div class="decision-list"><article class="decision">
       <div class="decision__head">
-        <span class="pill pill--withheld">decision</span>
-        <span class="mono tiny"></span>
+        <span class="pill pill--resolved">accepted</span>
+        <span class="mono tiny">DEC-01</span>
         <span class="tiny faint">2026-11-20</span>
       </div>
-      <h3 class="decision__subject"></h3>
+      <h3 class="decision__subject">SUG-05</h3>
       <p class="decision__reason">Publishing cadence adopted: a new guide every Monday (New York time) for eight weeks, each added to the sitemap and feed in the same commit and passing the build and compliance gates. Basis: Associates Help 'Application Review Process' (FLG-013). This sets the schedule only; no new guide is published by this decision. Week-eight measurement waits on owner-connected Search Console and analytics (FLG-009, FLG-011).</p>
-      <p class="tiny muted"><strong>Evidence:</strong>  · <strong>Recorded by:</strong> </p>
+      <p class="tiny muted"><strong>Evidence:</strong> Recorded on the task board; see the cited flags for the source. · <strong>Recorded by:</strong> parallel session (see COORDINATION.md)</p>
     </article><article class="decision">
       <div class="decision__head">
         <span class="pill pill--resolved">accepted</span>
         <span class="mono tiny">DEC-02</span>
         <span class="tiny faint">2026-11-20</span>
       </div>
-      <h3 class="decision__subject">SUG-25 to SUG-30 (publication pass: typography, illustrations, service pages, new guides, verification token, decisions page)</h3>
+      <h3 class="decision__subject">SUG-30 to SUG-33 (publication pass: typography, illustrations, service pages, new guides, verification token, decisions page)</h3>
       <p class="decision__reason">The brief for this pass asked explicitly for a polished front of house, question-shaped topics and a single reviewable decisions surface. Each of these six suggestions is a design or editorial change that adds no product claim, so none of them needed a fact verified before shipping. They are recorded here so the owner can reverse any of them with one commit.</p>
       <p class="tiny muted"><strong>Evidence:</strong> Build gate: every page still carries the disclosure above the fold; no page adds a price, rating, availability or testing claim; all internal links resolve. · <strong>Recorded by:</strong> arena/3fb64024-wina</p>
     </article><article class="decision">

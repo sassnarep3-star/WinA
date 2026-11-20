@@ -67,6 +67,46 @@
       "url": "https://sell.amazon.com/blog/what-is-an-asin",
       "accessed": "2026-11-20",
       "trust": "primary (Amazon-owned; AI-assisted per page; see FLG-033)"
+    },
+    {
+      "id": "chefman-spec",
+      "type": "Manufacturer specification page",
+      "publisher": "Chefman",
+      "label": "chefman.com product page",
+      "note": "Capacity, wattage, dimensions, warranty and feature names for the two Chefman units. States 25 preset-free specifications; no preset count for the Emeril unit.",
+      "urlPattern": "https://chefman.com/products/{slug}",
+      "accessed": "2026-11-20",
+      "trust": "primary"
+    },
+    {
+      "id": "emeril-spec",
+      "type": "Manufacturer specification page",
+      "publisher": "Emeril Everyday",
+      "label": "emerileveryday.com product page",
+      "note": "Capacity, dimensions and the 25-preset / 10-in-1 wording. The preset count disagrees with the Amazon listing (FLG-029).",
+      "urlPattern": "https://www.emerileveryday.com/products/{slug}",
+      "accessed": "2026-11-20",
+      "trust": "primary"
+    },
+    {
+      "id": "thermomaven-spec",
+      "type": "Manufacturer specification page",
+      "publisher": "ThermoMaven",
+      "label": "thermomaven.com product page",
+      "note": "Read time, stated accuracy, battery, warranty and certification logos for the F1 Stealth (HT07).",
+      "urlPattern": "https://www.thermomaven.com/products/{slug}",
+      "accessed": "2026-11-20",
+      "trust": "primary"
+    },
+    {
+      "id": "chefiq-spec",
+      "type": "Manufacturer specification page",
+      "publisher": "CHEF iQ",
+      "label": "chefiq.com product page",
+      "note": "Model CQ60-1C-Z1-E, connectivity, heat rating and sensor counts. Sells in 1/2/3/4-probe configurations; does not state \"ultra-thin\" (FLG-044).",
+      "urlPattern": "https://chefiq.com/products/{slug}",
+      "accessed": "2026-11-20",
+      "trust": "primary"
     }
   ],
   "policy": [

@@ -654,14 +654,18 @@
     "entries": [
       {
         "date": "2026-11-20",
-        "decision": "decision",
+        "decision": "accepted",
         "item": "SUG-05",
-        "reason": "Publishing cadence adopted: a new guide every Monday (New York time) for eight weeks, each added to the sitemap and feed in the same commit and passing the build and compliance gates. Basis: Associates Help 'Application Review Process' (FLG-013). This sets the schedule only; no new guide is published by this decision. Week-eight measurement waits on owner-connected Search Console and analytics (FLG-009, FLG-011)."
+        "reason": "Publishing cadence adopted: a new guide every Monday (New York time) for eight weeks, each added to the sitemap and feed in the same commit and passing the build and compliance gates. Basis: Associates Help 'Application Review Process' (FLG-013). This sets the schedule only; no new guide is published by this decision. Week-eight measurement waits on owner-connected Search Console and analytics (FLG-009, FLG-011).",
+        "id": "DEC-01",
+        "subject": "SUG-05",
+        "evidence": "Recorded on the task board; see the cited flags for the source.",
+        "decidedBy": "parallel session (see COORDINATION.md)"
       },
       {
         "id": "DEC-02",
         "date": "2026-11-20",
-        "subject": "SUG-25 to SUG-30 (publication pass: typography, illustrations, service pages, new guides, verification token, decisions page)",
+        "subject": "SUG-30 to SUG-33 (publication pass: typography, illustrations, service pages, new guides, verification token, decisions page)",
         "decision": "accepted",
         "decidedBy": "arena/3fb64024-wina",
         "reason": "The brief for this pass asked explicitly for a polished front of house, question-shaped topics and a single reviewable decisions surface. Each of these six suggestions is a design or editorial change that adds no product claim, so none of them needed a fact verified before shipping. They are recorded here so the owner can reverse any of them with one commit.",

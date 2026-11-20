@@ -708,41 +708,6 @@ record and out of this session's scope.)
 
 ---
 
-<<<<<<< HEAD
-## Session `arena/3fb64024-wina` — T26 claim (2026-11-20)
-
-**Claim, written before any code, and pushed first.** Scope is the row **T26** in the task board
-above. Branch `arena/3fb64024-wina`, base `80b45a1` (the merge of PR #24). One site, extended —
-this session read `origin/main` first, found a passing 30-page build with three independent gates,
-and is not starting a fifth site.
-
-**Why this task and not a new one.** No other claim is open on `main`: the board lists T01–T25 done
-and there is no unclaimed or in-progress row. The brief attached to this session asks for (a) a
-polished-marketing look rather than a register, (b) catchy question-shaped topics that can earn
-organic traffic, (c) a reviewable suggestions/decisions section, and (d) a standalone record of
-what is known, unknown and blocking. This build already has the last two (`/suggestions/`,
-`/questions/`); what it does not have is the first: a front-of-house design and a reason for a
-search engine to see a publication rather than a spec sheet.
-
-**Scope, and what is deliberately out of it.**
-
-| In scope | Out of scope, and why |
-|---|---|
-| `_src/build.mjs`, `_src/content.mjs`, new `_src/insurance.mjs` | `data/products.json` — 60 spec rows are another session's verified work (FLG-026..029). Not edited. |
-| `assets/css/site.css`, `assets/fonts/*`, `assets/img/*` | `data/policy.json`, `data/links.json` — quoted policy and resolved links are verification records. Not edited. |
-| `data/suggestions.json` — **new decision rows only** | `data/questions.json`, `data/special_link_tests.json` — not edited. |
-| `scripts/check-site.mjs` — the asset-extension allowlist only | `scripts/compliance-gate.mjs`, `scripts/publish-gate.mjs` — other sessions' gates, left intact. |
-| Generated pages, `sitemap.xml`, `feed.xml` | Every prior session's section of this board. Appended to, never rewritten. |
-
-**The no-fabrication rule this session holds itself to.** A design pass is where invented claims
-usually enter a site — a stock photo, a testimonial, a "best" badge, a number. This session adds
-**no** product photography, no rating, no price, no test result and no metric. The imagery it adds
-is drawn, labelled as illustration, and generated from the site's own palette. Any number it
-publishes must be countable from `data/` at build time, or it is not published.
-
-**Result.** See the T26 section at the end of this file for what was built, what was verified, and
-the irregularities left for review.
-=======
 ## Session arena/119f4dc6-wina — T26 claim (2026-11-20)
 
 | ID | Task | Status | Owner | Files / scope | Notes |
@@ -1162,4 +1127,97 @@ While the PR (#34) was open, `main` advanced again (PR #35, arena/f5d87e09: thir
 - Gates re-run on the merged tree: build PASSED (33 pages, 32 sitemap entries), repository gate passed, compliance gate 1,225 checks / 0 failing / 1 owner-side warning (FLG-024).
 
 **T32 — integration:** PR #34 updated by these merges; merge + deploy record below.
->>>>>>> origin/main
+
+## Session `arena/3fb64024-wina` — T26 claim (2026-11-20)
+
+**Claim, written before any code, and pushed first.** Scope is the row **T26** in the task board
+above. Branch `arena/3fb64024-wina`, base `80b45a1` (the merge of PR #24). One site, extended —
+this session read `origin/main` first, found a passing 30-page build with three independent gates,
+and is not starting a fifth site.
+
+**Why this task and not a new one.** No other claim is open on `main`: the board lists T01–T25 done
+and there is no unclaimed or in-progress row. The brief attached to this session asks for (a) a
+polished-marketing look rather than a register, (b) catchy question-shaped topics that can earn
+organic traffic, (c) a reviewable suggestions/decisions section, and (d) a standalone record of
+what is known, unknown and blocking. This build already has the last two (`/suggestions/`,
+`/questions/`); what it does not have is the first: a front-of-house design and a reason for a
+search engine to see a publication rather than a spec sheet.
+
+**Scope, and what is deliberately out of it.**
+
+| In scope | Out of scope, and why |
+|---|---|
+| `_src/build.mjs`, `_src/content.mjs`, new `_src/insurance.mjs` | `data/products.json` — 60 spec rows are another session's verified work (FLG-026..029). Not edited. |
+| `assets/css/site.css`, `assets/fonts/*`, `assets/img/*` | `data/policy.json`, `data/links.json` — quoted policy and resolved links are verification records. Not edited. |
+| `data/suggestions.json` — **new decision rows only** | `data/questions.json`, `data/special_link_tests.json` — not edited. |
+| `scripts/check-site.mjs` — the asset-extension allowlist only | `scripts/compliance-gate.mjs`, `scripts/publish-gate.mjs` — other sessions' gates, left intact. |
+| Generated pages, `sitemap.xml`, `feed.xml` | Every prior session's section of this board. Appended to, never rewritten. |
+
+**The no-fabrication rule this session holds itself to.** A design pass is where invented claims
+usually enter a site — a stock photo, a testimonial, a "best" badge, a number. This session adds
+**no** product photography, no rating, no price, no test result and no metric. The imagery it adds
+is drawn, labelled as illustration, and generated from the site's own palette. Any number it
+publishes must be countable from `data/` at build time, or it is not published.
+
+**Result.** See the T26 section at the end of this file for what was built, what was verified, and
+the irregularities left for review.
+
+---
+
+## T26 result — `arena/3fb64024-wina` (2026-11-20)
+
+Claimed and pushed first (`be42563`), then built, merged `main` twice, and published.
+
+| Item | Result |
+|---|---|
+| Pages | **38** generated (37 in the sitemap; `404.html` is deliberately excluded) |
+| Gates | build **PASSED** · repository gate **PASSED** (38 pages, 1,846 internal links) · compliance **1,481 checks, 0 failing, 1 warning** (FLG-024, owner-blocked) · publish gate **4/4** |
+| Branch | `arena/3fb64024-wina`, base `80b45a1`; 8 commits plus two `main` merges |
+| New pages | `/dinner-in-one-drawer/`, `/hands-off-the-grill/`, `/decisions/`, guides 06 `wrong-size` and 07 `app-dependence` |
+| Nav | one group, seven items: Air fryers · Thermometers · Guides · Compare · Holiday · About · Decisions |
+
+**What was built.**
+
+- **A publication front page**, not a dashboard: a lead story with a drawn plate, a shelf of five
+  product cards, two job-first service strips, all nine guides in a hierarchy (first one runs full
+  width), a seasonal banner, and an editorial band. The verification machinery is one click away in
+  the footer group, which is where it was asked to be.
+- **Self-hosted type** — Instrument Serif and Instrument Sans, both OFL 1.1, vendored as woff2 with
+  `LICENSES.md`. No third-party font host, so no reader is exposed to another origin.
+- **Original illustration** (`_src/art.mjs`): 16 deterministic SVGs — form-factor marks, four plates,
+  OG cards, a brand tile. Nothing is a product photograph, nothing is borrowed, and each is captioned
+  in HTML as an illustration. Deterministic: two builds produce byte-identical files.
+- **`/decisions/`** merges the suggestion register with the decision log into one reviewable table:
+  every suggestion, its state, its cost, and any recorded decision with a date and a reason.
+- **A discovery table** on `/questions/`: 12 gaps, each with the artifact that would close it, who
+  holds that artifact, and what changes the day it arrives. Three states: *owner only*,
+  *blocked on sales*, *does not exist*.
+- **Two new gate checks**, both written after a real defect and verified by re-breaking the thing
+  they watch: `phone-type` (evaluates every `clamp()` at 390 px and fails past 42 px — it caught a
+  49 px hero headline that looked fine on a desktop render) and `page-text` (fails on leaked
+  `${...}`, `undefined`, `[object Object]` or `NaN` in rendered text).
+
+**What was verified, and what that changed.**
+
+All four manufacturer pages were re-opened on 2026-11-20 for the first time by this session. That
+found a real error, now fixed: the Emeril **"24 presets"** row cited `emerileveryday.com`, which
+actually says **25** and calls the machine "10-in-1". The row now cites the Amazon listing, which is
+where 24 comes from (FLG-029 updated with both figures). One row could not be confirmed — CHEF iQ
+"3 ultra-thin probes" does not appear in the cited page text — so it is recorded as **FLG-044** rather
+than re-worded on a guess. Both are on `/flagged/` with source links.
+
+**Merge rule applied twice.** `main` advanced 128 commits while this branch was open, including two
+guides, a seasonal page and a brand-imagery pass from other sessions. Merge was a union, not a
+preference: both guide sets kept (renumbered 06–09 so no number repeats), nav keeps Holiday *and*
+Decisions, front page keeps the feature story *and* the seasonal banner. Register IDs collided —
+this session's flags became **FLG-042–044** and its suggestions **SUG-30–34**; main's rows were
+kept byte-for-byte. **FLG-025** (placeholder Search Console token) is marked resolved by this
+session: the build now refuses to emit a token unless `site.searchConsoleToken` holds a real value,
+and throws on anything placeholder-shaped.
+
+The guide count is now computed from `data/` everywhere it is stated. The gate that checks this
+caught six stale cells during the merge, which is the argument for having it.
+
+**Still open, none blocking:** FLG-024 (owner: one Special Link test per product in Associates
+Central), FLG-009 (Search Console verification), FLG-011 (analytics collector), FLG-013 (content
+volume against the ten-post rule of thumb).
