@@ -43,7 +43,7 @@
       "detail": "Amazon requires price data to come from its API so it stays accurate, and prohibits price tracking on the site. No Creatives or PA-API credential exists for this project, so any price printed here would be a guess that goes stale.",
       "action": "Price fields are marked unverified and left blank. No revenue forecast or conversion score is presented.",
       "sourceUrl": "https://affiliate-program.amazon.com/help/operating/policies",
-      "sourceLabel": "Participation Requirements §6(y)"
+      "sourceLabel": "Participation Requirements §2(b) (prices via API only) and §6(y) (no price tracking)"
     },
     {
       "id": "FLG-006",
@@ -61,7 +61,7 @@
       "detail": "No licensed product images are available. Amazon Program Content may not be copied, stored, or hot-linked outside approved tooling, and stock photography of a different appliance would misrepresent the item.",
       "action": "Pages are deliberately typographic — colour, type and layout carry the design. The real fix is Creatives API access, which would supply compliant imagery.",
       "sourceUrl": "https://affiliate-program.amazon.com/help/operating/policies",
-      "sourceLabel": "Participation Requirements §6(a)"
+      "sourceLabel": "Participation Requirements §6(a); IP License §1 and §2(h)"
     },
     {
       "id": "FLG-008",
@@ -88,7 +88,7 @@
       "detail": "The email capture form is present for layout and measurement but no email service provider is connected, so it cannot deliver a subscription.",
       "action": "The form is inert and says so where a reader would hit it. No address is transmitted or stored.",
       "sourceUrl": "https://affiliate-program.amazon.com/help/operating/policies",
-      "sourceLabel": "Data disclosure requirement, Participation Requirements §6(e)"
+      "sourceLabel": "Participation Requirements §3(e) (disclosing cookies, pixels, and other tracking)"
     },
     {
       "id": "FLG-011",
@@ -260,6 +260,42 @@
       "action": "Recorded as 24 (the listing) with the manufacturer figure noted. Neither is published as settled. Unchanged from FLG-005's finding, now with the third number and its URL.",
       "sourceUrl": "https://www.emerileveryday.com/products/emeril_lagasse_french_door_airfryer_360",
       "sourceLabel": "Emeril Everyday specification block"
+    },
+    {
+      "id": "SG-27",
+      "severity": "review",
+      "title": "Navigation labels: parallel row SG-27 has no source document in this repository",
+      "detail": "The brief names SG-27 as the navigation-labels row. Its source document was not provided, so no label set has been checked against it. The primary navigation carries five reader destinations, and the record and review surfaces are in the footer, as recorded in the design notes.",
+      "action": "Provide the SG-27 document. Until then the labels stay as built and are not claimed to match SG-27.",
+      "sourceUrl": "https://github.com/sassnarep3-star/WinA/blob/main/COORDINATION.md",
+      "sourceLabel": "Board: cross-scope requests (SG rows not in repository)"
+    },
+    {
+      "id": "SG-28",
+      "severity": "review",
+      "title": "RSS feed: parallel row SG-28 has no source document in this repository",
+      "detail": "The build produces an RSS 2.0 feed at /feed.xml. The RSS 2.0 specification requires the channel title, link, and description, and uses RFC 822 dates for pubDate. The brief's SG-28 requirements were not provided, so the feed has not been checked against them.",
+      "action": "Provide the SG-28 requirements. After deploy, check the feed in a feed reader.",
+      "sourceUrl": "https://www.rssboard.org/rss-specification",
+      "sourceLabel": "RSS Advisory Board, RSS 2.0 Specification"
+    },
+    {
+      "id": "SG-29",
+      "severity": "action",
+      "title": "Search Console: parallel row SG-29 is not done — no verification is recorded",
+      "detail": "The brief names SG-29 as the Search Console row. No Search Console verification is recorded in this repository, and no sitemap submission is recorded. The build does generate a sitemap, which lists every page. Every page currently carries a placeholder verification meta tag, which is not a verification (see FLG-025).",
+      "action": "Account owner: verify the site in Search Console, submit the sitemap, and replace the placeholder tag with the real token (FLG-025). This needs a Google account and is not something the build can do.",
+      "sourceUrl": "https://developers.google.com/search/docs/crawling-indexing/sitemaps/build-sitemap",
+      "sourceLabel": "Google Search Central, Build and submit a sitemap"
+    },
+    {
+      "id": "SG-30",
+      "severity": "review",
+      "title": "Reader capture: parallel row SG-30 is recorded, but the form has no backend",
+      "detail": "The brief names SG-30 as the reader-capture row. The capture form records a capture_intent event (EV-05) when submitted. No email service is connected, so no subscription is delivered (see FLG-010).",
+      "action": "Owner decision: whether reader capture is wanted, and if so, which email service to connect. Until then the form stays inert.",
+      "sourceUrl": "https://github.com/sassnarep3-star/WinA/blob/main/data/governance.json",
+      "sourceLabel": "Flag register: FLG-010 and event EV-05"
     }
   ],
   "ledger": {

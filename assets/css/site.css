@@ -645,3 +645,16 @@ table.data a { word-break: break-word; }
   border-radius: 3px;
   padding: .6rem .7rem;
 }
+/* Sortable table headings (assets/js/site.js) */
+table.data.sortable th .sort-btn {
+  all: unset;
+  cursor: pointer;
+  font: inherit;
+  color: inherit;
+  text-transform: inherit;
+  letter-spacing: inherit;
+}
+table.data.sortable th .sort-btn:hover { text-decoration: underline; }
+table.data.sortable th .sort-btn:focus-visible { outline: 2px solid currentColor; outline-offset: 2px; }
+table.data.sortable th[aria-sort="ascending"] .sort-btn::after { content: " \25B2"; font-size: .7em; }
+table.data.sortable th[aria-sort="descending"] .sort-btn::after { content: " \25BC"; font-size: .7em; }

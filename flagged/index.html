@@ -57,7 +57,7 @@
 <section class="section">
   <div class="wrap">
     <div class="tablewrap" style="margin-bottom:2rem">
-      <table class="data">
+      <table class="data sortable">
         <caption>Summary. "Resolved" means we found the answer and recorded it; "review" means the answer is not knowable from here; "action" means it needs a credential or a deploy; "withheld" means a policy prevents display.</caption>
         <thead><tr><th scope="col">ID</th><th scope="col">Item</th><th scope="col">Severity</th><th scope="col">Source</th></tr></thead>
         <tbody><tr>
@@ -111,6 +111,21 @@
           <td><span class="pill pill--review">review</span></td>
           <td><a href="https://www.emerileveryday.com/products/emeril_lagasse_french_door_airfryer_360" rel="noopener" target="_blank">open</a></td>
         </tr><tr>
+          <td><code>SG-27</code></td>
+          <td>Navigation labels: parallel row SG-27 has no source document in this repository</td>
+          <td><span class="pill pill--review">review</span></td>
+          <td><a href="https://github.com/sassnarep3-star/WinA/blob/main/COORDINATION.md" rel="noopener" target="_blank">open</a></td>
+        </tr><tr>
+          <td><code>SG-28</code></td>
+          <td>RSS feed: parallel row SG-28 has no source document in this repository</td>
+          <td><span class="pill pill--review">review</span></td>
+          <td><a href="https://www.rssboard.org/rss-specification" rel="noopener" target="_blank">open</a></td>
+        </tr><tr>
+          <td><code>SG-30</code></td>
+          <td>Reader capture: parallel row SG-30 is recorded, but the form has no backend</td>
+          <td><span class="pill pill--review">review</span></td>
+          <td><a href="https://github.com/sassnarep3-star/WinA/blob/main/data/governance.json" rel="noopener" target="_blank">open</a></td>
+        </tr><tr>
           <td><code>FLG-002</code></td>
           <td>Submitted links carry no Associates tag of their own</td>
           <td><span class="pill pill--action">action</span></td>
@@ -140,6 +155,11 @@
           <td>Tagged product links are live before the one-per-product Special Link test</td>
           <td><span class="pill pill--action">action</span></td>
           <td><a href="https://affiliate-program.amazon.com/help/operating/policies" rel="noopener" target="_blank">open</a></td>
+        </tr><tr>
+          <td><code>SG-29</code></td>
+          <td>Search Console: parallel row SG-29 is not done — no verification is recorded</td>
+          <td><span class="pill pill--action">action</span></td>
+          <td><a href="https://developers.google.com/search/docs/crawling-indexing/sitemaps/build-sitemap" rel="noopener" target="_blank">open</a></td>
         </tr><tr>
           <td><code>FLG-005</code></td>
           <td>No prices shown</td>
@@ -227,7 +247,7 @@
     <h3 style="font-family:var(--serif);font-size:1.15rem;margin:.2rem 0 .5rem;color:var(--ink)">No product photography</h3>
     <p style="margin:0 0 .6rem">No licensed product images are available. Amazon Program Content may not be copied, stored, or hot-linked outside approved tooling, and stock photography of a different appliance would misrepresent the item.</p>
     <p style="margin:0 0 .6rem"><strong>What we did:</strong> Pages are deliberately typographic — colour, type and layout carry the design. The real fix is Creatives API access, which would supply compliant imagery.</p>
-    <p class="small" style="margin:0"><a href="https://affiliate-program.amazon.com/help/operating/policies" rel="noopener" target="_blank">Participation Requirements §6(a)</a></p>
+    <p class="small" style="margin:0"><a href="https://affiliate-program.amazon.com/help/operating/policies" rel="noopener" target="_blank">Participation Requirements §6(a); IP License §1 and §2(h)</a></p>
   </article><article class="note note--warn" style="margin-bottom:1.25rem">
     <p class="note__title">FLG-008 <span class="pill pill--review">review</span></p>
     <h3 style="font-family:var(--serif);font-size:1.15rem;margin:.2rem 0 .5rem;color:var(--ink)">Commission rates not asserted</h3>
@@ -271,6 +291,24 @@
     <p style="margin:0 0 .6rem"><strong>What we did:</strong> Recorded as 24 (the listing) with the manufacturer figure noted. Neither is published as settled. Unchanged from FLG-005's finding, now with the third number and its URL.</p>
     <p class="small" style="margin:0"><a href="https://www.emerileveryday.com/products/emeril_lagasse_french_door_airfryer_360" rel="noopener" target="_blank">Emeril Everyday specification block</a></p>
   </article><article class="note note--warn" style="margin-bottom:1.25rem">
+    <p class="note__title">SG-27 <span class="pill pill--review">review</span></p>
+    <h3 style="font-family:var(--serif);font-size:1.15rem;margin:.2rem 0 .5rem;color:var(--ink)">Navigation labels: parallel row SG-27 has no source document in this repository</h3>
+    <p style="margin:0 0 .6rem">The brief names SG-27 as the navigation-labels row. Its source document was not provided, so no label set has been checked against it. The primary navigation carries five reader destinations, and the record and review surfaces are in the footer, as recorded in the design notes.</p>
+    <p style="margin:0 0 .6rem"><strong>What we did:</strong> Provide the SG-27 document. Until then the labels stay as built and are not claimed to match SG-27.</p>
+    <p class="small" style="margin:0"><a href="https://github.com/sassnarep3-star/WinA/blob/main/COORDINATION.md" rel="noopener" target="_blank">Board: cross-scope requests (SG rows not in repository)</a></p>
+  </article><article class="note note--warn" style="margin-bottom:1.25rem">
+    <p class="note__title">SG-28 <span class="pill pill--review">review</span></p>
+    <h3 style="font-family:var(--serif);font-size:1.15rem;margin:.2rem 0 .5rem;color:var(--ink)">RSS feed: parallel row SG-28 has no source document in this repository</h3>
+    <p style="margin:0 0 .6rem">The build produces an RSS 2.0 feed at /feed.xml. The RSS 2.0 specification requires the channel title, link, and description, and uses RFC 822 dates for pubDate. The brief's SG-28 requirements were not provided, so the feed has not been checked against them.</p>
+    <p style="margin:0 0 .6rem"><strong>What we did:</strong> Provide the SG-28 requirements. After deploy, check the feed in a feed reader.</p>
+    <p class="small" style="margin:0"><a href="https://www.rssboard.org/rss-specification" rel="noopener" target="_blank">RSS Advisory Board, RSS 2.0 Specification</a></p>
+  </article><article class="note note--warn" style="margin-bottom:1.25rem">
+    <p class="note__title">SG-30 <span class="pill pill--review">review</span></p>
+    <h3 style="font-family:var(--serif);font-size:1.15rem;margin:.2rem 0 .5rem;color:var(--ink)">Reader capture: parallel row SG-30 is recorded, but the form has no backend</h3>
+    <p style="margin:0 0 .6rem">The brief names SG-30 as the reader-capture row. The capture form records a capture_intent event (EV-05) when submitted. No email service is connected, so no subscription is delivered (see FLG-010).</p>
+    <p style="margin:0 0 .6rem"><strong>What we did:</strong> Owner decision: whether reader capture is wanted, and if so, which email service to connect. Until then the form stays inert.</p>
+    <p class="small" style="margin:0"><a href="https://github.com/sassnarep3-star/WinA/blob/main/data/governance.json" rel="noopener" target="_blank">Flag register: FLG-010 and event EV-05</a></p>
+  </article><article class="note note--warn" style="margin-bottom:1.25rem">
     <p class="note__title">FLG-002 <span class="pill pill--action">action</span></p>
     <h3 style="font-family:var(--serif);font-size:1.15rem;margin:.2rem 0 .5rem;color:var(--ink)">Submitted links carry no Associates tag of their own</h3>
     <p style="margin:0 0 .6rem">The submitted link.amazon URLs resolve to plain product pages. No tag parameter was observed on them, so they do not by themselves attribute a purchase to shopnow047c-20.</p>
@@ -287,7 +325,7 @@
     <h3 style="font-family:var(--serif);font-size:1.15rem;margin:.2rem 0 .5rem;color:var(--ink)">Reader capture has no backend</h3>
     <p style="margin:0 0 .6rem">The email capture form is present for layout and measurement but no email service provider is connected, so it cannot deliver a subscription.</p>
     <p style="margin:0 0 .6rem"><strong>What we did:</strong> The form is inert and says so where a reader would hit it. No address is transmitted or stored.</p>
-    <p class="small" style="margin:0"><a href="https://affiliate-program.amazon.com/help/operating/policies" rel="noopener" target="_blank">Data disclosure requirement, Participation Requirements §6(e)</a></p>
+    <p class="small" style="margin:0"><a href="https://affiliate-program.amazon.com/help/operating/policies" rel="noopener" target="_blank">Participation Requirements §3(e) (disclosing cookies, pixels, and other tracking)</a></p>
   </article><article class="note note--warn" style="margin-bottom:1.25rem">
     <p class="note__title">FLG-011 <span class="pill pill--action">action</span></p>
     <h3 style="font-family:var(--serif);font-size:1.15rem;margin:.2rem 0 .5rem;color:var(--ink)">Analytics endpoint not deployed</h3>
@@ -306,12 +344,18 @@
     <p style="margin:0 0 .6rem">Product buy-boxes and the register link to amazon.com/dp/&lt;observed ASIN&gt;?tag=shopnow047c-20 for all five products. The per-product test required before scaling (FLG-003) has not been run; it needs Associates Central sign-in, which this build does not have. The site does not claim the submitted short links are invalid. The test is recorded as blocked on the Special Link test register.</p>
     <p style="margin:0 0 .6rem"><strong>What we did:</strong> Owner runs one test per product in the enrolled Associates workflow and records the destination and tracking-report line in data/special_link_tests.json. Until then no further product link is added. If a test fails, the owner chooses the link method.</p>
     <p class="small" style="margin:0"><a href="https://affiliate-program.amazon.com/help/operating/policies" rel="noopener" target="_blank">Participation Requirements §2(b) (Special Links use the Associates ID)</a></p>
+  </article><article class="note note--warn" style="margin-bottom:1.25rem">
+    <p class="note__title">SG-29 <span class="pill pill--action">action</span></p>
+    <h3 style="font-family:var(--serif);font-size:1.15rem;margin:.2rem 0 .5rem;color:var(--ink)">Search Console: parallel row SG-29 is not done — no verification is recorded</h3>
+    <p style="margin:0 0 .6rem">The brief names SG-29 as the Search Console row. No Search Console verification is recorded in this repository, and no sitemap submission is recorded. The build does generate a sitemap, which lists every page. Every page currently carries a placeholder verification meta tag, which is not a verification (see FLG-025).</p>
+    <p style="margin:0 0 .6rem"><strong>What we did:</strong> Account owner: verify the site in Search Console, submit the sitemap, and replace the placeholder tag with the real token (FLG-025). This needs a Google account and is not something the build can do.</p>
+    <p class="small" style="margin:0"><a href="https://developers.google.com/search/docs/crawling-indexing/sitemaps/build-sitemap" rel="noopener" target="_blank">Google Search Central, Build and submit a sitemap</a></p>
   </article><article class="note note--stop" style="margin-bottom:1.25rem">
     <p class="note__title">FLG-005 <span class="pill pill--withheld">withheld</span></p>
     <h3 style="font-family:var(--serif);font-size:1.15rem;margin:.2rem 0 .5rem;color:var(--ink)">No prices shown</h3>
     <p style="margin:0 0 .6rem">Amazon requires price data to come from its API so it stays accurate, and prohibits price tracking on the site. No Creatives or PA-API credential exists for this project, so any price printed here would be a guess that goes stale.</p>
     <p style="margin:0 0 .6rem"><strong>What we did:</strong> Price fields are marked unverified and left blank. No revenue forecast or conversion score is presented.</p>
-    <p class="small" style="margin:0"><a href="https://affiliate-program.amazon.com/help/operating/policies" rel="noopener" target="_blank">Participation Requirements §6(y)</a></p>
+    <p class="small" style="margin:0"><a href="https://affiliate-program.amazon.com/help/operating/policies" rel="noopener" target="_blank">Participation Requirements §2(b) (prices via API only) and §6(y) (no price tracking)</a></p>
   </article><article class="note note--stop" style="margin-bottom:1.25rem">
     <p class="note__title">FLG-006 <span class="pill pill--withheld">withheld</span></p>
     <h3 style="font-family:var(--serif);font-size:1.15rem;margin:.2rem 0 .5rem;color:var(--ink)">No star ratings or review quotes</h3>
@@ -389,7 +433,7 @@
     <h2 class="section__title" style="font-size:1.4rem;margin-top:2.5rem">Prior audit work on this repository</h2>
     <p class="section__dek" style="margin-bottom:1.25rem">Other sessions built earlier versions of this site on the same repo. Their findings are merged into the register above rather than discarded, and their complete data, toolchain and generated pages are preserved unchanged in <code>archive/</code>. Nothing was deleted.</p>
     <div class="tablewrap">
-      <table class="data">
+      <table class="data sortable">
         <caption>Archived builds. Each is a complete, browsable copy from the commit it was merged at; none is served as the live site any more.</caption>
         <thead><tr><th scope="col">Archive</th><th scope="col">Session</th><th scope="col">Finding</th><th scope="col">Browse</th></tr></thead>
         <tbody>
