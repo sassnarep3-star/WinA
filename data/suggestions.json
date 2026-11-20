@@ -1,5 +1,5 @@
 {
-  "intro": "A decision list, not a wish list. Each suggestion states what to do, why, what it costs, and what would make it a bad idea. Nothing here has been implemented beyond what is already live; the ones marked shipped were built in this pass because the brief asked for them directly. Everything else waits for a decision.",
+  "intro": "A decision list, not a wish list. Each suggestion states what to do, why, what it costs, and what would make it a bad idea. Everything marked shipped was built because the brief asked for it directly or a prior pass shipped it; everything else waits for a decision. The 2026-11-20 editorial pass (arena-27f76c22) added SUG-17 to SUG-21 and shipped SUG-17.",
   "statusKey": [
     {
       "id": "shipped",
@@ -232,6 +232,71 @@
       "cost": "One field, refreshed on a schedule.",
       "risk": "A stale date is a public admission of neglect. That is the point.",
       "decide": "Consider. Pages currently record the observation date in the register rather than on the page.",
+      "links": []
+    },
+    {
+      "id": "SUG-17",
+      "title": "Ship the seasonal cluster now, and refresh it every November",
+      "status": "shipped",
+      "weight": 8,
+      "why": "Seasonal intent is the one demand pattern that does not need a query report to justify: holiday cooking questions arrive every November whether or not we can measure them yet. A shipped seasonal page compounds — it can be re-checked, re-linked, and re-published each year instead of rebuilt.",
+      "cost": "A collection page, a holiday guide, two generated brand images, and a navigation label. Built in this pass.",
+      "risk": "A calendar-driven topic may miss the queries people actually type, because no Search Console data exists yet — that limitation is disclosed on the page itself (FLG-020, Q-23).",
+      "decide": "Shipped this pass. Next step is annual: refresh /seasonal/ each November, re-check every linked spec against its source on each refresh, and rotate the featured machines if the register changes.",
+      "links": [
+        {
+          "label": "Seasonal collection",
+          "url": "https://sassnarep3-star.github.io/WinA/seasonal/"
+        }
+      ]
+    },
+    {
+      "id": "SUG-18",
+      "title": "Grow the technique cluster by one article a month — jobs, not verdicts",
+      "status": "recommend",
+      "weight": 8,
+      "why": "Technique questions (what to reheat, what to batch, what belongs on the counter) are evergreen, answerable from published specifications, and never require claiming a hands-on test. They are also the cheapest way to close the Associates 10-post bar (FLG-013): this pass added the technique and holiday guides, leaving roughly three additional substantive posts to reach ten on any reading.",
+      "cost": "A guide per month plus its verification pass — the same cost as the weekly cadence in SUG-05, at a slower, sustainable rate.",
+      "risk": "Seven guides already cover form factor, capacity, cleanup, multi-function, thermometers, technique, and holidays. A new article must be a new job (reheating, defrost-and-crisp, batch-prep) or it will restate the same trade-offs and read as filler — the exact failure the brief rejects.",
+      "decide": "Recommend. Start next month if the weekly cadence (SUG-05) is not adopted; if it is, slot technique articles into the same calendar. Each new guide enters the sitemap and feed in the same commit, per the standing rule.",
+      "links": []
+    },
+    {
+      "id": "SUG-19",
+      "title": "Expand the brand imagery: one generated counter scene per collection",
+      "status": "consider",
+      "weight": 5,
+      "why": "The two shipped images cover the seasonal cluster and the guides imagery. A consistent illustration per category (air fryers, thermometers, compare) would make the site read as a publication from any entry page, which is the brief’s anti-slop requirement made visual.",
+      "cost": "Four generated images and one CSS addition. No ongoing cost.",
+      "risk": "None to compliance as long as the images never depict products, brands, or any appliance that could be mistaken for a listed unit (FLG-007), and each use is labelled on-page. The risk is aesthetic: too many scenes can read as stock.",
+      "decide": "Consider after the seasonal deploy settles. Decide per image, not as a batch; keep the same warm editorial grade so the set reads as one publication.",
+      "links": [
+        {
+          "label": "Imagery constraint (FLG-007)",
+          "url": "https://sassnarep3-star.github.io/WinA/flagged/"
+        }
+      ]
+    },
+    {
+      "id": "SUG-20",
+      "title": "Buy traffic before conversion measurement exists",
+      "status": "hold",
+      "weight": 9,
+      "why": "Paid acquisition is reasonable only once two things are true: the collector is deployed (FLG-011) so clicks per source are countable, and the Associates tracking report confirms attribution (FLG-004). Neither is true today. Spending before measurement means paying for clicks nobody can trace to an order.",
+      "cost": "Budget, plus the two blockers above.",
+      "risk": "The failure mode is not overspend — it is confidence: unmeasured paid traffic looks identical to organic growth in every report the site currently has.",
+      "decide": "Hold until FLG-011 and FLG-004 close. Re-evaluate in the week after the first Associates report arrives.",
+      "links": []
+    },
+    {
+      "id": "SUG-21",
+      "title": "A dedicated head-to-head thermometer page — only when measurement justifies it",
+      "status": "consider",
+      "weight": 6,
+      "why": "The instant-vs-wireless guide covers the decision narratively. A dedicated side-by-side page would target a different reader — the one who has already decided to compare — and the comparison table already carries the verified spec rows to build it from.",
+      "cost": "One page from existing verified data; no new claims required.",
+      "risk": "It adds another URL competing with the existing guide and compare page for the same intent. Without query data, choosing this topic is instinct — the failure mode the cadence exists to replace.",
+      "decide": "Consider, gated on measurement: build it only if the query report (Q-24) shows thermometer-comparison impressions. Until then the guide and the table cover the intent.",
       "links": []
     }
   ]
