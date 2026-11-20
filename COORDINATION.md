@@ -700,3 +700,19 @@ No value was inferred; the topic roadmap is explicitly hypothetical and the desi
 explicitly a recommendation. Nothing blocks the merge. (Note observed, not changed here: `main`'s
 board carries a duplicate T24 row identical to T22; left as-is since it is another session's
 record and out of this session's scope.)
+
+**Pull request, merge and deploy (recorded 2026-11-20).**
+
+- **PR #24** — https://github.com/sassnarep3-star/WinA/pull/24 (`arena/829ea2fd-wina` → `main`).
+- Merged with `gh pr merge 24 --merge` at 2026-11-20 06:17:05 UTC. Merge commit
+  **`80b45a1bd3abc882e662eaeb7214e151722072a9`**.
+- The merge required three re-merges of `origin/main` into this branch, because `main` advanced
+  under it during the session (T17/T18, then T19/T20, then T21–T24). Each was resolved additively
+  and re-verified; no other session's work was discarded.
+- Checks before merge: `Build and verify` pass, `validate` pass, `scripts/check-site.mjs` pass.
+- **GitHub Pages** for `80b45a1`: status **built**. Source `main` `/`.
+- Live check, cache-busted (`?v=80b45a1`): `/suggestions/` serves the new design-prompt layer
+  (SUG-17..SUG-24 and the design-brief/topic-roadmap/decision-log sections) with the disclosure
+  strip above the fold.
+- Flagged items (FLG-034, FLG-035, and all prior flags) did not block the merge; they remain on
+  `/flagged/` for owner review.
