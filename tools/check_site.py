@@ -11,7 +11,8 @@ automated (gates G-1..G-3 on data-room/compliance-gate.html):
   R-04  every internal link and asset reference resolves to a real file,
         and cross-page #fragments exist in their target
   R-05  every page has lang, <title>, meta description and a canonical link
-  R-06  no placeholder text (TODO/FIXME/Lorem) ships
+  R-06  no placeholder text (TODO/FIXME/Lorem) ships, no unresolved merge
+        conflict marker ships, and every data/*.json register parses
   R-07  sitemap.xml covers exactly the indexable pages
   R-08  feed.xml parses and its item links resolve
   R-09  every page repeats the Amazon Associate statement in the footer
@@ -201,10 +202,34 @@ def check_head(path, text, collector):
 
 # ------------------------------------------------------------------------ R-06
 PLACEHOLDER = re.compile(r"\b(TODO|FIXME|XXX|Lorem ipsum)\b")
+# Unresolved merge markers are placeholder text of the worst kind: they are what
+# a reader sees when a conflict was committed rather than resolved. Ten served
+# files shipped with them on 2026-11-20 (commit 2ba4816 kept "both sides"), and
+# two data registers shipped as unparseable JSON — so both are checked here.
+CONFLICT_MARKER = re.compile(r"^(<<<<<<< |>>>>>>> |=======$)", re.M)
 
 def check_placeholders(path, text):
     for m in PLACEHOLDER.finditer(text):
         fail("R-06", path, f"placeholder text ships: {m.group(1)}")
+    for m in CONFLICT_MARKER.finditer(text):
+        fail("R-06", path, f"unresolved merge conflict marker ships: {m.group(1).strip()}")
+
+def check_registers_parse():
+    import json
+    data_dir = os.path.join(ROOT, "data")
+    if not os.path.isdir(data_dir):
+        return
+    for dirpath, dirnames, filenames in os.walk(data_dir):
+        dirnames[:] = [d for d in dirnames if d not in {".git"}]
+        for name in sorted(filenames):
+            if not name.endswith(".json"):
+                continue
+            full = os.path.join(dirpath, name)
+            try:
+                with open(full, encoding="utf-8") as fh:
+                    json.load(fh)
+            except Exception as exc:
+                fail("R-06", full, f"data register does not parse: {exc}")
 
 
 # -------------------------------------------------------- R-10 / R-11
@@ -400,6 +425,7 @@ def main():
         check_links(path, cache[path], cache)
     check_sitemap_and_feed()
     check_stated_counts(pages)
+    check_registers_parse()
 
     print(f"checked {len(pages)} HTML pages")
     for note in notes:
