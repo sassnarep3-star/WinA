@@ -200,7 +200,7 @@ Branch `arena/5a289bff-wina` was merged with `origin/main` at `f421d5c` on 2026-
 | arena-5a289bff-wina | T6 Measurement: five events, privacy-preserving outbound-click counter, self-hosted endpoint (not deployed) | done (superseded by main) | assets/js/track.js, tools/analytics-endpoint.mjs, data/events.json, analytics/** | 2026-11-20 | 2026-11-20 | main analytics is built, disabled, endpoint null (FLG-008). No endpoint deployed; no new collector added. |
 | arena-5a289bff-wina | T7 Compliance gate (disclosure on every page, sponsored rel, policy checks, link/feed/sitemap checks) | done | tools/check.mjs, sitemap.xml, feed.xml, robots.txt | 2026-11-20 | 2026-11-20 | tools/build.py checks run before and after write: allowlisted hosts, disclosure twice on every page, Amazon anchors sponsored, no price text, no broken internal links. Ad-hoc audit this session: 20 pages, 0 problems. |
 | arena-5a289bff-wina | T8 Decision support: questions, suggestions (choice board), executive summary, empty campaign ledger, Flagged for Review | done | data/questions.json, data/suggestions.json, data/flags.json, data/ledger.csv | 2026-11-20 | 2026-11-20 | main questions, suggestions (S-01 to S-08), Flagged for Review (now FLG-001 to FLG-020), empty ledger with provenance columns, executive summary. Added the AI-platform concept page (dashboard/ai-platform-concept.html). |
-| arena-5a289bff-wina | T9 Integration: build, check, PR to main, merge, confirm GitHub Pages deploy | in progress | COORDINATION.md, _src/build.mjs, data/governance.json, data/special_link_tests.json, concept/ (generated) | 2026-11-20 | — | `node _src/build.mjs` passes (28 pages); PR and Pages confirmation recorded below |
+| arena-5a289bff-wina | T9 Integration: build, check, PR to main, merge, confirm GitHub Pages deploy | done | COORDINATION.md, _src/build.mjs, data/governance.json, data/special_link_tests.json, concept/ (generated) | 2026-11-20 | 2026-11-20 | `node _src/build.mjs` PASSED (28 pages); PR #14 merged at 6fa1112; Pages build built for 6fa1112; live /concept/ checked |
 
 ## Session arena-5a289bff-wina (branch `arena/5a289bff-wina`) · 2026-11-20
 
@@ -228,5 +228,9 @@ Branch `arena/5a289bff-wina` was merged with `origin/main` at `f421d5c` on 2026-
 ### Sources used this session
 - Associates Operating Agreement §5 and Program Policies §2(b), as quoted in main's `data/policy.json`. Observed Amazon listings are unchanged from main's `data/products.json`. Retrieved 2026-11-20.
 
-### Pull request and merge
-- Recorded after the merge (see below).
+### Pull request and merge (record)
+- PR: https://github.com/sassnarep3-star/WinA/pull/14 (`arena/5a289bff-wina` → `main`).
+- Merge: **merged** at 2026-11-20 05:46:33 UTC, merge commit `6fa1112bbc06179a767dbeb77b1ff07cf37d6955`. Merge type: merge commit. Not auto-merged.
+- Pages: source `main` `/`. Build for `6fa1112`: status **built**. Live check: `https://sassnarep3-star.github.io/WinA/concept/` serves the concept page (cache-busted fetch).
+- Flagged items did not block the merge. They stay on the Flagged for Review page.
+- Still open for the owner (none blocks the merge): run the Special Link test per product (FLG-024); confirm the tracking ID in Associates Central (FLG-004); decide the analytics host (FLG-011); remove or replace the placeholder token (FLG-025); choose the Pages-source handling (see requests above).
