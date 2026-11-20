@@ -20,10 +20,12 @@ automated (gates G-1..G-3 on data-room/compliance-gate.html):
   R-11  no star ratings, review counts, review stars, "Amazon's Choice" badges
         or popularity badges ship (Participation Requirements §6(t): customer
         reviews and star ratings only via Creators API/PA API) — see FLG-044
+  R-12  counts stated in reviewer prose match the register they describe
 
 Checked scope: the served site only. `archive/` holds superseded session builds
-(see COORDINATION.md) and `data/` is the machine-readable register — neither is
-part of the published surface this gate polices.
+(see COORDINATION.md) and `data/` is not a published surface either, but R-12 reads
+it as the authority for figures the published pages assert — a page that says "N more are in the
+register" is making a claim about `data/governance.json`, and that claim is checkable.
 
 Exit code 0 = pass. Any failure prints a report and exits 1.
 """
@@ -291,6 +293,93 @@ def check_sitemap_and_feed():
             fail("R-08", feed, f"feed item link not under site base: {url}")
 
 
+# ----------------------------------------------------------------------- R-12
+# Reviewer documents state counts. A count a script can compute is a count that
+# will be wrong the next time the data changes, and no other rule here reads
+# prose — so this one does. It recomputes each stated figure and fails only when
+# the figure is present and wrong. An absent figure makes no claim, so it passes:
+# this rule polices false statements, not the presence of statements.
+#
+# It exists because four figures on this site had already gone stale while every
+# other rule stayed green — the flagged page's "Seventeen more", the executive
+# summary's "13 proposals", the compliance table's "all 20 pages" and README's
+# "4 question-shaped buyer guides". handoff/README.md asked for this in as many
+# words: "Recompute them with a script before writing them."
+def check_stated_counts(pages):
+    import json
+
+    def text_of(rel):
+        try:
+            with open(os.path.join(ROOT, rel), encoding="utf-8") as fh:
+                return fh.read()
+        except OSError:
+            return None
+
+    def jload(rel):
+        body = text_of(rel)
+        if body is None:
+            return None
+        try:
+            return json.loads(body)
+        except ValueError:
+            return None
+
+    def check(rel, pattern, expected, label):
+        body = text_of(rel)
+        if body is None:
+            return
+        m = re.search(pattern, body)
+        if not m:
+            notes.append(f"R-12: {rel} no longer states \"{label}\" — nothing to check")
+            return
+        got = int(m.group(1))
+        if got != expected:
+            fail("R-12", rel, f"stale figure: the page says {got} {label}, the register says {expected}")
+
+    # 1. flags the Flagged page does not show, against the register it links to.
+    #    Counted from the captioned flags table, not from the whole page: the page
+    #    also names flags in prose (FLG-043 among them), and the caption's arithmetic
+    #    is about the rows it prints.
+    gov = jload("data/governance.json") or {}
+    body = text_of("data-room/flagged.html") or ""
+    flags_table = ""
+    for m in re.finditer(r"<table\b.*?</table>", body, re.S):
+        if re.search(r"<caption[^>]*>Flags a reader can act on", m.group(0), re.S):
+            flags_table = m.group(0)
+            break
+    #    The ID lives in <th scope="row">. Counting every id anywhere in the table
+    #    would overcount, because rows cross-reference other flags in their prose
+    #    (row "FLG-004" cites FLG-045, row "FLG-008" cites FLG-043).
+    shown = set()
+    for cell in re.findall(r'<th scope="row">\s*((?:FLG|SG)-\d{2,3})\s*</th>', flags_table):
+        shown.add(cell)
+    if isinstance(gov.get("flagged"), list):
+        check("data-room/flagged.html", r"(\d+) more are in the register",
+              len(gov["flagged"]) - len(shown), "more flags in the register")
+
+    # 2/3. the two decision registers the executive summary points at
+    n_sugg = len(set(re.findall(r"\bS-\d{2}\b", text_of("suggestions.html") or "")))
+    n_qs = len(set(re.findall(r"\bQ-\d{2}\b", text_of("questions.html") or "")))
+    if n_sugg:
+        check("executive-summary.html", r"\((\d+) proposals", n_sugg, "proposals")
+    if n_qs:
+        check("executive-summary.html", r"\((\d+) questions with discovery paths", n_qs, "questions")
+
+    # 4. pages the compliance table says carry the disclosure strip
+    check("data-room/compliance-gate.html", r"on all (\d+) pages", len(pages), "pages")
+
+    # 5/6. README's guide and product counts
+    guides_dir = os.path.join(ROOT, "guides")
+    n_guides = (len([f for f in os.listdir(guides_dir)
+                     if f.endswith(".html") and f != "index.html"])
+                if os.path.isdir(guides_dir) else 0)
+    check("README.md", r"(\d+) question-shaped buyer guides", n_guides, "guides")
+
+    prod = jload("data/products.json") or {}
+    if isinstance(prod.get("products"), list):
+        check("README.md", r"All (\d+) products", len(prod["products"]), "products")
+
+
 def main():
     cache = {}
     pages = list(html_files())
@@ -310,6 +399,7 @@ def main():
     for path in pages:
         check_links(path, cache[path], cache)
     check_sitemap_and_feed()
+    check_stated_counts(pages)
 
     print(f"checked {len(pages)} HTML pages")
     for note in notes:
