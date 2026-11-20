@@ -1537,3 +1537,27 @@ or removed, so the sitemap and feed are unchanged.
 **Not done, and why:** the one-link-per-product Special Link test (FLG-024), Search Console
 (FLG-009), the analytics collector (FLG-011) and reader capture (FLG-010) all need the owner's
 enrolled Associates account. No revenue, traffic or conversion figure is claimed anywhere.
+
+### T35 — PR and deploy record (arena/b37e1a98-wina, 2026-11-20)
+
+| Item | Result |
+|---|---|
+| Branch | `arena/b37e1a98-wina` (claimed as T27, on base `e886175`) |
+| PR | **#45** — https://github.com/sassnarep3-star/WinA/pull/45 — `arena/b37e1a98-wina` → `main` |
+| Pre-merge checks | `Compliance & integrity gate` **pass**, `compliance & integrity gate (G-1…G-3)` **pass**, `gate` **pass**, `Deploy to GitHub Pages` skipped (correct on a PR) |
+| Merge | **Merged** (`--merge`, no approval wait) at `2026-11-20T06:52:43Z`, commit `83bc28d` |
+| Deploy | `pages build and deployment` on `main` — **success**; Pages API reports `status: built`, latest build commit `83bc28df065040f83e9b95ea228b96deaa619b45`, created `06:52:44Z`, no error |
+| Live check | `https://sassnarep3-star.github.io/WinA/data-room/flagged.html` served the new FLG-043…047 rows, which confirmed the deploy carried this commit |
+| Follow-up found by that live check | The page's *second* table still listed weight, dimensions, warranty, temperature range and wattage as unverified even though the same page's rows above said several were resolved. Reconciled in a follow-up commit: each row now says what was resolved, by which source, and what genuinely remains open. `tools/check_site.py` re-run → PASS. |
+
+**The branch was renumbered twice and rebased onto a rewritten `main`.** It was claimed as T27 on
+`e886175`, became T33 when `main` took T27–T32, and T35 when it took T33 and T34. During the session
+`main` was also replaced by a hand-authored site with no generator, so this branch's generated-site
+work was reset and the findings were re-applied to the architecture that actually ships — which is
+why the same five corrections and five flags exist in the committed form here rather than as the
+`handoff/` patches T34 proposed.
+
+**Two things this pass deliberately did not do.** It did not fill any blank by inference: the CHEF iQ
+warranty, the ThermoMaven calibration certificate number, the CHEF iQ three-probe model code and the
+Emeril accessory count remain blank and flagged. And it did not touch the campaign ledger, which
+still holds 0 rows, because no authorized first-party report exists for this project.
