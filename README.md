@@ -245,3 +245,31 @@ Integrated the `arena/59299521-wina` work into `main` (PR #7):
 - Removed stale flat guide `guides/instant-read-or-wireless.html`.
 - Rebuilt with `node _src/build.mjs`: 28 pages, 27 in sitemap, publication gate PASSED (canonical + all Amazon anchors `rel="sponsored"` + `data-affiliate` + `tag=shopnow047c-20`).
 - All five affiliate links verified against official Amazon listings 2026-11-20; intended ASINs left blank and flagged (FLG-001/FLG-002).
+
+---
+
+## Commands, gates and where to look
+
+The repository has no dependencies; every command is Node standard library.
+
+| Command | What it does |
+| --- | --- |
+| `node _src/build.mjs` | Regenerates all 29 pages, the sitemap, the feed and `VALIDATION.md` from `data/`, then runs the publication's own 9 gates |
+| `node scripts/check-site.mjs` | Independent structural gate: canonicals, meta, headings, alt text, asset hosts, JSON-LD, every internal link, sitemap parity, RSS |
+| `node scripts/compliance-gate.mjs` | Money-and-trust gate: disclosure **order**, three-state link classification, claim bans, register cross-references, schema bans, source staleness |
+| `node scripts/compliance-gate.mjs --refresh-sources` | Re-reads every cited policy page and diffs the text we quote; warns past 90 days |
+| `node scripts/publish-gate.mjs` | Runs all three, proves the build is reproducible, prints the publish decision and what a human still owes |
+| `node scripts/collect.mjs` | Folds `data/inbox/*.json` into the register with provenance; refuses unsourced values, prices and ratings |
+| `node scripts/next-topics.mjs` | Ranks candidate guides from a Search Console export in `data/exports/`; refuses to rank without one |
+| `node scripts/analytics-server.mjs` | Self-hosted collector, same contract as `_worker/collector.js` (five events, key allow-list, 30-day retention, `/summary`) |
+
+Reading order for a reviewer: **`EXECUTIVE_SUMMARY.md`** (state of the project, one page) →
+`ARCHITECTURE.md` (why each piece is built this way, and the two human checkpoints) →
+[`/register/`](https://sassnarep3-star.github.io/WinA/register/) (every value with its source and
+date) → [`/flagged/`](https://sassnarep3-star.github.io/WinA/flagged/) (29 open and resolved
+findings) → [`/suggestions/`](https://sassnarep3-star.github.io/WinA/suggestions/) (what to do next,
+by path) → [`COORDINATION.md`](COORDINATION.md) (who did what, and the four-build collision record).
+
+Three gates, deliberately overlapping: each has found something the others could not see, on this
+repository, in production. `npm run check` (or `node scripts/publish-gate.mjs --committed`) is what
+CI runs, and Pages serves exactly what is in the tree.
