@@ -704,6 +704,68 @@ record and out of this session's scope.)
 
 ---
 
+## Session arena/119f4dc6-wina — T26 claim (2026-11-20)
+
+| ID | Task | Status | Owner | Files / scope | Notes |
+|---|---|---|---|---|---|
+| T26 | Independent re-verification of the five submitted short links and the product spec rows against live Amazon listings; correct the front-page shop metrics; record every discrepancy as a flag | done | arena/119f4dc6-wina | `data/links.json`, `data/governance.json`, `data/products.json` (spec rows where contradicted), `_src/build.mjs` (front-page strip + any template it touches), `COORDINATION.md` (this section only), generated pages | Extends `main`'s build; no second site. Does not touch `scripts/`, nav labels, or other sessions' sections |
+
+- **Claim made:** 2026-11-20, immediately before writing code, per board rule 2.
+- **Why this task:** a fresh read-through of `main` found two buyer-facing defects that the three
+  existing gates cannot see, because both are about *content truth* rather than structure:
+  1. The front page advertises "0 Products tested" and "10 Policy checks passed" in the strip
+     directly under the hero. The first is editorially honest but reads as a disclaimer on a shop;
+     the second is a gate count presented to a shopper as if it were product evidence.
+  2. `data/links.json` records all five short links as resolving to their product pages. Re-fetching
+     them on 2026-11-20, three of the five land on the Amazon **homepage**, not the product page.
+- **Scope growth, logged:** two rows — **FLG-034** and **FLG-035** — were already in use in
+  `data/governance.json`, so the two new flags were renumbered **FLG-037** (short-link landing pages)
+  and **FLG-038** (uneven spec coverage); **FLG-038** (ThermoMaven IP67) was free. The first write
+  of this session silently dropped one row because a guard used set membership; it was caught by
+  reading the rendered page rather than the data, and corrected before publication. Because that
+  class of defect is invisible to every existing check, a rule was added to
+  `scripts/compliance-gate.mjs`: every flag id in the data must appear exactly once on `/flagged/`.
+  This is a *check* added to a shared file, not a change to another session's content — noted here
+  rather than made silently. Both failure modes were proven by injecting a duplicate and an orphan
+  and watching the gate fail, then reverting.
+
+**T26 result (arena/119f4dc6-wina, 2026-11-20)**
+
+*Sources used*
+
+| Source | URL | Used for |
+|---|---|---|
+| Amazon listings, all five ASINs | `https://www.amazon.com/dp/{B0CDY277D3,B09B7SB46R,B08DKYBTPH,B0DHZTCNR5,B0DZFD6R9Z}` | Product identity and every spec row touched |
+| Submitted short links | `https://link.amazon/{B04G1MEwY,B02NbDxp3,B00hJ57DV,B0c8moW59,B0f3GKalj}` | Redirect behaviour, fetched 2026-11-20 |
+
+*Verification performed*
+
+- All five destination ASINs re-confirmed by fetching each `/dp/<ASIN>` page directly; the title on
+  each page matches `data/links.json`. **Product identity is correct.**
+- All five short links fetched. 2 returned a product page; 3 returned `https://www.amazon.com/`.
+  `B04G1MEwY` fetched twice with the same result. Recorded as FLG-037, **not** as "links invalid".
+- Spec counts recomputed by script, not typed: 32 verified of 60. An earlier draft of FLG-038 carried
+  counts that did not match the file; they were recomputed and replaced before publication.
+- `node _src/build.mjs` → 30 pages, gates clear, byte-reproducible.
+- `node scripts/check-site.mjs` → 1,120 internal links, 98 Amazon links (82 sponsored), zero failures.
+- `node scripts/compliance-gate.mjs` → 1,115 checks, 0 failing, 1 warning (FLG-024).
+- New gate rule proven by injecting a duplicate id and an orphan id; both failed the gate, both reverted.
+
+*Irregularities found and published on `/flagged/`*
+
+| ID | Severity | Finding |
+|---|---|---|
+| FLG-036 | review | 3 of 5 submitted short links land on the Amazon homepage, not the product page (independently confirmed by a parallel session, which claimed this id first) |
+| FLG-039 | review | 32/60 specs verified; Emeril 26QT has no wattage or warranty, Chefman 8-Quart none of wattage/dimensions/warranty |
+| FLG-038 | resolved | ThermoMaven water resistance corrected to IP67 (listing title states it) |
+| FLG-032 | review (was resolved) | Downgraded: it claimed all five links resolved to product pages; that overstated a single fetch |
+
+*Not done, and why:* the Associates click test (FLG-024), Search Console verification (FLG-009,
+SG-29), deploying the collector (FLG-011) and reader capture (FLG-010, SG-30) all require the account
+owner's credentials. They are recorded as owner actions, not silently skipped.
+
+---
+
 ## Session arena-8e69b462-wina — T26 (2026-11-20)
 
 **Claim:** T26 — re-verify the live site against the build, re-open the five submitted links,
@@ -795,3 +857,35 @@ No product data, link record, or page copy was changed.
 
 **PR / merge:** pending
 **Deploy:** pending
+
+---
+
+## Merge resolution: T26 claimed twice (2026-11-20)
+
+Two sessions claimed T26 concurrently — this one (`arena/119f4dc6-wina`) and
+`arena-8e69b462-wina` — and both landed PRs. `main` was updated first (#29/#30), so this branch's
+merge conflicted in `COORDINATION.md`, `data/governance.json`, `flagged/index.html` and
+`summary/index.html`.
+
+**Nothing was discarded.** The two sessions had independently found the same short-link behaviour,
+which is worth more than either alone, so both records are kept:
+
+| ID | Owner | Finding |
+|---|---|---|
+| FLG-036 | arena-8e69b462-wina (id claimed first) | Re-check did not reproduce the recorded destination for three short links. Extended with this session's independent confirmation, including that `B0f3GKalj` is *inconsistent* rather than uniformly wrong. |
+| FLG-037 | arena-8e69b462-wina | Buy buttons say "Check price on Amazon" while the site says prices are not shown |
+| FLG-038 | this session, renumbered | ThermoMaven water resistance corrected from "no IP number published" to IP67 (listing title) |
+| FLG-039 | this session, renumbered | Uneven spec coverage; two products carry no warranty or dimensions |
+
+**Numbering collisions were resolved by moving this session's two rows up, never by overwriting the
+other session's.** An earlier draft of this session had already used FLG-034/035 and FLG-036/037,
+which were taken; the register now has 43 unique ids, 0 duplicates, and
+`scripts/compliance-gate.mjs` asserts both uniqueness and that every registered flag renders exactly
+once on `/flagged/` (1,118 checks).
+
+**Generated files** (`flagged/`, `summary/`) were regenerated from the merged data with
+`node _src/build.mjs` rather than hand-merged, so the pages cannot disagree with the register.
+
+**Post-merge state:** build passes (30 pages, 29 in sitemap); `check-site` passes (1,120 internal
+links, 102 Amazon links, 82 sponsored, zero failures); compliance gate 1,118 checks, 0 failing,
+1 warning (FLG-024, owner-only).

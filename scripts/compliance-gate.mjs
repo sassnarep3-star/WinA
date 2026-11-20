@@ -181,6 +181,21 @@ for (const f of governance.flagged) {
 const dupFlags = governance.flagged.map((f) => f.id).filter((id, i, a) => a.indexOf(id) !== i);
 ok(dupFlags.length === 0, "duplicate flag ids in the register", dupFlags.join(", "));
 
+// A flag that exists in data/ but never reaches /flagged/ is invisible to the reader — exactly
+// the failure mode a silent ID collision produces. Count occurrences of each id in the built
+// page and require one row per registered flag.
+const flaggedPage = join(ROOT, "flagged", "index.html");
+if (existsSync(flaggedPage)) {
+  const html = readFileSync(flaggedPage, "utf8");
+  const rendered = [...html.matchAll(/<code>((?:FLG|SG)-\d+)<\/code>/g)].map((m) => m[1]);
+  const counts = new Map();
+  for (const id of rendered) counts.set(id, (counts.get(id) || 0) + 1);
+  const missing = governance.flagged.map((f) => f.id).filter((id) => !counts.get(id));
+  const doubled = [...counts.entries()].filter(([, n]) => n > 1).map(([id]) => id);
+  ok(missing.length === 0, "every registered flag is rendered on /flagged/", missing.join(", "));
+  ok(doubled.length === 0, "a flag id is rendered more than once on /flagged/", doubled.join(", "));
+}
+
 /* ---- 7. the one question the register can answer but nobody asks */
 const passing = specialLink.tests.filter((t) => /passed/.test(t.test_status)).length;
 const linksOnSite = sponsored;
