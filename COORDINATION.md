@@ -1816,7 +1816,45 @@ the deployed page rather than the diff.
 - **Owner-side items, not claimed, unchanged:** FLG-004/FLG-024 (Associates enrolment + Special Link
   test), FLG-009/SG-29 (Search Console), FLG-011 (analytics collector deploy), FLG-010 (capture backend),
   FLG-003 (short-link compliance status), S-14 (display-posture decision).
+- **PR and deploy record.** **PR #54** — https://github.com/sassnarep3-star/WinA/pull/54 — merged
+  2026-11-20T07:04:42Z by merge commit `022e00ec1d5ff32a19169d3a59eea137e6581abc`; CI on main after merge:
+  site-gate ✓, archive-gate ✓, Build-verify-and-deploy ✓, pages-build-deployment ✓ (`pages/builds/latest`
+  → status `built`, commit 022e00e). Live check of /shop.html (cache-buster) confirmed the FLG-048 fix
+  served. **PR #60** — https://github.com/sassnarep3-star/WinA/pull/60 — the residuals fix, merged
+  2026-11-20T07:07:19Z by merge commit `06ab5a14d314e97300c4148772188243a6d9b6c9`; site-gate ✓,
+  archive-gate ✓, pages-build-deployment ✓ (`pages/builds/latest` → status `built`, commit 06ab5a1).
+  Final live check of /shop.html?v=06ab5a1: buttons read "View on Amazon" (tagged `?tag=shopnow047c-20`,
+  `rel="sponsored nofollow noopener"`), no prices, no list prices, no Deal badges, no star ratings,
+  no review counts, no merchandising badges, CHEF iQ battery claim corrected to 70+ hours (manufacturer
+  claim, chefiq.com), disclosure strip cites §6(t)/§2(b). The site is live and compliant.
+- **Live deploy check + residuals.** After the merge (commit 022e00e) and Pages build, the live
+  /shop.html was fetched with a cache-buster: prices, ratings and badges are gone from the served page.
+  Three residuals were then found on the live page and fixed in a follow-up commit: 'Deal −NN%'
+  discount badges (price-derived figures) on shop/index, the CHEF iQ shop-card battery figure
+  ('up to 50 hours' vs chefiq.com's 70+ hours claim), and 'Check price on Amazon' button labels that
+  contradicted T33's recorded 'View on Amazon' resolution (FLG-037). Recorded on FLG-048.
 - **Verification on the final tree:** `python3 tools/check_site.py` → PASS (G-1/G-2/G-3, including the
   new R-10/R-11 rules); `data/products.json` (with specsVerifiedOn), `data/governance.json` (52 flags,
   unique IDs), `data/suggestions.json` (SUG-16 shipped; log consistent) all load as JSON; every served
   page re-scanned for `$`, `★`, ratings/review counts and badges — clean.
+
+
+### T35 — deploy record for both follow-up PRs (arena/b37e1a98-wina, 2026-11-20)
+
+| PR | Change | Merge commit | Merged | Pages |
+|---|---|---|---|---|
+| **#45** | the verification pass itself: 5 spec rows corrected or blanked, 10 added, 5 flags, reader copy corrected where it repeated a withdrawn claim | `83bc28d` | 06:52:43Z | `built`, commit `83bc28d`, no error |
+| **#55** | reconcile the flagged page's stale "unverified values" table, which contradicted its own rows above | `015b32f` | 06:56:22Z | built (superseded by a parallel merge, `489ef1f`) |
+| **#57** | the last row of that table: weight said "all five", but one product publishes a weight and four do not | `984d8d2` | 07:01:17Z | `built`, commit `984d8d2`, no error |
+
+All three pre-merge check sets passed (`Compliance & integrity gate`, `compliance & integrity gate
+(G-1…G-3)`, `gate`); `Deploy to GitHub Pages` skipped on each PR, as designed. Live verification was
+done by fetching the deployed `/data-room/flagged.html` with a cache-busting query and confirming the
+new rows and their source links are served — the second and third fixes were **found** that way, by
+reading the live page rather than the diff, which is the only way a contradiction inside one page
+gets caught.
+
+**Still open, and needing the owner's account, not code:** the one-link-per-product Special Link test
+(FLG-024), Search Console (FLG-009), the analytics collector (FLG-011), reader capture (FLG-010) and
+`shopnow047c-20` enrolment (FLG-004). The campaign ledger holds **0 rows** by policy. No revenue,
+traffic or conversion figure is claimed anywhere on the site.
