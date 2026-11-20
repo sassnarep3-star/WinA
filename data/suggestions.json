@@ -443,6 +443,44 @@
           "url": "https://developers.google.com/search/docs/fundamentals/creating-helpful-content"
         }
       ]
+    },
+    {
+      "id": "SUG-32",
+      "status": "recommend",
+      "weight": 9,
+      "title": "Turn on the measured-demand loop before publishing another guide",
+      "why": "Seven guides now exist. Every one of them was chosen from judgement, not from a query report, and the site records that honestly (FLG-035, FLG-037). Publishing an eighth from instinct adds a page without adding information about what readers actually want. The next topic should be read off a Search Console export, not chosen.",
+      "cost": "Two owner actions: verify the property in Search Console and export a Performance report. Then one command, node scripts/next-topics.mjs, which already refuses to run without an export.",
+      "risk": "Waiting for data costs publishing cadence, and a site with no traffic generates no data to read — a real cold-start problem. The mitigating action is the outbound-click counter (SUG-08), which measures interest even when search has not found the site yet.",
+      "decide": "Recommend: verify the property and deploy the collector in the same week, then publish the next guide from whichever query or click pattern appears. If neither exists after 60 days, that is itself the finding and the cadence should change.",
+      "links": [
+        {
+          "label": "Google Search Central — Performance report",
+          "url": "https://support.google.com/webmasters/answer/7576553"
+        }
+      ]
+    },
+    {
+      "id": "SUG-33",
+      "status": "consider",
+      "weight": 6,
+      "title": "Add a 'what would change this recommendation' line to every pick",
+      "why": "Each product page says who should not buy the item. It does not say what new information would flip the recommendation — for example a confirmed measurement that contradicts a manufacturer figure, or a price band that changes the value case. Writing that down makes the advice falsifiable, which is the difference between a recommendation and an assertion.",
+      "cost": "One short paragraph per product, written from the specification record that already exists. No new data required.",
+      "risk": "It is easy to write this as decoration. It only works if the condition is specific enough to be checked later, so the build should reject an empty or generic line.",
+      "decide": "Consider after the first measured data arrives, so the conditions can name a real signal rather than a hypothetical one.",
+      "links": []
+    },
+    {
+      "id": "SUG-34",
+      "status": "hold",
+      "weight": 5,
+      "title": "Publish a quarterly 'what we changed and why' note",
+      "why": "The flagged-for-review register already records every correction. A short dated note pointing at it would give returning readers a reason to trust the site more over time, and give search engines a genuinely fresh page rather than a re-dated one.",
+      "cost": "One page per quarter, generated from the flag register so it cannot drift from the record.",
+      "risk": "A changelog with nothing in it is worse than no changelog. Hold until there is a quarter with real corrections in it.",
+      "decide": "Hold. The first entry should follow the first period in which a published fact had to be corrected.",
+      "links": []
     }
   ],
   "designBrief": {
@@ -610,7 +648,7 @@
     ]
   },
   "decisionLog": {
-    "note": "Review workflow. Every suggestion has one row on /decisions/ with its current state and, once a decision is recorded below, the date, the decision and the reason. Nothing is implemented on the strength of a suggestion alone.",
+    "note": "Review workflow: every suggestion has one row on /decisions/ with its current state and, once decided, the date, the decision and the reason. Nothing is implemented on the strength of a suggestion alone.",
     "rubric": [
       "Answer the blocking questions first (Q-04 enrolment, Q-09 testing, Q-16 measurement).",
       "Score each suggestion: impact × confidence ÷ cost.",

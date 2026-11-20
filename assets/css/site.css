@@ -329,7 +329,8 @@ a:hover { color: var(--accent-deep); }
 }
 .pcard__name a { color: var(--ink); text-decoration: none; }
 .pcard__name a:hover { color: var(--accent); }
-.pcard__verdict { font-size: .9rem; color: var(--ink-soft); margin: 0 0 1rem; }
+.pcard__verdict { font-size: .9rem; color: var(--ink-soft); margin: 0 0 1rem; min-height: 4.6em; }
+@media (min-width: 1040px) { .products--three .pcard__verdict { min-height: 5.4em; } }
 .pcard__specs {
   list-style: none; margin: 0 0 1.1rem; padding: 0;
   border-top: 1px solid var(--rule-soft);
@@ -352,6 +353,13 @@ a:hover { color: var(--accent-deep); }
    ------------------------------------------------------------ */
 .guides { display: grid; gap: 0; border-top: 1px solid var(--rule); }
 @media (min-width: 800px) { .guides--two { grid-template-columns: 1fr 1fr; column-gap: 3rem; } }
+/* The first guide in a two-column list is the lead: it runs the full width with a
+   larger title, so the list has a hierarchy instead of seven identical rows. */
+@media (min-width: 800px) {
+  .guides--two > .guide-link:first-child { grid-column: 1 / -1; padding-block: 1.6rem; }
+  .guides--two > .guide-link:first-child .guide-link__title { font-size: 1.9rem; }
+  .guides--two > .guide-link:first-child .guide-link__dek { font-size: .95rem; max-width: 46rem; }
+}
 .guide-link {
   display: grid; grid-template-columns: auto 1fr; gap: 1.1rem;
   padding: 1.35rem 0; border-bottom: 1px solid var(--rule);
@@ -753,7 +761,10 @@ table.data.sortable th[aria-sort="descending"] .sort-btn::after { content: " \25
 }
 
 /* ---------- pick rows on a service page ---------- */
-.pickrows { display: grid; gap: 1rem; }
+.pickrows { display: grid; gap: 1.15rem; }
+.pickrows + .section__title, .pickrows ~ h2 { margin-top: 3rem; }
+.pickrow + .section__title { margin-top: 3rem; }
+.faq + .note, .pickrow__foot + .pcard__note { margin-bottom: 0; }
 .pickrow {
   background: var(--paper-card); border: 1px solid var(--rule);
   border-radius: var(--radius); padding: 1.35rem 1.4rem 1.2rem;

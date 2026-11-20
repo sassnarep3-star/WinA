@@ -66,16 +66,16 @@
 <section class="section">
   <div class="wrap">
     <div class="strip strip--inline">
-      <div class="strip__cell"><p class="strip__num">31</p><p class="strip__lab">Suggestions on file</p></div>
+      <div class="strip__cell"><p class="strip__num">34</p><p class="strip__lab">Suggestions on file</p></div>
       <div class="strip__cell"><p class="strip__num">8</p><p class="strip__lab">Already shipped</p></div>
       <div class="strip__cell"><p class="strip__num">3</p><p class="strip__lab">With a recorded decision</p></div>
-      <div class="strip__cell"><p class="strip__num">28</p><p class="strip__lab">Waiting on you</p></div>
+      <div class="strip__cell"><p class="strip__num">31</p><p class="strip__lab">Waiting on you</p></div>
     </div>
     <p class="small muted" style="margin-top:1rem">These four numbers are computed from <code>data/suggestions.json</code> at build time. They cannot say the work is finished unless the data says so.</p>
 
     <div class="note note--warn mt2">
       <p class="note__title">How to use this page</p>
-      <p>Review workflow. Every suggestion has one row on /decisions/ with its current state and, once a decision is recorded below, the date, the decision and the reason. Nothing is implemented on the strength of a suggestion alone.</p>
+      <p>Review workflow: every suggestion has one row on /decisions/ with its current state and, once decided, the date, the decision and the reason. Nothing is implemented on the strength of a suggestion alone.</p>
       <ol style="margin:.5rem 0 0;padding-left:1.1rem"><li>Answer the blocking questions first (Q-04 enrolment, Q-09 testing, Q-16 measurement).</li><li>Score each suggestion: impact × confidence ÷ cost.</li><li>Read the risk column before accepting; a suggestion that needs a credential is gated, not blocked.</li><li>Accept or reject in writing, with a one-line reason and a date.</li><li>Re-review quarterly against measured data, not instinct.</li></ol>
     </div>
 
@@ -270,6 +270,24 @@
       <td><span class="pill pill--reject">reject</span></td>
       <td><span class="pill pill--withheld">rejected</span> <span class="tiny faint">2026-11-20 · DEC-02</span></td>
       <td class="tiny">None. This is a decision not to act.</td>
+    </tr><tr>
+      <td class="mono">SUG-32</td>
+      <td><strong>Turn on the measured-demand loop before publishing another guide</strong><br><span class="tiny muted">Recommend: verify the property and deploy the collector in the same week, then publish the next guide from whichever query or click pattern appears. If neither exists after 60 days…</span></td>
+      <td><span class="pill pill--recommend">recommend</span></td>
+      <td><span class="faint">waiting</span></td>
+      <td class="tiny">Two owner actions: verify the property in Search Console and export a Performance report. Then one command, node scripts/next-topics.mjs, which already refuses to run without an export.</td>
+    </tr><tr>
+      <td class="mono">SUG-33</td>
+      <td><strong>Add a 'what would change this recommendation' line to every pick</strong><br><span class="tiny muted">Consider after the first measured data arrives, so the conditions can name a real signal rather than a hypothetical one.</span></td>
+      <td><span class="pill pill--consider">consider</span></td>
+      <td><span class="faint">waiting</span></td>
+      <td class="tiny">One short paragraph per product, written from the specification record that already exists. No new data required.</td>
+    </tr><tr>
+      <td class="mono">SUG-34</td>
+      <td><strong>Publish a quarterly 'what we changed and why' note</strong><br><span class="tiny muted">Hold. The first entry should follow the first period in which a published fact had to be corrected.</span></td>
+      <td><span class="pill pill--hold">hold</span></td>
+      <td><span class="faint">waiting</span></td>
+      <td class="tiny">One page per quarter, generated from the flag register so it cannot drift from the record.</td>
     </tr></tbody>
       </table>
     </div>

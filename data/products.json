@@ -173,7 +173,7 @@
           "label": "Presets",
           "value": "24 one-touch presets",
           "status": "verified",
-          "source": "manufacturer"
+          "source": "amazon-listing"
         },
         {
           "label": "Included accessories",
@@ -239,13 +239,13 @@
           "url": "https://www.emerileveryday.com/products/emeril_lagasse_french_door_airfryer_360",
           "label": "emerileveryday.com specification"
         },
-        "Presets": {
-          "url": "https://www.emerileveryday.com/products/emeril_lagasse_french_door_airfryer_360",
-          "label": "emerileveryday.com specification"
-        },
         "Capacity": {
           "url": "https://www.emerileveryday.com/products/emeril_lagasse_french_door_airfryer_360",
           "label": "emerileveryday.com specification"
+        },
+        "Note": {
+          "url": "https://www.emerileveryday.com/products/emeril_lagasse_french_door_airfryer_360",
+          "label": "emerileveryday.com (25 presets / 10-in-1 wording, see FLG-029)"
         }
       }
     },

@@ -255,9 +255,9 @@
     {
       "id": "FLG-029",
       "severity": "review",
-      "title": "Emeril's own page contradicts the Amazon listing on preset count",
-      "detail": "emerileveryday.com states '25 Cooking Pre-sets' in its specification block and '10-in-1' in the product description; the Amazon listing states 24 one-touch presets. Three different numbers for one feature.",
-      "action": "Recorded as 24 (the listing) with the manufacturer figure noted. Neither is published as settled. Unchanged from FLG-005's finding, now with the third number and its URL.",
+      "title": "Emeril publishes 25 presets and 10-in-1 on its own page; the Amazon listing says 24",
+      "detail": "emerileveryday.com (read 2026-11-20) states \"25 Cooking Pre-sets\" in its specification strip and describes the same machine as \"10-in-1\" in its product text, while the Amazon listing for B09B7SB46R states \"24 One-Touch Preset Options\". The site publishes the Amazon figure and now cites the Amazon listing for it, because the manufacturer page does not state 24 anywhere. Three different counts for one feature is the kind of discrepancy a specification table hides if it does not name its source per row.",
+      "action": "Owner: if the preset count matters to a buying decision (it probably does not), ask Emeril which number is current. Until then the row cites the listing and this flag carries the manufacturer's two other figures.",
       "sourceUrl": "https://www.emerileveryday.com/products/emeril_lagasse_french_door_airfryer_360",
       "sourceLabel": "Emeril Everyday specification block"
     },
@@ -368,6 +368,15 @@
       "action": "Owner: after Search Console verification (FLG-009, SG-29), compare the queries that arrive against the guides that exist and record which hypothesis held. Do not publish a ninth guide from instinct while that report is empty.",
       "sourceUrl": "https://developers.google.com/search/docs/fundamentals/creating-helpful-content",
       "sourceLabel": "Google Search Central — Creating helpful, reliable, people-first content"
+    },
+    {
+      "id": "FLG-038",
+      "severity": "review",
+      "title": "CHEF iQ probe description could not be confirmed on the cited manufacturer page",
+      "detail": "The specification row \"Probes — 3 ultra-thin probes\" is sourced to chefiq.com. That page (read 2026-11-20) confirms the model CQ60-1C-Z1-E, Wi-Fi and Bluetooth, heat resistance to 1,000°F, \"4 internal temperature sensors\" and \"1 ambient temperature sensor\", and sells the product in 1, 2, 3 and 4-probe configurations — but the words \"ultra-thin\" and a fixed three-probe count for this SKU do not appear in the page text retrieved. The row therefore describes the configuration this ASIN appears to be, using wording that the cited page does not carry.",
+      "action": "Owner: confirm the probe count and the \"ultra-thin\" wording against the Amazon listing for B0DZFD6R9Z, then either re-word the row to what the cited source states or re-source it. Not changed in this pass because the Amazon listing could not be retrieved from this environment (two fetch failures), and re-wording without it would be a guess.",
+      "sourceUrl": "https://chefiq.com/products/iq-sense",
+      "sourceLabel": "chefiq.com — iQ Sense product page"
     }
   ],
   "ledger": {

@@ -75,15 +75,15 @@
         </tr><tr>
           <td><span class="pill pill--recommend">recommend</span></td>
           <td>Highest confidence, do this before the others.</td>
-          <td class="num">12</td>
+          <td class="num">13</td>
         </tr><tr>
           <td><span class="pill pill--consider">consider</span></td>
           <td>Worth doing, but depends on an earlier decision.</td>
-          <td class="num">5</td>
+          <td class="num">6</td>
         </tr><tr>
           <td><span class="pill pill--hold">hold</span></td>
           <td>Do not do this yet. Reason given.</td>
-          <td class="num">3</td>
+          <td class="num">4</td>
         </tr><tr>
           <td><span class="pill pill--reject">reject</span></td>
           <td>Would break a rule or mislead a reader.</td>
@@ -174,6 +174,15 @@
     <td class="small">One module (_src/art.mjs) and about 15 small SVG files, all generated deterministically by the build.</td>
     <td class="small">An illustration must never imply a product fact. Each plate is captioned in HTML as an illustration and each form mark labels a category, not a model.</td>
     <td class="small">Shipped in this pass. It resolves the visual coldness without touching FLG-007, which stays open because a manufacturer press asset is still the only route to real product imagery.</td>
+  </tr><tr>
+    <td><code>SUG-32</code></td>
+    <td><strong>Turn on the measured-demand loop before publishing another guide</strong></td>
+    <td><span class="pill pill--recommend">recommend</span></td>
+    <td class="num">9</td>
+    <td class="small">Seven guides now exist. Every one of them was chosen from judgement, not from a query report, and the site records that honestly (FLG-035, FLG-037). Publishing an eighth from instinct adds a page without adding information about what readers actually want. The next topic should be read off a Search Console export, not chosen.</td>
+    <td class="small">Two owner actions: verify the property in Search Console and export a Performance report. Then one command, node scripts/next-topics.mjs, which already refuses to run without an export.</td>
+    <td class="small">Waiting for data costs publishing cadence, and a site with no traffic generates no data to read — a real cold-start problem. The mitigating action is the outbound-click counter (SUG-08), which measures interest even when search has not found the site yet.</td>
+    <td class="small">Recommend: verify the property and deploy the collector in the same week, then publish the next guide from whichever query or click pattern appears. If neither exists after 60 days, that is itself the finding and the cadence should change.<br><span class="tiny"><a href="https://support.google.com/webmasters/answer/7576553" rel="noopener" target="_blank">Google Search Central — Performance report</a></span></td>
   </tr><tr>
     <td><code>SUG-05</code></td>
     <td><strong>Publish on a real cadence: a new guide every week for eight weeks, then read the query data</strong></td>
@@ -337,6 +346,15 @@
     <td class="small">A single site in two adjacent categories is harder to position than a focused one. That risk is real but smaller than the cost of fragmenting what little authority an unlaunched site has.</td>
     <td class="small">Rejected for now, and recorded so it is not re-litigated. Revisit only if Search Console shows the two categories competing for unrelated queries.<br><span class="tiny"><a href="https://developers.google.com/search/docs/fundamentals/creating-helpful-content" rel="noopener" target="_blank">Google Search Central — helpful content</a></span></td>
   </tr><tr>
+    <td><code>SUG-33</code></td>
+    <td><strong>Add a 'what would change this recommendation' line to every pick</strong></td>
+    <td><span class="pill pill--consider">consider</span></td>
+    <td class="num">6</td>
+    <td class="small">Each product page says who should not buy the item. It does not say what new information would flip the recommendation — for example a confirmed measurement that contradicts a manufacturer figure, or a price band that changes the value case. Writing that down makes the advice falsifiable, which is the difference between a recommendation and an assertion.</td>
+    <td class="small">One short paragraph per product, written from the specification record that already exists. No new data required.</td>
+    <td class="small">It is easy to write this as decoration. It only works if the condition is specific enough to be checked later, so the build should reject an empty or generic line.</td>
+    <td class="small">Consider after the first measured data arrives, so the conditions can name a real signal rather than a hypothetical one.</td>
+  </tr><tr>
     <td><code>SUG-11</code></td>
     <td><strong>Add a short 'how we choose what to recommend' block to the front page</strong></td>
     <td><span class="pill pill--consider">consider</span></td>
@@ -381,6 +399,15 @@
     <td class="small">Zero.</td>
     <td class="small">Misses timely traffic in the meantime.</td>
     <td class="small">Hold until Search Console has 2–4 weeks of query data (FLG-009, FLG-020).<br><span class="tiny"><a href="https://search.google.com/search-console" rel="noopener" target="_blank">Google Search Console</a></span></td>
+  </tr><tr>
+    <td><code>SUG-34</code></td>
+    <td><strong>Publish a quarterly 'what we changed and why' note</strong></td>
+    <td><span class="pill pill--hold">hold</span></td>
+    <td class="num">5</td>
+    <td class="small">The flagged-for-review register already records every correction. A short dated note pointing at it would give returning readers a reason to trust the site more over time, and give search engines a genuinely fresh page rather than a re-dated one.</td>
+    <td class="small">One page per quarter, generated from the flag register so it cannot drift from the record.</td>
+    <td class="small">A changelog with nothing in it is worse than no changelog. Hold until there is a quarter with real corrections in it.</td>
+    <td class="small">Hold. The first entry should follow the first period in which a published fact had to be corrected.</td>
   </tr></tbody>
       </table>
     </div>
@@ -537,7 +564,7 @@
   <div class="wrap">
     <div class="section__head">
       <h2 class="section__title" style="font-size:1.4rem">Decision log</h2>
-      <p class="section__dek">Review workflow. Every suggestion has one row on /decisions/ with its current state and, once a decision is recorded below, the date, the decision and the reason. Nothing is implemented on the strength of a suggestion alone.</p>
+      <p class="section__dek">Review workflow: every suggestion has one row on /decisions/ with its current state and, once decided, the date, the decision and the reason. Nothing is implemented on the strength of a suggestion alone.</p>
     </div>
     <div class="tablewrap">
       <table class="data sortable">
