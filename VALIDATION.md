@@ -6,7 +6,7 @@ Generated 2026-11-20 by `_src/build.mjs` (deterministic: no wall-clock timestamp
 
 ## Checks
 
-- `PASS` 27 HTML pages generated
+- `PASS` 28 HTML pages generated
 - `PASS` every page carries the disclosure strip above the fold
 - `PASS` every page carries the exact statement required by OA §5
 - `PASS` every page declares a canonical URL
@@ -14,10 +14,10 @@ Generated 2026-11-20 by `_src/build.mjs` (deterministic: no wall-clock timestamp
 - `PASS` no star ratings or review quotes displayed anywhere
 - `PASS` no spec carries a value while marked unverified or withheld
 - `PASS` all 10 policy checks quote a clause and link a primary source
-- `PASS` all internal links resolve across 26 pages
+- `PASS` all internal links resolve across 27 pages
 - `PASS` single build owns the served root; no prior site resurrected
 - `PASS` archive intact: 64 files preserved from three prior builds
-- `PASS` sitemap lists all 26 pages
+- `PASS` sitemap lists all 27 pages
 
 ## What the gate enforces
 
