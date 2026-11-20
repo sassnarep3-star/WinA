@@ -9,19 +9,19 @@ deliberately not live, what the last verification pass found, and what is waitin
 
 ## 1. Where the project stands
 
-A 29-page affiliate publication is live and indexed-by-sitemap, covering three air fryers and two
-meat thermometers, with **112 tagged outbound product links**. It is not a mockup: every page is
+A 30-page affiliate publication is live and indexed-by-sitemap, covering three air fryers and two
+meat thermometers, with **80 tagged outbound product links**. It is not a mockup: every page is
 generated from a data register, and three independent gates run on every push and pull request.
 
 | Surface | State |
 | --- | --- |
-| Reader pages | 29 total: front page + 404, 5 guides, 2 category hubs, 5 product pages, compare, register, and 10 operations pages (flagged, questions, suggestions, summary, dashboard, analytics, disclosure, privacy, about, seo/marketing/concept) |
-| Data registers | 5 products · 60 spec rows · 5 policy sources · 10 policy clauses quoted · 29 flag rows · 22 questions · 16 suggestions |
-| Verification mix | 22 rows `verified` · 8 `claim` · 20 `unverified` · 10 `withheld`; **30 rows carry a value, 30 are blank with a reason** |
-| Compliance | OA §5 statement verbatim on all 29 pages, disclosure before the first sponsored link on every page, `rel="sponsored nofollow noopener"` + `?tag=shopnow047c-20` on all 112 product links, and the 8 submitted short links rendered as declared non-affiliate citations (`rel="nofollow"`, no tag) — counts from `scripts/compliance-gate.mjs`, cross-checked against `scripts/check-site.mjs` at 124 Amazon links / 112 sponsored |
+| Reader pages | 30 total: front page + 404, 5 guides, 2 category hubs, 5 product pages, compare, register, a marketing kit, and the operations set (flagged, questions, suggestions, summary, dashboard, analytics, disclosure, privacy, about, seo, marketing, concept) |
+| Data registers | 5 products · 60 spec rows · 6 policy sources · 10 policy clauses quoted · 37 flag rows · 22 questions · 16 suggestions |
+| Verification mix | 32 `verified` · 14 `unverified` · 10 `withheld` · 4 `claim`; **36 rows carry a value, 24 are blank with a reason**, and 22 of the valued rows cite a manufacturer page directly rather than the listing |
+| Compliance | OA §5 statement verbatim on all 30 pages; the disclosure precedes the first sponsored link on every page (asserted by byte offset, not by eyeball); `rel="sponsored nofollow noopener"` + `?tag=shopnow047c-20` on all 80 product links; the 8 submitted short links render as declared non-affiliate citations (`rel="nofollow"`, no tag). Counts from `scripts/compliance-gate.mjs`, cross-checked by `scripts/check-site.mjs` at 94 Amazon links / 80 sponsored |
 | Measurement | Five events defined; collector written but **not deployed**, so the client is inert by design |
 | Money | **Zero** revenue claims; ledger holds 0 rows, by policy |
-| Gates | ~2,100 assertions across three checkers, all green; CI also fails if generated output is not committed |
+| Gates | Three checkers, all green (~1,076 compliance assertions, 1,118 internal links verified, the builder's own 9 gates). CI fails if generated output is not committed, the build is not reproducible, or a compliance rule breaks — and Pages' deploy job now runs the compliance gate too, so a regression stops the release rather than reddening a check |
 | History | Four prior session builds preserved under `archive/` (83 files), nothing deleted |
 
 ## 2. What the product question turned out to be
@@ -63,12 +63,17 @@ main lacked:
    **This found 5 dangling `SRC-02` references in `data/special_link_tests.json` on the live site —
    fixed** to point at the defined `link-redirect` source, with a note naming the archived register
    those ids came from.
-3. **A latent misattribution bug, fixed in the generator** — `/register/` built its “Source” column
-   by always emitting a tagged `amazon.com/dp/<ASIN>` link whenever a row had *any* source. Today
-   every valued row happens to cite `amazon-listing`, so the fix changes no output (verified:
-   byte-identical HTML), but the first row citing a manual or a USDA table would have been
-   presented with a store link as its evidence, and every verification click would have carried a
-   tag. Citations now resolve through `policy.json`, and only the listing source may be tagged.
+3. **The same misattribution bug, found twice — and theirs kept.** `/register/` used to render a
+   tagged `amazon.com/dp/<ASIN>` link in the Source column whenever a row had *any* source, so a row
+   citing a manufacturer or a USDA table would have printed a store link as its evidence. Session
+   `arena-f6be9b3a` fixed it in the generator (`sourceCell`: resolves the row's own source, throws on
+   an unknown one, cites 22 manufacturer pages directly); this session wrote a parallel fix and, on
+   merge, **deleted it** so the register has one citation path instead of two. What survived from
+   this side is the register rule behind it: `manufacturer` was cited by 22 rows while defined
+   nowhere in `data/policy.json`, so the cross-reference check failed the build on main's current
+   data, and the source row now exists. FLG-024 also lost its hand-typed link count — a number in the
+   register that a gate could compute is a number that goes stale.
+
 4. **`scripts/analytics-server.mjs`** — a zero-dependency self-hosted collector implementing the
    *same* contract as `_worker/collector.js` (same five events, same key allow-list, same scrubbing,
    30-day retention, `/summary` aggregates). FLG-011 ("no collector deployed") is now a hosting
@@ -87,7 +92,7 @@ main lacked:
 
 ## 4. The one number that should worry the owner
 
-**112 tagged product links are live; 0 of 5 per-product Special Link tests are recorded.**
+**80 tagged product links are live; 0 of 5 per-product Special Link tests are recorded.**
 
 The rule this project set — one tested link per product, in the enrolled workflow, before scaling —
 was skipped, and it is recorded as an open action row (FLG-024). Nothing suggests the links are
@@ -98,7 +103,7 @@ clicking, and the gate now warns until a test row is filled — and **fails** if
 unrecorded, so nobody can close the flag quietly. A duplicate row this session nearly added
 (FLG-026) was deleted for exactly that reason: the register should be extended, not inflated.
 
-## 5. Open items, by owner (8 rows are `action`)
+## 5. Open items, by owner (7 rows are `action`)
 
 | Who | What |
 | --- | --- |

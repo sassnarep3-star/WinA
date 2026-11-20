@@ -9,7 +9,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { guides, editorNote } from "./content.mjs";
-import { about, disclosure, privacy, marketing, seo } from "./pages-content.mjs";
+import { about, disclosure, privacy, marketing, seo, promo } from "./pages-content.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(__dirname, "..");
@@ -217,6 +217,7 @@ ${children}
           <li><a href="${url("/suggestions/")}">Suggestions</a></li>
           <li><a href="${url("/summary/")}">Executive summary</a></li>
           <li><a href="${url("/marketing/")}">Marketing plan</a></li>
+          <li><a href="${url("/marketing/kit/")}">Marketing kit</a></li>
           <li><a href="${url("/seo/")}">Search &amp; findability</a></li>
         </ul>
       </div>
@@ -250,6 +251,22 @@ function buybox(p, slot) {
 </div>`;
 }
 
+function sourceCell(s, p) {
+  if (!s.source) return '<span class="faint">none</span>';
+  if (s.source === "amazon-listing")
+    return `<a href="${special(p.asin)}" rel="sponsored nofollow noopener" target="_blank" data-affiliate="${
+      p.asin
+    }" data-slot="spec-source">Amazon listing</a>`;
+  if (s.source === "manufacturer") {
+    const src = (p.specSources || {})[s.label];
+    if (!src || !src.url) throw new Error(`spec "${s.label}" cites a manufacturer but has no URL`);
+    return `<a href="${esc(src.url)}" rel="nofollow noopener" target="_blank" data-slot="spec-source">${esc(
+      src.label
+    )}</a>`;
+  }
+  throw new Error(`unknown spec source "${s.source}" on ${p.slug}`);
+}
+
 function specTable(p) {
   const rows = p.specs
     .map((s) => {
@@ -265,13 +282,7 @@ function specTable(p) {
       <td>${esc(s.label)}</td>
       <td>${val}</td>
       <td><span class="pill pill--${s.status}">${label || s.status}</span></td>
-      <td>${
-        s.source
-          ? `<a href="${special(p.asin)}" rel="sponsored nofollow noopener" target="_blank" data-affiliate="${
-              p.asin
-            }" data-slot="spec-source">Amazon listing</a>`
-          : '<span class="faint">none</span>'
-      }</td>
+      <td>${sourceCell(s, p)}</td>
     </tr>`;
     })
     .join("");
@@ -362,10 +373,10 @@ function frontPage() {
 
 <div class="strip">
   <div class="wrap strip__inner">
-    <div class="strip__cell"><p class="strip__num">5</p><p class="strip__lab">Products compared</p></div>
-    <div class="strip__cell"><p class="strip__num">4</p><p class="strip__lab">Guides</p></div>
+    <div class="strip__cell"><p class="strip__num">${products.length}</p><p class="strip__lab">Products compared</p></div>
+    <div class="strip__cell"><p class="strip__num">${guides.length}</p><p class="strip__lab">Guides</p></div>
     <div class="strip__cell"><p class="strip__num">0</p><p class="strip__lab">Products tested</p></div>
-    <div class="strip__cell"><p class="strip__num">10</p><p class="strip__lab">Policy checks passed</p></div>
+    <div class="strip__cell"><p class="strip__num">${policy.policy.length}</p><p class="strip__lab">Policy checks passed</p></div>
   </div>
 </div>
 
@@ -403,7 +414,7 @@ function frontPage() {
   <div class="wrap">
     <div class="section__head">
       <h2 class="section__title">Read before you buy</h2>
-      <p class="section__dek">Four questions that come up before any of these purchases, answered without a verdict at the end.</p>
+      <p class="section__dek">The questions that come up before any of these purchases, answered without a verdict at the end.</p>
     </div>
     <div class="guides guides--two">
       ${guides
@@ -754,7 +765,7 @@ ${breadcrumb([{ href: url("/"), label: "Home" }, { label: "Guides" }])}
   <div class="wrap">
     <p class="kicker">Buying guides</p>
     <h1 class="article-head__title">The questions people ask before they buy</h1>
-    <p class="article-head__dek">Four guides, each built around one decision. No rankings, no "best of" list, no claim that any of this was tested.</p>
+    <p class="article-head__dek">Five guides, each built around one decision. No rankings, no "best of" list, no claim that any of this was tested.</p>
   </div>
 </div>
 <section class="section">
@@ -787,7 +798,7 @@ ${breadcrumb([{ href: url("/"), label: "Home" }, { label: "Guides" }])}
   pages.push({
     path: "/guides/",
     title: "Buying guides",
-    desc: "Four question-shaped guides to air fryers and thermometers: form factor, capacity, cleanup, and multi-function claims.",
+    desc: "Five question-shaped guides to air fryers and thermometers: form factor, capacity, cleanup, and multi-function claims.",
     html,
     priority: "0.8",
     changefreq: "weekly"
@@ -941,20 +952,6 @@ function specialLinkSection() {
 // Before this, any spec with a source rendered a tagged amazon.com/dp/ link, so a row citing a
 // manual or a USDA table would have pointed at a store page instead — and every verification click
 // would have carried a tag. Only the listing source may be tagged, because only that one is a
-// referral rather than a reference.
-function specSourceCell(spec, product) {
-  if (!spec.source) return "<span class='faint'>no source</span>";
-  const def = policy.sources.find((x) => x.id === spec.source);
-  if (!def) return `<span class="pill pill--unverified">undefined source: ${esc(spec.source)}</span>`;
-  if (def.id === "amazon-listing")
-    return `<a href="${special(product.asin)}" rel="sponsored nofollow noopener" target="_blank" data-affiliate="${product.asin}" data-slot="register">amazon.com/dp/${esc(product.asin)}</a>`;
-  const where = def.url || (def.urlPattern ? def.urlPattern.replace("{asin}", product.asin) : "");
-  const label = where ? where.replace(/^https:\/\//, "").slice(0, 46) : def.label;
-  const anchor = where
-    ? `<a href="${where}" rel="nofollow noopener" target="_blank" data-nonaffiliate="true">${esc(label)}</a>`
-    : `<code>${esc(def.id)}</code>`;
-  return `${anchor} <span class="faint">${esc(def.label)}</span>`;
-}
 
 function registerPage() {
   const specRows = [];
@@ -965,7 +962,7 @@ function registerPage() {
         <td>${esc(s.label)}</td>
         <td>${s.value ? esc(s.value) : '<span class="faint">—</span>'}</td>
         <td><span class="pill pill--${s.status}">${s.status}</span></td>
-        <td>${specSourceCell(s, p)}</td>
+        <td>${sourceCell(s, p)}</td>
       </tr>`);
     }
   }
@@ -1503,11 +1500,17 @@ ${breadcrumb([{ href: url("/"), label: "Home" }, { label: "Executive summary" }]
     <h2>What exists</h2>
     <ul>
       <li><strong>A five-product publication</strong> — three air fryers, two thermometers — with individual pages, two category hubs, and a full comparison table.</li>
-      <li><strong>Four question-shaped guides</strong>, written as decisions rather than rankings.</li>
+      <li><strong>Five question-shaped guides</strong>, written as decisions rather than rankings.</li>
       <li><strong>A complete source register</strong>: ${policy.sources.length} primary sources and ${products.reduce(
         (n, p) => n + p.specs.length,
         0
-      )} specification rows, each with a verification status.</li>
+      )} specification rows, ${products.reduce(
+        (n, p) => n + p.specs.filter((s) => s.value).length,
+        0
+      )} of them filled and each with a verification status; the rest are blank on purpose, with the reason recorded.</li>
+      <li><strong>Marketing copy for all five links</strong> — a social post, a newsletter paragraph and its mandatory disclosure per product, on <a href="${url(
+        "/marketing/kit/"
+      )}">the marketing kit</a>.</li>
       <li><strong>Ten policy checks</strong> traced to the exact clause, with the text quoted verbatim so the summary can be audited.</li>
       <li><strong>A publication gate</strong> in the build: it fails if any page loses its disclosure, or if any Amazon link loses its sponsored marking.</li>
       <li><strong>SEO foundations</strong>: sitemap, RSS feed, canonical URLs, structured data, and descriptions written for humans.</li>
@@ -1540,14 +1543,14 @@ ${breadcrumb([{ href: url("/"), label: "Home" }, { label: "Executive summary" }]
       <li>Sign in to Associates and confirm one product link per product appears in the tracking report.</li>
       <li>Deploy the collector in <code>_worker/</code> and set the endpoint, then rebuild.</li>
       <li>Verify Search Console, replace the placeholder token, submit the sitemap.</li>
-      <li>Publish one guide a week for eight weeks.</li>
+      <li>Publish a new guide every week for eight weeks.</li>
       <li>At week eight, read the query report and replace the topic hypotheses with measured demand.</li>
       <li>Apply for Product Advertising API access once the account qualifies — it unlocks prices, ratings and images together.</li>
     </ol>
 
     <h2>The honest verdict</h2>
-    <p>What exists is a small, well-documented, compliant publication with four decent guides and five products. It is not yet a business: it has no traffic, no verified affiliate attribution, and no data. It is, however, built so that when those three things arrive, nothing has to be torn down — and so that nothing on it is a lie.</p>
-    <p>The main strategic risk is not technical. It is that four guides is not enough content to rank in a crowded category, and the plan for fixing that is a cadence, not a feature.</p>
+    <p>What exists is a small, well-documented, compliant publication with five decent guides and five products. It is not yet a business: it has no traffic, no verified affiliate attribution, and no data. It is, however, built so that when those three things arrive, nothing has to be torn down — and so that nothing on it is a lie.</p>
+    <p>The main strategic risk is not technical. It is that five guides is not enough content to rank in a crowded category, and the plan for fixing that is a cadence, not a feature.</p>
   </div>
 </section>
 `;
@@ -1663,6 +1666,8 @@ ${breadcrumb([{ href: url("/"), label: "Home" }, { label: c.title }])}
     });
   };
 
+  promoPage();
+
   simple({ slug: "concept", ...aiConcept }, "AI-platform concept", aiConcept.dek, "Concept, not implemented", "0.4");
   simple({ slug: "about", ...about }, "About and editorial standards", about.dek, "Editorial standards", "0.6");
   simple({ slug: "disclosure", ...disclosure }, "Affiliate disclosure", disclosure.dek, "Disclosure", "0.5");
@@ -1725,6 +1730,83 @@ ${breadcrumb([{ href: url("/"), label: "Home" }, { label: "Search & findability"
 /* ============================================================
    SITEMAP, FEED, ROBOTS, 404
    ============================================================ */
+
+function promoPage() {
+  const bySlug = Object.fromEntries(products.map((p) => [p.slug, p]));
+  const cards = promo.entries
+    .map((e) => {
+      const p = bySlug[e.slug];
+      if (!p) throw new Error(`promo entry ${e.slug} matches no product`);
+      const href = url(`/products/${p.slug}/`);
+      const fill = (t) => esc(t).replace(/\[review\]/g, `<a href="${href}">the full record</a>`);
+      return `<article class="promo">
+  <header class="promo__head">
+    <p class="kicker">${esc(p.brand)}</p>
+    <h2 class="promo__title">${esc(p.shortName)}</h2>
+    <p class="promo__hook">${esc(e.hook)}</p>
+  </header>
+  <div class="promo__block">
+    <p class="promo__label">Social post</p>
+    <p class="promo__copy">${fill(e.social)}</p>
+  </div>
+  <div class="promo__block">
+    <p class="promo__label">Newsletter paragraph</p>
+    <p class="promo__copy">${fill(e.newsletter)}</p>
+  </div>
+  <div class="promo__block promo__block--rule">
+    <p class="promo__label">Travels with every post</p>
+    <p class="promo__copy"><strong>${esc(e.disclosureNote)}</strong></p>
+  </div>
+  <p class="promo__caution"><strong>Watch the claim:</strong> ${esc(e.caution)}</p>
+</article>`;
+    })
+    .join("");
+
+  pages.push({
+    path: "/marketing/kit/",
+    title: "Marketing kit — copy for the five products",
+    desc: promo.dek,
+    html: `
+${breadcrumb([
+  { href: url("/"), label: "Home" },
+  { href: url("/marketing/"), label: "Marketing plan" },
+  { label: "Marketing kit" }
+])}
+<div class="article-head">
+  <div class="wrap">
+    <p class="kicker">Go-to-market</p>
+    <h1 class="article-head__title">${esc(promo.title)}</h1>
+    <p class="article-head__dek">${esc(promo.dek)}</p>
+  </div>
+</div>
+<section class="section">
+  <div class="wrap narrow prose">
+    <p class="lede">${esc(promo.intro)}</p>
+    <h2>The five rules this copy obeys</h2>
+    <ol>${promo.rules.map((r) => `<li>${esc(r)}</li>`).join("")}</ol>
+  </div>
+</section>
+<section class="section">
+  <div class="wrap">
+    <div class="section__head">
+      <h2 class="section__title">Copy for the five links</h2>
+      <p class="section__dek">Each block is written to be pasted as-is. Bracketed links point at the review page on this site, not at Amazon, so the reader meets the disclosure before the buy button.</p>
+    </div>
+    <div class="promo-grid">${cards}</div>
+  </div>
+</section>
+<section class="section">
+  <div class="wrap narrow prose">
+    <h2>Before anything is published</h2>
+    <ol>${promo.checklist.map((c) => `<li>${esc(c)}</li>`).join("")}</ol>
+    <p class="small">If a post fails the third question, it is a price post. Those go stale and, under the Program Policies, they are not ours to publish in the first place.</p>
+  </div>
+</section>`,
+    priority: "0.4",
+    changefreq: "monthly"
+  });
+}
+
 function feeds() {
   // Deterministic: the declared build date, not the wall clock. A build that
   // embeds `new Date()` can never pass a "is the output committed?" check.
@@ -1922,6 +2004,23 @@ if (!statementMissing) ok(`every page carries the exact statement required by OA
 if (!canonicalMissing) ok("every page declares a canonical URL");
 if (!amazonUnsponsored) ok(`every Amazon anchor is either a tagged sponsored link or a declared non-affiliate citation`);
 if (!ratingShown) ok("no star ratings or review quotes displayed anywhere");
+
+// guide-count guard: any count word stated next to "guide(s)" must equal the published count
+{
+  const WORD_NUM = { one: 1, two: 2, three: 3, four: 4, five: 5, six: 6, seven: 7, eight: 8, nine: 9, ten: 10 };
+  const re = /\b(one|two|three|four|five|six|seven|eight|nine|ten|\d+)[ \t]+(?:[a-z-]+[ \t]+){0,3}guides?\b/gi;
+  const mismatch = [];
+  for (const f of htmlFiles) {
+    const text = fs.readFileSync(f, "utf8").replace(/<[^>]+>/g, "\n");
+    for (const m of text.matchAll(re)) {
+      const w = m[1].toLowerCase();
+      const n = WORD_NUM[w] ?? Number(w);
+      if (n !== guides.length) mismatch.push(`${path.relative(ROOT, f)}: "${m[0]}"`);
+    }
+  }
+  if (mismatch.length) fail(`prose states a guide count that does not match the ${guides.length} published: ${mismatch.slice(0, 5).join("; ")}`);
+  else ok(`every stated guide count matches the ${guides.length} guides published`);
+}
 
 // fabrication guard: no unverified spec may have a value
 let fabricated = 0;

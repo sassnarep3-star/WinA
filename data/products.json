@@ -34,9 +34,9 @@
       "specs": [
         {
           "label": "Capacity",
-          "value": "6 qt total (2 × 3 qt)",
+          "value": "6 qt total (2 × 3 qt) · 5.67 L",
           "status": "verified",
-          "source": "amazon-listing"
+          "source": "manufacturer"
         },
         {
           "label": "Form factor",
@@ -70,21 +70,21 @@
         },
         {
           "label": "Wattage",
-          "value": null,
-          "status": "unverified",
-          "source": null
+          "value": "1700 W, 120 V",
+          "status": "verified",
+          "source": "manufacturer"
         },
         {
           "label": "Dimensions",
-          "value": null,
-          "status": "unverified",
-          "source": null
+          "value": "13.38 × 11.81 × 10.63 in, 13.3 lb",
+          "status": "verified",
+          "source": "manufacturer"
         },
         {
           "label": "Warranty",
-          "value": null,
-          "status": "unverified",
-          "source": null
+          "value": "1 year (Chefman assurance), cETL listed",
+          "status": "verified",
+          "source": "manufacturer"
         },
         {
           "label": "Price",
@@ -114,7 +114,26 @@
       ],
       "submittedLink": "https://link.amazon/B04G1MEwY",
       "observedDestination": "https://www.amazon.com/dp/B0CDY277D3",
-      "observedOn": "2026-11-20"
+      "observedOn": "2026-11-20",
+      "specSources": {
+        "Wattage": {
+          "url": "https://chefman.com/products/turbofry-touch-dual-window-air-fryer",
+          "label": "chefman.com specification"
+        },
+        "Dimensions": {
+          "url": "https://chefman.com/products/turbofry-touch-dual-window-air-fryer",
+          "label": "chefman.com specification"
+        },
+        "Warranty": {
+          "url": "https://chefman.com/products/turbofry-touch-dual-window-air-fryer",
+          "label": "chefman.com specification"
+        },
+        "Capacity": {
+          "url": "https://chefman.com/products/turbofry-touch-dual-window-air-fryer",
+          "label": "chefman.com specification"
+        }
+      },
+      "modelNumber": "RJ38-SQPF-3TDB-2W"
     },
     {
       "slug": "emeril-lagasse-26qt-french-door",
@@ -140,9 +159,9 @@
       "specs": [
         {
           "label": "Capacity",
-          "value": "26 qt",
+          "value": "26 qt · 24.6 L",
           "status": "verified",
-          "source": "amazon-listing"
+          "source": "manufacturer"
         },
         {
           "label": "Form factor",
@@ -154,7 +173,7 @@
           "label": "Presets",
           "value": "24 one-touch presets",
           "status": "verified",
-          "source": "amazon-listing"
+          "source": "manufacturer"
         },
         {
           "label": "Included accessories",
@@ -176,9 +195,9 @@
         },
         {
           "label": "Dimensions",
-          "value": null,
-          "status": "unverified",
-          "source": null
+          "value": "16.9 D × 15.8 W × 14.8 H in",
+          "status": "verified",
+          "source": "manufacturer"
         },
         {
           "label": "Warranty",
@@ -214,7 +233,21 @@
       ],
       "submittedLink": "https://link.amazon/B02NbDxp3",
       "observedDestination": "https://www.amazon.com/dp/B09B7SB46R",
-      "observedOn": "2026-11-20"
+      "observedOn": "2026-11-20",
+      "specSources": {
+        "Dimensions": {
+          "url": "https://www.emerileveryday.com/products/emeril_lagasse_french_door_airfryer_360",
+          "label": "emerileveryday.com specification"
+        },
+        "Presets": {
+          "url": "https://www.emerileveryday.com/products/emeril_lagasse_french_door_airfryer_360",
+          "label": "emerileveryday.com specification"
+        },
+        "Capacity": {
+          "url": "https://www.emerileveryday.com/products/emeril_lagasse_french_door_airfryer_360",
+          "label": "emerileveryday.com specification"
+        }
+      }
     },
     {
       "slug": "chefman-8-quart-turbofry",
@@ -228,7 +261,7 @@
       "verdict": "One big drawer, four jobs, and the highest temperature in this set. The straightforward choice if you cook in single batches.",
       "why": [
         "A single 8-quart drawer is easier to fill, toss, and wash than two smaller ones when you are cooking one thing for everyone.",
-        "The 450°F Hi-Fry setting is the top of the range in this set — it is the setting that gets you closer to a fried finish.",
+        "Hi-Fry adds a 450°F burst for the final two minutes of a cook, which is a browning finish rather than a full 450°F cycle.",
         "Bake, dehydrate and frozen modes stretch a single appliance across more of the week.",
         "Nonstick basket is listed as dishwasher-safe and the body is stainless steel."
       ],
@@ -252,7 +285,7 @@
         },
         {
           "label": "Max temperature",
-          "value": "450°F (Hi-Fry)",
+          "value": "400°F standard range; 450°F Hi-Fry for the final 2 minutes of a cycle",
           "status": "verified",
           "source": "amazon-listing"
         },
@@ -320,7 +353,8 @@
       ],
       "submittedLink": "https://link.amazon/B00hJ57DV",
       "observedDestination": "https://www.amazon.com/dp/B08DKYBTPH",
-      "observedOn": "2026-11-20"
+      "observedOn": "2026-11-20",
+      "modelAmbiguity": "The 8-qt family spans at least five SKUs. chefman.com publishes RJ38-8T-BLACK (matte black, 8 qt/7.57 L, Hi-Fry 450 F, 1700 W/120 V); the listing re-fetched for this ASIN (12.8 lb, RJ38-SQSS-8T per retailer records) describes a stainless-steel body. Because the colour and model strings disagree, no dimension, weight or wattage is taken from the black SKU's page."
     },
     {
       "slug": "thermomaven-1-sec-thermometer",
@@ -335,7 +369,7 @@
       "why": [
         "A one-second read is the threshold where checking temperature stops feeling like a delay.",
         "The display auto-rotates, which sounds trivial until you are holding it at an angle over a hot pan.",
-        "IP67 means it survives being set down in a wet sink or dropped in a stockpot.",
+        "The manufacturer calls it 100% waterproof; the listing title adds IP67, which the manufacturer's own page does not publish.",
         "Pocket-sized and battery-simple — nothing to pair, no app, no account."
       ],
       "consider": [
@@ -347,38 +381,38 @@
         {
           "label": "Read time",
           "value": "1 second",
-          "status": "claim",
-          "source": "amazon-listing"
+          "status": "verified",
+          "source": "manufacturer"
         },
         {
           "label": "Stated accuracy",
-          "value": "±0.5°F",
-          "status": "claim",
-          "source": "amazon-listing"
+          "value": "±0.5°F / ±0.3°C, stated as NIST certified",
+          "status": "verified",
+          "source": "manufacturer"
         },
         {
           "label": "Water resistance",
-          "value": "IP67",
-          "status": "claim",
-          "source": "amazon-listing"
+          "value": "Described as 100% waterproof; no IP number published",
+          "status": "verified",
+          "source": "manufacturer"
         },
         {
           "label": "Display",
           "value": "Auto-rotate bright LED",
           "status": "verified",
-          "source": "amazon-listing"
+          "source": "manufacturer"
         },
         {
           "label": "Certification",
-          "value": "Listed as NIST & NSF certified",
+          "value": "NIST and NSF logos displayed; no certificate number published",
           "status": "claim",
-          "source": "amazon-listing"
+          "source": "manufacturer"
         },
         {
           "label": "Type",
           "value": "Instant-read probe",
           "status": "verified",
-          "source": "amazon-listing"
+          "source": "manufacturer"
         },
         {
           "label": "Calibration record",
@@ -388,15 +422,15 @@
         },
         {
           "label": "Battery type",
-          "value": null,
-          "status": "unverified",
-          "source": null
+          "value": "1 × AAA (included)",
+          "status": "verified",
+          "source": "manufacturer"
         },
         {
           "label": "Warranty",
-          "value": null,
-          "status": "unverified",
-          "source": null
+          "value": "Lifetime, if registered within 30 days of purchase",
+          "status": "verified",
+          "source": "manufacturer"
         },
         {
           "label": "Price",
@@ -426,7 +460,42 @@
       ],
       "submittedLink": "https://link.amazon/B0c8moW59",
       "observedDestination": "https://www.amazon.com/dp/B0DHZTCNR5",
-      "observedOn": "2026-11-20"
+      "observedOn": "2026-11-20",
+      "specSources": {
+        "Read time": {
+          "url": "https://www.thermomaven.com/products/f1-stealth",
+          "label": "thermomaven.com"
+        },
+        "Stated accuracy": {
+          "url": "https://www.thermomaven.com/products/f1-stealth",
+          "label": "thermomaven.com"
+        },
+        "Water resistance": {
+          "url": "https://www.thermomaven.com/products/f1-stealth",
+          "label": "thermomaven.com"
+        },
+        "Battery type": {
+          "url": "https://www.thermomaven.com/products/f1-stealth",
+          "label": "thermomaven.com"
+        },
+        "Warranty": {
+          "url": "https://www.thermomaven.com/products/f1-stealth",
+          "label": "thermomaven.com"
+        },
+        "Certification": {
+          "url": "https://www.thermomaven.com/products/f1-stealth",
+          "label": "thermomaven.com"
+        },
+        "Type": {
+          "url": "https://www.thermomaven.com/products/f1-stealth",
+          "label": "thermomaven.com"
+        },
+        "Display": {
+          "url": "https://www.thermomaven.com/products/f1-stealth",
+          "label": "thermomaven.com"
+        }
+      },
+      "modelNumber": "HT07"
     },
     {
       "slug": "chef-iq-sense-gen3",
@@ -455,43 +524,43 @@
           "label": "Probes",
           "value": "3 ultra-thin probes",
           "status": "verified",
-          "source": "amazon-listing"
+          "source": "manufacturer"
         },
         {
           "label": "Sensors",
-          "value": "5 sensors",
+          "value": "4 internal + 1 ambient",
           "status": "verified",
-          "source": "amazon-listing"
+          "source": "manufacturer"
         },
         {
           "label": "Connectivity",
-          "value": "WiFi",
+          "value": "Wi-Fi and Bluetooth",
           "status": "verified",
-          "source": "amazon-listing"
+          "source": "manufacturer"
         },
         {
           "label": "Heat rating",
-          "value": "1000°F",
-          "status": "claim",
-          "source": "amazon-listing"
+          "value": "1,000°F / 537°C",
+          "status": "verified",
+          "source": "manufacturer"
         },
         {
           "label": "Range",
           "value": "Stated unlimited over WiFi",
           "status": "claim",
-          "source": "amazon-listing"
+          "source": "manufacturer"
         },
         {
           "label": "Type",
           "value": "Wireless leave-in",
           "status": "verified",
-          "source": "amazon-listing"
+          "source": "manufacturer"
         },
         {
           "label": "Generation",
           "value": "Gen3",
           "status": "verified",
-          "source": "amazon-listing"
+          "source": "manufacturer"
         },
         {
           "label": "App requirement",
@@ -539,7 +608,38 @@
       ],
       "submittedLink": "https://link.amazon/B0f3GKalj",
       "observedDestination": "https://www.amazon.com/dp/B0DZFD6R9Z",
-      "observedOn": "2026-11-20"
+      "observedOn": "2026-11-20",
+      "specSources": {
+        "Sensors": {
+          "url": "https://chefiq.com/products/iq-sense",
+          "label": "chefiq.com"
+        },
+        "Connectivity": {
+          "url": "https://chefiq.com/products/iq-sense",
+          "label": "chefiq.com"
+        },
+        "Heat rating": {
+          "url": "https://chefiq.com/products/iq-sense",
+          "label": "chefiq.com"
+        },
+        "Range": {
+          "url": "https://chefiq.com/products/iq-sense",
+          "label": "chefiq.com"
+        },
+        "Probes": {
+          "url": "https://chefiq.com/products/iq-sense",
+          "label": "chefiq.com"
+        },
+        "Type": {
+          "url": "https://chefiq.com/products/iq-sense",
+          "label": "chefiq.com"
+        },
+        "Generation": {
+          "url": "https://chefiq.com/products/iq-sense",
+          "label": "chefiq.com"
+        }
+      },
+      "modelNumber": "CQ60-1C-Z1-E"
     }
   ],
   "categories": [

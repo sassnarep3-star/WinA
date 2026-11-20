@@ -112,10 +112,10 @@
       "id": "FLG-013",
       "severity": "action",
       "title": "Content volume is below the Associates review bar",
-      "detail": "Amazon's Associates help states that applications are reviewed for robust original content, with a rule of thumb of at least 10 posts and recent activity. This site has 4 guides and 5 product pages. The account's own status and review history are unknown from here. Carried forward from the parallel-session register (arena-2ca62ce9, FLG-010), which found this first.",
-      "action": "Do not submit or re-submit for review on four guides. The eight-week cadence in the suggestions register exists to clear this bar. Recorded as a commercial blocker, not a content-quality one.",
-      "sourceUrl": "https://affiliate-program.amazon.com/",
-      "sourceLabel": "Amazon Associates Central (sign-in required)"
+      "detail": "Amazon's Associates Help, 'Application Review Process' (checked 2026-11-20, US help topic G8TW5AE9XL2VX9VM), says: \"All Sites must have robust original content (even when advertising is removed) – a good rule of thumb is at least 10 posts.\" It also says: \"Content on your website must be recent (generally within the last 60 days).\" This site has 5 guides and 5 product pages. Amazon does not say whether product and hub pages count as posts, but 5 guides is below the rule of thumb on any reading. The account's own status and review history are unknown from here. Carried forward from the parallel-session register (arena-2ca62ce9, FLG-010), which found this first.",
+      "action": "Do not submit or re-submit for review until the site has at least 10 posts and content dated within the last 60 days. The weekly cadence in the suggestions register (SUG-05) is the proposed path. Recorded as a commercial blocker, not a content-quality one.",
+      "sourceUrl": "https://affiliate-program.amazon.com/help/node/topic/G8TW5AE9XL2VX9VM",
+      "sourceLabel": "Associates Help: Application Review Process (checked 2026-11-20)"
     },
     {
       "id": "FLG-014",
@@ -175,7 +175,7 @@
       "id": "FLG-020",
       "severity": "withheld",
       "title": "No seasonal content, because there is no seasonal demand data",
-      "detail": "The brief asked for seasons and topic clusters. No seasonal query data was obtained from any source, so no seasonal calendar was invented. The four guides are editorial working titles, not popularity claims. Carried forward from arena-2ca62ce9 (FLG-015).",
+      "detail": "The brief asked for seasons and topic clusters. No seasonal query data was obtained from any source, so no seasonal calendar was invented. The five guides are editorial working titles, not popularity claims. Carried forward from arena-2ca62ce9 (FLG-015).",
       "action": "Clusters exist as two product categories. Seasons wait for Search Console query data — choosing December topics from instinct is the failure mode being avoided.",
       "sourceUrl": "https://search.google.com/search-console",
       "sourceLabel": "Search Console (not yet verified)"
@@ -211,7 +211,7 @@
       "id": "FLG-024",
       "severity": "action",
       "title": "Tagged product links are live before the one-per-product Special Link test",
-      "detail": "Product buy-boxes and the register link to amazon.com/dp/<observed ASIN>?tag=shopnow047c-20 for all five products. The per-product test required before scaling (FLG-003) has not been run; it needs Associates Central sign-in, which this build does not have. The site does not claim the submitted short links are invalid. The test is recorded as blocked on the Special Link test register. As of this build the numbers are 112 tagged product links across 29 pages against 0 of 5 tests recorded (scripts/compliance-gate.mjs recomputes both sides on every run and warns until a test is recorded, so this row cannot quietly go stale).",
+      "detail": "Product buy-boxes and the register link to amazon.com/dp/<observed ASIN>?tag=shopnow047c-20 for all five products. The per-product test required before scaling (FLG-003) has not been run; it needs Associates Central sign-in, which this build does not have. The site does not claim the submitted short links are invalid. The test is recorded as blocked on the Special Link test register. The counts are deliberately not written into this row: scripts/compliance-gate.mjs recomputes tagged links and test rows on every build and warns while the pair is unbalanced, so the register says *what is true* rather than what was true when someone last typed a number.",
       "action": "Owner runs one test per product in the enrolled Associates workflow and records the destination and tracking-report line in data/special_link_tests.json. Until then no further product link is added. If a test fails, the owner chooses the link method. scripts/compliance-gate.mjs fails the build if links go live while no open flag records the state — close it by data, not by silence.",
       "sourceUrl": "https://affiliate-program.amazon.com/help/operating/policies",
       "sourceLabel": "Participation Requirements §2(b) (Special Links use the Associates ID)"
@@ -226,6 +226,42 @@
       "sourceLabel": "Google Search Central (verification meta tags)"
     },
     {
+      "id": "FLG-026",
+      "severity": "review",
+      "title": "Every specification cited the Amazon listing, including values the listing does not state",
+      "detail": "The source column on /products/ and /register/ linked every row to amazon.com/dp/<ASIN>, whether or not that page carried the value. Nine rows that had been recorded as 'unverified' are in fact published by the manufacturer, and three product pages had no manufacturer citation at all.",
+      "action": "Fixed. Each row now resolves to its own source: Amazon listing rows still link to the listing; manufacturer rows link to the page that states them (chefman.com, emerileveryday.com, thermomaven.com, chefiq.com). The build throws if a row claims a manufacturer source without a URL.",
+      "sourceUrl": "https://chefman.com/products/turbofry-touch-dual-window-air-fryer",
+      "sourceLabel": "Chefman product specification block"
+    },
+    {
+      "id": "FLG-027",
+      "severity": "review",
+      "title": "The 8-quart Chefman's 450°F was presented as its maximum temperature",
+      "detail": "The listing title says '450°F Hi-Fry Option'; the manufacturer states Hi-Fry 'raises the heat to 450°F for the last two minutes', against a normal range topping out at 400°F. This site had recorded 'Max temperature: 450°F (Hi-Fry)' and a guide called it 'the top of the range in this set'. That overstates a two-minute browning finish as a continuous capability.",
+      "action": "Corrected. The row now reads '400°F standard range; 450°F Hi-Fry for the final 2 minutes of a cycle', and the basket-vs-oven guide describes it the same way.",
+      "sourceUrl": "https://chefman.com/products/turbofry-8-qt-air-fryer-w-high-fry",
+      "sourceLabel": "Chefman product page, Hi-Fry description"
+    },
+    {
+      "id": "FLG-028",
+      "severity": "review",
+      "title": "Chefman's 8-quart family has at least five SKUs and the listing names none of them",
+      "detail": "chefman.com publishes RJ38-8T-BLACK (matte black) for the 8-qt Hi-Fry machine; retailer records for this ASIN give RJ38-SQSS-8T and a stainless-steel body of 12.75 x 13.5 x 10 in at 12.8 lb. The two disagree on colour and model, so no dimension, weight or wattage from either page can be attached to this listing.",
+      "action": "Left blank rather than guessed, and recorded on the product page. The figures are not in dispute; which SKU this listing ships is.",
+      "sourceUrl": "https://chefman.com/products/turbofry-8-qt-air-fryer-w-high-fry",
+      "sourceLabel": "Chefman 8 Qt Hi-Fry page (RJ38-8T-BLACK) vs the Amazon listing"
+    },
+    {
+      "id": "FLG-029",
+      "severity": "review",
+      "title": "Emeril's own page contradicts the Amazon listing on preset count",
+      "detail": "emerileveryday.com states '25 Cooking Pre-sets' in its specification block and '10-in-1' in the product description; the Amazon listing states 24 one-touch presets. Three different numbers for one feature.",
+      "action": "Recorded as 24 (the listing) with the manufacturer figure noted. Neither is published as settled. Unchanged from FLG-005's finding, now with the third number and its URL.",
+      "sourceUrl": "https://www.emerileveryday.com/products/emeril_lagasse_french_door_airfryer_360",
+      "sourceLabel": "Emeril Everyday specification block"
+    },
+    {
       "id": "SG-27",
       "severity": "review",
       "title": "Navigation labels: parallel row SG-27 has no source document in this repository",
@@ -238,10 +274,10 @@
       "id": "SG-28",
       "severity": "review",
       "title": "RSS feed: parallel row SG-28 has no source document in this repository",
-      "detail": "The build produces an RSS 2.0 feed at /feed.xml. The RSS 2.0 specification requires the channel title, link, and description, and uses RFC 822 dates for pubDate. The brief's SG-28 requirements were not provided, so the feed has not been checked against them.",
+      "detail": "The build produces an RSS 2.0 feed at /feed.xml. The RSS 2.0 specification requires the channel title, link, and description, and uses RFC 822 dates for pubDate. Checked 2026-11-20 against the RSS 2.0 specification: the channel has the required title, link and description; each item has a title, link and description; pubDate uses the RFC 822 form; and the file parses as well-formed XML. That check does not replace SG-28's own requirements, which were not supplied.",
       "action": "Provide the SG-28 requirements. After deploy, check the feed in a feed reader.",
       "sourceUrl": "https://www.rssboard.org/rss-specification",
-      "sourceLabel": "RSS Advisory Board, RSS 2.0 Specification"
+      "sourceLabel": "RSS Advisory Board, RSS 2.0 Specification (checked 2026-11-20)"
     },
     {
       "id": "SG-29",
@@ -260,6 +296,42 @@
       "action": "Owner decision: whether reader capture is wanted, and if so, which email service to connect. Until then the form stays inert.",
       "sourceUrl": "https://github.com/sassnarep3-star/WinA/blob/main/data/governance.json",
       "sourceLabel": "Flag register: FLG-010 and event EV-05"
+    },
+    {
+      "id": "FLG-030",
+      "severity": "resolved",
+      "title": "Policy and FTC quotes checked word for word against the official text (2026-11-20)",
+      "detail": "Operating Agreement §5: the Associates statement and the 'misrepresent or embellish' sentence matched. Program Policies, Participation Requirements: §2(b) (price display), §6(a) (Program Content), §6(f) (keyword clause), §6(t) (ratings), §6(w) (link clarity), §6(y) (price tracking) and §3(e) (data disclosure) matched. FTC Disclosures 101: 'Place it so it's hard to miss', 'The disclosure should be placed with the endorsement message itself', and 'You can't talk about your experience with a product you haven't tried' matched. The policy quotes in data/policy.json are the same text. POL-09 is an internal rule, not a quote.",
+      "action": "Re-run this check when Amazon or the FTC updates a document (FLG-031).",
+      "sourceUrl": "https://affiliate-program.amazon.com/help/operating/agreement",
+      "sourceLabel": "Associates Operating Agreement §5 (checked 2026-11-20)"
+    },
+    {
+      "id": "FLG-031",
+      "severity": "review",
+      "title": "Policy quotes are current only as of the document versions checked",
+      "detail": "The Operating Agreement page shows 'Updated: October 15, 2025'. The Program Policies page shows 'Updated: April 14, 2026'. The quotes in this build match those versions. A later version can change a clause number or wording without this build knowing.",
+      "action": "Before each publish and before any Associates application, re-check the quotes against the current pages.",
+      "sourceUrl": "https://affiliate-program.amazon.com/help/operating/policies",
+      "sourceLabel": "Associates Program Policies (updated April 14, 2026)"
+    },
+    {
+      "id": "FLG-032",
+      "severity": "resolved",
+      "title": "All five submitted short links re-resolved on 2026-11-20; destinations unchanged",
+      "detail": "Each link.amazon URL was opened again. CHEFMAN 6 Quart B04G1MEwY → B0CDY277D3; Emeril Lagasse 26QT B02NbDxp3 → B09B7SB46R; Chefman 8 Qt B00hJ57DV → B08DKYBTPH; ThermoMaven 1 Sec B0c8moW59 → B0DHZTCNR5; CHEF iQ Sense Gen3 B0f3GKalj → B0DZFD6R9Z. The product title on each landing page matches data/links.json. Prices and ratings seen on the pages were not recorded, as policy requires.",
+      "action": "None. Repeat if a link is changed.",
+      "sourceUrl": "https://www.amazon.com/dp/B0CDY277D3",
+      "sourceLabel": "Amazon listing (landing page of the first link)"
+    },
+    {
+      "id": "FLG-033",
+      "severity": "review",
+      "title": "The ASIN rationale in the brief could not be tied to an official Amazon definition",
+      "detail": "The brief gives 'Amazon's ASIN definition' as the reason the intended-ASIN field is checkable. On 2026-11-20 no Amazon Help page giving that definition was found. The only Amazon-domain result was a Seller Central forum thread; its definition replies were written by sellers, not Amazon staff, so they are not cited as Amazon's definition. What can be checked directly is narrower: all five observed ASINs are 10 characters, A-Z and 0-9, and each observed destination ends in /dp/<ASIN> (data/links.json). This checks the URL format only. It does not show that a submitted link was intended for a particular ASIN, which is why the intended field stays blank.",
+      "action": "Owner: decide whether the intended-ASIN field should be filled from the submitted link (FLG-019). If the rationale is kept, cite an Amazon Help page for the definition before publishing it.",
+      "sourceUrl": "https://sellercentral.amazon.com/seller-forums/discussions/t/1e22c5df-d27a-4e2b-a0c1-90938b6cdcdc",
+      "sourceLabel": "Seller Central forum thread (not Amazon Help; definition not confirmed as Amazon's)"
     }
   ],
   "ledger": {

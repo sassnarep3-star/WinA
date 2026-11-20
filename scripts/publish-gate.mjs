@@ -44,7 +44,7 @@ console.log(`
 Decision
 ────────
   publish as an editorial publication     ${r.f.length ? "NO — fix the failures above" : "yes"}
-  publish with monetized links            ${passing ? `${passing}/${cfg.specialLink.tests.length} tests recorded — proceed for the tested rows` : `${passing}/${cfg.specialLink.tests.length} recorded while 112 tagged links are live (FLG-026)`}
+  publish with monetized links            ${passing ? `${passing}/${cfg.specialLink.tests.length} tests recorded — proceed for the tested rows` : `${passing}/${cfg.specialLink.tests.length} recorded while the per-product tests are unrecorded (FLG-024)`}
   open action rows                        ${openBlocking.length ? `${openBlocking.length}: ${openBlocking.map((f) => f.id).join(", ")}` : "none"}
   sources past the 90-day review window   ${stale.length ? stale.map((s) => s.id).join(", ") : "none — all read within 90 days"}
   pages served                            ${existsSync(join(ROOT, "index.html")) ? "index.html present at the root (Pages publishes the branch root)" : "NO index.html"}
@@ -53,6 +53,6 @@ Decision
   Nothing here has a --force flag for a compliance failure. A gate you can argue out of is a note
   to yourself, and notes do not survive a deadline.
 `);
-if (!passing) console.log("  To close FLG-026: build one link per product in Associates Central, click it logged out, confirm the");
+if (!passing) console.log("  To close FLG-024: build one link per product in Associates Central, click it logged out, confirm the");
 console.log("  destination and the reporting line the next day, then record it in data/special_link_tests.json.");
 process.exit(r.print() ? 0 : 1);

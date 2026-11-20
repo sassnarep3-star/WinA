@@ -50,7 +50,7 @@ data/                 the single source of truth
   suggestions.json    16 reviewable suggestions with cost, risk and recommendation
 _src/
   build.mjs           renders all pages, sitemap, feed, robots, 404, then gates
-  content.mjs         the four guides
+  content.mjs         the five guides
   pages-content.mjs   about, disclosure, privacy, marketing, SEO prose
   serve.mjs           local preview server (mirrors the /WinA/ subpath)
 _worker/

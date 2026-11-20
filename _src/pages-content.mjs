@@ -142,7 +142,7 @@ Two constraints shape all of it. The site earns nothing until a click converts o
 <li><strong>Prove the links work.</strong> One click per product, confirmed in the Associates tracking report. Everything else is worthless if this fails.</li>
 <li><strong>Turn on measurement.</strong> Deploy the collector so clicks are counted from the first visitor, not the hundredth.</li>
 <li><strong>Get indexed.</strong> Verify Search Console, submit the sitemap, confirm pages are actually in the index.</li>
-<li><strong>Publish on a cadence.</strong> One guide a week for eight weeks. Each added to the sitemap and feed in the same commit.</li>
+<li><strong>Publish on a cadence.</strong> A new guide every week for eight weeks. Each added to the sitemap and feed in the same commit.</li>
 <li><strong>Read the query data.</strong> At week eight, replace the hypotheses with what Search Console says people searched.</li>
 <li><strong>Then</strong> consider paid acquisition, an email list, or a second category.</li>
 </ol>
@@ -208,12 +208,94 @@ export const seo = {
       title: "What is not verified",
       body: `<p>Search Console ownership has not been confirmed, because that requires account access. A placeholder verification token is in the markup and clearly marked as such.</p>
 <p><strong>Until that is replaced, this site has no idea whether it is indexed, what it ranks for, or whether anyone arrives.</strong> It is the single highest-value five-minute task remaining, and it is recorded as an open action rather than described as done.</p>
-<p>No search volume data exists for any of the four guide topics. The titles are editorial hypotheses about what people might ask, not evidence about what they do ask. Publishing four guides and reading the query report is how that changes.</p>`
+<p>No search volume data exists for any of the five guide topics. The titles are editorial hypotheses about what people might ask, not evidence about what they do ask. Publishing five guides and reading the query report is how that changes.</p>`
     },
     {
       title: "What we will not do",
       body: `<p>No buying of Amazon trademarks as search keywords, whether through ads or any other mechanism — that is prohibited and would risk the account. No keyword-stuffed doorway pages. No spinning one article into twenty near-duplicate variants to chase long-tail queries; it works briefly and then gets the whole domain discounted. No cloaking the destination of a product link.</p>
 <p>The build enforces part of this mechanically: a page cannot publish without a unique title and description, and the validation step fails if any outbound Amazon link is missing its sponsored marking.</p>`
     }
+  ]
+};
+
+// Per-product marketing copy. Written to be usable as-is: one hook, one short
+// social post, one paragraph for a newsletter, and the sentence that has to
+// travel with any of them. Every factual claim here is traceable to the
+// product's own record; nothing is exaggerated to make the copy land.
+export const promo = {
+  title: "Marketing kit",
+  dek: "Ready-to-use copy for all five products, written under the same rules as the site: no invented prices, no claimed testing, disclosure travelling with every post.",
+  intro:
+    "The marketing plan on the previous page says where the traffic should come from. This page is the copy that goes into it. Each entry is short on purpose — a hook, a social post, a newsletter paragraph — and every one of them carries the Associate statement, because a disclosure that lives only on the site does not cover a post that leaves it.",
+  rules: [
+    "No price, no star rating, no review count. Amazon prohibits displaying them outside approved tooling, and a price in a social post goes stale in a week.",
+    "No testing claim. Nobody here used these machines, so no post says 'we tried' or 'our favourite'.",
+    "Every post carries the disclosure. On a platform with no visible footer, that means in the text, not behind a link.",
+    "The claim in the copy is the claim in the register. If the register says unverified, the copy does not say it.",
+    "Link to the review page, not straight to Amazon, unless the platform makes the tag impossible to attach — then use the tagged link and say it is sponsored in the same breath."
+  ],
+  entries: [
+    {
+      slug: "chefman-6-quart-dual-basket",
+      hook: "The two-drawer answer for people who cook two things at once",
+      social:
+        "Most air fryer regret isn't about crispness. It's running the machine twice. Two independent 3-quart drawers, two temperatures, and a Sync Finish that holds the faster one so the protein and the side land together. 6 quarts total — which is two small cooks, not one big one. → [review]",
+      newsletter:
+        "If your weeknight plate is a main plus a side, the constraint you will hit first is not basket size but one temperature at a time. The Chefman 6-Quart splits into two independent 3-quart drawers with a Sync Finish, so both finish together. The honest trade: 6 quarts total is two small cooks, not one big one. We publish the published specifications and leave the rest blank rather than guessing. → [review]",
+      disclosureNote:
+        "Sponsored. As an Amazon Associate I earn from qualifying purchases.",
+      caution: "Do not call it 'large'. Six quarts split in half is the whole trade-off, and the copy should not paper over it."
+    },
+    {
+      slug: "emeril-lagasse-26qt-french-door",
+      hook: "The one that replaces an oven instead of sitting beside one",
+      social:
+        "A drawer holds a pile. An oven holds a tray. If dinner is a whole chicken or a full sheet of vegetables, you need the second shape — 26 quarts behind French doors, at the cost of most of a counter. → [review]",
+      newsletter:
+        "There is a real fork in this category and it is not brand versus brand. A basket machine gives you a drawer you pull toward you; an oven gives you a box you reach into. The Emeril 26QT is firmly the second: rotisserie, broil, bake and dehydrate in one cavity, 26 quarts, and a footprint that takes a substantial piece of counter. If you want fries in small batches fast, this is the wrong machine. → [review]",
+      disclosureNote:
+        "Sponsored. As an Amazon Associate I earn from qualifying purchases.",
+      caution: "The preset count is published as 24, 25 and '10-in-1' by different official pages. Do not put a number in a post."
+    },
+    {
+      slug: "chefman-8-quart-turbofry",
+      hook: "One big drawer, four jobs, and a two-minute high-heat finish",
+      social:
+        "One drawer means one temperature at a time — which is fine if you cook one thing well. 8 quarts, four functions, and a Hi-Fry burst to 450°F for the last two minutes that browns what 400°F left pale. → [review]",
+      newsletter:
+        "Single-basket machines get dismissed as the beginner option, and that is mostly wrong. One 8-quart drawer is easier to fill, toss and wash than two smaller ones, and it holds a lot of one thing. The Chefman TurboFry 4-in-1 adds a Hi-Fry finish — 450°F for the final two minutes, not a continuous 450°F cycle, which is a distinction the marketing copy elsewhere tends to blur. → [review]",
+      disclosureNote:
+        "Sponsored. As an Amazon Associate I earn from qualifying purchases.",
+      caution: "Hi-Fry is two minutes, not a range. Calling this a 450°F air fryer is the single easiest way to be wrong in public."
+    },
+    {
+      slug: "thermomaven-1-sec-thermometer",
+      hook: "The cheap insurance that stops you guessing",
+      social:
+        "One second to a reading is the threshold where checking temperature stops feeling like a delay — which is the only reason people actually do it. NIST-certified claim, AAA battery, no app, no account. → [review]",
+      newsletter:
+        "The best thermometer is the one you actually pick up. A one-second read is fast enough that checking stops being a chore, and this one runs on a single AAA with nothing to pair and no account to create. The manufacturer states NIST certification to ±0.5°F; we could not verify the certificate itself, so we report it as the manufacturer's claim rather than repeating it as fact. → [review]",
+      disclosureNote:
+        "Sponsored. As an Amazon Associate I earn from qualifying purchases.",
+      caution: "The listing says IP67; the manufacturer's own page says '100% waterproof' and publishes no IP number. Say 'waterproof as described by the manufacturer' or say nothing."
+    },
+    {
+      slug: "chef-iq-sense-gen3",
+      hook: "For the cook who wants to be in another room",
+      social:
+        "A leave-in probe earns its price on long, indirect cooks — a smoker, a slow roast, a turkey — where the whole point is not opening the lid. Three probes, five sensors, 1,000°F rating, unlimited range through the hub. → [review]",
+      newsletter:
+        "An instant-read answers 'is this done yet?' for something you are standing next to. A wireless probe answers it for something in another room, over hours. The CHEF iQ Sense runs three probes with four internal sensors plus an ambient one, rated to 1,000°F, reporting through a Wi-Fi hub. If you do not cook low and slow, most of what you are paying for is a feature you will not use — and that is worth saying plainly. → [review]",
+      disclosureNote:
+        "Sponsored. As an Amazon Associate I earn from qualifying purchases.",
+      caution: "The one-probe configuration is what this ASIN ships. Do not describe it as a three-probe bundle without checking the current listing."
+    }
+  ],
+  checklist: [
+    "Does the post carry the Associate statement in the visible text?",
+    "Is every number in the post a number the register supports?",
+    "Would the post still be true if the price doubled tomorrow? If not, it is a price post — cut it.",
+    "Does the link go to the review page, and is the review page's own disclosure above the fold?",
+    "Is there any implied endorsement by Amazon or the manufacturer? There must not be."
   ]
 };
