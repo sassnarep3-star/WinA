@@ -11,19 +11,26 @@ automated (gates G-1..G-3 on data-room/compliance-gate.html):
   R-04  every internal link and asset reference resolves to a real file,
         and cross-page #fragments exist in their target
   R-05  every page has lang, <title>, meta description and a canonical link
-  R-06  no placeholder text (TODO/FIXME/Lorem) ships
+  R-06  no placeholder text (TODO/FIXME/Lorem) or unresolved merge-conflict
+        markers ship
   R-07  sitemap.xml covers exactly the indexable pages
   R-08  feed.xml parses and its item links resolve
   R-09  every page repeats the Amazon Associate statement in the footer
-  R-10  no price figures ship (Associates IP License §2(b): pricing data only
-        via PA API; §6(y): no price tracking/alerting) — see FLG-044
+  R-10  no price figures ship (Participation Requirements §2(b): prices and
+        availability only via API-served links; §6(y): no price tracking/alerting)
+        — see FLG-044/FLG-048/FLG-051
   R-11  no star ratings, review counts, review stars, "Amazon's Choice" badges
         or popularity badges ship (Participation Requirements §6(t): customer
         reviews and star ratings only via Creators API/PA API) — see FLG-044
+R-12  counts stated in reviewer prose match the register they describe
+  R-13   every data/*.json parses and carries no conflict markers (the machine
+        register drives the tools; found the hard way 2026-11-20 when a merge
+        committed unresolved markers into data/links.json)
 
 Checked scope: the served site only. `archive/` holds superseded session builds
-(see COORDINATION.md) and `data/` is the machine-readable register — neither is
-part of the published surface this gate polices.
+(see COORDINATION.md) and `data/` is not a published surface either, but R-12 reads
+it as the authority for figures the published pages assert — a page that says "N more are in the
+register" is making a claim about `data/governance.json`, and that claim is checkable.
 
 Exit code 0 = pass. Any failure prints a report and exits 1.
 """
@@ -199,10 +206,39 @@ def check_head(path, text, collector):
 
 # ------------------------------------------------------------------------ R-06
 PLACEHOLDER = re.compile(r"\b(TODO|FIXME|XXX|Lorem ipsum)\b")
+CONFLICT_MARKER = re.compile(r"^(<{7}( |$)|={7}$|>{7}( |$))", re.M)
 
 def check_placeholders(path, text):
     for m in PLACEHOLDER.finditer(text):
         fail("R-06", path, f"placeholder text ships: {m.group(1)}")
+
+
+def check_conflict_markers(path, text):
+    for m in CONFLICT_MARKER.finditer(text):
+        fail("R-06", path, f"unresolved merge-conflict marker ships: {m.group(0).strip()!r}")
+
+
+# ------------------------------------------------------------------------ R-13
+# The machine register drives the gates and the tools. A data file that does not
+# parse is worse than an empty one: it fails silently downstream. (Found the hard
+# way on 2026-11-20, when a merge committed conflict markers into data/links.json.)
+def check_data_json():
+    import json as _json
+    data_dir = os.path.join(ROOT, "data")
+    if not os.path.isdir(data_dir):
+        return
+    for name in sorted(os.listdir(data_dir)):
+        if not name.endswith(".json"):
+            continue
+        path = os.path.join(data_dir, name)
+        raw = open(path, encoding="utf-8").read()
+        if CONFLICT_MARKER.search(raw):
+            fail("R-13", path, "conflict markers in a data file — merge was committed unresolved")
+            continue
+        try:
+            _json.loads(raw)
+        except Exception as exc:
+            fail("R-13", path, f"data JSON does not parse: {exc}")
 
 
 # -------------------------------------------------------- R-10 / R-11
@@ -291,6 +327,93 @@ def check_sitemap_and_feed():
             fail("R-08", feed, f"feed item link not under site base: {url}")
 
 
+# ----------------------------------------------------------------------- R-12
+# Reviewer documents state counts. A count a script can compute is a count that
+# will be wrong the next time the data changes, and no other rule here reads
+# prose — so this one does. It recomputes each stated figure and fails only when
+# the figure is present and wrong. An absent figure makes no claim, so it passes:
+# this rule polices false statements, not the presence of statements.
+#
+# It exists because four figures on this site had already gone stale while every
+# other rule stayed green — the flagged page's "Seventeen more", the executive
+# summary's "13 proposals", the compliance table's "all 20 pages" and README's
+# "4 question-shaped buyer guides". handoff/README.md asked for this in as many
+# words: "Recompute them with a script before writing them."
+def check_stated_counts(pages):
+    import json
+
+    def text_of(rel):
+        try:
+            with open(os.path.join(ROOT, rel), encoding="utf-8") as fh:
+                return fh.read()
+        except OSError:
+            return None
+
+    def jload(rel):
+        body = text_of(rel)
+        if body is None:
+            return None
+        try:
+            return json.loads(body)
+        except ValueError:
+            return None
+
+    def check(rel, pattern, expected, label):
+        body = text_of(rel)
+        if body is None:
+            return
+        m = re.search(pattern, body)
+        if not m:
+            notes.append(f"R-12: {rel} no longer states \"{label}\" — nothing to check")
+            return
+        got = int(m.group(1))
+        if got != expected:
+            fail("R-12", rel, f"stale figure: the page says {got} {label}, the register says {expected}")
+
+    # 1. flags the Flagged page does not show, against the register it links to.
+    #    Counted from the captioned flags table, not from the whole page: the page
+    #    also names flags in prose (FLG-043 among them), and the caption's arithmetic
+    #    is about the rows it prints.
+    gov = jload("data/governance.json") or {}
+    body = text_of("data-room/flagged.html") or ""
+    flags_table = ""
+    for m in re.finditer(r"<table\b.*?</table>", body, re.S):
+        if re.search(r"<caption[^>]*>Flags a reader can act on", m.group(0), re.S):
+            flags_table = m.group(0)
+            break
+    #    The ID lives in <th scope="row">. Counting every id anywhere in the table
+    #    would overcount, because rows cross-reference other flags in their prose
+    #    (row "FLG-004" cites FLG-045, row "FLG-008" cites FLG-043).
+    shown = set()
+    for cell in re.findall(r'<th scope="row">\s*((?:FLG|SG)-\d{2,3})\s*</th>', flags_table):
+        shown.add(cell)
+    if isinstance(gov.get("flagged"), list):
+        check("data-room/flagged.html", r"(\d+) more are in the register",
+              len(gov["flagged"]) - len(shown), "more flags in the register")
+
+    # 2/3. the two decision registers the executive summary points at
+    n_sugg = len(set(re.findall(r"\bS-\d{2}\b", text_of("suggestions.html") or "")))
+    n_qs = len(set(re.findall(r"\bQ-\d{2}\b", text_of("questions.html") or "")))
+    if n_sugg:
+        check("executive-summary.html", r"\((\d+) proposals", n_sugg, "proposals")
+    if n_qs:
+        check("executive-summary.html", r"\((\d+) questions with discovery paths", n_qs, "questions")
+
+    # 4. pages the compliance table says carry the disclosure strip
+    check("data-room/compliance-gate.html", r"on all (\d+) pages", len(pages), "pages")
+
+    # 5/6. README's guide and product counts
+    guides_dir = os.path.join(ROOT, "guides")
+    n_guides = (len([f for f in os.listdir(guides_dir)
+                     if f.endswith(".html") and f != "index.html"])
+                if os.path.isdir(guides_dir) else 0)
+    check("README.md", r"(\d+) question-shaped buyer guides", n_guides, "guides")
+
+    prod = jload("data/products.json") or {}
+    if isinstance(prod.get("products"), list):
+        check("README.md", r"All (\d+) products", len(prod["products"]), "products")
+
+
 def main():
     cache = {}
     pages = list(html_files())
@@ -306,10 +429,13 @@ def main():
         check_table_rows(path, text)
         check_head(path, text, collector)
         check_placeholders(path, text)
+        check_conflict_markers(path, text)
         check_figures(path, text)
     for path in pages:
         check_links(path, cache[path], cache)
     check_sitemap_and_feed()
+    check_stated_counts(pages)
+    check_data_json()
 
     print(f"checked {len(pages)} HTML pages")
     for note in notes:

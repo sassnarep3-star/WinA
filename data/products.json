@@ -34,8 +34,7 @@
       "specs": [
         {
           "label": "Capacity",
-          "value": "6 qt / 5.67 L",
-          "status": "verified",
+          "value": "6 qt / 5.67 L",          "status": "verified",
           "source": "manufacturer"
         },
         {
@@ -194,8 +193,7 @@
           "label": "Included accessories",
           "value": "Six cooking accessories",
           "status": "claim",
-          "source": "amazon-listing"
-        },
+          "source": "amazon-listing"        },
         {
           "label": "Cooking method",
           "value": "Countertop convection",
@@ -222,8 +220,7 @@
         },
         {
           "label": "Warranty",
-          "value": "1 year, stated on the manufacturer's product page",
-          "status": "verified",
+          "value": "1 year, stated on the manufacturer's product page",          "status": "verified",
           "source": "manufacturer"
         },
         {
@@ -262,14 +259,6 @@
           "url": "https://www.emerileveryday.com/products/emeril_lagasse_french_door_airfryer_360",
           "label": "emerileveryday.com specification"
         },
-        "Presets": {
-          "url": "https://cdn.shopify.com/s/files/1/0687/4388/8948/files/FAFO-001_VN_32451_EF_IB_T22-5004282-C_1.pdf?v=1777990358",
-          "label": "emerileveryday.com owner's manual (FAFO-001)"
-        },
-        "Capacity": {
-          "url": "https://www.emerileveryday.com/products/emeril_lagasse_french_door_airfryer_360",
-          "label": "emerileveryday.com specification"
-        },
         "Wattage": {
           "url": "https://cdn.shopify.com/s/files/1/0687/4388/8948/files/FAFO-001_VN_32451_EF_IB_T22-5004282-C_1.pdf?v=1777990358",
           "label": "emerileveryday.com owner's manual (FAFO-001)"
@@ -284,8 +273,7 @@
         },
         "Cooking presets named in the manual": {
           "url": "https://cdn.shopify.com/s/files/1/0687/4388/8948/files/FAFO-001_VN_32451_EF_IB_T22-5004282-C_1.pdf?v=1777990358",
-          "label": "emerileveryday.com owner's manual (FAFO-001)"
-        }
+          "label": "emerileveryday.com owner's manual (FAFO-001)"        }
       },
       "modelNumber": "FAFO-001",
       "specsVerifiedOn": "2026-11-20"
@@ -298,8 +286,7 @@
       "brand": "Chefman",
       "category": "air-fryers",
       "formFactor": "single-basket",
-      "title": "Chefman Air Fryer 8 Qt | TurboFry 4-in-1 with 450°F Hi-Fry Option for Crispier Results | Bake, Dehydrate, Frozen | XL Nonstick Dishwasher-Safe Basket | Stainless Steel",
-      "verdict": "One big drawer, four jobs, and the highest temperature in this set. The straightforward choice if you cook in single batches.",
+      "title": "Chefman Air Fryer 8 Qt | TurboFry® 4-in-1 with 450°F Hi-Fry Option for Crispier Results | Bake, Dehydrate, Frozen | XL Nonstick Dishwasher-Safe Basket | Stainless Steel",      "verdict": "One big drawer, four jobs, and the highest temperature in this set. The straightforward choice if you cook in single batches.",
       "why": [
         "A single 8-quart drawer is easier to fill, toss, and wash than two smaller ones when you are cooking one thing for everyone.",
         "Hi-Fry adds a 450°F burst for the final two minutes of a cook, which is a browning finish rather than a full 450°F cycle.",
@@ -326,8 +313,7 @@
         },
         {
           "label": "Max temperature",
-          "value": "200–400 °F normal range, with a 450 °F Hi-Fry option (the listing does not say how long Hi-Fry runs)",
-          "status": "verified",
+          "value": "200\u2013400 \u00b0F normal range, with a 450 \u00b0F Hi-Fry option (the listing does not say how long Hi-Fry runs)",          "status": "verified",
           "source": "amazon-listing"
         },
         {
@@ -374,14 +360,12 @@
         },
         {
           "label": "Dimensions",
-          "value": "12.75 D × 13.5 W × 10 H in",
-          "status": "verified",
+          "value": "12.75 D \u00d7 13.5 W \u00d7 10 H in",          "status": "verified",
           "source": "amazon-listing"
         },
         {
           "label": "Warranty",
-          "value": "1 year, provided by Chefman; cETL approved",
-          "status": "verified",
+          "value": "1 year, provided by Chefman; cETL approved",          "status": "verified",
           "source": "amazon-listing"
         },
         {
@@ -427,10 +411,8 @@
       "brand": "ThermoMaven",
       "category": "thermometers",
       "formFactor": "instant-read",
-      "title": "ThermoMaven 1 Sec Professional Digital Meat Thermometer, ±0.5°F Accuracy | NIST&NSF Certified, Auto-Rotate Bright LED Screen, IP67 Waterproof for Grill BBQ, Stocking Stuffers Gifts for Men, Black",
-      "verdict": "A one-second read for a quick kitchen check.",
-      "why": [
-        "A one-second read is the threshold where checking temperature stops feeling like a delay.",
+      "title": "ThermoMaven 1 Sec Professional Digital Meat Thermometer, ±0.5℉ Accuracy | NIST&NSF Certified, Auto-Rotate Bright LED Screen, IP67 Waterproof for Grill BBQ, Stocking Stuffers Gifts for Men, Black",
+      "verdict": "A one-second read for a quick kitchen check.",      "why": [        "A one-second read is the threshold where checking temperature stops feeling like a delay.",
         "The display auto-rotates, which sounds trivial until you are holding it at an angle over a hot pan.",
         "The manufacturer calls it 100% waterproof; the listing title adds IP67, which the manufacturer's own page does not publish.",
         "Pocket-sized and battery-simple — nothing to pair, no app, no account."
@@ -467,8 +449,7 @@
         },
         {
           "label": "Display",
-          "value": "0.83 in × 1.61 in LED, rotates 180°",
-          "status": "verified",
+          "value": "0.83 in \u00d7 1.61 in LED, rotates 180\u00b0",          "status": "verified",
           "source": "manufacturer"
         },
         {
@@ -497,8 +478,7 @@
         },
         {
           "label": "Battery type",
-          "value": "1 × AAA (included)",
-          "status": "verified",
+          "value": "1 \u00d7 AAA (included)",          "status": "verified",
           "source": "manufacturer"
         },
         {
@@ -551,8 +531,7 @@
         },
         "Battery type": {
           "url": "https://cdn.shopify.com/s/files/1/0828/4726/9152/files/HT07_user_manual.pdf?v=1733992221",
-          "label": "thermomaven.com owner's manual (HT07)"
-        },
+          "label": "thermomaven.com owner's manual (HT07)"        },
         "Warranty": {
           "url": "https://www.thermomaven.com/products/f1-stealth",
           "label": "thermomaven.com"
@@ -575,8 +554,7 @@
         },
         "Probe": {
           "url": "https://cdn.shopify.com/s/files/1/0828/4726/9152/files/HT07_user_manual.pdf?v=1733992221",
-          "label": "thermomaven.com owner's manual (HT07)"
-        }
+          "label": "thermomaven.com owner's manual (HT07)"        }
       },
       "modelNumber": "HT07",
       "specsVerifiedOn": "2026-11-20"
@@ -648,7 +626,7 @@
         },
         {
           "label": "Type",
-          "value": "Wireless leave-in",
+          "value": "Wireless, internal temperature sensors",
           "status": "verified",
           "source": "manufacturer"
         },
@@ -666,8 +644,7 @@
         },
         {
           "label": "Battery life",
-          "value": "70+ hours per charge (probe)",
-          "status": "verified",
+          "value": "70+ hours per charge (probe)",          "status": "verified",
           "source": "manufacturer"
         },
         {
@@ -752,8 +729,7 @@
         },
         "Temperature range": {
           "url": "https://chefiq.com/products/iq-sense",
-          "label": "chefiq.com specification"
-        }
+          "label": "chefiq.com specification"        }
       },
       "modelNumber": null,
       "modelNote": "Blank on purpose. chefiq.com sells iQ Sense in 1-, 2-, 3- and 4-probe variants and the page read on 2026-11-20 shows the 1-probe variant, model CQ60-1C-Z1-E. This ASIN is the 3-probe listing, so that model code cannot be attached to it, and no official page states the 3-probe model code. No value is recorded rather than a wrong one. See FLG-041 and FLG-046",
