@@ -740,6 +740,23 @@ No product data, link record, or page copy was changed.
 **Flag count:** 39 → 41. Gates re-run after the change: all pass.
 
 **Status:** done. PR and merge record below.
+
+### Merge and deploy record — session `arena-8e69b462-wina` (T26)
+
+- **PR #29** — https://github.com/sassnarep3-star/WinA/pull/29 — **merged** into `main` by merge commit
+  `1065609ad542d2839c8b71fe0f7c6c72d21aaba1` (2026-11-20). Both CI checks passed first: `validate`
+  (11s) and `Build and verify` (16s, includes the compliance gate and the committed-output check).
+  No approval was waited for.
+- **Pages:** `pages/builds/latest` reports `built` for `1065609`. Workflow run `44687149480`
+  (Build and verify + Deploy to GitHub Pages) completed `success`.
+- **Live check:** the first fetch of `/flagged/` showed the page without FLG-034..037. A re-fetch
+  with a query string (`?v=1065609`) showed FLG-036 and FLG-037 in place. The gap was CDN caching,
+  not a failed deploy. Recorded so that the next session does not read a stale page as a broken one.
+- **Conflict found and not edited:** the live detail for **FLG-032** (T18, same day) still says the
+  five short-link destinations are "unchanged". This session's re-check contradicts that for
+  B04G1MEwY, B0c8moW59 and, on one attempt, B0f3GKalj. FLG-032 is another session's record and is
+  left as written. FLG-036 supersedes it for those three links until the owner's browser check.
+- **Follow-up:** this record is committed in a separate board-only PR. It changes no site output.
 ---
 
 ## Session arena/8a367a35-wina — final integration (2026-11-20)
