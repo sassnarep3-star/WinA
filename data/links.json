@@ -14,7 +14,23 @@
       "observedDestination": "https://www.amazon.com/dp/B0CDY277D3",
       "resolvedTitle": "CHEFMAN 6 Quart Dual Basket Air Fryer Oven with Easy View Windows, Sync Finish, Hi-Fry, Auto Shutoff, 2 Independent 3Qt Nonstick Dishwasher Safe Frying Baskets, Digital Double Air Fryer - Black",
       "confidence": "observed",
-      "flag": "FLG-001"
+      "flag": "FLG-001",
+      "intentConfirmation": {
+        "intendedAsin": null,
+        "officialListingUrl": null,
+        "confirmationDate": null,
+        "source": null,
+        "status": "awaiting-owner-confirmation",
+        "recordedBy": "arena-266b1b8f",
+        "recordedOn": "2026-11-20"
+      },
+      "recheck": {
+        "recheckedOn": "2026-11-20",
+        "recheckedBy": "arena-266b1b8f (fetch tool)",
+        "resolvedTo": "https://www.amazon.com/",
+        "note": "amazon.com home page \u2014 recorded product destination NOT reproduced",
+        "flag": "FLG-031"
+      }
     },
     {
       "submitted": "https://link.amazon/B02NbDxp3",
@@ -24,7 +40,23 @@
       "observedDestination": "https://www.amazon.com/dp/B09B7SB46R",
       "resolvedTitle": "Emeril Lagasse 26QT French Door Multi-Function Air Fryer Toaster Oven | Countertop Convection Cooker, 24 One-Touch Preset Options, Extra Large Interior, Six Cooking Accessories Included",
       "confidence": "observed",
-      "flag": "FLG-001"
+      "flag": "FLG-001",
+      "intentConfirmation": {
+        "intendedAsin": null,
+        "officialListingUrl": null,
+        "confirmationDate": null,
+        "source": null,
+        "status": "awaiting-owner-confirmation",
+        "recordedBy": "arena-266b1b8f",
+        "recordedOn": "2026-11-20"
+      },
+      "recheck": {
+        "recheckedOn": "2026-11-20",
+        "recheckedBy": "arena-266b1b8f (fetch tool)",
+        "resolvedTo": "https://www.amazon.com/",
+        "note": "amazon.com home page \u2014 recorded product destination NOT reproduced",
+        "flag": "FLG-031"
+      }
     },
     {
       "submitted": "https://link.amazon/B00hJ57DV",
@@ -32,9 +64,25 @@
       "intendedAsin": null,
       "observedAsin": "B08DKYBTPH",
       "observedDestination": "https://www.amazon.com/dp/B08DKYBTPH",
-      "resolvedTitle": "Chefman Air Fryer 8 Qt | TurboFry 4-in-1 with 450°F Hi-Fry Option for Crispier Results | Bake, Dehydrate, Frozen | XL Nonstick Dishwasher-Safe Basket | Stainless Steel",
+      "resolvedTitle": "Chefman Air Fryer 8 Qt | TurboFry 4-in-1 with 450\u00b0F Hi-Fry Option for Crispier Results | Bake, Dehydrate, Frozen | XL Nonstick Dishwasher-Safe Basket | Stainless Steel",
       "confidence": "observed",
-      "flag": "FLG-001"
+      "flag": "FLG-001",
+      "intentConfirmation": {
+        "intendedAsin": null,
+        "officialListingUrl": null,
+        "confirmationDate": null,
+        "source": null,
+        "status": "awaiting-owner-confirmation",
+        "recordedBy": "arena-266b1b8f",
+        "recordedOn": "2026-11-20"
+      },
+      "recheck": {
+        "recheckedOn": "2026-11-20",
+        "recheckedBy": "arena-266b1b8f (fetch tool)",
+        "resolvedTo": "https://www.amazon.com/",
+        "note": "amazon.com home page \u2014 recorded product destination NOT reproduced",
+        "flag": "FLG-031"
+      }
     },
     {
       "submitted": "https://link.amazon/B0c8moW59",
@@ -42,9 +90,25 @@
       "intendedAsin": null,
       "observedAsin": "B0DHZTCNR5",
       "observedDestination": "https://www.amazon.com/dp/B0DHZTCNR5",
-      "resolvedTitle": "ThermoMaven 1 Sec Professional Digital Meat Thermometer, ±0.5°F Accuracy | NIST&NSF Certified, Auto-Rotate Bright LED Screen, IP67 Waterproof for Grill BBQ, Stocking Stuffers Gifts for Men, Black",
+      "resolvedTitle": "ThermoMaven 1 Sec Professional Digital Meat Thermometer, \u00b10.5\u00b0F Accuracy | NIST&NSF Certified, Auto-Rotate Bright LED Screen, IP67 Waterproof for Grill BBQ, Stocking Stuffers Gifts for Men, Black",
       "confidence": "observed",
-      "flag": "FLG-001"
+      "flag": "FLG-001",
+      "intentConfirmation": {
+        "intendedAsin": null,
+        "officialListingUrl": null,
+        "confirmationDate": null,
+        "source": null,
+        "status": "awaiting-owner-confirmation",
+        "recordedBy": "arena-266b1b8f",
+        "recordedOn": "2026-11-20"
+      },
+      "recheck": {
+        "recheckedOn": "2026-11-20",
+        "recheckedBy": "arena-266b1b8f (fetch tool)",
+        "resolvedTo": "https://www.amazon.com/",
+        "note": "amazon.com home page \u2014 recorded product destination NOT reproduced",
+        "flag": "FLG-031"
+      }
     },
     {
       "submitted": "https://link.amazon/B0f3GKalj",
@@ -52,9 +116,25 @@
       "intendedAsin": null,
       "observedAsin": "B0DZFD6R9Z",
       "observedDestination": "https://www.amazon.com/dp/B0DZFD6R9Z",
-      "resolvedTitle": "CHEF iQ Sense | Smart Wireless Meat Thermometer | 3 Ultra-Thin Probes | WiFi Unlimited Range | 1000°F Heat Safe | 5 Sensors | BBQ, Grill, Oven, Smoker, Air Fryer | Gen3",
+      "resolvedTitle": "CHEF iQ Sense | Smart Wireless Meat Thermometer | 3 Ultra-Thin Probes | WiFi Unlimited Range | 1000\u00b0F Heat Safe | 5 Sensors | BBQ, Grill, Oven, Smoker, Air Fryer | Gen3",
       "confidence": "observed",
-      "flag": "FLG-001"
+      "flag": "FLG-001",
+      "intentConfirmation": {
+        "intendedAsin": null,
+        "officialListingUrl": null,
+        "confirmationDate": null,
+        "source": null,
+        "status": "awaiting-owner-confirmation",
+        "recordedBy": "arena-266b1b8f",
+        "recordedOn": "2026-11-20"
+      },
+      "recheck": {
+        "recheckedOn": "2026-11-20",
+        "recheckedBy": "arena-266b1b8f (fetch tool)",
+        "resolvedTo": "https://www.amazon.com/dp/B0DZFD6R9Z",
+        "note": "product page reproduced \u2014 title matches the recorded resolution",
+        "flag": "FLG-031"
+      }
     }
   ],
   "unresolved": [
@@ -76,5 +156,7 @@
       "finding": "Requires signing in to the Associates dashboard. Not verifiable from here.",
       "action": "Test one link per product in the enrolled workflow and confirm the tracking report."
     }
-  ]
+  ],
+  "_intentNote": "Product-intent confirmation record (brief requirement). For each submitted link the intended ASIN, official listing URL, confirmation date and source are stored in the intentConfirmation block. Observed redirect targets are stored in the observed* fields. The two are never merged. All intent fields remain null because no intended ASIN, listing URL, confirmation date or source was ever supplied; the owner fills them after confirming in Associates Central. Amazon's ASIN definition provides the checkable identifier: https://sellercentral.amazon.com/gp/help/external/G200386250",
+  "_recheckNote": "Re-observation only. The recheck field records what the submitted short link resolved to when re-opened later the same day. It does not overwrite the observed* fields: both observations stand, each dated. Four of five rechecks landed on the Amazon home page instead of the product page recorded earlier the same day; one reproduced exactly. Cause unknown (possibly session- or bot-mitigation-dependent). This does not assert the short links are invalid \u2014 their compliance status remains unresolved in FLG-003. The site does not depend on them."
 }

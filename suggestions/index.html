@@ -3,19 +3,20 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Suggestions — Counter Space</title>
-<meta name="description" content="A reviewable decision list: sixteen suggestions with rationale, cost, risk, and a recommendation — nothing implemented without a decision.">
+<title>Suggestions — the decision board — Counter Space</title>
+<meta name="description" content="A decision board: review each suggestion with its rationale, cost and risk, record your choice, and export the decisions — nothing is implemented before you choose.">
 <link rel="canonical" href="https://sassnarep3-star.github.io/WinA/suggestions/">
 <meta name="robots" content="index,follow,max-image-preview:large">
 <meta name="google-site-verification" content="REPLACE_WITH_REAL_TOKEN_FLG009">
 <meta property="og:site_name" content="Counter Space">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Suggestions — Counter Space">
-<meta property="og:description" content="A reviewable decision list: sixteen suggestions with rationale, cost, risk, and a recommendation — nothing implemented without a decision.">
+<meta property="og:title" content="Suggestions — the decision board — Counter Space">
+<meta property="og:description" content="A decision board: review each suggestion with its rationale, cost and risk, record your choice, and export the decisions — nothing is implemented before you choose.">
 <meta property="og:url" content="https://sassnarep3-star.github.io/WinA/suggestions/">
+<meta property="og:image" content="https://sassnarep3-star.github.io/WinA/assets/img/hero.jpg">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Suggestions — Counter Space">
-<meta name="twitter:description" content="A reviewable decision list: sixteen suggestions with rationale, cost, risk, and a recommendation — nothing implemented without a decision.">
+<meta name="twitter:title" content="Suggestions — the decision board — Counter Space">
+<meta name="twitter:description" content="A decision board: review each suggestion with its rationale, cost and risk, record your choice, and export the decisions — nothing is implemented before you choose.">
 <link rel="alternate" type="application/rss+xml" title="Counter Space" href="/WinA/feed.xml">
 <link rel="stylesheet" href="/WinA/assets/css/site.css">
 <script>window.CS_CONFIG={analyticsEnabled:false,analyticsEndpoint:""};</script>
@@ -50,15 +51,313 @@
 <div class="article-head">
   <div class="wrap">
     <p class="kicker">Review before implementing</p>
-    <h1 class="article-head__title">Suggestions</h1>
-    <p class="article-head__dek">A decision list, not a wish list. Each suggestion states what to do, why, what it costs, and what would make it a bad idea. Nothing here has been implemented beyond what is already live; the ones marked shipped were built in this pass because the brief asked for them directly. Everything else waits for a decision.</p>
+    <h1 class="article-head__title">The decision board</h1>
+    <p class="article-head__dek">A decision list, not a wish list. Each suggestion states what to do, why, what it costs, and what would make it a bad idea. Nothing here has been implemented beyond what is already live; the ones marked shipped were built because the brief asked for them directly. Everything else waits for a decision — record yours on the decision board above, then hand the summary back to whoever runs the build. Nothing is implemented before that choice.</p>
   </div>
 </div>
 <section class="section">
   <div class="wrap">
-    <div class="tablewrap" style="margin-bottom:1.5rem">
+    <div class="decision__bar" id="decision-bar">
+      <p class="decision__bar-count"><strong id="decision-count">0 of 16</strong> decisions recorded</p>
+      <p class="tiny faint">Your choices are saved in this browser only. Nothing is transmitted, and nothing on the site changes until a decision is handed back to the build.</p>
+      <button class="btn btn--ghost" type="button" id="decision-copy">Copy my decisions</button>
+      <textarea id="decision-export" class="decision__export" rows="4" readonly aria-label="Decision summary"></textarea>
+    </div>
+
+    <div class="decisions"><article class="decision" id="decision-SUG-01">
+  <header class="decision__head">
+    <p class="decision__meta"><code>SUG-01</code> · weight 10 · <span class="pill pill--shipped">shipped</span></p>
+    <h3 class="decision__title">Keep the site in 'how to decide' voice, permanently, until products are actually tested</h3>
+  </header>
+  <div class="decision__grid">
+    <div><p class="decision__label">Why</p><p>The FTC forbids describing hands-on experience you do not have, and readers detect the fake version instantly. The reliable way to sound human without lying is to write about the decision instead of the verdict: what the drawers are like, what the counter cost is, who the machine is wrong for.</p></div>
+    <div><p class="decision__label">What it costs</p><p>None. It is a writing constraint, enforced by the build.</p></div>
+    <div><p class="decision__label">What could go wrong</p><p>A guide that never says 'we tested this' competes poorly against sites that can. That is a real disadvantage and it is the correct one to accept.</p></div>
+    <div><p class="decision__label">Recommendation</p><p>Accept. Every page already follows it.<br><span class="tiny"><a href="https://www.ftc.gov/business-guidance/resources/disclosures-101-social-media-influencers" rel="noopener" target="_blank">FTC Disclosures 101</a></span></p></div>
+  </div>
+  <fieldset class="decision__choose" data-decision="SUG-01">
+    <legend>Your call on SUG-01</legend>
+    <label><input type="radio" name="decision-SUG-01" value="adopt"> Adopt the recommendation</label>
+    <label><input type="radio" name="decision-SUG-01" value="modify"> Adopt with changes</label>
+    <label><input type="radio" name="decision-SUG-01" value="hold"> Hold — decide later</label>
+    <label><input type="radio" name="decision-SUG-01" value="reject"> Reject</label>
+  </fieldset>
+</article><article class="decision" id="decision-SUG-12">
+  <header class="decision__head">
+    <p class="decision__meta"><code>SUG-12</code> · weight 10 · <span class="pill pill--reject">reject</span></p>
+    <h3 class="decision__title">Do not add a price tracker, price alerts, or a deal feed</h3>
+  </header>
+  <div class="decision__grid">
+    <div><p class="decision__label">Why</p><p>Prohibited outright by §6(y) regardless of how it is built.</p></div>
+    <div><p class="decision__label">What it costs</p><p>Zero.</p></div>
+    <div><p class="decision__label">What could go wrong</p><p>It is the most requested feature on affiliate sites and the most direct route to account termination.</p></div>
+    <div><p class="decision__label">Recommendation</p><p>Rejected. Documented so no future session builds it.<br><span class="tiny"><a href="https://affiliate-program.amazon.com/help/operating/policies" rel="noopener" target="_blank">Participation Requirements §6(y)</a></span></p></div>
+  </div>
+  <fieldset class="decision__choose" data-decision="SUG-12">
+    <legend>Your call on SUG-12</legend>
+    <label><input type="radio" name="decision-SUG-12" value="adopt"> Adopt the recommendation</label>
+    <label><input type="radio" name="decision-SUG-12" value="modify"> Adopt with changes</label>
+    <label><input type="radio" name="decision-SUG-12" value="hold"> Hold — decide later</label>
+    <label><input type="radio" name="decision-SUG-12" value="reject"> Reject</label>
+  </fieldset>
+</article><article class="decision" id="decision-SUG-13">
+  <header class="decision__head">
+    <p class="decision__meta"><code>SUG-13</code> · weight 10 · <span class="pill pill--reject">reject</span></p>
+    <h3 class="decision__title">Do not generate volumes of near-duplicate pages to chase long-tail queries</h3>
+  </header>
+  <div class="decision__grid">
+    <div><p class="decision__label">Why</p><p>Template-spun variants of the same article are the definition of the thin, generated content the brief rejects, and they dilute the pages that could rank.</p></div>
+    <div><p class="decision__label">What it costs</p><p>Zero.</p></div>
+    <div><p class="decision__label">What could go wrong</p><p>It works briefly, then gets the whole domain discounted.</p></div>
+    <div><p class="decision__label">Recommendation</p><p>Rejected. The build gate refuses pages without unique content fields.</p></div>
+  </div>
+  <fieldset class="decision__choose" data-decision="SUG-13">
+    <legend>Your call on SUG-13</legend>
+    <label><input type="radio" name="decision-SUG-13" value="adopt"> Adopt the recommendation</label>
+    <label><input type="radio" name="decision-SUG-13" value="modify"> Adopt with changes</label>
+    <label><input type="radio" name="decision-SUG-13" value="hold"> Hold — decide later</label>
+    <label><input type="radio" name="decision-SUG-13" value="reject"> Reject</label>
+  </fieldset>
+</article><article class="decision" id="decision-SUG-02">
+  <header class="decision__head">
+    <p class="decision__meta"><code>SUG-02</code> · weight 9 · <span class="pill pill--recommend">recommend</span></p>
+    <h3 class="decision__title">Split into two publications, or pick one category and go deep</h3>
+  </header>
+  <div class="decision__grid">
+    <div><p class="decision__label">Why</p><p>Three air fryers and two thermometers are two different buying moments. Search engines reward a site that owns one topic. A small site trying to own 'kitchen gear' owns nothing.</p></div>
+    <div><p class="decision__label">What it costs</p><p>Splitting means two domains, two sitemaps, twice the setup. Going deep on air fryers means the thermometers get a single supporting page.</p></div>
+    <div><p class="decision__label">What could go wrong</p><p>If the thermometer affiliate offers a better commission or a bounty, narrowing too early gives up real money.</p></div>
+    <div><p class="decision__label">Recommendation</p><p>Recommend: keep one site, make air fryers the front section, and treat thermometers as the accessory section — which is what the current structure already does. Confirm before adding a third category.</p></div>
+  </div>
+  <fieldset class="decision__choose" data-decision="SUG-02">
+    <legend>Your call on SUG-02</legend>
+    <label><input type="radio" name="decision-SUG-02" value="adopt"> Adopt the recommendation</label>
+    <label><input type="radio" name="decision-SUG-02" value="modify"> Adopt with changes</label>
+    <label><input type="radio" name="decision-SUG-02" value="hold"> Hold — decide later</label>
+    <label><input type="radio" name="decision-SUG-02" value="reject"> Reject</label>
+  </fieldset>
+</article><article class="decision" id="decision-SUG-03">
+  <header class="decision__head">
+    <p class="decision__meta"><code>SUG-03</code> · weight 9 · <span class="pill pill--recommend">recommend</span></p>
+    <h3 class="decision__title">Get PA-API or Creatives access before writing another word</h3>
+  </header>
+  <div class="decision__grid">
+    <div><p class="decision__label">Why</p><p>It is the unlock for the three things this site most obviously lacks: prices, ratings, and product images. All three are currently blank because the rules require API-sourced data. One credential fixes all of it at once.</p></div>
+    <div><p class="decision__label">What it costs</p><p>Eligibility requires qualifying sales first — a chicken-and-egg problem for a new account.</p></div>
+    <div><p class="decision__label">What could go wrong</p><p>None to the site. The risk is waiting on access and shipping nothing meanwhile, which is why the current build ships without it.</p></div>
+    <div><p class="decision__label">Recommendation</p><p>Apply as soon as the account qualifies. Track it in the questions register as Q-11 and Q-12.<br><span class="tiny"><a href="https://affiliate-program.amazon.com/help/operating/policies" rel="noopener" target="_blank">Associates Program Policies</a></span></p></div>
+  </div>
+  <fieldset class="decision__choose" data-decision="SUG-03">
+    <legend>Your call on SUG-03</legend>
+    <label><input type="radio" name="decision-SUG-03" value="adopt"> Adopt the recommendation</label>
+    <label><input type="radio" name="decision-SUG-03" value="modify"> Adopt with changes</label>
+    <label><input type="radio" name="decision-SUG-03" value="hold"> Hold — decide later</label>
+    <label><input type="radio" name="decision-SUG-03" value="reject"> Reject</label>
+  </fieldset>
+</article><article class="decision" id="decision-SUG-04">
+  <header class="decision__head">
+    <p class="decision__meta"><code>SUG-04</code> · weight 9 · <span class="pill pill--shipped">shipped</span></p>
+    <h3 class="decision__title">Replace the submitted short links with constructed Special Links and prove one works</h3>
+  </header>
+  <div class="decision__grid">
+    <div><p class="decision__label">Why</p><p>The submitted links carried no visible tag and their compliance status is unsettled. Constructing amazon.com/dp/&lt;ASIN&gt;?tag=shopnow047c-20 is unambiguous, keeps the destination visible in the status bar, and satisfies the link-clarity requirement.</p></div>
+    <div><p class="decision__label">What it costs</p><p>None.</p></div>
+    <div><p class="decision__label">What could go wrong</p><p>If the tag is not enrolled, every link still earns nothing. That is the one thing this cannot fix.</p></div>
+    <div><p class="decision__label">Recommendation</p><p>Already done. Next step is the proof: click one link per product while signed in, and confirm it appears in the tracking report.<br><span class="tiny"><a href="https://affiliate-program.amazon.com/help/operating/policies" rel="noopener" target="_blank">Participation Requirements §6(w)</a></span></p></div>
+  </div>
+  <fieldset class="decision__choose" data-decision="SUG-04">
+    <legend>Your call on SUG-04</legend>
+    <label><input type="radio" name="decision-SUG-04" value="adopt"> Adopt the recommendation</label>
+    <label><input type="radio" name="decision-SUG-04" value="modify"> Adopt with changes</label>
+    <label><input type="radio" name="decision-SUG-04" value="hold"> Hold — decide later</label>
+    <label><input type="radio" name="decision-SUG-04" value="reject"> Reject</label>
+  </fieldset>
+</article><article class="decision" id="decision-SUG-05">
+  <header class="decision__head">
+    <p class="decision__meta"><code>SUG-05</code> · weight 8 · <span class="pill pill--recommend">recommend</span></p>
+    <h3 class="decision__title">Publish on a real cadence: one guide a week for eight weeks, then read the query data</h3>
+  </header>
+  <div class="decision__grid">
+    <div><p class="decision__label">Why</p><p>Question-shaped guides are the right shape, but four is not a sample. A weekly cadence for two months produces enough pages and enough query impressions to see which question people actually arrive with, which is the only way to stop guessing topics.</p></div>
+    <div><p class="decision__label">What it costs</p><p>One substantive guide per week. Each needs its own verified spec pass.</p></div>
+    <div><p class="decision__label">What could go wrong</p><p>Cadence without quality control produces the thin content the brief explicitly rejects. The build gate must stay on.</p></div>
+    <div><p class="decision__label">Recommendation</p><p>Recommend a fixed day and a fixed length. Add each new guide to the sitemap and feed in the same commit, then measure at week eight.</p></div>
+  </div>
+  <fieldset class="decision__choose" data-decision="SUG-05">
+    <legend>Your call on SUG-05</legend>
+    <label><input type="radio" name="decision-SUG-05" value="adopt"> Adopt the recommendation</label>
+    <label><input type="radio" name="decision-SUG-05" value="modify"> Adopt with changes</label>
+    <label><input type="radio" name="decision-SUG-05" value="hold"> Hold — decide later</label>
+    <label><input type="radio" name="decision-SUG-05" value="reject"> Reject</label>
+  </fieldset>
+</article><article class="decision" id="decision-SUG-06">
+  <header class="decision__head">
+    <p class="decision__meta"><code>SUG-06</code> · weight 8 · <span class="pill pill--recommend">recommend</span></p>
+    <h3 class="decision__title">Add a real author byline with a named person</h3>
+  </header>
+  <div class="decision__grid">
+    <div><p class="decision__label">Why</p><p>Unattributed buying advice reads as generated, which is precisely the failure the brief names. A byline with a short bio and a stated method is the cheapest credibility signal available.</p></div>
+    <div><p class="decision__label">What it costs</p><p>Requires a real person willing to be named and accountable.</p></div>
+    <div><p class="decision__label">What could go wrong</p><p>A byline attached to content the person did not write is worse than no byline.</p></div>
+    <div><p class="decision__label">Recommendation</p><p>Decision needed from the requester. Cannot be fabricated.</p></div>
+  </div>
+  <fieldset class="decision__choose" data-decision="SUG-06">
+    <legend>Your call on SUG-06</legend>
+    <label><input type="radio" name="decision-SUG-06" value="adopt"> Adopt the recommendation</label>
+    <label><input type="radio" name="decision-SUG-06" value="modify"> Adopt with changes</label>
+    <label><input type="radio" name="decision-SUG-06" value="hold"> Hold — decide later</label>
+    <label><input type="radio" name="decision-SUG-06" value="reject"> Reject</label>
+  </fieldset>
+</article><article class="decision" id="decision-SUG-07">
+  <header class="decision__head">
+    <p class="decision__meta"><code>SUG-07</code> · weight 7 · <span class="pill pill--recommend">recommend</span></p>
+    <h3 class="decision__title">Move to a custom domain before building any authority</h3>
+  </header>
+  <div class="decision__grid">
+    <div><p class="decision__label">Why</p><p>A /WinA/ subpath reads as a side project, and moving later discards whatever equity accumulated. Doing it now costs a domain and one setting.</p></div>
+    <div><p class="decision__label">What it costs</p><p>Domain registration plus DNS. About an hour.</p></div>
+    <div><p class="decision__label">What could go wrong</p><p>Slight setup friction with HTTPS and the CNAME file.</p></div>
+    <div><p class="decision__label">Recommendation</p><p>Recommend. The build already keeps the origin in one config value, so the change is small.</p></div>
+  </div>
+  <fieldset class="decision__choose" data-decision="SUG-07">
+    <legend>Your call on SUG-07</legend>
+    <label><input type="radio" name="decision-SUG-07" value="adopt"> Adopt the recommendation</label>
+    <label><input type="radio" name="decision-SUG-07" value="modify"> Adopt with changes</label>
+    <label><input type="radio" name="decision-SUG-07" value="hold"> Hold — decide later</label>
+    <label><input type="radio" name="decision-SUG-07" value="reject"> Reject</label>
+  </fieldset>
+</article><article class="decision" id="decision-SUG-08">
+  <header class="decision__head">
+    <p class="decision__meta"><code>SUG-08</code> · weight 7 · <span class="pill pill--recommend">recommend</span></p>
+    <h3 class="decision__title">Deploy the analytics collector, and accept that orders cannot be counted yet</h3>
+  </header>
+  <div class="decision__grid">
+    <div><p class="decision__label">Why</p><p>Click data is available today and is the fastest honest feedback loop. Order data has to come from Associates reports, which arrive later. Separating the two keeps the ledger truthful.</p></div>
+    <div><p class="decision__label">What it costs</p><p>One worker deploy and a secret.</p></div>
+    <div><p class="decision__label">What could go wrong</p><p>A self-hosted collector is a privacy obligation. The current design stores no identifiers, which keeps that burden small.</p></div>
+    <div><p class="decision__label">Recommendation</p><p>Recommend deploying to close FLG-011. Do not import a third-party tracker as a shortcut.<br><span class="tiny"><a href="https://sassnarep3-star.github.io/WinA/analytics/" rel="noopener" target="_blank">Measurement page</a></span></p></div>
+  </div>
+  <fieldset class="decision__choose" data-decision="SUG-08">
+    <legend>Your call on SUG-08</legend>
+    <label><input type="radio" name="decision-SUG-08" value="adopt"> Adopt the recommendation</label>
+    <label><input type="radio" name="decision-SUG-08" value="modify"> Adopt with changes</label>
+    <label><input type="radio" name="decision-SUG-08" value="hold"> Hold — decide later</label>
+    <label><input type="radio" name="decision-SUG-08" value="reject"> Reject</label>
+  </fieldset>
+</article><article class="decision" id="decision-SUG-09">
+  <header class="decision__head">
+    <p class="decision__meta"><code>SUG-09</code> · weight 6 · <span class="pill pill--consider">consider</span></p>
+    <h3 class="decision__title">Add a 'who should not buy this' block to every product page</h3>
+  </header>
+  <div class="decision__grid">
+    <div><p class="decision__label">Why</p><p>The single most useful thing a buying guide can say, and the thing competitors skip. It also converts better, because readers trust a page that talked them out of something.</p></div>
+    <div><p class="decision__label">What it costs</p><p>A short block per product.</p></div>
+    <div><p class="decision__label">What could go wrong</p><p>None. It requires actually understanding the trade-off, which is why most sites omit it.</p></div>
+    <div><p class="decision__label">Recommendation</p><p>Consider. The current pages carry a trade-off line; expanding it to a full block is the natural next edit.</p></div>
+  </div>
+  <fieldset class="decision__choose" data-decision="SUG-09">
+    <legend>Your call on SUG-09</legend>
+    <label><input type="radio" name="decision-SUG-09" value="adopt"> Adopt the recommendation</label>
+    <label><input type="radio" name="decision-SUG-09" value="modify"> Adopt with changes</label>
+    <label><input type="radio" name="decision-SUG-09" value="hold"> Hold — decide later</label>
+    <label><input type="radio" name="decision-SUG-09" value="reject"> Reject</label>
+  </fieldset>
+</article><article class="decision" id="decision-SUG-10">
+  <header class="decision__head">
+    <p class="decision__meta"><code>SUG-10</code> · weight 6 · <span class="pill pill--consider">consider</span></p>
+    <h3 class="decision__title">Build a real comparison table with measured dimensions</h3>
+  </header>
+  <div class="decision__grid">
+    <div><p class="decision__label">Why</p><p>The comparison page exists but is thin because dimensions are unverified. Counter footprint is the number that actually decides a purchase, and nobody publishes it clearly.</p></div>
+    <div><p class="decision__label">What it costs</p><p>Researching dimensions from manufacturer spec sheets, with a source link per number.</p></div>
+    <div><p class="decision__label">What could go wrong</p><p>A wrong dimension is worse than a blank. Only add numbers with a source.</p></div>
+    <div><p class="decision__label">Recommendation</p><p>Consider once manufacturer sheets are gathered. Until then the table shows what is verified and says what is not.</p></div>
+  </div>
+  <fieldset class="decision__choose" data-decision="SUG-10">
+    <legend>Your call on SUG-10</legend>
+    <label><input type="radio" name="decision-SUG-10" value="adopt"> Adopt the recommendation</label>
+    <label><input type="radio" name="decision-SUG-10" value="modify"> Adopt with changes</label>
+    <label><input type="radio" name="decision-SUG-10" value="hold"> Hold — decide later</label>
+    <label><input type="radio" name="decision-SUG-10" value="reject"> Reject</label>
+  </fieldset>
+</article><article class="decision" id="decision-SUG-11">
+  <header class="decision__head">
+    <p class="decision__meta"><code>SUG-11</code> · weight 5 · <span class="pill pill--consider">consider</span></p>
+    <h3 class="decision__title">Add a short 'how we choose what to recommend' block to the front page</h3>
+  </header>
+  <div class="decision__grid">
+    <div><p class="decision__label">Why</p><p>Readers arriving cold need one sentence on why these five products and not others. It also pre-empts the 'is this an ad' reflex.</p></div>
+    <div><p class="decision__label">What it costs</p><p>Three sentences.</p></div>
+    <div><p class="decision__label">What could go wrong</p><p>Can tip into self-referential process talk, which the brief explicitly wants kept off the front page. Keep it to a single block low on the page.</p></div>
+    <div><p class="decision__label">Recommendation</p><p>Consider. The About page currently carries this.</p></div>
+  </div>
+  <fieldset class="decision__choose" data-decision="SUG-11">
+    <legend>Your call on SUG-11</legend>
+    <label><input type="radio" name="decision-SUG-11" value="adopt"> Adopt the recommendation</label>
+    <label><input type="radio" name="decision-SUG-11" value="modify"> Adopt with changes</label>
+    <label><input type="radio" name="decision-SUG-11" value="hold"> Hold — decide later</label>
+    <label><input type="radio" name="decision-SUG-11" value="reject"> Reject</label>
+  </fieldset>
+</article><article class="decision" id="decision-SUG-14">
+  <header class="decision__head">
+    <p class="decision__meta"><code>SUG-14</code> · weight 5 · <span class="pill pill--hold">hold</span></p>
+    <h3 class="decision__title">Hold the email capture until there is something to send</h3>
+  </header>
+  <div class="decision__grid">
+    <div><p class="decision__label">Why</p><p>Collecting addresses with no ESP and no publishing cadence means collecting nothing. The form is currently inert and says so.</p></div>
+    <div><p class="decision__label">What it costs</p><p>Saves an ESP subscription.</p></div>
+    <div><p class="decision__label">What could go wrong</p><p>Capture opportunities are lost while waiting.</p></div>
+    <div><p class="decision__label">Recommendation</p><p>Hold until SUG-05 produces a cadence. Then wire one ESP and one welcome email.</p></div>
+  </div>
+  <fieldset class="decision__choose" data-decision="SUG-14">
+    <legend>Your call on SUG-14</legend>
+    <label><input type="radio" name="decision-SUG-14" value="adopt"> Adopt the recommendation</label>
+    <label><input type="radio" name="decision-SUG-14" value="modify"> Adopt with changes</label>
+    <label><input type="radio" name="decision-SUG-14" value="hold"> Hold — decide later</label>
+    <label><input type="radio" name="decision-SUG-14" value="reject"> Reject</label>
+  </fieldset>
+</article><article class="decision" id="decision-SUG-15">
+  <header class="decision__head">
+    <p class="decision__meta"><code>SUG-15</code> · weight 5 · <span class="pill pill--hold">hold</span></p>
+    <h3 class="decision__title">Hold all paid search</h3>
+  </header>
+  <div class="decision__grid">
+    <div><p class="decision__label">Why</p><p>No bid is permitted on Amazon marks, and a new site with no conversion data cannot tell whether an ad is profitable. Advertising before measurement is guessing with a budget.</p></div>
+    <div><p class="decision__label">What it costs</p><p>Zero.</p></div>
+    <div><p class="decision__label">What could go wrong</p><p>Slower initial traffic.</p></div>
+    <div><p class="decision__label">Recommendation</p><p>Hold until the ledger has real click and order data.<br><span class="tiny"><a href="https://affiliate-program.amazon.com/help/operating/policies" rel="noopener" target="_blank">Participation Requirements §6(f)</a></span></p></div>
+  </div>
+  <fieldset class="decision__choose" data-decision="SUG-15">
+    <legend>Your call on SUG-15</legend>
+    <label><input type="radio" name="decision-SUG-15" value="adopt"> Adopt the recommendation</label>
+    <label><input type="radio" name="decision-SUG-15" value="modify"> Adopt with changes</label>
+    <label><input type="radio" name="decision-SUG-15" value="hold"> Hold — decide later</label>
+    <label><input type="radio" name="decision-SUG-15" value="reject"> Reject</label>
+  </fieldset>
+</article><article class="decision" id="decision-SUG-16">
+  <header class="decision__head">
+    <p class="decision__meta"><code>SUG-16</code> · weight 5 · <span class="pill pill--consider">consider</span></p>
+    <h3 class="decision__title">Publish a dated 'last checked' line on every product page</h3>
+  </header>
+  <div class="decision__grid">
+    <div><p class="decision__label">Why</p><p>Specifications and availability change. A visible date tells the reader how much to trust the page, and forces the site to actually re-check.</p></div>
+    <div><p class="decision__label">What it costs</p><p>One field, refreshed on a schedule.</p></div>
+    <div><p class="decision__label">What could go wrong</p><p>A stale date is a public admission of neglect. That is the point.</p></div>
+    <div><p class="decision__label">Recommendation</p><p>Consider. Pages currently record the observation date in the register rather than on the page.</p></div>
+  </div>
+  <fieldset class="decision__choose" data-decision="SUG-16">
+    <legend>Your call on SUG-16</legend>
+    <label><input type="radio" name="decision-SUG-16" value="adopt"> Adopt the recommendation</label>
+    <label><input type="radio" name="decision-SUG-16" value="modify"> Adopt with changes</label>
+    <label><input type="radio" name="decision-SUG-16" value="hold"> Hold — decide later</label>
+    <label><input type="radio" name="decision-SUG-16" value="reject"> Reject</label>
+  </fieldset>
+</article></div>
+
+    <h2 class="section__title" style="font-size:1.35rem;margin-top:2.75rem">The same register, as a table</h2>
+    <div class="tablewrap" style="margin:1rem 0 1.5rem">
       <table class="data sortable">
-        <caption>Status key. Anything not marked "shipped" is waiting for a decision — nothing beyond the initial build has been implemented.</caption>
+        <caption>Status key. Anything not marked "shipped" is waiting for a decision — nothing beyond what is already live has been implemented.</caption>
         <thead><tr><th scope="col">Status</th><th scope="col">Meaning</th><th scope="col">Count</th></tr></thead>
         <tbody><tr>
           <td><span class="pill pill--shipped">shipped</span></td>
@@ -86,7 +385,7 @@
 
     <div class="tablewrap">
       <table class="data sortable">
-        <caption>Every suggestion, ordered by weight. Weight is our confidence that it is the right next move, not its effort. Read the "risk" column before accepting any of them.</caption>
+        <caption>Every suggestion, ordered by weight. Weight is our confidence that it is the right next move, not its effort. Read the "what could go wrong" column before accepting any of them.</caption>
         <thead>
           <tr>
             <th scope="col">ID</th><th scope="col">Suggestion</th><th scope="col">Status</th>

@@ -50,7 +50,7 @@ data/                 the single source of truth
   suggestions.json    16 reviewable suggestions with cost, risk and recommendation
 _src/
   build.mjs           renders all pages, sitemap, feed, robots, 404, then gates
-  content.mjs         the four guides
+  content.mjs         the eight guides (01–08, incl. the seasonal edit)
   pages-content.mjs   about, disclosure, privacy, marketing, SEO prose
   serve.mjs           local preview server (mirrors the /WinA/ subpath)
 _worker/
@@ -60,6 +60,33 @@ assets/js/site.js     five events + sponsored-link confirmation
 ```
 
 Generated output lives at the repo root so GitHub Pages serves it directly from `main`.
+
+### Reader-facing polish (T17, 2026-11-20)
+
+The brief asked for the site to "read like a shop, not an audit". The verification record
+stays complete — it lives on `/register/`, `/flagged/` and the footer record group — but the
+reader path now leads with products, questions and seasons:
+
+- **Imagery.** Five editorial illustrations in `assets/img/`, generated for this publication
+  and labelled on every page as *"Illustration for the publication — not product photography."*
+  Product photography remains withheld pending Creatives API access (FLG-007); the generated
+  art has its own provenance flag (FLG-030) and never depicts a listed product.
+- **Seasons.** The 2026 hosting edit on the front page, backed by two dated question-shaped
+  guides (`hosting-season`, `thermometer-gifting`) framed as editorial hypotheses, not demand
+  claims (FLG-020).
+- **Clusters.** The air fryer path and the thermometer path are visible as reading routes on
+  the front page and category hubs, with the publishing cadence table on `/guides/`.
+- **Authorship.** House byline ("the Counter Space desk") and updated dates on every guide;
+  a named human author remains an owner decision (SUG-06, Q-21).
+- **Decision board.** `/suggestions/` now renders each suggestion as a card with an explicit
+  choice (adopt / modify / hold / reject), persisted in the reviewer's browser and exportable
+  as text. Nothing is implemented before a choice is handed back to the build.
+- **Product-intent confirmation record.** `/register/` splits the record into two tables that
+  are never merged: intent (intended ASIN, official listing URL, confirmation date, source —
+  blank until the owner confirms) and observation (observed redirect targets, with a dated
+  same-day re-check column, FLG-031).
+- **Findability.** `og:image` on every page, Article + BreadcrumbList JSON-LD on guides, and
+  the sitemap and RSS feed carry all eight guides.
 
 ---
 

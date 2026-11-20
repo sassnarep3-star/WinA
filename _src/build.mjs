@@ -21,6 +21,9 @@ const gov = read("data/governance.json");
 const questions = read("data/questions.json");
 const suggestions = read("data/suggestions.json");
 const specialLink = read("data/special_link_tests.json");
+// Submission record: the product-intent confirmation record lives here.
+// Intended fields and observed redirect fields are deliberately separate.
+const linksData = read("data/links.json");
 // AI-platform concept (framed as a concept only; nothing here is implemented)
 const aiConcept = {
   title: "AI-platform concept",
@@ -106,7 +109,8 @@ function layout(opts) {
     canonical = "/",
     type = "website",
     pageType = "page",
-    jsonld = null
+    jsonld = null,
+    image = "/assets/img/hero.jpg"
   } = opts;
 
   const fullTitle = title.includes(site.name) ? title : `${title} — ${site.name}`;
@@ -134,6 +138,7 @@ function layout(opts) {
 <meta property="og:title" content="${esc(fullTitle)}">
 <meta property="og:description" content="${esc(desc)}">
 <meta property="og:url" content="${abs(canonical)}">
+<meta property="og:image" content="${abs(image)}">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="${esc(fullTitle)}">
 <meta name="twitter:description" content="${esc(desc)}">
@@ -330,6 +335,20 @@ const breadcrumb = (trail) =>
     )
     .join("")}</nav>`;
 
+/* Editorial imagery. Generated art, honestly labelled: it is atmosphere,
+   never a product photo (FLG-007 — product photography stays withheld
+   pending Creatives API access). Every img carries alt text. */
+const IMG = {
+  hero: { src: "assets/img/hero.jpg", alt: "A sunlit kitchen counter with fresh produce, a linen towel and a plain pot" },
+  airFryers: { src: "assets/img/air-fryers.jpg", alt: "Golden fries and roasted wings spilling from parchment onto dark slate" },
+  thermometers: { src: "assets/img/thermometers.jpg", alt: "A seared steak resting beside a smoking grill at dusk" },
+  season: { src: "assets/img/season.jpg", alt: "A festive winter table with roasted vegetables, candles and pine sprigs" },
+  guides: { src: "assets/img/guides.jpg", alt: "A notebook, pen, coffee and lemons arranged on pale linen" }
+};
+const guideArt = (g) => (g.category === "thermometers" ? IMG.thermometers : IMG.airFryers);
+const art = (im, cls = "") =>
+  `<img src="${url("/" + im.src)}" alt="${esc(im.alt)}"${cls ? ` class="${cls}"` : ""} loading="lazy" width="1536" height="1024">`;
+
 /* ============================================================
    FRONT PAGE — a publication front page, not a dashboard
    ============================================================ */
@@ -348,7 +367,7 @@ function frontPage() {
         <a class="btn btn--primary" href="${url("/air-fryers/")}">See the air fryers</a>
         <a class="btn btn--ghost" href="${url("/guides/basket-vs-oven/")}">Basket or oven? Start here</a>
       </div>
-      <p class="tiny faint" style="margin-top:1.1rem">No testing claims. No invented prices. Every spec is labelled with how it was verified.</p>
+      <p class="tiny faint" style="margin-top:1.1rem">How we work: we read the listings, compare the trade-offs, and never claim testing we did not do. <a href="${url("/about/")}">Our method →</a></p>
     </div>
     <aside class="pick">
       <p class="pick__label">Start here</p>
@@ -364,16 +383,66 @@ function frontPage() {
       <p class="pcard__note">Sponsored. ${esc(site.associateStatement)}</p>
     </aside>
   </div>
+  <div class="hero__media wrap">
+    ${art(IMG.hero, "hero__img")}
+    <p class="caption">Illustration for the publication — not product photography.</p>
+  </div>
 </section>
 
 <div class="strip">
   <div class="wrap strip__inner">
-    <div class="strip__cell"><p class="strip__num">5</p><p class="strip__lab">Products compared</p></div>
-    <div class="strip__cell"><p class="strip__num">4</p><p class="strip__lab">Guides</p></div>
-    <div class="strip__cell"><p class="strip__num">0</p><p class="strip__lab">Products tested</p></div>
-    <div class="strip__cell"><p class="strip__num">10</p><p class="strip__lab">Policy checks passed</p></div>
+    <div class="strip__cell"><p class="strip__num">5</p><p class="strip__lab">Products compared in depth</p></div>
+    <div class="strip__cell"><p class="strip__num">${guides.length}</p><p class="strip__lab">Buying guides</p></div>
+    <div class="strip__cell"><p class="strip__num">2</p><p class="strip__lab">Categories</p></div>
+    <div class="strip__cell"><p class="strip__num">Nov</p><p class="strip__lab">Edition · updated ${esc(site.built)}</p></div>
   </div>
 </div>
+
+<section class="section season">
+  <div class="wrap season__grid">
+    <div class="season__media">
+      ${art(IMG.season, "season__img")}
+    </div>
+    <div>
+      <p class="kicker">The ${esc(site.built.slice(0, 4))} hosting edit</p>
+      <h2 class="section__title">Hosting this season? Match the machine to the meal.</h2>
+      <p class="section__dek">A holiday week is a timing problem before it is an appliance problem. Our seasonal edit works through which format takes the main, which one lands the sides together, and who should simply wait until January.</p>
+      <div class="hero__actions">
+        <a class="btn btn--primary" href="${url("/guides/hosting-season/")}">Read the hosting edit</a>
+        <a class="btn btn--ghost" href="${url("/guides/thermometer-gifting/")}">Gifting a thermometer?</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="section__head">
+      <h2 class="section__title">Start with the question you have</h2>
+      <p class="section__dek">Two topic clusters, each built around one kind of decision. Read one guide or the whole path — every guide links to the next.</p>
+    </div>
+    <div class="clusters">
+      <a class="cluster" href="${url("/air-fryers/")}">
+        <span class="cluster__media">${art(IMG.airFryers)}</span>
+        <span class="cluster__body">
+          <span class="cluster__label">Cluster</span>
+          <h3 class="cluster__name">The air fryer path</h3>
+          <span class="cluster__dek">Form factor → capacity → cleanup → the claims on the box. Five guides and three machines, walked in the order the questions actually arrive.</span>
+          <span class="cluster__more">Start with basket or oven →</span>
+        </span>
+      </a>
+      <a class="cluster" href="${url("/thermometers/")}">
+        <span class="cluster__media">${art(IMG.thermometers)}</span>
+        <span class="cluster__body">
+          <span class="cluster__label">Cluster</span>
+          <h3 class="cluster__name">The thermometer path</h3>
+          <span class="cluster__dek">Instant-read or wireless → what multi-function claims mean → gifting the right one. Three guides and two probes, one decision: stand there, or walk away.</span>
+          <span class="cluster__more">Start with instant vs wireless →</span>
+        </span>
+      </a>
+    </div>
+  </div>
+</section>
 
 <section class="section">
   <div class="wrap">
@@ -409,7 +478,7 @@ function frontPage() {
   <div class="wrap">
     <div class="section__head">
       <h2 class="section__title">Read before you buy</h2>
-      <p class="section__dek">Four questions that come up before any of these purchases, answered without a verdict at the end.</p>
+      <p class="section__dek">${guides.length} questions that come up before any of these purchases, answered without a verdict at the end.</p>
     </div>
     <div class="guides guides--two">
       ${guides
@@ -419,6 +488,7 @@ function frontPage() {
         <span>
           <h3 class="guide-link__title">${esc(g.title)}</h3>
           <p class="guide-link__dek">${esc(g.dek)}</p>
+          ${g.season ? `<p class="guide-link__season">${esc(g.season)}</p>` : ""}
         </span>
       </a>`
         )
@@ -440,7 +510,7 @@ function frontPage() {
   pages.push({
     path: "/",
     title: `${site.name} — air fryers and thermometers, chosen for counter space`,
-    desc: "Three air fryers and two thermometers compared on capacity, batching, cleanup and counter cost. No testing claims, no invented prices, every spec labelled with how it was verified.",
+    desc: "A kitchen buying publication: three air fryers and two meat thermometers compared on capacity, batching, cleanup and counter cost, with question-shaped guides for every decision.",
     html,
     priority: "1.0",
     changefreq: "weekly"
@@ -461,6 +531,10 @@ ${breadcrumb([{ href: url("/"), label: "Home" }, { label: c.name }])}
     <h1 class="article-head__title">${esc(c.name)} that earn their counter space</h1>
     <p class="article-head__dek">${esc(c.dek)}</p>
   </div>
+  <div class="article-head__media wrap">
+    ${art({ src: c.image, alt: c.name === "Air fryers" ? IMG.airFryers.alt : IMG.thermometers.alt })}
+    <p class="caption">Illustration for the publication — not product photography.</p>
+  </div>
 </div>
 <section class="section">
   <div class="wrap">
@@ -472,7 +546,8 @@ ${breadcrumb([{ href: url("/"), label: "Home" }, { label: c.name }])}
 </section>
 <section class="section section--deep">
   <div class="wrap narrow">
-    <h2 class="section__title" style="font-size:1.4rem">Before you pick one</h2>
+    <h2 class="section__title" style="font-size:1.4rem">${esc(c.clusterName || "Before you pick one")}</h2>
+    <p class="small muted" style="margin:.2rem 0 1.2rem">Read in order, or jump to the question you came with. Every guide opens with the short answer.</p>
     <div class="guides">
       ${guides
         .filter((g) => g.category === c.slug || items.some((p) => p.guideTopics.includes(g.slug)))
@@ -657,16 +732,20 @@ ${breadcrumb([
 <article>
 <div class="article-head">
   <div class="wrap">
-    <p class="kicker">Guide ${g.number} · ${esc(cat ? cat.name : "Buying")}</p>
+    <p class="kicker">Guide ${g.number} · ${esc(cat ? cat.name : "Buying")}${g.season ? ` · ${esc(g.season)}` : ""}</p>
     <h1 class="article-head__title">${esc(g.title)}</h1>
     <p class="article-head__dek">${esc(g.dek)}</p>
     <div class="byline">
-      <span>${esc(site.name)} editorial</span>
+      <span>By the ${esc(site.name)} desk</span>
+      <span class="byline__dot" aria-hidden="true"></span>
+      <span>Updated ${esc(site.built)}</span>
       <span class="byline__dot" aria-hidden="true"></span>
       <span>${esc(g.readingTime)} read</span>
-      <span class="byline__dot" aria-hidden="true"></span>
-      <span class="unverified">No hands-on testing claimed</span>
     </div>
+  </div>
+  <div class="article-head__media wrap">
+    ${art(guideArt(g))}
+    <p class="caption">Illustration for the publication — not product photography.</p>
   </div>
 </div>
 
@@ -741,14 +820,28 @@ ${breadcrumb([
       changefreq: "monthly",
       jsonld: {
         "@context": "https://schema.org",
-        "@type": "Article",
-        headline: g.title,
-        description: g.dek,
-        datePublished: site.built,
-        dateModified: site.built,
-        author: { "@type": "Organization", name: site.name },
-        publisher: { "@type": "Organization", name: site.name },
-        isAccessibleForFree: true
+        "@graph": [
+          {
+            "@type": "Article",
+            headline: g.title,
+            description: g.dek,
+            datePublished: site.built,
+            dateModified: site.built,
+            image: [abs("/" + guideArt(g).src)],
+            mainEntityOfPage: abs(`/guides/${g.slug}/`),
+            author: { "@type": "Organization", name: `${site.name} desk` },
+            publisher: { "@type": "Organization", name: site.name },
+            isAccessibleForFree: true
+          },
+          {
+            "@type": "BreadcrumbList",
+            itemListElement: [
+              { "@type": "ListItem", position: 1, name: "Home", item: abs("/") },
+              { "@type": "ListItem", position: 2, name: "Guides", item: abs("/guides/") },
+              { "@type": "ListItem", position: 3, name: g.title, item: abs(`/guides/${g.slug}/`) }
+            ]
+          }
+        ]
       }
     });
   }
@@ -760,7 +853,11 @@ ${breadcrumb([{ href: url("/"), label: "Home" }, { label: "Guides" }])}
   <div class="wrap">
     <p class="kicker">Buying guides</p>
     <h1 class="article-head__title">The questions people ask before they buy</h1>
-    <p class="article-head__dek">Four guides, each built around one decision. No rankings, no "best of" list, no claim that any of this was tested.</p>
+    <p class="article-head__dek">${guides.length} guides, each built around one decision. No rankings, no "best of" list, no claim that any of this was tested.</p>
+  </div>
+  <div class="article-head__media wrap">
+    ${art(IMG.guides)}
+    <p class="caption">Illustration for the publication — not product photography.</p>
   </div>
 </div>
 <section class="section">
@@ -775,12 +872,32 @@ ${breadcrumb([{ href: url("/"), label: "Home" }, { label: "Guides" }])}
           <p class="guide-link__dek">${esc(g.dek)}</p>
           <p class="tiny faint" style="margin:.4rem 0 0">${esc(g.readingTime)} · ${esc(
             g.topics.join(" · ")
-          )}</p>
+          )}${g.season ? ` · <span class="guide-link__season">${esc(g.season)}</span>` : ""}</p>
         </span>
       </a>`
         )
         .join("")}
     </div>
+
+    <h2 class="section__title" style="font-size:1.35rem;margin-top:2.75rem">The publishing cadence</h2>
+    <div class="tablewrap">
+      <table class="data sortable">
+        <caption>The editorial calendar: what has shipped and what is planned next. Planned titles are working hypotheses, not claims about search demand.</caption>
+        <thead><tr><th scope="col">Guide</th><th scope="col">Cluster</th><th scope="col">Status</th></tr></thead>
+        <tbody>
+          ${guides
+            .map(
+              (g) =>
+                `<tr><td><a href="${url(`/guides/${g.slug}/`)}">${esc(g.title)}</a></td><td>${esc(
+                  g.category === "thermometers" ? "Thermometers" : "Air fryers"
+                )}</td><td><span class="pill pill--verified">published ${esc(site.built)}</span></td></tr>`
+            )
+            .join("")}
+          <tr><td class="muted">One new question-shaped guide per week for eight weeks, then the query report picks the next topic</td><td class="muted">Both</td><td><span class="pill pill--review">planned</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+
     <div class="note mt2">
       <p class="note__title">These titles are hypotheses</p>
       <p>They were written as editorial questions, not from search volume data. No keyword tool or Search Console report informed them. Which one actually earns traffic will be known only after the sitemap is indexed and the query report has something in it — tracked on the <a href="${url(
@@ -793,7 +910,7 @@ ${breadcrumb([{ href: url("/"), label: "Home" }, { label: "Guides" }])}
   pages.push({
     path: "/guides/",
     title: "Buying guides",
-    desc: "Four question-shaped guides to air fryers and thermometers: form factor, capacity, cleanup, and multi-function claims.",
+    desc: "Question-shaped buying guides to air fryers and meat thermometers: form factor, capacity, cleanup, multi-function claims, hosting and gifting.",
     html,
     priority: "0.8",
     changefreq: "weekly"
@@ -984,16 +1101,39 @@ function registerPage() {
     .join("");
 
   const linkRows = products
-    .map(
-      (p) => `<tr>
-    <td><code>${esc(p.submittedLink.replace("https://link.amazon/", ""))}</code></td>
+    .map((p) => {
+      const code = p.submittedLink.replace("https://link.amazon/", "");
+      const rec = linksData.links.find((l) => l.shortCode === code) || {};
+      const rk = rec.recheck || {};
+      return `<tr>
+    <td><code>${esc(code)}</code></td>
     <td><a href="${p.submittedLink}" rel="nofollow noopener" target="_blank" data-nonaffiliate="true">link.amazon</a></td>
     <td>${cite(p.observedDestination, `<code>${esc(p.asin)}</code>`, p.asin)}</td>
-    <td class="blank">not supplied</td>
     <td>${esc(p.observedOn)}</td>
     <td>observed redirect</td>
-  </tr>`
-    )
+    <td>${rk.resolvedTo ? `${esc(rk.resolvedTo)}<br><span class="tiny muted">${esc(rk.note)} · ${esc(rk.recheckedOn)}</span>` : '<span class="faint">—</span>'}</td>
+  </tr>`;
+    })
+    .join("");
+
+  // Product-intent confirmation record (brief requirement). These four fields —
+  // intended ASIN, official listing URL, confirmation date, source — are the
+  // intent side of the record and are NEVER merged with the observed redirect
+  // fields above. They stay blank until the owner confirms each one against
+  // Associates Central; the site does not infer them.
+  const intentRows = linksData.links
+    .map((l) => {
+      const ic = l.intentConfirmation || {};
+      const blank = (v) => (v ? esc(v) : '<span class="faint">— blank, unconfirmed</span>');
+      return `<tr>
+    <td><code>${esc(l.shortCode)}</code></td>
+    <td>${blank(ic.intendedAsin)}</td>
+    <td>${blank(ic.officialListingUrl)}</td>
+    <td>${blank(ic.confirmationDate)}</td>
+    <td>${blank(ic.source)}</td>
+    <td><span class="pill pill--review">${esc(ic.status || "awaiting-owner-confirmation")}</span></td>
+  </tr>`;
+    })
     .join("");
 
   const html = `
@@ -1008,12 +1148,30 @@ ${breadcrumb([{ href: url("/"), label: "Home" }, { label: "Source register" }])}
 
 <section class="section">
   <div class="wrap">
-    <h2 class="section__title" style="font-size:1.4rem">Link resolution</h2>
-    <p class="section__dek" style="margin-bottom:1.25rem">The five submitted short links, what they resolved to, and the separation between the intended ASIN (never supplied) and the observed destination (recorded by following the link).</p>
+    <h2 class="section__title" style="font-size:1.4rem">Product-intent confirmation record</h2>
+    <p class="section__dek" style="margin-bottom:1.25rem">What each submitted link was <em>meant</em> to sell. The four fields — intended ASIN, official listing URL, confirmation date, source — are filled only when the owner confirms them in Associates Central. Nothing here is inferred from the redirect; the observed record below is a separate table and the two are never merged. Amazon's ASIN is the checkable identifier.</p>
     <div class="tablewrap">
       <table class="data sortable">
-        <caption>Submitted link → observed destination. Intended ASIN is a separate field from observed destination and is deliberately blank.</caption>
-        <thead><tr><th scope="col">Submitted code</th><th scope="col">Link</th><th scope="col">Observed ASIN</th><th scope="col">Intended ASIN</th><th scope="col">Confirmed</th><th scope="col">Method</th></tr></thead>
+        <caption>Intent confirmation record. Blank means unconfirmed — the owner supplies each value deliberately. See FLG-001 and FLG-019.</caption>
+        <thead><tr><th scope="col">Submitted code</th><th scope="col">Intended ASIN</th><th scope="col">Official listing URL</th><th scope="col">Confirmation date</th><th scope="col">Source</th><th scope="col">Status</th></tr></thead>
+        <tbody>${intentRows}</tbody>
+      </table>
+    </div>
+    <div class="note note--warn mt1">
+      <p class="note__title">How this row gets closed</p>
+      <p>Sign in to Associates Central, find each product's link under Product Links, and record the ASIN shown there, the listing URL it points at, the date confirmed, and where the confirmation came from. Until then the row stays exactly as you see it.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section section--deep">
+  <div class="wrap">
+    <h2 class="section__title" style="font-size:1.4rem">Observed redirect record</h2>
+    <p class="section__dek" style="margin-bottom:1.25rem">What the five submitted short links <em>actually</em> resolved to, recorded by following each one on 2026-11-20. Kept separate from the intent record above, because observation is not intention.</p>
+    <div class="tablewrap">
+      <table class="data sortable">
+        <caption>Submitted link → observed destination. Observed values are facts about the redirect; they say nothing about intent. The re-check column records what the same link resolved to when re-opened later the same day (FLG-031) — both observations stand, each dated.</caption>
+        <thead><tr><th scope="col">Submitted code</th><th scope="col">Link</th><th scope="col">Observed ASIN</th><th scope="col">Observed on</th><th scope="col">Method</th><th scope="col">Same-day re-check</th></tr></thead>
         <tbody>${linkRows}</tbody>
       </table>
     </div>
@@ -1361,6 +1519,21 @@ ${breadcrumb([{ href: url("/"), label: "Home" }, { label: "Open questions" }])}
         <tbody>${rows}</tbody>
       </table>
     </div>
+
+    <h2 class="section__title" style="font-size:1.35rem;margin-top:2.75rem">How the missing information gets discovered</h2>
+    <p class="section__dek" style="margin-bottom:1.25rem">Most of the blanks above close through one of four doors. Each is named here so no question is left waiting on an abstraction.</p>
+    <div class="tablewrap">
+      <table class="data sortable">
+        <caption>Discovery routes: the specific action or document that converts an unknown into a recorded fact. Questions stay open until one of these happens.</caption>
+        <thead><tr><th scope="col">Door</th><th scope="col">What it unlocks</th><th scope="col">Who holds the key</th><th scope="col">Questions it closes</th></tr></thead>
+        <tbody>
+          <tr><td>Associates Central sign-in</td><td>Tracking-ID enrolment, the Special Link test, the campaign ledger's first rows</td><td>The owner</td><td>Q-04, Q-05, Q-06 (with Associates support)</td></tr>
+          <tr><td>Product Advertising API / Creatives access</td><td>Prices, star ratings and licensed product imagery — the three things policy forbids us to show without it</td><td>Amazon, after the account qualifies</td><td>Q-11, Q-12</td></tr>
+          <tr><td>Search Console verification</td><td>Index status and the query report that replaces topic hypotheses with measured demand</td><td>The owner (domain/token)</td><td>Q-07, Q-08, Q-18</td></tr>
+          <tr><td>Deploying the analytics collector</td><td>Outbound-click and session measurement from the five defined events</td><td>The owner (hosting)</td><td>Q-16, Q-17</td></tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 </section>
 `;
@@ -1404,20 +1577,64 @@ function suggestionsPage() {
     )
     .join("");
 
+  // The decision board: one card per suggestion, each with an explicit choice.
+  // Nothing here is implemented until a choice is recorded — this is the gate
+  // the brief asks for ("review suggestions and choose the best path before
+  // implementing any changes"). Choices are kept in this browser only.
+  const board = items
+    .map(
+      (s) => `<article class="decision" id="decision-${esc(s.id)}">
+  <header class="decision__head">
+    <p class="decision__meta"><code>${esc(s.id)}</code> · weight ${esc(s.weight)} · <span class="pill pill--${esc(
+        s.status
+      )}">${esc(s.status)}</span></p>
+    <h3 class="decision__title">${esc(s.title)}</h3>
+  </header>
+  <div class="decision__grid">
+    <div><p class="decision__label">Why</p><p>${esc(s.why)}</p></div>
+    <div><p class="decision__label">What it costs</p><p>${esc(s.cost)}</p></div>
+    <div><p class="decision__label">What could go wrong</p><p>${esc(s.risk)}</p></div>
+    <div><p class="decision__label">Recommendation</p><p>${esc(s.decide)}${
+        s.links && s.links.length
+          ? `<br><span class="tiny">${s.links.map((l) => cite(l.url, esc(l.label))).join(" · ")}</span>`
+          : ""
+      }</p></div>
+  </div>
+  <fieldset class="decision__choose" data-decision="${esc(s.id)}">
+    <legend>Your call on ${esc(s.id)}</legend>
+    <label><input type="radio" name="decision-${esc(s.id)}" value="adopt"> Adopt the recommendation</label>
+    <label><input type="radio" name="decision-${esc(s.id)}" value="modify"> Adopt with changes</label>
+    <label><input type="radio" name="decision-${esc(s.id)}" value="hold"> Hold — decide later</label>
+    <label><input type="radio" name="decision-${esc(s.id)}" value="reject"> Reject</label>
+  </fieldset>
+</article>`
+    )
+    .join("");
+
   const html = `
 ${breadcrumb([{ href: url("/"), label: "Home" }, { label: "Suggestions" }])}
 <div class="article-head">
   <div class="wrap">
     <p class="kicker">Review before implementing</p>
-    <h1 class="article-head__title">Suggestions</h1>
+    <h1 class="article-head__title">The decision board</h1>
     <p class="article-head__dek">${esc(suggestions.intro)}</p>
   </div>
 </div>
 <section class="section">
   <div class="wrap">
-    <div class="tablewrap" style="margin-bottom:1.5rem">
+    <div class="decision__bar" id="decision-bar">
+      <p class="decision__bar-count"><strong id="decision-count">0 of ${items.length}</strong> decisions recorded</p>
+      <p class="tiny faint">Your choices are saved in this browser only. Nothing is transmitted, and nothing on the site changes until a decision is handed back to the build.</p>
+      <button class="btn btn--ghost" type="button" id="decision-copy">Copy my decisions</button>
+      <textarea id="decision-export" class="decision__export" rows="4" readonly aria-label="Decision summary"></textarea>
+    </div>
+
+    <div class="decisions">${board}</div>
+
+    <h2 class="section__title" style="font-size:1.35rem;margin-top:2.75rem">The same register, as a table</h2>
+    <div class="tablewrap" style="margin:1rem 0 1.5rem">
       <table class="data sortable">
-        <caption>Status key. Anything not marked "shipped" is waiting for a decision — nothing beyond the initial build has been implemented.</caption>
+        <caption>Status key. Anything not marked "shipped" is waiting for a decision — nothing beyond what is already live has been implemented.</caption>
         <thead><tr><th scope="col">Status</th><th scope="col">Meaning</th><th scope="col">Count</th></tr></thead>
         <tbody>${suggestions.statusKey
           .map(
@@ -1433,7 +1650,7 @@ ${breadcrumb([{ href: url("/"), label: "Home" }, { label: "Suggestions" }])}
 
     <div class="tablewrap">
       <table class="data sortable">
-        <caption>Every suggestion, ordered by weight. Weight is our confidence that it is the right next move, not its effort. Read the "risk" column before accepting any of them.</caption>
+        <caption>Every suggestion, ordered by weight. Weight is our confidence that it is the right next move, not its effort. Read the "what could go wrong" column before accepting any of them.</caption>
         <thead>
           <tr>
             <th scope="col">ID</th><th scope="col">Suggestion</th><th scope="col">Status</th>
@@ -1459,8 +1676,8 @@ ${breadcrumb([{ href: url("/"), label: "Home" }, { label: "Suggestions" }])}
 `;
   pages.push({
     path: "/suggestions/",
-    title: "Suggestions",
-    desc: "A reviewable decision list: sixteen suggestions with rationale, cost, risk, and a recommendation — nothing implemented without a decision.",
+    title: "Suggestions — the decision board",
+    desc: "A decision board: review each suggestion with its rationale, cost and risk, record your choice, and export the decisions — nothing is implemented before you choose.",
     html,
     priority: "0.6",
     changefreq: "weekly"
@@ -1490,7 +1707,14 @@ ${breadcrumb([{ href: url("/"), label: "Home" }, { label: "Executive summary" }]
     <h2>What exists</h2>
     <ul>
       <li><strong>A five-product publication</strong> — three air fryers, two thermometers — with individual pages, two category hubs, and a full comparison table.</li>
-      <li><strong>Four question-shaped guides</strong>, written as decisions rather than rankings.</li>
+      <li><strong>Eight question-shaped guides</strong>, written as decisions rather than rankings — including a dated seasonal edit for the 2026 hosting season.</li>
+      <li><strong>Reader-facing polish</strong>: editorial imagery (generated art, labelled as such — never product photography), a house byline, two visible topic clusters, and a front page that leads with products and questions instead of the verification process.</li>
+      <li><strong>A decision board</strong> on <a href="${url(
+        "/suggestions/"
+      )}">the suggestions page</a>: every suggestion can be adopted, modified, held or rejected by a reviewer, and the choices export as text — nothing gets implemented before that choice.</li>
+      <li><strong>A product-intent confirmation record</strong> on <a href="${url(
+        "/register/"
+      )}">the register</a>: intended ASIN, official listing URL, confirmation date and source, kept in a separate table from the observed redirect targets.</li>
       <li><strong>A complete source register</strong>: ${policy.sources.length} primary sources and ${products.reduce(
         (n, p) => n + p.specs.length,
         0
@@ -1539,8 +1763,8 @@ ${breadcrumb([{ href: url("/"), label: "Home" }, { label: "Executive summary" }]
     </ol>
 
     <h2>The honest verdict</h2>
-    <p>What exists is a small, well-documented, compliant publication with four decent guides and five products. It is not yet a business: it has no traffic, no verified affiliate attribution, and no data. It is, however, built so that when those three things arrive, nothing has to be torn down — and so that nothing on it is a lie.</p>
-    <p>The main strategic risk is not technical. It is that four guides is not enough content to rank in a crowded category, and the plan for fixing that is a cadence, not a feature.</p>
+    <p>What exists is a small, well-documented, compliant publication with eight decent guides and five products. It is not yet a business: it has no traffic, no verified affiliate attribution, and no data. It is, however, built so that when those three things arrive, nothing has to be torn down — and so that nothing on it is a lie.</p>
+    <p>The main strategic risk is not technical. It is that eight guides is still a small site in a crowded category, and the plan for fixing that is a cadence, not a feature.</p>
   </div>
 </section>
 `;

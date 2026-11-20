@@ -13,6 +13,7 @@
 <meta property="og:title" content="Source register — Counter Space">
 <meta property="og:description" content="Every specification and policy claim on this site, with its verification status and a link to the primary source.">
 <meta property="og:url" content="https://sassnarep3-star.github.io/WinA/register/">
+<meta property="og:image" content="https://sassnarep3-star.github.io/WinA/assets/img/hero.jpg">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Source register — Counter Space">
 <meta name="twitter:description" content="Every specification and policy claim on this site, with its verification status and a link to the primary source.">
@@ -57,52 +58,105 @@
 
 <section class="section">
   <div class="wrap">
-    <h2 class="section__title" style="font-size:1.4rem">Link resolution</h2>
-    <p class="section__dek" style="margin-bottom:1.25rem">The five submitted short links, what they resolved to, and the separation between the intended ASIN (never supplied) and the observed destination (recorded by following the link).</p>
+    <h2 class="section__title" style="font-size:1.4rem">Product-intent confirmation record</h2>
+    <p class="section__dek" style="margin-bottom:1.25rem">What each submitted link was <em>meant</em> to sell. The four fields — intended ASIN, official listing URL, confirmation date, source — are filled only when the owner confirms them in Associates Central. Nothing here is inferred from the redirect; the observed record below is a separate table and the two are never merged. Amazon's ASIN is the checkable identifier.</p>
     <div class="tablewrap">
       <table class="data sortable">
-        <caption>Submitted link → observed destination. Intended ASIN is a separate field from observed destination and is deliberately blank.</caption>
-        <thead><tr><th scope="col">Submitted code</th><th scope="col">Link</th><th scope="col">Observed ASIN</th><th scope="col">Intended ASIN</th><th scope="col">Confirmed</th><th scope="col">Method</th></tr></thead>
+        <caption>Intent confirmation record. Blank means unconfirmed — the owner supplies each value deliberately. See FLG-001 and FLG-019.</caption>
+        <thead><tr><th scope="col">Submitted code</th><th scope="col">Intended ASIN</th><th scope="col">Official listing URL</th><th scope="col">Confirmation date</th><th scope="col">Source</th><th scope="col">Status</th></tr></thead>
+        <tbody><tr>
+    <td><code>B04G1MEwY</code></td>
+    <td><span class="faint">— blank, unconfirmed</span></td>
+    <td><span class="faint">— blank, unconfirmed</span></td>
+    <td><span class="faint">— blank, unconfirmed</span></td>
+    <td><span class="faint">— blank, unconfirmed</span></td>
+    <td><span class="pill pill--review">awaiting-owner-confirmation</span></td>
+  </tr><tr>
+    <td><code>B02NbDxp3</code></td>
+    <td><span class="faint">— blank, unconfirmed</span></td>
+    <td><span class="faint">— blank, unconfirmed</span></td>
+    <td><span class="faint">— blank, unconfirmed</span></td>
+    <td><span class="faint">— blank, unconfirmed</span></td>
+    <td><span class="pill pill--review">awaiting-owner-confirmation</span></td>
+  </tr><tr>
+    <td><code>B00hJ57DV</code></td>
+    <td><span class="faint">— blank, unconfirmed</span></td>
+    <td><span class="faint">— blank, unconfirmed</span></td>
+    <td><span class="faint">— blank, unconfirmed</span></td>
+    <td><span class="faint">— blank, unconfirmed</span></td>
+    <td><span class="pill pill--review">awaiting-owner-confirmation</span></td>
+  </tr><tr>
+    <td><code>B0c8moW59</code></td>
+    <td><span class="faint">— blank, unconfirmed</span></td>
+    <td><span class="faint">— blank, unconfirmed</span></td>
+    <td><span class="faint">— blank, unconfirmed</span></td>
+    <td><span class="faint">— blank, unconfirmed</span></td>
+    <td><span class="pill pill--review">awaiting-owner-confirmation</span></td>
+  </tr><tr>
+    <td><code>B0f3GKalj</code></td>
+    <td><span class="faint">— blank, unconfirmed</span></td>
+    <td><span class="faint">— blank, unconfirmed</span></td>
+    <td><span class="faint">— blank, unconfirmed</span></td>
+    <td><span class="faint">— blank, unconfirmed</span></td>
+    <td><span class="pill pill--review">awaiting-owner-confirmation</span></td>
+  </tr></tbody>
+      </table>
+    </div>
+    <div class="note note--warn mt1">
+      <p class="note__title">How this row gets closed</p>
+      <p>Sign in to Associates Central, find each product's link under Product Links, and record the ASIN shown there, the listing URL it points at, the date confirmed, and where the confirmation came from. Until then the row stays exactly as you see it.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section section--deep">
+  <div class="wrap">
+    <h2 class="section__title" style="font-size:1.4rem">Observed redirect record</h2>
+    <p class="section__dek" style="margin-bottom:1.25rem">What the five submitted short links <em>actually</em> resolved to, recorded by following each one on 2026-11-20. Kept separate from the intent record above, because observation is not intention.</p>
+    <div class="tablewrap">
+      <table class="data sortable">
+        <caption>Submitted link → observed destination. Observed values are facts about the redirect; they say nothing about intent. The re-check column records what the same link resolved to when re-opened later the same day (FLG-031) — both observations stand, each dated.</caption>
+        <thead><tr><th scope="col">Submitted code</th><th scope="col">Link</th><th scope="col">Observed ASIN</th><th scope="col">Observed on</th><th scope="col">Method</th><th scope="col">Same-day re-check</th></tr></thead>
         <tbody><tr>
     <td><code>B04G1MEwY</code></td>
     <td><a href="https://link.amazon/B04G1MEwY" rel="nofollow noopener" target="_blank" data-nonaffiliate="true">link.amazon</a></td>
     <td><a href="https://www.amazon.com/dp/B0CDY277D3?tag=shopnow047c-20" rel="sponsored nofollow noopener" target="_blank"
       data-affiliate="B0CDY277D3" data-slot="citation"><code>B0CDY277D3</code></a></td>
-    <td class="blank">not supplied</td>
     <td>2026-11-20</td>
     <td>observed redirect</td>
+    <td>https://www.amazon.com/<br><span class="tiny muted">amazon.com home page — recorded product destination NOT reproduced · 2026-11-20</span></td>
   </tr><tr>
     <td><code>B02NbDxp3</code></td>
     <td><a href="https://link.amazon/B02NbDxp3" rel="nofollow noopener" target="_blank" data-nonaffiliate="true">link.amazon</a></td>
     <td><a href="https://www.amazon.com/dp/B09B7SB46R?tag=shopnow047c-20" rel="sponsored nofollow noopener" target="_blank"
       data-affiliate="B09B7SB46R" data-slot="citation"><code>B09B7SB46R</code></a></td>
-    <td class="blank">not supplied</td>
     <td>2026-11-20</td>
     <td>observed redirect</td>
+    <td>https://www.amazon.com/<br><span class="tiny muted">amazon.com home page — recorded product destination NOT reproduced · 2026-11-20</span></td>
   </tr><tr>
     <td><code>B00hJ57DV</code></td>
     <td><a href="https://link.amazon/B00hJ57DV" rel="nofollow noopener" target="_blank" data-nonaffiliate="true">link.amazon</a></td>
     <td><a href="https://www.amazon.com/dp/B08DKYBTPH?tag=shopnow047c-20" rel="sponsored nofollow noopener" target="_blank"
       data-affiliate="B08DKYBTPH" data-slot="citation"><code>B08DKYBTPH</code></a></td>
-    <td class="blank">not supplied</td>
     <td>2026-11-20</td>
     <td>observed redirect</td>
+    <td>https://www.amazon.com/<br><span class="tiny muted">amazon.com home page — recorded product destination NOT reproduced · 2026-11-20</span></td>
   </tr><tr>
     <td><code>B0c8moW59</code></td>
     <td><a href="https://link.amazon/B0c8moW59" rel="nofollow noopener" target="_blank" data-nonaffiliate="true">link.amazon</a></td>
     <td><a href="https://www.amazon.com/dp/B0DHZTCNR5?tag=shopnow047c-20" rel="sponsored nofollow noopener" target="_blank"
       data-affiliate="B0DHZTCNR5" data-slot="citation"><code>B0DHZTCNR5</code></a></td>
-    <td class="blank">not supplied</td>
     <td>2026-11-20</td>
     <td>observed redirect</td>
+    <td>https://www.amazon.com/<br><span class="tiny muted">amazon.com home page — recorded product destination NOT reproduced · 2026-11-20</span></td>
   </tr><tr>
     <td><code>B0f3GKalj</code></td>
     <td><a href="https://link.amazon/B0f3GKalj" rel="nofollow noopener" target="_blank" data-nonaffiliate="true">link.amazon</a></td>
     <td><a href="https://www.amazon.com/dp/B0DZFD6R9Z?tag=shopnow047c-20" rel="sponsored nofollow noopener" target="_blank"
       data-affiliate="B0DZFD6R9Z" data-slot="citation"><code>B0DZFD6R9Z</code></a></td>
-    <td class="blank">not supplied</td>
     <td>2026-11-20</td>
     <td>observed redirect</td>
+    <td>https://www.amazon.com/dp/B0DZFD6R9Z<br><span class="tiny muted">product page reproduced — title matches the recorded resolution · 2026-11-20</span></td>
   </tr></tbody>
       </table>
     </div>
