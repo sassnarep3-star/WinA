@@ -91,7 +91,7 @@ for (const page of pages) {
   }
 
   /* ---- 4. claim bans on the pages a buyer reads */
-  const OPS = /^\/(register|flagged|dashboard|questions|suggestions|summary|analytics|seo|marketing|concept|compare|disclosure|privacy|about)\b/.test(url) || url.startsWith("/archive/");
+  const OPS = /^\/(register|flagged|dashboard|questions|suggestions|decisions|summary|analytics|seo|marketing|concept|compare|disclosure|privacy|about)\b/.test(url) || url.startsWith("/archive/");
   // A claim inside quotation marks is somebody else's sentence, quoted — which is what the
   // marketing plan does when it describes what a review farm writes.
   const body = doc
