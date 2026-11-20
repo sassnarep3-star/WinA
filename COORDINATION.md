@@ -7116,4 +7116,26 @@ to `about.html` fails with three violations; `data/questions.json` truncated in 
 broken pages to readers while every gate stayed green, because no gate looked for it. Fixed on
 `main` by a parallel session; this branch records it and defers to that fix.
 
-**Status:** done — PR, merge and deploy record appended below.
+**Status:** done — PR, merge and deploy record below.
+
+### Integration record
+
+| | |
+|---|---|
+| Branch | `arena/f14580cb-wina` (base `80b45a1`, merged `origin/main` twice during the task) |
+| PR #69 | *"T41: correct four stale figures in the reviewer documents, and gate them (R-12)"* → **merged** `84e9008`, 2026-11-20T07:36:01Z. Checks: `Compliance & integrity gate` pass · `compliance & integrity gate (G-1…G-3)` pass · `gate` (archive) pass. |
+| PR #74 | *"T41: board record"* → **merged** `65068a7`, 2026-11-20T07:53:45Z. Same three checks pass. |
+| Pages deploy | `Build, verify and deploy` **success** (26 s) and `pages build and deployment` **success** on both merge commits — the deploy job runs `tools/check_site.py` first, so a failing gate blocks the release rather than reddening a check. |
+| Live check | `executive-summary.html?cb=final1` → no conflict markers, single table (no duplicated rows), **"14 proposals"** and **"16 questions"** present. `data-room/compliance-gate.html?cb=final1` → renders, disclosure strip and gate table intact. |
+| Final gate on the branch | `python3 tools/check_site.py` → PASS · 0 conflict markers outside `archive/` · every `data/**/*.json` parses · `archive/` byte-identical to `main`. |
+
+**What the branch actually changed on `main`:** four figures in three pages plus `README.md`
+(PR #69), the **R-12** stated-counts rule (PR #69), and this board record (PR #74). Its own
+resolution of the 29 committed conflict markers was **dropped in favour of the parallel
+session's** hotfix, because two competing resolutions of the same files is the failure mode that
+caused the incident.
+
+**Left open for the owner, none of it blocking:** the 38 flags not printed on the Flagged page;
+R-02's untagged-undeclared blind spot; which register is authoritative for a reader-facing count;
+and the `shop.html` *"most-reviewed thermometer"* phrase this branch would not have written.
+
