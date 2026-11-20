@@ -65,6 +65,27 @@
 </div>
 <section class="section">
   <div class="wrap">
+    <div class="qstat" style="margin-bottom:1.75rem">
+      <div class="qstat__cell qstat__cell--warn">
+        <p class="qstat__num">8</p>
+        <p class="qstat__lab">Need a credential</p>
+      </div><div class="qstat__cell qstat__cell--warn">
+        <p class="qstat__num">19</p>
+        <p class="qstat__lab">Not knowable here</p>
+      </div><div class="qstat__cell qstat__cell--warn">
+        <p class="qstat__num">4</p>
+        <p class="qstat__lab">Policy withholds</p>
+      </div><div class="qstat__cell qstat__cell--ok">
+        <p class="qstat__num">9</p>
+        <p class="qstat__lab">Resolved</p>
+      </div>
+    </div>
+
+    <div class="note note--stop" style="margin-bottom:2rem">
+      <p class="note__title">What actually needs you</p>
+      <p>Five items cannot move without the account holder. <strong>FLG-004</strong>: is shopnow047c-20 enrolled, active and earning? If not, nothing on this site pays. <strong>FLG-009 / SG-29</strong>: Search Console has never been verified, so nobody knows what this site is indexed for or whether any archived page was indexed before it was disallowed. <strong>FLG-024</strong>: tagged links are live for all five products while zero per-product Special Link tests have been recorded. <strong>FLG-011</strong>: no analytics endpoint, so nothing is measured. <strong>FLG-013</strong>: five guides sit below the Associates review guidance of roughly ten posts, and content is expected to be recent. The rest of the action rows are consequences of these five, and the review rows record what cannot be known from this repository at all.</p>
+    </div>
+
     <div class="tablewrap" style="margin-bottom:2rem">
       <table class="data sortable">
         <caption>Summary. "Resolved" means we found the answer and recorded it; "review" means the answer is not knowable from here; "action" means it needs a credential or a deploy; "withheld" means a policy prevents display.</caption>
@@ -289,259 +310,259 @@
     </div>
 
     <h2 class="section__title" style="font-size:1.4rem">In detail</h2>
-    <div style="margin-top:1.25rem"><article class="note note--warn" style="margin-bottom:1.25rem">
+    <div style="margin-top:1.25rem"><article class="note note--warn" id="FLG-003" style="margin-bottom:1.25rem">
     <p class="note__title">FLG-003 <span class="pill pill--review">review</span></p>
     <h3 style="font-family:var(--serif);font-size:1.15rem;margin:.2rem 0 .5rem;color:var(--ink)">Compliance status of link.amazon short links is unresolved</h3>
     <p style="margin:0 0 .6rem">Whether link.amazon short links satisfy the requirement that a link not obscure the destination is not something we can settle from published policy text. Non-Amazon-owned shorteners are clearly addressed; this is Amazon's own domain. We are not claiming these links are invalid. The question is open.</p>
     <p style="margin:0 0 .6rem"><strong>What we did:</strong> Not depended upon. The site links directly to amazon.com product pages instead. Raised for review so the question gets a real answer from Associates support.</p>
     <p class="small" style="margin:0"><a href="https://affiliate-program.amazon.com/help/operating/policies" rel="noopener" target="_blank">Participation Requirements §6(w)</a></p>
-  </article><article class="note note--warn" style="margin-bottom:1.25rem">
+  </article><article class="note note--warn" id="FLG-004" style="margin-bottom:1.25rem">
     <p class="note__title">FLG-004 <span class="pill pill--review">review</span></p>
     <h3 style="font-family:var(--serif);font-size:1.15rem;margin:.2rem 0 .5rem;color:var(--ink)">Tracking ID attribution unverified</h3>
     <p style="margin:0 0 .6rem">shopnow047c-20 is applied to every outbound link, but confirming that it is an active, enrolled Associates ID requires signing in to the Associates dashboard. That sign-in cannot be performed from here, and no first-party report was available.</p>
     <p style="margin:0 0 .6rem"><strong>What we did:</strong> Test one link per product in the enrolled workflow and confirm the destination and the tracking report before scaling. Until then, treat attribution as unconfirmed.</p>
     <p class="small" style="margin:0"><a href="https://affiliate-program.amazon.com/" rel="noopener" target="_blank">Amazon Associates Central (sign-in required)</a></p>
-  </article><article class="note note--warn" style="margin-bottom:1.25rem">
+  </article><article class="note note--warn" id="FLG-007" style="margin-bottom:1.25rem">
     <p class="note__title">FLG-007 <span class="pill pill--review">review</span></p>
     <h3 style="font-family:var(--serif);font-size:1.15rem;margin:.2rem 0 .5rem;color:var(--ink)">No product photography</h3>
     <p style="margin:0 0 .6rem">No licensed product images are available. Amazon Program Content may not be copied, stored, or hot-linked outside approved tooling, and stock photography of a different appliance would misrepresent the item.</p>
     <p style="margin:0 0 .6rem"><strong>What we did:</strong> Pages are deliberately typographic — colour, type and layout carry the design. The real fix is Creatives API access, which would supply compliant imagery.</p>
     <p class="small" style="margin:0"><a href="https://affiliate-program.amazon.com/help/operating/policies" rel="noopener" target="_blank">Participation Requirements §6(a); IP License §1 and §2(h)</a></p>
-  </article><article class="note note--warn" style="margin-bottom:1.25rem">
+  </article><article class="note note--warn" id="FLG-008" style="margin-bottom:1.25rem">
     <p class="note__title">FLG-008 <span class="pill pill--review">review</span></p>
     <h3 style="font-family:var(--serif);font-size:1.15rem;margin:.2rem 0 .5rem;color:var(--ink)">Commission rates not asserted</h3>
     <p style="margin:0 0 .6rem">Category commission rates and fixed bounty amounts change and are published inside the Associates dashboard. We did not find a current public table we could verify at build time.</p>
     <p style="margin:0 0 .6rem"><strong>What we did:</strong> No earnings estimate, effective rate, or revenue projection appears anywhere. The commission-potential column in the product register is intentionally absent.</p>
     <p class="small" style="margin:0"><a href="https://affiliate-program.amazon.com/help/operating/policies" rel="noopener" target="_blank">Commission Income Statement</a></p>
-  </article><article class="note note--warn" style="margin-bottom:1.25rem">
+  </article><article class="note note--warn" id="FLG-016" style="margin-bottom:1.25rem">
     <p class="note__title">FLG-016 <span class="pill pill--review">review</span></p>
     <h3 style="font-family:var(--serif);font-size:1.15rem;margin:.2rem 0 .5rem;color:var(--ink)">A prior build merged observed ASINs into the intended-ASIN field</h3>
     <p style="margin:0 0 .6rem">An earlier session on this repo (arena-6bd1be15) listed the observed redirect ASIN in a column headed 'Intended ASIN'. A redirect is evidence of where a link currently lands, not of what product was intended. The brief explicitly requires these be kept in separate fields. Found first by arena-2ca62ce9 (FLG-016).</p>
     <p style="margin:0 0 .6rem"><strong>What we did:</strong> This build keeps intendedAsin null for all five rows and stores the observed destination in its own field. The register page shows both columns side by side so the distinction is visible rather than asserted.</p>
     <p class="small" style="margin:0"><a href="https://sassnarep3-star.github.io/WinA/register/" rel="noopener" target="_blank">Link resolution register</a></p>
-  </article><article class="note note--warn" style="margin-bottom:1.25rem">
+  </article><article class="note note--warn" id="FLG-021" style="margin-bottom:1.25rem">
     <p class="note__title">FLG-021 <span class="pill pill--review">review</span></p>
     <h3 style="font-family:var(--serif);font-size:1.15rem;margin:.2rem 0 .5rem;color:var(--ink)">Author identity and brand name are still placeholders</h3>
     <p style="margin:0 0 .6rem">No author was named in the source material, so no byline was invented. 'Counter Space' is a working name chosen for this build and is not a registered brand. Carried forward from arena-2ca62ce9 (FLG-013).</p>
     <p style="margin:0 0 .6rem"><strong>What we did:</strong> Both need a decision from the owner. Before adopting the name publicly, check it is not an active trademark in this category. See SUG-06 and Q-20.</p>
     <p class="small" style="margin:0"><a href="https://sassnarep3-star.github.io/WinA/about/" rel="noopener" target="_blank">About page</a></p>
-  </article><article class="note note--warn" style="margin-bottom:1.25rem">
+  </article><article class="note note--warn" id="FLG-026" style="margin-bottom:1.25rem">
     <p class="note__title">FLG-026 <span class="pill pill--review">review</span></p>
     <h3 style="font-family:var(--serif);font-size:1.15rem;margin:.2rem 0 .5rem;color:var(--ink)">Every specification cited the Amazon listing, including values the listing does not state</h3>
     <p style="margin:0 0 .6rem">The source column on /products/ and /register/ linked every row to amazon.com/dp/&lt;ASIN&gt;, whether or not that page carried the value. Nine rows that had been recorded as 'unverified' are in fact published by the manufacturer, and three product pages had no manufacturer citation at all.</p>
     <p style="margin:0 0 .6rem"><strong>What we did:</strong> Fixed. Each row now resolves to its own source: Amazon listing rows still link to the listing; manufacturer rows link to the page that states them (chefman.com, emerileveryday.com, thermomaven.com, chefiq.com). The build throws if a row claims a manufacturer source without a URL.</p>
     <p class="small" style="margin:0"><a href="https://chefman.com/products/turbofry-touch-dual-window-air-fryer" rel="noopener" target="_blank">Chefman product specification block</a></p>
-  </article><article class="note note--warn" style="margin-bottom:1.25rem">
+  </article><article class="note note--warn" id="FLG-027" style="margin-bottom:1.25rem">
     <p class="note__title">FLG-027 <span class="pill pill--review">review</span></p>
     <h3 style="font-family:var(--serif);font-size:1.15rem;margin:.2rem 0 .5rem;color:var(--ink)">The 8-quart Chefman's 450°F was presented as its maximum temperature</h3>
     <p style="margin:0 0 .6rem">The listing title says '450°F Hi-Fry Option'; the manufacturer states Hi-Fry 'raises the heat to 450°F for the last two minutes', against a normal range topping out at 400°F. This site had recorded 'Max temperature: 450°F (Hi-Fry)' and a guide called it 'the top of the range in this set'. That overstates a two-minute browning finish as a continuous capability.</p>
     <p style="margin:0 0 .6rem"><strong>What we did:</strong> Corrected. The row now reads '400°F standard range; 450°F Hi-Fry for the final 2 minutes of a cycle', and the basket-vs-oven guide describes it the same way.</p>
     <p class="small" style="margin:0"><a href="https://chefman.com/products/turbofry-8-qt-air-fryer-w-high-fry" rel="noopener" target="_blank">Chefman product page, Hi-Fry description</a></p>
-  </article><article class="note note--warn" style="margin-bottom:1.25rem">
+  </article><article class="note note--warn" id="FLG-028" style="margin-bottom:1.25rem">
     <p class="note__title">FLG-028 <span class="pill pill--review">review</span></p>
     <h3 style="font-family:var(--serif);font-size:1.15rem;margin:.2rem 0 .5rem;color:var(--ink)">Chefman's 8-quart family has at least five SKUs and the listing names none of them</h3>
     <p style="margin:0 0 .6rem">chefman.com publishes RJ38-8T-BLACK (matte black) for the 8-qt Hi-Fry machine; retailer records for this ASIN give RJ38-SQSS-8T and a stainless-steel body of 12.75 x 13.5 x 10 in at 12.8 lb. The two disagree on colour and model, so no dimension, weight or wattage from either page can be attached to this listing.</p>
     <p style="margin:0 0 .6rem"><strong>What we did:</strong> Left blank rather than guessed, and recorded on the product page. The figures are not in dispute; which SKU this listing ships is.</p>
     <p class="small" style="margin:0"><a href="https://chefman.com/products/turbofry-8-qt-air-fryer-w-high-fry" rel="noopener" target="_blank">Chefman 8 Qt Hi-Fry page (RJ38-8T-BLACK) vs the Amazon listing</a></p>
-  </article><article class="note note--warn" style="margin-bottom:1.25rem">
+  </article><article class="note note--warn" id="FLG-029" style="margin-bottom:1.25rem">
     <p class="note__title">FLG-029 <span class="pill pill--review">review</span></p>
     <h3 style="font-family:var(--serif);font-size:1.15rem;margin:.2rem 0 .5rem;color:var(--ink)">Emeril's own page contradicts the Amazon listing on preset count</h3>
     <p style="margin:0 0 .6rem">emerileveryday.com states '25 Cooking Pre-sets' in its specification block and '10-in-1' in the product description; the Amazon listing states 24 one-touch presets. Three different numbers for one feature.</p>
     <p style="margin:0 0 .6rem"><strong>What we did:</strong> Recorded as 24 (the listing) with the manufacturer figure noted. Neither is published as settled. Unchanged from FLG-005's finding, now with the third number and its URL.</p>
     <p class="small" style="margin:0"><a href="https://www.emerileveryday.com/products/emeril_lagasse_french_door_airfryer_360" rel="noopener" target="_blank">Emeril Everyday specification block</a></p>
-  </article><article class="note note--warn" style="margin-bottom:1.25rem">
+  </article><article class="note note--warn" id="FLG-034" style="margin-bottom:1.25rem">
     <p class="note__title">FLG-034 <span class="pill pill--review">review</span></p>
     <h3 style="font-family:var(--serif);font-size:1.15rem;margin:.2rem 0 .5rem;color:var(--ink)">No design brief or brand-direction source; the site is deliberately typographic</h3>
     <p style="margin:0 0 .6rem">The brief asks for a polished marketing look, not an AI-generated one, but no design brief, brand guide or visual source was supplied. Because product imagery is withheld under program policy (FLG-007), the site is deliberately typographic and carries no photos. A draft design brief (designBrief) and anti-slop direction are now proposed on the suggestions page as recommendations; they are not verified facts and need an owner decision before implementation.</p>
     <p style="margin:0 0 .6rem"><strong>What we did:</strong> Owner reviews the draft design brief on /suggestions/ and confirms or edits the visual direction. Until then the design direction is a recommendation, not an adopted standard.</p>
     <p class="small" style="margin:0"><a href="https://developers.google.com/search/docs/fundamentals/creating-helpful-content" rel="noopener" target="_blank">Google Search Central — Creating Helpful, Reliable, People-First Content</a></p>
-  </article><article class="note note--warn" style="margin-bottom:1.25rem">
+  </article><article class="note note--warn" id="FLG-035" style="margin-bottom:1.25rem">
     <p class="note__title">FLG-035 <span class="pill pill--review">review</span></p>
     <h3 style="font-family:var(--serif);font-size:1.15rem;margin:.2rem 0 .5rem;color:var(--ink)">Topic roadmap titles are editorial hypotheses with no measured demand</h3>
     <p style="margin:0 0 .6rem">A catchy topic roadmap (topicRoadmap) has been proposed to feed the publishing cadence and design prompt. Every title is labelled a hypothesis. No search-volume, popularity, or product-superiority claim is made for any of them, and no query data exists to rank them. Seasonality is held until measured data arrives.</p>
     <p style="margin:0 0 .6rem"><strong>What we did:</strong> Accept the roadmap as the first draft of hypotheses only. Which topics earn traffic is decided by Search Console query data after verification (FLG-009), not by instinct. Recorded so the hypotheses are not read as claims.</p>
     <p class="small" style="margin:0"><a href="https://search.google.com/search-console" rel="noopener" target="_blank">Google Search Console Queries report (not yet verified)</a></p>
-  </article><article class="note note--warn" style="margin-bottom:1.25rem">
+  </article><article class="note note--warn" id="SG-27" style="margin-bottom:1.25rem">
     <p class="note__title">SG-27 <span class="pill pill--review">review</span></p>
     <h3 style="font-family:var(--serif);font-size:1.15rem;margin:.2rem 0 .5rem;color:var(--ink)">Navigation labels: parallel row SG-27 has no source document in this repository</h3>
     <p style="margin:0 0 .6rem">The brief names SG-27 as the navigation-labels row. Its source document was not provided, so no label set has been checked against it. The primary navigation carries five reader destinations, and the record and review surfaces are in the footer, as recorded in the design notes.</p>
     <p style="margin:0 0 .6rem"><strong>What we did:</strong> Provide the SG-27 document. Until then the labels stay as built and are not claimed to match SG-27.</p>
     <p class="small" style="margin:0"><a href="https://github.com/sassnarep3-star/WinA/blob/main/COORDINATION.md" rel="noopener" target="_blank">Board: cross-scope requests (SG rows not in repository)</a></p>
-  </article><article class="note note--warn" style="margin-bottom:1.25rem">
+  </article><article class="note note--warn" id="SG-28" style="margin-bottom:1.25rem">
     <p class="note__title">SG-28 <span class="pill pill--review">review</span></p>
     <h3 style="font-family:var(--serif);font-size:1.15rem;margin:.2rem 0 .5rem;color:var(--ink)">RSS feed: parallel row SG-28 has no source document in this repository</h3>
     <p style="margin:0 0 .6rem">The build produces an RSS 2.0 feed at /feed.xml. The RSS 2.0 specification requires the channel title, link, and description, and uses RFC 822 dates for pubDate. Checked 2026-11-20 against the RSS 2.0 specification: the channel has the required title, link and description; each item has a title, link and description; pubDate uses the RFC 822 form; and the file parses as well-formed XML. That check does not replace SG-28's own requirements, which were not supplied.</p>
     <p style="margin:0 0 .6rem"><strong>What we did:</strong> Provide the SG-28 requirements. After deploy, check the feed in a feed reader.</p>
     <p class="small" style="margin:0"><a href="https://www.rssboard.org/rss-specification" rel="noopener" target="_blank">RSS Advisory Board, RSS 2.0 Specification (checked 2026-11-20)</a></p>
-  </article><article class="note note--warn" style="margin-bottom:1.25rem">
+  </article><article class="note note--warn" id="SG-30" style="margin-bottom:1.25rem">
     <p class="note__title">SG-30 <span class="pill pill--review">review</span></p>
     <h3 style="font-family:var(--serif);font-size:1.15rem;margin:.2rem 0 .5rem;color:var(--ink)">Reader capture: parallel row SG-30 is recorded, but the form has no backend</h3>
     <p style="margin:0 0 .6rem">The brief names SG-30 as the reader-capture row. The capture form records a capture_intent event (EV-05) when submitted. No email service is connected, so no subscription is delivered (see FLG-010).</p>
     <p style="margin:0 0 .6rem"><strong>What we did:</strong> Owner decision: whether reader capture is wanted, and if so, which email service to connect. Until then the form stays inert.</p>
     <p class="small" style="margin:0"><a href="https://github.com/sassnarep3-star/WinA/blob/main/data/governance.json" rel="noopener" target="_blank">Flag register: FLG-010 and event EV-05</a></p>
-  </article><article class="note note--warn" style="margin-bottom:1.25rem">
+  </article><article class="note note--warn" id="FLG-031" style="margin-bottom:1.25rem">
     <p class="note__title">FLG-031 <span class="pill pill--review">review</span></p>
     <h3 style="font-family:var(--serif);font-size:1.15rem;margin:.2rem 0 .5rem;color:var(--ink)">Policy quotes are current only as of the document versions checked</h3>
     <p style="margin:0 0 .6rem">The Operating Agreement page shows 'Updated: October 15, 2025'. The Program Policies page shows 'Updated: April 14, 2026'. The quotes in this build match those versions. A later version can change a clause number or wording without this build knowing.</p>
     <p style="margin:0 0 .6rem"><strong>What we did:</strong> Before each publish and before any Associates application, re-check the quotes against the current pages.</p>
     <p class="small" style="margin:0"><a href="https://affiliate-program.amazon.com/help/operating/policies" rel="noopener" target="_blank">Associates Program Policies (updated April 14, 2026)</a></p>
-  </article><article class="note note--warn" style="margin-bottom:1.25rem">
+  </article><article class="note note--warn" id="FLG-033" style="margin-bottom:1.25rem">
     <p class="note__title">FLG-033 <span class="pill pill--review">review</span></p>
     <h3 style="font-family:var(--serif);font-size:1.15rem;margin:.2rem 0 .5rem;color:var(--ink)">The ASIN rationale in the brief could not be tied to an official Amazon definition</h3>
     <p style="margin:0 0 .6rem">The brief gives 'Amazon's ASIN definition' as the reason the intended-ASIN field is checkable. On 2026-11-20 no Amazon Help page giving that definition was found. The only Amazon-domain result was a Seller Central forum thread; its definition replies were written by sellers, not Amazon staff, so they are not cited as Amazon's definition. What can be checked directly is narrower: all five observed ASINs are 10 characters, A-Z and 0-9, and each observed destination ends in /dp/&lt;ASIN&gt; (data/links.json). This checks the URL format only. It does not show that a submitted link was intended for a particular ASIN, which is why the intended field stays blank.</p>
     <p style="margin:0 0 .6rem"><strong>What we did:</strong> Owner: decide whether the intended-ASIN field should be filled from the submitted link (FLG-019). If the rationale is kept, cite an Amazon Help page for the definition before publishing it.</p>
     <p class="small" style="margin:0"><a href="https://sellercentral.amazon.com/seller-forums/discussions/t/1e22c5df-d27a-4e2b-a0c1-90938b6cdcdc" rel="noopener" target="_blank">Seller Central forum thread (not Amazon Help; definition not confirmed as Amazon's)</a></p>
-  </article><article class="note note--warn" style="margin-bottom:1.25rem">
+  </article><article class="note note--warn" id="FLG-037" style="margin-bottom:1.25rem">
     <p class="note__title">FLG-037 <span class="pill pill--review">review</span></p>
     <h3 style="font-family:var(--serif);font-size:1.15rem;margin:.2rem 0 .5rem;color:var(--ink)">Product figures on the site are our own diagrams, not product photography — and a diagram can be mistaken for one</h3>
     <p style="margin:0 0 .6rem">FLG-007 withholds product photography because there is no licensed feed for it. This build adds five self-drawn form-factor diagrams to the shelf cards, the front-page pick and each product page, plus a brand icon and share card. The diagrams depict drawers, cavities and probe shapes generically; the share card and icon depict no product at all. A reader who does not read the caption could still take a diagram for a photograph of the specific model.</p>
     <p style="margin:0 0 .6rem"><strong>What we did:</strong> Every product figure carries a visible caption saying it is a drawing, not a photograph, and the product-page figure says product photography is withheld under program policy. Do not remove a caption while keeping the image. FLG-007 stays open: no photograph of any product appears anywhere on this site.</p>
     <p class="small" style="margin:0"><a href="https://affiliate-program.amazon.com/help/operating/policies" rel="noopener" target="_blank">Associates Program Policies (imagery must come from licensed program content)</a></p>
-  </article><article class="note note--warn" style="margin-bottom:1.25rem">
+  </article><article class="note note--warn" id="FLG-039" style="margin-bottom:1.25rem">
     <p class="note__title">FLG-039 <span class="pill pill--review">review</span></p>
     <h3 style="font-family:var(--serif);font-size:1.15rem;margin:.2rem 0 .5rem;color:var(--ink)">Two suggestion rationales cite a recommendation as if it were a program rule</h3>
     <p style="margin:0 0 .6rem">SUG-05 mentions the 60-day recency guidance and SUG-01 the FTC rule against describing experience you do not have. Both figures are correct against the official pages read on 2026-11-20 (Associates Help 'Application Review Process', which says content must be 'generally within the last 60 days', and FTC Disclosures 101). What is not verified is the framing in SUG-05's recommendation, which presents a weekly cadence as a way to stay inside that window. Amazon states the recency expectation for websites; it does not state a cadence that satisfies it.</p>
     <p style="margin:0 0 .6rem"><strong>What we did:</strong> Keep the recommendation, but treat it as our inference, not Amazon's instruction. No wording currently claims Amazon requires a weekly cadence, so nothing is misquoted; flagged because a future editor could tighten the sentence into a rule that does not exist.</p>
     <p class="small" style="margin:0"><a href="https://affiliate-program.amazon.com/help/node/topic/G8TW5AE9XL2VX9VM" rel="noopener" target="_blank">Associates Help: Application Review Process (read 2026-11-20)</a></p>
-  </article><article class="note note--warn" style="margin-bottom:1.25rem">
+  </article><article class="note note--warn" id="FLG-002" style="margin-bottom:1.25rem">
     <p class="note__title">FLG-002 <span class="pill pill--action">action</span></p>
     <h3 style="font-family:var(--serif);font-size:1.15rem;margin:.2rem 0 .5rem;color:var(--ink)">Submitted links carry no Associates tag of their own</h3>
     <p style="margin:0 0 .6rem">The submitted link.amazon URLs resolve to plain product pages. No tag parameter was observed on them, so they do not by themselves attribute a purchase to shopnow047c-20.</p>
     <p style="margin:0 0 .6rem"><strong>What we did:</strong> Every outbound link on this site is constructed as amazon.com/dp/&lt;ASIN&gt;?tag=shopnow047c-20 rather than reusing the submitted short link.</p>
     <p class="small" style="margin:0"><a href="https://affiliate-program.amazon.com/help/operating/policies" rel="noopener" target="_blank">Associates Program Policies</a></p>
-  </article><article class="note note--warn" style="margin-bottom:1.25rem">
+  </article><article class="note note--warn" id="FLG-009" style="margin-bottom:1.25rem">
     <p class="note__title">FLG-009 <span class="pill pill--action">action</span></p>
     <h3 style="font-family:var(--serif);font-size:1.15rem;margin:.2rem 0 .5rem;color:var(--ink)">Search Console not verified</h3>
     <p style="margin:0 0 .6rem">The site is indexable and has a sitemap and feed, but no Search Console property has been verified because that requires account access we do not have.</p>
     <p style="margin:0 0 .6rem"><strong>What we did:</strong> A placeholder verification tag is present and clearly marked. Replace the token, then submit sitemap.xml. Until then, query data is unavailable and topic choice stays a hypothesis.</p>
     <p class="small" style="margin:0"><a href="https://search.google.com/search-console" rel="noopener" target="_blank">Google Search Console</a></p>
-  </article><article class="note note--warn" style="margin-bottom:1.25rem">
+  </article><article class="note note--warn" id="FLG-010" style="margin-bottom:1.25rem">
     <p class="note__title">FLG-010 <span class="pill pill--action">action</span></p>
     <h3 style="font-family:var(--serif);font-size:1.15rem;margin:.2rem 0 .5rem;color:var(--ink)">Reader capture has no backend</h3>
     <p style="margin:0 0 .6rem">The email capture form is present for layout and measurement but no email service provider is connected, so it cannot deliver a subscription.</p>
     <p style="margin:0 0 .6rem"><strong>What we did:</strong> The form is inert and says so where a reader would hit it. No address is transmitted or stored.</p>
     <p class="small" style="margin:0"><a href="https://affiliate-program.amazon.com/help/operating/policies" rel="noopener" target="_blank">Participation Requirements §3(e) (disclosing cookies, pixels, and other tracking)</a></p>
-  </article><article class="note note--warn" style="margin-bottom:1.25rem">
+  </article><article class="note note--warn" id="FLG-011" style="margin-bottom:1.25rem">
     <p class="note__title">FLG-011 <span class="pill pill--action">action</span></p>
     <h3 style="font-family:var(--serif);font-size:1.15rem;margin:.2rem 0 .5rem;color:var(--ink)">Analytics endpoint not deployed</h3>
     <p style="margin:0 0 .6rem">A self-hosted collector exists in _worker/ and the client is written to POST five defined events. No endpoint is deployed, so the client is switched off rather than sending events into a void.</p>
     <p style="margin:0 0 .6rem"><strong>What we did:</strong> Deploy the worker, set SITE_ANALYTICS_ENDPOINT, rebuild. Until then no analytics data exists and the dashboard says so. A zero-dependency reference collector now ships at scripts/analytics-server.mjs: same event set, same key allow-list, same scrubbing and 30-day retention as _worker/collector.js, so choosing a host no longer requires writing anything. To turn it on: run it (or the Worker), set site.analyticsEndpoint in data/products.json and governance.analytics.enabled to true, rebuild — the build holds the client inert if only one of the two is set.</p>
     <p class="small" style="margin:0"><a href="https://sassnarep3-star.github.io/WinA/analytics/" rel="noopener" target="_blank">This site's measurement page</a></p>
-  </article><article class="note note--warn" style="margin-bottom:1.25rem">
+  </article><article class="note note--warn" id="FLG-013" style="margin-bottom:1.25rem">
     <p class="note__title">FLG-013 <span class="pill pill--action">action</span></p>
     <h3 style="font-family:var(--serif);font-size:1.15rem;margin:.2rem 0 .5rem;color:var(--ink)">Content volume is below the Associates review bar</h3>
     <p style="margin:0 0 .6rem">Amazon's Associates Help, 'Application Review Process' (checked 2026-11-20, US help topic G8TW5AE9XL2VX9VM), says: &quot;All Sites must have robust original content (even when advertising is removed) – a good rule of thumb is at least 10 posts.&quot; It also says: &quot;Content on your website must be recent (generally within the last 60 days).&quot; This site has 5 guides and 5 product pages. Amazon does not say whether product and hub pages count as posts, but 5 guides is below the rule of thumb on any reading. The account's own status and review history are unknown from here. Carried forward from the parallel-session register (arena-2ca62ce9, FLG-010), which found this first.</p>
     <p style="margin:0 0 .6rem"><strong>What we did:</strong> Do not submit or re-submit for review until the site has at least 10 posts and content dated within the last 60 days. The weekly cadence in the suggestions register (SUG-05) is the proposed path. Recorded as a commercial blocker, not a content-quality one.</p>
     <p class="small" style="margin:0"><a href="https://affiliate-program.amazon.com/help/node/topic/G8TW5AE9XL2VX9VM" rel="noopener" target="_blank">Associates Help: Application Review Process (checked 2026-11-20)</a></p>
-  </article><article class="note note--warn" style="margin-bottom:1.25rem">
+  </article><article class="note note--warn" id="FLG-024" style="margin-bottom:1.25rem">
     <p class="note__title">FLG-024 <span class="pill pill--action">action</span></p>
     <h3 style="font-family:var(--serif);font-size:1.15rem;margin:.2rem 0 .5rem;color:var(--ink)">Tagged product links are live before the one-per-product Special Link test</h3>
     <p style="margin:0 0 .6rem">Product buy-boxes and the register link to amazon.com/dp/&lt;observed ASIN&gt;?tag=shopnow047c-20 for all five products. The per-product test required before scaling (FLG-003) has not been run; it needs Associates Central sign-in, which this build does not have. The site does not claim the submitted short links are invalid. The test is recorded as blocked on the Special Link test register. The counts are deliberately not written into this row: scripts/compliance-gate.mjs recomputes tagged links and test rows on every build and warns while the pair is unbalanced, so the register says *what is true* rather than what was true when someone last typed a number.</p>
     <p style="margin:0 0 .6rem"><strong>What we did:</strong> Owner runs one test per product in the enrolled Associates workflow and records the destination and tracking-report line in data/special_link_tests.json. Until then no further product link is added. If a test fails, the owner chooses the link method. scripts/compliance-gate.mjs fails the build if links go live while no open flag records the state — close it by data, not by silence.</p>
     <p class="small" style="margin:0"><a href="https://affiliate-program.amazon.com/help/operating/policies" rel="noopener" target="_blank">Participation Requirements §2(b) (Special Links use the Associates ID)</a></p>
-  </article><article class="note note--warn" style="margin-bottom:1.25rem">
+  </article><article class="note note--warn" id="SG-29" style="margin-bottom:1.25rem">
     <p class="note__title">SG-29 <span class="pill pill--action">action</span></p>
     <h3 style="font-family:var(--serif);font-size:1.15rem;margin:.2rem 0 .5rem;color:var(--ink)">Search Console: parallel row SG-29 is not done — no verification is recorded</h3>
     <p style="margin:0 0 .6rem">The brief names SG-29 as the Search Console row. No Search Console verification is recorded in this repository, and no sitemap submission is recorded. The build does generate a sitemap, which lists every page. Every page currently carries a placeholder verification meta tag, which is not a verification (see FLG-025).</p>
     <p style="margin:0 0 .6rem"><strong>What we did:</strong> Account owner: verify the site in Search Console, submit the sitemap, and replace the placeholder tag with the real token (FLG-025). This needs a Google account and is not something the build can do.</p>
     <p class="small" style="margin:0"><a href="https://developers.google.com/search/docs/crawling-indexing/sitemaps/build-sitemap" rel="noopener" target="_blank">Google Search Central, Build and submit a sitemap</a></p>
-  </article><article class="note note--warn" style="margin-bottom:1.25rem">
+  </article><article class="note note--warn" id="FLG-038" style="margin-bottom:1.25rem">
     <p class="note__title">FLG-038 <span class="pill pill--action">action</span></p>
     <h3 style="font-family:var(--serif);font-size:1.15rem;margin:.2rem 0 .5rem;color:var(--ink)">The suggestion review form cannot store a decision</h3>
     <p style="margin:0 0 .6rem">Every suggestion now renders Reviewer / Choice / Date inputs, as the brief asked. The build has no backend and no account system, so nothing typed into those fields is transmitted or saved; the browser discards it on navigation. data/suggestions.json decisionLog.entries is still empty.</p>
     <p style="margin:0 0 .6rem"><strong>What we did:</strong> Record decisions by adding an entry to decisionLog.entries in data/suggestions.json and rebuilding. The form is a writing aid, and the page says so directly beneath the fields rather than implying a submission. Closing this needs either a form backend or a CMS, both of which are out of scope for a static GitHub Pages site.</p>
     <p class="small" style="margin:0"><a href="https://docs.github.com/en/pages" rel="noopener" target="_blank">GitHub Docs: GitHub Pages (static hosting, no server-side processing)</a></p>
-  </article><article class="note note--stop" style="margin-bottom:1.25rem">
+  </article><article class="note note--stop" id="FLG-005" style="margin-bottom:1.25rem">
     <p class="note__title">FLG-005 <span class="pill pill--withheld">withheld</span></p>
     <h3 style="font-family:var(--serif);font-size:1.15rem;margin:.2rem 0 .5rem;color:var(--ink)">No prices shown</h3>
     <p style="margin:0 0 .6rem">Amazon requires price data to come from its API so it stays accurate, and prohibits price tracking on the site. No Creatives or PA-API credential exists for this project, so any price printed here would be a guess that goes stale.</p>
     <p style="margin:0 0 .6rem"><strong>What we did:</strong> Price fields are marked unverified and left blank. No revenue forecast or conversion score is presented.</p>
     <p class="small" style="margin:0"><a href="https://affiliate-program.amazon.com/help/operating/policies" rel="noopener" target="_blank">Participation Requirements §2(b) (prices via API only) and §6(y) (no price tracking)</a></p>
-  </article><article class="note note--stop" style="margin-bottom:1.25rem">
+  </article><article class="note note--stop" id="FLG-006" style="margin-bottom:1.25rem">
     <p class="note__title">FLG-006 <span class="pill pill--withheld">withheld</span></p>
     <h3 style="font-family:var(--serif);font-size:1.15rem;margin:.2rem 0 .5rem;color:var(--ink)">No star ratings or review quotes</h3>
     <p style="margin:0 0 .6rem">Program Policies §6(t) forbids displaying customer reviews or star ratings unless they were obtained through Creatives API or PA API. Ratings were visible on the live listings but may not be reproduced here.</p>
     <p style="margin:0 0 .6rem"><strong>What we did:</strong> Rating and review-count rows are shown as withheld, with the reason. Not left blank, so nobody fills them in by hand later.</p>
     <p class="small" style="margin:0"><a href="https://affiliate-program.amazon.com/help/operating/policies" rel="noopener" target="_blank">Participation Requirements §6(t)</a></p>
-  </article><article class="note note--stop" style="margin-bottom:1.25rem">
+  </article><article class="note note--stop" id="FLG-012" style="margin-bottom:1.25rem">
     <p class="note__title">FLG-012 <span class="pill pill--withheld">withheld</span></p>
     <h3 style="font-family:var(--serif);font-size:1.15rem;margin:.2rem 0 .5rem;color:var(--ink)">Campaign ledger is empty by design</h3>
     <p style="margin:0 0 .6rem">There is no authorized first-party report yet. Every ledger row requires a timestamp, source, channel, eligible sessions, clicks and reported orders taken from an Associates report.</p>
     <p style="margin:0 0 .6rem"><strong>What we did:</strong> The ledger starts empty with its schema defined, so the first real report can be added without redesigning it. No placeholder numbers.</p>
     <p class="small" style="margin:0"><a href="https://affiliate-program.amazon.com/" rel="noopener" target="_blank">Associates reports (sign-in required)</a></p>
-  </article><article class="note note--stop" style="margin-bottom:1.25rem">
+  </article><article class="note note--stop" id="FLG-020" style="margin-bottom:1.25rem">
     <p class="note__title">FLG-020 <span class="pill pill--withheld">withheld</span></p>
     <h3 style="font-family:var(--serif);font-size:1.15rem;margin:.2rem 0 .5rem;color:var(--ink)">No seasonal content, because there is no seasonal demand data</h3>
     <p style="margin:0 0 .6rem">The brief asked for seasons and topic clusters. No seasonal query data was obtained from any source, so no seasonal calendar was invented. The five guides are editorial working titles, not popularity claims. Carried forward from arena-2ca62ce9 (FLG-015).</p>
     <p style="margin:0 0 .6rem"><strong>What we did:</strong> Clusters exist as two product categories. Seasons wait for Search Console query data — choosing December topics from instinct is the failure mode being avoided.</p>
     <p class="small" style="margin:0"><a href="https://search.google.com/search-console" rel="noopener" target="_blank">Search Console (not yet verified)</a></p>
-  </article><article class="note note--warn" style="margin-bottom:1.25rem">
+  </article><article class="note note--warn" id="FLG-022" style="margin-bottom:1.25rem">
     <p class="note__title">FLG-022 <span class="pill pill--low">low</span></p>
     <h3 style="font-family:var(--serif);font-size:1.15rem;margin:.2rem 0 .5rem;color:var(--ink)">Cited register identifiers (S01, S02, S07, S24) do not exist in this repo</h3>
     <p style="margin:0 0 .6rem">The brief refers to S01, S02, S07, S24 and FLG-003 as though a source register already existed. It did not. Carried forward from arena-2ca62ce9 (FLG-014).</p>
     <p style="margin:0 0 .6rem"><strong>What we did:</strong> This build creates that register from scratch: numbered sources, ten policy checks with quoted clauses, and a per-row verification status. If the owner has a separate register, those identifiers still need mapping to it.</p>
     <p class="small" style="margin:0"><a href="https://sassnarep3-star.github.io/WinA/register/" rel="noopener" target="_blank">Source register</a></p>
-  </article><article class="note note--warn" style="margin-bottom:1.25rem">
+  </article><article class="note note--warn" id="FLG-023" style="margin-bottom:1.25rem">
     <p class="note__title">FLG-023 <span class="pill pill--low">low</span></p>
     <h3 style="font-family:var(--serif);font-size:1.15rem;margin:.2rem 0 .5rem;color:var(--ink)">The word 'Sponsored' appears on two Amazon destination pages</h3>
     <p style="margin:0 0 .6rem">The destination pages for two products display 'Sponsored' near the product summary. It is unclear whether it labels the listing itself or a carousel item. Recorded as observed, not interpreted. Carried forward from arena-2ca62ce9 (FLG-006).</p>
     <p style="margin:0 0 .6rem"><strong>What we did:</strong> No claim is made about sponsorship status of any listing. Re-check on the live page before publishing anything that depends on it.</p>
     <p class="small" style="margin:0"><a href="https://www.amazon.com/dp/B09B7SB46R" rel="nofollow noopener" target="_blank" data-nonaffiliate="true">Observed listing page</a></p>
-  </article><article class="note note--warn" style="margin-bottom:1.25rem">
+  </article><article class="note note--warn" id="FLG-025" style="margin-bottom:1.25rem">
     <p class="note__title">FLG-025 <span class="pill pill--low">low</span></p>
     <h3 style="font-family:var(--serif);font-size:1.15rem;margin:.2rem 0 .5rem;color:var(--ink)">Placeholder site-verification token in every page head</h3>
     <p style="margin:0 0 .6rem">Every generated page carries &lt;meta name=&quot;google-site-verification&quot; content=&quot;REPLACE_WITH_REAL_TOKEN_FLG009&quot;&gt;. The value is a placeholder, not a verification token. It is not a credential and it does nothing, but it is a visible defect in the published HTML.</p>
     <p style="margin:0 0 .6rem"><strong>What we did:</strong> Remove the tag from the layout in _src/build.mjs, or replace it with a real token from Search Console once the owner verifies the property (FLG-009). Not changed in this session; it belongs to the shared layout.</p>
     <p class="small" style="margin:0"><a href="https://developers.google.com/search/docs/fundamentals/creating-helpful-content" rel="noopener" target="_blank">Google Search Central (verification meta tags)</a></p>
-  </article><article class="note " style="margin-bottom:1.25rem">
+  </article><article class="note " id="FLG-001" style="margin-bottom:1.25rem">
     <p class="note__title">FLG-001 <span class="pill pill--resolved">resolved</span></p>
     <h3 style="font-family:var(--serif);font-size:1.15rem;margin:.2rem 0 .5rem;color:var(--ink)">Short links carry no ASIN in the code</h3>
     <p style="margin:0 0 .6rem">Each submitted link is a /B0.../ short code that is not the ASIN. Product identity could only be established by following the redirect. All five were resolved by observation on 2026-11-20 and the observed destination is stored in its own field, separate from intended ASIN.</p>
     <p style="margin:0 0 .6rem"><strong>What we did:</strong> Resolved. Observed destination recorded per product; intended ASIN left null because none was supplied.</p>
     <p class="small" style="margin:0"><a href="https://link.amazon/B04G1MEwY" rel="nofollow noopener" target="_blank" data-nonaffiliate="true">Example submitted short link</a></p>
-  </article><article class="note " style="margin-bottom:1.25rem">
+  </article><article class="note " id="FLG-014" style="margin-bottom:1.25rem">
     <p class="note__title">FLG-014 <span class="pill pill--resolved">resolved</span></p>
     <h3 style="font-family:var(--serif);font-size:1.15rem;margin:.2rem 0 .5rem;color:var(--ink)">Five analytics events were never defined in the request</h3>
     <p style="margin:0 0 .6rem">The brief referred to 'the five defined events' but never listed them, leaving the previous session to propose its own set. Carried forward from arena-2ca62ce9 (FLG-007).</p>
     <p style="margin:0 0 .6rem"><strong>What we did:</strong> Resolved in this build. Five events are now defined explicitly — page_view, outbound_click, guide_read, compare_view, capture_intent — and documented at /analytics/. The wording differs from the earlier session's proposal; the newer set is what the shipped client emits.</p>
     <p class="small" style="margin:0"><a href="https://sassnarep3-star.github.io/WinA/analytics/" rel="noopener" target="_blank">Measurement page</a></p>
-  </article><article class="note " style="margin-bottom:1.25rem">
+  </article><article class="note " id="FLG-015" style="margin-bottom:1.25rem">
     <p class="note__title">FLG-015 <span class="pill pill--resolved">resolved</span></p>
     <h3 style="font-family:var(--serif);font-size:1.15rem;margin:.2rem 0 .5rem;color:var(--ink)">A self-hosted analytics endpoint cannot run on GitHub Pages</h3>
     <p style="margin:0 0 .6rem">GitHub Pages serves static files only, so a collector cannot be deployed there. Carried forward from arena-2ca62ce9 (FLG-008).</p>
     <p style="margin:0 0 .6rem"><strong>What we did:</strong> Resolved by design, not deployed. The collector lives in _worker/ as a dependency-free edge handler, deployable anywhere with a fetch signature. It remains undeployed — see FLG-011.</p>
     <p class="small" style="margin:0"><a href="https://docs.github.com/pages" rel="noopener" target="_blank">GitHub Pages documentation</a></p>
-  </article><article class="note " style="margin-bottom:1.25rem">
+  </article><article class="note " id="FLG-017" style="margin-bottom:1.25rem">
     <p class="note__title">FLG-017 <span class="pill pill--resolved">resolved</span></p>
     <h3 style="font-family:var(--serif);font-size:1.15rem;margin:.2rem 0 .5rem;color:var(--ink)">Conflicting reports about whether Amazon was reachable</h3>
     <p style="margin:0 0 .6rem">The first session recorded Amazon.com as unreachable from the sandbox. Two later sessions, including this one, opened the live listing pages successfully with a fetch tool. Both are true: direct curl from the sandbox returns HTTP 000 for amazon.com, while the agent's page-fetch tool resolves it. Carried forward from arena-2ca62ce9 (FLG-017).</p>
     <p style="margin:0 0 .6rem"><strong>What we did:</strong> Recorded as an environment distinction rather than an error. All five listings were confirmed by page fetch on 2026-11-20. The earlier statement is superseded, not deleted.</p>
     <p class="small" style="margin:0"><a href="https://www.amazon.com/dp/B08DKYBTPH" rel="nofollow noopener" target="_blank" data-nonaffiliate="true">Listing confirmed reachable 2026-11-20</a></p>
-  </article><article class="note " style="margin-bottom:1.25rem">
+  </article><article class="note " id="FLG-018" style="margin-bottom:1.25rem">
     <p class="note__title">FLG-018 <span class="pill pill--resolved">resolved</span></p>
     <h3 style="font-family:var(--serif);font-size:1.15rem;margin:.2rem 0 .5rem;color:var(--ink)">Three independent site builds existed for this repo</h3>
     <p style="margin:0 0 .6rem">Two earlier sessions generated root-level sites on main (PR #1, PR #6) and a third (arena-2ca62ce9) built its own. GitHub Pages serves a single source folder, so only one site can occupy the root. This session built a fourth. Carried forward from arena-2ca62ce9 (FLG-018), whose register predicted exactly this collision.</p>
     <p style="margin:0 0 .6rem"><strong>What we did:</strong> Converged to one site. The earlier builds' complete data, toolchain and generated pages are preserved unchanged under archive/. Nothing was deleted and no finding was dropped.</p>
     <p class="small" style="margin:0"><a href="https://github.com/sassnarep3-star/WinA" rel="noopener" target="_blank">Repository</a></p>
-  </article><article class="note " style="margin-bottom:1.25rem">
+  </article><article class="note " id="FLG-019" style="margin-bottom:1.25rem">
     <p class="note__title">FLG-019 <span class="pill pill--resolved">resolved</span></p>
     <h3 style="font-family:var(--serif);font-size:1.15rem;margin:.2rem 0 .5rem;color:var(--ink)">Readers had no way to find the dashboard surfaces from the front page</h3>
     <p style="margin:0 0 .6rem">The brief required every dashboard surface to stay reachable while the front page led with products. Putting them in the primary navigation would have put the audit in front of the shopper.</p>
     <p style="margin:0 0 .6rem"><strong>What we did:</strong> Resolved structurally. The primary navigation carries five reader destinations only; all nine record and review surfaces are grouped in the footer under 'Record &amp; review', so they remain one click from every page.</p>
     <p class="small" style="margin:0"><a href="https://sassnarep3-star.github.io/WinA/" rel="noopener" target="_blank">Live front page</a></p>
-  </article><article class="note " style="margin-bottom:1.25rem">
+  </article><article class="note " id="FLG-030" style="margin-bottom:1.25rem">
     <p class="note__title">FLG-030 <span class="pill pill--resolved">resolved</span></p>
     <h3 style="font-family:var(--serif);font-size:1.15rem;margin:.2rem 0 .5rem;color:var(--ink)">Policy and FTC quotes checked word for word against the official text (2026-11-20)</h3>
     <p style="margin:0 0 .6rem">Operating Agreement §5: the Associates statement and the 'misrepresent or embellish' sentence matched. Program Policies, Participation Requirements: §2(b) (price display), §6(a) (Program Content), §6(f) (keyword clause), §6(t) (ratings), §6(w) (link clarity), §6(y) (price tracking) and §3(e) (data disclosure) matched. FTC Disclosures 101: 'Place it so it's hard to miss', 'The disclosure should be placed with the endorsement message itself', and 'You can't talk about your experience with a product you haven't tried' matched. The policy quotes in data/policy.json are the same text. POL-09 is an internal rule, not a quote.</p>
     <p style="margin:0 0 .6rem"><strong>What we did:</strong> Re-run this check when Amazon or the FTC updates a document (FLG-031).</p>
     <p class="small" style="margin:0"><a href="https://affiliate-program.amazon.com/help/operating/agreement" rel="noopener" target="_blank">Associates Operating Agreement §5 (checked 2026-11-20)</a></p>
-  </article><article class="note " style="margin-bottom:1.25rem">
+  </article><article class="note " id="FLG-032" style="margin-bottom:1.25rem">
     <p class="note__title">FLG-032 <span class="pill pill--resolved">resolved</span></p>
     <h3 style="font-family:var(--serif);font-size:1.15rem;margin:.2rem 0 .5rem;color:var(--ink)">All five submitted short links re-resolved on 2026-11-20; destinations unchanged</h3>
     <p style="margin:0 0 .6rem">Each link.amazon URL was opened again. CHEFMAN 6 Quart B04G1MEwY → B0CDY277D3; Emeril Lagasse 26QT B02NbDxp3 → B09B7SB46R; Chefman 8 Qt B00hJ57DV → B08DKYBTPH; ThermoMaven 1 Sec B0c8moW59 → B0DHZTCNR5; CHEF iQ Sense Gen3 B0f3GKalj → B0DZFD6R9Z. The product title on each landing page matches data/links.json. Prices and ratings seen on the pages were not recorded, as policy requires.</p>
     <p style="margin:0 0 .6rem"><strong>What we did:</strong> None. Repeat if a link is changed.</p>
     <p class="small" style="margin:0"><a href="https://www.amazon.com/dp/B0CDY277D3" rel="nofollow noopener" target="_blank" data-nonaffiliate="true">Amazon listing (landing page of the first link)</a></p>
-  </article><article class="note " style="margin-bottom:1.25rem">
+  </article><article class="note " id="FLG-036" style="margin-bottom:1.25rem">
     <p class="note__title">FLG-036 <span class="pill pill--resolved">resolved</span></p>
     <h3 style="font-family:var(--serif);font-size:1.15rem;margin:.2rem 0 .5rem;color:var(--ink)">The three archived editions were crawlable and indexable duplicates of the live site</h3>
     <p style="margin:0 0 .6rem">archive/ holds 48 HTML pages from three earlier builds, including near-duplicate copies of the guides and product pages. None carried a noindex directive, the archive was absent from the sitemap, and the live site linked to it from /flagged/ without rel=nofollow. A crawler that found those links could index up to four competing copies of the same guide under one domain, which is the duplicate-content problem the single-build rule exists to prevent.</p>

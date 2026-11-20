@@ -1105,3 +1105,12 @@ table.data.sortable th[aria-sort="descending"] .sort-btn::after { content: " \25
 
 .qclosed { margin-top: 2.5rem; border-top: 1px solid var(--rule); padding-top: 1.25rem; }
 .qclosed summary { cursor: pointer; font-family: var(--serif); font-size: 1.06rem; }
+.qstat__cell--review, .qstat__cell--action, .qstat__cell--withheld { }
+.qstat__cell--resolved .qstat__num { color: var(--ok); }
+.qstat__cell--action .qstat__num { color: var(--clay); }
+/* Deep-linked flags get a visible landing mark, not just a hash jump. */
+.note:target {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  scroll-margin-top: 5rem;
+}

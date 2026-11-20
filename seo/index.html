@@ -66,7 +66,8 @@
 <section class="section">
   <div class="wrap narrow">
     <div class="prose">
-      <h2>One canonical site</h2><p>Everything published here lives under a single origin with a single sitemap. There is no duplicate staging site, no competing subdomain, and no second copy of the same guide in a different folder. Every page declares a canonical URL, so even if a page is reachable through more than one path, search engines are told which one counts.</p>
+      <h2>One canonical site</h2><p>Everything published here lives under a single origin with a single sitemap. There is no duplicate staging site and no competing subdomain. Every page declares a canonical URL, so even if a page is reachable through more than one path, search engines are told which one counts.</p>
+<p>One qualification, because it used to be false: three earlier builds of this site are preserved under <code>/archive/</code> as a historical record, and they contain near-duplicate copies of the guides. They were reachable and indexable until this pass. They are now disallowed in <code>robots.txt</code>, every link into them is <code>rel="nofollow"</code>, and they have never been in the sitemap. The archived HTML itself is untouched, so the record stays verbatim. See <a href="/WinA/flagged/#FLG-036">FLG-036</a>.</p>
 <p>The site is a static build with no client-side routing, so every URL is a real document that returns a real HTML page. Crawlers do not need to execute JavaScript to see the content — what you read is what is in the source.</p><h2>What is in place</h2><ul>
 <li><strong>A sitemap</strong> listing every public page with a last-modified date, referenced from <code>robots.txt</code>.</li>
 <li><strong>An RSS feed</strong> carrying the guides, so the publication has a subscribable surface from day one.</li>

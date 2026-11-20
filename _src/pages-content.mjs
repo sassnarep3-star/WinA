@@ -185,7 +185,8 @@ export const seo = {
   sections: [
     {
       title: "One canonical site",
-      body: `<p>Everything published here lives under a single origin with a single sitemap. There is no duplicate staging site, no competing subdomain, and no second copy of the same guide in a different folder. Every page declares a canonical URL, so even if a page is reachable through more than one path, search engines are told which one counts.</p>
+      body: `<p>Everything published here lives under a single origin with a single sitemap. There is no duplicate staging site and no competing subdomain. Every page declares a canonical URL, so even if a page is reachable through more than one path, search engines are told which one counts.</p>
+<p>One qualification, because it used to be false: three earlier builds of this site are preserved under <code>/archive/</code> as a historical record, and they contain near-duplicate copies of the guides. They were reachable and indexable until this pass. They are now disallowed in <code>robots.txt</code>, every link into them is <code>rel="nofollow"</code>, and they have never been in the sitemap. The archived HTML itself is untouched, so the record stays verbatim. See <a href="{BASE}/flagged/#FLG-036">FLG-036</a>.</p>
 <p>The site is a static build with no client-side routing, so every URL is a real document that returns a real HTML page. Crawlers do not need to execute JavaScript to see the content — what you read is what is in the source.</p>`
     },
     {

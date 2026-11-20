@@ -1285,7 +1285,7 @@ function flaggedPage() {
     .map(
       (f) => `<article class="note ${
         f.severity === "resolved" ? "" : f.severity === "withheld" ? "note--stop" : "note--warn"
-      }" style="margin-bottom:1.25rem">
+      }" id="${esc(f.id)}" style="margin-bottom:1.25rem">
     <p class="note__title">${esc(f.id)} <span class="pill pill--${f.severity}">${esc(
         f.severity
       )}</span></p>
@@ -1310,6 +1310,22 @@ ${breadcrumb([{ href: url("/"), label: "Home" }, { label: "Flagged for review" }
 </div>
 <section class="section">
   <div class="wrap">
+    <div class="qstat" style="margin-bottom:1.75rem">
+      ${["action", "review", "withheld", "resolved"]
+        .map(
+          (sev) => `<div class="qstat__cell qstat__cell--${sev === "resolved" ? "ok" : "warn"}">
+        <p class="qstat__num">${items.filter((f) => f.severity === sev).length}</p>
+        <p class="qstat__lab">${sev === "action" ? "Need a credential" : sev === "review" ? "Not knowable here" : sev === "withheld" ? "Policy withholds" : "Resolved"}</p>
+      </div>`
+        )
+        .join("")}
+    </div>
+
+    <div class="note note--stop" style="margin-bottom:2rem">
+      <p class="note__title">What actually needs you</p>
+      <p>Five items cannot move without the account holder. <strong>FLG-004</strong>: is shopnow047c-20 enrolled, active and earning? If not, nothing on this site pays. <strong>FLG-009 / SG-29</strong>: Search Console has never been verified, so nobody knows what this site is indexed for or whether any archived page was indexed before it was disallowed. <strong>FLG-024</strong>: tagged links are live for all five products while zero per-product Special Link tests have been recorded. <strong>FLG-011</strong>: no analytics endpoint, so nothing is measured. <strong>FLG-013</strong>: five guides sit below the Associates review guidance of roughly ten posts, and content is expected to be recent. The rest of the action rows are consequences of these five, and the review rows record what cannot be known from this repository at all.</p>
+    </div>
+
     <div class="tablewrap" style="margin-bottom:2rem">
       <table class="data sortable">
         <caption>Summary. "Resolved" means we found the answer and recorded it; "review" means the answer is not knowable from here; "action" means it needs a credential or a deploy; "withheld" means a policy prevents display.</caption>
