@@ -52,11 +52,18 @@ const pages = htmlFiles.map((f) => ({
 
 const SENTENCE = 'As an Amazon Associate I earn from qualifying purchases.';
 
+// Which Amazon hrefs this gate insists on classifying. The path alternation covers
+// /dp/…, /gp/…, /stores/… and category browse links — note `b(?:\/|\?)`, because a
+// browse node is written `/Air-Fryers/b?node=…` with no trailing slash. An earlier
+// form required `/b/` and therefore skipped the two category-hub browse links, so this
+// gate's total read 94 while `scripts/compliance-gate.mjs` read 96 for the same tree,
+// and two live Amazon anchors sat outside the three-state rule this gate exists to
+// enforce. Both gates now count the same 96. See FLG-037.
 const isShoppingAmazon = (href) => {
   if (/affiliate-program\.amazon\.com/i.test(href)) return false;
   if (/aws\.amazon\.com/i.test(href)) return false;
   return (
-    /^https?:\/\/(www\.)?amazon\.[a-z.]+\/(dp|gp|stores|[A-Za-z0-9-]+\/b\/)/i.test(href) ||
+    /^https?:\/\/(www\.)?amazon\.[a-z.]+\/(dp|gp|stores|[A-Za-z0-9-]+\/b(?:\/|\?))/i.test(href) ||
     /^https?:\/\/link\.amazon\//i.test(href) ||
     /^https?:\/\/amzn\.to\//i.test(href)
   );
