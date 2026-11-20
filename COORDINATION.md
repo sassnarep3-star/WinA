@@ -64,7 +64,7 @@ fourth site. Claim the scope here first and push the claim before writing code.
 | T13 | Preserve prior sessions' work | done | arena-ffa85037 | `archive/*` | 3 builds, 64 files, nothing deleted |
 | T14 | Merge prior findings into one register | done | arena-ffa85037 | `data/governance.json` | 23 flags; 14 carried forward with attribution |
 | T15 | PR → `main`, merge, confirm Pages deploy | in progress | arena-ffa85037 | — | See integration result below |
-| T16 | Gap closure against the brief: sortable tables on every data table; SG-27..SG-30 parallel rows (nav labels, RSS feed, Search Console, reader capture); verified policy-citation corrections | in progress | arena-a86cb9d0 | `_src/build.mjs`, `_src/pages-content.mjs`, `assets/js/site.js`, `data/governance.json`, `COORDINATION.md` (arena-a86cb9d0 section only) | Extends main; does not add a second site (see conflict record) |
+| T16 | Gap closure against the brief: sortable tables on every data table; SG-27..SG-30 parallel rows (nav labels, RSS feed, Search Console, reader capture); verified policy-citation corrections | done | arena-a86cb9d0 | `_src/build.mjs`, `_src/pages-content.mjs`, `assets/js/site.js`, `data/governance.json`, `COORDINATION.md` (arena-a86cb9d0 section only) | Extends main; does not add a second site (see conflict record) |
 
 ---
 
@@ -196,4 +196,11 @@ string.
 - **Merge.** `origin/main` merged into `arena/a86cb9d0-wina`; `main`'s files kept at every collision. No `main` content was removed.
 - **Scope of T16.** (1) sortable tables; (2) SG-27..SG-30 rows; (3) corrected policy citations where a verified clause differs from the text (checked against the Program Policies, Commission Income Statement, Participation Requirements, IP License, and FTC pages on 2026-11-20).
 - **Open item not changed here.** `main` publishes tagged `tag=shopnow047c-20` product links. The one-link Special Link test in the Associates Central workflow (F-22) has not been run from this sandbox, so this session cannot confirm that the tag is credited. That is recorded as a review item and is not a merge blocker.
+- **2026-11-20 — arena-a86cb9d0, T16 result.**
+  - **Sortable tables.** All 16 `table.data` in `_src/build.mjs` are now `table.data.sortable`. `assets/js/site.js` adds click and keyboard sorting with `aria-sort`, and `assets/css/site.css` adds the indicator. Tested in jsdom against the built pages (flagged, register, suggestions, questions): ascending and descending sorts are correct, and row counts are kept.
+  - **SG-27..SG-30.** Added to `data/governance.json` as flags (now 27). Each row states only what this repository can show. SG-27 (navigation labels) and SG-28 (RSS) lack their source documents. SG-29 (Search Console) has no verification recorded. SG-30 (reader capture) is linked to EV-05 and FLG-010. No content was invented for any SG row.
+  - **Citation corrections (checked verbatim against the policy text read on 2026-11-20).** FLG-010: the data-disclosure duty is Participation Requirements §3(e), not §6(e), which covers keyword bidding. FLG-005: the API-only price rule is §2(b); §6(y) bans price tracking. FLG-007: the copy and storage point is IP License §1 and §2(h), in addition to §6(a). Verified as correct and unchanged: OA §5 (including "misrepresent or embellish"), §6(a), §6(f), §6(t), §6(w), §6(y), and the FTC "hard to miss" quotation.
+  - **Determinism.** `node _src/build.mjs` run twice produces identical output (SHA-256 over all generated text files). Gates: PASSED.
+  - **Not done here.** The F-22 one-link Special Link test in Associates Central needs the enrolled account and was not run from this sandbox. The tagged links that `main` publishes are therefore unconfirmed (see the open item above). This is recorded for review and does not block merge.
+  - **Stale claim.** `T15` remains listed as `in progress` for `arena-ffa85037`, but its PR #13 is already merged. Logged here; the claim is treated as complete.
 
