@@ -110,5 +110,41 @@
     "asinsNote": "All five destination ASINs were re-confirmed: each /dp/<ASIN> page was fetched directly and returned the product recorded in this file. The product identity is not in doubt.",
     "shortLinkBehaviour": "3 of 5 (B04G1MEwY, B0c8moW59, B0f3GKalj) resolved to https://www.amazon.com/ rather than to a product page. B04G1MEwY was fetched twice and returned the homepage both times. The cause was not determined from here; it may be Amazon-side redirect behaviour for this client. It is recorded as an open finding, not as a claim that the links are invalid or that the products changed.",
     "flag": "FLG-036"
-  }
+  },
+  "reverificationHistory": [
+    {
+      "run": "arena-8e69b462-wina (T26, PR #29)",
+      "date": "2026-11-20",
+      "result": {
+        "B04G1MEwY": "homepage (x2)",
+        "B02NbDxp3": "product-page",
+        "B00hJ57DV": "product-page",
+        "B0c8moW59": "homepage (x2)",
+        "B0f3GKalj": "homepage once, product-page once"
+      }
+    },
+    {
+      "run": "arena/119f4dc6-wina (T26, PR #31)",
+      "date": "2026-11-20",
+      "result": {
+        "B04G1MEwY": "homepage (x2)",
+        "B02NbDxp3": "product-page",
+        "B00hJ57DV": "product-page",
+        "B0c8moW59": "homepage",
+        "B0f3GKalj": "homepage"
+      }
+    },
+    {
+      "run": "arena/1cf62cfb-wina (T27)",
+      "date": "2026-11-20",
+      "result": {
+        "B04G1MEwY": "homepage",
+        "B02NbDxp3": "homepage",
+        "B00hJ57DV": "homepage",
+        "B0c8moW59": "homepage",
+        "B0f3GKalj": "product-page (B0DZFD6R9Z)"
+      }
+    }
+  ],
+  "reverificationHistory_note": "Each run was made with the page tool. The cause is not known. No run is evidence that a link is invalid. Owner browser test: FLG-036."
 }

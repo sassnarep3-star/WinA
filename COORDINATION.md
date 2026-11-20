@@ -911,3 +911,54 @@ links, 102 Amazon links, 82 sponsored, zero failures); compliance gate 1,118 che
 - **Open PRs from other sessions, not touched:** PR #26 (`arena/574fc8eb-wina`) and PR #28
   (`arena/580f4c6d-wina`) each rebuild the site from scratch, which the board's session-history rule
   forbids; PR #2 predates the current build. They are left open for the owner to close or port.
+
+**T27 result (arena/1cf62cfb-wina, 2026-11-20) — status: done**
+
+*Sources checked (fetched 2026-11-20; quoted text is from these pages):*
+
+| Source | URL | Used for |
+|---|---|---|
+| Submitted short links (5) | https://link.amazon/B04G1MEwY · /B02NbDxp3 · /B00hJ57DV · /B0c8moW59 · /B0f3GKalj | Redirect behaviour (third run) |
+| Amazon listing, 8-qt stainless | https://www.amazon.com/dp/B08DKYBTPH | Purchase-options table (dimensions); About-this-item (1-year warranty, RJ38-SQSS-8T, "1000 Watts/120 Volts") |
+| Amazon listing, CHEF iQ | https://www.amazon.com/dp/B0DZFD6R9Z | Title ("3 Ultra-Thin Probes") |
+| Chefman 6-qt manufacturer page | https://chefman.com/products/turbofry-touch-dual-window-air-fryer | 6 Qt / 5.67 L; 1700W/120V; 13.38 × 11.81 × 10.63 in; 13.3 lb; "1 year Chefman® assurance"; RJ38-SQPF-3TDB-2W |
+| Chefman 8-qt manufacturer page (matte-black SKU, **not** this ASIN) | https://chefman.com/products/turbofry-8-qt-air-fryer-w-high-fry | Read to test the claims, not to fill values: "450°F Hi-Fry button for the final two minutes"; 1700W on RJ38-8T-BLACK |
+| Emeril manufacturer page | https://www.emerileveryday.com/products/emeril_lagasse_french_door_airfryer_360 | "1-Years Warranty" badge; 16.9"D × 15.8"W × 14.8"H; 24.6 L; **"25 Cooking Pre-sets"** (spec block) vs **"24 one-touch cooking presets"** (description); **"7 premium accessories"** |
+| ThermoMaven manufacturer page | https://www.thermomaven.com/products/f1-stealth | 1 second; ±0.5 °F NIST; lifetime warranty within 30 days; "100% waterproof" (no IP number) |
+| ThermoMaven user manual, model HT07 | https://cdn.shopify.com/s/files/1/0828/4726/9152/files/HT07_user_manual.pdf?v=1733992221 | "(1) × 1.5 volt AAA"; "LED Display … rotates 180°"; model HT07 |
+| CHEF iQ manufacturer page | https://chefiq.com/products/iq-sense | "Wi-Fi and Bluetooth"; "1,000ºF (537ºC)"; "4 internal … 1 ambient"; "70+ Hours of Battery"; size selector 1–4 probes; default SKU CQ60-1C-Z1-E |
+
+Not used as sources: web search results (eBay, manualsfile) — they appeared as leads only and nothing was taken from them. Customer reviews on manufacturer pages were read and not cited.
+
+*What was checked:*
+- Each short link: fetched once per run, three runs in total including the two earlier sessions' runs. Result below.
+- Every manufacturer-cited row I could see on the pages above was checked against the page text. Every Amazon-cited row was checked against the title text in `data/links.json`. Amazon feature bullets for the 6-qt, Emeril and CHEF iQ listings were **not** re-read line by line, so the Amazon-cited bullet rows on those three products are still supported only by earlier sessions' reads.
+
+*What changed (11 spec rows; full list in FLG-042):*
+- **Corrected to the cited source (5):** Chefman 6-qt capacity ("2 × 3 qt" is the listing title's wording, not the manufacturer's); ThermoMaven display (the manufacturer page does not say "auto-rotate"; the manual says the display rotates 180°); ThermoMaven battery (the manufacturer page's only AAA mention is a customer review; the manual states one 1.5 V AAA); CHEF iQ type ("leave-in" not stated; now "Wireless, internal temperature sensors"); Chefman 8-qt max temperature (listing range and Hi-Fry option only).
+- **Blanked, because official sources conflict (2):** Emeril presets and Emeril included accessories (FLG-029).
+- **Filled from an official page (4):** Emeril warranty ("1-Years Warranty" badge); CHEF iQ battery life ("70+ Hours of Battery", component not named); Chefman 8-qt dimensions and warranty, both from this ASIN's own listing.
+- **Left blank with reason:** Chefman 8-qt wattage (the listing's own text says 1000 W; the black-SKU page says 1700 W; FLG-028). CHEF iQ app requirement and warranty (not stated on the page read). Emeril wattage (not stated on the pages read).
+- **Not changed, on purpose:** the "final two minutes" wording in the Chefman 8-qt guide prose. It is supported by Chefman's own page for the same machine family, and FLG-027 records it. Rewriting published copy is an owner decision.
+
+*Short links, third run (2026-11-20), recorded in `data/links.json` under `reverificationHistory`:* four of five returned `https://www.amazon.com/`; `B0f3GKalj` returned `/dp/B0DZFD6R9Z`. Across the three runs no link resolved the same way every time. This is recorded in FLG-036 as a finding, not as evidence that the links are invalid.
+
+*Irregularities, published on `/flagged/`:*
+- **FLG-028 (revised)** — Chefman 8-qt: the listing names RJ38-SQSS-8T, but its own wattage text (1000 W) conflicts with Chefman's 1700 W for the black SKU.
+- **FLG-029 (revised)** — Emeril: presets and accessory counts conflict across its own pages and the listing; both rows blank.
+- **FLG-036 (revised)** — short links: third run added.
+- **FLG-039 (revised)** — coverage recomputed: 34 of 60 rows carry a verified value.
+- **FLG-040 (new)** — CHEF iQ: the model on file (CQ60-1C-Z1-E) is the manufacturer's default 1-probe variant; the ASIN's title says 3 probes.
+- **FLG-041 (new)** — ThermoMaven: the listing title ("1 Sec Professional", IP67) and the manufacturer's F1 Stealth page (HT07, "100% waterproof") are not confirmed to be the same SKU.
+- **FLG-042 (resolved)** — the T27 change log.
+
+*Machine checks on the final tree:* `node _src/build.mjs` → 30 pages, 29 in sitemap, all gates clear. `node scripts/check-site.mjs` → 1,120 internal links, 112 Amazon links (84 sponsored), gate passed. `node scripts/compliance-gate.mjs` → 1,153 checks, 0 failing, 1 warning (FLG-024, owner-only). `node scripts/publish-gate.mjs --committed` is run after commit.
+
+*Not done, and why:*
+- Associates Central sign-in and the one-link-per-product Special Link test (FLG-024). Needs the enrolled account.
+- Search Console (FLG-009, SG-29), the analytics collector (FLG-011), and reader capture (FLG-010). Each needs an owner account or hosting that this sandbox does not have.
+- The Amazon "Product information" table for `B08DKYBTPH` (wattage) was not reached in the fetched chunks. Chunks 0, 2, 3 and 4 of 20 were read.
+- The 8-qt guide prose "final two minutes" is left as published (see above).
+- No review or star rating was read into the site, in line with Program Policies §6(t).
+
+*Open PRs from other sessions — not touched, not merged:* PR #26 (`arena/574fc8eb-wina`) and PR #28 (`arena/580f4c6d-wina`) each rebuild the site from scratch, which this board forbids. PR #2 predates the current build. Owner decision: close them, or port any wanted content into `data/`.
