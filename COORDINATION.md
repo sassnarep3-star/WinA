@@ -709,7 +709,7 @@ record and out of this session's scope.)
 | ID | Task | Status | Owner | Files / scope | Notes |
 |---|---|---|---|---|---|
 | T26 | Independent re-verification of the five submitted short links and the product spec rows against live Amazon listings; correct the front-page shop metrics; record every discrepancy as a flag | done | arena/119f4dc6-wina | `data/links.json`, `data/governance.json`, `data/products.json` (spec rows where contradicted), `_src/build.mjs` (front-page strip + any template it touches), `COORDINATION.md` (this section only), generated pages | Extends `main`'s build; no second site. Does not touch `scripts/`, nav labels, or other sessions' sections |
-| T27 | Product-intent confirmation record: one row per submitted link with intended ASIN (blank unless supplied), official listing URL, confirmation date, confirmation source, and observed redirect target kept in a separate dated field; close FLG-033 with an official Amazon ASIN definition; fresh dated re-check of the five short links | in progress | arena/6b0f2ddc-wina (session `arena-6b0f2ddc`) | `data/links.json`, `data/policy.json` (one source row), `data/governance.json` (FLG-033 only), `_src/build.mjs` (register link table only), `scripts/compliance-gate.mjs` (link-record rule only), `COORDINATION.md` (T27 section only), generated `register/`, `flagged/`, `summary/` | Claimed 2026-11-20 before any edit. Extends `main`'s build; no second site. Owner-side items (Associates sign-in, Special Link test, Search Console, collector deploy) are not claimed. |
+| T27 | Product-intent confirmation record: one row per submitted link with intended ASIN (blank unless supplied), official listing URL, confirmation date, confirmation source, and observed redirect target kept in a separate dated field; close FLG-033 with an official Amazon ASIN definition; fresh dated re-check of the five short links | done | arena/6b0f2ddc-wina (session `arena-6b0f2ddc`) | `data/links.json`, `data/policy.json` (one source row), `data/governance.json` (FLG-033 closed to review; FLG-040 appended), `_src/build.mjs` (register link table only), `scripts/compliance-gate.mjs` (link-record rule only), `EXECUTIVE_SUMMARY.md` (T27 section and flag count only), `COORDINATION.md` (T27 section only), generated `register/`, `flagged/`, `summary/` | Claimed 2026-11-20 before any edit. Extends `main`'s build; no second site. Owner-side items (Associates sign-in, Special Link test, Search Console, collector deploy) are not claimed. | Result in the T27 section below. Extends `main`; no second site. Owner-side items not attempted. |
 
 - **Claim made:** 2026-11-20, immediately before writing code, per board rule 2.
 - **Why this task:** a fresh read-through of `main` found two buyer-facing defects that the three
@@ -899,3 +899,46 @@ links, 102 Amazon links, 82 sponsored, zero failures); compliance gate 1,118 che
 - **Claim:** T27 (table row above). Claimed and pushed before any edit, per board rule 2.
 - **Why:** the brief asks for a product-intent confirmation record with four named fields per submitted link (intended ASIN, official listing URL, confirmation date, source) and a separate observed redirect target. The register's link table is generated from `products.json`, so the official listing URL and confirmation source are not stored per link. FLG-033 (no official Amazon ASIN definition found) is still open; an Amazon-domain definition was located on 2026-11-20 and is to be checked and recorded.
 - **Not claimed:** intended ASINs stay blank (the owner never supplied them; filling them from observed destinations would merge the two fields, which the brief forbids). Associates sign-in, the Special Link test, Search Console, and the analytics collector deploy remain owner-side.
+
+**T27 result (arena/6b0f2ddc-wina, 2026-11-20)**
+
+*What changed*
+
+- `data/links.json`: each link now carries four named fields — `intendedAsin` (still `null`, with `intendedAsinNote` giving the reason), `officialListingUrl` (`https://www.amazon.com/dp/<observed ASIN>`), `confirmedOn` (2026-11-20), `confirmationSourceIds` — plus `observedRedirectTargets`, a dated list with one entry per check. The observed targets are kept apart from the official listing. Existing fields are untouched.
+- `data/policy.json`: one source row, `amazon-asin-definition` (sell.amazon.com).
+- `data/governance.json`: FLG-033 closed to `review` with the Amazon source and its caveat. FLG-040 appended (short-link landing not stable across checks). Both checked: 44 unique ids, each rendered once on `/flagged/`.
+- `_src/build.mjs`: the register's "Link resolution" table reads `data/links.json` and shows the four fields plus the latest observed landing. The official-listing link is a tagged sponsored link; observed landings are text, not links.
+- `scripts/compliance-gate.mjs`: a rule block for the record (official URL = ASIN page; ISO dates; source ids exist in policy; intended ASIN null-or-10-chars and explained when blank; each result must match its URL; `observationsAgree` must match the data).
+- `EXECUTIVE_SUMMARY.md`: section 9 added; flag count corrected 43 → 44.
+
+*Sources used*
+
+| Source | URL | Used for | Read |
+|---|---|---|---|
+| Amazon Selling on Amazon, *Understanding ASINs* | https://sell.amazon.com/blog/what-is-an-asin | ASIN definition; `/dp/` location. **Caveat:** page states it was "produced with the assistance of generative artificial intelligence" | 2026-11-20, both chunks |
+| Amazon product page, all five ASINs | https://www.amazon.com/dp/B0CDY277D3 · …/B09B7SB46R · …/B08DKYBTPH · …/B0DHZTCNR5 · …/B0DZFD6R9Z | Title match for `officialListingUrl` | 2026-11-20 |
+| Submitted short links | https://link.amazon/B04G1MEwY · …/B02NbDxp3 · …/B00hJ57DV · …/B0c8moW59 · …/B0f3GKalj | Observed landing (T27 check) | 2026-11-20 |
+
+*Verification performed*
+
+- All five official listing pages re-fetched: each title matches `data/links.json` `resolvedTitle`. Product identity unchanged.
+- All five short links re-fetched once: four landed on `https://www.amazon.com/`; B0f3GKalj landed on its `/dp/B0DZFD6R9Z` page (the final URL carries Amazon tracking and `plpRedirect` parameters, recorded exactly as returned).
+- Observation history per link (first resolution, T26, T27): **all five disagree** across the three. Computed by script into `observationsAgree`, not typed.
+- The `/dp/` pages were returned with `plpRedirect=mhFallback` parameters by the page tool. Those are not used on the site: the buttons link to the clean `/dp/<ASIN>?tag=shopnow047c-20` form.
+- `node _src/build.mjs` → 30 pages, 29 in sitemap, all gates clear; rebuild byte-identical for `flagged/`.
+- `node scripts/compliance-gate.mjs` → 1,207 checks, 0 failing, 1 warning (FLG-024, owner-only).
+- `node scripts/check-site.mjs` → 30 pages, 1,125 internal links, 104 Amazon links (82 sponsored), zero failures.
+- Gate rule proved by hand: the first build of the register used a non-affiliate citation for the official listing. The brief requires every product link to be sponsored, so that was changed to the tagged link before commit; the sponsored count returned to 82.
+
+*Irregularities (published on `/flagged/`)*
+
+| ID | Severity | Finding |
+|---|---|---|
+| FLG-033 | review (was open) | Amazon's own ASIN page is now the source, but it is seller-education material, not a Help article, and states it was AI-assisted. |
+| FLG-040 | review (new) | Short-link landing differs across all three checks for all five links. Extends FLG-036. |
+| FLG-036 | review (unchanged) | Owner browser check still needed. |
+
+*Not done, and why:* the intended ASIN is not filled (owner has not supplied it; filling it from the observed value would merge the two fields). Associates sign-in and the Special Link test (FLG-004, FLG-024), Search Console (FLG-009) and the collector deploy (FLG-011) need owner credentials and are not attempted.
+
+**Status:** done. PR and merge record to follow in a board-only follow-up, as in earlier sessions.
+
