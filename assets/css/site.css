@@ -967,3 +967,12 @@ table.data caption { text-align: left; font-size: .78rem; }
 .qmore[open] summary::before { content: "－ "; }
 .qmore p { margin: .5rem 0 0; font-size: .82rem; color: var(--ink-soft); }
 .qmore p strong { color: var(--ink); }
+
+/* --- chips inside cards: the copy is a sentence, not a tag -------------
+   `chip` defaults to nowrap for short labels. The "Good for / Costs you"
+   rows carry whole clauses, so inside a card they must wrap and must never
+   set the card's minimum width.
+   -------------------------------------------------------------------- */
+.pcard__chips .chip { white-space: normal; text-align: left; line-height: 1.45; font-size: .74rem; }
+.pcard__chips { min-width: 0; }
+.pcard__body, .pcard { min-width: 0; }

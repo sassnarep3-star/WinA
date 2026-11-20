@@ -295,6 +295,11 @@
           <td>Buy buttons say 'Check price on Amazon' while the site states prices are not shown</td>
           <td><span class="pill pill--resolved">resolved</span></td>
           <td><a href="https://affiliate-program.amazon.com/help/operating/policies" rel="noopener" target="_blank">open</a></td>
+        </tr><tr>
+          <td><code>FLG-042</code></td>
+          <td>Marketing-kit copy ran ahead of the register in three places</td>
+          <td><span class="pill pill--resolved">resolved</span></td>
+          <td><a href="https://www.amazon.com/dp/B0DZFD6R9Z" rel="nofollow noopener" target="_blank" data-nonaffiliate="true">open</a></td>
         </tr></tbody>
       </table>
     </div>
@@ -570,6 +575,12 @@
     <p style="margin:0 0 .6rem">Resolved by the reader-polish pass of 2026-11-20. Every buy button — hero card, product card, buy box, guide sidebar — now reads 'See it on Amazon', which is what the link actually does. The explanation of why no price is printed stays in the buy box and on /disclosure/, so the reader is told the reason rather than left to wonder. §6(y) (no price tracking) and the API-only pricing rule are unchanged; nothing in this pass introduces a price.</p>
     <p style="margin:0 0 .6rem"><strong>What we did:</strong> No owner action unless the wording is disliked. Changing it is a copy edit in _src/build.mjs, then node _src/build.mjs.</p>
     <p class="small" style="margin:0"><a href="https://affiliate-program.amazon.com/help/operating/policies" rel="noopener" target="_blank">Amazon Associates Program Policies (cited elsewhere in this register)</a></p>
+  </article><article class="note " style="margin-bottom:1.25rem">
+    <p class="note__title">FLG-042 <span class="pill pill--resolved">resolved</span></p>
+    <h3 style="font-family:var(--serif);font-size:1.15rem;margin:.2rem 0 .5rem;color:var(--ink)">Marketing-kit copy ran ahead of the register in three places</h3>
+    <p style="margin:0 0 .6rem">The kit on /marketing/kit/ is the one part of this build written to be pasted somewhere else, so an unsupported number there leaves the site. Found on 2026-11-20: the Emeril entry named rotisserie, broil, bake and dehydrate, none of which is a row in data/products.json (the listing title names a countertop convection cooker with 24 one-touch presets); the 8-quart entry turned a published 450°F setting into an observed browning outcome; and the CHEF iQ entry carried a caution asserting a one-probe configuration while the register's verified row and the observed listing title both say three probes. All three are now written from the rows themselves, and the CHEF iQ caution points at the real hazard instead — the same brand's catalogue carries a 2-probe Gen3 listing at a different ASIN, seen in the observed listing's 'customers also viewed' on 2026-11-20.</p>
+    <p style="margin:0 0 .6rem"><strong>What we did:</strong> No owner action. Anyone editing kit copy should re-read the register row rather than the brand's marketing, and keep the caution line for probe and preset counts, which vary by ASIN.</p>
+    <p class="small" style="margin:0"><a href="https://www.amazon.com/dp/B0DZFD6R9Z" rel="nofollow noopener" target="_blank" data-nonaffiliate="true">Observed listing for the CHEF iQ Sense ASIN (title states 3 ultra-thin probes)</a></p>
   </article></div>
 
     <h2 class="section__title" style="font-size:1.4rem;margin-top:2.5rem">Prior audit work on this repository</h2>

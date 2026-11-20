@@ -252,7 +252,7 @@ export const promo = {
       social:
         "A drawer holds a pile. An oven holds a tray. If dinner is a whole chicken or a full sheet of vegetables, you need the second shape — 26 quarts behind French doors, at the cost of most of a counter. → [review]",
       newsletter:
-        "There is a real fork in this category and it is not brand versus brand. A basket machine gives you a drawer you pull toward you; an oven gives you a box you reach into. The Emeril 26QT is firmly the second: rotisserie, broil, bake and dehydrate in one cavity, 26 quarts, and a footprint that takes a substantial piece of counter. If you want fries in small batches fast, this is the wrong machine. → [review]",
+        "There is a real fork in this category and it is not brand versus brand. A basket machine gives you a drawer you pull toward you; an oven gives you a box you reach into. The Emeril 26QT is firmly the second: 26 quarts behind two glass doors, 24 one-touch presets and six accessories in the box, at the cost of a substantial piece of counter. If you want fries in small batches fast, this is the wrong machine. → [review]",
       disclosureNote:
         "Sponsored. As an Amazon Associate I earn from qualifying purchases.",
       caution: "The preset count is published as 24, 25 and '10-in-1' by different official pages. Do not put a number in a post."
@@ -261,7 +261,7 @@ export const promo = {
       slug: "chefman-8-quart-turbofry",
       hook: "One big drawer, four jobs, and a two-minute high-heat finish",
       social:
-        "One drawer means one temperature at a time — which is fine if you cook one thing well. 8 quarts, four functions, and a Hi-Fry burst to 450°F for the last two minutes that browns what 400°F left pale. → [review]",
+        "One drawer means one temperature at a time — which is fine if you cook one thing well. 8 quarts, four functions, and a Hi-Fry setting the listing states as 450°F for the final two minutes of a cycle, above a 400°F standard range. → [review]",
       newsletter:
         "Single-basket machines get dismissed as the beginner option, and that is mostly wrong. One 8-quart drawer is easier to fill, toss and wash than two smaller ones, and it holds a lot of one thing. The Chefman TurboFry 4-in-1 adds a Hi-Fry finish — 450°F for the final two minutes, not a continuous 450°F cycle, which is a distinction the marketing copy elsewhere tends to blur. → [review]",
       disclosureNote:
@@ -283,12 +283,12 @@ export const promo = {
       slug: "chef-iq-sense-gen3",
       hook: "For the cook who wants to be in another room",
       social:
-        "A leave-in probe earns its price on long, indirect cooks — a smoker, a slow roast, a turkey — where the whole point is not opening the lid. Three probes, five sensors, 1,000°F rating, unlimited range through the hub. → [review]",
+        "A leave-in probe earns its price on long, indirect cooks — a smoker, a slow roast, a turkey — where the whole point is not opening the lid. Three probes and five sensors in the manufacturer's count, a 1,000°F heat rating, and a range the listing states as unlimited over Wi-Fi. → [review]",
       newsletter:
         "An instant-read answers 'is this done yet?' for something you are standing next to. A wireless probe answers it for something in another room, over hours. The CHEF iQ Sense runs three probes with four internal sensors plus an ambient one, rated to 1,000°F, reporting through a Wi-Fi hub. If you do not cook low and slow, most of what you are paying for is a feature you will not use — and that is worth saying plainly. → [review]",
       disclosureNote:
         "Sponsored. As an Amazon Associate I earn from qualifying purchases.",
-      caution: "The one-probe configuration is what this ASIN ships. Do not describe it as a three-probe bundle without checking the current listing."
+      caution: "The observed listing title for B0DZFD6R9Z states 3 ultra-thin probes; the same brand's catalogue carries a 2-probe Gen3 listing at a different ASIN. Quote the probe count from the listing you linked, on the day you post."
     }
   ],
   checklist: [

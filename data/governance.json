@@ -404,6 +404,15 @@
       "action": "Open the live site on a phone and in print preview. Report anything wrong to this register; a CSS fix is a one-line change and a rebuild.",
       "sourceUrl": "",
       "sourceLabel": ""
+    },
+    {
+      "id": "FLG-042",
+      "severity": "resolved",
+      "title": "Marketing-kit copy ran ahead of the register in three places",
+      "detail": "The kit on /marketing/kit/ is the one part of this build written to be pasted somewhere else, so an unsupported number there leaves the site. Found on 2026-11-20: the Emeril entry named rotisserie, broil, bake and dehydrate, none of which is a row in data/products.json (the listing title names a countertop convection cooker with 24 one-touch presets); the 8-quart entry turned a published 450°F setting into an observed browning outcome; and the CHEF iQ entry carried a caution asserting a one-probe configuration while the register's verified row and the observed listing title both say three probes. All three are now written from the rows themselves, and the CHEF iQ caution points at the real hazard instead — the same brand's catalogue carries a 2-probe Gen3 listing at a different ASIN, seen in the observed listing's 'customers also viewed' on 2026-11-20.",
+      "action": "No owner action. Anyone editing kit copy should re-read the register row rather than the brand's marketing, and keep the caution line for probe and preset counts, which vary by ASIN.",
+      "sourceUrl": "https://www.amazon.com/dp/B0DZFD6R9Z",
+      "sourceLabel": "Observed listing for the CHEF iQ Sense ASIN (title states 3 ultra-thin probes)"
     }
   ],
   "ledger": {
