@@ -700,3 +700,22 @@ No value was inferred; the topic roadmap is explicitly hypothetical and the desi
 explicitly a recommendation. Nothing blocks the merge. (Note observed, not changed here: `main`'s
 board carries a duplicate T24 row identical to T22; left as-is since it is another session's
 record and out of this session's scope.)
+
+---
+
+## Session arena/119f4dc6-wina — T26 claim (2026-11-20)
+
+| ID | Task | Status | Owner | Files / scope | Notes |
+|---|---|---|---|---|---|
+| T26 | Independent re-verification of the five submitted short links and the product spec rows against live Amazon listings; correct the front-page shop metrics; record every discrepancy as a flag | in progress | arena/119f4dc6-wina | `data/links.json`, `data/governance.json`, `data/products.json` (spec rows where contradicted), `_src/build.mjs` (front-page strip + any template it touches), `COORDINATION.md` (this section only), generated pages | Extends `main`'s build; no second site. Does not touch `scripts/`, nav labels, or other sessions' sections |
+
+- **Claim made:** 2026-11-20, immediately before writing code, per board rule 2.
+- **Why this task:** a fresh read-through of `main` found two buyer-facing defects that the three
+  existing gates cannot see, because both are about *content truth* rather than structure:
+  1. The front page advertises "0 Products tested" and "10 Policy checks passed" in the strip
+     directly under the hero. The first is editorially honest but reads as a disclaimer on a shop;
+     the second is a gate count presented to a shopper as if it were product evidence.
+  2. `data/links.json` records all five short links as resolving to their product pages. Re-fetching
+     them on 2026-11-20, three of the five land on the Amazon **homepage**, not the product page.
+- **Scope discipline:** another session owns `scripts/*`; this session will not edit those. If the
+  scope has to grow, the request is logged here rather than made silently.
