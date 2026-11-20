@@ -288,6 +288,11 @@
           <td>ThermoMaven water-resistance row said no IP number was published; the listing states IP67</td>
           <td><span class="pill pill--resolved">resolved</span></td>
           <td><a href="https://www.amazon.com/dp/B0DHZTCNR5" rel="nofollow noopener" target="_blank" data-nonaffiliate="true">open</a></td>
+        </tr><tr>
+          <td><code>FLG-042</code></td>
+          <td>The self-hosted collector did not speak the browser client's payload, and crashed when an origin allow-list was set</td>
+          <td><span class="pill pill--resolved">resolved</span></td>
+          <td><a href="https://github.com/sassnarep3-star/WinA/blob/main/scripts/analytics-selftest.mjs" rel="noopener" target="_blank">open</a></td>
         </tr></tbody>
       </table>
     </div>
@@ -447,7 +452,7 @@
     <p class="note__title">FLG-011 <span class="pill pill--action">action</span></p>
     <h3 style="font-family:var(--serif);font-size:1.15rem;margin:.2rem 0 .5rem;color:var(--ink)">Analytics endpoint not deployed</h3>
     <p style="margin:0 0 .6rem">A self-hosted collector exists in _worker/ and the client is written to POST five defined events. No endpoint is deployed, so the client is switched off rather than sending events into a void.</p>
-    <p style="margin:0 0 .6rem"><strong>What we did:</strong> Deploy the worker, set SITE_ANALYTICS_ENDPOINT, rebuild. Until then no analytics data exists and the dashboard says so. A zero-dependency reference collector now ships at scripts/analytics-server.mjs: same event set, same key allow-list, same scrubbing and 30-day retention as _worker/collector.js, so choosing a host no longer requires writing anything. To turn it on: run it (or the Worker), set site.analyticsEndpoint in data/products.json and governance.analytics.enabled to true, rebuild — the build holds the client inert if only one of the two is set.</p>
+    <p style="margin:0 0 .6rem"><strong>What we did:</strong> Deploy the worker, set SITE_ANALYTICS_ENDPOINT, rebuild. Until then no analytics data exists and the dashboard says so. A zero-dependency reference collector now ships at scripts/analytics-server.mjs: same event set, same key allow-list, same scrubbing and 30-day retention as _worker/collector.js, so choosing a host no longer requires writing anything. That contract is now executed rather than asserted: scripts/analytics-selftest.mjs drives the collector end to end and compares it against the worker and the register — it found two real defects, both fixed (FLG-042). To turn it on: run it (or the Worker), set site.analyticsEndpoint in data/products.json and governance.analytics.enabled to true, rebuild — the build holds the client inert if only one of the two is set.</p>
     <p class="small" style="margin:0"><a href="https://sassnarep3-star.github.io/WinA/analytics/" rel="noopener" target="_blank">This site's measurement page</a></p>
   </article><article class="note note--warn" style="margin-bottom:1.25rem">
     <p class="note__title">FLG-013 <span class="pill pill--action">action</span></p>
@@ -563,6 +568,12 @@
     <p style="margin:0 0 .6rem">The register recorded &quot;Described as 100% waterproof; no IP number published&quot; from the manufacturer page. The Amazon listing title on 2026-11-20 reads &quot;... IP67 Waterproof for Grill BBQ ...&quot;, so an IP rating is published. The row now reads &quot;IP67, as stated in the listing title&quot; and cites the listing. This was a factual error in the register, found by re-reading the listing, and is corrected rather than left. (Originally drafted as FLG-036; renumbered because a parallel session claimed that id first. Both findings are kept.)</p>
     <p style="margin:0 0 .6rem"><strong>What we did:</strong> None. Corrected in data/products.json and rebuilt.</p>
     <p class="small" style="margin:0"><a href="https://www.amazon.com/dp/B0DHZTCNR5" rel="nofollow noopener" target="_blank" data-nonaffiliate="true">Amazon listing title, fetched 2026-11-20</a></p>
+  </article><article class="note " style="margin-bottom:1.25rem">
+    <p class="note__title">FLG-042 <span class="pill pill--resolved">resolved</span></p>
+    <h3 style="font-family:var(--serif);font-size:1.15rem;margin:.2rem 0 .5rem;color:var(--ink)">The self-hosted collector did not speak the browser client's payload, and crashed when an origin allow-list was set</h3>
+    <p style="margin:0 0 .6rem">scripts/analytics-server.mjs had never been executed against a request. Two defects followed from that: (1) it read the page path, ASIN and slot from the top level of the request body, while assets/js/site.js and _worker/collector.js both send them nested under &quot;p&quot; — so every click would have been recorded with no product, no page and no slot, and the one number the measurement plan exists to produce would never have existed; (2) it parsed the ALLOWED_ORIGINS environment variable with Array.map, so starting the collector with an origin allow-list — the exact command its own startup message recommends — crashed it on line 25. Both were found by scripts/analytics-selftest.mjs, added in this pass and run in CI. (FLG-040 and FLG-041 were taken on main in the same window, so this finding is numbered after them.)</p>
+    <p style="margin:0 0 .6rem"><strong>What we did:</strong> Both fixed in scripts/analytics-server.mjs: the payload now matches the client and the worker (props nested under &quot;p&quot;, the same stored row fields and length limits), and ALLOWED_ORIGINS is parsed as a comma-separated string. The self-test now asserts the collector contract end to end and compares the worker and the server against each other and against the register, so the two cannot drift apart again. Nothing was deployed and the client is still inert: FLG-011 remains open and now needs only a host.</p>
+    <p class="small" style="margin:0"><a href="https://github.com/sassnarep3-star/WinA/blob/main/scripts/analytics-selftest.mjs" rel="noopener" target="_blank">Repository — the collector self-test that found both defects</a></p>
   </article></div>
 
     <h2 class="section__title" style="font-size:1.4rem;margin-top:2.5rem">Prior audit work on this repository</h2>

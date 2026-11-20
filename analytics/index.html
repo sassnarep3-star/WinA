@@ -119,7 +119,7 @@
 
     <h2 class="section__title" style="font-size:1.4rem;margin-top:2.5rem">Deploying it</h2>
     <div class="prose">
-      <p>The collector is in <code>_worker/</code> and is a single small handler with no third-party dependency. Deploy it, set the endpoint in the build config, rebuild, and the flag flips. The exact steps are in the repository README.</p>
+      <p>The collector is in <code>_worker/</code> and is a single small handler with no third-party dependency, and an equivalent dependency-free server ships at <code>scripts/analytics-server.mjs</code> for a host without Workers. Deploy one, set the endpoint in the build config, rebuild, and the flag flips. The exact steps are in the repository README, and <code>scripts/analytics-selftest.mjs</code> checks the contract on every build, so what gets deployed has been executed rather than assumed.</p>
       <p>Until that happens, this page is a plan rather than a report. It is marked as such deliberately, because a measurement page that implies data exists when it does not is worse than no measurement page.</p>
     </div>
   </div>
