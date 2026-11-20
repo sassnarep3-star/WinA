@@ -1,5 +1,5 @@
 {
-  "intro": "A decision list, not a wish list. Each suggestion states what to do, why, what it costs, and what would make it a bad idea. Nothing here has been implemented beyond what is already live; the ones marked shipped were built in this pass because the brief asked for them directly. Everything else waits for a decision.",
+  "intro": "A decision list, not a wish list. Each suggestion states what to do, why, what it costs, and what would make it a bad idea. Nothing here has been implemented beyond what is already live; the ones marked shipped were built in this pass because the brief asked for them directly. Everything else waits for a decision. The 2026-11-20 editorial pass (arena-27f76c22) added SUG-25 to SUG-29 and shipped SUG-25; SUG-25 and SUG-23 deliberately record opposite positions on seasonal content so the owner can choose with both arguments visible.",
   "statusKey": [
     {
       "id": "shipped",
@@ -95,7 +95,7 @@
       "why": "Question-shaped guides are the right shape, but five is not a sample. A weekly cadence for two months produces enough pages and enough query impressions to see which question people actually arrive with, which is the only way to stop guessing topics.",
       "cost": "A substantive guide per week. Each needs its own verified spec pass.",
       "risk": "Cadence without quality control produces the thin content the brief explicitly rejects. The build gate must stay on.",
-      "decide": "Recommend a fixed day and a fixed length. A weekly cadence also keeps content inside the 60-day recency window that Amazon's Associates Help describes (FLG-013). Add each new guide to the sitemap and feed in the same commit, then measure at week eight.",
+      "decide": "Adopted 2026-11-20 as the publishing cadence; see the decision log. A new guide every Monday (New York time) for eight weeks. Basis, checked on Amazon Associates Help: content should be \"recent (generally within the last 60 days)\" and \"a good rule of thumb is at least 10 posts\" (FLG-013). Each guide is added to the sitemap and feed in the same commit and must pass the build and compliance gates. Measurement at week eight needs Search Console and analytics, which are owner-blocked (FLG-009, FLG-011); it is not estimated.",
       "links": []
     },
     {
@@ -344,78 +344,68 @@
     },
     {
       "id": "SUG-25",
-      "title": "Ship a self-hosted type system and replace the templated default look",
+      "title": "Ship the seasonal cluster now, and refresh it every November — the position opposite SUG-23",
       "status": "shipped",
-      "weight": 9,
-      "why": "A publication is judged before it is read. The previous build used a system font stack and a single accent, which is correct and unremarkable: it looks like a well-made document, not a magazine. Two SIL Open Font License faces (Instrument Serif for display, Instrument Sans for text) give the page a recognisable voice at a cost of 51 KB, served from this repository so no third-party font host is contacted.",
-      "cost": "Two vendored woff2 files plus a type scale. No new dependency, no build step, no network request to a font CDN.",
-      "risk": "Fonts are a design decision, not a ranking factor. If the owner prefers a different face, changing it is two files and a CSS block, and nothing in the content depends on it.",
-      "decide": "Shipped in this pass, because the brief asked for a polished front-of-house and a font stack was the single largest visual lever available without breaching the no-imagery constraint.",
+      "weight": 8,
+      "why": "Seasonal intent is the one demand pattern that does not need a query report to justify: holiday cooking questions arrive every November whether or not we can measure them yet. A shipped seasonal page compounds — it can be re-checked, re-linked, and re-published each year instead of rebuilt. This row was built and shipped under a direct publishing brief; SUG-23 (from the same parallel pass) recommends holding until demand is measured, and both rows are kept so the owner decides rather than either session silently winning.",
+      "cost": "A collection page, a holiday guide, two generated brand images, and a navigation label. Built in this pass.",
+      "risk": "SUG-23 is right that a calendar-driven topic may miss the queries people actually type: no Search Console data exists yet, and the limitation is disclosed on the page itself (FLG-020, Q-23). The risk of shipping was reading as speculative; the mitigation was disclosure, not silence.",
+      "decide": "Shipped this pass. Owner decides at Q-25: adopt the annual November refresh (re-check every linked spec against its source each time), or retire the page in favour of SUG-23\\u2019s hold position once real query data exists. Whichever loses is recorded, not deleted.",
       "links": [
         {
-          "label": "SIL Open Font License 1.1",
-          "url": "https://openfontlicense.org/open-font-license-official-text/"
+          "label": "Seasonal collection",
+          "url": "https://sassnarep3-star.github.io/WinA/seasonal/"
         }
       ]
     },
     {
       "id": "SUG-26",
-      "title": "Draw the imagery instead of borrowing it",
-      "status": "shipped",
-      "weight": 9,
-      "why": "The site has no product photography and cannot get any lawfully without Creatives API access or manufacturer permission (FLG-007). Leaving the page entirely typographic is defensible but cold. Generated SVG illustrations — form-factor marks, a steam plate, a capacity gauge — give the page visual rhythm while depicting no product at all, which is the only way to add imagery without misrepresenting an item.",
-      "cost": "One module (_src/art.mjs) and about 15 small SVG files, all generated deterministically by the build.",
-      "risk": "An illustration must never imply a product fact. Each plate is captioned in HTML as an illustration and each form mark labels a category, not a model.",
-      "decide": "Shipped in this pass. It resolves the visual coldness without touching FLG-007, which stays open because a manufacturer press asset is still the only route to real product imagery.",
+      "title": "Grow the technique cluster by one article a month — jobs, not verdicts",
+      "status": "recommend",
+      "weight": 8,
+      "why": "Technique questions (what to reheat, what to batch, what belongs on the counter) are evergreen, answerable from published specifications, and never require claiming a hands-on test. They are also the cheapest way to close the Associates 10-post bar (FLG-013): this pass added the technique and holiday guides, leaving roughly three additional substantive posts to reach ten on any reading.",
+      "cost": "A guide per month plus its verification pass — the same cost as the weekly cadence in SUG-05 and SUG-21, at a slower, sustainable rate.",
+      "risk": "Nine guides already cover form factor, capacity, cleanup, multi-function, thermometers, technique, and holidays. A new article must be a new job (reheating, defrost-and-crisp, batch-prep) or it will restate the same trade-offs and read as filler — the exact failure the brief rejects.",
+      "decide": "Recommend. Start next month if the weekly cadence (SUG-05, SUG-21) is not adopted; if it is, slot technique articles into the same calendar. Each new guide enters the sitemap and feed in the same commit, per the standing rule.",
       "links": []
     },
     {
       "id": "SUG-27",
-      "title": "Write service pages for the two jobs a reader arrives with",
-      "status": "shipped",
-      "weight": 8,
-      "why": "Category pages answer 'show me the air fryers'. They do not answer 'which air fryer fits a weeknight' or 'do I need a leave-in probe'. Two service pages now open with the job, put the decision before the product, and end each pick with what would make it wrong for you.",
-      "cost": "Two pages built from the same verified product data. No new product claims.",
-      "risk": "A service page that invents a use case is worse than no page. Both pages are written from the same specifications already on the product pages, and neither adds a claim.",
-      "decide": "Shipped. These are the pages a search engine can rank for a question rather than a product name, which is the only kind of query this site can win without brand authority.",
+      "title": "Expand the brand imagery: one generated counter scene per collection",
+      "status": "consider",
+      "weight": 5,
+      "why": "The two shipped images cover the seasonal cluster and the guides imagery. A consistent illustration per category (air fryers, thermometers, compare) would make the site read as a publication from any entry page, which is SUG-17\\u2019s design-brief requirement made visual.",
+      "cost": "Four generated images and one CSS addition. No ongoing cost.",
+      "risk": "None to compliance as long as the images never depict products, brands, or any appliance that could be mistaken for a listed unit (FLG-007), and each use is labelled on-page. The risk is aesthetic: too many scenes can read as stock.",
+      "decide": "Consider after the seasonal deploy settles. Owner position on generated imagery is Q-26; decide per image, not as a batch, and keep the same warm editorial grade so the set reads as one publication.",
       "links": [
         {
-          "label": "Google Search Central — helpful content",
-          "url": "https://developers.google.com/search/docs/fundamentals/creating-helpful-content"
+          "label": "Imagery constraint (FLG-007)",
+          "url": "https://sassnarep3-star.github.io/WinA/flagged/"
         }
       ]
     },
     {
       "id": "SUG-28",
-      "title": "Publish the next guides on sizing and app dependence, then stop and measure",
-      "status": "shipped",
-      "weight": 8,
-      "why": "Size regret and app dependence are the two questions a buyer hits after the obvious ones, and both can be answered from specifications the site already holds. Publishing them extends the set without inventing demand for it.",
-      "cost": "The additions run to roughly 1,800 words. Both are added to the sitemap and the RSS feed in the same build that publishes them.",
-      "risk": "The guide set is still well under the ten-post rule of thumb Amazon publishes for an application, and none of these topics has measured demand behind it (FLG-035). Volume is not a substitute for measurement.",
-      "decide": "Shipped, with the cadence question left open: the next guide should be chosen from Search Console query data, not from instinct.",
-      "links": [
-        {
-          "label": "Associates Help — Application Review Process",
-          "url": "https://affiliate-program.amazon.com/help/node/topic/G8TW5AE9XL2VX9VM"
-        }
-      ]
+      "title": "Buy traffic before conversion measurement exists",
+      "status": "hold",
+      "weight": 9,
+      "why": "Paid acquisition is reasonable only once two things are true: the collector is deployed (FLG-011) so clicks per source are countable, and the Associates tracking report confirms attribution (FLG-004). Neither is true today. Spending before measurement means paying for clicks nobody can trace to an order.",
+      "cost": "Budget, plus the two blockers above.",
+      "risk": "The failure mode is not overspend — it is confidence: unmeasured paid traffic looks identical to organic growth in every report the site currently has.",
+      "decide": "Hold until FLG-011 and FLG-004 close. Re-evaluate in the week after the first Associates report arrives.",
+      "links": []
     },
     {
       "id": "SUG-29",
-      "title": "Replace the placeholder Search Console token with nothing until a real one exists",
-      "status": "shipped",
-      "weight": 7,
-      "why": "Every page carried a meta tag whose content was the literal string REPLACE_WITH_REAL_TOKEN_FLG009. It verified nothing, it was visible in the published HTML, and it made a claim about verification that was not true. Removing it is more honest than keeping a placeholder that looks like configuration.",
-      "cost": "One line in the layout, plus a build rule that refuses to emit the tag unless a real token is supplied in data/products.json.",
-      "risk": "None. The verification tag is only needed at the moment Search Console verification happens, and FLG-009 stays open until the owner does it.",
-      "decide": "Shipped. Set site.searchConsoleToken in data/products.json to a real value and the tag comes back automatically; leave it empty and no tag is emitted.",
-      "links": [
-        {
-          "label": "Google Search Central — verifying sites",
-          "url": "https://developers.google.com/search/docs/crawling-indexing/verifying-sites"
-        }
-      ]
+      "title": "A dedicated head-to-head thermometer page — only when measurement justifies it",
+      "status": "consider",
+      "weight": 6,
+      "why": "The instant-vs-wireless guide covers the decision narratively. A dedicated side-by-side page would target a different reader — the one who has already decided to compare — and the comparison table already carries the verified spec rows to build it from.",
+      "cost": "One page from existing verified data; no new claims required.",
+      "risk": "It adds another URL competing with the existing guide and compare page for the same intent. Without query data, choosing this topic is instinct — the failure mode SUG-21\\u2019s cadence exists to replace.",
+      "decide": "Consider, gated on measurement: build it only if the query report (Q-24) shows thermometer-comparison impressions. Until then the guide and the table cover the intent.",
+      "links": []
     },
     {
       "id": "SUG-30",
@@ -449,7 +439,7 @@
       "status": "recommend",
       "weight": 9,
       "title": "Turn on the measured-demand loop before publishing another guide",
-      "why": "Seven guides now exist. Every one of them was chosen from judgement, not from a query report, and the site records that honestly (FLG-035, FLG-037). Publishing an eighth from instinct adds a page without adding information about what readers actually want. The next topic should be read off a Search Console export, not chosen.",
+      "why": "Nine guides now exist. Every one of them was chosen from judgement, not from a query report, and the site records that honestly (FLG-035, FLG-037). Publishing an eighth from instinct adds a page without adding information about what readers actually want. The next topic should be read off a Search Console export, not chosen.",
       "cost": "Two owner actions: verify the property in Search Console and export a Performance report. Then one command, node scripts/next-topics.mjs, which already refuses to run without an export.",
       "risk": "Waiting for data costs publishing cadence, and a site with no traffic generates no data to read — a real cold-start problem. The mitigating action is the outbound-click counter (SUG-08), which measures interest even when search has not found the site yet.",
       "decide": "Recommend: verify the property and deploy the collector in the same week, then publish the next guide from whichever query or click pattern appears. If neither exists after 60 days, that is itself the finding and the cadence should change.",
@@ -663,7 +653,13 @@
     ],
     "entries": [
       {
-        "id": "DEC-01",
+        "date": "2026-11-20",
+        "decision": "decision",
+        "item": "SUG-05",
+        "reason": "Publishing cadence adopted: a new guide every Monday (New York time) for eight weeks, each added to the sitemap and feed in the same commit and passing the build and compliance gates. Basis: Associates Help 'Application Review Process' (FLG-013). This sets the schedule only; no new guide is published by this decision. Week-eight measurement waits on owner-connected Search Console and analytics (FLG-009, FLG-011)."
+      },
+      {
+        "id": "DEC-02",
         "date": "2026-11-20",
         "subject": "SUG-25 to SUG-30 (publication pass: typography, illustrations, service pages, new guides, verification token, decisions page)",
         "decision": "accepted",
@@ -672,7 +668,7 @@
         "evidence": "Build gate: every page still carries the disclosure above the fold; no page adds a price, rating, availability or testing claim; all internal links resolve."
       },
       {
-        "id": "DEC-02",
+        "id": "DEC-03",
         "date": "2026-11-20",
         "subject": "SUG-31 (a second publication)",
         "decision": "rejected",

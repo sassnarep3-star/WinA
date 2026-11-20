@@ -1,5 +1,5 @@
 {
-  "intro": "Every open question this build ran into, with what we can answer today, what we cannot, and how to close it. Nothing here is resolved by assumption. Where an answer exists, it cites the source. Where it does not, the row says so and names the specific thing that would settle it.",
+  "intro": "Every open question this build ran into, with what we can answer today, what we cannot, and how to close it. Nothing here is resolved by assumption. Where an answer exists, it cites the source. Where it does not, the row says so and names the specific thing that would settle it. Q-23 to Q-26 were added by the 2026-11-20 editorial pass (arena-27f76c22).",
   "areas": [
     {
       "id": "identity",
@@ -135,7 +135,7 @@
       "priority": "high",
       "question": "Is anyone searching for these products or these questions?",
       "answer": "Unknown. No search volume data exists for this project, and none has been assumed.",
-      "have": "Editorial hypotheses for question-shaped guides, written as working titles: the four from the brief plus a thermometer guide, then two more on sizing and app dependence. Every title is labelled a hypothesis on the page where it appears.",
+      "have": "Five editorial hypotheses for question-shaped guides, written as working titles: the four from the brief plus one thermometer guide.",
       "missing": "Any impression, click, or query data. Search Console is not verified and the analytics collector is not deployed.",
       "matters": "The brief asks for trending, high-converting topics. Trending is a measurement, not a guess.",
       "howToFind": "Verify Search Console, submit the sitemap, and read the Queries report after 2–4 weeks. That replaces instinct with measured demand.",
@@ -147,15 +147,15 @@
       "id": "Q-08",
       "area": "demand",
       "priority": "medium",
-      "question": "Which guide topic should be written first?",
-      "answer": "Hypothesis only. The capacity checklist is the best starting bet because it applies to all three air fryers and does not depend on any product outperforming another. Later guides were added on the same basis — editorial hypothesis, no measured demand.",
+      "question": "Which of the published guide topics should be written next?",
+      "answer": "Hypothesis only. The capacity checklist is the best starting bet because it applies to all three air fryers and does not depend on any product outperforming another.",
       "have": "Five working titles, deliberately not framed as popularity claims.",
       "missing": "Evidence of which question people actually arrive with.",
       "matters": "Publishing order is the main lever on a new site.",
       "howToFind": "Ship all five, then let Search Console query data reorder them. See SUG-05.",
       "status": "hypothesis",
       "sourceUrl": "https://sassnarep3-star.github.io/WinA/guides/",
-      "sourceLabel": "The guides as published"
+      "sourceLabel": "The guides index as published"
     },
     {
       "id": "Q-09",
@@ -353,6 +353,62 @@
       "status": "unanswered",
       "sourceUrl": "https://sassnarep3-star.github.io/WinA/feed.xml",
       "sourceLabel": "Published feed, currently unconsumed"
+    },
+    {
+      "id": "Q-23",
+      "area": "demand",
+      "priority": "high",
+      "question": "Does anyone actually search for holiday air-fryer scheduling content?",
+      "answer": "Unknown. The seasonal cluster was chosen for the calendar, not from demand data, and the page says so — while SUG-23 recommends holding such topics until measurement exists. Both positions are recorded.",
+      "have": "A published seasonal collection (/seasonal/), a holiday guide, and a disclosed, calendar-driven selection rationale.",
+      "missing": "Any impressions or query data at all. Search Console has never been verified for this property (SG-29, FLG-009).",
+      "matters": "It decides whether the seasonal page earns its annual refresh or is retired under SUG-23’s hold position. Shipping it without measuring repeats the instinct-driven pattern the cadence exists to replace — which is why the disclosure sits on the page.",
+      "howToFind": "Verify the Search Console property, submit the sitemap, and read the query report after the cluster is indexed. Compare seasonal-page impressions against the evergreen guides.",
+      "status": "unanswered",
+      "sourceUrl": "https://search.google.com/search-console",
+      "sourceLabel": "Google Search Console (verification pending, SG-29)"
+    },
+    {
+      "id": "Q-24",
+      "area": "demand",
+      "priority": "high",
+      "question": "Which of the nine guides earns impressions first?",
+      "answer": "Unknown until the property is verified and the query report populates.",
+      "have": "Seven live guides in the sitemap and feed, each with a defined topic cluster and an event definition (guide_read) waiting for the collector.",
+      "missing": "The first query report. Nothing else can rank the hypotheses.",
+      "matters": "This is the metric that replaces editorial instinct: the first guide to earn impressions defines where the next article goes (SUG-26, SUG-29).",
+      "howToFind": "After SG-29 closes, read the query report at week four and week eight. Record the ranking in this register with the date read.",
+      "status": "unanswered",
+      "sourceUrl": "https://sassnarep3-star.github.io/WinA/guides/",
+      "sourceLabel": "The guides index (all seven live)"
+    },
+    {
+      "id": "Q-25",
+      "area": "brand",
+      "priority": "medium",
+      "question": "Will the owner adopt the seasonal cadence — refresh /seasonal/ every November — or hold seasonal topics until demand is measured (SUG-23)?",
+      "answer": "Not decided, and deliberately so: SUG-23 (hold) and SUG-25 (shipped) record opposite positions with their reasons. The page is built to be refreshed: one dated spec re-check per linked product and a re-read of the linked guides.",
+      "have": "The shipped seasonal page, the annual-refresh recommendation (SUG-25), and the hold recommendation (SUG-23).",
+      "missing": "The owner’s decision between the two recorded positions, and a calendar entry for the first refresh if shipping wins.",
+      "matters": "An unrefreshed seasonal page is worse than none: it dates the whole publication and contradicts the \"recent content\" guidance the Associates review uses (FLG-013). But retiring it without data reverts to instinct in the other direction. The decision needs the first query report, not another opinion.",
+      "howToFind": "Owner decision, ideally after Q-23’s first query report. If adopted, log the refresh date on the coordination board each year; if retired, mark the page’s season explicitly rather than implying currency.",
+      "status": "decision-needed",
+      "sourceUrl": "https://sassnarep3-star.github.io/WinA/seasonal/",
+      "sourceLabel": "The seasonal collection page"
+    },
+    {
+      "id": "Q-26",
+      "area": "brand",
+      "priority": "medium",
+      "question": "Are generated, labelled kitchen-scene illustrations acceptable brand imagery for this publication?",
+      "answer": "Not decided by the owner. This pass shipped two generated counter scenes, each labelled on-page as illustrations that do not depict the products.",
+      "have": "Two shipped images, an on-page labelling convention, and the constraint that no page may show or imply product photography (FLG-007).",
+      "missing": "The owner’s position on AI-generated imagery in a publication whose whole premise is honesty about what is known.",
+      "matters": "The labelling makes the images defensible; the owner’s taste decides whether they stay. Nobody else can decide whether generated imagery fits the brand.",
+      "howToFind": "Owner decision. If rejected, remove the two images and revert to the typographic design — the site was fully compliant before they existed. If accepted, SUG-27 proposes one scene per collection.",
+      "status": "decision-needed",
+      "sourceUrl": "https://sassnarep3-star.github.io/WinA/flagged/",
+      "sourceLabel": "FLG-007: the imagery constraint"
     }
   ],
   "discovery": {
@@ -394,10 +450,10 @@
           "FLG-009",
           "SG-29",
           "FLG-035",
-          "FLG-037"
+          "FLG-043"
         ],
         "need": "Evidence that anyone is searching for this",
-        "have": "Seven guides chosen as hypotheses. No impression, query or click data of any kind.",
+        "have": "Nine guides chosen as hypotheses. No impression, query or click data of any kind.",
         "artifact": "Search Console: the verification token, then a Performance export",
         "who": "Owner — Search Console",
         "then": "Run node scripts/next-topics.mjs against the export. It refuses to run without one; with one, it ranks the queries the site already receives.",

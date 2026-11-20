@@ -6,19 +6,19 @@ Generated 2026-11-20 by `_src/build.mjs` (deterministic: no wall-clock timestamp
 
 ## Checks
 
-- `PASS` 35 HTML pages generated
+- `PASS` 38 HTML pages generated
 - `PASS` every page carries the disclosure strip above the fold
 - `PASS` every page carries the exact statement required by OA §5
 - `PASS` every page declares a canonical URL
 - `PASS` every Amazon anchor is either a tagged sponsored link or a declared non-affiliate citation
 - `PASS` no star ratings or review quotes displayed anywhere
-- `PASS` every stated guide count matches the 7 guides published
+- `PASS` every stated guide count matches the 9 guides published
 - `PASS` no spec carries a value while marked unverified or withheld
 - `PASS` all 10 policy checks quote a clause and link a primary source
-- `PASS` all internal links resolve across 34 pages
+- `PASS` all internal links resolve across 37 pages
 - `PASS` single build owns the served root; no prior site resurrected
-- `PASS` archive intact: 83 files preserved from three prior builds
-- `PASS` sitemap lists all 34 pages
+- `PASS` archive intact: 119 files preserved from three prior builds
+- `PASS` sitemap lists all 37 pages
 
 ## What the gate enforces
 

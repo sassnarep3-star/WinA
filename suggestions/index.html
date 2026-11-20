@@ -17,7 +17,10 @@
 <meta property="og:title" content="Suggestions — Counter Space">
 <meta property="og:description" content="A reviewable decision list: suggestions with rationale, cost, risk and a recommendation, plus a draft design brief, a topic roadmap of hypotheses, and a decision log. Nothing is implemented without a decision.">
 <meta property="og:url" content="https://sassnarep3-star.github.io/WinA/suggestions/">
+<meta property="og:image" content="https://sassnarep3-star.github.io/WinA/assets/img/holiday-counter.jpg">
+<meta property="og:image:alt" content="A kitchen counter set for holiday cooking: seasonal ingredients, herbs and prep tools on a wooden surface.">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://sassnarep3-star.github.io/WinA/assets/img/holiday-counter.jpg">
 <meta name="twitter:title" content="Suggestions — Counter Space">
 <meta name="twitter:description" content="A reviewable decision list: suggestions with rationale, cost, risk and a recommendation, plus a draft design brief, a topic roadmap of hypotheses, and a decision log. Nothing is implemented without a decision.">
 <link rel="alternate" type="application/rss+xml" title="Counter Space" href="/WinA/feed.xml">
@@ -39,7 +42,7 @@
       <span class="brand__name">Counter Space</span>
       <span class="brand__sub">Kitchen gear, judged honestly</span>
     </a>
-    <nav class="nav" aria-label="Primary"><a href="/WinA/air-fryers/">Air fryers</a><a href="/WinA/thermometers/">Thermometers</a><a href="/WinA/guides/">Guides</a><a href="/WinA/compare/">Compare</a><a href="/WinA/about/">About</a><a href="/WinA/decisions/">Decisions</a></nav>
+    <nav class="nav" aria-label="Primary"><a href="/WinA/air-fryers/">Air fryers</a><a href="/WinA/thermometers/">Thermometers</a><a href="/WinA/guides/">Guides</a><a href="/WinA/compare/">Compare</a><a href="/WinA/seasonal/">Holiday</a><a href="/WinA/about/">About</a><a href="/WinA/decisions/">Decisions</a></nav>
   </div>
 </header>
 
@@ -59,7 +62,7 @@
   <div class="wrap">
     <p class="kicker">Review before implementing</p>
     <h1 class="article-head__title">Suggestions</h1>
-    <p class="article-head__dek">A decision list, not a wish list. Each suggestion states what to do, why, what it costs, and what would make it a bad idea. Nothing here has been implemented beyond what is already live; the ones marked shipped were built in this pass because the brief asked for them directly. Everything else waits for a decision.</p>
+    <p class="article-head__dek">A decision list, not a wish list. Each suggestion states what to do, why, what it costs, and what would make it a bad idea. Nothing here has been implemented beyond what is already live; the ones marked shipped were built in this pass because the brief asked for them directly. Everything else waits for a decision. The 2026-11-20 editorial pass (arena-27f76c22) added SUG-25 to SUG-29 and shipped SUG-25; SUG-25 and SUG-23 deliberately record opposite positions on seasonal content so the owner can choose with both arguments visible.</p>
   </div>
 </div>
 <section class="section">
@@ -71,19 +74,19 @@
         <tbody><tr>
           <td><span class="pill pill--shipped">shipped</span></td>
           <td>Already built on the live site in this pass.</td>
-          <td class="num">8</td>
+          <td class="num">4</td>
         </tr><tr>
           <td><span class="pill pill--recommend">recommend</span></td>
           <td>Highest confidence, do this before the others.</td>
-          <td class="num">13</td>
+          <td class="num">14</td>
         </tr><tr>
           <td><span class="pill pill--consider">consider</span></td>
           <td>Worth doing, but depends on an earlier decision.</td>
-          <td class="num">6</td>
+          <td class="num">8</td>
         </tr><tr>
           <td><span class="pill pill--hold">hold</span></td>
           <td>Do not do this yet. Reason given.</td>
-          <td class="num">4</td>
+          <td class="num">5</td>
         </tr><tr>
           <td><span class="pill pill--reject">reject</span></td>
           <td>Would break a rule or mislead a reader.</td>
@@ -157,29 +160,20 @@
     <td class="small">If the tag is not enrolled, every link still earns nothing. That is the one thing this cannot fix.</td>
     <td class="small">Constructed links are live. The proof step is blocked: it needs the owner's Associates Central sign-in (FLG-024). Next step: click one link per product while signed in and confirm it appears in the tracking report.<br><span class="tiny"><a href="https://affiliate-program.amazon.com/help/operating/policies" rel="noopener" target="_blank">Participation Requirements §6(w)</a></span></td>
   </tr><tr>
-    <td><code>SUG-25</code></td>
-    <td><strong>Ship a self-hosted type system and replace the templated default look</strong></td>
-    <td><span class="pill pill--shipped">shipped</span></td>
+    <td><code>SUG-28</code></td>
+    <td><strong>Buy traffic before conversion measurement exists</strong></td>
+    <td><span class="pill pill--hold">hold</span></td>
     <td class="num">9</td>
-    <td class="small">A publication is judged before it is read. The previous build used a system font stack and a single accent, which is correct and unremarkable: it looks like a well-made document, not a magazine. Two SIL Open Font License faces (Instrument Serif for display, Instrument Sans for text) give the page a recognisable voice at a cost of 51 KB, served from this repository so no third-party font host is contacted.</td>
-    <td class="small">Two vendored woff2 files plus a type scale. No new dependency, no build step, no network request to a font CDN.</td>
-    <td class="small">Fonts are a design decision, not a ranking factor. If the owner prefers a different face, changing it is two files and a CSS block, and nothing in the content depends on it.</td>
-    <td class="small">Shipped in this pass, because the brief asked for a polished front-of-house and a font stack was the single largest visual lever available without breaching the no-imagery constraint.<br><span class="tiny"><a href="https://openfontlicense.org/open-font-license-official-text/" rel="noopener" target="_blank">SIL Open Font License 1.1</a></span></td>
-  </tr><tr>
-    <td><code>SUG-26</code></td>
-    <td><strong>Draw the imagery instead of borrowing it</strong></td>
-    <td><span class="pill pill--shipped">shipped</span></td>
-    <td class="num">9</td>
-    <td class="small">The site has no product photography and cannot get any lawfully without Creatives API access or manufacturer permission (FLG-007). Leaving the page entirely typographic is defensible but cold. Generated SVG illustrations — form-factor marks, a steam plate, a capacity gauge — give the page visual rhythm while depicting no product at all, which is the only way to add imagery without misrepresenting an item.</td>
-    <td class="small">One module (_src/art.mjs) and about 15 small SVG files, all generated deterministically by the build.</td>
-    <td class="small">An illustration must never imply a product fact. Each plate is captioned in HTML as an illustration and each form mark labels a category, not a model.</td>
-    <td class="small">Shipped in this pass. It resolves the visual coldness without touching FLG-007, which stays open because a manufacturer press asset is still the only route to real product imagery.</td>
+    <td class="small">Paid acquisition is reasonable only once two things are true: the collector is deployed (FLG-011) so clicks per source are countable, and the Associates tracking report confirms attribution (FLG-004). Neither is true today. Spending before measurement means paying for clicks nobody can trace to an order.</td>
+    <td class="small">Budget, plus the two blockers above.</td>
+    <td class="small">The failure mode is not overspend — it is confidence: unmeasured paid traffic looks identical to organic growth in every report the site currently has.</td>
+    <td class="small">Hold until FLG-011 and FLG-004 close. Re-evaluate in the week after the first Associates report arrives.</td>
   </tr><tr>
     <td><code>SUG-32</code></td>
     <td><strong>Turn on the measured-demand loop before publishing another guide</strong></td>
     <td><span class="pill pill--recommend">recommend</span></td>
     <td class="num">9</td>
-    <td class="small">Seven guides now exist. Every one of them was chosen from judgement, not from a query report, and the site records that honestly (FLG-035, FLG-037). Publishing an eighth from instinct adds a page without adding information about what readers actually want. The next topic should be read off a Search Console export, not chosen.</td>
+    <td class="small">Nine guides now exist. Every one of them was chosen from judgement, not from a query report, and the site records that honestly (FLG-035, FLG-037). Publishing an eighth from instinct adds a page without adding information about what readers actually want. The next topic should be read off a Search Console export, not chosen.</td>
     <td class="small">Two owner actions: verify the property in Search Console and export a Performance report. Then one command, node scripts/next-topics.mjs, which already refuses to run without an export.</td>
     <td class="small">Waiting for data costs publishing cadence, and a site with no traffic generates no data to read — a real cold-start problem. The mitigating action is the outbound-click counter (SUG-08), which measures interest even when search has not found the site yet.</td>
     <td class="small">Recommend: verify the property and deploy the collector in the same week, then publish the next guide from whichever query or click pattern appears. If neither exists after 60 days, that is itself the finding and the cadence should change.<br><span class="tiny"><a href="https://support.google.com/webmasters/answer/7576553" rel="noopener" target="_blank">Google Search Central — Performance report</a></span></td>
@@ -191,7 +185,7 @@
     <td class="small">Question-shaped guides are the right shape, but five is not a sample. A weekly cadence for two months produces enough pages and enough query impressions to see which question people actually arrive with, which is the only way to stop guessing topics.</td>
     <td class="small">A substantive guide per week. Each needs its own verified spec pass.</td>
     <td class="small">Cadence without quality control produces the thin content the brief explicitly rejects. The build gate must stay on.</td>
-    <td class="small">Recommend a fixed day and a fixed length. A weekly cadence also keeps content inside the 60-day recency window that Amazon's Associates Help describes (FLG-013). Add each new guide to the sitemap and feed in the same commit, then measure at week eight.</td>
+    <td class="small">Adopted 2026-11-20 as the publishing cadence; see the decision log. A new guide every Monday (New York time) for eight weeks. Basis, checked on Amazon Associates Help: content should be &quot;recent (generally within the last 60 days)&quot; and &quot;a good rule of thumb is at least 10 posts&quot; (FLG-013). Each guide is added to the sitemap and feed in the same commit and must pass the build and compliance gates. Measurement at week eight needs Search Console and analytics, which are owner-blocked (FLG-009, FLG-011); it is not estimated.</td>
   </tr><tr>
     <td><code>SUG-06</code></td>
     <td><strong>Add a real author byline with a named person</strong></td>
@@ -238,23 +232,23 @@
     <td class="small">Volume without quality control produces the thin content the brief rejects. The build gate stays on.</td>
     <td class="small">Accept the topic roadmap below as the first batch of hypotheses, then let measured demand reorder it.<br><span class="tiny"><a href="https://developers.google.com/search/docs/fundamentals/creating-helpful-content" rel="noopener" target="_blank">Google Search Central — helpful content</a></span></td>
   </tr><tr>
-    <td><code>SUG-27</code></td>
-    <td><strong>Write service pages for the two jobs a reader arrives with</strong></td>
+    <td><code>SUG-25</code></td>
+    <td><strong>Ship the seasonal cluster now, and refresh it every November — the position opposite SUG-23</strong></td>
     <td><span class="pill pill--shipped">shipped</span></td>
     <td class="num">8</td>
-    <td class="small">Category pages answer 'show me the air fryers'. They do not answer 'which air fryer fits a weeknight' or 'do I need a leave-in probe'. Two service pages now open with the job, put the decision before the product, and end each pick with what would make it wrong for you.</td>
-    <td class="small">Two pages built from the same verified product data. No new product claims.</td>
-    <td class="small">A service page that invents a use case is worse than no page. Both pages are written from the same specifications already on the product pages, and neither adds a claim.</td>
-    <td class="small">Shipped. These are the pages a search engine can rank for a question rather than a product name, which is the only kind of query this site can win without brand authority.<br><span class="tiny"><a href="https://developers.google.com/search/docs/fundamentals/creating-helpful-content" rel="noopener" target="_blank">Google Search Central — helpful content</a></span></td>
+    <td class="small">Seasonal intent is the one demand pattern that does not need a query report to justify: holiday cooking questions arrive every November whether or not we can measure them yet. A shipped seasonal page compounds — it can be re-checked, re-linked, and re-published each year instead of rebuilt. This row was built and shipped under a direct publishing brief; SUG-23 (from the same parallel pass) recommends holding until demand is measured, and both rows are kept so the owner decides rather than either session silently winning.</td>
+    <td class="small">A collection page, a holiday guide, two generated brand images, and a navigation label. Built in this pass.</td>
+    <td class="small">SUG-23 is right that a calendar-driven topic may miss the queries people actually type: no Search Console data exists yet, and the limitation is disclosed on the page itself (FLG-020, Q-23). The risk of shipping was reading as speculative; the mitigation was disclosure, not silence.</td>
+    <td class="small">Shipped this pass. Owner decides at Q-25: adopt the annual November refresh (re-check every linked spec against its source each time), or retire the page in favour of SUG-23\u2019s hold position once real query data exists. Whichever loses is recorded, not deleted.<br><span class="tiny"><a href="https://sassnarep3-star.github.io/WinA/seasonal/" rel="noopener" target="_blank">Seasonal collection</a></span></td>
   </tr><tr>
-    <td><code>SUG-28</code></td>
-    <td><strong>Publish the next guides on sizing and app dependence, then stop and measure</strong></td>
-    <td><span class="pill pill--shipped">shipped</span></td>
+    <td><code>SUG-26</code></td>
+    <td><strong>Grow the technique cluster by one article a month — jobs, not verdicts</strong></td>
+    <td><span class="pill pill--recommend">recommend</span></td>
     <td class="num">8</td>
-    <td class="small">Size regret and app dependence are the two questions a buyer hits after the obvious ones, and both can be answered from specifications the site already holds. Publishing them extends the set without inventing demand for it.</td>
-    <td class="small">The additions run to roughly 1,800 words. Both are added to the sitemap and the RSS feed in the same build that publishes them.</td>
-    <td class="small">The guide set is still well under the ten-post rule of thumb Amazon publishes for an application, and none of these topics has measured demand behind it (FLG-035). Volume is not a substitute for measurement.</td>
-    <td class="small">Shipped, with the cadence question left open: the next guide should be chosen from Search Console query data, not from instinct.<br><span class="tiny"><a href="https://affiliate-program.amazon.com/help/node/topic/G8TW5AE9XL2VX9VM" rel="noopener" target="_blank">Associates Help — Application Review Process</a></span></td>
+    <td class="small">Technique questions (what to reheat, what to batch, what belongs on the counter) are evergreen, answerable from published specifications, and never require claiming a hands-on test. They are also the cheapest way to close the Associates 10-post bar (FLG-013): this pass added the technique and holiday guides, leaving roughly three additional substantive posts to reach ten on any reading.</td>
+    <td class="small">A guide per month plus its verification pass — the same cost as the weekly cadence in SUG-05 and SUG-21, at a slower, sustainable rate.</td>
+    <td class="small">Nine guides already cover form factor, capacity, cleanup, multi-function, thermometers, technique, and holidays. A new article must be a new job (reheating, defrost-and-crisp, batch-prep) or it will restate the same trade-offs and read as filler — the exact failure the brief rejects.</td>
+    <td class="small">Recommend. Start next month if the weekly cadence (SUG-05, SUG-21) is not adopted; if it is, slot technique articles into the same calendar. Each new guide enters the sitemap and feed in the same commit, per the standing rule.</td>
   </tr><tr>
     <td><code>SUG-07</code></td>
     <td><strong>Move to a custom domain before building any authority</strong></td>
@@ -292,15 +286,6 @@
     <td class="small">None. It only records decisions already being made.</td>
     <td class="small">Accept. The decision log schema below is the record; entries are added as decisions are made.</td>
   </tr><tr>
-    <td><code>SUG-29</code></td>
-    <td><strong>Replace the placeholder Search Console token with nothing until a real one exists</strong></td>
-    <td><span class="pill pill--shipped">shipped</span></td>
-    <td class="num">7</td>
-    <td class="small">Every page carried a meta tag whose content was the literal string REPLACE_WITH_REAL_TOKEN_FLG009. It verified nothing, it was visible in the published HTML, and it made a claim about verification that was not true. Removing it is more honest than keeping a placeholder that looks like configuration.</td>
-    <td class="small">One line in the layout, plus a build rule that refuses to emit the tag unless a real token is supplied in data/products.json.</td>
-    <td class="small">None. The verification tag is only needed at the moment Search Console verification happens, and FLG-009 stays open until the owner does it.</td>
-    <td class="small">Shipped. Set site.searchConsoleToken in data/products.json to a real value and the tag comes back automatically; leave it empty and no tag is emitted.<br><span class="tiny"><a href="https://developers.google.com/search/docs/crawling-indexing/verifying-sites" rel="noopener" target="_blank">Google Search Central — verifying sites</a></span></td>
-  </tr><tr>
     <td><code>SUG-30</code></td>
     <td><strong>Put every suggestion and every decision on one reviewable page</strong></td>
     <td><span class="pill pill--shipped">shipped</span></td>
@@ -336,6 +321,15 @@
     <td class="small">An internal-link pass on each new guide.</td>
     <td class="small">Over-linking looks manipulative. Keep links natural and reader-serving.</td>
     <td class="small">Consider. Design the cluster map before writing the second batch.</td>
+  </tr><tr>
+    <td><code>SUG-29</code></td>
+    <td><strong>A dedicated head-to-head thermometer page — only when measurement justifies it</strong></td>
+    <td><span class="pill pill--consider">consider</span></td>
+    <td class="num">6</td>
+    <td class="small">The instant-vs-wireless guide covers the decision narratively. A dedicated side-by-side page would target a different reader — the one who has already decided to compare — and the comparison table already carries the verified spec rows to build it from.</td>
+    <td class="small">One page from existing verified data; no new claims required.</td>
+    <td class="small">It adds another URL competing with the existing guide and compare page for the same intent. Without query data, choosing this topic is instinct — the failure mode SUG-21\u2019s cadence exists to replace.</td>
+    <td class="small">Consider, gated on measurement: build it only if the query report (Q-24) shows thermometer-comparison impressions. Until then the guide and the table cover the intent.</td>
   </tr><tr>
     <td><code>SUG-31</code></td>
     <td><strong>Do not add a second publication to chase a second niche</strong></td>
@@ -399,6 +393,15 @@
     <td class="small">Zero.</td>
     <td class="small">Misses timely traffic in the meantime.</td>
     <td class="small">Hold until Search Console has 2–4 weeks of query data (FLG-009, FLG-020).<br><span class="tiny"><a href="https://search.google.com/search-console" rel="noopener" target="_blank">Google Search Console</a></span></td>
+  </tr><tr>
+    <td><code>SUG-27</code></td>
+    <td><strong>Expand the brand imagery: one generated counter scene per collection</strong></td>
+    <td><span class="pill pill--consider">consider</span></td>
+    <td class="num">5</td>
+    <td class="small">The two shipped images cover the seasonal cluster and the guides imagery. A consistent illustration per category (air fryers, thermometers, compare) would make the site read as a publication from any entry page, which is SUG-17\u2019s design-brief requirement made visual.</td>
+    <td class="small">Four generated images and one CSS addition. No ongoing cost.</td>
+    <td class="small">None to compliance as long as the images never depict products, brands, or any appliance that could be mistaken for a listed unit (FLG-007), and each use is labelled on-page. The risk is aesthetic: too many scenes can read as stock.</td>
+    <td class="small">Consider after the seasonal deploy settles. Owner position on generated imagery is Q-26; decide per image, not as a batch, and keep the same warm editorial grade so the set reads as one publication.<br><span class="tiny"><a href="https://sassnarep3-star.github.io/WinA/flagged/" rel="noopener" target="_blank">Imagery constraint (FLG-007)</a></span></td>
   </tr><tr>
     <td><code>SUG-34</code></td>
     <td><strong>Publish a quarterly 'what we changed and why' note</strong></td>
@@ -571,6 +574,11 @@
         <caption>Accept or reject a suggestion here before implementing it. Recorded so the choice is auditable and rejected items are not re-litigated.</caption>
         <thead><tr><th scope="col">Date</th><th scope="col">Decision</th><th scope="col">Item</th><th scope="col">Reason</th></tr></thead>
         <tbody><tr>
+    <td>2026-11-20</td>
+    <td><span class="pill pill--decision" >decision</span></td>
+    <td><code>SUG-05</code></td>
+    <td class="small">Publishing cadence adopted: a new guide every Monday (New York time) for eight weeks, each added to the sitemap and feed in the same commit and passing the build and compliance gates. Basis: Associates Help 'Application Review Process' (FLG-013). This sets the schedule only; no new guide is published by this decision. Week-eight measurement waits on owner-connected Search Console and analytics (FLG-009, FLG-011).</td>
+  </tr><tr>
     <td>2026-11-20</td>
     <td><span class="pill pill--accepted" >accepted</span></td>
     <td><code></code></td>

@@ -23,6 +23,7 @@ const gov = read("data/governance.json");
 const questions = read("data/questions.json");
 const suggestions = read("data/suggestions.json");
 const specialLink = read("data/special_link_tests.json");
+const linkRecord = read("data/links.json"); // product-intent confirmation record (T29)
 
 // Analytics is enabled only when both halves agree: the governance decision and an endpoint that
 // exists. A client switched on against an empty endpoint is a silent failure, which is worse than
@@ -129,6 +130,7 @@ const NAV = [
   { href: url("/thermometers/"), label: "Thermometers" },
   { href: url("/guides/"), label: "Guides" },
   { href: url("/compare/"), label: "Compare" },
+  { href: url("/seasonal/"), label: "Holiday" },
   { href: url("/about/"), label: "About" },
   { href: url("/decisions/"), label: "Decisions" }
 ];
@@ -190,7 +192,10 @@ ${searchConsoleTag()}
 <meta property="og:title" content="${esc(fullTitle)}">
 <meta property="og:description" content="${esc(desc)}">
 <meta property="og:url" content="${abs(canonical)}">
+<meta property="og:image" content="${abs("/assets/img/holiday-counter.jpg")}">
+<meta property="og:image:alt" content="A kitchen counter set for holiday cooking: seasonal ingredients, herbs and prep tools on a wooden surface.">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="${abs("/assets/img/holiday-counter.jpg")}">
 <meta name="twitter:title" content="${esc(fullTitle)}">
 <meta name="twitter:description" content="${esc(desc)}">
 <link rel="alternate" type="application/rss+xml" title="${esc(site.name)}" href="${url("/feed.xml")}">
@@ -403,6 +408,11 @@ function frontPage() {
   const feature = services[0];
   const second = services[1];
   const bySlug = Object.fromEntries(products.map((p) => [p.slug, p]));
+  // Counted, never typed: the number of spec rows carrying a confirmed value.
+  const verifiedSpecs = products.reduce(
+    (n, p) => n + p.specs.filter((s) => s.status === "verified" && s.value).length,
+    0
+  );
 
   const html = `
 <section class="hero">
@@ -435,10 +445,10 @@ function frontPage() {
 
 <div class="strip">
   <div class="wrap strip__inner">
-    <div class="strip__cell"><p class="strip__num">${products.length}</p><p class="strip__lab">Products compared</p></div>
-    <div class="strip__cell"><p class="strip__num">${guides.length}</p><p class="strip__lab">Guides</p></div>
-    <div class="strip__cell"><p class="strip__num">0</p><p class="strip__lab">Products tested</p></div>
-    <div class="strip__cell"><p class="strip__num">${policy.policy.length}</p><p class="strip__lab">Policy checks passed</p></div>
+    <div class="strip__cell"><p class="strip__num">${products.length}</p><p class="strip__lab">Products, spec-checked</p></div>
+    <div class="strip__cell"><p class="strip__num">${categories.length}</p><p class="strip__lab">Categories</p></div>
+    <div class="strip__cell"><p class="strip__num">${guides.length}</p><p class="strip__lab">Buying guides</p></div>
+    <div class="strip__cell"><p class="strip__num">${verifiedSpecs}</p><p class="strip__lab">Specs confirmed at source</p></div>
   </div>
 </div>
 
@@ -517,6 +527,38 @@ function frontPage() {
       <div>
         <h2 class="section__title">Read before you buy</h2>
         <p class="section__dek">The questions that come up before any of these purchases, answered without a verdict at the end.</p>
+      </div>
+      <a class="section__more" href="${url("/guides/")}">All ${guides.length} guides</a>
+    </div>
+  </div>
+</section>
+
+<section class="section section--deep">
+  <div class="wrap">
+    <div class="banner">
+      <figure class="banner__media">
+        <img src="${url("/assets/img/holiday-counter.jpg")}" alt="A kitchen counter set for holiday cooking prep: seasonal produce, herbs and tools on a wooden surface. An illustration, not a photograph of any product on this site." width="1384" height="768" loading="lazy">
+      </figure>
+      <div class="banner__body">
+        <p class="kicker">Seasonal · updated for November</p>
+        <h2 class="section__title">One oven, four dishes, a table that won&rsquo;t move</h2>
+        <p class="section__dek">The holiday problem is scheduling, not recipe choice. Where a second countertop chamber fits the plan, what to move off the oven first, and the two-temperature trick to check before you buy.</p>
+        <div class="hero__actions" style="margin-top:1.2rem">
+          <a class="btn btn--primary" href="${url("/seasonal/")}">Read the holiday guide</a>
+          <a class="btn btn--ghost" href="${url("/guides/not-burn-the-rolls/")}">Where an air fryer beats a second oven</a>
+        </div>
+        <p class="tiny faint" style="margin-top:1rem">Seasonal topics follow the calendar, not demand data — that trade-off is recorded in the suggestion register, not hidden.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="section__head section__head--split">
+      <div>
+        <h2 class="section__title">Read before you buy</h2>
+        <p class="section__dek">The questions that come up before — and during — any of these purchases, answered without a verdict at the end.</p>
       </div>
       <a class="section__more" href="${url("/guides/")}">All ${guides.length} guides</a>
     </div>
@@ -1224,7 +1266,7 @@ ${breadcrumb([{ href: url("/"), label: "Home" }, { label: "Guides" }])}
   <div class="wrap">
     <p class="kicker">Buying guides</p>
     <h1 class="article-head__title">The questions people ask before they buy</h1>
-    <p class="article-head__dek">${guides.length} guides, each built around one decision. No rankings, no &ldquo;best of&rdquo; list, no claim that any of this was tested.</p>
+    <p class="article-head__dek">${guides.length} guides, each built around one decision — form factor, capacity, cleanup, technique, sizing and the seasonal cluster. No rankings, no &ldquo;best of&rdquo; list, no claim that any of this was tested.</p>
   </div>
 </div>
 <section class="section">
@@ -1257,7 +1299,7 @@ ${breadcrumb([{ href: url("/"), label: "Home" }, { label: "Guides" }])}
   pages.push({
     path: "/guides/",
     title: "Buying guides",
-    desc: "Question-shaped guides to air fryers and thermometers: form factor, capacity, cleanup, multi-function claims, sizing and app dependence.",
+    desc: `${guides.length} question-shaped guides to air fryers and thermometers: form factor, capacity, cleanup, technique, multi-function claims, sizing, app dependence and the holiday cluster.`,
     html,
     priority: "0.8",
     changefreq: "weekly"
@@ -1458,18 +1500,30 @@ function registerPage() {
     )
     .join("");
 
-  const linkRows = products
-    .map(
-      (p) => `<tr>
-    <td><code>${esc(p.submittedLink.replace("https://link.amazon/", ""))}</code></td>
-    <td><a href="${p.submittedLink}" rel="nofollow noopener" target="_blank" data-nonaffiliate="true">link.amazon</a></td>
-    <td>${cite(p.observedDestination, `<code>${esc(p.asin)}</code>`, p.asin)}</td>
-    <td class="blank">not supplied</td>
-    <td>${esc(p.observedOn)}</td>
-    <td>observed redirect</td>
-  </tr>`
-    )
+  // Product-intent confirmation record (T29). The intended ASIN is shown as "not supplied" and never
+  // filled from the observed one. The official listing and every observed landing are separate,
+  // a sponsored, tagged link (it is a product link). The observed landing is shown as text, not as a
+  // link, so the register does not send readers to a page that was never the product's own listing.
+  const landingLabel = (r) =>
+    r === "product-page" ? "Product page" : r === "homepage" ? "Amazon homepage" : r === "other" ? "Other page" : "No landing";
+  const linkRows = linkRecord.links
+    .map((l) => {
+      const last = l.observedRedirectTargets[l.observedRedirectTargets.length - 1];
+      const ids = l.confirmationSourceIds.map((id) => `<code>${esc(id)}</code>`).join(" ");
+      const shown = last.finalUrl ? last.finalUrl.replace(/\?.*$/, "") : "";
+      return `<tr>
+    <td><code>${esc(l.shortCode)}</code><br><a href="${esc(l.submitted)}" rel="nofollow noopener" target="_blank" data-nonaffiliate="true">open short link</a></td>
+    <td class="blank">${l.intendedAsin ? esc(l.intendedAsin) : "not supplied"}</td>
+    <td>${cite(l.officialListingUrl, `<code>${esc(l.observedAsin)}</code>`, l.observedAsin)}</td>
+    <td>${esc(l.confirmedOn)}<br><span class="tiny">${ids}</span></td>
+    <td>${landingLabel(last.result)} <span class="tiny">on ${esc(last.observedOn)}</span>${
+        last.finalUrl ? `<br><code>${esc(shown)}</code>` : ""
+      }</td>
+    <td><span class="pill pill--review">${l.observationsAgree ? "agree" : "disagree"}</span><br><span class="tiny">${l.observedRedirectTargets.length} checks · <a href="${url("/flagged/")}">flags</a></span></td>
+  </tr>`;
+    })
     .join("");
+  const linkDisagree = linkRecord.links.filter((l) => !l.observationsAgree).length;
 
   const html = `
 ${breadcrumb([{ href: url("/"), label: "Home" }, { label: "Source register" }])}
@@ -1484,11 +1538,11 @@ ${breadcrumb([{ href: url("/"), label: "Home" }, { label: "Source register" }])}
 <section class="section">
   <div class="wrap">
     <h2 class="section__title" style="font-size:1.4rem">Link resolution</h2>
-    <p class="section__dek" style="margin-bottom:1.25rem">The five submitted short links, what they resolved to, and the separation between the intended ASIN (never supplied) and the observed destination (recorded by following the link).</p>
+    <p class="section__dek" style="margin-bottom:1.25rem">One row per submitted short link. The intended ASIN is blank because the owner did not supply one. The official listing is the Amazon ASIN page. Every observed landing is kept with its date, in its own column. Full history: <code>data/links.json</code>. ${linkDisagree} of ${linkRecord.links.length} links returned different landing pages across their recorded checks.</p>
     <div class="tablewrap">
       <table class="data sortable">
-        <caption>Submitted link → observed destination. Intended ASIN is a separate field from observed destination and is deliberately blank.</caption>
-        <thead><tr><th scope="col">Submitted code</th><th scope="col">Link</th><th scope="col">Observed ASIN</th><th scope="col">Intended ASIN</th><th scope="col">Confirmed</th><th scope="col">Method</th></tr></thead>
+        <caption>Product-intent confirmation record. Four fields per link: intended ASIN, official listing, confirmation date and source. The observed redirect target is a separate column.</caption>
+        <thead><tr><th scope="col">Submitted code</th><th scope="col">Intended ASIN</th><th scope="col">Official listing (ASIN page)</th><th scope="col">Confirmed on · source</th><th scope="col">Latest observed redirect target</th><th scope="col">Checks</th></tr></thead>
         <tbody>${linkRows}</tbody>
       </table>
     </div>
@@ -2120,7 +2174,9 @@ ${breadcrumb([{ href: url("/"), label: "Home" }, { label: "Executive summary" }]
     <h2>What exists</h2>
     <ul>
       <li><strong>A five-product publication</strong> — three air fryers, two thermometers — with individual pages, two category hubs, and a full comparison table.</li>
-      <li><strong>${guides.length} question-shaped guides</strong>, written as decisions rather than rankings.</li>
+      <li><strong>${guides.length} question-shaped guides</strong>, written as decisions rather than rankings, including a technique cluster, a sizing cluster and a seasonal cluster.</li>
+      <li><strong>A seasonal collection page</strong> carrying the holiday cluster in the navigation, with the calendar-driven (not demand-driven) topic choice disclosed on the page itself and the opposing "hold" position recorded beside it.</li>
+      <li><strong>Publisher imagery</strong> — generated counter scenes and diagrams, labelled on-page as illustrations, so no page claims to show a product.</li>
       <li><strong>A complete source register</strong>: ${policy.sources.length} primary sources and ${products.reduce(
         (n, p) => n + p.specs.length,
         0
@@ -2176,14 +2232,14 @@ ${breadcrumb([{ href: url("/"), label: "Home" }, { label: "Executive summary" }]
       <li>Sign in to Associates and confirm one product link per product appears in the tracking report.</li>
       <li>Deploy the collector in <code>_worker/</code> and set the endpoint, then rebuild.</li>
       <li>Verify Search Console, replace the placeholder token, submit the sitemap.</li>
-      <li>Publish a new guide every week for eight weeks.</li>
-      <li>At week eight, read the query report and replace the topic hypotheses with measured demand.</li>
+      <li>Publish a new guide every week for eight weeks — the technique cluster proposed in <a href="${url("/suggestions/")}">SUG-26</a> supplies the topics.</li>
+      <li>At week eight, read the query report and replace the topic hypotheses with measured demand — including whether the seasonal cluster earns its annual refresh (Q-23).</li>
       <li>Apply for Product Advertising API access once the account qualifies — it unlocks prices, ratings and images together.</li>
     </ol>
 
     <h2>The honest verdict</h2>
-    <p>What exists is a small, well-documented, compliant publication with ${guides.length} guides and ${products.length} products. It is not yet a business: it has no traffic, no verified affiliate attribution, and no data. It is, however, built so that when those three things arrive, nothing has to be torn down — and so that nothing on it is a lie.</p>
-    <p>The main strategic risk is not technical. It is that ${guides.length} guides is not enough content to rank in a crowded category, and the plan for fixing that is a cadence, not a feature.</p>
+    <p>What exists is a small, well-documented, compliant publication with ${guides.length} guides, a seasonal collection, two job-first service pages and ${products.length} products. It is not yet a business: it has no traffic, no verified affiliate attribution, and no data. It is, however, built so that when those three things arrive, nothing has to be torn down — and so that nothing on it is a lie.</p>
+    <p>The main strategic risk is not technical. It is that ${guides.length} guides is still not enough content to rank in a crowded category, and the plan for fixing that is a cadence, not a feature. The decisions blocking the next step are owner calls recorded in the registers: the seasonal cadence (with the opposite position recorded beside it), the generated brand imagery, and — above all — measured demand, which no amount of writing substitutes for.</p>
   </div>
 </section>
 `;
@@ -2440,6 +2496,149 @@ ${breadcrumb([
   });
 }
 
+/* ============================================================
+   SEASONAL COLLECTION — the hub that carries the seasonal
+   cluster. Topic chosen for the calendar (November), not from
+   demand data; that trade-off is FLG-020 / SUG-23 vs SUG-25 and
+   is stated on the page itself.
+   ============================================================ */
+function seasonalPage() {
+  const fryers = products.filter((p) => p.category === "air-fryers");
+  const holidayGuide = guides.find((g) => g.slug === "holiday-batch");
+  const techniqueGuide = guides.find((g) => g.slug === "not-burn-the-rolls");
+  const thermometer = products.find((p) => p.formFactor === "wireless-leave-in");
+  const instantRead = products.find((p) => p.formFactor === "instant-read");
+
+  const html = `
+${breadcrumb([{ href: url("/"), label: "Home" }, { label: "Holiday" }])}
+<div class="article-head article-head--image">
+  <img class="article-head__img" src="${url("/assets/img/counter-plan.jpg")}" alt="" role="presentation" width="1384" height="768" loading="lazy">
+  <div class="article-head__scrim"></div>
+  <div class="wrap article-head__inner">
+    <p class="kicker">Seasonal collection · November &amp; December</p>
+    <h1 class="article-head__title">Holiday cooking, planned around a second chamber</h1>
+    <p class="article-head__dek">One oven, four dishes, a table that will not move. The fix is not a bigger oven — it is a smaller one on the counter, with its own clock.</p>
+  </div>
+</div>
+
+<section class="section">
+  <div class="wrap narrow prose">
+    <p>Every holiday kitchen runs into the same wall: the roast owns the main oven for hours at one temperature, and everything else wants something different. Sides want high heat fast. Rolls want a final hot burst exactly when guests arrive. Reheating wants crisp back in minutes. The main oven cannot be in four places, and a written schedule only stretches so far.</p>
+    <p>A second, small chamber breaks the constraint instead of managing it. This collection gathers the seasonal decision in one place: the sequence to follow, the products that fit the two jobs a holiday kitchen actually creates, and the honest limits of what we know.</p>
+    <div class="note">
+      <p class="note__title">What this page is not</p>
+      <p>It is not a claim that anything was cooked, tested, or measured. No page on this site claims hands-on experience — the FTC forbids describing experience you do not have, and none took place. It is also not a demand-driven topic pick: seasonal pages follow the calendar, because no Search Console query data exists yet (<a href="${url("/flagged/")}">FLG-020</a>, <a href="${url("/questions/")}">Q-23</a>). One register row (<a href="${url("/suggestions/")}">SUG-23</a>) recommends holding seasonal topics until demand is measured; this page records the opposite choice, made under a direct publishing brief, so the owner can weigh both.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section section--deep">
+  <div class="wrap">
+    <div class="section__head">
+      <h2 class="section__title">The sequence, in one screen</h2>
+      <p class="section__dek">Work backwards from dinner. The roast keeps the oven; the counter chamber takes everything that wants hot, fast, small, or reheated.</p>
+    </div>
+    <ol class="steps">
+      <li><strong>Claim the oven for the long, inflexible dish.</strong> The roast, the covered braise, anything slow by design. Its clock is the least movable.</li>
+      <li><strong>Give high-heat, single-layer sides to the counter chamber.</strong> Sprouts, potatoes, roasted vegetables — browned by moving air, held warm in a covered bowl while the rest finishes.</li>
+      <li><strong>Make the counter chamber the reheat station.</strong> Anything that finished early comes back crisp there, not in the oven you are fighting for.</li>
+      <li><strong>Reserve the final burst for the counter chamber too.</strong> Rolls, gratin top-ups, biscuit refreshes — the short, hot jobs that land exactly when the oven is full.</li>
+      <li><strong>Write the two clocks down the night before.</strong> Oven schedule on one line, counter schedule on the next. The most common holiday failure is scheduling, and paper is the cheapest fix.</li>
+    </ol>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="section__head section__head--split">
+      <div>
+        <h2 class="section__title">The machines that fit the two jobs</h2>
+        <p class="section__dek">Two small drawers that finish together, or one large chamber that <em>is</em> a second oven. The details below come from the official listings; nothing here is tested.</p>
+      </div>
+      <a class="section__more" href="${url("/air-fryers/")}">All air fryers</a>
+    </div>
+    <div class="products products--three">
+      ${fryers.map((p, i) => productCard(p, i + 1)).join("")}
+    </div>
+    <div class="note mt2">
+      <p class="note__title">Reading the two options</p>
+      <p>The dual-basket unit solves two temperatures at small scale — 6 quarts total, two 3-quart cooks, Sync Finish holds the faster basket so both plates land together. The 26-quart French-door chamber is the second-oven answer: full trays, a small bird of its own, at the cost of most of a counter. Measure the counter in October, not December.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="section__head">
+      <h2 class="section__title">The other holiday failure is guesswork</h2>
+      <p class="section__dek">A crowded kitchen pulls birds early and opens doors too often. A thermometer takes the guess out for less than the price of a side dish.</p>
+    </div>
+    <div class="products">
+      ${[instantRead, thermometer].filter(Boolean).map((p) => productCard(p, null)).join("")}
+    </div>
+  </div>
+</section>
+
+<section class="section section--deep">
+  <div class="wrap">
+    <div class="section__head">
+      <h2 class="section__title">The guides behind this page</h2>
+      <p class="section__dek">The seasonal cluster, written as decisions rather than rankings.</p>
+    </div>
+    <div class="guides guides--two">
+      ${
+        [holidayGuide, techniqueGuide]
+          .filter(Boolean)
+          .map(
+            (g) => `<a class="guide-link" href="${url(`/guides/${g.slug}/`)}">
+        <span class="guide-link__num">${g.number}</span>
+        <span>
+          <h3 class="guide-link__title">${esc(g.title)}</h3>
+          <p class="guide-link__dek">${esc(g.dek)}</p>
+        </span>
+      </a>`
+          )
+          .join("")
+      }
+    </div>
+    <div class="note mt2">
+      <p class="note__title">The imagery on this page</p>
+      <p>The photographs here are generated illustrations of a kitchen counter, not photos of the products. No product photography appears anywhere on this site — reproducing Amazon listing images outside approved tooling is not permitted, and stock photos of a different appliance would misrepresent the item. See <a href="${url("/flagged/")}">FLG-007</a> for the full constraint.</p>
+    </div>
+  </div>
+</section>
+`;
+
+  pages.push({
+    path: "/seasonal/",
+    title: "Holiday cooking, planned around a second chamber",
+    desc: "The seasonal collection: what to move off the oven, in what order, and the two machines that fit the two jobs a holiday kitchen creates.",
+    html,
+    priority: "0.8",
+    changefreq: "weekly",
+    jsonld: {
+      "@context": "https://schema.org",
+      "@type": "CollectionPage",
+      name: "Holiday cooking, planned around a second chamber",
+      description: "Seasonal collection: sequencing a second countertop chamber for holiday cooking.",
+      datePublished: site.built,
+      dateModified: site.built,
+      author: { "@type": "Organization", name: site.name },
+      publisher: { "@type": "Organization", name: site.name },
+      isAccessibleForFree: true,
+      mainEntity: {
+        "@type": "ItemList",
+        itemListElement: fryers.map((p, i) => ({
+          "@type": "ListItem",
+          position: i + 1,
+          url: abs(`/products/${p.slug}/`),
+          name: p.name
+        }))
+      }
+    }
+  });
+}
+
 function feeds() {
   // Deterministic: the declared build date, not the wall clock. A build that
   // embeds `new Date()` can never pass a "is the output committed?" check.
@@ -2531,6 +2730,7 @@ decisionsPage();
 categoryPages();
 productPages();
 guidePages();
+seasonalPage();
 comparePage();
 registerPage();
 flaggedPage();

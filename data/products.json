@@ -110,7 +110,9 @@
       "guideTopics": [
         "basket-vs-oven",
         "capacity",
-        "cleanup"
+        "cleanup",
+        "not-burn-the-rolls",
+        "holiday-batch"
       ],
       "submittedLink": "https://link.amazon/B04G1MEwY",
       "observedDestination": "https://www.amazon.com/dp/B0CDY277D3",
@@ -229,7 +231,9 @@
       "guideTopics": [
         "basket-vs-oven",
         "capacity",
-        "multifunction"
+        "multifunction",
+        "not-burn-the-rolls",
+        "holiday-batch"
       ],
       "submittedLink": "https://link.amazon/B02NbDxp3",
       "observedDestination": "https://www.amazon.com/dp/B09B7SB46R",
@@ -349,7 +353,9 @@
       "guideTopics": [
         "capacity",
         "cleanup",
-        "basket-vs-oven"
+        "basket-vs-oven",
+        "not-burn-the-rolls",
+        "holiday-batch"
       ],
       "submittedLink": "https://link.amazon/B00hJ57DV",
       "observedDestination": "https://www.amazon.com/dp/B08DKYBTPH",
@@ -392,9 +398,9 @@
         },
         {
           "label": "Water resistance",
-          "value": "Described as 100% waterproof; no IP number published",
+          "value": "IP67, as stated in the listing title",
           "status": "verified",
-          "source": "manufacturer"
+          "source": "amazon-listing"
         },
         {
           "label": "Display",
@@ -471,8 +477,8 @@
           "label": "thermomaven.com"
         },
         "Water resistance": {
-          "url": "https://www.thermomaven.com/products/f1-stealth",
-          "label": "thermomaven.com"
+          "url": "https://www.amazon.com/dp/B0DHZTCNR5",
+          "label": "Amazon listing (title states IP67)"
         },
         "Battery type": {
           "url": "https://www.thermomaven.com/products/f1-stealth",

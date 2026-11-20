@@ -17,7 +17,10 @@
 <meta property="og:title" content="Suggestions &amp; decisions — Counter Space">
 <meta property="og:description" content="Every suggestion on file with its state, its cost and any recorded decision, on one reviewable page.">
 <meta property="og:url" content="https://sassnarep3-star.github.io/WinA/decisions/">
+<meta property="og:image" content="https://sassnarep3-star.github.io/WinA/assets/img/holiday-counter.jpg">
+<meta property="og:image:alt" content="A kitchen counter set for holiday cooking: seasonal ingredients, herbs and prep tools on a wooden surface.">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://sassnarep3-star.github.io/WinA/assets/img/holiday-counter.jpg">
 <meta name="twitter:title" content="Suggestions &amp; decisions — Counter Space">
 <meta name="twitter:description" content="Every suggestion on file with its state, its cost and any recorded decision, on one reviewable page.">
 <link rel="alternate" type="application/rss+xml" title="Counter Space" href="/WinA/feed.xml">
@@ -39,7 +42,7 @@
       <span class="brand__name">Counter Space</span>
       <span class="brand__sub">Kitchen gear, judged honestly</span>
     </a>
-    <nav class="nav" aria-label="Primary"><a href="/WinA/air-fryers/">Air fryers</a><a href="/WinA/thermometers/">Thermometers</a><a href="/WinA/guides/">Guides</a><a href="/WinA/compare/">Compare</a><a href="/WinA/about/">About</a><a href="/WinA/decisions/" aria-current="page">Decisions</a></nav>
+    <nav class="nav" aria-label="Primary"><a href="/WinA/air-fryers/">Air fryers</a><a href="/WinA/thermometers/">Thermometers</a><a href="/WinA/guides/">Guides</a><a href="/WinA/compare/">Compare</a><a href="/WinA/seasonal/">Holiday</a><a href="/WinA/about/">About</a><a href="/WinA/decisions/" aria-current="page">Decisions</a></nav>
   </div>
 </header>
 
@@ -67,7 +70,7 @@
   <div class="wrap">
     <div class="strip strip--inline">
       <div class="strip__cell"><p class="strip__num">34</p><p class="strip__lab">Suggestions on file</p></div>
-      <div class="strip__cell"><p class="strip__num">8</p><p class="strip__lab">Already shipped</p></div>
+      <div class="strip__cell"><p class="strip__num">4</p><p class="strip__lab">Already shipped</p></div>
       <div class="strip__cell"><p class="strip__num">3</p><p class="strip__lab">With a recorded decision</p></div>
       <div class="strip__cell"><p class="strip__num">31</p><p class="strip__lab">Waiting on you</p></div>
     </div>
@@ -204,7 +207,7 @@
       <td class="tiny">None.</td>
     </tr><tr>
       <td class="mono">SUG-05</td>
-      <td><strong>Publish on a real cadence: a new guide every week for eight weeks, then read the query data</strong><br><span class="tiny muted">Recommend a fixed day and a fixed length. A weekly cadence also keeps content inside the 60-day recency window that Amazon's Associates Help describes (FLG-013). Add each new guide…</span></td>
+      <td><strong>Publish on a real cadence: a new guide every week for eight weeks, then read the query data</strong><br><span class="tiny muted">Adopted 2026-11-20 as the publishing cadence; see the decision log. A new guide every Monday (New York time) for eight weeks. Basis, checked on Amazon Associates Help: content shou…</span></td>
       <td><span class="pill pill--recommend">recommend</span></td>
       <td><span class="faint">waiting</span></td>
       <td class="tiny">A substantive guide per week. Each needs its own verified spec pass.</td>
@@ -324,45 +327,45 @@
       <td class="tiny">A small table on this page, populated by hand.</td>
     </tr><tr>
       <td class="mono">SUG-25</td>
-      <td><strong>Ship a self-hosted type system and replace the templated default look</strong><br><span class="tiny muted">Shipped in this pass, because the brief asked for a polished front-of-house and a font stack was the single largest visual lever available without breaching the no-imagery constrai…</span></td>
+      <td><strong>Ship the seasonal cluster now, and refresh it every November — the position opposite SUG-23</strong><br><span class="tiny muted">Shipped this pass. Owner decides at Q-25: adopt the annual November refresh (re-check every linked spec against its source each time), or retire the page in favour of SUG-23\u2019s…</span></td>
       <td><span class="pill pill--shipped">shipped</span></td>
-      <td><span class="pill pill--resolved">accepted</span> <span class="tiny faint">2026-11-20 · DEC-01</span></td>
-      <td class="tiny">Two vendored woff2 files plus a type scale. No new dependency, no build step, no network request to a font CDN.</td>
+      <td><span class="pill pill--resolved">accepted</span> <span class="tiny faint">2026-11-20 · DEC-02</span></td>
+      <td class="tiny">A collection page, a holiday guide, two generated brand images, and a navigation label. Built in this pass.</td>
     </tr><tr>
       <td class="mono">SUG-26</td>
-      <td><strong>Draw the imagery instead of borrowing it</strong><br><span class="tiny muted">Shipped in this pass. It resolves the visual coldness without touching FLG-007, which stays open because a manufacturer press asset is still the only route to real product imagery.</span></td>
-      <td><span class="pill pill--shipped">shipped</span></td>
+      <td><strong>Grow the technique cluster by one article a month — jobs, not verdicts</strong><br><span class="tiny muted">Recommend. Start next month if the weekly cadence (SUG-05, SUG-21) is not adopted; if it is, slot technique articles into the same calendar. Each new guide enters the sitemap and f…</span></td>
+      <td><span class="pill pill--recommend">recommend</span></td>
       <td><span class="faint">waiting</span></td>
-      <td class="tiny">One module (_src/art.mjs) and about 15 small SVG files, all generated deterministically by the build.</td>
+      <td class="tiny">A guide per month plus its verification pass — the same cost as the weekly cadence in SUG-05 and SUG-21, at a slower, sustainable rate.</td>
     </tr><tr>
       <td class="mono">SUG-27</td>
-      <td><strong>Write service pages for the two jobs a reader arrives with</strong><br><span class="tiny muted">Shipped. These are the pages a search engine can rank for a question rather than a product name, which is the only kind of query this site can win without brand authority.</span></td>
-      <td><span class="pill pill--shipped">shipped</span></td>
+      <td><strong>Expand the brand imagery: one generated counter scene per collection</strong><br><span class="tiny muted">Consider after the seasonal deploy settles. Owner position on generated imagery is Q-26; decide per image, not as a batch, and keep the same warm editorial grade so the set reads a…</span></td>
+      <td><span class="pill pill--consider">consider</span></td>
       <td><span class="faint">waiting</span></td>
-      <td class="tiny">Two pages built from the same verified product data. No new product claims.</td>
+      <td class="tiny">Four generated images and one CSS addition. No ongoing cost.</td>
     </tr><tr>
       <td class="mono">SUG-28</td>
-      <td><strong>Publish the next guides on sizing and app dependence, then stop and measure</strong><br><span class="tiny muted">Shipped, with the cadence question left open: the next guide should be chosen from Search Console query data, not from instinct.</span></td>
-      <td><span class="pill pill--shipped">shipped</span></td>
+      <td><strong>Buy traffic before conversion measurement exists</strong><br><span class="tiny muted">Hold until FLG-011 and FLG-004 close. Re-evaluate in the week after the first Associates report arrives.</span></td>
+      <td><span class="pill pill--hold">hold</span></td>
       <td><span class="faint">waiting</span></td>
-      <td class="tiny">The additions run to roughly 1,800 words. Both are added to the sitemap and the RSS feed in the same build that publishes them.</td>
+      <td class="tiny">Budget, plus the two blockers above.</td>
     </tr><tr>
       <td class="mono">SUG-29</td>
-      <td><strong>Replace the placeholder Search Console token with nothing until a real one exists</strong><br><span class="tiny muted">Shipped. Set site.searchConsoleToken in data/products.json to a real value and the tag comes back automatically; leave it empty and no tag is emitted.</span></td>
-      <td><span class="pill pill--shipped">shipped</span></td>
+      <td><strong>A dedicated head-to-head thermometer page — only when measurement justifies it</strong><br><span class="tiny muted">Consider, gated on measurement: build it only if the query report (Q-24) shows thermometer-comparison impressions. Until then the guide and the table cover the intent.</span></td>
+      <td><span class="pill pill--consider">consider</span></td>
       <td><span class="faint">waiting</span></td>
-      <td class="tiny">One line in the layout, plus a build rule that refuses to emit the tag unless a real token is supplied in data/products.json.</td>
+      <td class="tiny">One page from existing verified data; no new claims required.</td>
     </tr><tr>
       <td class="mono">SUG-30</td>
       <td><strong>Put every suggestion and every decision on one reviewable page</strong><br><span class="tiny muted">Shipped. The table is the review interface the brief asked for: someone can read the list, pick a path, and record the decision in one place.</span></td>
       <td><span class="pill pill--shipped">shipped</span></td>
-      <td><span class="pill pill--resolved">accepted</span> <span class="tiny faint">2026-11-20 · DEC-01</span></td>
+      <td><span class="pill pill--resolved">accepted</span> <span class="tiny faint">2026-11-20 · DEC-02</span></td>
       <td class="tiny">One page generated from the two data blocks that already existed. No new data entry.</td>
     </tr><tr>
       <td class="mono">SUG-31</td>
       <td><strong>Do not add a second publication to chase a second niche</strong><br><span class="tiny muted">Rejected for now, and recorded so it is not re-litigated. Revisit only if Search Console shows the two categories competing for unrelated queries.</span></td>
       <td><span class="pill pill--reject">reject</span></td>
-      <td><span class="pill pill--withheld">rejected</span> <span class="tiny faint">2026-11-20 · DEC-02</span></td>
+      <td><span class="pill pill--withheld">rejected</span> <span class="tiny faint">2026-11-20 · DEC-03</span></td>
       <td class="tiny">None. This is a decision not to act.</td>
     </tr><tr>
       <td class="mono">SUG-32</td>
@@ -389,8 +392,17 @@
     <h2 class="section__title" style="margin-top:3rem">Decisions on record</h2>
     <div class="decision-list"><article class="decision">
       <div class="decision__head">
+        <span class="pill pill--withheld">decision</span>
+        <span class="mono tiny"></span>
+        <span class="tiny faint">2026-11-20</span>
+      </div>
+      <h3 class="decision__subject"></h3>
+      <p class="decision__reason">Publishing cadence adopted: a new guide every Monday (New York time) for eight weeks, each added to the sitemap and feed in the same commit and passing the build and compliance gates. Basis: Associates Help 'Application Review Process' (FLG-013). This sets the schedule only; no new guide is published by this decision. Week-eight measurement waits on owner-connected Search Console and analytics (FLG-009, FLG-011).</p>
+      <p class="tiny muted"><strong>Evidence:</strong>  · <strong>Recorded by:</strong> </p>
+    </article><article class="decision">
+      <div class="decision__head">
         <span class="pill pill--resolved">accepted</span>
-        <span class="mono tiny">DEC-01</span>
+        <span class="mono tiny">DEC-02</span>
         <span class="tiny faint">2026-11-20</span>
       </div>
       <h3 class="decision__subject">SUG-25 to SUG-30 (publication pass: typography, illustrations, service pages, new guides, verification token, decisions page)</h3>
@@ -399,7 +411,7 @@
     </article><article class="decision">
       <div class="decision__head">
         <span class="pill pill--withheld">rejected</span>
-        <span class="mono tiny">DEC-02</span>
+        <span class="mono tiny">DEC-03</span>
         <span class="tiny faint">2026-11-20</span>
       </div>
       <h3 class="decision__subject">SUG-31 (a second publication)</h3>

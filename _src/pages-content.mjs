@@ -206,9 +206,9 @@ export const seo = {
     },
     {
       title: "What is not verified",
-      body: `<p>Search Console ownership has not been confirmed, because that requires account access. A placeholder verification token is in the markup and clearly marked as such.</p>
+      body: `<p>Search Console ownership has not been confirmed, because that requires account access. There is no placeholder token in the markup any more — the build refuses to emit one, and refuses to emit a token unless it is set in the data file.</p>
 <p><strong>Until that is replaced, this site has no idea whether it is indexed, what it ranks for, or whether anyone arrives.</strong> It is the single highest-value five-minute task remaining, and it is recorded as an open action rather than described as done.</p>
-<p>No search volume data exists for any of the guide topics. The titles are editorial hypotheses about what people might ask, not evidence about what they do ask. Publishing the guides and reading the query report is how that changes.</p>`
+<p>No search volume data exists for any of the published guide topics. The titles are editorial hypotheses about what people might ask, not evidence about what they do ask. Publishing guides on a cadence and reading the query report is how that changes.</p>`
     },
     {
       title: "What we will not do",

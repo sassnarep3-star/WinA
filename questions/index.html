@@ -17,7 +17,10 @@
 <meta property="og:title" content="Open questions — Counter Space">
 <meta property="og:description" content="Every question that must be answered before further decisions: what we know, what we do not, and the specific action that would settle each one.">
 <meta property="og:url" content="https://sassnarep3-star.github.io/WinA/questions/">
+<meta property="og:image" content="https://sassnarep3-star.github.io/WinA/assets/img/holiday-counter.jpg">
+<meta property="og:image:alt" content="A kitchen counter set for holiday cooking: seasonal ingredients, herbs and prep tools on a wooden surface.">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://sassnarep3-star.github.io/WinA/assets/img/holiday-counter.jpg">
 <meta name="twitter:title" content="Open questions — Counter Space">
 <meta name="twitter:description" content="Every question that must be answered before further decisions: what we know, what we do not, and the specific action that would settle each one.">
 <link rel="alternate" type="application/rss+xml" title="Counter Space" href="/WinA/feed.xml">
@@ -39,7 +42,7 @@
       <span class="brand__name">Counter Space</span>
       <span class="brand__sub">Kitchen gear, judged honestly</span>
     </a>
-    <nav class="nav" aria-label="Primary"><a href="/WinA/air-fryers/">Air fryers</a><a href="/WinA/thermometers/">Thermometers</a><a href="/WinA/guides/">Guides</a><a href="/WinA/compare/">Compare</a><a href="/WinA/about/">About</a><a href="/WinA/decisions/">Decisions</a></nav>
+    <nav class="nav" aria-label="Primary"><a href="/WinA/air-fryers/">Air fryers</a><a href="/WinA/thermometers/">Thermometers</a><a href="/WinA/guides/">Guides</a><a href="/WinA/compare/">Compare</a><a href="/WinA/seasonal/">Holiday</a><a href="/WinA/about/">About</a><a href="/WinA/decisions/">Decisions</a></nav>
   </div>
 </header>
 
@@ -59,17 +62,17 @@
   <div class="wrap">
     <p class="kicker">Before any decision</p>
     <h1 class="article-head__title">Open questions</h1>
-    <p class="article-head__dek">Every open question this build ran into, with what we can answer today, what we cannot, and how to close it. Nothing here is resolved by assumption. Where an answer exists, it cites the source. Where it does not, the row says so and names the specific thing that would settle it.</p>
+    <p class="article-head__dek">Every open question this build ran into, with what we can answer today, what we cannot, and how to close it. Nothing here is resolved by assumption. Where an answer exists, it cites the source. Where it does not, the row says so and names the specific thing that would settle it. Q-23 to Q-26 were added by the 2026-11-20 editorial pass (arena-27f76c22).</p>
   </div>
 </div>
 <section class="section">
   <div class="wrap">
     <div class="strip" style="border:1px solid var(--rule);margin-bottom:2rem">
       <div class="strip__inner">
-        <div class="strip__cell"><p class="strip__num">22</p><p class="strip__lab">Questions logged</p></div>
+        <div class="strip__cell"><p class="strip__num">26</p><p class="strip__lab">Questions logged</p></div>
         <div class="strip__cell"><p class="strip__num">6</p><p class="strip__lab">Blocking</p></div>
         <div class="strip__cell"><p class="strip__num">4</p><p class="strip__lab">Answered</p></div>
-        <div class="strip__cell"><p class="strip__num">18</p><p class="strip__lab">Still open</p></div>
+        <div class="strip__cell"><p class="strip__num">22</p><p class="strip__lab">Still open</p></div>
       </div>
     </div>
 
@@ -104,11 +107,11 @@
         </tr><tr>
           <td class="mono">D-03</td>
           <td><strong>Evidence that anyone is searching for this</strong></td>
-          <td class="small">Seven guides chosen as hypotheses. No impression, query or click data of any kind.</td>
+          <td class="small">Nine guides chosen as hypotheses. No impression, query or click data of any kind.</td>
           <td class="small">Search Console: the verification token, then a Performance export</td>
           <td class="small">Owner — Search Console</td>
           <td class="small">Run node scripts/next-topics.mjs against the export. It refuses to run without one; with one, it ranks the queries the site already receives.</td>
-          <td class="small mono">Q-07 Q-18 FLG-009 SG-29 FLG-035 FLG-037</td>
+          <td class="small mono">Q-07 Q-18 FLG-009 SG-29 FLG-035 FLG-043</td>
           <td><span class="pill pill--action">owner only</span></td>
         </tr><tr>
           <td class="mono">D-04</td>
@@ -340,14 +343,32 @@
     <td><span class="pill pill--built-unverified">built-unverified</span></td>
     <td class="small"><a href="https://sassnarep3-star.github.io/WinA/sitemap.xml" rel="noopener" target="_blank">Published sitemap</a></td>
   </tr><tr>
+    <td><code>Q-23</code></td>
+    <td class="small">Demand</td>
+    <td><strong>Does anyone actually search for holiday air-fryer scheduling content?</strong><br><span class="pill pill--high" style="margin-top:.4rem">high</span></td>
+    <td class="small">Unknown. The seasonal cluster was chosen for the calendar, not from demand data, and the page says so — while SUG-23 recommends holding such topics until measurement exists. Both positions are recorded.</td>
+    <td class="small">Any impressions or query data at all. Search Console has never been verified for this property (SG-29, FLG-009).</td>
+    <td class="small">Verify the Search Console property, submit the sitemap, and read the query report after the cluster is indexed. Compare seasonal-page impressions against the evergreen guides.</td>
+    <td><span class="pill pill--unanswered">unanswered</span></td>
+    <td class="small"><a href="https://search.google.com/search-console" rel="noopener" target="_blank">Google Search Console (verification pending, SG-29)</a></td>
+  </tr><tr>
+    <td><code>Q-24</code></td>
+    <td class="small">Demand</td>
+    <td><strong>Which of the nine guides earns impressions first?</strong><br><span class="pill pill--high" style="margin-top:.4rem">high</span></td>
+    <td class="small">Unknown until the property is verified and the query report populates.</td>
+    <td class="small">The first query report. Nothing else can rank the hypotheses.</td>
+    <td class="small">After SG-29 closes, read the query report at week four and week eight. Record the ranking in this register with the date read.</td>
+    <td><span class="pill pill--unanswered">unanswered</span></td>
+    <td class="small"><a href="https://sassnarep3-star.github.io/WinA/guides/" rel="noopener" target="_blank">The guides index (all seven live)</a></td>
+  </tr><tr>
     <td><code>Q-08</code></td>
     <td class="small">Demand</td>
-    <td><strong>Which guide topic should be written first?</strong><br><span class="pill pill--medium" style="margin-top:.4rem">medium</span></td>
-    <td class="small">Hypothesis only. The capacity checklist is the best starting bet because it applies to all three air fryers and does not depend on any product outperforming another. Later guides were added on the same basis — editorial hypothesis, no measured demand.</td>
+    <td><strong>Which of the published guide topics should be written next?</strong><br><span class="pill pill--medium" style="margin-top:.4rem">medium</span></td>
+    <td class="small">Hypothesis only. The capacity checklist is the best starting bet because it applies to all three air fryers and does not depend on any product outperforming another.</td>
     <td class="small">Evidence of which question people actually arrive with.</td>
     <td class="small">Ship all five, then let Search Console query data reorder them. See SUG-05.</td>
     <td><span class="pill pill--hypothesis">hypothesis</span></td>
-    <td class="small"><a href="https://sassnarep3-star.github.io/WinA/guides/" rel="noopener" target="_blank">The guides as published</a></td>
+    <td class="small"><a href="https://sassnarep3-star.github.io/WinA/guides/" rel="noopener" target="_blank">The guides index as published</a></td>
   </tr><tr>
     <td><code>Q-11</code></td>
     <td class="small">Editorial</td>
@@ -402,6 +423,24 @@
     <td class="small">Pick one channel and commit, or accept a slow burn. Decide before spending effort on capture UI.</td>
     <td><span class="pill pill--unanswered">unanswered</span></td>
     <td class="small"><a href="https://sassnarep3-star.github.io/WinA/feed.xml" rel="noopener" target="_blank">Published feed, currently unconsumed</a></td>
+  </tr><tr>
+    <td><code>Q-25</code></td>
+    <td class="small">Brand</td>
+    <td><strong>Will the owner adopt the seasonal cadence — refresh /seasonal/ every November — or hold seasonal topics until demand is measured (SUG-23)?</strong><br><span class="pill pill--medium" style="margin-top:.4rem">medium</span></td>
+    <td class="small">Not decided, and deliberately so: SUG-23 (hold) and SUG-25 (shipped) record opposite positions with their reasons. The page is built to be refreshed: one dated spec re-check per linked product and a re-read of the linked guides.</td>
+    <td class="small">The owner’s decision between the two recorded positions, and a calendar entry for the first refresh if shipping wins.</td>
+    <td class="small">Owner decision, ideally after Q-23’s first query report. If adopted, log the refresh date on the coordination board each year; if retired, mark the page’s season explicitly rather than implying currency.</td>
+    <td><span class="pill pill--decision-needed">decision-needed</span></td>
+    <td class="small"><a href="https://sassnarep3-star.github.io/WinA/seasonal/" rel="noopener" target="_blank">The seasonal collection page</a></td>
+  </tr><tr>
+    <td><code>Q-26</code></td>
+    <td class="small">Brand</td>
+    <td><strong>Are generated, labelled kitchen-scene illustrations acceptable brand imagery for this publication?</strong><br><span class="pill pill--medium" style="margin-top:.4rem">medium</span></td>
+    <td class="small">Not decided by the owner. This pass shipped two generated counter scenes, each labelled on-page as illustrations that do not depict the products.</td>
+    <td class="small">The owner’s position on AI-generated imagery in a publication whose whole premise is honesty about what is known.</td>
+    <td class="small">Owner decision. If rejected, remove the two images and revert to the typographic design — the site was fully compliant before they existed. If accepted, SUG-27 proposes one scene per collection.</td>
+    <td><span class="pill pill--decision-needed">decision-needed</span></td>
+    <td class="small"><a href="https://sassnarep3-star.github.io/WinA/flagged/" rel="noopener" target="_blank">FLG-007: the imagery constraint</a></td>
   </tr><tr>
     <td><code>Q-21</code></td>
     <td class="small">Brand</td>
