@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Analysis &amp; findings · The Counter Guide</title>
+<meta name="description" content="Counts and findings from the register.">
+<link rel="stylesheet" href="../assets/site.css">
+<link rel="alternate" type="application/rss+xml" title="The Counter Guide guides" href="../feed.xml">
+<script>window.CG_CONFIG = {"endpoint": null, "events": ["page_view", "outbound_click", "guide_view", "nav_click", "feed_subscribe_click"]};</script>
+<script src="../assets/analytics.js" defer></script>
+</head>
+<body>
+<header class="masthead">
+  <div class="wrap masthead-inner">
+    <a class="brand" href="../index.html">The Counter Guide</a>
+    <nav class="nav" aria-label="Main"><a href="../shop/index.html" class="">Shop</a><a href="../guides/index.html" class="">Guides</a><a href="../dashboard/index.html" class="active">Dashboard</a></nav>
+  </div>
+</header>
+<div class="disclosure" role="note"><div class="wrap">As an Amazon Associate I earn from qualifying purchases. <span class="muted">Links to Amazon are tagged and marked sponsored. Prices are not shown.</span></div></div>
+<main class="wrap">
+
+<section class="page-head">
+  <p class="kicker"><a href="index.html">Dashboard</a> / Analysis</p>
+  <h1>Analysis &amp; findings</h1>
+  <p class="lede">Counts come from the data files, not from estimates. No conversion score or revenue forecast is presented.</p>
+</section>
+<section class="section kpis">
+  <div class="kpi"><span>5</span>register rows</div>
+  <div class="kpi"><span>5/5</span>destinations observed</div>
+  <div class="kpi"><span>0/5</span>intended ASINs confirmed</div>
+  <div class="kpi"><span>15</span>flags logged</div>
+</section>
+<section class="section"><div class="table-wrap"><table class="data"><thead><tr><th>#</th><th>Finding</th><th>Detail</th><th>Evidence</th></tr></thead><tbody><tr><td>A1</td><td>5 of 5 submitted links resolved to an amazon.com /dp/ page</td><td>Observed through the fetch tool on 2026-11-20. Curl from the build host could not reach link.amazon.</td><td>SRC-06 to SRC-10 · <a href="../dashboard/flagged.html#FLG-002">FLG-002</a></td></tr><tr><td>A2</td><td>0 of 5 intended ASINs confirmed</td><td>The submitted paths are 9 characters, not 10 (FLG-001). Intended fields stay blank.</td><td><a href="../dashboard/flagged.html#FLG-001">FLG-001</a></td></tr><tr><td>A3</td><td>5 of 5 register rows link their source to the observed destination</td><td>The source link on each row is the Amazon page that was observed.</td><td>Verification check in build.py</td></tr><tr><td>A4</td><td>0 of 5 prices displayed</td><td>Price display is limited by Program Policies §2(b). No price is shown.</td><td><a href="../dashboard/flagged.html#FLG-005">FLG-005</a></td></tr><tr><td>A5</td><td>5 of 5 submitted paths are 9 characters</td><td>ASIN length is taken from a forum source only (FLG-011).</td><td><a href="../dashboard/flagged.html#FLG-011">FLG-011</a></td></tr><tr><td>A6</td><td>2 of 5 destination pages show the word 'Sponsored' near the product summary</td><td>Meaning not established; recorded only.</td><td><a href="../dashboard/flagged.html#FLG-006">FLG-006</a></td></tr><tr><td>A7</td><td>7 questions answered from official sources; 14 open</td><td>See the questions page.</td><td><a href="questions.html">Questions</a></td></tr><tr><td>A8</td><td>Associates content bar not yet met for an application</td><td>Associates Help rule of thumb is at least 10 posts; this site has 4 guides and 5 register rows.</td><td><a href="../dashboard/flagged.html#FLG-010">FLG-010</a></td></tr><tr><td>A9</td><td>No conversion, commission or revenue figures are presented</td><td>No authorized first-party reports exist (see the ledger). Commission rates were not checked in this session.</td><td><a href="ledger.html">Ledger</a></td></tr></tbody></table></div></section>
+
+</main>
+<footer class="footer">
+  <div class="disclosure disclosure-footer" role="note"><div class="wrap">As an Amazon Associate I earn from qualifying purchases.</div></div>
+  <div class="wrap footer-grid">
+    <div>
+      <p class="brand-small">The Counter Guide</p>
+      <p class="small muted">Buyer questions for kitchen appliances, with every listing checked against its source</p>
+      <p class="small muted">Built 2026-11-20 from <code>data/*.json</code>. Every row cites an official source; unverified fields are blank and flagged.</p>
+    </div>
+    <div>
+      <p class="footer-h">Shop &amp; guides</p>
+      <ul class="plain">
+        <li><a href="../shop/index.html">Shop</a></li>
+        <li><a href="../shop/air-fryers-ovens.html">Air fryers &amp; ovens</a></li>
+        <li><a href="../shop/meat-thermometers.html">Meat thermometers</a></li>
+        <li><a href="../guides/index.html">Guides</a></li>
+        <li><a href="../feed.xml">RSS feed</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="footer-h">Dashboard</p>
+      <ul class="plain"><li><a href="../dashboard/register.html">Product register</a></li><li><a href="../dashboard/sources.html">Source register</a></li><li><a href="../dashboard/analysis.html">Analysis &amp; findings</a></li><li><a href="../dashboard/questions.html">Open questions</a></li><li><a href="../dashboard/suggestions.html">Suggestions</a></li><li><a href="../dashboard/flagged.html">Flagged for Review</a></li><li><a href="../dashboard/ledger.html">Campaign ledger</a></li><li><a href="../dashboard/analytics.html">Analytics status</a></li><li><a href="../dashboard/executive-summary.html">Executive summary</a></li></ul>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

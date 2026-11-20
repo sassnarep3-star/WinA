@@ -49,3 +49,47 @@ Branch: `arena/4a5044b0-wina` (branched from `df3e9534` on `main`).
 - Flagged irregularities and unverified items are published on flagged.html and do not block the merge; reviewer can request changes after the site is live.
 
 ---
+
+---
+
+## Integration session 2ca62ce9 (branch `arena/2ca62ce9-wina`) · 2026-11-20
+
+This section was added on rebase onto `main` (which already contained PRs #1 and #3 from `arena/4a5044b0-wina`). Nothing from the earlier board was removed. The earlier root-level site is preserved unchanged under `archive/arena-4a5044b0/` (see "Archive" below).
+
+### Task board (session 2ca62ce9)
+
+| Session ID | Task | Status | Files touched | Started | Finished | Sources / verification |
+|---|---|---|---|---|---|---|
+| arena-2ca62ce9-wina | Publication site build (`data/`, `tools/build.py`, `docs/`): front page, shop + category pages, 4 guides, dashboard hub + 9 dashboard pages, RSS, sitemap | done (awaiting integration review) | data/, tools/, docs/, README.md, COORDINATION.md, archive/arena-4a5044b0/ (move) | 2026-11-20 | 2026-11-20 | SRC-01 to SRC-11 (see below); `python3 tools/build.py` passes; 650 internal refs checked, 0 broken |
+| arena-2ca62ce9-wina | Verified source register | done | data/sources.json | 2026-11-20 | 2026-11-20 | SRC-01 to SRC-05 (official Amazon Associates, FTC, Google); SRC-06 to SRC-10 (observed Amazon listings); SRC-11 (forum, partial) |
+| arena-2ca62ce9-wina | Product register (5 submitted links; observed fields separate from intended fields; intended fields blank) | done, blanks flagged | data/products.json | 2026-11-20 | 2026-11-20 | SRC-06 to SRC-10 |
+| arena-2ca62ce9-wina | Flagged for Review (FLG-001 to FLG-015) | done | data/flags.json, docs/dashboard/flagged.html | 2026-11-20 | 2026-11-20 | per flag |
+| arena-2ca62ce9-wina | Validate submitted links + Tracking ID in Associates Central | blocked: needs owner login | — | — | — | FLG-001 to FLG-004 |
+| arena-2ca62ce9-wina | Analytics endpoint + five-event confirmation | blocked: owner decision (S-03) | — | — | — | FLG-007, FLG-008 |
+| arena-2ca62ce9-wina | Search Console + reader capture | blocked: owner access / decision (S-07) | — | — | — | FLG-012 |
+
+### Overlapping claims (both resolved by this integration)
+
+- `arena/2b309a82-wina` (commit 94a8bd3, not merged) claims the same publication-site task. It is not merged here and this integration does not edit it. Owner to decide per Suggestion S-08 (`docs/dashboard/suggestions.html`) and flag FLG-009.
+- `arena/4a5044b0-wina` (PRs #1 and #3, merged into `main`) built an earlier root-level site. Its pages are preserved in `archive/arena-4a5044b0/` and no longer served. The live site is now the integrated site in `docs/`, served through GitHub Pages from `main` `/docs`. Reason: the earlier site had blank product rows and no source register, and this site adds the source register, observed-destination fields, the 15-flag register, the guides' sources, and build checks. Nothing from that site was lost; it is in the archive folder with its history.
+- Discrepancy recorded for review: the earlier board stated that Amazon.com was unreachable from this environment. In this session the fetch tool did reach the five observed Amazon pages (2026-11-20). curl from the sandbox still cannot reach `link.amazon` (HTTP 000). Both observations are recorded in FLG-001 and FLG-002.
+
+### Verification performed (this session)
+
+- Each submitted short link opened; destination pages observed; the redirect target recorded in `observed_*` fields and kept separate from `intended_*` fields (which are blank: the submitted paths are 9 characters, FLG-001).
+- Official sources opened and quoted: SRC-01 (Operating Agreement §5 disclosure wording), SRC-02 (Program Policies: Special Link tag §2(b); price display §2(b)), SRC-03 (Associates Help: 3 qualified sales in 180 days; ~10 posts; content recent within 60 days), SRC-04 (FTC Disclosures 101: "hard to miss"), SRC-05 (Google rel="sponsored").
+- Build checks (fail on any): source host allowlist; observed destination equals source URL; intended ASIN format and completeness; no displayed prices; disclosure present twice on every page; every Amazon anchor marked sponsored; no broken internal links or anchors.
+- Not performed: rendering in a browser (none in the sandbox); external HTTP checks (outside the allowlist); Associates Central login; Search Console.
+
+### Irregularities (this session)
+
+See `data/flags.json` and `docs/dashboard/flagged.html`: FLG-001 (9-character paths), FLG-002 (intended vs observed mismatch), FLG-003 (compliance unresolved), FLG-004 (Tracking ID not verified; format differs from the XXXXX-## example), FLG-005 (prices not displayed), FLG-006 ("Sponsored" text observed), FLG-007 and FLG-008 (five events undefined; no endpoint on Pages), FLG-009 (overlapping claim), FLG-010 (content volume), FLG-011 (ASIN source is forum-level), FLG-012 (Search Console, reader capture), FLG-013 (brand and author placeholders), FLG-014 (S01/S02/S07/S24 and FLG-003 register not in repo), FLG-015 (seasons and clusters).
+
+### Archive
+
+- `archive/arena-4a5044b0/` holds the earlier root-level pages (`index.html`, `products.html`, `guides.html`, `suggest.html`, `questions.html`, `executive-summary.html`, `flagged.html`, `feed.xml`, `sitemap.xml`), their `assets/`, and `.nojekyll`. Files are moved with `git mv`; no content was changed.
+
+### Pull request and deploy
+
+- PR: https://github.com/sassnarep3-star/WinA/pull/4 (`arena/2ca62ce9-wina` → `main`).
+- Merge and Pages deploy: recorded below after the merge.
