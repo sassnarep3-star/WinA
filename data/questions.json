@@ -1,390 +1,358 @@
 {
-  "as_of": "2026-11-20",
-  "intro": "Questions that must be answered before a sound decision can be made. Each row shows what is known, what is missing, and how to find out. Status: answered = confirmed from an official source; partial = part confirmed; unanswered = no confirmed answer yet.",
+  "intro": "Every open question this build ran into, with what we can answer today, what we cannot, and how to close it. Nothing here is resolved by assumption. Where an answer exists, it cites the source. Where it does not, the row says so and names the specific thing that would settle it.",
+  "areas": [
+    {
+      "id": "identity",
+      "name": "Product identity",
+      "note": "What exactly is being promoted."
+    },
+    {
+      "id": "commercial",
+      "name": "Commercial terms",
+      "note": "What the link actually pays and whether it attributes."
+    },
+    {
+      "id": "demand",
+      "name": "Demand",
+      "note": "Whether anyone is looking for this."
+    },
+    {
+      "id": "editorial",
+      "name": "Editorial",
+      "note": "What we can honestly say, and in what voice."
+    },
+    {
+      "id": "compliance",
+      "name": "Compliance",
+      "note": "What the program and the regulator require."
+    },
+    {
+      "id": "measurement",
+      "name": "Measurement",
+      "note": "Whether any of it worked."
+    },
+    {
+      "id": "technical",
+      "name": "Technical",
+      "note": "Whether the site is findable and sound."
+    },
+    {
+      "id": "brand",
+      "name": "Brand",
+      "note": "What this publication is and who it is for."
+    }
+  ],
   "questions": [
     {
       "id": "Q-01",
-      "area": "Product intent",
-      "question": "Which Amazon listing was each submitted short link meant to point to?",
-      "known": "Each short link resolves to a different /dp/ page. The observed ASINs are B0CDY277D3, B09B7SB46R, B08DKYBTPH, B0DHZTCNR5, and B0DZFD6R9Z (SRC-11..15).",
-      "missing": "The intended ASIN for each product. No intent was supplied.",
-      "status": "partial",
-      "discover": "S-01",
-      "sources": [
-        "SRC-04",
-        "SRC-11"
-      ],
-      "flags": [
-        "F-01",
-        "F-03"
-      ]
+      "area": "identity",
+      "priority": "blocking",
+      "question": "Which exact products do the five submitted links point to?",
+      "answer": "All five resolved. They are three air fryers and two meat thermometers, with ASINs B0CDY277D3, B09B7SB46R, B08DKYBTPH, B0DHZTCNR5 and B0DZFD6R9Z.",
+      "have": "Each short link was followed and the landing product page recorded on 2026-11-20.",
+      "missing": "The intended ASIN for each link, as the requester meant it. None was supplied, so the field stays null.",
+      "matters": "Everything downstream depends on the ASIN. A wrong ASIN sends a reader to the wrong product.",
+      "howToFind": "Confirm the five ASINs against the Associates 'Product Links' view, or by eye against the product pages.",
+      "status": "answered",
+      "sourceUrl": "https://www.amazon.com/dp/B0CDY277D3",
+      "sourceLabel": "Example resolved product page",
+      "sourceAsin": "B0CDY277D3"
     },
     {
       "id": "Q-02",
-      "area": "Compliance",
-      "question": "Are the submitted short links Special Links that credit the Associate tag shopnow047c-20?",
-      "known": "No observed redirect URL contains a tag parameter. Participation Requirements §2(a)–(b) require the tag on each Special Link.",
-      "missing": "Whether the links carry the tag in a form not visible in the redirect. Whether the tag is enrolled.",
-      "status": "unanswered",
-      "discover": "S-02",
-      "sources": [
-        "SRC-02"
-      ],
-      "flags": [
-        "F-02",
-        "F-22"
-      ]
+      "area": "identity",
+      "priority": "blocking",
+      "question": "Is the short code in each link the ASIN?",
+      "answer": "No. The codes are not ASINs and do not match the destination ASINs.",
+      "have": "Observed by following each link: the code and the destination ASIN differ in all five cases.",
+      "missing": "What the short codes actually encode. That is not published.",
+      "matters": "Anyone treating the code as an ASIN would build broken links.",
+      "howToFind": "Already settled by observation. No further work needed.",
+      "status": "answered",
+      "sourceUrl": "https://link.amazon/B04G1MEwY",
+      "sourceLabel": "Submitted short link"
     },
     {
       "id": "Q-03",
-      "area": "Compliance",
-      "question": "Is tracking ID shopnow047c-20 enrolled and active in Associates Central?",
-      "known": "The ID was supplied in the brief.",
-      "missing": "Enrollment status. Requires your Associates Central login.",
-      "status": "unanswered",
-      "discover": "S-02",
-      "sources": [
-        "SRC-01"
-      ],
-      "flags": [
-        "F-22"
-      ]
+      "area": "identity",
+      "priority": "high",
+      "question": "Do the five products belong to one niche, or two?",
+      "answer": "Two, with a shared job: three air fryers and two meat thermometers. The overlap is real — the thermometer listings explicitly name air fryer as a supported use — but they are separate buying decisions.",
+      "have": "Product categories from the official listings, plus an air-fryer reference on both thermometer listings.",
+      "missing": "Whether the requester wants one publication covering both, or two focused sites.",
+      "matters": "Search engines reward topical focus. Two unrelated categories on one small domain dilutes it.",
+      "howToFind": "Decision, not research: confirm the intended scope. Recommendation is in the suggestions register (SUG-02).",
+      "status": "decision-needed",
+      "sourceUrl": "https://www.amazon.com/dp/B0DZFD6R9Z",
+      "sourceLabel": "CHEF iQ listing, references air fryer use",
+      "sourceAsin": "B0DZFD6R9Z"
     },
     {
       "id": "Q-04",
-      "area": "Commission",
-      "question": "What is the standard commission rate for each product category?",
-      "known": "Commission is a percentage of qualifying revenue (SRC-02, Commission Income Statement §3). The rate table is not readable without sign-in.",
-      "missing": "The rate for Home & Kitchen and any subcategory.",
+      "area": "commercial",
+      "priority": "blocking",
+      "question": "Is shopnow047c-20 a live, enrolled Associates tracking ID?",
+      "answer": "Unconfirmed. It is applied to every outbound link, but confirming enrolment requires the Associates dashboard.",
+      "have": "The ID itself, supplied by the requester.",
+      "missing": "Proof it is active, and that it is the ID this site should use.",
+      "matters": "If it is not enrolled, every click on this site earns nothing and the site is a hobby.",
+      "howToFind": "Sign in to Associates Central, open Account Settings, confirm the Store/Tracking ID list contains shopnow047c-20. Then click one link and confirm it appears in the tracking report.",
       "status": "unanswered",
-      "discover": "S-08",
-      "sources": [
-        "SRC-02",
-        "SRC-03"
-      ],
-      "flags": [
-        "F-06"
-      ]
+      "sourceUrl": "https://affiliate-program.amazon.com/",
+      "sourceLabel": "Associates Central (sign-in required)"
     },
     {
       "id": "Q-05",
-      "area": "Commission",
-      "question": "How much commission could each product earn?",
-      "known": "Commission is paid on qualifying revenue after deductions for shipping, taxes, and similar items (SRC-02, Commission Income Statement §1). A session lasts 24 hours from the click, and an order counts if placed within 89 days (SRC-02, §1(b)).",
-      "missing": "Rate (Q-04). Price (Q-06). Order volume (Q-07). Without these, no revenue estimate is made.",
-      "status": "partial",
-      "discover": "S-08, S-09",
-      "sources": [
-        "SRC-02"
-      ],
-      "flags": [
-        "F-05",
-        "F-06"
-      ]
+      "area": "commercial",
+      "priority": "high",
+      "question": "What commission does each product actually pay?",
+      "answer": "Not established. Rates vary by category and change; no current public table was verifiable at build time.",
+      "have": "Categories: air fryers fall under Home & Kitchen; thermometers under Home & Kitchen too.",
+      "missing": "The current applicable rate, and any fixed-amount bounty for either category.",
+      "matters": "Without it, no ordering between products is defensible, and no revenue estimate is honest.",
+      "howToFind": "Associates Central publishes current rates and any bounty offers inside the account. Record the rate with the date it was read.",
+      "status": "unanswered",
+      "sourceUrl": "https://affiliate-program.amazon.com/help/operating/policies",
+      "sourceLabel": "Commission Income Statement"
     },
     {
       "id": "Q-06",
-      "area": "Pricing",
-      "question": "What are the current prices and availability?",
-      "known": "Prices appeared on the listings. Display is restricted by Participation Requirements §2(b).",
-      "missing": "A permitted source for display: Amazon-served link, PA-API, or Creators API.",
-      "status": "unanswered",
-      "discover": "S-09",
-      "sources": [
-        "SRC-02"
-      ],
-      "flags": [
-        "F-05"
-      ]
+      "area": "commercial",
+      "priority": "high",
+      "question": "Do the submitted link.amazon short links comply with the Operating Agreement?",
+      "answer": "Unresolved. Published policy clearly constrains third-party shorteners and requires the destination not be obscured. Whether Amazon's own short domain satisfies that is not stated in the text we could verify.",
+      "have": "Participation Requirements §6(w) and §6(v), quoted verbatim in the policy register.",
+      "missing": "An authoritative statement about link.amazon specifically.",
+      "matters": "If it is non-compliant, a site built on those links is at risk of termination.",
+      "howToFind": "Ask Associates support directly and keep the written reply. Meanwhile the site does not depend on them — it links to amazon.com product pages.",
+      "status": "needs-review",
+      "sourceUrl": "https://affiliate-program.amazon.com/help/operating/policies",
+      "sourceLabel": "Participation Requirements §6(w)"
     },
     {
       "id": "Q-07",
-      "area": "Performance",
-      "question": "Which products sell or convert well?",
-      "known": "No sales, click, or order data is available. The campaign ledger is empty.",
-      "missing": "Authorised first-party reports (Associates reports or site analytics).",
+      "area": "demand",
+      "priority": "high",
+      "question": "Is anyone searching for these products or these questions?",
+      "answer": "Unknown. No search volume data exists for this project, and none has been assumed.",
+      "have": "Four editorial hypotheses for question-shaped guides, written as working titles.",
+      "missing": "Any impression, click, or query data. Search Console is not verified and the analytics collector is not deployed.",
+      "matters": "The brief asks for trending, high-converting topics. Trending is a measurement, not a guess.",
+      "howToFind": "Verify Search Console, submit the sitemap, and read the Queries report after 2–4 weeks. That replaces instinct with measured demand.",
       "status": "unanswered",
-      "discover": "S-03, S-08",
-      "sources": [
-        "SRC-02"
-      ],
-      "flags": [
-        "F-10"
-      ]
+      "sourceUrl": "https://search.google.com/search-console",
+      "sourceLabel": "Search Console Queries report"
     },
     {
       "id": "Q-08",
-      "area": "Demand",
-      "question": "Do people search for the question-shaped guide topics?",
-      "known": "The four topics are editorial hypotheses supplied in the brief. They are not claims about popularity or search volume.",
-      "missing": "Search-demand data. No keyword source has been verified.",
-      "status": "unanswered",
-      "discover": "S-11, S-12",
-      "sources": [
-        "SRC-10"
-      ],
-      "flags": [
-        "F-13"
-      ]
+      "area": "demand",
+      "priority": "medium",
+      "question": "Which of the four guide topics should be written first?",
+      "answer": "Hypothesis only. The capacity checklist is the best starting bet because it applies to all three air fryers and does not depend on any product outperforming another.",
+      "have": "Four working titles, deliberately not framed as popularity claims.",
+      "missing": "Evidence of which question people actually arrive with.",
+      "matters": "Publishing order is the main lever on a new site.",
+      "howToFind": "Ship all four, then let Search Console query data reorder them. See SUG-05.",
+      "status": "hypothesis",
+      "sourceUrl": "https://sassnarep3-star.github.io/WinA/guides/",
+      "sourceLabel": "The four guides as published"
     },
     {
       "id": "Q-09",
-      "area": "Performance",
-      "question": "Which guides bring readers who click through?",
-      "known": "The site has an outbound-click event and a guide-read event, both defined and tested in code. They are not live.",
-      "missing": "A running endpoint that receives events.",
-      "status": "unanswered",
-      "discover": "S-03",
-      "sources": [
-        "SRC-08"
-      ],
-      "flags": [
-        "F-11"
-      ]
+      "area": "editorial",
+      "priority": "blocking",
+      "question": "Has anyone here used these products?",
+      "answer": "No. No hands-on testing occurred and no page claims any.",
+      "have": "Official listing specifications for each product.",
+      "missing": "Any hands-on experience, or a tester to provide it.",
+      "matters": "The FTC forbids describing experience you do not have. This single fact caps how confident the writing can honestly be.",
+      "howToFind": "Either obtain review units and test them, or keep the site permanently in 'how to decide' voice rather than 'we tested' voice. Recommendation: state the policy on the About page and hold it.",
+      "status": "answered-constrains-everything",
+      "sourceUrl": "https://www.ftc.gov/business-guidance/resources/disclosures-101-social-media-influencers",
+      "sourceLabel": "FTC: \"You can't talk about your experience with a product you haven't tried.\""
     },
     {
       "id": "Q-10",
-      "area": "Disclosure",
-      "question": "What disclosure wording and placement are required?",
-      "known": "Operating Agreement §5 requires 'As an Amazon Associate I earn from qualifying purchases.' to be stated clearly and prominently (SRC-01). FTC guidance says to place a disclosure so it is 'hard to miss', and warns that disclosures are likely to be missed on an About Me or profile page, at the end of posts, or behind a click to see more (SRC-05).",
-      "missing": "A reviewer's sign-off on placement (strip under masthead and footer).",
-      "status": "partial",
-      "discover": "S-14",
-      "sources": [
-        "SRC-01",
-        "SRC-05"
-      ],
-      "flags": [
-        "F-07"
-      ]
+      "area": "editorial",
+      "priority": "high",
+      "question": "What can be stated as fact about each product?",
+      "answer": "Only what the official listing states: capacity, form factor, named features, included accessories, material.",
+      "have": "A per-row status on every specification: verified, claim, unverified, or withheld.",
+      "missing": "Wattage, dimensions, warranty, and calibration records — none were verifiable from an official source.",
+      "matters": "A spec table with invented numbers is worse than no table, because it looks authoritative.",
+      "howToFind": "Manufacturer specification sheets for wattage and dimensions; the warranty document for terms. Add each only with a source link.",
+      "status": "partly-answered",
+      "sourceUrl": "https://www.amazon.com/dp/B08DKYBTPH",
+      "sourceLabel": "Example official listing",
+      "sourceAsin": "B08DKYBTPH"
     },
     {
       "id": "Q-11",
-      "area": "Compliance",
-      "question": "Is this site's URL the one listed in the Associates application?",
-      "known": "Participation Requirements §1 requires the site to be publicly available at the address in the application (SRC-02).",
-      "missing": "The address in the application.",
-      "status": "unanswered",
-      "discover": "S-02",
-      "sources": [
-        "SRC-02"
-      ],
-      "flags": [
-        "F-17"
-      ]
+      "area": "editorial",
+      "priority": "medium",
+      "question": "Can we show prices?",
+      "answer": "No. Not without API access, and price tracking is prohibited outright.",
+      "have": "§6(y) of the Participation Requirements.",
+      "missing": "Creatives API or PA-API credentials, which would supply compliant, current pricing.",
+      "matters": "A buying guide without prices is a real limitation for the reader.",
+      "howToFind": "Apply for PA-API access once the account has qualifying sales. Then prices can come from the API and stay accurate automatically.",
+      "status": "blocked-on-access",
+      "sourceUrl": "https://affiliate-program.amazon.com/help/operating/policies",
+      "sourceLabel": "Participation Requirements §6(y)"
     },
     {
       "id": "Q-12",
-      "area": "Privacy",
-      "question": "Who operates the site, and what privacy policy applies?",
-      "known": "The site sets no cookies and sends no data unless an endpoint is configured. Participation Requirements §3(e) requires accurate disclosure of tracking (SRC-02).",
-      "missing": "Operator's legal name, contact address, and final privacy policy.",
-      "status": "unanswered",
-      "discover": "S-03",
-      "sources": [
-        "SRC-02"
-      ],
-      "flags": [
-        "F-18"
-      ]
+      "area": "editorial",
+      "priority": "medium",
+      "question": "Can we show product images?",
+      "answer": "Not lawfully with what we have. Program Content cannot be copied or hot-linked outside approved tooling, and substituting a different appliance's photo would misrepresent the item.",
+      "have": "The constraint, quoted in the policy register.",
+      "missing": "Creatives API access, or manufacturer-supplied press assets with written permission.",
+      "matters": "Images are the single biggest lever on whether a product page converts.",
+      "howToFind": "PA-API/Creatives access is the correct route. Press kits are a fallback but add a per-brand permission burden.",
+      "status": "blocked-on-access",
+      "sourceUrl": "https://affiliate-program.amazon.com/help/operating/policies",
+      "sourceLabel": "Participation Requirements §6(a)"
     },
     {
       "id": "Q-13",
-      "area": "Brand",
-      "question": "What is the site's brand name?",
-      "known": "The working name is 'The Countertop Guide'.",
-      "missing": "A confirmed name and trademark check.",
-      "status": "unanswered",
-      "discover": "S-04",
-      "sources": [
-        "SRC-02"
-      ],
-      "flags": [
-        "F-15"
-      ]
+      "area": "compliance",
+      "priority": "blocking",
+      "question": "What disclosure is required, in what words, and where?",
+      "answer": "\"As an Amazon Associate I earn from qualifying purchases.\" — under the masthead on every page and repeated in the footer, plus a plain-language sponsored note on every outbound link.",
+      "have": "Operating Agreement §5 for the exact sentence; FTC Disclosures 101 for placement.",
+      "missing": "Nothing. Both requirements are explicit and quoted.",
+      "matters": "Violating §5 is a material breach, and a buried disclosure fails the FTC test.",
+      "howToFind": "Settled. The build now fails if either placement disappears.",
+      "status": "answered",
+      "sourceUrl": "https://affiliate-program.amazon.com/help/operating/agreement",
+      "sourceLabel": "Operating Agreement §5"
     },
     {
       "id": "Q-14",
-      "area": "Authorship",
-      "question": "Who is the named author of each guide?",
-      "known": "No author was supplied.",
-      "missing": "Author identity, credentials, and bio.",
-      "status": "unanswered",
-      "discover": "S-06",
-      "sources": [
-        "SRC-05"
-      ],
-      "flags": [
-        "F-14"
-      ]
+      "area": "compliance",
+      "priority": "high",
+      "question": "May we quote star ratings and review counts seen on the listing?",
+      "answer": "No. §6(t) forbids it without Creatives or PA-API.",
+      "have": "The clause, quoted verbatim.",
+      "missing": "API access to obtain ratings legitimately.",
+      "matters": "Ratings are the most tempting shortcut on an affiliate page, and the most commonly violated.",
+      "howToFind": "PA-API. Until then, the fields stay visibly withheld rather than quietly blank.",
+      "status": "answered",
+      "sourceUrl": "https://affiliate-program.amazon.com/help/operating/policies",
+      "sourceLabel": "Participation Requirements §6(t)"
     },
     {
       "id": "Q-15",
-      "area": "Imagery",
-      "question": "Can product photos be used on the site?",
-      "known": "Program Content may be used only as the Associates terms allow (Participation Requirements §6(a), §6(d)) (SRC-02).",
-      "missing": "A clearance decision. No photos are used.",
-      "status": "unanswered",
-      "discover": "S-07",
-      "sources": [
-        "SRC-02"
-      ],
-      "flags": [
-        "F-16"
-      ]
+      "area": "compliance",
+      "priority": "medium",
+      "question": "Can the site run paid search ads?",
+      "answer": "Only narrowly. No bidding on Amazon marks or misspellings, and paid results must send users to this site, not to Amazon.",
+      "have": "§6(f) and the Prohibited Paid Search Placement definition.",
+      "missing": "Whether any ad budget exists at all.",
+      "matters": "An Amazon-branded ad campaign is a fast route to termination.",
+      "howToFind": "If ads are ever considered, read the Prohibited Paid Search Placement definition in the Commission Income Statement first.",
+      "status": "answered-with-caveat",
+      "sourceUrl": "https://affiliate-program.amazon.com/help/operating/policies",
+      "sourceLabel": "Participation Requirements §6(f)"
     },
     {
       "id": "Q-16",
-      "area": "Analytics",
-      "question": "Where should the analytics endpoint run?",
-      "known": "GitHub Pages serves static files only (SRC-08). The collector is written and tested.",
-      "missing": "A host you control, or an approved vendor.",
-      "status": "unanswered",
-      "discover": "S-03",
-      "sources": [
-        "SRC-08"
-      ],
-      "flags": [
-        "F-11"
-      ]
+      "area": "measurement",
+      "priority": "blocking",
+      "question": "Is anything being measured right now?",
+      "answer": "No. The five events are defined and the client is written, but no collector is deployed, so the client is switched off.",
+      "have": "Event definitions and a self-hosted worker in _worker/.",
+      "missing": "A deployed endpoint, and a source of truth for orders — which can only be Associates reports.",
+      "matters": "The brief requires click and conversion measurement before content. Clicks can be counted; orders cannot be invented.",
+      "howToFind": "Deploy the worker and set the endpoint, then rebuild. Orders come from the Associates report, entered by hand into the ledger with a date.",
+      "status": "blocked-on-deploy",
+      "sourceUrl": "https://sassnarep3-star.github.io/WinA/analytics/",
+      "sourceLabel": "Measurement page"
     },
     {
       "id": "Q-17",
-      "area": "Analytics",
-      "question": "Are the five events in the brief the ones you intended?",
-      "known": "The brief refers to five defined events without listing them. A proposed set is in place.",
-      "missing": "Your event definitions.",
-      "status": "partial",
-      "discover": "S-03",
-      "sources": [],
-      "flags": [
-        "F-12"
-      ]
+      "area": "measurement",
+      "priority": "high",
+      "question": "What belongs in the campaign ledger?",
+      "answer": "Only rows with a timestamp, source, channel, eligible sessions, clicks and reported orders from an authorized first-party report.",
+      "have": "A defined schema and an intentionally empty table.",
+      "missing": "Any actual report.",
+      "matters": "An empty honest ledger is useful. A ledger with placeholder numbers is a liability.",
+      "howToFind": "After the first tracked week, export the Associates report and add one row per channel, citing the report date.",
+      "status": "defined-empty",
+      "sourceUrl": "https://sassnarep3-star.github.io/WinA/dashboard/",
+      "sourceLabel": "Ledger schema"
     },
     {
       "id": "Q-18",
-      "area": "Cadence",
-      "question": "How often should new guides be published?",
-      "known": "The site proposes two guides a month. Nothing confirmed.",
-      "missing": "Your choice of cadence.",
-      "status": "unanswered",
-      "discover": "S-05",
-      "sources": [],
-      "flags": []
+      "area": "technical",
+      "priority": "high",
+      "question": "Will this site be indexed, and where?",
+      "answer": "GitHub Pages at /WinA/ is indexable, with a sitemap, feed, robots file and canonical URLs.",
+      "have": "A sitemap covering every public page, an RSS feed, and per-page canonical tags.",
+      "missing": "Search Console verification, so nobody can see whether indexing happened.",
+      "matters": "One site indexed well beats five competing with each other.",
+      "howToFind": "Replace the placeholder verification token, then submit sitemap.xml and check Coverage weekly until pages are indexed.",
+      "status": "built-unverified",
+      "sourceUrl": "https://sassnarep3-star.github.io/WinA/sitemap.xml",
+      "sourceLabel": "Published sitemap"
     },
     {
       "id": "Q-19",
-      "area": "Claims",
-      "question": "Are the manufacturer claims in listing titles accurate?",
-      "known": "Titles include claims such as '±0.5℉ Accuracy', 'NIST&NSF Certified', 'IP67 Waterproof', and '450°F Hi-Fry Option'. They are labelled as manufacturer claims.",
-      "missing": "Independent confirmation from the certifying body or manufacturer documents.",
-      "status": "unanswered",
-      "discover": "S-07",
-      "sources": [
-        "SRC-11",
-        "SRC-13",
-        "SRC-14",
-        "SRC-15"
-      ],
-      "flags": [
-        "F-19"
-      ]
+      "area": "technical",
+      "priority": "medium",
+      "question": "Is a project subpath the right home for this?",
+      "answer": "It works, but a custom domain would be better for brand and for cookie scope.",
+      "have": "A working build at a /WinA/ subpath with all links correctly prefixed.",
+      "missing": "A domain name, and access to DNS.",
+      "matters": "A reader deciding whether to trust a buying guide reads the URL. A subpath reads as a side project.",
+      "howToFind": "Buy a domain, add a CNAME, enable HTTPS in Pages settings, then change baseurl in one place and rebuild.",
+      "status": "recommendation",
+      "sourceUrl": "https://sassnarep3-star.github.io/WinA/",
+      "sourceLabel": "Current site"
     },
     {
       "id": "Q-20",
-      "area": "Food safety",
-      "question": "What internal temperatures does the USDA set as minimums?",
-      "known": "Answered. Beef, pork, veal, and lamb steaks, chops, and roasts: 145°F with a rest of at least 3 minutes. Ground meats: 160°F. Poultry: 165°F. Fish and shellfish: 145°F. Leftovers: 165°F (SRC-07).",
-      "missing": "None for the guide's scope.",
-      "status": "answered",
-      "discover": "",
-      "sources": [
-        "SRC-07"
-      ],
-      "flags": []
+      "area": "brand",
+      "priority": "medium",
+      "question": "What is this publication called, and who is it for?",
+      "answer": "Working name 'Counter Space', for people deciding what earns counter space. Chosen for this build; not a permanent commitment.",
+      "have": "A name, voice, type system and colour palette applied consistently.",
+      "missing": "Confirmation that the requester wants this name and audience.",
+      "matters": "Every editorial choice flows from the audience. Renaming later means rewriting the voice.",
+      "howToFind": "Decision. Check the name is not already an active trademark in the same category before committing.",
+      "status": "decision-needed",
+      "sourceUrl": "https://sassnarep3-star.github.io/WinA/about/",
+      "sourceLabel": "About page"
     },
     {
       "id": "Q-21",
-      "area": "Promotions",
-      "question": "Do limited-time promotions affect what the site can say?",
-      "known": "Participation Requirements §2(b) requires removal of any mention of a promotion when it ends (SRC-02).",
-      "missing": "A promotion calendar. None is used.",
-      "status": "partial",
-      "discover": "S-05",
-      "sources": [
-        "SRC-02"
-      ],
-      "flags": []
+      "area": "brand",
+      "priority": "low",
+      "question": "Should there be an author identity?",
+      "answer": "Yes, eventually. Search quality guidance and reader trust both reward a real, attributable author.",
+      "have": "An editorial standards page describing method and constraints.",
+      "missing": "A named person, a bio, and any credentialed expertise to describe.",
+      "matters": "An unattributed review site reads as generated. That is exactly the failure mode the brief rejects.",
+      "howToFind": "Decide who is accountable for the content. A byline requires a real person willing to be named.",
+      "status": "decision-needed",
+      "sourceUrl": "https://sassnarep3-star.github.io/WinA/about/",
+      "sourceLabel": "Editorial standards"
     },
     {
       "id": "Q-22",
-      "area": "Compliance",
-      "question": "Does the link-shortener rule apply to the supplied short links?",
-      "known": "Participation Requirements §6(w) bars a shortener used in a way that makes the Amazon destination unclear (SRC-02). The brief does not resolve the status of the supplied links (FLG-003).",
-      "missing": "A determination for the supplied links.",
+      "area": "demand",
+      "priority": "medium",
+      "question": "Is there any traffic source at all beyond organic search?",
+      "answer": "None configured. No social presence, no email list, no referrals.",
+      "have": "An inert capture form and a feed.",
+      "missing": "An email service provider, and any distribution channel.",
+      "matters": "Organic search takes months. A site with no other channel is betting everything on one that has not started yet.",
+      "howToFind": "Pick one channel and commit, or accept a slow burn. Decide before spending effort on capture UI.",
       "status": "unanswered",
-      "discover": "S-02",
-      "sources": [
-        "SRC-02"
-      ],
-      "flags": [
-        "F-02"
-      ]
-    },
-    {
-      "id": "Q-23",
-      "area": "Repository",
-      "question": "Which license should the repository carry?",
-      "known": "No license file exists.",
-      "missing": "Your choice.",
-      "status": "unanswered",
-      "discover": "S-15",
-      "sources": [],
-      "flags": [
-        "F-20"
-      ]
-    },
-    {
-      "id": "Q-24",
-      "area": "Source register",
-      "question": "Do the brief's source IDs (S01, S02, S07, S24, FLG-003, SG-27..SG-30) map to documents?",
-      "known": "None of these exist in the repository.",
-      "missing": "The register file.",
-      "status": "unanswered",
-      "discover": "",
-      "sources": [],
-      "flags": [
-        "F-09"
-      ]
-    },
-    {
-      "id": "Q-25",
-      "area": "Data access",
-      "question": "Is PA-API or Creators API access available for product research (price, availability, ratings)?",
-      "known": "Participation Requirements §2(b) and §6(t) refer to these APIs for price and rating display (SRC-02). Eligibility rules were not read.",
-      "missing": "Eligibility and application terms.",
-      "status": "partial",
-      "discover": "S-09",
-      "sources": [
-        "SRC-02"
-      ],
-      "flags": [
-        "F-05",
-        "F-21"
-      ]
-    },
-    {
-      "id": "Q-26",
-      "area": "Compliance",
-      "question": "Does the site meet the 'original content' requirement?",
-      "known": "All guide text was written for this site. It quotes official sources and labels manufacturer claims. Participation Requirements §1 requires original content, with significant commentary on any third-party material (SRC-02).",
-      "missing": "A reviewer's confirmation.",
-      "status": "partial",
-      "discover": "S-14",
-      "sources": [
-        "SRC-02"
-      ],
-      "flags": []
+      "sourceUrl": "https://sassnarep3-star.github.io/WinA/feed.xml",
+      "sourceLabel": "Published feed, currently unconsumed"
     }
   ]
 }

@@ -1,493 +1,188 @@
 {
-  "as_of": "2026-11-20",
-  "intro": "Each suggestion is a decision for you. Nothing here has been implemented. Pick one option per item and reply with the IDs, for example 'S-01: A, S-02: A'. The 'Recommended' option is a suggestion for your review only.",
+  "intro": "A decision list, not a wish list. Each suggestion states what to do, why, what it costs, and what would make it a bad idea. Nothing here has been implemented beyond what is already live; the ones marked shipped were built in this pass because the brief asked for them directly. Everything else waits for a decision.",
+  "statusKey": [
+    { "id": "shipped", "label": "Shipped", "note": "Already built on the live site in this pass." },
+    { "id": "recommend", "label": "Recommend next", "note": "Highest confidence, do this before the others." },
+    { "id": "consider", "label": "Consider", "note": "Worth doing, but depends on an earlier decision." },
+    { "id": "hold", "label": "Hold", "note": "Do not do this yet. Reason given." },
+    { "id": "reject", "label": "Rejected", "note": "Would break a rule or mislead a reader." }
+  ],
   "suggestions": [
     {
-      "id": "S-01",
-      "title": "Confirm the intended ASIN for each product",
-      "why": "The submitted codes are not 10-character ASINs, and each resolves to a different listing (F-01, F-03). Without intent, no intent field can be filled.",
-      "answers": [
-        "Q-01"
-      ],
-      "source": {
-        "label": "Amazon staff: ASIN is 10 characters",
-        "url": "https://sellercentral.amazon.com.mx/seller-forums/discussions/t/436b9105-db19-41cc-8f2a-7720c7ae5649"
-      },
-      "options": [
-        {
-          "id": "A",
-          "label": "You confirm the intended ASIN from your own Associates or seller records",
-          "tradeoff": "Slowest, but the only option that records true intent."
-        },
-        {
-          "id": "B",
-          "label": "Treat the observed redirect ASIN as intended",
-          "tradeoff": "Fast, but assumes intent that has not been confirmed. Not recommended."
-        },
-        {
-          "id": "C",
-          "label": "Replace the five links with new links you choose",
-          "tradeoff": "Clean record. Requires new links."
-        }
-      ],
-      "recommended": "A",
-      "effort": "Low (one lookup per product)",
-      "status": "awaiting your choice",
-      "decision": ""
+      "id": "SUG-01",
+      "title": "Keep the site in 'how to decide' voice, permanently, until products are actually tested",
+      "status": "shipped",
+      "weight": 10,
+      "why": "The FTC forbids describing hands-on experience you do not have, and readers detect the fake version instantly. The reliable way to sound human without lying is to write about the decision instead of the verdict: what the drawers are like, what the counter cost is, who the machine is wrong for.",
+      "cost": "None. It is a writing constraint, enforced by the build.",
+      "risk": "A guide that never says 'we tested this' competes poorly against sites that can. That is a real disadvantage and it is the correct one to accept.",
+      "decide": "Accept. Every page already follows it.",
+      "links": [{ "label": "FTC Disclosures 101", "url": "https://www.ftc.gov/business-guidance/resources/disclosures-101-social-media-influencers" }]
     },
     {
-      "id": "S-02",
-      "title": "Run the one-link-per-product test in Associates Central",
-      "why": "No observed redirect carries the tag (F-02). The test is the only way to confirm destination and tracking before scaling (F-22).",
-      "answers": [
-        "Q-02",
-        "Q-03",
-        "Q-11",
-        "Q-22"
-      ],
-      "source": {
-        "label": "Participation Requirements §2(a)–(b)",
-        "url": "https://affiliate-program.amazon.com/help/operating/policies"
-      },
-      "options": [
-        {
-          "id": "A",
-          "label": "You run five click-through tests and report each result",
-          "tradeoff": "Gives a checked answer per product. Use a click-through check only, because §6(u) bars purchases through your own links."
-        },
-        {
-          "id": "B",
-          "label": "Sequence after S-01",
-          "tradeoff": "Avoids testing the wrong listing."
-        },
-        {
-          "id": "C",
-          "label": "Skip. Keep the supplied links as interim links",
-          "tradeoff": "Not recommended. The compliance status stays unresolved."
-        }
-      ],
-      "recommended": "A, after S-01",
-      "effort": "Low (five clicks and a report check)",
-      "status": "awaiting your choice",
-      "decision": ""
+      "id": "SUG-02",
+      "title": "Split into two publications, or pick one category and go deep",
+      "status": "recommend",
+      "weight": 9,
+      "why": "Three air fryers and two thermometers are two different buying moments. Search engines reward a site that owns one topic. A small site trying to own 'kitchen gear' owns nothing.",
+      "cost": "Splitting means two domains, two sitemaps, twice the setup. Going deep on air fryers means the thermometers get a single supporting page.",
+      "risk": "If the thermometer affiliate offers a better commission or a bounty, narrowing too early gives up real money.",
+      "decide": "Recommend: keep one site, make air fryers the front section, and treat thermometers as the accessory section — which is what the current structure already does. Confirm before adding a third category.",
+      "links": []
     },
     {
-      "id": "S-03",
-      "title": "Choose where the analytics endpoint runs",
-      "why": "GitHub Pages cannot run the collector, so the five events record nothing yet (F-11). The collector is written and tested.",
-      "answers": [
-        "Q-07",
-        "Q-09",
-        "Q-12",
-        "Q-16",
-        "Q-17"
-      ],
-      "source": {
-        "label": "GitHub Docs: publishing sources",
-        "url": "https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site"
-      },
-      "options": [
-        {
-          "id": "A",
-          "label": "Host analytics/collector.py on a server you control",
-          "tradeoff": "Full control. Needs a small server and a domain. Stores no IP addresses or cookies."
-        },
-        {
-          "id": "B",
-          "label": "Use a hosted analytics vendor",
-          "tradeoff": "Less setup. Vendor privacy terms were not evaluated in this session."
-        },
-        {
-          "id": "C",
-          "label": "No site analytics. Rely on Associates reports only",
-          "tradeoff": "Least data. Click-level insight is limited."
-        }
-      ],
-      "recommended": "A",
-      "effort": "Medium (one small server)",
-      "status": "awaiting your choice",
-      "decision": ""
+      "id": "SUG-03",
+      "title": "Get PA-API or Creatives access before writing another word",
+      "status": "recommend",
+      "weight": 9,
+      "why": "It is the unlock for the three things this site most obviously lacks: prices, ratings, and product images. All three are currently blank because the rules require API-sourced data. One credential fixes all of it at once.",
+      "cost": "Eligibility requires qualifying sales first — a chicken-and-egg problem for a new account.",
+      "risk": "None to the site. The risk is waiting on access and shipping nothing meanwhile, which is why the current build ships without it.",
+      "decide": "Apply as soon as the account qualifies. Track it in the questions register as Q-11 and Q-12.",
+      "links": [{ "label": "Associates Program Policies", "url": "https://affiliate-program.amazon.com/help/operating/policies" }]
     },
     {
-      "id": "S-04",
-      "title": "Confirm the site's brand name",
-      "why": "The working name 'The Countertop Guide' was not supplied by you and has no trademark check (F-15).",
-      "answers": [
-        "Q-13"
-      ],
-      "source": {
-        "label": "Participation Requirements §1(g): no Amazon marks in domain or tag",
-        "url": "https://affiliate-program.amazon.com/help/operating/policies"
-      },
-      "options": [
-        {
-          "id": "A",
-          "label": "Keep 'The Countertop Guide' after a trademark search",
-          "tradeoff": "No change needed. The search is a check you run."
-        },
-        {
-          "id": "B",
-          "label": "Use a name you choose",
-          "tradeoff": "Your brand. Needs the same check."
-        },
-        {
-          "id": "C",
-          "label": "Keep the repository name 'WinA'",
-          "tradeoff": "Plain, but reads as internal."
-        }
-      ],
-      "recommended": "A, after a trademark search",
-      "effort": "Low",
-      "status": "awaiting your choice",
-      "decision": ""
+      "id": "SUG-04",
+      "title": "Replace the submitted short links with constructed Special Links and prove one works",
+      "status": "shipped",
+      "weight": 9,
+      "why": "The submitted links carried no visible tag and their compliance status is unsettled. Constructing amazon.com/dp/<ASIN>?tag=shopnow047c-20 is unambiguous, keeps the destination visible in the status bar, and satisfies the link-clarity requirement.",
+      "cost": "None.",
+      "risk": "If the tag is not enrolled, every link still earns nothing. That is the one thing this cannot fix.",
+      "decide": "Already done. Next step is the proof: click one link per product while signed in, and confirm it appears in the tracking report.",
+      "links": [{ "label": "Participation Requirements §6(w)", "url": "https://affiliate-program.amazon.com/help/operating/policies" }]
     },
     {
-      "id": "S-05",
-      "title": "Set the publishing cadence",
-      "why": "The site proposes two guides a month. Nothing confirms that rate.",
-      "answers": [
-        "Q-18",
-        "Q-21"
-      ],
-      "source": {
-        "label": "Participation Requirements §2(b): remove promotion mentions when they end",
-        "url": "https://affiliate-program.amazon.com/help/operating/policies"
-      },
-      "options": [
-        {
-          "id": "A",
-          "label": "Two guides a month",
-          "tradeoff": "Steady. Gives time to re-observe listings each cycle."
-        },
-        {
-          "id": "B",
-          "label": "One guide a week",
-          "tradeoff": "Faster. Higher upkeep and re-verification load."
-        },
-        {
-          "id": "C",
-          "label": "One guide a month",
-          "tradeoff": "Lowest upkeep."
-        }
-      ],
-      "recommended": "A",
-      "effort": "None now",
-      "status": "awaiting your choice",
-      "decision": ""
+      "id": "SUG-05",
+      "title": "Publish on a real cadence: one guide a week for eight weeks, then read the query data",
+      "status": "recommend",
+      "weight": 8,
+      "why": "Question-shaped guides are the right shape, but four is not a sample. A weekly cadence for two months produces enough pages and enough query impressions to see which question people actually arrive with, which is the only way to stop guessing topics.",
+      "cost": "One substantive guide per week. Each needs its own verified spec pass.",
+      "risk": "Cadence without quality control produces the thin content the brief explicitly rejects. The build gate must stay on.",
+      "decide": "Recommend a fixed day and a fixed length. Add each new guide to the sitemap and feed in the same commit, then measure at week eight.",
+      "links": []
     },
     {
-      "id": "S-06",
-      "title": "Choose the byline approach",
-      "why": "No author was supplied. Bylines read 'Editorial team' (F-14).",
-      "answers": [
-        "Q-14"
-      ],
-      "source": {
-        "label": "FTC Disclosures 101",
-        "url": "https://www.ftc.gov/business-guidance/resources/disclosures-101-social-media-influencers"
-      },
-      "options": [
-        {
-          "id": "A",
-          "label": "Keep 'Editorial team'",
-          "tradeoff": "Accurate. Less personal."
-        },
-        {
-          "id": "B",
-          "label": "A named author you supply, with their real credentials",
-          "tradeoff": "More personal. Requires your author details."
-        },
-        {
-          "id": "C",
-          "label": "Topic-based bylines",
-          "tradeoff": "Middle ground. Still needs names."
-        }
-      ],
-      "recommended": "A",
-      "effort": "Low",
-      "status": "awaiting your choice",
-      "decision": ""
+      "id": "SUG-06",
+      "title": "Add a real author byline with a named person",
+      "status": "recommend",
+      "weight": 8,
+      "why": "Unattributed buying advice reads as generated, which is precisely the failure the brief names. A byline with a short bio and a stated method is the cheapest credibility signal available.",
+      "cost": "Requires a real person willing to be named and accountable.",
+      "risk": "A byline attached to content the person did not write is worse than no byline.",
+      "decide": "Decision needed from the requester. Cannot be fabricated.",
+      "links": []
     },
     {
-      "id": "S-07",
-      "title": "Decide on imagery",
-      "why": "No product photos are used because reuse rights were not verified (F-16). Manufacturer claims also remain unverified (F-19).",
-      "answers": [
-        "Q-15",
-        "Q-19"
-      ],
-      "source": {
-        "label": "Participation Requirements §6(a), §6(d)",
-        "url": "https://affiliate-program.amazon.com/help/operating/policies"
-      },
-      "options": [
-        {
-          "id": "A",
-          "label": "Keep typographic covers",
-          "tradeoff": "No rights risk. Less visual."
-        },
-        {
-          "id": "B",
-          "label": "Commission original illustrations you own",
-          "tradeoff": "Distinctive. Cost and time."
-        },
-        {
-          "id": "C",
-          "label": "Use Amazon-served images within the Associates terms",
-          "tradeoff": "Needs a rights review first."
-        }
-      ],
-      "recommended": "A",
-      "effort": "Low (A) to medium (B)",
-      "status": "awaiting your choice",
-      "decision": ""
+      "id": "SUG-07",
+      "title": "Move to a custom domain before building any authority",
+      "status": "recommend",
+      "weight": 7,
+      "why": "A /WinA/ subpath reads as a side project, and moving later discards whatever equity accumulated. Doing it now costs a domain and one setting.",
+      "cost": "Domain registration plus DNS. About an hour.",
+      "risk": "Slight setup friction with HTTPS and the CNAME file.",
+      "decide": "Recommend. The build already keeps the origin in one config value, so the change is small.",
+      "links": []
     },
     {
-      "id": "S-08",
-      "title": "Fill the commission rates from Associates Central",
-      "why": "The rate schedule requires sign-in and was not readable (F-06). Commission potential cannot be estimated without it.",
-      "answers": [
-        "Q-04",
-        "Q-05",
-        "Q-07"
-      ],
-      "source": {
-        "label": "Associates schedule (sign-in required)",
-        "url": "https://affiliate-program.amazon.com/help/operating/schedule"
-      },
-      "options": [
-        {
-          "id": "A",
-          "label": "You copy the Home & Kitchen rate and date into data/products.json",
-          "tradeoff": "Verified and dated. Takes one lookup."
-        },
-        {
-          "id": "B",
-          "label": "Leave blank",
-          "tradeoff": "No commission estimate."
-        }
-      ],
-      "recommended": "A",
-      "effort": "Low",
-      "status": "awaiting your choice",
-      "decision": ""
+      "id": "SUG-08",
+      "title": "Deploy the analytics collector, and accept that orders cannot be counted yet",
+      "status": "recommend",
+      "weight": 7,
+      "why": "Click data is available today and is the fastest honest feedback loop. Order data has to come from Associates reports, which arrive later. Separating the two keeps the ledger truthful.",
+      "cost": "One worker deploy and a secret.",
+      "risk": "A self-hosted collector is a privacy obligation. The current design stores no identifiers, which keeps that burden small.",
+      "decide": "Recommend deploying to close FLG-011. Do not import a third-party tracker as a shortcut.",
+      "links": [{ "label": "Measurement page", "url": "https://sassnarep3-star.github.io/WinA/analytics/" }]
     },
     {
-      "id": "S-09",
-      "title": "Decide on price and rating display",
-      "why": "Price and star ratings are withheld under Participation Requirements §2(b) and §6(t) (F-05, F-21).",
-      "answers": [
-        "Q-06",
-        "Q-25"
-      ],
-      "source": {
-        "label": "Participation Requirements §2(b), §6(t)",
-        "url": "https://affiliate-program.amazon.com/help/operating/policies"
-      },
-      "options": [
-        {
-          "id": "A",
-          "label": "Apply for PA-API or Creators API access, if eligible, and display data as the License allows",
-          "tradeoff": "Enables price and rating display. Eligibility was not verified."
-        },
-        {
-          "id": "B",
-          "label": "Keep withheld",
-          "tradeoff": "Compliant by default. Less buyer information."
-        },
-        {
-          "id": "C",
-          "label": "Show 'check price on Amazon' with no figures",
-          "tradeoff": "Simple. Still sends readers to the listing."
-        }
-      ],
-      "recommended": "B until eligibility is confirmed, then A",
-      "effort": "Medium (A)",
-      "status": "awaiting your choice",
-      "decision": ""
+      "id": "SUG-09",
+      "title": "Add a 'who should not buy this' block to every product page",
+      "status": "consider",
+      "weight": 6,
+      "why": "The single most useful thing a buying guide can say, and the thing competitors skip. It also converts better, because readers trust a page that talked them out of something.",
+      "cost": "A short block per product.",
+      "risk": "None. It requires actually understanding the trade-off, which is why most sites omit it.",
+      "decide": "Consider. The current pages carry a trade-off line; expanding it to a full block is the natural next edit.",
+      "links": []
     },
     {
-      "id": "S-10",
-      "title": "Choose the site domain",
-      "why": "The site runs at the GitHub Pages address. A custom domain would need registration (F-17 touches the application URL).",
-      "answers": [
-        "Q-11"
-      ],
-      "source": {
-        "label": "GitHub Docs: about custom domains",
-        "url": "https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/about-custom-domains-and-github-pages"
-      },
-      "options": [
-        {
-          "id": "A",
-          "label": "Keep the GitHub Pages address",
-          "tradeoff": "Free. Must match the Associates application."
-        },
-        {
-          "id": "B",
-          "label": "Register a custom domain",
-          "tradeoff": "Brand-friendly. Needs a registrar account and an Associates URL update."
-        },
-        {
-          "id": "C",
-          "label": "Defer",
-          "tradeoff": "No change now."
-        }
-      ],
-      "recommended": "A",
-      "effort": "Low (A) to medium (B)",
-      "status": "awaiting your choice",
-      "decision": ""
+      "id": "SUG-10",
+      "title": "Build a real comparison table with measured dimensions",
+      "status": "consider",
+      "weight": 6,
+      "why": "The comparison page exists but is thin because dimensions are unverified. Counter footprint is the number that actually decides a purchase, and nobody publishes it clearly.",
+      "cost": "Researching dimensions from manufacturer spec sheets, with a source link per number.",
+      "risk": "A wrong dimension is worse than a blank. Only add numbers with a source.",
+      "decide": "Consider once manufacturer sheets are gathered. Until then the table shows what is verified and says what is not.",
+      "links": []
     },
     {
-      "id": "S-11",
-      "title": "Connect Google Search Console",
-      "why": "Verification needs your Google account (F-13). Without it, the sitemap is not submitted and no search data is available.",
-      "answers": [
-        "Q-08"
-      ],
-      "source": {
-        "label": "Google: build and submit a sitemap",
-        "url": "https://developers.google.com/search/docs/crawling-indexing/sitemaps/build-sitemap"
-      },
-      "options": [
-        {
-          "id": "A",
-          "label": "You verify the site and submit sitemap.xml",
-          "tradeoff": "Gives real query data. Recommended."
-        },
-        {
-          "id": "B",
-          "label": "Defer",
-          "tradeoff": "No search data."
-        }
-      ],
-      "recommended": "A",
-      "effort": "Low",
-      "status": "awaiting your choice",
-      "decision": ""
+      "id": "SUG-11",
+      "title": "Add a short 'how we choose what to recommend' block to the front page",
+      "status": "consider",
+      "weight": 5,
+      "why": "Readers arriving cold need one sentence on why these five products and not others. It also pre-empts the 'is this an ad' reflex.",
+      "cost": "Three sentences.",
+      "risk": "Can tip into self-referential process talk, which the brief explicitly wants kept off the front page. Keep it to a single block low on the page.",
+      "decide": "Consider. The About page currently carries this.",
+      "links": []
     },
     {
-      "id": "S-12",
-      "title": "Choose how guide topics are picked",
-      "why": "The four topics are editorial hypotheses, not measured demand (Q-08).",
-      "answers": [
-        "Q-08",
-        "Q-09"
-      ],
-      "source": {
-        "label": "Google: sitemaps",
-        "url": "https://developers.google.com/search/docs/crawling-indexing/sitemaps/build-sitemap"
-      },
-      "options": [
-        {
-          "id": "A",
-          "label": "Keep the four topics as the working list",
-          "tradeoff": "Already written. Not yet tested."
-        },
-        {
-          "id": "B",
-          "label": "Replace with topics chosen from measured queries after 60 days of data",
-          "tradeoff": "Evidence-led. Slower start."
-        },
-        {
-          "id": "C",
-          "label": "Add seasonal topics on a calendar",
-          "tradeoff": "Timely. Needs a calendar."
-        }
-      ],
-      "recommended": "A now, then B",
-      "effort": "Low",
-      "status": "awaiting your choice",
-      "decision": ""
+      "id": "SUG-12",
+      "title": "Do not add a price tracker, price alerts, or a deal feed",
+      "status": "reject",
+      "weight": 10,
+      "why": "Prohibited outright by §6(y) regardless of how it is built.",
+      "cost": "Zero.",
+      "risk": "It is the most requested feature on affiliate sites and the most direct route to account termination.",
+      "decide": "Rejected. Documented so no future session builds it.",
+      "links": [{ "label": "Participation Requirements §6(y)", "url": "https://affiliate-program.amazon.com/help/operating/policies" }]
     },
     {
-      "id": "S-13",
-      "title": "Confirm the deployment method",
-      "why": "The site is published from /docs on main, which GitHub Docs supports (SRC-08).",
-      "answers": [],
-      "source": {
-        "label": "GitHub Docs: publishing sources",
-        "url": "https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site"
-      },
-      "options": [
-        {
-          "id": "A",
-          "label": "Publish from /docs on main",
-          "tradeoff": "Simple. The build output is committed."
-        },
-        {
-          "id": "B",
-          "label": "Publish with a GitHub Actions workflow",
-          "tradeoff": "Build on deploy. Needs the workflow permission."
-        }
-      ],
-      "recommended": "A",
-      "effort": "None",
-      "status": "awaiting your choice",
-      "decision": ""
+      "id": "SUG-13",
+      "title": "Do not generate volumes of near-duplicate pages to chase long-tail queries",
+      "status": "reject",
+      "weight": 10,
+      "why": "Template-spun variants of the same article are the definition of the thin, generated content the brief rejects, and they dilute the pages that could rank.",
+      "cost": "Zero.",
+      "risk": "It works briefly, then gets the whole domain discounted.",
+      "decide": "Rejected. The build gate refuses pages without unique content fields.",
+      "links": []
     },
     {
-      "id": "S-14",
-      "title": "Confirm disclosure placement",
-      "why": "The statement is under the masthead and in the footer. A reviewer must confirm placement against FTC guidance (F-07).",
-      "answers": [
-        "Q-10",
-        "Q-26"
-      ],
-      "source": {
-        "label": "FTC Disclosures 101: how to disclose",
-        "url": "https://www.ftc.gov/business-guidance/resources/disclosures-101-social-media-influencers"
-      },
-      "options": [
-        {
-          "id": "A",
-          "label": "Keep the strip under the masthead and in the footer (current)",
-          "tradeoff": "Meets the on-every-page request."
-        },
-        {
-          "id": "B",
-          "label": "Add a short disclosure beside each sponsored link",
-          "tradeoff": "Closest to the product. More repetition."
-        },
-        {
-          "id": "C",
-          "label": "Both A and B",
-          "tradeoff": "Most visible. Recommended for review."
-        }
-      ],
-      "recommended": "C",
-      "effort": "Low",
-      "status": "awaiting your choice",
-      "decision": ""
+      "id": "SUG-14",
+      "title": "Hold the email capture until there is something to send",
+      "status": "hold",
+      "weight": 5,
+      "why": "Collecting addresses with no ESP and no publishing cadence means collecting nothing. The form is currently inert and says so.",
+      "cost": "Saves an ESP subscription.",
+      "risk": "Capture opportunities are lost while waiting.",
+      "decide": "Hold until SUG-05 produces a cadence. Then wire one ESP and one welcome email.",
+      "links": []
     },
     {
-      "id": "S-15",
-      "title": "Choose a repository license",
-      "why": "The repository has no LICENSE file (F-20).",
-      "answers": [
-        "Q-23"
-      ],
-      "source": {
-        "label": "GitHub Docs: licensing a repository",
-        "url": "https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/licensing-a-repository"
-      },
-      "options": [
-        {
-          "id": "A",
-          "label": "Add an open-source license you choose",
-          "tradeoff": "Clear reuse terms."
-        },
-        {
-          "id": "B",
-          "label": "No license (all rights reserved by default)",
-          "tradeoff": "Current state."
-        }
-      ],
-      "recommended": "Your choice",
-      "effort": "Low",
-      "status": "awaiting your choice",
-      "decision": ""
+      "id": "SUG-15",
+      "title": "Hold all paid search",
+      "status": "hold",
+      "weight": 5,
+      "why": "No bid is permitted on Amazon marks, and a new site with no conversion data cannot tell whether an ad is profitable. Advertising before measurement is guessing with a budget.",
+      "cost": "Zero.",
+      "risk": "Slower initial traffic.",
+      "decide": "Hold until the ledger has real click and order data.",
+      "links": [{ "label": "Participation Requirements §6(f)", "url": "https://affiliate-program.amazon.com/help/operating/policies" }]
+    },
+    {
+      "id": "SUG-16",
+      "title": "Publish a dated 'last checked' line on every product page",
+      "status": "consider",
+      "weight": 5,
+      "why": "Specifications and availability change. A visible date tells the reader how much to trust the page, and forces the site to actually re-check.",
+      "cost": "One field, refreshed on a schedule.",
+      "risk": "A stale date is a public admission of neglect. That is the point.",
+      "decide": "Consider. Pages currently record the observation date in the register rather than on the page.",
+      "links": []
     }
   ]
 }
