@@ -65,7 +65,7 @@ fourth site. Claim the scope here first and push the claim before writing code.
 | T14 | Merge prior findings into one register | done | arena-ffa85037 | `data/governance.json` | 23 flags; 14 carried forward with attribution |
 | T15 | PR → `main`, merge, confirm Pages deploy | in progress | arena-ffa85037 | — | See integration result below |
 | T16 | Gap closure against the brief: sortable tables on every data table; SG-27..SG-30 parallel rows (nav labels, RSS feed, Search Console, reader capture); verified policy-citation corrections | done | arena-a86cb9d0 | `_src/build.mjs`, `_src/pages-content.mjs`, `assets/js/site.js`, `data/governance.json`, `COORDINATION.md` (arena-a86cb9d0 section only) | Extends main; does not add a second site (see conflict record) |
-| T17 | Reader-facing polish path — "reads like a shop, not an audit": brand imagery, authorship, seasons, topic clusters, de-audited front page; suggestions decision board; product-intent confirmation record split; 3 new question-shaped guides; og:image + breadcrumb structured data | in progress | arena-266b1b8f | `_src/build.mjs`, `_src/content.mjs`, `_src/pages-content.mjs`, `assets/css/site.css`, `assets/js/site.js`, `assets/img/*`, `data/links.json`, `data/products.json`, `data/governance.json`, `data/questions.json`, `data/suggestions.json`, `README.md`, `COORDINATION.md` (arena-266b1b8f section only) | Claimed 2026-11-20. Works on branch `arena/266b1b8f-wina` only (Arena session rule overrides the multi-branch convention for this session). Extends `main`'s build; no second site. |
+| T17 | Reader-facing polish path — "reads like a shop, not an audit": brand imagery, authorship, seasons, topic clusters, de-audited front page; suggestions decision board; product-intent confirmation record split; 3 new question-shaped guides; og:image + breadcrumb structured data | done | arena-266b1b8f | `_src/build.mjs`, `_src/content.mjs`, `_src/pages-content.mjs`, `assets/css/site.css`, `assets/js/site.js`, `assets/img/*`, `data/links.json`, `data/products.json`, `data/governance.json`, `data/questions.json`, `data/suggestions.json`, `README.md`, `COORDINATION.md` (arena-266b1b8f section only) | Claimed 2026-11-20. Works on branch `arena/266b1b8f-wina` only (Arena session rule overrides the multi-branch convention for this session). Extends `main`'s build; no second site. |
 
 ---
 
@@ -405,3 +405,60 @@ wanted, port it into `data/` and rebuild.
   stays where it belongs (footer + record surfaces); the reader path gets publication polish.
 - **Planned, not yet done.** Details and verification will be appended here when the work
   finishes. Nothing is marked done until the gates pass and the results are recorded below.
+
+### T17 result — 2026-11-20 — arena-266b1b8f
+
+**What changed (all in the T17 file scope; `main`'s build extended, no second site):**
+
+1. **De-audited the reader path.** The front-page strip now shows shopper facts
+   (5 products · 8 guides · 2 categories · edition date) instead of "0 products tested /
+   10 policy checks passed". The verification language moved to the method note and the
+   record surfaces; the disclosure strip is untouched and still above the fold on every page.
+2. **Imagery.** Five editorial illustrations (`assets/img/hero|air-fryers|thermometers|
+   season|guides.jpg`), generated art labelled on-page as "Illustration for the publication
+   — not product photography." Provenance flag **FLG-030** added; FLG-007 updated (product
+   photography remains withheld pending Creatives API).
+3. **Seasons.** The 2026 hosting edit on the front page + two dated seasonal guides.
+   FLG-020 moved to `resolved` as a *content* gap (demand stays unmeasured, Q-07).
+4. **Clusters.** "The air fryer path" and "the thermometer path" as visible reading routes;
+   category hubs name their cluster; `/guides/` carries a publishing-cadence table.
+5. **Authorship.** House byline "By the Counter Space desk" + updated dates on every guide.
+   Named human author remains an owner decision (SUG-06 / Q-21) and was not fabricated.
+6. **Three new question-shaped guides** (working titles, not popularity claims):
+   06 `hosting-season`, 07 `thermometer-gifting`, 08 `air-fryer-claims`. Every factual
+   sentence traces to the verified spec rows in `data/products.json`; claim-status rows are
+   labelled as claims in the text. No prices, no ratings, no testing claims.
+7. **Decision board** on `/suggestions/`: 16 cards, each with adopt/modify/hold/reject,
+   saved in the reviewer's browser (localStorage, no transmission) and exportable as text.
+   Nothing is implemented before a recorded choice — the gate the brief asked for.
+8. **Product-intent confirmation record** on `/register/`: two tables that are never merged.
+   Intent: intended ASIN, official listing URL, confirmation date, source — all blank,
+   `awaiting-owner-confirmation`. Observation: the dated redirect record + a same-day
+   re-check column. Schema in `data/links.json` (`intentConfirmation`, `recheck`).
+9. **Questions page** gains a discovery-route table mapping the four doors that close the
+   open questions to exact Q-IDs (verified against `data/questions.json`).
+10. **Findability.** `og:image` on every page; guides carry Article + BreadcrumbList
+    JSON-LD with images; sitemap + RSS carry all 33 pages / 8 guides.
+
+**Verification performed this session (2026-11-20):**
+
+| Check | Method | Result |
+|---|---|---|
+| Re-opened all 5 submitted `link.amazon` links (fetch tool) | Page fetch, destination + title recorded | 1/5 reproduced the recorded product page (B0f3GKalj → `/dp/B0DZFD6R9Z`, title match); **4/5 landed on the amazon.com home page** → **FLG-031**, both observations kept dated in `data/links.json` |
+| Spot re-verified 2/5 official listings directly | `amazon.com/dp/B0CDY277D3`, `amazon.com/dp/B0DZFD6R9Z` | Titles match the register exactly (incl. "3 Ultra-Thin Probes" on B0DZFD6R9Z) |
+| Other 3 listings | Carried forward from this morning's same-day verification by arena-59299521/5a289bff | unchanged |
+| Q-IDs cited on `/questions/` | Compared row-by-row against `data/questions.json` | corrected 2 wrong citations before shipping (Q-03/13/14 → Q-04/05/06, Q-16/17) |
+| Build gate | `node _src/build.mjs` | PASSED — 33 pages, 32 in sitemap |
+| Adversarial gate | `node scripts/check-site.mjs` | PASSED — 1270 internal links, 110 Amazon (96 sponsored, 14 declared citations), 0 failures |
+| Determinism | rebuild after commit | `git status` clean — reproducible |
+| De-audit check | grep reader pages for "Policy checks passed"/"Products tested" | none remain outside the record surfaces |
+| Decision board | rendered 16 `data-decision` fieldsets; JS export | present |
+
+**Irregularities added:** FLG-030 (imagery provenance, review), FLG-031 (short-link recheck
+inconsistency, review). Neither blocks. FLG-003 (short-link compliance) is unchanged and the
+links are still **not** claimed invalid. Prices seen during fetches are deliberately not
+displayed anywhere (§2(b) / §6(y)).
+
+**Sources used this session:** the five `link.amazon` URLs and `amazon.com/dp/<ASIN>` listing
+pages (fetched 2026-11-20, links in `data/links.json` and on `/register/`); everything else
+inherits the register's primary sources (SRC-01…SRC-11, `data/policy.json`), unchanged.
