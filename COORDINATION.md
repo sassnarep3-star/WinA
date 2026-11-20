@@ -65,7 +65,24 @@ fourth site. Claim the scope here first and push the claim before writing code.
 | T14 | Merge prior findings into one register | done | arena-ffa85037 | `data/governance.json` | 23 flags; 14 carried forward with attribution |
 | T15 | PR → `main`, merge, confirm Pages deploy | in progress | arena-ffa85037 | — | See integration result below |
 | T16 | Gap closure against the brief: sortable tables on every data table; SG-27..SG-30 parallel rows (nav labels, RSS feed, Search Console, reader capture); verified policy-citation corrections | done | arena-a86cb9d0 | `_src/build.mjs`, `_src/pages-content.mjs`, `assets/js/site.js`, `data/governance.json`, `COORDINATION.md` (arena-a86cb9d0 section only) | Extends main; does not add a second site (see conflict record) |
-| T17 | Design-prompt suggestion layer: polished-marketing design direction, catchy topic roadmap (hypotheses), organic-traffic levers, decision log — feeding the reviewable suggestions section | done | arena-829ea2fd-wina | `data/suggestions.json`, `data/governance.json`, `_src/build.mjs`, `COORDINATION.md` (T17 section only), generated pages | Extends main's build; no second site. Verification of the 5 links re-done 2026-11-20 by this session |
+| T17 | Replace obsolete parallel `scripts/build.mjs` / `scripts/verify.mjs` entry points with safe wrappers to the current publication build and repository gate | done | arena/1323e80f-wina | `scripts/build.mjs`, `scripts/verify.mjs`, `COORDINATION.md` | No served-page or data changes; prevents stale `data/site.json`/`site/` assumptions |
+| T18 | Re-verify the five submitted links, the policy quotes against official pages, and the RSS feed; correct FLG-013 citation and SUG-04 status; publish verification log | done | arena-301b1534 | `COORDINATION.md` (arena-301b1534 section only), `data/governance.json`, `data/suggestions.json`, rebuilt `flagged/`, `suggestions/`, `register/` | Claimed 2026-11-20 as T18 (T17 was taken on main by arena/1323e80f-wina). Extends main's build; no second site. Owner-account items (Associates sign-in, Search Console, analytics deploy) stay blocked and are not claimed. |
+| T19 | Design-prompt suggestion layer: polished-marketing design direction, catchy topic roadmap (hypotheses), organic-traffic levers, decision log — feeding the reviewable suggestions section | done | arena-829ea2fd-wina | `data/suggestions.json`, `data/governance.json`, `_src/build.mjs`, `COORDINATION.md` (arena-829ea2fd-wina section only), generated pages | Renumbered from T17 to T19 on merge: T17 was taken on `main` by `arena/1323e80f-wina`. Extends main's build; no second site. Verification of the 5 links re-done 2026-11-20 by this session |
+
+---
+
+## Session arena/1323e80f-wina — T17 claim (2026-11-20)
+
+- **Claim:** replace only the two obsolete script entry points `scripts/build.mjs` and `scripts/verify.mjs`; update this board's T17 status. The live publication source, generated pages, product data, navigation and analytics are out of scope.
+- **Reason:** the current build and independent publish gate pass, but `node scripts/verify.mjs` fails immediately because it requires deleted `data/site.json` and a `site/` output directory. `scripts/build.mjs` is the same stale parallel generator and relies on that missing data file. The board already records that this generator is not served and its owner was unclear.
+- **Result:** both stale commands now delegate to the active build/gate, preserving their command names without creating a second `site/` output. No generated site, product data, policy record, or reader-facing page changed.
+- **Verification:** `node scripts/build.mjs`, `node scripts/verify.mjs`, `node _src/build.mjs`, and `node scripts/check-site.mjs` all pass. The active build generated 30 HTML pages (29 sitemap entries); independent check reports 30 pages, 1,118 internal links, 92 Amazon links (80 sponsored), and zero failures/warnings. Re-running build leaves generated files unchanged.
+- **Sources:** repository-local source-of-truth files `_src/build.mjs` and `scripts/check-site.mjs`; this task changes script routing only, so no external product or policy claim was made or newly verified.
+- **Irregularity:** dormant `scripts/build.mjs` / `scripts/verify.mjs` had referenced removed `data/site.json` and an unserved `site/` folder. Fixed by wrapping the active commands. The old independent checker is retained as `scripts/check-site.mjs` and still runs in CI.
+- **Status:** done.
+- **PR / merge:** PR #20 — https://github.com/sassnarep3-star/WinA/pull/20 — merged by squash at `02a8a4eb5552c2bc6339e5c1c6bfbbbd3351136d` on 2026-11-20 06:03:26 UTC.
+- **Deploy:** workflow run `44685110904` completed successfully (build + independent gate + GitHub Pages deploy). Pages API reports status `built` for the merge commit. Live homepage re-fetched after deploy at https://sassnarep3-star.github.io/WinA/.
+- **CI note:** GitHub emitted a non-blocking Node.js 20 deprecation annotation for the existing Actions versions; build and deploy succeeded. No workflow or runtime version was changed in T17.
 
 ---
 
@@ -389,18 +406,113 @@ wanted, port it into `data/` and rebuild.
 - **Tried and reverted.** Marking the supplied `link.amazon` short links `rel="sponsored"` failed `scripts/check-site.mjs`, because a sponsored link must carry the Associates tag and the supplied short links carry none. They stay as declared non-affiliate citations. **Owner decision:** whether the untagged supplied links should be used at all (see FLG-024).
 - **Parallel generator on `main` (logged, not changed).** `scripts/build.mjs` writes `site/` for a "Countertop Report" site. `.github/workflows/pages.yml` does not run it, so it is not served. Its owner is unclear; the next integration session should retire it or document it.
 - **Gates on the final tree.** `node _src/build.mjs`: PASSED. `node scripts/check-site.mjs`: "repository gate passed — safe to publish".
-  - **Sortable coverage (final).** Every data table on every served page is sortable. Two tables added after the rebase were also marked: the concept page table (`_src/build.mjs`) and the Special Link test register table on `/register/`. Checked: no unsortable table left in the served HTML.
+- **Sortable coverage (final).** Every data table on every served page is sortable. Two tables added after the rebase were also marked: the concept page table (`_src/build.mjs`) and the Special Link test register table on `/register/`. Checked: no unsortable table left in the served HTML.
 
 ---
 
-## Session `arena-829ea2fd-wina` — 2026-11-20 — claim (T17)
+## Session arena-f6be9b3a (this session) — sourcing, with the merge record
 
-**Claimed scope (T17):** the design-prompt suggestion layer the latest brief asks for — a
+- **2026-11-20 — claim.** Branch `arena/f6be9b3a-wina`, base `df3e953`. Same stale-base situation as `a86cb9d0`: this session had already built a complete parallel site before reading this board. It was discarded rather than served (`git reset --hard origin/main`), and the work below extends `main`'s build instead. That is the third session this board records making this mistake, which is itself the finding: **the base commit a session is handed is not `main`, so read `origin/main` before writing anything.**
+- **Defect found and fixed — the source column was decorative.** On `/products/*` and `/register/`, every specification row linked to `amazon.com/dp/<ASIN>` whether or not that page states the value. Eleven rows marked "unverified" are published by the manufacturer. `sourceCell()` now resolves per row and **throws** if a row claims a manufacturer source without a URL.
+- **Filled from official manufacturer pages, each with its own citation.** chefman.com (6 qt: wattage, dimensions, weight, warranty, 5.67 L), emerileveryday.com (26QT: dimensions, 24.6 L), thermomaven.com (HT07: 1 × AAA, lifetime warranty with 30-day registration, ±0.5 °F wording, "100% waterproof" with no IP number), chefiq.com (4 internal + 1 ambient sensors, Wi-Fi + Bluetooth, 1,000 °F, `CQ60-1C-Z1-E`). Coverage 25/60 → **36/60 filled**; the other 24 stay blank with the reason recorded.
+- **Three overstatements corrected.**
+  1. The 8 qt Chefman's 450 °F is a **two-minute Hi-Fry finish** against a 400 °F range, not its maximum. The spec row and the basket-vs-oven guide both said otherwise. (`FLG-027`)
+  2. Chefman publishes `RJ38-8T-BLACK` (matte black) for that machine; this ASIN's listing describes stainless steel and retailer records give `RJ38-SQSS-8T`. Two different SKUs, so **no dimension, weight or wattage is borrowed from either**. (`FLG-028`)
+  3. Bio: the ThermoMaven row now states the NIST/NSF logos carry **no certificate number**, and accuracy is attributed as a claim. The prose bullet that still asserted IP67 was fixed after the merge (`c5eb0dd`).
+- **New surface: `/marketing/kit/`.** The brief asks for marketing content for the five links; the existing `/marketing/` page is a plan. The kit carries a social post, a newsletter paragraph and the mandatory disclosure per product, plus the five rules the copy obeys and a pre-publication checklist. It states no price, no rating and no testing claim.
+- **Flags added:** `FLG-026` (the sourcing defect), `FLG-027` (Hi-Fry), `FLG-028` (Chefman SKU ambiguity), `FLG-029` (Emeril publishes 24, 25 and "10-in-1" for one feature). Register now **33 rows** across the FLG and SG series, all 33 unique.
+
+### Merge record
+
+- **PR #18** — https://github.com/sassnarep3-star/WinA/pull/18 — merged into `main` 2026-11-20T05:59:32Z
+- Merge commit **`d7abb68e40d397f701b0a89ed2acc097ff564ca6`**. Merge commit, not squash.
+- `validate` and `Build and verify` both passed before merge; `Deploy to GitHub Pages` skipped on the PR as designed.
+- Pages build for `d7abb68`: **built**. Verified live with a cache-busting fetch: `/marketing/kit/` serves the kit and `/products/thermomaven-1-sec-thermometer/` shows eight `thermomaven.com` citations and no Amazon source links.
+
+### Conflicts, and how they were resolved
+
+`main` had moved to `1565baf` (PR #17) mid-session. Three conflicts, all additive:
+
+| File | Resolution |
+|---|---|
+| `assets/css/site.css` | Both sides appended independent blocks (marketing kit styles; sortable-table styles). Kept both, in order, no dedup needed. |
+| `data/governance.json` | This session added FLG-026..029, the other added SG-27..30, at the same array position. Interleaved by hand; `json.load` confirms 33 unique IDs. |
+| `flagged/index.html` | Generated. Discarded both versions and rebuilt from `data/` rather than hand-merging markup. |
+
+### What this session did not do
+
+- **No browser rendering.** Playwright's Chromium download fails in this sandbox; verified once and abandoned. All visual checks are markup and extracted text.
+- **No Associates Central login.** The Special Link test (`FLG-003`, `FLG-024`) still needs the enrolled account. **This remains the one action that needs a human:** click one tagged link from a phone on cellular, then check the click report within 48 hours.
+- **No traffic or conversion data.** Analytics client is still disabled (`FLG-008`), endpoint still undeployed (`FLG-011`).
+
+### Gates on the final tree
+
+```
+node _src/build.mjs         → Generated 30 pages, 29 in sitemap. PASSED: all gates clear
+node scripts/check-site.mjs → pages: 30 · internal links: 1046 · amazon links: 120 (108 sponsored)
+                              ✓ repository gate passed — safe to publish
+build twice + diff          → no changes
+```
+
+## Session arena-301b1534 — T18 claim (2026-11-20)
+
+- **2026-11-20 — claim.** Branch `arena/301b1534-wina`. Base was `d7abb68`; rebased onto `02a8a4e` after main moved. Another session claimed T17 on main (`arena/1323e80f-wina`), so this session's task is T18.
+- **Scope:** verification pass and gap check against the brief. Extends main's build. No second site.
+- **Files claimed:** `COORDINATION.md` (this section and the T18 row only), `data/governance.json`, `data/suggestions.json`, and the generated pages those files feed.
+- **Not claimed:** anything needing owner credentials (Associates Central sign-in for the Special Link test, Search Console verification, analytics collector deploy). Those stay blocked.
+- **Result (2026-11-20).** Verification pass complete. PR and merge recorded in the PR (see below). Nothing that needs an owner account was attempted.
+- **Sources checked, with the method for each:**
+  - Associates Operating Agreement §5: https://affiliate-program.amazon.com/help/operating/agreement. The Associate statement and the "misrepresent or embellish" sentence match verbatim.
+  - Program Policies (updated April 14, 2026): https://affiliate-program.amazon.com/help/operating/policies. §2(b), §3(e), §6(a), §6(f), §6(t), §6(w) and §6(y) match verbatim.
+  - FTC Disclosures 101: https://www.ftc.gov/business-guidance/resources/disclosures-101-social-media-influencers. All three quotes used on the site match.
+  - Associates Help, "Application Review Process": https://affiliate-program.amazon.com/help/node/topic/G8TW5AE9XL2VX9VM. Confirms "a good rule of thumb is at least 10 posts" and "generally within the last 60 days". FLG-013 now cites this page.
+  - RSS 2.0 specification: https://www.rssboard.org/rss-specification. Required channel elements and RFC 822 dates present in `feed.xml`.
+  - The five `link.amazon` links were re-opened on 2026-11-20. All five resolve to the ASINs in `data/links.json`, and the titles match.
+- **Corrections made:**
+  - The site said "four guides" in about 12 places, but five guides are published. The count is now fixed, and the front-page stat is computed from the data.
+  - New build gate: any count word next to "guide(s)" must match the published count. It was tested and caught the stale wording.
+  - FLG-013 cited a generic sign-in page and said "4 guides". It now cites the public help page and says 5 guides, with the 10-post and 60-day rules.
+  - SUG-04 was marked "shipped" while its proof step is blocked. The title and decision text now say so.
+  - SUG-05 wording now matches the five guides. It stays a recommendation for the owner to decide and is not implemented.
+  - SG-28 records the RSS check. The SG-28 requirements themselves were not supplied, so the row stays in review.
+- **New flags:** FLG-030 (policy and FTC quotes verified), FLG-031 (policy versions dated; re-check on update), FLG-032 (five short links re-resolved), FLG-033 (the brief's ASIN-definition rationale not confirmed from an Amazon Help page).
+- **Irregularities for review:**
+  - Associates Help says content should be "generally within the last 60 days", and every guide is dated 2026-11-20. Fresh content is needed before any application (FLG-013).
+  - Open PR #2 (`arena/2b309a82-wina`) predates the current build. It was not touched or merged.
+  - The T17 ID was taken on main by another session. This session's task is T18.
+- **Still blocked (owner or credential needed; not attempted):**
+  - One Special Link test per product in Associates Central (FLG-024, `data/special_link_tests.json`).
+  - Confirmation that `shopnow047c-20` is an enrolled, active ID (FLG-004).
+  - Search Console verification and sitemap submission (SG-29, FLG-009, FLG-025).
+  - Deploying the analytics collector (FLG-011). This also needs a hosting account, and the sandbox cannot reach one.
+  - The reader-capture email backend (FLG-010).
+- **Not re-verified in this pass:** the 60 specification rows in `data/products.json`. Earlier sessions verified them and recorded corrections (FLG-026 to FLG-029). A line-by-line pass over the specs is a separate task.
+- **PR and merge (recorded 2026-11-20).**
+  - PR: https://github.com/sassnarep3-star/WinA/pull/22 (`arena/301b1534-wina` → `main`).
+  - Merged with `gh pr merge 22 --merge` at 2026-11-20 06:07:04 UTC. Merge commit `425bfbd6766cf564f1d8436a62bfd5aab596737e`.
+  - Checks before merge: `Build and verify` pass, `validate` pass.
+  - Pages after merge: build for `425bfbd` **built**. Workflows `build` and `pages build and deployment` both **success** on `425bfbd`.
+  - Live check, cache-busted (`?v=425bfbd`): `/guides/` shows "Five guides"; `/flagged/` lists FLG-030 to FLG-033.
+  - This record was committed on `arena/301b1534-wina` after the merge, because `main` cannot take a direct push from this session. It follows the same record-only convention as PR #21.
+- **Owner actions still open.** The Special Link test (FLG-024), the enrolment check (FLG-004), Search Console (SG-29, FLG-009), the analytics deploy (FLG-011), the reader-capture backend (FLG-010), and the SUG-05 cadence decision.
+
+---
+
+## Session `arena-829ea2fd-wina` — 2026-11-20 — T19 (renumbered from T17)
+
+**Claimed scope (T19):** the design-prompt suggestion layer the latest brief asks for — a
 polished-marketing design direction, a catchy topic roadmap (explicitly hypotheses, not
 popularity claims), organic-traffic levers, and a decision log — rendered into the existing
 reviewable suggestions section. Files: `data/suggestions.json`, `data/governance.json`,
-`_src/build.mjs`, generated pages, and this board's T17 section only. No second site. No change
+`_src/build.mjs`, generated pages, and this board's T19 section only. No second site. No change
 to another session's scope.
+
+**Renumber note:** this session claimed T17, but on merge `main` had already assigned T17 to
+`arena/1323e80f-wina` (script wrappers) and T18 to `arena-301b1534` (verification pass). To keep
+both sessions' records intact without an ID collision, this task is renumbered **T19** here and in
+the task board. The flag IDs were likewise renumbered: this session's design/topic flags are
+**FLG-034** and **FLG-035**, because `main`'s T18 session used FLG-030..033 for policy-quote and
+link-resolution findings.
 
 **Re-verification performed before claiming (2026-11-20, this session):**
 - All five submitted `link.amazon` short links were re-opened with the page tool. Every
@@ -413,13 +525,6 @@ to another session's scope.
   placement; "you can't talk about your experience with a product you haven't tried"), Google
   Search Central *Creating Helpful, Reliable, People-First Content*, and the Amazon
   *Associates Program Policies* (updated 2026-04-14).
-
-**Handoff note:** `T15` is still listed `in progress` for `arena-ffa85037`, but its PR #13 is
-merged. Treated as complete here. Stale PRs #2 and #7 remain open against older branches and
-must not be merged as-is (see the `arena-59299521-wina` record). This session pushes only to
-the current branch and opens a PR from it.
-
-### T17 result — arena-829ea2fd-wina (2026-11-20)
 
 **What was added** (the layer the latest brief asked for — a reviewable path to a polished
 marketing look, catchy topics, organic traffic, and explicit decisions before implementation):
@@ -437,19 +542,28 @@ marketing look, catchy topics, organic traffic, and explicit decisions before im
     decisions are recorded with a date and reason.
 - **`data/governance.json`** — **FLG-034** (no design brief/brand source; site deliberately
   typographic because imagery is withheld, FLG-007) and **FLG-035** (topic roadmap titles are
-  hypotheses with no measured demand). Both published on `/flagged/`. Renumbered from
-  FLG-030/031 to avoid colliding with the parallel T18 session's FLG-030..033.
+  hypotheses with no measured demand). Both published on `/flagged/`.
 - **`_src/build.mjs`** — renders the design brief, topic roadmap and decision log on
   `/suggestions/`; executive summary updated to reference the new layer and to put "review and
   record decisions" first in the next-actions list.
 
-**Verification performed this session:**
+**Merge resolution (2026-11-20).** `main` had advanced 10 commits ahead of this branch's base
+(T17 script wrappers + T18 verification pass). Merged `origin/main` into this branch:
+- `data/governance.json`, `data/suggestions.json`, `_src/build.mjs` auto-merged cleanly (the
+  two sessions' additions are disjoint; both sets of flags are present and unique).
+- `COORDINATION.md` resolved by taking `main`'s board and re-adding this session's T19 row and
+  section. Nothing from the T17/T18 records was removed.
+- Generated pages (`summary/`, `flagged/`, `suggestions/`, etc.) regenerated from the merged
+  source via `_src/build.mjs`, not hand-merged.
+
+**Verification performed this session (post-merge, on the combined tree):**
 
 | Check | Method | Result |
 |---|---|---|
 | 5 submitted links resolve | Page-tool fetch of each `link.amazon` URL | All 5 match `data/links.json` (ASIN + title) |
 | Official sources reachable | FTC Disclosures 101, Google helpful-content, Amazon Program Policies | All three fetched and read 2026-11-20 |
 | JSON validity | `JSON.parse` on `suggestions.json`, `governance.json` | OK |
+| Flag ID uniqueness | Scan `data/governance.json` for duplicate IDs | All unique (FLG-001..035, SG-27..30) |
 | Build | `node _src/build.mjs` | 30 pages, 29 in sitemap, all gates clear |
 | Second gate | `node scripts/check-site.mjs` | pass — safe to publish |
 | Determinism | build twice, diff `VALIDATION.md` + `sitemap.xml` | byte-identical |
@@ -457,3 +571,4 @@ marketing look, catchy topics, organic traffic, and explicit decisions before im
 **Irregularities:** none new beyond the two flags above, which are published rather than hidden.
 No value was inferred; the topic roadmap is explicitly hypothetical and the design brief is
 explicitly a recommendation. Nothing blocks the merge.
+
