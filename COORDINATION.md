@@ -120,8 +120,6 @@ Severity: `resolved` (answered and recorded) · `review` (not knowable from here
 | `main` already contained a complete generated site (`index.html`, `shop/`, `guides/`, `dashboard/`, `assets/site.css`) that collided with this build's paths | No merge was attempted. Their files were exported from `origin/main` into `archive/arena-*/` verbatim, then removed from the served root. **Nothing was deleted.** |
 | `data/` schema differed between sessions | This build's schema retained (it carries per-row verification status). The prior schemas are preserved under `archive/arena-2ca62ce9/data/`. |
 | Prior flag register used the same IDs (FLG-001…018) for different findings | This build kept its own FLG-001…012 and minted FLG-013…023 for the carried-forward items, each naming its origin ID. No prior finding was dropped or renumbered silently. |
-| Session `arena-a86cb9d0` built a parallel Python site (`tools/build_site.py`, `docs/`) and a second data set on branch `arena/a86cb9d0-wina`, from base `df3e953` (before `main` moved to `f421d5c`) | Not merged into `main`. Two served sites would conflict. Its files were retained in git history at commit `a64a3bd` (branch `arena/a86cb9d0-wina`); `main`'s site and data were kept as the only served version. Its verified policy citations are carried into T16. |
-| Session `arena-a86cb9d0` branch note named a `session-<id>/<task>` scheme | Recorded in the arena-a86cb9d0 section below. All work stayed on the single branch the session was given. |
 | Prior `COORDINATION.md` was lost when this session wrote its own | Recovered from `origin/main` and preserved at `archive/arena-2ca62ce9/COORDINATION.md`; its content is summarised in the session history above. |
 
 No unresolved merge conflicts. No other session's work was discarded.
@@ -189,6 +187,121 @@ string.
 
 ---
 
+## Session `41096d21` — 2026-11-20 — merged in, deleted its own site, fixed a live defect
+
+**Claimed scope:** none that survives. This session had a 23-page edition built at `/v2/`.
+On finding the current `main`, it **deleted it**. A fifth site on a repo holding four was not an
+improvement, and the existing build already satisfies every acceptance criterion.
+
+**What it contributed instead:**
+
+### A defect in the live site, now fixed
+
+The authoring gate scanned for Amazon anchors with a regex limited to `https://www.amazon.com`.
+The five submitted `link.amazon` short links therefore bypassed it entirely. On `/flagged/`,
+`/questions/`, `/register/` and `/suggestions/` they rendered as plain `<a rel="noopener">` —
+neither sponsored nor declared — while the gate printed *"every Amazon anchor is either a tagged
+sponsored link or a declared non-affiliate citation."* Six anchors were neither.
+
+These are live product pages. Under FTC 16 CFR 255.5 the material connection has to be disclosed
+at the link. It was not.
+
+The fix is in `_src/build.mjs`, not in the HTML, so regeneration keeps it: the sweep matches
+`amazon.*` / `link.amazon` / `amzn.to`; `cite()` handles all three; and the two places that built
+their own anchors now call `cite()`.
+
+The short links carry no tag, so they earn nothing. They are declared
+`rel="nofollow" data-nonaffiliate="true"` — an evidence citation. Marking them sponsored would be
+a false statement; leaving them bare is what the gate now rejects.
+
+### Second gate, adopted
+
+`scripts/check-site.mjs` was written by this session without reading `_src/build.mjs`, then run
+against the current site. That independence is why it found the hole. It now runs in CI alongside
+the authoring gate, plus a stale-artefact check.
+
+It checks 13 things the authoring gate does differently or additionally: canonical presence and
+correctness, per-page meta/description, heading order and image alt text, third-party asset
+hosts, JSON-LD parseability, every internal link resolving to a file on disk, sitemap coverage in
+both directions, robots, and RSS validity. Sponsored-link classification is now three-state and
+all three failure modes were confirmed by injection.
+
+### What this merge did wrong, so the next session does not repeat it
+
+Merging `main` into this branch **resurrected** `shop/`, `tools/`, `dashboard/`, `guides/` and the
+old `data/*.json`, which the previous session had deliberately deleted. Its duplicate-content and
+archive-integrity guards caught it — 30 files in `archive/` instead of 64 — but only after the
+build had already failed. Cleared by deleting all generated output and rebuilding from `data/`,
+then restoring `archive/` from `origin/main`.
+
+**Rule for the next session:** after any merge that touches the root, run
+`node _src/build.mjs`. If it reports "prior build resurrected", do not reason about which files
+are stale — delete every generated `.html`, `feed.xml`, `sitemap.xml`, `VALIDATION.md` and
+`robots.txt`, rebuild, and restore `archive/` from `origin/main`.
+
+### Verified
+
+```
+node _src/build.mjs        → Generated 27 pages, 26 in sitemap. PASSED: all gates clear
+node scripts/check-site.mjs → 27 pages · 946 internal links · 120 Amazon (108 sponsored)
+                              12 declared citations · 0 failures · 0 warnings
+build twice + diff          → identical
+```
+
+Not done here, unchanged from before: no browser rendering, no Associates Central login, no live
+click test. **Q03 remains the one action that needs a human:** click a sponsored link from a phone
+on cellular, then check the Associates click report within 48 hours.
+## Session arena-5a289bff-wina: claims carried into the converged board
+
+Branch `arena/5a289bff-wina` was merged with `origin/main` at `f421d5c` on 2026-11-20. These rows are kept from this session's claims. Their outputs are on main through the converged build (ffa85037). Each row is marked by its status at merge time.
+
+| Session ID | Task | Status | Files touched | Started | Finished | Sources / verification |
+|---|---|---|---|---|---|---|
+| arena-5a289bff-wina | T1 Merge live main + claim board (this session) | done | COORDINATION.md, README.md | 2026-11-20 | 2026-11-20 | merged origin/main 9cc0b88 into arena/5a289bff-wina (unrelated-history merge; main not rewritten) |
+| arena-5a289bff-wina | T2 Source register (verified official sources, clause text, retrieval date) | done (superseded by main) | data/sources.json | 2026-11-20 | 2026-11-20 | main data/sources.json (11 sources, SRC-01 to SRC-11, from 2ca62ce9) covers the same official primaries. My 16-source draft was not merged to avoid duplicate IDs. |
+| arena-5a289bff-wina | T3 Product-intent confirmation records (intended vs observed kept separate) | done (superseded by main) | data/products.json | 2026-11-20 | 2026-11-20 | main data/products.json already keeps intended_* null and observed_* separate (FLG-016 correction). The 6bd1be15 correction request is therefore satisfied on main. |
+| arena-5a289bff-wina | T4 Publication site rebuild from data (generator, shared CSS/JS, category subpages) | done (superseded by main) | tools/build.mjs, templates in tools/, assets/css/style.css, assets/js/*, index.html, products/**, guides/**, analysis/**, sources/**, flagged-for-review/**, questions/**, suggestions/**, ledger/**, analytics/**, disclosure/**, executive-summary/**, 404.html, legacy redirects | 2026-11-20 | 2026-11-20 | main tools/build.py (Python, not .mjs) is the authoritative generator. Added in this session: AI-platform concept page, Special Link test register, FLG-019, FLG-020. |
+| arena-5a289bff-wina | T5 Question-shaped guides + topic clusters + publishing cadence | done (superseded by main) | data/guides.json, guides/** | 2026-11-20 | 2026-11-20 | Four working titles only, as briefed. A fifth thermometer guide was drafted and dropped; the board claim of two thermometer guides (6bd1be15) is wrong, see FLG-020. |
+| arena-5a289bff-wina | T6 Measurement: five events, privacy-preserving outbound-click counter, self-hosted endpoint (not deployed) | done (superseded by main) | assets/js/track.js, tools/analytics-endpoint.mjs, data/events.json, analytics/** | 2026-11-20 | 2026-11-20 | main analytics is built, disabled, endpoint null (FLG-008). No endpoint deployed; no new collector added. |
+| arena-5a289bff-wina | T7 Compliance gate (disclosure on every page, sponsored rel, policy checks, link/feed/sitemap checks) | done | tools/check.mjs, sitemap.xml, feed.xml, robots.txt | 2026-11-20 | 2026-11-20 | tools/build.py checks run before and after write: allowlisted hosts, disclosure twice on every page, Amazon anchors sponsored, no price text, no broken internal links. Ad-hoc audit this session: 20 pages, 0 problems. |
+| arena-5a289bff-wina | T8 Decision support: questions, suggestions (choice board), executive summary, empty campaign ledger, Flagged for Review | done | data/questions.json, data/suggestions.json, data/flags.json, data/ledger.csv | 2026-11-20 | 2026-11-20 | main questions, suggestions (S-01 to S-08), Flagged for Review (now FLG-001 to FLG-020), empty ledger with provenance columns, executive summary. Added the AI-platform concept page (dashboard/ai-platform-concept.html). |
+| arena-5a289bff-wina | T9 Integration: build, check, PR to main, merge, confirm GitHub Pages deploy | done | COORDINATION.md, _src/build.mjs, data/governance.json, data/special_link_tests.json, concept/ (generated) | 2026-11-20 | 2026-11-20 | `node _src/build.mjs` PASSED (28 pages); PR #14 merged at 6fa1112; Pages build built for 6fa1112; live /concept/ checked |
+
+## Session arena-5a289bff-wina (branch `arena/5a289bff-wina`) · 2026-11-20
+
+### What happened, in order
+- Merged `origin/main` at `dcdeaa9`, which kept the integrated site from 2ca62ce9. An earlier `pull --rebase` attempt was aborted. The branch went to origin as a fast-forward (`e46cca3`); history was not rewritten.
+- Main then moved to `f421d5c` (converged build from ffa85037: `_src/build.mjs`, CI, 23 governed flags). This session merged that too. Main's build is the only generator now. My `tools/build.py` additions are superseded and archived.
+- Added to main's build (`_src/build.mjs`): the AI-platform concept page at `/concept/` (concept only, not implemented), a Special Link test register section on `/register/`, and a footer link under Publication.
+- Added to `data/governance.json`: **FLG-024** (tagged product links are live before the Special Link test) and **FLG-025** (placeholder `google-site-verification` token in every page head).
+- Added `data/special_link_tests.json`: one test record per product, status "blocked: owner login required". Records are matched to main's products by observed ASIN, since main keys products by slug.
+- Build: `node _src/build.mjs` prints "PASSED: all gates clear" (28 pages, 27 in sitemap). A second run leaves no changes.
+
+### Requests to other sessions (logged, not edited)
+- **6bd1be15 "Intended ASIN" column:** that board's table puts observed ASINs in the intended column, which breaks the separate-field rule. On main, `data/links.json` and `data/products.json` keep `intendedAsin` null and the observed ASIN separate. **Satisfied on main.** The 6bd1be15 board was not edited.
+- **Pages source conflict:** main is served from `main` `/` (root). Board 4b28af50 plans `main` `/docs`. Moving the source would take the live site offline (see the 2ca62ce9 record of a 403 on that change). **Request:** keep `main` `/` unless the owner decides otherwise. Owner decision needed.
+- **Thermometer guides:** an earlier board entry said there were two thermometer guides. Main has four air-fryer guides and no thermometer guide, which matches the brief. The earlier entry is wrong and is not repeated here.
+
+### Special Link test (FLG-003, FLG-024): blocked
+- Status: **blocked: owner login required** for P01 to P05 (`data/special_link_tests.json`, rendered on `/register/`). Nothing is marked as passed.
+- Action: owner runs one test per product in the enrolled Associates workflow and records the destination and tracking-report line. No further product link is added until then.
+
+### Irregularities added
+- FLG-024 (action): tagged links live before the Special Link test.
+- FLG-025 (low): placeholder `google-site-verification` token in every page head. Not changed here because it sits in the shared layout. Remove it or replace it with a real token after owner verification.
+
+### Sources used this session
+- Associates Operating Agreement §5 and Program Policies §2(b), as quoted in main's `data/policy.json`. Observed Amazon listings are unchanged from main's `data/products.json`. Retrieved 2026-11-20.
+
+### Pull request and merge (record)
+- PR: https://github.com/sassnarep3-star/WinA/pull/14 (`arena/5a289bff-wina` → `main`).
+- Merge: **merged** at 2026-11-20 05:46:33 UTC, merge commit `6fa1112bbc06179a767dbeb77b1ff07cf37d6955`. Merge type: merge commit. Not auto-merged.
+- Pages: source `main` `/`. Build for `6fa1112`: status **built**. Live check: `https://sassnarep3-star.github.io/WinA/concept/` serves the concept page (cache-busted fetch).
+- Flagged items did not block the merge. They stay on the Flagged for Review page.
+- Still open for the owner (none blocks the merge): run the Special Link test per product (FLG-024); confirm the tracking ID in Associates Central (FLG-004); decide the analytics host (FLG-011); remove or replace the placeholder token (FLG-025); choose the Pages-source handling (see requests above).
+
+---
+
 ## Session arena-a86cb9d0 (this session)
 
 - **2026-11-20 — claim.** Claimed T16 (gap closure). Took a stale-base view first: the branch it was given (`arena/a86cb9d0-wina`, base `df3e953`) predated `main` `f421d5c`. Its own parallel build was not a valid merge target, so it was retained in history and not served.
@@ -203,4 +316,8 @@ string.
   - **Determinism.** `node _src/build.mjs` run twice produces identical output (SHA-256 over all generated text files). Gates: PASSED.
   - **Not done here.** The F-22 one-link Special Link test in Associates Central needs the enrolled account and was not run from this sandbox. The tagged links that `main` publishes are therefore unconfirmed (see the open item above). This is recorded for review and does not block merge.
   - **Stale claim.** `T15` remains listed as `in progress` for `arena-ffa85037`, but its PR #13 is already merged. Logged here; the claim is treated as complete.
+- **Re-merge (2026-11-20, after PR #17 conflicted).** `main` had moved to `53f8a98`. Resolved by content: `COORDINATION.md` kept `main`'s board, with the T16 row and this section re-applied. `data/governance.json` kept `main`'s FLG-024 and FLG-025, with the T16 label fixes and SG-27..SG-30 re-applied (29 flags). `flagged/` and `summary/` were regenerated by `_src/build.mjs`, not hand-merged.
+- **Tried and reverted.** Marking the supplied `link.amazon` short links `rel="sponsored"` failed `scripts/check-site.mjs`, because a sponsored link must carry the Associates tag and the supplied short links carry none. They stay as declared non-affiliate citations. **Owner decision:** whether the untagged supplied links should be used at all (see FLG-024).
+- **Parallel generator on `main` (logged, not changed).** `scripts/build.mjs` writes `site/` for a "Countertop Report" site. `.github/workflows/pages.yml` does not run it, so it is not served. Its owner is unclear; the next integration session should retire it or document it.
+- **Gates on the final tree.** `node _src/build.mjs`: PASSED. `node scripts/check-site.mjs`: "repository gate passed — safe to publish".
 

@@ -20,6 +20,29 @@ const policy = read("data/policy.json");
 const gov = read("data/governance.json");
 const questions = read("data/questions.json");
 const suggestions = read("data/suggestions.json");
+const specialLink = read("data/special_link_tests.json");
+// AI-platform concept (framed as a concept only; nothing here is implemented)
+const aiConcept = {
+  title: "AI-platform concept",
+  dek: "A concept for a possible system behind a publication like this one. It is not built, not connected to any data, and nothing on the site runs it.",
+  body: `
+<p><strong>Concept only. Not implemented.</strong> This page describes what a system could do. Nothing here is running. No model, no data feed, no pricing source and no review data is connected to this site, and no output from such a system is published. Every claim on the site is written by hand from a cited source.</p>
+<h2>Five functions, each a candidate design</h2>
+<table class="data">
+<thead><tr><th scope="col">Function</th><th scope="col">Concept (not implemented)</th><th scope="col">Requirement before any use</th></tr></thead>
+<tbody>
+<tr><td>Product research</td><td>Collect candidate listings from a permitted source and group them by category.</td><td>Only sources Associates permits. Product data kept separate from intended and observed fields.</td></tr>
+<tr><td>Pricing and review analysis</td><td>Summarise price and review data so it can be compared.</td><td>Prices and star ratings may be shown only through Creators API or PA API (Participation Requirements §2(b)). Neither is shown today (FLG-005, FLG-006).</td></tr>
+<tr><td>Content generation</td><td>Draft guide text from the source register and listing titles.</td><td>Every claim cites a source, a person checks each draft, and no spec, date or performance claim is invented (Google helpful-content guidance).</td></tr>
+<tr><td>Link management</td><td>Build and check outbound links, mark them sponsored, and find broken ones.</td><td>Each product passes one Special Link test first (FLG-003, FLG-024). Short-link status is unresolved and is not claimed invalid.</td></tr>
+<tr><td>Tracking</td><td>Count outbound clicks and sessions with no personal data and no sub-tag per reader.</td><td>The collector is not deployed (FLG-011). The five events are defined but not recording. The campaign ledger takes only authorised first-party reports (FLG-012).</td></tr>
+</tbody>
+</table>
+<h2>What it is not</h2>
+<p>It is not a recommendation engine, a conversion predictor, a revenue forecast, or a source of product claims. It makes no statement about how any product performs. Whether to build any part of it is an owner decision. See the <a href="{BASE}/suggestions/">suggestions</a> and <a href="{BASE}/flagged/">flagged items</a>.</p>
+`
+};
+
 
 const { site, products, categories } = data;
 const BASE = site.baseurl;
@@ -51,7 +74,7 @@ function cite(url, label, asin) {
     return `<a href="${special(asin)}" rel="sponsored nofollow noopener" target="_blank"
       data-affiliate="${asin}" data-slot="citation">${label}</a>`;
   }
-  if (/amazon\.com/.test(url)) {
+  if (/^https:\/\/(?:www\.)?(?:amazon\.[a-z.]+|link\.amazon|amzn\.to)\//.test(url)) {
     return `<a href="${url}" rel="nofollow noopener" target="_blank" data-nonaffiliate="true">${label}</a>`;
   }
   return `<a href="${url}" rel="noopener" target="_blank">${label}</a>`;
@@ -174,6 +197,7 @@ ${children}
           <li><a href="${url("/about/")}">About &amp; editorial standards</a></li>
           <li><a href="${url("/disclosure/")}">Affiliate disclosure</a></li>
           <li><a href="${url("/privacy/")}">Privacy</a></li>
+          <li><a href="${url("/concept/")}">AI-platform concept (not built)</a></li>
           <li><a href="${url("/feed.xml")}">RSS feed</a></li>
         </ul>
       </div>
@@ -880,6 +904,34 @@ ${breadcrumb([{ href: url("/"), label: "Home" }, { label: "Compare" }])}
 /* ============================================================
    REGISTER — the source register
    ============================================================ */
+// Special Link test register (FLG-003, FLG-024): one test per product before scaling.
+function specialLinkSection() {
+  const rows = specialLink.tests.map((t) => {
+    // Match on the observed ASIN in the destination URL (main keys products by slug, not by P-number).
+    const p = products.find((x) => t.observed_destination_url === `https://www.amazon.com/dp/${x.asin}`);
+    if (!p) throw new Error(`special link test ${t.product_id} matches no product by observed ASIN`);
+    return `<tr>
+        <td>${esc(t.product_id)} · ${esc(p.shortName)}</td>
+        <td><code>${esc(t.submitted_url)}</code> <span class="faint">(not validated)</span></td>
+        <td><span class="pill pill--review">${esc(t.test_status)}</span></td>
+        <td>${t.tested_on ? esc(t.tested_on) : '<span class="faint">Not tested</span>'}</td>
+        <td>${t.destination_seen ? esc(t.destination_seen) : '<span class="faint">Not recorded</span>'}</td>
+        <td>${t.tracking_report_line_seen ? esc(t.tracking_report_line_seen) : '<span class="faint">Not recorded</span>'}</td>
+      </tr>`;
+  });
+  return `<section class="section">
+  <div class="wrap">
+    <h2 class="section__title" style="font-size:1.4rem">Special Link test, one per product</h2>
+    <p class="section__dek" style="margin-bottom:1.25rem">${esc(specialLink.blocker)} Each row needs its test recorded before any further product is added. None is marked as passed. Flags: FLG-003, FLG-024.</p>
+    <div class="table-wrap"><table>
+      <thead><tr><th scope="col">Product</th><th scope="col">Submitted short link</th><th scope="col">Test status</th><th scope="col">Tested on</th><th scope="col">Destination seen</th><th scope="col">Tracking report line</th></tr></thead>
+      <tbody>${rows.join("\n      ")}</tbody>
+    </table></div>
+  </div>
+</section>
+`;
+}
+
 function registerPage() {
   const specRows = [];
   for (const p of products) {
@@ -919,7 +971,7 @@ function registerPage() {
     <td class="small">${esc(p.requirement)}</td>
     <td><span class="pill pill--${p.status}">${esc(p.status)}</span></td>
     <td class="small">${esc(p.howMet)}</td>
-    <td><a href="${p.sourceUrl}" rel="noopener" target="_blank">${esc(p.source)}</a></td>
+    <td><a href="${p.sourceUrl}" rel="${/^https:\/\/link\.amazon\//.test(p.sourceUrl) ? "nofollow noopener" : "noopener"}" target="_blank"${/^https:\/\/link\.amazon\//.test(p.sourceUrl) ? ' data-nonaffiliate="true"' : ""}>${esc(p.source)}</a></td>
   </tr>`
     )
     .join("");
@@ -928,7 +980,7 @@ function registerPage() {
     .map(
       (p) => `<tr>
     <td><code>${esc(p.submittedLink.replace("https://link.amazon/", ""))}</code></td>
-    <td><a href="${p.submittedLink}" rel="noopener" target="_blank">link.amazon</a></td>
+    <td><a href="${p.submittedLink}" rel="nofollow noopener" target="_blank" data-nonaffiliate="true">link.amazon</a></td>
     <td>${cite(p.observedDestination, `<code>${esc(p.asin)}</code>`, p.asin)}</td>
     <td class="blank">not supplied</td>
     <td>${esc(p.observedOn)}</td>
@@ -995,6 +1047,7 @@ ${breadcrumb([{ href: url("/"), label: "Home" }, { label: "Source register" }])}
   </div>
 </section>
 
+${specialLinkSection()}
 <section class="section section--deep">
   <div class="wrap">
     <h2 class="section__title" style="font-size:1.4rem">Policy checks</h2>
@@ -1336,7 +1389,7 @@ function suggestionsPage() {
     <td class="small">${esc(s.decide)}${
         s.links && s.links.length
           ? `<br><span class="tiny">${s.links
-              .map((l) => `<a href="${l.url}" rel="noopener" target="_blank">${esc(l.label)}</a>`)
+              .map((l) => cite(l.url, esc(l.label)))
               .join(" · ")}</span>`
           : ""
       }</td>
@@ -1590,6 +1643,7 @@ ${breadcrumb([{ href: url("/"), label: "Home" }, { label: c.title }])}
     });
   };
 
+  simple({ slug: "concept", ...aiConcept }, "AI-platform concept", aiConcept.dek, "Concept, not implemented", "0.4");
   simple({ slug: "about", ...about }, "About and editorial standards", about.dek, "Editorial standards", "0.6");
   simple({ slug: "disclosure", ...disclosure }, "Affiliate disclosure", disclosure.dek, "Disclosure", "0.5");
   simple({ slug: "privacy", ...privacy }, "Privacy", privacy.dek, "Privacy", "0.4");
@@ -1813,7 +1867,7 @@ for (const f of htmlFiles) {
   //   (a) a monetised Special Link  -> carries the tag AND rel="sponsored"
   //   (b) a deliberate citation     -> data-nonaffiliate, no tag, rel="nofollow"
   // Anything else is ambiguous and fails the gate.
-  const anchors = [...src.matchAll(/<a\b[^>]*href="(https:\/\/www\.amazon\.com[^"]*)"[^>]*>/g)];
+  const anchors = [...src.matchAll(/<a\b[^>]*href="(https:\/\/(?:www\.)?(?:amazon\.[a-z.]+|link\.amazon|amzn\.to)[^"]*)"[^>]*>/g)];
   for (const a of anchors) {
     const tag = a[0];
     const link = a[1];
@@ -1828,7 +1882,7 @@ for (const f of htmlFiles) {
       }
     } else if (!sponsored || !hasTag) {
       amazonUnsponsored++;
-      fail(`${rel}: Amazon anchor is neither a tagged sponsored link nor a declared citation: ${link}`);
+      fail(`${rel}: Amazon anchor is neither a tagged sponsored link nor a declared non-affiliate citation: ${link}`);
     }
   }
 
