@@ -270,7 +270,7 @@ export const promo = {
     },
     {
       slug: "thermomaven-1-sec-thermometer",
-      hook: "The cheap insurance that stops you guessing",
+      hook: "A one-second read for a quick kitchen check",
       social:
         "One second to a reading is the threshold where checking temperature stops feeling like a delay — which is the only reason people actually do it. NIST-certified claim, AAA battery, no app, no account. → [review]",
       newsletter:

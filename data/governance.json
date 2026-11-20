@@ -361,12 +361,12 @@
     },
     {
       "id": "FLG-037",
-      "severity": "review",
-      "title": "Buy buttons say 'Check price on Amazon' while the site states prices are not shown",
-      "detail": "Every product card and hero button is labelled 'Check price on Amazon'. Other pages state that prices are not shown on this site, and data/products.json withholds prices (FLG-005). The label does not display a price, but it is worded as if one is on the page. It is flagged for an owner decision on wording, not changed here, because it is a visible copy decision and it appears on every product card. Amazon Associates Program Policies §6(y) is cited in this register for the no-price-tracking rule; that section was not re-read in this check.",
-      "action": "Owner: choose the button wording. If changed, rebuild with node _src/build.mjs; the compliance gate checks the disclosure and link classes, not the label wording.",
+      "severity": "resolved",
+      "title": "Buyer-action and category copy no longer imply an on-page price or an unverified low cost",
+      "detail": "Resolved in task T33 on the shared board (2026-11-20; first claimed as T27, renumbered at merge time because main already held rows for other sessions). Product buttons in all three templates — buy box, product card, front-page hero — now read ‘View on Amazon’ rather than ‘Check price on Amazon’, while the site itself displays no prices. Two price superlatives that no data supports were also removed: the ThermoMaven line ‘The cheap insurance that stops you guessing’ became ‘A one-second read for a quick kitchen check’, and the thermometers category dek and front-page section head lost ‘The cheapest upgrade in the kitchen’. Replacement wording states only rows already recorded as verified in the register: ‘Truly instant read in 1 second’ (thermomaven.com product page, read 2026-11-20) and ‘3 ultra-thin probes’ (chefiq.com product page). No price, commission, conversion or performance figure was added, and the Price / Star rating / Review count rows remain blank or withheld.",
+      "action": "No further action on wording. If API-backed price display is ever considered, re-read the Associates Program Policies first and extend scripts/check-site.mjs so the no-price rule is re-checked against whatever the new copy claims.",
       "sourceUrl": "https://affiliate-program.amazon.com/help/operating/policies",
-      "sourceLabel": "Amazon Associates Program Policies (cited elsewhere in this register)"
+      "sourceLabel": "Amazon Associates Program Policies (page states “Updated: April 14, 2026”); price/rating display and tracking rules reviewed 2026-11-20"
     },
     {
       "id": "FLG-038",
