@@ -1,0 +1,92 @@
+{
+  "_meta": {
+    "register_version": "1.0.0",
+    "tracking_id": "shopnow047c-20",
+    "resolved_at_utc": "2026-11-20T05:44:00Z",
+    "method": "Each supplied short link was requested once, following redirects, and the final landing URL was recorded verbatim. No parameter was added, removed or normalised.",
+    "observation": "All five short links land on a https://www.amazon.com/dp/<ASIN> product page whose ASIN matches the product the owner described. None of the observed landing URLs contains a tag= parameter; they carry Amazon's own page-share token (btn_ref=srctok-…). This is an observation, not a verdict: we do not claim the short links are invalid or non-compliant. FLG-003."
+  },
+  "links": [
+    {
+      "id": "L01",
+      "supplied_short_link": "https://link.amazon/B04G1MEwY",
+      "intended_asin": "B0CDY277D3",
+      "resolved_asin": "B0CDY277D3",
+      "resolved_asin_source": "https://www.amazon.com/dp/B0CDY277D3",
+      "official_listing_url": "https://www.amazon.com/dp/B0CDY277D3",
+      "confirmation_method": "short-link redirect followed once, 2026-11-20T05:44Z",
+      "confirmation_date_utc": "2026-11-20",
+      "source_of_supply": "site owner message (five supplied link.amazon URLs)",
+      "observed_redirect_target": "https://www.amazon.com/dp/B0CDY277D3?lv=shuf&btn_type=ss&btn_ref=srctok-0710b7a4f0d14338&channelId=704&plpRedirect=mhFallback",
+      "tag_parameter_present": false,
+      "asin_match": true,
+      "product": "chefman-dual-6qt"
+    },
+    {
+      "id": "L02",
+      "supplied_short_link": "https://link.amazon/B02NbDxp3",
+      "intended_asin": "B09B7SB46R",
+      "resolved_asin": "B09B7SB46R",
+      "resolved_asin_source": "https://www.amazon.com/dp/B09B7SB46R",
+      "official_listing_url": "https://www.amazon.com/dp/B09B7SB46R",
+      "confirmation_method": "short-link redirect followed once, 2026-11-20T05:44Z",
+      "confirmation_date_utc": "2026-11-20",
+      "source_of_supply": "site owner message (five supplied link.amazon URLs)",
+      "observed_redirect_target": "https://www.amazon.com/dp/B09B7SB46R?lv=shuf&btn_type=ss&btn_ref=srctok-77f54b7c4a256532&channelId=704&plpRedirect=mhFallback",
+      "tag_parameter_present": false,
+      "asin_match": true,
+      "product": "emeril-french-door-26qt"
+    },
+    {
+      "id": "L03",
+      "supplied_short_link": "https://link.amazon/B00hJ57DV",
+      "intended_asin": "B08DKYBTPH",
+      "resolved_asin": "B08DKYBTPH",
+      "resolved_asin_source": "https://www.amazon.com/dp/B08DKYBTPH",
+      "official_listing_url": "https://www.amazon.com/dp/B08DKYBTPH",
+      "confirmation_method": "short-link redirect followed once, 2026-11-20T05:44Z",
+      "confirmation_date_utc": "2026-11-20",
+      "source_of_supply": "site owner message (five supplied link.amazon URLs)",
+      "observed_redirect_target": "https://www.amazon.com/dp/B08DKYBTPH?lv=shuf&btn_type=ss&btn_ref=srctok-2189f4dab9032c5f&channelId=704&plpRedirect=mhFallback&th=1",
+      "tag_parameter_present": false,
+      "asin_match": true,
+      "product": "chefman-turbofry-8qt"
+    },
+    {
+      "id": "L04",
+      "supplied_short_link": "https://link.amazon/B0c8moW59",
+      "intended_asin": "B0DHZTCNR5",
+      "resolved_asin": "B0DHZTCNR5",
+      "resolved_asin_source": "https://www.amazon.com/dp/B0DHZTCNR5",
+      "official_listing_url": "https://www.amazon.com/dp/B0DHZTCNR5",
+      "confirmation_method": "short-link redirect followed once, 2026-11-20T05:44Z",
+      "confirmation_date_utc": "2026-11-20",
+      "source_of_supply": "site owner message (five supplied link.amazon URLs)",
+      "observed_redirect_target": "https://www.amazon.com/dp/B0DHZTCNR5?lv=shuf&btn_type=ss&gaOptInStatus=true&_encoding=UTF8&content-id=amzn1.sym.4582c56b-139d-4168-9db2-822c68889360&btn_ref=srctok-3fc2944d621f80c1&channelId=500&plpRedirect=mhFallback",
+      "tag_parameter_present": false,
+      "asin_match": true,
+      "product": "thermomaven-1sec"
+    },
+    {
+      "id": "L05",
+      "supplied_short_link": "https://link.amazon/B0f3GKalj",
+      "intended_asin": "B0DZFD6R9Z",
+      "resolved_asin": "B0DZFD6R9Z",
+      "resolved_asin_source": "https://www.amazon.com/dp/B0DZFD6R9Z",
+      "official_listing_url": "https://www.amazon.com/dp/B0DZFD6R9Z",
+      "confirmation_method": "short-link redirect followed once, 2026-11-20T05:44Z",
+      "confirmation_date_utc": "2026-11-20",
+      "source_of_supply": "site owner message (five supplied link.amazon URLs)",
+      "observed_redirect_target": "https://www.amazon.com/dp/B0DZFD6R9Z?lv=shuf&sbo=RZvfv%2F%2FHxDF%2BO5021pAnSA%3D%3D&btn_type=ss&gaOptInStatus=true&btn_ref=srctok-55d81ccf7b45ebe7&channelId=500&plpRedirect=mhFallback&th=1",
+      "tag_parameter_present": false,
+      "asin_match": true,
+      "product": "chefiq-sense-gen3"
+    }
+  ],
+  "product_intent_record": {
+    "purpose": "For each submitted link, this record stores the intended ASIN, the official listing URL, the confirmation date and the source. The observed redirect target is kept in its own field and is never merged into the intent fields.",
+    "rationale": "Amazon's ASIN is a checkable identifier. Keeping intent and observation apart means a future change in redirect behaviour cannot silently rewrite what we believed we were linking to.",
+    "fields": ["intended_asin", "official_listing_url", "confirmation_date_utc", "source_of_supply", "observed_redirect_target"],
+    "never_merge": ["intended_asin", "observed_redirect_target"]
+  }
+}

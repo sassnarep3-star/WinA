@@ -1,0 +1,120 @@
+{
+  "_meta": {
+    "register_version": "1.0.0",
+    "purpose": "Everything on this site that could not be confirmed from a primary source, or that a primary source contradicts. Published so it can be reviewed after launch rather than buried.",
+    "rule": "A flag is not an error in the build. It is a gap in the evidence. Unverified values are printed as 'Not confirmed' on the site; they are never estimated."
+  },
+  "flags": [
+    {
+      "id": "FLG-001",
+      "severity": "policy",
+      "title": "No prices are shown anywhere on this site",
+      "finding": "Prices were observed on every listing on 2026-11-20. None are printed here. Amazon's Program Policies allow a site to show price and availability only when Amazon serves the link containing that data, or when the data comes from the Creators API / PA API. This site is static and uses neither.",
+      "impact": "Readers must click through to see a price. That is the compliant behaviour, not an omission.",
+      "status": "by design — needs review",
+      "action_to_close": "Obtain PA API / Creators API access, then render price from an API response with the required attribution.",
+      "source": "https://affiliate-program.amazon.com/help/operating/policies",
+      "source_label": "Associates Program Policies §2(b), updated 2026-04-14"
+    },
+    {
+      "id": "FLG-002",
+      "severity": "account",
+      "title": "Tracking ID shopnow047c-20 is unverified",
+      "finding": "The tag was supplied by the site owner and matches the XXXXX-## format Amazon describes. Enrollment status, account store and click history are not publicly observable and were not confirmed.",
+      "impact": "If the account is not approved, no link on this site can earn. This is the highest-priority unknown.",
+      "status": "unverified",
+      "action_to_close": "Sign in to Associates Central → Account Settings and record the tag exactly as shown.",
+      "source": "https://affiliate-program.amazon.com/help/operating/policies",
+      "source_label": "Associates Program Policies — Participation Requirements §2(b)"
+    },
+    {
+      "id": "FLG-003",
+      "severity": "links",
+      "title": "The five supplied short links do not expose a tag parameter",
+      "finding": "Each link.amazon short link was followed once. All five resolved to the correct amazon.com/dp/<ASIN> page. None of the landing URLs contained tag=shopnow047c-20; they carried Amazon's own page-share token (btn_ref=srctok-…). We are not claiming these links are invalid, and we are not claiming they are compliant. Their exact status is unresolved.",
+      "impact": "Attribution cannot be confirmed from the outside. A 48-hour click test settles it.",
+      "status": "needs review",
+      "action_to_close": "Follow Q03: one click from a clean device, then check the Associates click report for the tag.",
+      "source": "https://affiliate-program.amazon.com/help/operating/policies",
+      "source_label": "Associates Program Policies §2(b) — Special Links must carry the tag",
+      "evidence": "data/links.json → observed_redirect_target for L01–L05"
+    },
+    {
+      "id": "FLG-004",
+      "severity": "data",
+      "title": "One Amazon listing contradicts itself on capacity and preset count",
+      "finding": "Emeril Lagasse B09B7SB46R. Title: '26QT' and '24 One-Touch Preset Options'. Bullet list: '26-quart' and '25 COOKING PRE-SETS'. Spec table: 'Capacity 24.6 liters'. 26 US quarts ≈ 24.6 L, so capacity is consistent across units — but the preset count is 24 in two places and 25 in a third.",
+      "impact": "The site prints the contradiction instead of choosing a number. Preset count is not used in any recommendation.",
+      "status": "needs review — source contradicts itself",
+      "action_to_close": "Check the manufacturer's own product page or the printed manual for the exact model.",
+      "source": "https://www.amazon.com/dp/B09B7SB46R",
+      "source_label": "Amazon product detail page, observed 2026-11-20"
+    },
+    {
+      "id": "FLG-005",
+      "severity": "data",
+      "title": "Chefman 8-quart wattage is contradictory",
+      "finding": "Chefman B08DKYBTPH. The Amazon bullet list ends '1000 Watts/120 Volts – RJ38-SQSS-8T'. Third-party listings for the same model number state 1700 W. No first-party page was found that resolves it.",
+      "impact": "The wattage field is left blank on the product page rather than filled with either number. This matters for anyone checking circuit load.",
+      "status": "unverified — left blank",
+      "action_to_close": "Read the rating label in the manufacturer's user guide PDF for RJ38-SQSS-8T.",
+      "source": "https://www.amazon.com/dp/B08DKYBTPH",
+      "source_label": "Amazon product detail page, observed 2026-11-20"
+    },
+    {
+      "id": "FLG-006",
+      "severity": "infrastructure",
+      "title": "No analytics endpoint exists, and Pages cannot host one",
+      "finding": "A 'self-hosted analytics endpoint' was specified. GitHub Pages serves static files only and cannot execute server code. The event layer in assets/analytics.js is written, documents its five events, and ships disabled with endpoint = null.",
+      "impact": "The campaign ledger is defined and empty. No conversion or revenue figures are presented anywhere on the site.",
+      "status": "blocked on a hosting decision",
+      "action_to_close": "Choose a home for the endpoint (see SG-02) and set window.WINA_CONFIG.endpoint.",
+      "source": "https://docs.github.com/en/pages/getting-started-with-github-pages/what-is-github-pages",
+      "source_label": "GitHub Docs — What is GitHub Pages?"
+    },
+    {
+      "id": "FLG-007",
+      "severity": "data",
+      "title": "Unit mismatch on the Chefman dual-basket listing",
+      "finding": "Chefman B0CDY277D3. Title and bullets say 6 quart (two 3-quart baskets). The page's own spec table lists capacity as '6 liters'. 6 US quarts ≈ 5.68 L.",
+      "impact": "The site quotes the quart figure because it is used three times on the page, and prints this note directly beneath it.",
+      "status": "needs review — source contradicts itself",
+      "action_to_close": "Confirm against the packaging or the Chefman model page for RJ38-SQPF-3TDB-2.",
+      "source": "https://www.amazon.com/dp/B0CDY277D3",
+      "source_label": "Amazon product detail page, observed 2026-11-20"
+    },
+    {
+      "id": "FLG-008",
+      "severity": "data",
+      "title": "Brand and store attribution differ on the Emeril listing",
+      "finding": "B09B7SB46R is titled 'Emeril Lagasse' but the page's seller/store block is labelled 'Innovation IQ'. The brand shown in the buy box is not the brand in the title.",
+      "impact": "The site names the product by its title and does not assert a manufacturer. Warranty and support path should be confirmed by the buyer before purchase.",
+      "status": "needs review",
+      "action_to_close": "Check the 'Sold by' field at checkout, and confirm who honours the warranty.",
+      "source": "https://www.amazon.com/dp/B09B7SB46R",
+      "source_label": "Amazon product detail page, observed 2026-11-20"
+    },
+    {
+      "id": "FLG-009",
+      "severity": "data",
+      "title": "Star ratings and review counts are point-in-time, not live",
+      "finding": "All rating figures were read once on 2026-11-20 and stamped with observed_at. They change daily. The site also relays Amazon's own 'bought in past month' text, which is Amazon's claim, not a measurement we made.",
+      "impact": "Every rating on the site carries its observation timestamp. No rating is presented as current.",
+      "status": "by design — needs periodic review",
+      "action_to_close": "Set a refresh interval (SG-08) or replace with API-sourced data.",
+      "source": "https://www.amazon.com/dp/B0CDY277D3",
+      "source_label": "Amazon product detail pages, observed 2026-11-20"
+    },
+    {
+      "id": "FLG-010",
+      "severity": "measurement",
+      "title": "No traffic, conversion or revenue data exists",
+      "finding": "There is no Search Console property, no analytics endpoint, no RSS subscriber count and no campaign ledger entry. Nothing has been measured because nothing has been instrumented.",
+      "impact": "The site makes no performance claims of any kind. The ledger in data/ledger.json is structurally complete and numerically empty.",
+      "status": "empty by design",
+      "action_to_close": "SG-02 (analytics) and SG-10 (Search Console), then populate the ledger from authorized first-party reports only.",
+      "source": "https://support.google.com/webmasters/answer/7576553",
+      "source_label": "Google Search Console Help — performance reports"
+    }
+  ]
+}
