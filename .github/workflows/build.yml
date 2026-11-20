@@ -30,6 +30,11 @@ jobs:
       - name: Compliance gate (disclosure order, claim bans, cross-references)
         run: node scripts/compliance-gate.mjs
 
+      - name: Docs gate (the reviewer documents must match the register)
+        # The other three gates read HTML or read data/. This one reads README.md,
+        # ARCHITECTURE.md and EXECUTIVE_SUMMARY.md, which is where stale figures hid.
+        run: node scripts/docs-gate.mjs
+
       - name: The empty-state tools must still be honest
         run: |
           node scripts/collect.mjs | tee /tmp/collect.log

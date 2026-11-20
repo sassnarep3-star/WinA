@@ -16,12 +16,12 @@ generated from a data register, and three independent gates run on every push an
 | Surface | State |
 | --- | --- |
 | Reader pages | 30 total: front page + 404, 5 guides, 2 category hubs, 5 product pages, compare, register, a marketing kit, and the operations set (flagged, questions, suggestions, summary, dashboard, analytics, disclosure, privacy, about, seo, marketing, concept) |
-| Data registers | 5 products · 60 spec rows · 6 policy sources · 10 policy clauses quoted · 37 flag rows · 22 questions · 16 suggestions |
+| Data registers | 5 products · 60 spec rows · 6 policy sources · 10 policy clauses quoted · 41 flag rows · 22 questions · 24 suggestions — these are register facts, checked against `data/` on every build by `node scripts/docs-gate.mjs` |
 | Verification mix | 32 `verified` · 14 `unverified` · 10 `withheld` · 4 `claim`; **36 rows carry a value, 24 are blank with a reason**, and 22 of the valued rows cite a manufacturer page directly rather than the listing |
-| Compliance | OA §5 statement verbatim on all 30 pages; the disclosure precedes the first sponsored link on every page (asserted by byte offset, not by eyeball); `rel="sponsored nofollow noopener"` + `?tag=shopnow047c-20` on all 80 product links; the 8 submitted short links render as declared non-affiliate citations (`rel="nofollow"`, no tag). Counts from `scripts/compliance-gate.mjs`, cross-checked by `scripts/check-site.mjs` at 94 Amazon links / 80 sponsored |
+| Compliance | OA §5 statement verbatim on every page; the disclosure precedes the first sponsored link on every page (asserted by byte offset, not by eyeball); `rel=\"sponsored nofollow noopener\"` + `?tag=shopnow047c-20` on every product link; the **five** submitted short links render as declared non-affiliate citations (`rel=\"nofollow\"`, no tag) — 8 anchor instances across the site, which is not the same number and was previously written as if it were. Page, link and anchor counts are run facts printed by `scripts/compliance-gate.mjs` and `scripts/check-site.mjs`; since this session closed a two-link classification blind spot the two gates agree on the same total |
 | Measurement | Five events defined; collector written but **not deployed**, so the client is inert by design |
 | Money | **Zero** revenue claims; ledger holds 0 rows, by policy |
-| Gates | Three checkers, all green (~1,076 compliance assertions, 1,118 internal links verified, the builder's own 9 gates). CI fails if generated output is not committed, the build is not reproducible, or a compliance rule breaks — and Pages' deploy job now runs the compliance gate too, so a regression stops the release rather than reddening a check |
+| Gates | Three checkers, all green. Assertion counts are run facts, not register facts: `node _src/build.mjs`, `node scripts/check-site.mjs` and `node scripts/compliance-gate.mjs` each print their own figures for the tree in front of you, so this document states none of them. CI fails if generated output is not committed, the build is not reproducible, or a compliance rule breaks — and Pages' deploy job runs all three gates too, so a regression stops the release rather than reddening a check |
 | History | Four prior session builds preserved under `archive/` (83 files), nothing deleted |
 
 ## 2. What the product question turned out to be
@@ -50,7 +50,7 @@ before merging it was **deleted rather than shipped** — main's site already sa
 two competing front pages would have hurt the one asset this property has. What was kept is the part
 main lacked:
 
-1. **`scripts/compliance-gate.mjs` (1,159 checks)** — the money-and-trust half: disclosure *ordering*
+1. **`scripts/compliance-gate.mjs`** — the money-and-trust half: disclosure *ordering*
    (not just presence), three-state classification of every Amazon href including short links,
    claim bans on reader copy (prices, ratings, availability, testing and income claims) with
    documentary and quotation context so honest prose survives, schema bans (`aggregateRating`,

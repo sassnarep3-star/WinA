@@ -52,6 +52,12 @@ jobs:
       - name: Compliance gate
         run: node scripts/compliance-gate.mjs
 
+      # The reviewer-facing documents are part of the deliverable, so they are gated in the
+      # deploy path too: a stale count in the executive summary should stop a release, not
+      # merely colour a check.
+      - name: Docs gate
+        run: node scripts/docs-gate.mjs
+
       # Nothing from an earlier site build may survive at the root.
       - name: No stale build artefacts
         run: |

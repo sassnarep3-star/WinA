@@ -47,7 +47,7 @@ data/                 the single source of truth
   policy.json         primary sources + compliance register with quoted clauses
   governance.json     flagged items, campaign ledger, event definitions
   questions.json      22 open questions with what is missing and how to close it
-  suggestions.json    16 reviewable suggestions with cost, risk and recommendation
+  suggestions.json    24 reviewable suggestions with cost, risk and recommendation
 _src/
   build.mjs           renders all pages, sitemap, feed, robots, 404, then gates
   content.mjs         the five guides
@@ -84,10 +84,20 @@ The build exits non-zero if any of these fail:
 4. Every Amazon anchor is either a tagged sponsored link **or** a declared
    non-affiliate citation (`data-nonaffiliate`). Ambiguous links fail.
 5. No star ratings or review quotes appear anywhere.
-6. No spec carries a value while marked `unverified` or `withheld`.
-7. Every policy row quotes a clause and links a primary source.
-8. All internal links resolve.
-9. The sitemap lists every page.
+6. Every stated guide count matches the number of guides actually published.
+7. No spec carries a value while marked `unverified` or `withheld`, and no
+   `verified` row is missing its source.
+8. Every policy row quotes a clause and links a primary source.
+9. All internal links resolve, archive links included.
+10. A single build owns the served root — no prior site build has come back
+    at the root.
+11. The archive is intact: prior sessions' builds are preserved.
+12. The sitemap lists every page.
+13. The build reports how many HTML pages it generated.
+
+`VALIDATION.md` is regenerated on every build and is the authoritative list of
+what was checked. If this list and that file ever disagree, `VALIDATION.md` is
+right — it is printed by the run, this paragraph is typed by a person.
 
 CI runs the same command on every push (`.github/workflows/build.yml`).
 
@@ -229,9 +239,12 @@ would be a false claim; leaving them undeclared is what the gate now forbids.
 All three failure modes were confirmed by injecting a deliberately bad anchor and watching the
 gate fail, then reverting.
 
-**Current state — both gates green:** `node _src/build.mjs` → 27 pages, all gates clear;
-`node scripts/check-site.mjs` → 27 pages, 946 internal links, 120 Amazon links (108 sponsored,
-12 declared citations), zero failures. Build verified byte-reproducible.
+**Current state — both gates green.** Page, link and assertion counts are facts about a
+*run*, not about the register, so this document does not restate them: run
+`node scripts/publish-gate.mjs` and it prints the figures for the tree in front of you,
+along with the publish decision. The build is verified byte-reproducible, and
+`node scripts/docs-gate.mjs` checks every figure this document *does* state against
+`data/` on each build.
 
 CI now runs both gates plus a stale-artefact check, because this merge did resurrect `shop/`,
 `tools/`, `dashboard/` and `guides/` from an older build — exactly the failure the previous
@@ -254,7 +267,7 @@ The repository has no dependencies; every command is Node standard library.
 
 | Command | What it does |
 | --- | --- |
-| `node _src/build.mjs` | Regenerates all 29 pages, the sitemap, the feed and `VALIDATION.md` from `data/`, then runs the publication's own 9 gates |
+| `node _src/build.mjs` | Regenerates every page, the sitemap, the feed and `VALIDATION.md` from `data/`, then runs the publication's own checks (the list above; results in `VALIDATION.md`) |
 | `node scripts/check-site.mjs` | Independent structural gate: canonicals, meta, headings, alt text, asset hosts, JSON-LD, every internal link, sitemap parity, RSS |
 | `node scripts/compliance-gate.mjs` | Money-and-trust gate: disclosure **order**, three-state link classification, claim bans, register cross-references, schema bans, source staleness |
 | `node scripts/compliance-gate.mjs --refresh-sources` | Re-reads every cited policy page and diffs the text we quote; warns past 90 days |
@@ -262,11 +275,12 @@ The repository has no dependencies; every command is Node standard library.
 | `node scripts/collect.mjs` | Folds `data/inbox/*.json` into the register with provenance; refuses unsourced values, prices and ratings |
 | `node scripts/next-topics.mjs` | Ranks candidate guides from a Search Console export in `data/exports/`; refuses to rank without one |
 | `node scripts/analytics-server.mjs` | Self-hosted collector, same contract as `_worker/collector.js` (five events, key allow-list, 30-day retention, `/summary`) |
+| `node scripts/docs-gate.mjs` | Checks every figure these three documents state about `data/` against `data/` itself, so a reviewer cannot be handed a stale count |
 
 Reading order for a reviewer: **`EXECUTIVE_SUMMARY.md`** (state of the project, one page) →
 `ARCHITECTURE.md` (why each piece is built this way, and the two human checkpoints) →
 [`/register/`](https://sassnarep3-star.github.io/WinA/register/) (every value with its source and
-date) → [`/flagged/`](https://sassnarep3-star.github.io/WinA/flagged/) (29 open and resolved
+date) → [`/flagged/`](https://sassnarep3-star.github.io/WinA/flagged/) (41 open and resolved
 findings) → [`/suggestions/`](https://sassnarep3-star.github.io/WinA/suggestions/) (what to do next,
 by path) → [`COORDINATION.md`](COORDINATION.md) (who did what, and the four-build collision record).
 

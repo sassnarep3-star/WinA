@@ -17,6 +17,7 @@ const run = (label, args) => {
 run("build + publication gate", ["_src/build.mjs"]);
 run("site checks (structure, links, feeds, schema)", ["scripts/check-site.mjs"]);
 run("compliance gate (disclosure, claims, cross-references)", ["scripts/compliance-gate.mjs"]);
+run("docs gate (reviewer documents vs the register)", ["scripts/docs-gate.mjs"]);
 
 // determinism: two builds must produce the same bytes, or "what we checked" is not "what shipped"
 const hash = () => {
