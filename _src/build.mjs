@@ -59,7 +59,15 @@ const esc = (s) =>
 
 const url = (p = "/") => `${BASE}${p}`;
 const abs = (p = "/") => `${ORIGIN}${p}`;
-const body = (html) => html.replace(/\{BASE\}/g, BASE);
+/* Guide and category bodies are authored as raw HTML in the content files.
+   Any table inside one is wrapped in a horizontally scrollable box, so a
+   wide table scrolls on a phone instead of pushing the whole page sideways. */
+const body = (html) =>
+  html
+    .replace(/\{BASE\}/g, BASE)
+    .replace(/<table class="([^"]*)"[^>]*>([\s\S]*?)<\/table>/g, (m, cls, inner) =>
+      m.includes("tablewrap") ? m : `<div class="tablewrap"><table class="${cls}" data-body-table>${inner}</table></div>`
+    );
 
 /** Constructed Special Link. Destination is always visible in the href. */
 const special = (asin) => `https://www.amazon.com/dp/${asin}?tag=${TAG}`;
@@ -90,6 +98,7 @@ function writePage(p, html) {
 
 /* ---------- layout ---------- */
 const NAV = [
+  { href: url("/start-here/"), label: "Start here" },
   { href: url("/air-fryers/"), label: "Air fryers" },
   { href: url("/thermometers/"), label: "Thermometers" },
   { href: url("/guides/"), label: "Guides" },
@@ -153,6 +162,10 @@ ${ld}
       <span class="brand__sub">Kitchen gear, judged honestly</span>
     </a>
     <nav class="nav" aria-label="Primary">${nav}</nav>
+    <button class="searchbtn" type="button" data-search-open aria-label="Search this site">
+      <svg viewBox="0 0 20 20" width="17" height="17" aria-hidden="true" focusable="false"><circle cx="8.5" cy="8.5" r="5.5" fill="none" stroke="currentColor" stroke-width="1.8"/><line x1="12.8" y1="12.8" x2="17" y2="17" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+      <span class="searchbtn__label">Search</span>
+    </button>
   </div>
 </header>
 
@@ -185,10 +198,12 @@ ${children}
       <div>
         <h3>Shop</h3>
         <ul>
+          <li><a href="${url("/start-here/")}">Start here</a></li>
           <li><a href="${url("/air-fryers/")}">Air fryers</a></li>
           <li><a href="${url("/thermometers/")}">Thermometers</a></li>
           <li><a href="${url("/compare/")}">Compare all five</a></li>
           <li><a href="${url("/guides/")}">Buying guides</a></li>
+          <li><a href="${url("/season/")}">Cooking by season</a></li>
         </ul>
       </div>
       <div>
@@ -225,6 +240,22 @@ ${children}
   </div>
 </footer>
 
+<div class="searchbox" data-search hidden>
+  <div class="searchbox__panel" role="dialog" aria-modal="true" aria-label="Search this site">
+    <div class="searchbox__row">
+      <input class="searchbox__input" type="search" data-search-input placeholder="Search guides, products and pages…" aria-label="Search this site" autocomplete="off" spellcheck="false">
+      <button class="searchbox__close" type="button" data-search-close aria-label="Close search">Esc</button>
+    </div>
+    <p class="searchbox__hint">Type a question you would actually ask. Nothing is tracked and nothing leaves your browser.</p>
+    <ul class="searchbox__results" data-search-results></ul>
+    <p class="searchbox__empty" data-search-empty hidden>No page matches that. The <a href="${url(
+      "/guides/"
+    )}">guides index</a> and <a href="${url(
+      "/start-here/"
+    )}">start here</a> page are the best way in.</p>
+  </div>
+</div>
+
 <script src="${url("/assets/js/site.js")}" defer></script>
 </body>
 </html>`;
@@ -248,18 +279,25 @@ function buybox(p, slot) {
 
 function sourceCell(s, p) {
   if (!s.source) return '<span class="faint">none</span>';
-  if (s.source === "amazon-listing")
-    return `<a href="${special(p.asin)}" rel="sponsored nofollow noopener" target="_blank" data-affiliate="${
-      p.asin
-    }" data-slot="spec-source">Amazon listing</a>`;
-  if (s.source === "manufacturer") {
-    const src = (p.specSources || {})[s.label];
-    if (!src || !src.url) throw new Error(`spec "${s.label}" cites a manufacturer but has no URL`);
-    return `<a href="${esc(src.url)}" rel="nofollow noopener" target="_blank" data-slot="spec-source">${esc(
-      src.label
-    )}</a>`;
-  }
-  throw new Error(`unknown spec source "${s.source}" on ${p.slug}`);
+  const one = (kind) => {
+    if (kind === "amazon-listing")
+      return `<a href="${special(p.asin)}" rel="sponsored nofollow noopener" target="_blank" data-affiliate="${
+        p.asin
+      }" data-slot="spec-source">Amazon listing</a>`;
+    if (kind === "manufacturer") {
+      const src = (p.specSources || {})[s.label];
+      if (!src || !src.url) throw new Error(`spec "${s.label}" cites a manufacturer but has no URL`);
+      return `<a href="${esc(src.url)}" rel="nofollow noopener" target="_blank" data-slot="spec-source">${esc(
+        src.label
+      )}</a>`;
+    }
+    throw new Error(`unknown spec source "${kind}" on ${p.slug}`);
+  };
+  // A row may rest on more than one official source. Where two official pages
+  // disagree, both links are shown rather than one being silently preferred.
+  const extra = (s.alsoSources || []).map(one).join(" · ");
+  const primary = one(s.source);
+  return extra ? `${primary} <span class="faint">+</span> ${extra}` : primary;
 }
 
 function specTable(p) {
@@ -321,6 +359,169 @@ function productCard(p, rank) {
 </article>`;
 }
 
+/* A wide, original scene for the front page. Original art only — no product
+   photography, no stock imagery, nothing fetched from a third party. */
+function heroScene() {
+  const a = PAL.accent, c = PAL.clay, i = PAL.ink, r = PAL.rule;
+  return `<svg class="scene" viewBox="0 0 960 300" width="960" height="300" role="img"
+  aria-label="Illustration: a kitchen counter with a countertop oven, a two-drawer air fryer, a single-drawer air fryer, an instant-read probe and a set of wireless probes." xmlns="http://www.w3.org/2000/svg">
+  <rect width="960" height="300" fill="${PAL.paper}"/>
+  <rect x="0" y="0" width="960" height="212" fill="${PAL.panel}" opacity=".55"/>
+  <circle cx="852" cy="66" r="38" fill="${PAL.paper}" stroke="${r}" stroke-width="1.5"/>
+  <circle cx="852" cy="66" r="22" fill="none" stroke="${r}" stroke-width="1.5" opacity=".7"/>
+  <line x1="48" y1="212" x2="912" y2="212" stroke="${i}" stroke-width="2"/>
+  <line x1="48" y1="222" x2="912" y2="222" stroke="${r}" stroke-width="1.5"/>
+
+  <!-- countertop oven -->
+  <path d="M96 206 V120 a76 48 0 0 1 152 0 v86 z" fill="${PAL.wash}" stroke="${a}" stroke-width="2.5" stroke-linejoin="round"/>
+  <path d="M120 206 V126 a52 32 0 0 1 104 0 v80 z" fill="${PAL.paper}" stroke="${a}" stroke-width="1.6" opacity=".8"/>
+  <line x1="120" y1="150" x2="224" y2="150" stroke="${a}" stroke-width="1.6" opacity=".55"/>
+  <line x1="158" y1="206" x2="186" y2="206" stroke="${i}" stroke-width="2.5" stroke-linecap="round"/>
+  <circle cx="172" cy="96" r="3.5" fill="${c}"/>
+
+  <!-- dual-basket drawers -->
+  <rect x="292" y="146" width="104" height="28" rx="4" fill="${PAL.wash}" stroke="${a}" stroke-width="2.5"/>
+  <rect x="292" y="180" width="104" height="28" rx="4" fill="${PAL.wash}" stroke="${a}" stroke-width="2.5"/>
+  <line x1="316" y1="146" x2="316" y2="174" stroke="${a}" stroke-width="1.4" opacity=".55"/>
+  <line x1="340" y1="146" x2="340" y2="174" stroke="${a}" stroke-width="1.4" opacity=".55"/>
+  <line x1="364" y1="146" x2="364" y2="174" stroke="${a}" stroke-width="1.4" opacity=".55"/>
+  <line x1="316" y1="180" x2="316" y2="208" stroke="${a}" stroke-width="1.4" opacity=".55"/>
+  <line x1="340" y1="180" x2="340" y2="208" stroke="${a}" stroke-width="1.4" opacity=".55"/>
+  <line x1="364" y1="180" x2="364" y2="208" stroke="${a}" stroke-width="1.4" opacity=".55"/>
+  <line x1="326" y1="160" x2="362" y2="160" stroke="${i}" stroke-width="2.5" stroke-linecap="round"/>
+  <line x1="326" y1="194" x2="362" y2="194" stroke="${i}" stroke-width="2.5" stroke-linecap="round"/>
+
+  <!-- single drawer -->
+  <rect x="432" y="160" width="118" height="48" rx="5" fill="${PAL.wash}" stroke="${a}" stroke-width="2.5"/>
+  <line x1="454" y1="160" x2="454" y2="208" stroke="${a}" stroke-width="1.4" opacity=".55"/>
+  <line x1="480" y1="160" x2="480" y2="208" stroke="${a}" stroke-width="1.4" opacity=".55"/>
+  <line x1="506" y1="160" x2="506" y2="208" stroke="${a}" stroke-width="1.4" opacity=".55"/>
+  <line x1="468" y1="208" x2="514" y2="208" stroke="${i}" stroke-width="2.5" stroke-linecap="round"/>
+
+  <!-- pot on the counter -->
+  <path d="M578 172 h72 v28 a8 8 0 0 1 -8 8 h-56 a8 8 0 0 1 -8 -8 z" fill="${PAL.paper}" stroke="${a}" stroke-width="2.5"/>
+  <path d="M650 180 a12 12 0 0 1 0 18" fill="none" stroke="${a}" stroke-width="2.5"/>
+  <line x1="578" y1="172" x2="650" y2="172" stroke="${a}" stroke-width="2.5"/>
+
+  <!-- instant-read probe -->
+  <line x1="686" y1="206" x2="762" y2="146" stroke="${i}" stroke-width="3.5" stroke-linecap="round"/>
+  <path d="M762 146 l14 -4 -4 14 z" fill="${c}"/>
+  <rect x="666" y="192" width="26" height="16" rx="4" fill="${PAL.wash}" stroke="${a}" stroke-width="2"/>
+
+  <!-- wireless probes -->
+  <rect x="800" y="140" width="9" height="68" rx="4.5" fill="${PAL.wash}" stroke="${a}" stroke-width="2.2"/>
+  <rect x="824" y="140" width="9" height="68" rx="4.5" fill="${PAL.wash}" stroke="${a}" stroke-width="2.2"/>
+  <rect x="848" y="140" width="9" height="68" rx="4.5" fill="${PAL.wash}" stroke="${a}" stroke-width="2.2"/>
+  <circle cx="804.5" cy="146" r="2.8" fill="${c}"/>
+  <circle cx="828.5" cy="146" r="2.8" fill="${c}"/>
+  <circle cx="852.5" cy="146" r="2.8" fill="${c}"/>
+  <path d="M804 212 a48 48 0 0 1 48 -48" fill="none" stroke="${a}" stroke-width="1.8" opacity=".55"/>
+  <path d="M804 212 a70 70 0 0 1 70 -70" fill="none" stroke="${a}" stroke-width="1.8" opacity=".32"/>
+</svg>`;
+}
+
+/* ============================================================
+   COVER ART — original geometric illustrations
+   Generated deterministically from a seed string, so the same page
+   always gets the same artwork and the build stays reproducible.
+
+   These are schematics. No product photography is used anywhere on
+   this site: Amazon's program policies require API-supplied content
+   for anything we cannot license ourselves, and drawing our own is
+   both simpler and more honest than borrowing a listing image.
+   ============================================================ */
+function hashOf(str) {
+  let h = 2166136261;
+  for (let i = 0; i < str.length; i++) {
+    h ^= str.charCodeAt(i);
+    h = Math.imul(h, 16777619);
+  }
+  return h >>> 0;
+}
+
+const PAL = {
+  paper: "#fbf8f3",
+  panel: "#f3ede3",
+  ink: "#191512",
+  accent: "#0f4c5c",
+  clay: "#a8452b",
+  rule: "#e2d9cc",
+  wash: "#e6eef0"
+};
+
+/* Five motifs, one per product form factor plus one generic mark. */
+function coverMotif(kind) {
+  const a = PAL.accent, c = PAL.clay, i = PAL.ink, r = PAL.rule;
+  switch (kind) {
+    case "dual-basket":
+      return `
+      <rect x="150" y="104" width="82" height="72" rx="6" fill="${PAL.wash}" stroke="${a}" stroke-width="2.5"/>
+      <rect x="248" y="104" width="82" height="72" rx="6" fill="${PAL.wash}" stroke="${a}" stroke-width="2.5"/>
+      <line x1="168" y1="104" x2="168" y2="176" stroke="${a}" stroke-width="1.6" opacity=".55"/>
+      <line x1="192" y1="104" x2="192" y2="176" stroke="${a}" stroke-width="1.6" opacity=".55"/>
+      <line x1="216" y1="104" x2="216" y2="176" stroke="${a}" stroke-width="1.6" opacity=".55"/>
+      <line x1="266" y1="104" x2="266" y2="176" stroke="${a}" stroke-width="1.6" opacity=".55"/>
+      <line x1="290" y1="104" x2="290" y2="176" stroke="${a}" stroke-width="1.6" opacity=".55"/>
+      <line x1="314" y1="104" x2="314" y2="176" stroke="${a}" stroke-width="1.6" opacity=".55"/>
+      <line x1="196" y1="186" x2="284" y2="186" stroke="${i}" stroke-width="2.5" stroke-linecap="round"/>
+      <circle cx="240" cy="118" r="3.5" fill="${c}"/>`;
+    case "oven-style":
+      return `
+      <path d="M164 176 V126 a76 46 0 0 1 152 0 v50 z" fill="${PAL.wash}" stroke="${a}" stroke-width="2.5" stroke-linejoin="round"/>
+      <path d="M186 176 V128 a54 32 0 0 1 108 0 v48 z" fill="${PAL.paper}" stroke="${a}" stroke-width="1.6" opacity=".75"/>
+      <line x1="186" y1="150" x2="294" y2="150" stroke="${a}" stroke-width="1.6" opacity=".55"/>
+      <line x1="228" y1="186" x2="252" y2="186" stroke="${i}" stroke-width="2.5" stroke-linecap="round"/>
+      <circle cx="240" cy="104" r="3.5" fill="${c}"/>`;
+    case "single-basket":
+      return `
+      <rect x="158" y="100" width="164" height="76" rx="6" fill="${PAL.wash}" stroke="${a}" stroke-width="2.5"/>
+      <line x1="178" y1="100" x2="178" y2="176" stroke="${a}" stroke-width="1.6" opacity=".55"/>
+      <line x1="206" y1="100" x2="206" y2="176" stroke="${a}" stroke-width="1.6" opacity=".55"/>
+      <line x1="234" y1="100" x2="234" y2="176" stroke="${a}" stroke-width="1.6" opacity=".55"/>
+      <line x1="262" y1="100" x2="262" y2="176" stroke="${a}" stroke-width="1.6" opacity=".55"/>
+      <line x1="290" y1="100" x2="290" y2="176" stroke="${a}" stroke-width="1.6" opacity=".55"/>
+      <line x1="200" y1="186" x2="280" y2="186" stroke="${i}" stroke-width="2.5" stroke-linecap="round"/>
+      <circle cx="240" cy="114" r="3.5" fill="${c}"/>`;
+    case "instant-read":
+      return `
+      <line x1="176" y1="168" x2="268" y2="94" stroke="${i}" stroke-width="4" stroke-linecap="round"/>
+      <path d="M268 94 l16 -4 -4 16 z" fill="${c}"/>
+      <rect x="150" y="150" width="34" height="20" rx="4" fill="${PAL.wash}" stroke="${a}" stroke-width="2"/>
+      <circle cx="196" cy="128" r="3" fill="${a}" opacity=".6"/>
+      <circle cx="214" cy="114" r="3" fill="${a}" opacity=".6"/>
+      <circle cx="232" cy="100" r="3" fill="${a}" opacity=".6"/>`;
+    case "wireless-leave-in":
+      return `
+      <rect x="196" y="96" width="12" height="82" rx="6" fill="${PAL.wash}" stroke="${a}" stroke-width="2.5"/>
+      <rect x="252" y="96" width="12" height="82" rx="6" fill="${PAL.wash}" stroke="${a}" stroke-width="2.5"/>
+      <rect x="308" y="96" width="12" height="82" rx="6" fill="${PAL.wash}" stroke="${a}" stroke-width="2.5"/>
+      <circle cx="202" cy="104" r="3.2" fill="${c}"/>
+      <circle cx="258" cy="104" r="3.2" fill="${c}"/>
+      <circle cx="314" cy="104" r="3.2" fill="${c}"/>
+      <path d="M240 196 a44 44 0 0 1 44 -44" fill="none" stroke="${a}" stroke-width="2" opacity=".65"/>
+      <path d="M240 196 a64 64 0 0 1 64 -64" fill="none" stroke="${a}" stroke-width="2" opacity=".4"/>
+      <path d="M240 196 a84 84 0 0 1 84 -84" fill="none" stroke="${a}" stroke-width="2" opacity=".2"/>`;
+    default:
+      return `
+      <circle cx="240" cy="136" r="46" fill="${PAL.wash}" stroke="${a}" stroke-width="2.5"/>
+      <path d="M240 90 a46 46 0 0 1 40 22" fill="none" stroke="${c}" stroke-width="3.5" stroke-linecap="round"/>`;
+  }
+}
+
+function coverArt(seed, kind, opts = {}) {
+  const w = opts.w || 480;
+  const h = opts.h || 270;
+  const label = opts.label || "";
+  return `<svg class="cover" viewBox="0 0 480 270" width="${w}" height="${h}" role="img" aria-label="${esc(label)}" xmlns="http://www.w3.org/2000/svg">
+  <rect width="480" height="270" fill="${PAL.paper}"/>
+  <rect x="14" y="14" width="452" height="242" rx="4" fill="none" stroke="${PAL.rule}" stroke-width="1.5"/>
+  <line x1="40" y1="206" x2="440" y2="206" stroke="${PAL.rule}" stroke-width="2"/>
+  <line x1="40" y1="60" x2="440" y2="60" stroke="${PAL.rule}" stroke-width="1" opacity=".7"/>
+  <circle cx="410" cy="60" r="16" fill="${PAL.panel}" stroke="${PAL.rule}" stroke-width="1.5"/>
+  ${coverMotif(kind)}
+</svg>`;
+}
+
 const breadcrumb = (trail) =>
   `<nav class="wrap breadcrumb" aria-label="Breadcrumb">${trail
     .map((t, i) =>
@@ -364,14 +565,20 @@ function frontPage() {
       <p class="pcard__note">Sponsored. ${esc(site.associateStatement)}</p>
     </aside>
   </div>
+  <div class="wrap">
+    <figure class="scene-frame">
+      ${heroScene()}
+      <figcaption class="scene-frame__cap">The five products in this comparison, drawn as schematics. This is our own illustration — no product photography is used anywhere on this site.</figcaption>
+    </figure>
+  </div>
 </section>
 
 <div class="strip">
   <div class="wrap strip__inner">
-    <div class="strip__cell"><p class="strip__num">5</p><p class="strip__lab">Products compared</p></div>
-    <div class="strip__cell"><p class="strip__num">4</p><p class="strip__lab">Guides</p></div>
+    <div class="strip__cell"><p class="strip__num">${products.length}</p><p class="strip__lab">Products compared</p></div>
+    <div class="strip__cell"><p class="strip__num">${guides.length}</p><p class="strip__lab">Guides</p></div>
     <div class="strip__cell"><p class="strip__num">0</p><p class="strip__lab">Products tested</p></div>
-    <div class="strip__cell"><p class="strip__num">10</p><p class="strip__lab">Policy checks passed</p></div>
+    <div class="strip__cell"><p class="strip__num">${policy.policy.length}</p><p class="strip__lab">Policy checks passed</p></div>
   </div>
 </div>
 
@@ -407,23 +614,38 @@ function frontPage() {
 
 <section class="section">
   <div class="wrap">
-    <div class="section__head">
-      <h2 class="section__title">Read before you buy</h2>
-      <p class="section__dek">Four questions that come up before any of these purchases, answered without a verdict at the end.</p>
+    <div class="section__head section__head--split">
+      <div>
+        <h2 class="section__title">Read before you buy</h2>
+        <p class="section__dek">${guides.length} question-shaped guides, grouped by the job you are trying to do. Written as decisions rather than rankings, because we have not tested any of these products.</p>
+      </div>
+      <a class="section__more" href="${url("/start-here/")}">Start here →</a>
     </div>
-    <div class="guides guides--two">
-      ${guides
-        .map(
-          (g) => `<a class="guide-link" href="${url(`/guides/${g.slug}/`)}">
+    ${CLUSTERS.map(
+      (c) => `<div class="cluster">
+      <div class="cluster__head">
+        <div>
+          <h3 class="cluster__name">${esc(c.name)}</h3>
+          <p class="cluster__blurb">${esc(c.blurb)}</p>
+        </div>
+        <div class="cluster__art">${coverArt(`cluster-${c.id}`, c.cover, { w: 200, h: 112, label: `Illustration for the ${c.name} section` })}</div>
+      </div>
+      <div class="guides guides--two">
+        ${guides
+          .filter((g) => g.cluster === c.id)
+          .map(
+            (g) => `<a class="guide-link" href="${url(`/guides/${g.slug}/`)}">
         <span class="guide-link__num">${g.number}</span>
         <span>
-          <h3 class="guide-link__title">${esc(g.title)}</h3>
+          <h4 class="guide-link__title">${esc(g.title)}</h4>
           <p class="guide-link__dek">${esc(g.dek)}</p>
         </span>
       </a>`
-        )
-        .join("")}
-    </div>
+          )
+          .join("")}
+      </div>
+    </div>`
+    ).join("")}
   </div>
 </section>
 
@@ -543,6 +765,15 @@ ${breadcrumb([
 
 <div class="wrap layout">
   <div>
+    <figure class="article-art article-art--left">
+      ${coverArt(`product-${p.slug}`, p.formFactor, {
+        w: 340,
+        h: 191,
+        label: `Schematic illustration of the ${p.formFactor.replace(/-/g, " ")} form factor`
+      })}
+      <figcaption class="scene-frame__cap">Schematic of the <em>form factor</em>, not a photograph of this product.</figcaption>
+    </figure>
+
     <dl class="facts">
       <div class="fact"><dt>Best for</dt><dd>${esc(p.bestFor)}</dd></div>
       <div class="fact"><dt>Main trade-off</dt><dd>${esc(p.tradeoff)}</dd></div>
@@ -657,7 +888,9 @@ ${breadcrumb([
 <article>
 <div class="article-head">
   <div class="wrap">
-    <p class="kicker">Guide ${g.number} · ${esc(cat ? cat.name : "Buying")}</p>
+    <p class="kicker">Guide ${g.number} · ${esc(cat ? cat.name : "Buying")} · ${esc(
+    clusterOf(g).name
+  )}</p>
     <h1 class="article-head__title">${esc(g.title)}</h1>
     <p class="article-head__dek">${esc(g.dek)}</p>
     <div class="byline">
@@ -667,6 +900,14 @@ ${breadcrumb([
       <span class="byline__dot" aria-hidden="true"></span>
       <span class="unverified">No hands-on testing claimed</span>
     </div>
+    <figure class="article-art">
+      ${coverArt(`guide-${g.slug}`, g.coverKind || clusterOf(g).cover, {
+        w: 480,
+        h: 270,
+        label: `Schematic illustration for the guide "${g.title}"`
+      })}
+      <figcaption class="scene-frame__cap">Original schematic illustration. Not a photograph of any product.</figcaption>
+    </figure>
   </div>
 </div>
 
@@ -697,9 +938,46 @@ ${breadcrumb([
         : ""
     }
 
-    <p class="small muted mt2">Next: <a href="${url("/guides/")}">all guides</a> · <a href="${url(
-      "/compare/"
-    )}">compare all five products</a></p>
+    ${
+      g.sources && g.sources.length
+        ? `<div class="note mt2">
+      <p class="note__title">Sources for this guide</p>
+      <ul class="src-list">
+        ${g.sources
+          .map((s) => `<li>${cite(s.url, esc(s.label))}</li>`)
+          .join("")}
+      </ul>
+      <p class="small muted" style="margin-top:.7rem">Every specification quoted above is reproduced from one of these sources, or is marked on the product pages as a manufacturer claim we could not independently verify. Nothing here was measured by us.</p>
+      <p class="small muted">These are evidence links, not purchase paths: they carry no tracking tag and earn nothing. Use the sponsored product links if you want to buy.</p>
+    </div>`
+        : ""
+    }
+
+    ${(() => {
+      const i = guides.findIndex((x) => x.slug === g.slug);
+      const prev = guides[i - 1];
+      const next = guides[i + 1];
+      return `<nav class="guide-pager" aria-label="More guides">
+      ${
+        prev
+          ? `<a class="guide-pager__link" href="${url(`/guides/${prev.slug}/`)}"><span class="guide-pager__dir">← Previous</span><span class="guide-pager__title">${esc(
+              prev.title
+            )}</span></a>`
+          : `<span class="guide-pager__link guide-pager__link--empty"></span>`
+      }
+      ${
+        next
+          ? `<a class="guide-pager__link guide-pager__link--next" href="${url(`/guides/${next.slug}/`)}"><span class="guide-pager__dir">Next →</span><span class="guide-pager__title">${esc(
+              next.title
+            )}</span></a>`
+          : `<span class="guide-pager__link guide-pager__link--empty"></span>`
+      }
+    </nav>`;
+    })()}
+
+    <p class="small muted mt2">All guides: <a href="${url("/guides/")}">${guides.length} of them</a> · <a href="${url(
+      "/start-here/"
+    )}">start here</a> · <a href="${url("/compare/")}">compare all five products</a></p>
   </div>
 
   <aside class="layout__aside">
@@ -760,27 +1038,44 @@ ${breadcrumb([{ href: url("/"), label: "Home" }, { label: "Guides" }])}
   <div class="wrap">
     <p class="kicker">Buying guides</p>
     <h1 class="article-head__title">The questions people ask before they buy</h1>
-    <p class="article-head__dek">Four guides, each built around one decision. No rankings, no "best of" list, no claim that any of this was tested.</p>
+    <p class="article-head__dek">${guides.length} guides, each built around one decision, grouped by the job you are trying to do. No rankings, no "best of" list, no claim that any of this was tested.</p>
+    <div class="byline">
+      <span>${esc(site.name)} editorial</span>
+      <span class="byline__dot" aria-hidden="true"></span>
+      <span>${guides.length} guides in ${CLUSTERS.length} clusters</span>
+    </div>
   </div>
 </div>
 <section class="section">
   <div class="wrap">
-    <div class="guides">
-      ${guides
-        .map(
-          (g) => `<a class="guide-link" href="${url(`/guides/${g.slug}/`)}">
+    ${CLUSTERS.map(
+      (c) => `<div class="cluster">
+      <div class="cluster__head">
+        <div>
+          <h2 class="cluster__name">${esc(c.name)}</h2>
+          <p class="cluster__blurb">${esc(c.blurb)}</p>
+        </div>
+        <div class="cluster__art">${coverArt(`cluster-${c.id}`, c.cover, { w: 200, h: 112, label: `Illustration for the ${c.name} section` })}</div>
+      </div>
+      <div class="guides">
+        ${guides
+          .filter((g) => g.cluster === c.id)
+          .map(
+            (g) => `<a class="guide-link" href="${url(`/guides/${g.slug}/`)}">
         <span class="guide-link__num">${g.number}</span>
         <span>
-          <h2 class="guide-link__title">${esc(g.title)}</h2>
+          <h3 class="guide-link__title">${esc(g.title)}</h3>
           <p class="guide-link__dek">${esc(g.dek)}</p>
           <p class="tiny faint" style="margin:.4rem 0 0">${esc(g.readingTime)} · ${esc(
             g.topics.join(" · ")
           )}</p>
         </span>
       </a>`
-        )
-        .join("")}
-    </div>
+          )
+          .join("")}
+      </div>
+    </div>`
+    ).join("")}
     <div class="note mt2">
       <p class="note__title">These titles are hypotheses</p>
       <p>They were written as editorial questions, not from search volume data. No keyword tool or Search Console report informed them. Which one actually earns traffic will be known only after the sitemap is indexed and the query report has something in it — tracked on the <a href="${url(
@@ -793,10 +1088,284 @@ ${breadcrumb([{ href: url("/"), label: "Home" }, { label: "Guides" }])}
   pages.push({
     path: "/guides/",
     title: "Buying guides",
-    desc: "Four question-shaped guides to air fryers and thermometers: form factor, capacity, cleanup, and multi-function claims.",
+    desc: `${guides.length} question-shaped guides to air fryers and thermometers: form factor, capacity, cleanup, family cooking, safe temperatures and probe technique.`,
     html,
     priority: "0.8",
     changefreq: "weekly"
+  });
+}
+
+/* Topic clusters. Readers do not arrive asking for "a guide"; they arrive
+   with a job to do. The clusters are those jobs. */
+const CLUSTERS = [
+  {
+    id: "choosing",
+    name: "Choosing between them",
+    blurb: "The shape of the decision: form factor, capacity, and who each one is wrong for.",
+    cover: "single-basket"
+  },
+  {
+    id: "keeping",
+    name: "Living with it",
+    blurb: "The part that decides whether you still use it in a year: washing, care and counter space.",
+    cover: "dual-basket"
+  },
+  {
+    id: "cooking",
+    name: "Cooking with confidence",
+    blurb: "Temperature, timing and technique — the questions that stop a cook from being a guess.",
+    cover: "instant-read"
+  }
+];
+
+const clusterOf = (g) => CLUSTERS.find((c) => c.id === g.cluster) || CLUSTERS[0];
+
+/* ============================================================
+   START HERE — the decision entry point
+   A reader who arrives knowing nothing should be able to find their
+   own situation on this page in under a minute.
+   ============================================================ */
+const SITUATIONS = [
+  {
+    id: "two",
+    title: "I cook for two, most nights",
+    answer: "You want one chamber, one temperature, one basket to wash. The dual basket is the wrong shape here — you would be heating an empty drawer to cook one piece of protein. Of the single-chamber fryers, the 8-quart is the only one, so it wins on shape rather than on capacity.",
+    guides: ["basket-vs-oven", "air-fryer-vs-toaster-oven"],
+    products: ["chefman-8-quart-turbofry"]
+  },
+  {
+    id: "two-things",
+    title: "I cook two things at two different temperatures",
+    answer: "Two independent chambers, so a protein and a side finish together instead of in shifts. This is the whole argument for a dual basket.",
+    guides: ["basket-vs-oven", "capacity"],
+    products: ["chefman-6-quart-dual-basket"]
+  },
+  {
+    id: "crowd",
+    title: "I cook for a crowd, or a whole bird",
+    answer: "One big chamber and a door. A 26-quart interior is the only one of these that takes a tray or a whole chicken in a single run.",
+    guides: ["air-fryer-for-a-family", "whole-chicken-in-an-air-fryer"],
+    products: ["emeril-lagasse-26qt-french-door"]
+  },
+  {
+    id: "counter",
+    title: "My counter is tiny",
+    answer: "Measure before you buy, because the biggest number is the wrong buy if it has to live next to the toaster every day. The published footprint of the dual basket is 13.38 × 11.81 × 10.63 inches and the French-door oven is 16.9 × 15.8 × 14.8. The 8-quart fryer's dimensions are not published, which is itself a reason to ask before you commit.",
+    guides: ["cleanup", "air-fryer-vs-toaster-oven"],
+    products: ["chefman-8-quart-turbofry"]
+  },
+  {
+    id: "guessing",
+    title: "I want to stop guessing when food is done",
+    answer: "An instant-read thermometer. One second, and it lives on your fridge on a magnet.",
+    guides: ["how-hot-should-chicken-be", "where-to-probe-a-chicken"],
+    products: ["thermomaven-1-sec-thermometer"]
+  },
+  {
+    id: "long-cook",
+    title: "I cook for hours and leave the kitchen",
+    answer: "A leave-in probe designed to stay in the food and report while the lid stays shut. The trade is an app, a hub and a charging habit.",
+    guides: ["wireless-thermometer-for-smoking", "where-to-probe-a-chicken"],
+    products: ["chef-iq-sense-gen3"]
+  },
+  {
+    id: "lost",
+    title: "I honestly do not know yet",
+    answer: "Start with the decision, not the product. Write down the last five meals you actually cooked — that answer is more useful than any comparison table.",
+    guides: ["basket-vs-oven", "air-fryer-for-a-family", "how-hot-should-chicken-be"],
+    products: []
+  }
+];
+
+function startHerePage() {
+  const html = `
+${breadcrumb([{ href: url("/"), label: "Home" }, { label: "Start here" }])}
+<div class="article-head">
+  <div class="wrap">
+    <p class="kicker">Start here</p>
+    <h1 class="article-head__title">Five minutes, and you will know which of these five to buy</h1>
+    <p class="article-head__dek">Pick the line that sounds like your kitchen. Each one names the product shape that fits, the reading that explains why, and what would make it the wrong choice.</p>
+    <div class="byline">
+      <span>${esc(site.name)} editorial</span>
+      <span class="byline__dot" aria-hidden="true"></span>
+      <span>${guides.length} guides</span>
+      <span class="byline__dot" aria-hidden="true"></span>
+      <span>No hands-on testing claimed</span>
+    </div>
+  </div>
+</div>
+
+<section class="section">
+  <div class="wrap">
+    <div class="situation-grid">
+      ${SITUATIONS.map(
+        (s) => `<article class="situation">
+        <h2 class="situation__q">${esc(s.title)}</h2>
+        <p class="situation__a">${esc(s.answer)}</p>
+        <div class="situation__links">
+          ${s.guides
+            .map((g) => {
+              const gd = guides.find((x) => x.slug === g);
+              return `<a class="chip" href="${url(`/guides/${g}/`)}">${esc(gd ? gd.title : g)}</a>`;
+            })
+            .join("")}
+          ${s.products
+            .map((sl) => {
+              const p = products.find((x) => x.slug === sl);
+              if (!p) return "";
+              return `<a class="chip chip--buy" href="${url(`/products/${sl}/`)}">${esc(p.shortName)} →</a>`;
+            })
+            .join("")}
+        </div>
+      </article>`
+      ).join("")}
+    </div>
+  </div>
+</section>
+
+<section class="section section--deep">
+  <div class="wrap narrow">
+    <div class="note note--warn">
+      <p class="note__title">One thing before you use this page</p>
+      <p>Every answer here points at a shape of appliance, not a winner. We have not tested any of these five, so we cannot tell you which one fries better. What we can tell you is which one is the wrong shape for the way you cook — and that is the question that actually decides the purchase.</p>
+    </div>
+    <p class="small muted mt2">Want the long version instead? <a href="${url("/guides/")}">All ${guides.length} guides</a> · <a href="${url("/compare/")}">Compare all five products</a> · <a href="${url("/season/")}">Cooking gear by season</a></p>
+  </div>
+</section>
+`;
+  pages.push({
+    path: "/start-here/",
+    title: "Start here — which of these five is right for you",
+    desc: `${SITUATIONS.length} situations, the product shape that fits each one, and the reading that explains why. ${guides.length} guides, no testing claims, no prices.`,
+    html,
+    priority: "0.9",
+    changefreq: "weekly",
+    jsonld: {
+      "@context": "https://schema.org",
+      "@type": "CollectionPage",
+      name: "Start here",
+      description: "Which of the five compared kitchen appliances fits the way you cook.",
+      url: abs("/start-here/")
+    }
+  });
+}
+
+/* ============================================================
+   SEASON — the seasonal layer
+   The same decision changes shape across the year. This page makes
+   that explicit without pretending any of it is measured.
+   ============================================================ */
+const SEASONS = [
+  {
+    id: "winter",
+    season: "January",
+    label: "The reset",
+    body: "The month people notice how much counter they are giving away. This is the one season where the cleanup guide matters more than the capacity guide, because the appliance you resent is the one you stop using. The dual basket's two removable baskets are a smaller washing job than an oven's door, rack and crumb tray — and a machine you do not have to scrub is a machine you reach for.",
+    guides: ["cleanup", "dishwasher-safe-air-fryer-baskets"],
+    products: ["chefman-6-quart-dual-basket"]
+  },
+  {
+    id: "spring",
+    season: "Spring",
+    label: "Grill season opens",
+    body: "The first long outdoor cook of the year is where a thermometer stops being optional. Colour is not a safety indicator — the USDA is explicit that surface browning happens before the interior is safe — so the tool that decides the cook is the one you put in the food. An instant-read handles a chicken breast; a leave-in probe handles the four hours you are not standing there.",
+    guides: ["how-hot-should-chicken-be", "wireless-thermometer-for-smoking", "where-to-probe-a-chicken"],
+    products: ["thermomaven-1-sec-thermometer", "chef-iq-sense-gen3"]
+  },
+  {
+    id: "summer",
+    season: "Summer",
+    label: "A hot kitchen and no patience",
+    body: "In July nobody wants a 45-minute preheat for two portions, and a large chamber in a hot room is the wrong shape entirely. The small single basket wins on season alone: less metal to heat, less to wash afterwards, and nothing permanently occupying the counter. It is also the season to be honest about what you will actually cook — one batch of one thing.",
+    guides: ["basket-vs-oven", "air-fryer-vs-toaster-oven"],
+    products: ["chefman-8-quart-turbofry"]
+  },
+  {
+    id: "autumn",
+    season: "Autumn",
+    label: "Hosting",
+    body: "This is the season the 26-quart chamber starts to make sense. A maker's own serving guide puts that capacity at food for four to six people — which is a claim about a serving guide, not a guarantee of a single round, but it is the only published number of its kind in this set. A tray that stays flat, a door that opens, and one chamber that does not have to be run twice.",
+    guides: ["air-fryer-for-a-family", "capacity"],
+    products: ["emeril-lagasse-26qt-french-door"]
+  },
+  {
+    id: "winter2",
+    season: "November & December",
+    label: "The big cook",
+    body: "Whole birds, sides, and a cooker that has to hold one large thing in one layer. The question that decides it is the one nobody publishes: the interior cavity dimensions. Measure your bird against the cavity opening before you order, and pick the thermometer based on who is going to take the temperature during the cook — not after.",
+    guides: ["whole-chicken-in-an-air-fryer", "where-to-probe-a-chicken", "air-fryer-for-a-family"],
+    products: ["emeril-lagasse-26qt-french-door", "chef-iq-sense-gen3"]
+  }
+];
+
+function seasonPage() {
+  const html = `
+${breadcrumb([{ href: url("/"), label: "Home" }, { label: "Cooking by season" }])}
+<div class="article-head">
+  <div class="wrap">
+    <p class="kicker">The seasonal layer</p>
+    <h1 class="article-head__title">The same five products, and five different reasons to pick one</h1>
+    <p class="article-head__dek">Which appliance is right genuinely changes with the calendar — not because the appliances change, but because what you cook, how long for, and how often you wash up change. None of this is measured. It is a reading of the published specifications against how people actually cook.</p>
+  </div>
+</div>
+
+<section class="section">
+  <div class="wrap">
+    <div class="season-list">
+      ${SEASONS.map(
+        (s) => `<article class="season">
+        <div class="season__head">
+          <p class="season__name">${esc(s.season)}</p>
+          <h2 class="season__label">${esc(s.label)}</h2>
+        </div>
+        <div class="season__body">
+          <p>${esc(s.body)}</p>
+          <div class="season__links">
+            ${s.guides
+              .map((g) => {
+                const gd = guides.find((x) => x.slug === g);
+                return `<a class="chip" href="${url(`/guides/${g}/`)}">${esc(gd ? gd.title : g)}</a>`;
+              })
+              .join("")}
+            ${s.products
+              .map((sl) => {
+                const p = products.find((x) => x.slug === sl);
+                if (!p) return "";
+                return `<a class="chip chip--buy" href="${url(`/products/${sl}/`)}">${esc(p.shortName)} →</a>`;
+              })
+              .join("")}
+          </div>
+        </div>
+      </article>`
+      ).join("")}
+    </div>
+  </div>
+</section>
+
+<section class="section section--deep">
+  <div class="wrap narrow">
+    <div class="note">
+      <p class="note__title">Why no recipes?</p>
+      <p>Because we did not cook anything in these appliances, and a recipe page written by someone who never ran one is a page of guesses dressed as instructions. What we can do honestly is tell you which appliance is the right shape for the meal, and which published specification makes that true.</p>
+      <p class="mt1"><a href="${url("/about/")}">How this site is written →</a></p>
+    </div>
+  </div>
+</section>
+`;
+  pages.push({
+    path: "/season/",
+    title: "Cooking gear by season — how the decision changes",
+    desc: "Five seasons, five different reasons to pick a different appliance: the counter reset, grill season, hot kitchens, hosting, and the big holiday cook.",
+    html,
+    priority: "0.7",
+    changefreq: "monthly",
+    jsonld: {
+      "@context": "https://schema.org",
+      "@type": "CollectionPage",
+      name: "Cooking gear by season",
+      description: "How the choice between five kitchen appliances changes across the year.",
+      url: abs("/season/")
+    }
   });
 }
 
@@ -934,7 +1503,7 @@ function specialLinkSection() {
   <div class="wrap">
     <h2 class="section__title" style="font-size:1.4rem">Special Link test, one per product</h2>
     <p class="section__dek" style="margin-bottom:1.25rem">${esc(specialLink.blocker)} Each row needs its test recorded before any further product is added. None is marked as passed. Flags: FLG-003, FLG-024.</p>
-    <div class="table-wrap"><table class="data sortable">
+    <div class="tablewrap"><table class="data sortable">
       <thead><tr><th scope="col">Product</th><th scope="col">Submitted short link</th><th scope="col">Test status</th><th scope="col">Tested on</th><th scope="col">Destination seen</th><th scope="col">Tracking report line</th></tr></thead>
       <tbody>${rows.join("\n      ")}</tbody>
     </table></div>
@@ -1348,6 +1917,31 @@ ${breadcrumb([{ href: url("/"), label: "Home" }, { label: "Open questions" }])}
       </div>
     </div>
 
+    <h2 class="section__title" style="font-size:1.4rem">Decisions and what is standing in the way</h2>
+    <p class="section__dek" style="margin-bottom:1.2rem">Seven decisions this publication is likely to face, and the questions that have to be answered first. A decision whose blockers are open is not ready to make, and saying so is cheaper than making it badly.</p>
+    <div class="tablewrap" style="margin-bottom:2rem">
+      <table class="data sortable">
+        <caption>Decision gates. Each row names a decision someone may want to make, the questions that must be answered before it can be made responsibly, and what happens once they are.</caption>
+        <thead><tr><th scope="col">Decision</th><th scope="col">Blocked by</th><th scope="col">What happens when it is unblocked</th></tr></thead>
+        <tbody>${questions.decisionGates
+          .map(
+            (d) => `<tr>
+          <td><strong>${esc(d.decision)}</strong></td>
+          <td>${d.blockedBy
+            .map((id) => {
+              const qq = questions.questions.find((x) => x.id === id);
+              return `<code>${esc(id)}</code>${qq ? `<br><span class="tiny">${esc(qq.question)}</span>` : ""}`;
+            })
+            .join("<br>")}</td>
+          <td class="small">${esc(d.unblocked)}</td>
+        </tr>`
+          )
+          .join("")}</tbody>
+      </table>
+    </div>
+
+    <h2 class="section__title" style="font-size:1.4rem">The full register</h2>
+    <p class="section__dek" style="margin-bottom:1.2rem">Every question, with the answer so far, what is still missing, and the specific action that would close it.</p>
     <div class="tablewrap">
       <table class="data sortable">
         <caption>Every open question, ordered by how much it blocks. "What is missing" is the honest list of what this build does not know; "how to close it" names the specific action or document.</caption>
@@ -1445,14 +2039,44 @@ ${breadcrumb([{ href: url("/"), label: "Home" }, { label: "Suggestions" }])}
       </table>
     </div>
 
+    <h2 class="section__title" style="font-size:1.4rem;margin-top:2.5rem">Missing information register</h2>
+    <p class="section__dek" style="margin-bottom:1.2rem">${esc(suggestions.discovery.intro)}</p>
+    <div class="tablewrap">
+      <table class="data sortable">
+        <caption>Every gap this site checked for and could not close from an official source, with the specific artefact that would close it. Sorted by ID.</caption>
+        <thead>
+          <tr>
+            <th scope="col">ID</th><th scope="col">What is missing</th><th scope="col">Why it matters</th>
+            <th scope="col">What would close it</th><th scope="col">Who can close it</th><th scope="col">Effort</th>
+          </tr>
+        </thead>
+        <tbody>${suggestions.discovery.rows
+          .map(
+            (r) => `<tr>
+          <td><code>${esc(r.id)}</code></td>
+          <td><strong>${esc(r.gap)}</strong></td>
+          <td class="small">${esc(r.why)}</td>
+          <td class="small">${esc(r.close)}</td>
+          <td class="small">${esc(r.who)}${
+              r.links && r.links.length
+                ? `<br><span class="tiny">${r.links.map((l) => cite(l.url, esc(l.label))).join(" · ")}</span>`
+                : ""
+            }</td>
+          <td class="small">${esc(r.effort)}</td>
+        </tr>`
+          )
+          .join("")}</tbody>
+      </table>
+    </div>
+
     <div class="note mt2">
       <p class="note__title">If you accept only three</p>
-      <p><strong>SUG-04</strong> — prove one affiliate link actually tracks, because nothing else matters if it does not. <strong>SUG-03</strong> — get API access, which unlocks prices, ratings and images at once. <strong>SUG-05</strong> — publish weekly for eight weeks, then let the query report choose the next topic instead of instinct.</p>
+      <p><strong>SUG-04</strong> — prove one affiliate link actually tracks, because nothing else matters if it does not. <strong>SUG-03</strong> — get API access, which unlocks prices, ratings and images at once. <strong>SUG-23</strong> — test one unit per form factor, which is the only thing that turns this from an inference site into an evidence site.</p>
     </div>
 
     <div class="note note--stop mt1">
-      <p class="note__title">Two suggestions are rejections</p>
-      <p><strong>SUG-12</strong> (price tracking) and <strong>SUG-13</strong> (generated near-duplicate pages) are listed so that a future session does not build them in good faith. The first breaches Amazon's program policies outright; the second produces the exact content this publication exists to avoid.</p>
+      <p class="note__title">Three suggestions are rejections</p>
+      <p><strong>SUG-12</strong> (price tracking), <strong>SUG-13</strong> (generated near-duplicate pages) and <strong>SUG-25</strong> (year-stamped "best of" listicles) are listed so that a future session does not build them in good faith. The first breaches Amazon's program policies outright; the second and third produce the exact content this publication exists to avoid.</p>
     </div>
   </div>
 </section>
@@ -1460,7 +2084,7 @@ ${breadcrumb([{ href: url("/"), label: "Home" }, { label: "Suggestions" }])}
   pages.push({
     path: "/suggestions/",
     title: "Suggestions",
-    desc: "A reviewable decision list: sixteen suggestions with rationale, cost, risk, and a recommendation — nothing implemented without a decision.",
+    desc: `A reviewable decision list: ${suggestions.suggestions.length} suggestions with rationale, cost, risk and a recommendation, plus a missing-information register naming what would close each open gap. Nothing implemented without a decision.`,
     html,
     priority: "0.6",
     changefreq: "weekly"
@@ -1490,7 +2114,10 @@ ${breadcrumb([{ href: url("/"), label: "Home" }, { label: "Executive summary" }]
     <h2>What exists</h2>
     <ul>
       <li><strong>A five-product publication</strong> — three air fryers, two thermometers — with individual pages, two category hubs, and a full comparison table.</li>
-      <li><strong>Four question-shaped guides</strong>, written as decisions rather than rankings.</li>
+      <li><strong>${guides.length} question-shaped guides</strong>, written as decisions rather than rankings, in ${CLUSTERS.length} clusters — choosing, living with it, and cooking with confidence.</li>
+      <li><strong>A decision entry point</strong> at <a href="${url("/start-here/")}">/start-here/</a>: seven kitchen situations, each naming the product shape that fits it and what would make it wrong. It is the page a reader with no idea what they want lands on.</li>
+      <li><strong>A seasonal layer</strong> at <a href="${url("/season/")}">/season/</a>, which shows that the same five products have five different reasons to be chosen across the year.</li>
+      <li><strong>Original illustration throughout</strong> — schematics drawn by the build itself, not product photography, because Amazon's program policies require API-supplied content for anything we cannot license.</li>
       <li><strong>A complete source register</strong>: ${policy.sources.length} primary sources and ${products.reduce(
         (n, p) => n + p.specs.length,
         0
@@ -1501,7 +2128,7 @@ ${breadcrumb([{ href: url("/"), label: "Home" }, { label: "Executive summary" }]
       <li><strong>Marketing copy for all five links</strong> — a social post, a newsletter paragraph and its mandatory disclosure per product, on <a href="${url(
         "/marketing/kit/"
       )}">the marketing kit</a>.</li>
-      <li><strong>Ten policy checks</strong> traced to the exact clause, with the text quoted verbatim so the summary can be audited.</li>
+      <li><strong>${policy.policy.length} policy checks</strong> traced to the exact clause, with the text quoted verbatim so the summary can be audited, plus ${gov.flagged.length} items on the flagged register.</li>
       <li><strong>A publication gate</strong> in the build: it fails if any page loses its disclosure, or if any Amazon link loses its sponsored marking.</li>
       <li><strong>SEO foundations</strong>: sitemap, RSS feed, canonical URLs, structured data, and descriptions written for humans.</li>
       <li><strong>A defined measurement plan</strong>: five events, a self-hosted collector, and a ledger schema.</li>
@@ -1512,15 +2139,19 @@ ${breadcrumb([{ href: url("/"), label: "Home" }, { label: "Executive summary" }]
     <ul>
       <li><strong>No prices, ratings, reviews or product photos.</strong> Amazon's program policies prohibit displaying these without API access. We do not have it. Showing them anyway would risk the account; inventing them would be worse.</li>
       <li><strong>No hands-on testing.</strong> None took place, so none is claimed. Every page writes about the decision instead of a verdict, and the FTC's rule against describing experience you do not have is the reason.</li>
-      <li><strong>No traffic or conversion data.</strong> The site launched with this build. Search Console is unverified and the analytics collector is not deployed, so nothing is being measured yet.</li>
+      <li><strong>No traffic or conversion data.</strong> Search Console is unverified and the analytics collector is not deployed, so nothing is being measured yet. Every guide title on this site is an editorial hypothesis, not a measured claim about what people search for.</li>
+      <li><strong>Interior cavity dimensions for the two basket fryers.</strong> The oven-style unit is covered: its owner's manual gives the cavity as 26 quarts, 1519 cubic inches. Neither basket fryer publishes an interior figure, so "will a whole chicken fit" for those two is answered as far as the published record allows and no further.</li>
+      <li><strong>Official sources that disagree with each other.</strong> The ThermoMaven water-resistance wording: the retailer says IP67, the maker says "100% waterproof", and the maker's own manual publishes no IP rating at all. The Emeril preset count: the owner's manual names 24 presets, the maker's specification panel says 25. The 8-quart Chefman dimensions and wattage: the listing and the maker give different numbers for the same model. Every one of them is shown, each attributed to the page that says it, rather than one being silently preferred.</li>
       <li><strong>No automated product research.</strong> The brief asked for an agent that identifies trending, high-converting products. Identifying "trending" requires a data source; without one, any such claim would be a fabrication with a chart attached. The pipeline is defined and its data inputs are documented as missing.</li>
-      <li><strong>No revenue projection.</strong> Four unknowns multiplied together produce fiction.</li>
+      <li><strong>No revenue projection.</strong> Several unknowns multiplied together produce fiction.</li>
     </ul>
 
     <h2>What is unresolved</h2>
     <p>${gov.flagged.length} items on the <a href="${url(
       "/flagged/"
-    )}">flagged for review</a> page. Four matter commercially:</p>
+    )}">flagged for review</a> page, and ${questions.questions.length} questions on the <a href="${url(
+      "/questions/"
+    )}">open questions</a> page, which also carries a table of the seven decisions that are not yet ready to be made and the questions standing in the way of each. Four matter commercially:</p>
     <ol>
       <li>The tracking ID <code>${esc(TAG)}</code> may not be enrolled. If it is not, nothing on this site earns anything.</li>
       <li>The compliance status of the submitted <code>link.amazon</code> short links is genuinely unknown — we did not declare them invalid, we simply do not depend on them.</li>
@@ -1533,14 +2164,15 @@ ${breadcrumb([{ href: url("/"), label: "Home" }, { label: "Executive summary" }]
       <li>Sign in to Associates and confirm one product link per product appears in the tracking report.</li>
       <li>Deploy the collector in <code>_worker/</code> and set the endpoint, then rebuild.</li>
       <li>Verify Search Console, replace the placeholder token, submit the sitemap.</li>
-      <li>Publish one guide a week for eight weeks.</li>
+      <li>Publish one guide a week for eight weeks. ${guides.length} guides already exist, but they were written in one sitting, which is not a cadence.</li>
       <li>At week eight, read the query report and replace the topic hypotheses with measured demand.</li>
       <li>Apply for Product Advertising API access once the account qualifies — it unlocks prices, ratings and images together.</li>
+      <li>Ask the manufacturers the questions that only they can answer: the basket fryers' interior cavity dimensions, whether the 8-quart TurboFry reaches 450°F and whether it is 1000 W or 1700 W, the Emeril preset and accessory counts, the ThermoMaven IP rating, and the CHEF iQ app support horizon. All of them are listed on the <a href="${url("/suggestions/")}">suggestions</a> page as the missing-information register, and each is one email.</li>
     </ol>
 
     <h2>The honest verdict</h2>
-    <p>What exists is a small, well-documented, compliant publication with four decent guides and five products. It is not yet a business: it has no traffic, no verified affiliate attribution, and no data. It is, however, built so that when those three things arrive, nothing has to be torn down — and so that nothing on it is a lie.</p>
-    <p>The main strategic risk is not technical. It is that four guides is not enough content to rank in a crowded category, and the plan for fixing that is a cadence, not a feature.</p>
+    <p>What exists is a small, well-documented, compliant publication with ${guides.length} guides and ${products.length} products. It is not yet a business: it has no traffic, no verified affiliate attribution, and no data. It is, however, built so that when those three things arrive, nothing has to be torn down — and so that nothing on it is a lie.</p>
+    <p>The main strategic risk is not technical. It is that ${guides.length} guides, published in one sitting, is still not a body of content that ranks in a crowded category, and the plan for fixing that is a cadence, not a feature.</p>
   </div>
 </section>
 `;
@@ -1853,6 +2485,21 @@ Sitemap: ${abs("/sitemap.xml")}
 `
   );
 
+  // A small static index so the reader can find a page without knowing the
+  // site's shape. It is a convenience, not a ranking system, and it says so.
+  const index = pages
+    .filter((p) => p.path !== "/404.html")
+    .map((p) => ({
+      p: p.path,
+      t: p.title.replace(/\s+—\s+Counter Space$/, ""),
+      d: p.desc.replace(/\s+/g, " ").slice(0, 180),
+      k: p.pageType || "page"
+    }));
+  fs.writeFileSync(
+    path.join(ROOT, "search-index.json"),
+    JSON.stringify({ generated: site.built, pages: index }, null, 0)
+  );
+
   const notFound = layout({
     title: "Page not found",
     desc: "That page does not exist.",
@@ -1871,6 +2518,8 @@ Sitemap: ${abs("/sitemap.xml")}
    RENDER
    ============================================================ */
 frontPage();
+startHerePage();
+seasonPage();
 categoryPages();
 productPages();
 guidePages();

@@ -180,3 +180,145 @@
 
   Array.prototype.forEach.call(document.querySelectorAll("table.data.sortable"), enhance);
 })();
+
+/* ----------------------------------------------------------
+   SITE SEARCH — a static index, read once, kept in memory.
+   The reader types a question; we match against page titles
+   and descriptions. Nothing is sent anywhere: the index is
+   fetched from this same site and the search runs locally.
+   ---------------------------------------------------------- */
+(function () {
+  "use strict";
+
+  var box = document.querySelector("[data-search]");
+  var openBtn = document.querySelector("[data-search-open]");
+  if (!box || !openBtn) return;
+
+  var input = box.querySelector("[data-search-input]");
+  var list = box.querySelector("[data-search-results]");
+  var empty = box.querySelector("[data-search-empty]");
+  var closeBtn = box.querySelector("[data-search-close]");
+  var index = null;
+  var lastFocused = null;
+
+  /* The site lives under a subpath on Pages (/WinA/); derive the base from
+     the page's own stylesheet link so this works under a subpath and at a
+     root without either one being hard-coded. */
+  function base() {
+    var link = document.querySelector('link[rel="stylesheet"]');
+    var href = link ? link.getAttribute("href") || "" : "";
+    var m = href.match(/^(.*?)\/assets\//);
+    if (m) return m[1] + "/";
+    var i = href.lastIndexOf("/");
+    return i === -1 ? "" : href.slice(0, i + 1);
+  }
+
+  function load() {
+    if (index) return Promise.resolve(index);
+    return fetch(base() + "search-index.json", { credentials: "same-origin" })
+      .then(function (r) {
+        if (!r.ok) throw new Error("no index");
+        return r.json();
+      })
+      .then(function (data) {
+        index = (data && data.pages) || [];
+        return index;
+      })
+      .catch(function () {
+        index = [];
+        return index;
+      });
+  }
+
+  function score(page, terms) {
+    var title = (page.t || "").toLowerCase();
+    var desc = (page.d || "").toLowerCase();
+    var path = (page.p || "").toLowerCase();
+    var total = 0;
+    for (var i = 0; i < terms.length; i++) {
+      var t = terms[i];
+      var inTitle = title.indexOf(t);
+      var inDesc = desc.indexOf(t);
+      var inPath = path.indexOf(t);
+      if (inTitle === -1 && inDesc === -1 && inPath === -1) return 0;
+      if (inTitle !== -1) total += inTitle === 0 ? 12 : 6;
+      if (inDesc !== -1) total += 2;
+      if (inPath !== -1) total += 3;
+    }
+    return total;
+  }
+
+  function render(q) {
+    var terms = q.toLowerCase().split(/\s+/).filter(Boolean);
+    list.innerHTML = "";
+    if (!terms.length) {
+      empty.hidden = true;
+      return;
+    }
+    var hits = [];
+    for (var i = 0; i < index.length; i++) {
+      var s = score(index[i], terms);
+      if (s > 0) hits.push({ page: index[i], s: s });
+    }
+    hits.sort(function (a, b) {
+      if (b.s !== a.s) return b.s - a.s;
+      return (a.page.t || "").localeCompare(b.page.t || "");
+    });
+    hits = hits.slice(0, 8);
+
+    empty.hidden = hits.length !== 0;
+    hits.forEach(function (h) {
+      var li = document.createElement("li");
+      var a = document.createElement("a");
+      a.href = base() + h.page.p.replace(/^\//, "");
+      var t = document.createElement("span");
+      t.className = "searchbox__title";
+      t.textContent = h.page.t;
+      var d = document.createElement("span");
+      d.className = "searchbox__desc";
+      d.textContent = h.page.d;
+      a.appendChild(t);
+      a.appendChild(d);
+      li.appendChild(a);
+      list.appendChild(li);
+    });
+  }
+
+  function open() {
+    lastFocused = document.activeElement;
+    box.hidden = false;
+    document.body.style.overflow = "hidden";
+    load().then(function () {
+      if (input) input.focus();
+    });
+  }
+
+  function close() {
+    box.hidden = true;
+    document.body.style.overflow = "";
+    if (input) input.value = "";
+    list.innerHTML = "";
+    if (lastFocused && lastFocused.focus) lastFocused.focus();
+  }
+
+  openBtn.addEventListener("click", open);
+  if (closeBtn) closeBtn.addEventListener("click", close);
+  box.addEventListener("click", function (ev) {
+    if (ev.target === box) close();
+  });
+  document.addEventListener("keydown", function (ev) {
+    if (ev.key === "Escape" && !box.hidden) close();
+    if (ev.key === "/" && box.hidden) {
+      var tag = (document.activeElement && document.activeElement.tagName) || "";
+      if (tag !== "INPUT" && tag !== "TEXTAREA") {
+        ev.preventDefault();
+        open();
+      }
+    }
+  });
+  if (input) {
+    input.addEventListener("input", function () {
+      render(input.value);
+    });
+  }
+})();

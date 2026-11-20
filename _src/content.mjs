@@ -7,6 +7,7 @@
 export const guides = [
   {
     slug: "basket-vs-oven",
+    cluster: "choosing",
     number: "01",
     title: "Basket or oven-style air fryer: what should you compare?",
     dek: "They share a name and almost nothing else. The decision is not about which fries better — it is about how you cook on a normal weeknight.",
@@ -56,6 +57,7 @@ If you are choosing between them, the useful question is not which one is better
   },
   {
     slug: "capacity",
+    cluster: "choosing",
     number: "02",
     title: "A no-hype checklist for comparing air fryer capacity",
     dek: "Quarts are the least honest number on the box. Here is what to check instead, and why the biggest number is often the wrong buy.",
@@ -112,6 +114,7 @@ This is a short checklist. It has no opinions about brands and no numbers we did
   },
   {
     slug: "cleanup",
+    cluster: "keeping",
     number: "03",
     title: "How to assess cleanup and counter-space trade-offs",
     dek: "The appliance you stop using is the one that is annoying to wash. This is the least glamorous part of the decision and the most predictive.",
@@ -162,6 +165,7 @@ Cleanup is not a minor spec. It is the best available predictor of whether the t
   },
   {
     slug: "multifunction",
+    cluster: "choosing",
     number: "04",
     title: "Questions to ask before buying a multi-function kitchen appliance",
     dek: "Every appliance claims ten jobs. The useful question is which two it does well, and whether those two are the jobs you have.",
@@ -175,6 +179,7 @@ Multi-function claims are the easiest thing in kitchen retail to inflate and the
 <h2>1. Which function is the appliance actually built around?</h2>
 <p>Every multi-function appliance has a native shape. An oven with a fan is an oven first; the air-fry setting is a mode. A drawer with a fan is an air fryer first; the bake setting is a compromise.</p>
 <p>This matters because the secondary functions inherit the limitations of the primary one. The Emeril Lagasse 26QT is a convection oven with 24 presets — as an oven it has real volume for a whole chicken or a sheet of vegetables. Its air-fry mode is genuinely useful, and it is still an oven: it will not heat up like a drawer does.</p>
+<p>That 24 comes from the owner's manual for model FAFO-001, whose preset mode chart names every one of them. Worth knowing that the number is not agreed across sources: the manufacturer's own specification panel says 25 cooking pre-sets. We use the manual, because the manual is the document that tells you what the machine actually does when you press the knob.</p>
 <p>Ask which function the manufacturer leads with in the product name. That is usually the honest one.</p>
 
 <h2>2. Are the presets programming, or just labels?</h2>
@@ -216,6 +221,7 @@ Multi-function claims are the easiest thing in kitchen retail to inflate and the
   },
   {
     slug: "instant-vs-wireless",
+    cluster: "cooking",
     number: "05",
     title: "Instant-read or wireless: which meat thermometer fits your grill?",
     dek: "One answers \"is this done right now?\". The other answers \"tell me when it is done\" while the lid stays shut. The right one depends on how you cook.",
@@ -248,6 +254,518 @@ Multi-function claims are the easiest thing in kitchen retail to inflate and the
       "Spot checks want an instant-read. Long unattended cooks want wireless monitoring.",
       "Published response and accuracy figures are stated by the seller, not verified by us.",
       "For connected devices, ask what happens when the app stops being supported."
+    ]
+  },
+
+  {
+    slug: "air-fryer-vs-toaster-oven",
+    number: "06",
+    title: "Air fryer vs. toaster oven: which one should you actually buy?",
+    dek: "Same heat, different shape. The choice comes down to whether you cook piles you can shake or trays you leave flat.",
+    category: "air-fryers",
+    cluster: "choosing",
+    readingTime: "6 min",
+    topics: ["form factor", "oven vs drawer", "countertop oven"],
+    intro: `"Air fryer" and "toaster oven" are sold as if they compete. They do not. They are the same idea in two shapes: a fan, heating elements, and a box you put food in.
+
+A drawer air fryer is a fan oven with a pull-out tray. A toaster oven is a fan oven with a hinged door. Everything else — temperature, power, how long things take — follows from which shape you end up with.
+
+So the question is not "which is better". It is whether you cook things you shake, or things you leave flat.`,
+    body: `
+<h2>The one difference that matters</h2>
+<p>Open a drawer air fryer and you have a basket. Food goes in loose, in a pile, and you shake it halfway through so the pieces move. Open a toaster oven and you have a rack. Food goes in flat and stays where you put it, and it browns by contact with the element above and the fan behind the wall.</p>
+<p>That single mechanical fact decides most meals. Fries, wings, chickpeas, anything you toss: basket. A whole chicken, a salmon fillet, a tray of vegetables, a pizza: door.</p>
+<p>It also decides the washing-up, which is the thing people discover a month later. A basket is one nonstick tray to rinse. An oven is a door, a rack, a drip tray, a crumb tray and a back wall.</p>
+
+<h2>What the oven-style unit in this set actually is</h2>
+<p>The Emeril Lagasse French-door unit is not a "toaster oven" in the small-two-slices sense. Its own listing calls it a countertop convection cooker with a 26-quart interior, 24 one-touch presets and six cooking accessories, and its maker describes it as a 10-in-1 combination oven. It is an oven that also air-fries, which is the more capable direction to grow into.</p>
+<p>One number here is worth trusting more than the rest. The owner's manual for model FAFO-001 gives the cavity as 26 quarts — 1519 cubic inches — and lists 24 named presets in a full mode chart, with a shelf position and a recommended accessory for each one. That is the difference between a spec sheet and an operating manual, and it is why the interior size on this page is a number rather than an adjective.</p>
+<p>That capability is real and it is also the problem. A 26-quart cavity with a door takes up most of a counter permanently, has more to wash, and needs more time to come up to temperature than a 3-quart basket does. It is a small oven. Treating it like one is the correct expectation, not a disappointment.</p>
+
+<h2>Three jobs the drawer wins</h2>
+<ul>
+  <li><strong>Speed on small portions.</strong> A basket is a small sealed volume. There is less air and less metal to heat, so a 3-quart drawer on a weeknight is a short affair.</li>
+  <li><strong>Texture on tossed food.</strong> Shaking is the technique. A drawer lets you do it without opening an oven door and dropping the temperature.</li>
+  <li><strong>Not losing the counter.</strong> A drawer unit can live in a cupboard between uses. A 16.9-inch-deep oven does not, and a unit in a cupboard is a unit that does not get used.</li>
+</ul>
+
+<h2>Three jobs the door wins</h2>
+<ul>
+  <li><strong>Volume, honestly.</strong> 26 quarts in one chamber holds a whole bird. Six quarts split across two 3-quart drawers does not.</li>
+  <li><strong>Flat cooking.</strong> A flat tray of vegetables, a fish fillet, a pizza, a casserole — none of them can be shaken, and none of them fits a shallow drawer.</li>
+  <li><strong>Range of jobs.</strong> The 24 presets exist because the oven does more than air-fry: broil, bake, dehydrate, toast, reheat. A drawer does two or three well.</li>
+</ul>
+
+<h2>The trap in both directions</h2>
+<p>Buying a 26-quart oven to cook two chicken breasts is how people end up resenting an appliance. Heating a large cavity for two portions is slower, and washing a large oven after two portions is proportionally worse. The oven does not become wrong when you cook small — it becomes inefficient, and inefficiency accumulates.</p>
+<p>The mirror image is buying a 3-quart basket for a family of four and discovering that dinner happens in two rounds, every night, with the first round sitting in the oven waiting. A small basket is not a small oven. It is a small oven plus a batching problem.</p>
+
+<h2>How to decide in one sentence</h2>
+<p>Write down your last five dinners. If three or more of them were "a tray of something, flat, in the oven" — buy the door. If three or more were "a pile of one thing, shaken" — buy the drawer. If your evenings are split between the two, you are actually shopping for a dual basket, which is the third option and the one most people never consider.</p>
+
+<h2>What we did not measure</h2>
+<p>Preheat time, energy draw and cooking speed. None of the three is published on the official listings, and we did not test them. Every claim above about speed is reasoning from the shape of the appliance and the volume of the cavity, not a measurement, and we have labelled it as such. If a number matters to your decision, measure it yourself or find someone who has.</p>
+`,
+    takeaways: [
+      "A drawer is a pile you shake. A door is a tray you leave flat.",
+      "The oven-style unit here is a 26-quart convection oven that also air-fries — treat it like an oven, including the washing.",
+      "Small portions in a big oven is the most common way these purchases go wrong.",
+      "Dinners that are half piles and half trays is a dual-basket answer, not an oven one."
+    ],
+    sources: [
+      {
+        label: "Emeril Lagasse French Door listing (24 one-touch presets, six accessories, 26 qt)",
+        url: "https://www.amazon.com/dp/B09B7SB46R"
+      },
+      {
+        label: "emerileveryday.com — French Door AirFryer 360 specification",
+        url: "https://www.emerileveryday.com/products/emeril_lagasse_french_door_airfryer_360"
+      }
+    ]
+  },
+  {
+    slug: "air-fryer-for-a-family",
+    number: "07",
+    title: "Air fryer for a family of four: how much capacity do you actually need?",
+    dek: "Quarts are the least useful number on the box. Servings are the most misleading one. Here is the question that settles it instead.",
+    category: "air-fryers",
+    cluster: "choosing",
+    readingTime: "6 min",
+    topics: ["capacity", "servings", "batching", "family"],
+    intro: `"Feeds four" is not a capacity figure. It is a claim about round two.
+
+A 6-quart basket feeds a family of four if you are willing to cook in two batches and hold the first one warm. The same basket feeds four people in one round if two of them are children and the food is small. The number on the box assumes the most flattering version of your household.
+
+The maker of the 26-quart oven in this set puts it plainly on its own specification page: "26-Quart Capacity — preparing food for 4–6 people." That is a serving guide attached to a chamber size. Read the two together and you can see exactly how the industry converts quarts into people.`,
+    body: `
+<h2>Step one: count the food, not the people</h2>
+<p>Open your head about what you actually cook on a Wednesday. Not what you cook on a holiday — what you cook when it is raining and nobody wants to help.</p>
+<p>Then count pieces, not servings:</p>
+<ul>
+  <li>Four chicken thighs, in one layer</li>
+  <li>Two salmon fillets, side by side</li>
+  <li>A pound of fries, spread flat, not heaped</li>
+  <li>Twelve wings, in a single layer</li>
+  <li>A whole chicken, in one piece</li>
+</ul>
+<p>Now the number that matters is the widest and tallest of those, in inches, in one layer. Not the volume in quarts. The physical space the food occupies when it is not touching anything else.</p>
+<p>We could not find that dimension published on an official page for most of the units in this set, which is a problem the <a href="{BASE}/guides/whole-chicken-in-an-air-fryer/">whole-chicken guide</a> covers in detail. For two of them we have it: the dual-basket body is 13.38 × 11.81 × 10.63 inches, and the oven-style body is 16.9 D × 15.8 W × 14.8 H. For the 8-quart single basket, no official source we could reach publishes its dimensions at all, so we cannot tell you whether the family-sized chicken fits. We will not guess.</p>
+
+<h2>Step two: decide if you will batch</h2>
+<p>This is the fork in the road, and it is not a technical question.</p>
+<p><strong>If you will batch:</strong> the smallest sensible basket is fine. Two rounds of a 3-quart drawer at 7pm on a Wednesday is a normal dinner. Many households do this permanently and never feel it.</p>
+<p><strong>If you will not batch:</strong> you need everything for four people in one chamber, in one layer, with air still moving around it. That is a bigger constraint than it sounds, because "one chamber" and "one layer" pull in opposite directions. The dual-basket unit solves it by giving you two chambers and splitting the capacity: 6 quarts total, but 3 quarts each. That is two small cooks finishing at once, not one big cook.</p>
+
+<h2>Step three: subtract the accessories</h2>
+<p>The oven-style unit ships with six cooking accessories. Useful, and also occupying chamber volume. If you will cook on the rack with a tray underneath, you are using two of the six. Ask what is left for the food, because that is your real capacity.</p>
+
+<h2>Step four: subtract the counter</h2>
+<p>A family of four does not need more capacity than it has room for. An 8-quart basket that lives on the counter permanently will be used; a 26-quart oven that has to live in a cupboard will not. Appliances you use beat appliances you own.</p>
+
+<h2>The honest summary of the three</h2>
+<ul>
+  <li><strong>Dual basket, 6 qt total (2 × 3 qt):</strong> right when dinner is two things at two temperatures and you refuse to cook in rounds. Wrong when dinner is one big batch, because 6 split in half is less usable volume than it sounds.</li>
+  <li><strong>Single basket, 8 qt:</strong> the straightforward answer for one batch of one thing. The one unit here whose dimensions no official page publishes, so check the product page before you assume a chicken fits.</li>
+  <li><strong>Oven-style, 26 qt:</strong> the maker's own guide says 4–6 people. Its single chamber handles a tray, a whole bird or a crowd in one run — and it is a small oven, with all the preheating and washing that implies.</li>
+</ul>
+
+<h2>One question to ask yourself before you buy</h2>
+<p>Not "how many people do I feed?" but: <strong>on a normal Tuesday, how many separate things go in the cooker at once?</strong> One thing, two things, three things. That number, multiplied by the size of each thing, is the only capacity figure that will not disappoint you.</p>
+`,
+    takeaways: [
+      "Count pieces in one layer, not servings. The box counts the flattering version of your family.",
+      "Decide about batching before you compare any capacity figure.",
+      "A dual basket's 6 quarts is two 3-quart cooks that finish together, not one 6-quart cook.",
+      "Accessories and counter space both come out of the capacity you actually have."
+    ],
+    sources: [
+      {
+        label: "emerileveryday.com — \"26-Quart Capacity — preparing food for 4–6 people\"",
+        url: "https://www.emerileveryday.com/products/emeril_lagasse_french_door_airfryer_360"
+      },
+      {
+        label: "chefman.com — dual-basket dimensions (13.38 × 11.81 × 10.63 in)",
+        url: "https://chefman.com/products/turbofry-touch-dual-window-air-fryer"
+      }
+    ]
+  },
+  {
+    slug: "whole-chicken-in-an-air-fryer",
+    number: "08",
+    title: "Can you air fry a whole chicken? What to check before you buy",
+    dek: "The answer is decided by one dimension nobody publishes. Here is how to find it, and what to do when the manufacturer has not.",
+    category: "air-fryers",
+    cluster: "cooking",
+    readingTime: "6 min",
+    topics: ["whole chicken", "dimensions", "counter space", "food safety"],
+    intro: `Ask ten people whether an air fryer can cook a whole chicken and you will get a yes from the people with the big oven and a shrug from the rest. It is not a feature question. It is a dimension question, and the dimension is the one figure the industry treats as optional.
+
+Here is the part nobody tells you: the number that decides this is not the quart capacity. It is the height and width of the cavity with the door or drawer open, and the clearance above the food for air to move.`,
+    body: `
+<h2>What "fits" actually requires</h2>
+<p>Air cooking needs moving air. A bird sitting in a cavity with no room around it is sitting in still air, and still air browns the outside and leaves the inside raw. So "fits" is three requirements, not one:</p>
+<ul>
+  <li>The bird fits in the cavity footprint with space on each side.</li>
+  <li>There is vertical clearance above it for the fan to work.</li>
+  <li>You can still close the door or drawer.</li>
+</ul>
+<p>Quarts measure the volume of the box. They do not tell you the footprint, and they do not tell you the clearance. That is the whole problem.</p>
+
+<h2>What we could actually verify</h2>
+<table class="data sortable">
+  <caption>Published exterior dimensions, as stated by each manufacturer. These are the outside of the appliance, not the interior cavity — the interior is smaller, and no official page we reached publishes it.</caption>
+  <thead><tr><th scope="col">Unit</th><th scope="col">Published dimensions</th><th scope="col">Source</th></tr></thead>
+  <tbody>
+    <tr><td>CHEFMAN 6 qt dual basket</td><td>13.38 × 11.81 × 10.63 in · 13.3 lb</td><td>chefman.com specification</td></tr>
+    <tr><td>Emeril Lagasse 26 qt French door</td><td>16.9 D × 15.8 W × 14.8 H in</td><td>emerileveryday.com specification</td></tr>
+    <tr><td>Chefman 8 qt TurboFry</td><td>Not published on any official source we could reach</td><td>—</td></tr>
+  </tbody>
+</table>
+<p class="small muted">Exterior dimensions do not tell you whether a bird fits. They tell you how much counter it takes. If the interior dimension is what you need and it is not published, the answer has to come from somewhere else.</p>
+
+<h2>Where to find it when the manufacturer will not say</h2>
+<ul>
+  <li><strong>The listing's own "See more" section.</strong> Amazon product pages for appliances frequently carry an itemised dimension list under the product details that differs from the marketing copy. We found one of these for the 8-quart TurboFry: the listing re-fetched for that ASIN describes a 12.8 lb unit with its own model code. The manufacturer page for the same family gives a different figure. Neither is wrong; they are different variants, which is exactly why a model number matters.</li>
+  <li><strong>The user guide.</strong> The manual that ships with the appliance states the cavity dimensions, and it states them for your exact model. We could not obtain the current guide for these units from an official source, so we cannot quote it here — but you can download it before you order.</li>
+  <li><strong>The comparison card.</strong> Take the bird you plan to cook — a whole chicken in its packaging — and measure it. Then measure the cavity opening. This takes two minutes and it is the only measurement that is definitely right.</li>
+</ul>
+
+<h2>Check the safety part, too</h2>
+<p>Whatever the cavity size, the USDA's guidance for cooking whole poultry is specific about checking and about stuffing:</p>
+<p>When cooking whole poultry, check the internal temperature in three places: the innermost part of the thigh, the innermost part of the wing and the thickest part of the breast. Avoid the bone. For optimum safety, do not stuff whole poultry; if stuffing whole poultry, the center of the stuffing must reach a safe minimum internal temperature of 165 degrees F.</p>
+<p>Three probes and a 165°F target at the thickest part of the breast, the innermost thigh and the innermost wing. A single reading in the breast does not clear a whole bird.</p>
+
+<h2>And the part that catches people out</h2>
+<p>An instant-read thermometer cannot stay in the food while it cooks. The USDA's guidance on thermometer care says plainly: do not leave your food thermometer in food while cooking unless the manufacturer's instructions specifically say it can withstand heat and has been designed for this purpose. That means a whole-chicken cook in an air fryer is a cook you tend — you open the drawer, you check, you close it — or a cook with a leave-in probe that is designed for the heat.</p>
+<p>Which is a second reason to check the probe's heat rating before you buy one: the CHEF iQ Sense is rated by its maker to 1,000°F, and its listing explicitly names air fryer among the appliances it works in.</p>
+
+<h2>What this means before you click</h2>
+<p>Three checks, in order:</p>
+<ol>
+  <li>Get the interior cavity dimensions for your exact model from the listing's detail section or the user guide.</li>
+  <li>Measure your bird against them, with clearance.</li>
+  <li>Decide who takes the temperature, and get the right kind of thermometer for that job.</li>
+</ol>
+<p>Do not skip to step three because step two looked obvious. "It fits" is exactly the assumption that turns a dinner into a food-safety problem.</p>
+`,
+    takeaways: [
+      "Cavity footprint and vertical clearance decide it — not quarts.",
+      "Interior dimensions are often unpublished; get them from the listing detail section or the user guide.",
+      "Measure the bird and the cavity opening yourself. Two minutes, and it is definitely right.",
+      "Whole poultry needs three temperature checks and a 165°F target — and an instant-read probe cannot stay in during the cook."
+    ],
+    sources: [
+      {
+        label: "USDA FSIS — where to place the food thermometer (whole poultry, three places; avoid bone)",
+        url: "https://www.fsis.usda.gov/food-safety/safe-food-handling-and-preparation/food-safety-basics/food-thermometers"
+      },
+      {
+        label: "chefman.com — dual-basket specification",
+        url: "https://chefman.com/products/turbofry-touch-dual-window-air-fryer"
+      },
+      {
+        label: "emerileveryday.com — French Door AirFryer 360 specification",
+        url: "https://www.emerileveryday.com/products/emeril_lagasse_french_door_airfryer_360"
+      }
+    ]
+  },
+  {
+    slug: "how-hot-should-chicken-be",
+    number: "09",
+    title: "How hot should chicken be? A temperature guide that does not depend on a timer",
+    dek: "The safe numbers, straight from the USDA chart, plus why colour is the worst thing you can judge chicken by.",
+    category: "thermometers",
+    cluster: "cooking",
+    readingTime: "6 min",
+    topics: ["food safety", "internal temperature", "rest time", "calibration"],
+    intro: `There is a table for this, it is published by the USDA, and it is short. The reason it is worth reading carefully is that the numbers are specific in ways most home cooks assume incorrectly — and because "it looks white" is not one of them.
+
+Here is the table, unchanged, with the guidance that goes with it.`,
+    body: `
+<h2>The safe minimum internal temperature chart</h2>
+<table class="data sortable">
+  <caption>Safe minimum internal temperatures, reproduced from the USDA Food Safety and Inspection Service. Measured with a food thermometer, before removing food from the heat source.</caption>
+  <thead><tr><th scope="col">Product</th><th scope="col">Minimum internal temperature and rest time</th></tr></thead>
+  <tbody>
+    <tr><td>Beef, Pork, Veal and Lamb Steaks, Chops and Roasts</td><td>145 degrees F (62.8 degrees C) and allow to rest for at least 3 minutes</td></tr>
+    <tr><td>Ground Meats</td><td>160 degrees F (71.1 degrees C)</td></tr>
+    <tr><td>Ground Poultry</td><td>165 degrees F</td></tr>
+    <tr><td>Ham, Fresh or Smoked (Uncooked)</td><td>145 degrees F (62.8 degrees C) and allow to rest for at least 3 minutes</td></tr>
+    <tr><td>Fully Cooked Ham (to Reheat)</td><td>Reheat cooked hams packaged in USDA-inspected plants to 140 degrees F (60 degrees C) and all others to 165 degrees F (73.9 degrees C).</td></tr>
+    <tr><td>All Poultry (Breasts, Whole Bird, Legs, Thighs, Wings, Ground Poultry, Giblets and Stuffing)</td><td>165 degrees F (73.9 degrees C)</td></tr>
+    <tr><td>Eggs</td><td>160 degrees F (71.1 degrees C)</td></tr>
+    <tr><td>Fish &amp; Shellfish</td><td>145 degrees F (62.8 degrees C)</td></tr>
+    <tr><td>Leftovers</td><td>165 degrees F (73.9 degrees C)</td></tr>
+    <tr><td>Casseroles</td><td>165 degrees F (73.9 degrees C)</td></tr>
+  </tbody>
+</table>
+<p class="small muted">Source: USDA Food Safety and Inspection Service, Safe Minimum Internal Temperature Chart. Reproduced here in full; check the source page for the current version before relying on it for a safety decision.</p>
+
+<h2>Three numbers people get wrong</h2>
+<p><strong>Chicken is 165°F. It is not 160, and it is not 170.</strong> Every part of poultry — breast, thigh, wing, ground, giblets, and stuffing — shares the same number. There is no lower threshold for white meat.</p>
+<p><strong>Whole steaks and roasts are 145°F, with a three-minute rest.</strong> The rest is part of the instruction, not a suggestion. It is also the number that gets rounded up to 160 out of habit, which is safe and unnecessary.</p>
+<p><strong>Ground meat is 160°F. Not 145.</strong> This is the one that catches people, because a steak and a patty come from the same animal. The reason is mechanical: grinding spreads surface bacteria through the interior. A whole steak only ever has bacteria on the outside.</p>
+
+<h2>Why colour is not evidence</h2>
+<p>The USDA is unambiguous: colour is not a reliable indicator that food is safe, and most pathogens are destroyed between 140°F and 165°F. A hamburger cooked to 160°F, as measured with a food thermometer, is safe regardless of colour. Some ground beef turns brown on the outside before it reaches a safe internal temperature — the browning is a surface reaction, not a thermometer.</p>
+<p>The flip side is worth knowing too, because "use a thermometer" is often read as "cook everything to the minimum". Doneness and safety are different things. The USDA says it directly: consumers may cook food to higher internal temperatures to achieve a particular doneness, and a thermometer helps you hit that without overshooting. A chicken breast pulled at a higher temperature is not safer — it is just drier.</p>
+
+<h2>Is your thermometer telling the truth?</h2>
+<p>Before trusting a reading, check the thermometer itself. The USDA documents a test that takes two minutes and needs nothing but a glass of ice:</p>
+<p>Fill a large glass with ice cubes. Add drinking water and stir well. Immerse the food thermometer stem a minimum of 2 inches into the mixture, touching neither the sides nor the bottom of the glass. Wait a minimum of 30 seconds and check the reading without removing the stem from the water. It should read 32 degrees F.</p>
+<p>If it does not, the thermometer is out by more than the manufacturer claims, and every reading it gives you is wrong by that much. This matters more than it sounds: the ThermoMaven in this set is stated by its maker as accurate to ±0.5°F, and the CHEF iQ Sense is stated as accurate within 1°F across four internal sensors. Those are claims, not verified facts, and an ice bath is how you turn a claim into a fact about the device in your hand.</p>
+
+<h2>What this means for an air fryer</h2>
+<p>An air fryer cooks hot and fast, and fast cooking is where timing goes wrong. A drawer unit at 400°F can take a chicken thigh from raw to overcooked in a window you would have to time accurately. With a thermometer, you stop timing and start checking — and because an instant-read probe cannot stay in the food during the cook, the pattern is: check at an estimated time, adjust, check again.</p>
+<p>The alternative is a leave-in probe designed for the heat, which reports the temperature while the lid stays shut. The CHEF iQ Sense is stated by its maker as heat resistant to 1,000°F and is named on the listing as working in an air fryer.</p>
+
+<h2>The one rule to remember</h2>
+<p>Temperature, not time, and not colour. Everything else on this page is detail. The chart is short on purpose — print it, or bookmark the source, and stop guessing.</p>
+`,
+    takeaways: [
+      "All poultry, including breast and ground: 165°F. Whole steaks and roasts: 145°F plus a three-minute rest. Ground meat: 160°F.",
+      "Colour is not a safety indicator — surface browning happens before the interior is safe.",
+      "Test the thermometer in an ice bath: it should read 32°F. That converts a manufacturer's claim into a fact about your device.",
+      "Pull at a higher temperature for doneness, not for safety. Overcooking is a choice, not a safety requirement."
+    ],
+    sources: [
+      {
+        label: "USDA FSIS — Safe Minimum Internal Temperature Chart",
+        url: "https://www.fsis.usda.gov/food-safety/safe-food-handling-and-preparation/food-safety-basics/safe-temperature-chart"
+      },
+      {
+        label: "USDA FSIS — Food Thermometers (colour, placement, calibration)",
+        url: "https://www.fsis.usda.gov/food-safety/safe-food-handling-and-preparation/food-safety-basics/food-thermometers"
+      },
+      {
+        label: "thermomaven.com — F1 Stealth (±0.5°F stated, NIST certified)",
+        url: "https://www.thermomaven.com/products/f1-stealth"
+      },
+      {
+        label: "chefiq.com — iQ Sense (4 internal sensors stated accurate within 1°F)",
+        url: "https://chefiq.com/products/iq-sense"
+      }
+    ]
+  },
+  {
+    slug: "dishwasher-safe-air-fryer-baskets",
+    number: "10",
+    title: "Dishwasher-safe baskets: what the label means before you buy",
+    dek: "The label is about the basket. It says nothing about the coating, the electronics, or the second basket.",
+    category: "air-fryers",
+    cluster: "keeping",
+    readingTime: "5 min",
+    topics: ["cleanup", "care", "coating", "dishwasher"],
+    intro: `Two of the three air fryers in this set have their baskets listed as nonstick and dishwasher-safe. That is the single most consequential line on the box for whether you will still be using the appliance in a year, and it is also the line most often read too broadly.
+
+"Dishwasher-safe" describes a material property of a removable part. It does not describe the appliance, and it does not describe the coating.`,
+    body: `
+<h2>What the claim actually covers</h2>
+<p>Both Chefman units in this set list their baskets as nonstick and dishwasher-safe. On the maker's own product page for the dual-basket model, the features list reads "Nonstick, dishwasher-safe baskets" and "Dual viewing windows", and the specifications confirm the 13.3 lb weight, 1700W/120V power and the one-year assurance. The listing for the 8-quart TurboFry carries the same wording: "XL Nonstick Dishwasher-Safe Basket".</p>
+<p>That is a claim about the baskets. Two things it does not cover, and which are the actual failure points:</p>
+<ul>
+  <li><strong>The rest of the appliance.</strong> The heating element, the fan housing, the control panel, the door seal and the electronics are not going in a dishwasher. You take the basket out; the machine stays on the counter.</li>
+  <li><strong>The coating's long-term behaviour.</strong> We could not confirm a published care instruction for either model from an official source, so we will not tell you what the manufacturer recommends about dishwasher cycles and nonstick coatings. We will tell you that the care instructions are checkable: the user guide for your exact model states them, and the listing's care section is where the manufacturer puts them.</li>
+</ul>
+
+<h2>The distinction that matters most</h2>
+<p>Our register marks "Basket care: Nonstick, listed dishwasher-safe" as a <em>claim</em> rather than a verified specification, for one reason: it is the seller's or maker's statement about how the part behaves, and it is not independently checkable without ruining the part.</p>
+<p>That is a meaningful category, not a legal dodge. Plenty of honest manufacturers state the dishwasher is fine for a basket. The point is that a reader deserves to know which kind of statement they are relying on, and for what.</p>
+
+<h2>What actually decides the washing-up</h2>
+<p>Washing is not one job, it is three, and they have different answers:</p>
+<ul>
+  <li><strong>The basket.</strong> Dishwasher-safe by the listing. If you prefer, washing by hand takes thirty seconds and is the gentler option for a coating.</li>
+  <li><strong>The crumb tray and the back of the cavity.</strong> Never mentioned in the dishwasher claim. Wipe them, or brush them out, after every use. This is the step that separates a clean appliance from one that starts to smell, and it is the step that gets skipped.</li>
+  <li><strong>The window and the door seal.</strong> On the dual-basket unit, the maker's feature list calls out dual viewing windows and an interior light. Glass and seals want a soft cloth, not a cycle.</li>
+</ul>
+
+<h2>Thermometers have their own care rule</h2>
+<p>The USDA's guidance on thermometer care is worth reading as a general rule for anything that goes in food:</p>
+<p>As with any cooking utensil, food thermometers should be washed with hot, soapy water or according to the manufacturer's instructions. Most thermometers should not be immersed in water. Wash carefully by hand.</p>
+<p>And a line that decides a real purchase:</p>
+<p>Do not leave your food thermometer in food while cooking unless the manufacturer's instructions specifically say it can withstand heat and has been designed for this purpose.</p>
+<p>So: the ThermoMaven, whose maker describes a 100% waterproof design and an auto-rotating LED screen, is a hand-washed, pull-out-and-check tool. The CHEF iQ Sense, whose maker states a 1,000°F heat rating, is the one designed to stay in the food. Those are different tools, and the care instruction tells you which one you bought.</p>
+
+<h2>The question to ask before you buy</h2>
+<p>Not "is it dishwasher-safe" — that is answered on the box, for the basket, and it is what you want it to say. The useful question is: <strong>how many parts come out of this appliance, and how many of them am I willing to wash by hand every week?</strong></p>
+<p>A two-drawer unit has two baskets to remove. An oven-style unit has a door, a rack, a drip tray, a crumb tray and a back wall. The number of parts is the number of reasons the appliance ends up unused, and it is the one that the dishwasher label does not tell you.</p>
+`,
+    takeaways: [
+      "\"Dishwasher-safe\" is a statement about the removable basket, not about the appliance or its coating.",
+      "The crumb tray and the back of the cavity are never dishwasher-safe and never get washed if you skip them.",
+      "Care instructions are checkable in the user guide and the listing's care section — we could not confirm them from an official source for these models, so we left them out.",
+      "Instant-read probes are hand-washed and pulled out; leave-in probes are the ones designed to stay in the food."
+    ],
+    sources: [
+      {
+        label: "chefman.com — \"Nonstick, dishwasher-safe baskets\" and specification",
+        url: "https://chefman.com/products/turbofry-touch-dual-window-air-fryer"
+      },
+      {
+        label: "Chefman 8 qt TurboFry listing — \"XL Nonstick Dishwasher-Safe Basket\"",
+        url: "https://www.amazon.com/dp/B08DKYBTPH"
+      },
+      {
+        label: "USDA FSIS — Food Thermometer Care",
+        url: "https://www.fsis.usda.gov/food-safety/safe-food-handling-and-preparation/food-safety-basics/food-thermometers"
+      }
+    ]
+  },
+  {
+    slug: "wireless-thermometer-for-smoking",
+    number: "11",
+    title: "A wireless thermometer for a long cook: what changes, and what it costs you",
+    dek: "Leave-in monitoring is a different product category, not a better version of the same one. Here is the trade in full.",
+    category: "thermometers",
+    cluster: "cooking",
+    readingTime: "6 min",
+    topics: ["wireless", "monitoring", "app", "long cook"],
+    intro: `A wireless probe changes one thing about cooking: you stop standing in the kitchen. That is a large change, and it is not free.
+
+This guide is about the whole trade, not the feature list — because the feature list is the easy part and the trade is where people are disappointed.`,
+    body: `
+<h2>What you are actually buying</h2>
+<p>The CHEF iQ Sense is not a thermometer with a screen. It is a small system: probes, a hub, an app, and a phone. The maker's own description is that real-time temperature updates, estimated cook times, flip reminders and rest timers go straight to your phone, and that unlimited wireless range comes through the CHEF iQ Smart Hub rather than directly from the probe. The probes are rated by the maker to 1,000°F and list air fryer among the appliances they work in, alongside oven, stovetop, gas and charcoal grills, smoker, deep fryer and sous vide.</p>
+<p>Read that as a set of commitments, not a list of features. Each one is a thing that has to keep working for the system to be worth anything.</p>
+
+<h2>What gets better</h2>
+<ul>
+  <li><strong>Long cooks stop being a babysitting job.</strong> A four-hour brisket or a whole chicken does not need you standing there. You get an alert instead of a doorway.</li>
+  <li><strong>You stop cutting to check.</strong> Every time you open an oven or pull a drawer to check the temperature, you lose heat and add time. A leave-in probe means the door stays shut.</li>
+  <li><strong>Multiple probes, one feed.</strong> The maker states three ultra-thin probes in this listing, with four internal sensors and one ambient sensor on the unit. Several things can be measured at once — a breast and a thigh, or two cuts at different temperatures.</li>
+  <li><strong>The ambient sensor is the underrated one.</strong> It tracks the cooking environment rather than the food. On a grill or in a smoker, that is the difference between knowing your meat is at temperature and knowing your fire is right.</li>
+</ul>
+
+<h2>What gets worse</h2>
+<ul>
+  <li><strong>You now have a device, an app, a hub and a phone in the loop.</strong> Any of them can be the weak link. A probe with a screen needs a battery; a probe with an app needs software support, a network and a manufacturer willing to keep the service running.</li>
+  <li><strong>The support horizon is invisible and unbounded.</strong> Nothing published on the product page states how long the app will be maintained. We did not find an official statement, so we have not made one up. If the app stops being updated, the feature you paid for quietly stops existing.</li>
+  <li><strong>Charging becomes part of the cooking.</strong> The maker states multiple days of probe battery life per charge, which is a real number for a long cook — but it is still a device you have to remember to charge.</li>
+  <li><strong>It is overkill for most weeknight cooking.</strong> A 12-minute chicken breast does not need remote monitoring. This is the honest test of whether the wireless features are decoration for you.</li>
+</ul>
+
+<h2>Is it accurate?</h2>
+<p>The maker states four internal sensors for accuracy within 1°F. That is a claim, and it is marked as one in our register, not as a verified specification — we cannot independently confirm it, and no certificate is published that we could check.</p>
+<p>What you can do is check the device in your hand, which is the test that turns any accuracy claim into a fact about your unit. The USDA documents the method: an ice-water bath should read 32°F after thirty seconds. A device that reads 32°F in the ice bath is telling you something real about its calibration.</p>
+
+<h2>The heat question, which is not obvious</h2>
+<p>Cooking in an air fryer is hot. The published safe minimum internal temperature chart tops out at 165°F for poultry, and the FDA's own advice on thermometers is that most should not be immersed in water and that a thermometer should not be left in food during cooking unless it is designed for it.</p>
+<p>So for an air fryer cook specifically: an instant-read probe is a tool you use between cooks, and a leave-in probe rated for the heat is the tool that can stay in. The CHEF iQ Sense's stated 1,000°F rating and its listing, which names air fryer among the supported appliances, are the reason to look at it for that job at all.</p>
+
+<h2>Who should buy one, and who should not</h2>
+<p><strong>Buy one if</strong> you cook things that take more than an hour unattended — a whole bird, a brisket, a rack of ribs, a smoker session — or you want to start something and leave the house.</p>
+<p><strong>Do not buy one if</strong> your cooking is weeknight portions, if you do not want an account and an app, or if you would rather not think about charging a probe. An instant-read thermometer is a better tool for that, and the one-second ThermoMaven in this set is stated by its maker as reading in a second with a ±0.5°F tolerance, with a magnet for putting it back on the fridge.</p>
+
+<h2>The question to ask the manufacturer</h2>
+<p>If you are buying into a connected kitchen device, ask one thing before you pay: <strong>how long will the app be supported, and does the probe still report temperature without it?</strong></p>
+<p>It is a legitimate question, and if the answer is not on the product page, that absence is information.</p>
+`,
+    takeaways: [
+      "Wireless monitoring is a different product category, not an upgrade to an instant-read — it adds a hub, an app, a phone and a charging habit.",
+      "The value is long unattended cooks. For a 12-minute portion it is decoration.",
+      "The maker states four internal sensors accurate within 1°F; treat it as a claim and check it in an ice bath.",
+      "Ask how long the app will be supported before you pay for the connected features."
+    ],
+    sources: [
+      {
+        label: "chefiq.com — iQ Sense (hub, sensors, 1,000°F rating, supported appliances)",
+        url: "https://chefiq.com/products/iq-sense"
+      },
+      {
+        label: "CHEF iQ Sense listing — 3 ultra-thin probes, air fryer named among supported uses",
+        url: "https://www.amazon.com/dp/B0DZFD6R9Z"
+      },
+      {
+        label: "thermomaven.com — F1 Stealth (one-second read, ±0.5°F, magnetic, 100% waterproof design)",
+        url: "https://www.thermomaven.com/products/f1-stealth"
+      },
+      {
+        label: "USDA FSIS — Food Thermometer Care",
+        url: "https://www.fsis.usda.gov/food-safety/safe-food-handling-and-preparation/food-safety-basics/food-thermometers"
+      }
+    ]
+  },
+  {
+    slug: "where-to-probe-a-chicken",
+    number: "12",
+    title: "Where to probe a chicken — and why the wrong spot gives you a wrong answer",
+    dek: "A reading is only as good as the place it came from. Six placement rules, and the one that catches everybody.",
+    category: "thermometers",
+    cluster: "cooking",
+    readingTime: "5 min",
+    topics: ["probe placement", "chicken", "air fryer", "technique"],
+    intro: `A thermometer reading is a fact about one small place in the food. Put it in the wrong place and you will get a confident, precise, meaningless number — and the number will be the kind you trust, because it is exact.
+
+The rules for where to put it are published by the USDA, and they are shorter than people expect.`,
+    body: `
+<h2>Rule one: the thickest part, away from bone</h2>
+<p>The USDA's placement guidance for meat is that the food thermometer should be placed in the thickest part of the food, away from bone, fat or gristle. Bone conducts heat faster than flesh, so a probe touching bone reads high and can convince you the meat is done when the part near it is not. Fat reads differently again. Gristle is not meat.</p>
+
+<h2>Rule two: whole poultry, three places</h2>
+<p>When cooking whole poultry, check the internal temperature in three places: the innermost part of the thigh, the innermost part of the wing and the thickest part of the breast. Avoid the bone.</p>
+<p>Three, not one. The breast is the fastest-cooking part and the thigh is the slowest, so a bird can read done in the breast and still be raw at the hip. A single breast reading on a whole chicken is not a safety check — it is a data point.</p>
+<p>And on stuffing: for optimum safety, do not stuff whole poultry. If you stuff whole poultry, the center of the stuffing must reach a safe minimum internal temperature of 165 degrees F.</p>
+
+<h2>Rule three: thin food goes in from the side</h2>
+<p>For thinner pieces of poultry, insert the food thermometer through the side. Make sure the food thermometer reaches the center.</p>
+<p>The USDA spells out why: when measuring the temperature of a thin food, such as a hamburger patty, sausage, pork chop or thin chicken breast, the probe must be inserted in the side of the food so the entire sensing area reaches the center. Most instant-read probes have a sensing area of roughly two to three inches — push it in from the top of a thin breast and you are reading the temperature somewhere between the meat and the plate.</p>
+
+<h2>Rule four: check every piece</h2>
+<p>Always check each piece of food to ensure they have reached the safe internal temperature. Size, quantity and distribution of food when cooking causes the pieces of food to reach a safe internal temperature at different times.</p>
+<p>This is the rule that matters most in an air fryer. Hot air cooks unevenly, and a basket of twelve wings at 400°F does not finish twelve wings at once. The pieces nearest the fan and the edges brown first. If you only check one, you check the luckiest one.</p>
+
+<h2>Rule five: do not leave the probe in during the cook</h2>
+<p>Do not leave your food thermometer in food while cooking unless the manufacturer's instructions specifically say it can withstand heat and has been designed for this purpose.</p>
+<p>That single sentence separates the two products on this site. An instant-read probe is a tool for <em>between</em> cooks: pull the drawer, take the reading, put it back. A leave-in probe rated for the heat is a tool for <em>during</em> the cook, and it has to say so on the box.</p>
+<p>There is a practical consequence worth knowing: if you leave an instant-read probe sitting in a 400°F basket, the reading on the way out reflects a heat-soaked stem rather than the meat. Take the reading quickly, and take it out of the heat.</p>
+
+<h2>Rule six: clean it, and it is not a dishwasher item</h2>
+<p>As with any cooking utensil, food thermometers should be washed with hot, soapy water or according to the manufacturer's instructions. Most thermometers should not be immersed in water. Wash carefully by hand.</p>
+<p>Now here is the useful part. The Amazon listing for the ThermoMaven states IP67. The maker's product page says "100% waterproof" and publishes no IP number. And the maker's own user manual, read cover to cover, publishes no IP rating either — it simply says to clean the instrument with an alcohol or food-safe antibacterial wipe, and warns against leaving it in the oven, microwave or dishwasher. So the strongest thing anyone can say is that the maker claims waterproof, and only the retailer says IP67. We are not going to turn that into an IP rating the manufacturer has not published.</p>
+<p>Either way, hand-washing is the instruction the USDA gives for most thermometers, and the probe is a food-contact surface that gets wiped and slid across raw meat.</p>
+
+<h2>And one more, about the reading itself</h2>
+<p>Color is not a reliable indicator that food is safe. You can take the probe out of the chicken, and the chicken is not automatically done — a reading below the safe minimum is a reading below the safe minimum, whatever the colour says. The USDA's chart is the reference: 165°F for all poultry, 145°F with a three-minute rest for whole steaks and roasts, 160°F for ground meat.</p>
+
+<h2>The whole procedure, in order</h2>
+<ol>
+  <li>Estimate a time from the appliance's own guidance. Treat it as a starting point, not an answer.</li>
+  <li>Pull the drawer. Take the reading in the thickest part, away from bone. Insert from the side for thin pieces.</li>
+  <li>If you are cooking a whole bird, check thigh, wing and breast. Three readings, not one.</li>
+  <li>If every piece is at 165°F for poultry, it is done. If not, back in for another few minutes and check again.</li>
+  <li>Rest it. For steaks and roasts the USDA asks for three minutes before carving.</li>
+  <li>Wash the probe by hand. Put it back on the fridge.</li>
+</ol>
+<p>That is the whole method. It is not a technique that needs a gadget, and the gadget only decides how convenient step two is.</p>
+`,
+    takeaways: [
+      "Thickest part, away from bone, fat and gristle — bone reads high and can lie to you.",
+      "Whole poultry means three readings: innermost thigh, innermost wing, thickest breast.",
+      "Thin pieces go in from the side so the whole sensing area reaches the centre.",
+      "An instant-read probe stays out of the food during the cook; a leave-in probe has to say on the box that it can stay in."
+    ],
+    sources: [
+      {
+        label: "USDA FSIS — Food Thermometers (placement, whole poultry, care, calibration)",
+        url: "https://www.fsis.usda.gov/food-safety/safe-food-handling-and-preparation/food-safety-basics/food-thermometers"
+      },
+      {
+        label: "USDA FSIS — Safe Minimum Internal Temperature Chart",
+        url: "https://www.fsis.usda.gov/food-safety/safe-food-handling-and-preparation/food-safety-basics/safe-temperature-chart"
+      },
+      {
+        label: "ThermoMaven listing — IP67 waterproof, auto-rotate LED screen",
+        url: "https://www.amazon.com/dp/B0DHZTCNR5"
+      },
+      {
+        label: "thermomaven.com — F1 Stealth (100% waterproof design)",
+        url: "https://www.thermomaven.com/products/f1-stealth"
+      },
+      {
+        label: "ThermoMaven F1 Stealth user manual (HT07) — cleaning, calibration, no IP rating published",
+        url: "https://cdn.shopify.com/s/files/1/0828/4726/9152/files/HT07_user_manual.pdf?v=1733992221"
+      }
     ]
   }
 ];

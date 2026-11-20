@@ -122,11 +122,32 @@ a:hover { color: var(--accent-deep); }
   color: var(--ink-soft); text-decoration: none; font-weight: 500;
   padding-block: .4rem; border-bottom: 2px solid transparent;
   transition: color .15s, border-color .15s;
+  white-space: nowrap;
 }
 .nav a:hover { color: var(--accent); border-bottom-color: var(--accent); }
 .nav a[aria-current="page"] { color: var(--ink); border-bottom-color: var(--clay); }
 .nav__hide-sm { display: none; }
 @media (min-width: 760px) { .nav__hide-sm { display: inline-block; } }
+
+/* On a narrow screen the six destinations do not fit beside the wordmark.
+   Rather than hide any of them, the row moves under the brand and scrolls
+   sideways, so every destination stays one tap away. */
+@media (max-width: 780px) {
+  .masthead__inner { flex-wrap: wrap; gap: .55rem 1rem; }
+  .brand { flex: 1 1 auto; min-width: 0; }
+  .searchbtn { order: 2; }
+  .nav {
+    order: 3;
+    width: 100%;
+    gap: 1.15rem;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: .15rem;
+  }
+  .nav::-webkit-scrollbar { display: none; }
+  .nav a { flex: none; font-size: .76rem; padding-block: .3rem; }
+}
 
 /* ------------------------------------------------------------
    DISCLOSURE — above the fold, every page (OA §5 + FTC 101)
@@ -359,6 +380,14 @@ a:hover { color: var(--accent-deep); }
    PROSE
    ------------------------------------------------------------ */
 .prose { font-size: 1.06rem; line-height: 1.72; color: var(--ink-soft); }
+
+/* Long unbroken strings — an ASIN, a meta tag, a URL — must break rather
+   than push the page sideways on a narrow screen. */
+.prose, .note, .article-head__dek, .section__dek, td, th, li, p {
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+code { overflow-wrap: anywhere; }
 .prose > * + * { margin-top: 1.15em; }
 .prose h2 {
   font-family: var(--serif); color: var(--ink); font-weight: 600;
@@ -510,7 +539,10 @@ table.data a { word-break: break-word; }
 /* Two-column article layout */
 .layout {
   display: grid; gap: clamp(1.75rem, 4vw, 3.25rem);
-  grid-template-columns: 1fr;
+  /* minmax(0, …) rather than 1fr: a grid track sized "auto" refuses to
+     shrink below its widest content, which let wide tables push the whole
+     page sideways on a phone. */
+  grid-template-columns: minmax(0, 1fr);
   padding-block: clamp(1.75rem, 3vw, 2.5rem);
 }
 @media (min-width: 940px) {
@@ -658,3 +690,369 @@ table.data.sortable th .sort-btn:hover { text-decoration: underline; }
 table.data.sortable th .sort-btn:focus-visible { outline: 2px solid currentColor; outline-offset: 2px; }
 table.data.sortable th[aria-sort="ascending"] .sort-btn::after { content: " \25B2"; font-size: .7em; }
 table.data.sortable th[aria-sort="descending"] .sort-btn::after { content: " \25BC"; font-size: .7em; }
+
+/* ------------------------------------------------------------
+   PUBLICATION LAYER — added in this pass
+   Original schematics, the decision entry point, clusters,
+   the seasonal layer and guide-to-guide navigation.
+   ------------------------------------------------------------ */
+
+/* Original illustrations. Always fluid, never a fixed height. */
+svg.cover,
+svg.scene {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.scene-frame {
+  margin: clamp(1.5rem, 3vw, 2.5rem) 0 0;
+  border: 1px solid var(--rule);
+  background: var(--paper-card);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+}
+.scene-frame__cap {
+  font-size: .72rem;
+  color: var(--ink-faint);
+  padding: .55rem .9rem .65rem;
+  border-top: 1px solid var(--rule-soft);
+  background: var(--paper-deep);
+  margin: 0;
+}
+
+.article-art {
+  margin: 1.75rem 0 0;
+  max-width: 34rem;
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: var(--paper-card);
+}
+.article-art--left {
+  float: right;
+  max-width: 18rem;
+  margin: 0 0 1.25rem 1.5rem;
+}
+@media (max-width: 760px) {
+  .article-art--left { float: none; max-width: 100%; margin: 1.5rem 0; }
+}
+.article-art .scene-frame__cap { border-top: 1px solid var(--rule-soft); }
+
+/* Clusters ------------------------------------------------------------ */
+.cluster {
+  margin-top: clamp(1.75rem, 3vw, 2.75rem);
+  padding-top: clamp(1.25rem, 2vw, 1.75rem);
+  border-top: 1px solid var(--rule);
+}
+.cluster:first-of-type { border-top: 0; padding-top: 0; }
+.cluster__head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1.5rem;
+  margin-bottom: .9rem;
+}
+.cluster__name {
+  font-family: var(--serif);
+  font-size: 1.22rem;
+  font-weight: 600;
+  letter-spacing: -.01em;
+  margin: 0 0 .25rem;
+}
+.cluster__blurb {
+  color: var(--ink-mute);
+  font-size: .9rem;
+  margin: 0;
+  max-width: 40rem;
+}
+.cluster__art {
+  flex: none;
+  width: 168px;
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: var(--paper-card);
+}
+@media (max-width: 640px) {
+  .cluster__head { flex-direction: column-reverse; gap: 1rem; }
+  .cluster__art { width: 100%; max-width: 240px; }
+}
+
+/* Chips — small, quiet links used across the decision surfaces */
+.chip {
+  display: inline-block;
+  font-size: .78rem;
+  line-height: 1.35;
+  padding: .3rem .6rem;
+  border: 1px solid var(--rule);
+  border-radius: 2px;
+  background: var(--paper-card);
+  color: var(--ink-soft);
+  text-decoration: none;
+  margin: 0 .35rem .4rem 0;
+}
+.chip:hover { border-color: var(--accent); color: var(--accent); }
+.chip--buy {
+  border-color: #c2d8dd;
+  background: var(--accent-wash);
+  color: var(--accent-deep);
+  font-weight: 600;
+}
+.chip--buy:hover { background: var(--accent); color: #fff; border-color: var(--accent); }
+
+/* Start here ---------------------------------------------------------- */
+.situation-grid {
+  display: grid;
+  gap: 1px;
+  background: var(--rule);
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+@media (min-width: 720px) { .situation-grid { grid-template-columns: 1fr 1fr; } }
+@media (min-width: 1080px) { .situation-grid { grid-template-columns: repeat(3, 1fr); } }
+.situation {
+  background: var(--paper-card);
+  padding: 1.35rem 1.4rem 1.25rem;
+  display: flex;
+  flex-direction: column;
+}
+.situation__q {
+  font-family: var(--serif);
+  font-size: 1.06rem;
+  font-weight: 600;
+  line-height: 1.3;
+  margin: 0 0 .55rem;
+  color: var(--ink);
+}
+.situation__q::before {
+  content: "";
+  display: block;
+  width: 26px;
+  height: 2px;
+  background: var(--clay);
+  margin-bottom: .7rem;
+}
+.situation__a {
+  font-size: .92rem;
+  color: var(--ink-soft);
+  margin: 0 0 1rem;
+  flex: 1;
+}
+.situation__links { margin-bottom: -.4rem; }
+
+/* Seasons ------------------------------------------------------------- */
+.season-list { border-top: 1px solid var(--rule); }
+.season {
+  display: grid;
+  gap: 1rem;
+  padding: clamp(1.25rem, 2.5vw, 1.9rem) 0;
+  border-bottom: 1px solid var(--rule);
+}
+@media (min-width: 800px) {
+  .season { grid-template-columns: 14rem 1fr; gap: 2.5rem; }
+}
+.season__name {
+  font-family: var(--serif);
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin: 0 0 .15rem;
+  color: var(--ink);
+}
+.season__label {
+  font-size: .68rem;
+  letter-spacing: .13em;
+  text-transform: uppercase;
+  color: var(--clay);
+  margin: 0;
+  font-weight: 600;
+}
+.season__body p {
+  margin: 0 0 1rem;
+  color: var(--ink-soft);
+  font-size: .98rem;
+  max-width: 44rem;
+}
+
+/* Guide sources ------------------------------------------------------- */
+.src-list {
+  list-style: none;
+  padding: 0;
+  margin: .2rem 0 0;
+  border-left: 2px solid var(--rule);
+  padding-left: .9rem;
+}
+.src-list li { margin: 0 0 .5rem; font-size: .88rem; }
+.src-list li:last-child { margin-bottom: 0; }
+
+/* Guide pager --------------------------------------------------------- */
+.guide-pager {
+  display: grid;
+  gap: 1rem;
+  margin: 2.5rem 0 1.5rem;
+  border-top: 1px solid var(--rule);
+  padding-top: 1.25rem;
+}
+@media (min-width: 700px) { .guide-pager { grid-template-columns: 1fr 1fr; } }
+.guide-pager__link {
+  display: block;
+  text-decoration: none;
+  padding: .9rem 1rem;
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+  background: var(--paper-card);
+}
+.guide-pager__link:hover { border-color: var(--accent); background: var(--accent-wash); }
+.guide-pager__link--next { text-align: right; }
+.guide-pager__link--empty { border: 0; background: none; }
+.guide-pager__dir {
+  display: block;
+  font-size: .68rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  margin-bottom: .3rem;
+}
+.guide-pager__title {
+  display: block;
+  font-family: var(--serif);
+  font-size: .98rem;
+  color: var(--ink);
+  line-height: 1.35;
+}
+.guide-pager__link:hover .guide-pager__title { color: var(--accent-deep); }
+
+/* Multi-source spec rows */
+.pill + .faint { font-size: .7rem; }
+
+/* ============================================================
+   SITE SEARCH
+   A search box in the masthead that opens an overlay. The
+   index is fetched from this same site and matched locally;
+   nothing is sent anywhere.
+   ============================================================ */
+
+.searchbtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.34rem 0.7rem;
+  background: transparent;
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+  color: var(--ink);
+  font: inherit;
+  font-size: 0.78rem;
+  cursor: pointer;
+  line-height: 1;
+}
+.searchbtn:hover,
+.searchbtn:focus-visible {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+.searchbtn svg { display: block; }
+
+.searchbox {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  background: rgba(8, 26, 32, 0.55);
+  display: flex;
+  justify-content: center;
+  padding: 1.5rem 1rem;
+  overflow-y: auto;
+}
+.searchbox[hidden] { display: none; }
+
+.searchbox__panel {
+  width: 100%;
+  max-width: 40rem;
+  align-self: flex-start;
+  margin-top: 8vh;
+  background: var(--paper);
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  box-shadow: 0 18px 48px rgba(0, 0, 0, 0.28);
+  padding: 1.1rem 1.2rem 1.3rem;
+}
+
+.searchbox__row {
+  display: flex;
+  gap: 0.6rem;
+  align-items: center;
+}
+.searchbox__input {
+  flex: 1;
+  min-width: 0;
+  font: inherit;
+  font-size: 1.02rem;
+  padding: 0.6rem 0.75rem;
+  border: 1px solid var(--rule);
+  border-radius: 3px;
+  background: #fff;
+  color: var(--ink);
+}
+.searchbox__input:focus {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+}
+.searchbox__close {
+  font: inherit;
+  font-size: 0.74rem;
+  padding: 0.4rem 0.55rem;
+  background: transparent;
+  border: 1px solid var(--rule);
+  border-radius: 3px;
+  color: var(--ink-soft);
+  cursor: pointer;
+}
+.searchbox__close:hover { border-color: var(--accent); color: var(--accent); }
+
+.searchbox__hint {
+  margin: 0.6rem 0 0.9rem;
+  font-size: 0.76rem;
+  color: var(--ink-soft);
+}
+
+.searchbox__results {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid var(--rule);
+}
+.searchbox__results li { border-bottom: 1px solid var(--rule); }
+.searchbox__results a {
+  display: block;
+  padding: 0.65rem 0.2rem;
+  text-decoration: none;
+  color: var(--ink);
+}
+.searchbox__results a:hover,
+.searchbox__results a:focus-visible {
+  background: var(--wash);
+}
+.searchbox__title {
+  display: block;
+  font-weight: 600;
+  font-size: 0.94rem;
+}
+.searchbox__desc {
+  display: block;
+  font-size: 0.8rem;
+  color: var(--ink-soft);
+  margin-top: 0.15rem;
+}
+.searchbox__empty {
+  margin: 1rem 0 0;
+  font-size: 0.84rem;
+  color: var(--ink-soft);
+}
+.searchbox__empty[hidden] { display: none; }
+
+@media (max-width: 720px) {
+  .searchbtn__label { display: none; }
+  .searchbtn { padding: 0.34rem 0.45rem; }
+}
