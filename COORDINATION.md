@@ -137,3 +137,74 @@ No merge conflicts recorded. `git pull --rebase` was run before every push.
    to fold verified listing data into the register. Nothing else unblocks monetization.
 4. Do not delete rows from `data/flags.json` — flip `status` to `resolved` and add the source that
    proved it.
+
+---
+
+## 8. Completion record — session `arena-4b28af50`
+
+Built on branch `arena/4b28af50-wina` from `df3e953`. No other session claimed anything while this
+work ran (the board was created by this session from an empty repo), so there were no conflicts to
+resolve and no handoffs.
+
+### What was produced
+
+| Area | Artefacts |
+| --- | --- |
+| Site | `docs/` — 39 public pages + `404.html`, `sitemap.xml` (34 URLs), `feed.xml` (6 items), `robots.txt`, `humans.txt`, `search.json`, `.nojekyll`, `assets/{styles.css,app.js,favicon.svg,img/*.jpg}` |
+| Reader content | 6 guides in `site/content/guides/`, 4 sections, 6 seasonal clusters, the shelf, 2 calculators, printable comparison sheets, in-browser search |
+| Registers | `data/sources.json` (20), `data/products.json` (5), `data/product-intent.json` (5), `data/flags.json` (16), `data/suggestions.json` (40 + 3 paths), `data/questions.json` (14), `data/campaign-ledger.json` (0 rows), `data/events.json` (5), `data/categories.json`, `data/seasons.json`, `data/forms.json` |
+| Machinery | `tools/{validate-data,validate-links,compliance-gate,publish-gate,collect,next-topics,analytics-server}.mjs`, `.github/workflows/ci.yml` |
+| Docs | `README.md`, `ARCHITECTURE.md`, `EXECUTIVE_SUMMARY.md`, this board |
+
+### Verification performed (what was actually read, not assumed)
+
+- **Operating Agreement** — fetched and read the live page; §1 (Special Links), §3 (customer
+  contacts), §4 (warranties), §5 (the exact disclosure sentence + no-embellishment), §6 (breach)
+  quoted from the page body, page self-dated “Updated: October 15, 2025”.
+- **Program Policies §2(a)/(b)** — tag as a URL parameter, links accessed directly from the Site,
+  no bookmark prompting, no per-user sub-tags. Marked `official-domain excerpt` in the register
+  because the help hub is gated; that limitation is recorded in the row, not hidden.
+- **ASIN definition** — fetched `sell.amazon.com/blog/what-is-an-asin`: “10-character alphanumeric
+  code”, “starts with B0”, “the ASIN appears after /dp/”. This is what the five supplied
+  identifiers were measured against; all five are 9 characters (arithmetic, not judgement).
+- **Associates Help: application review process** — fetched; the ≥3 qualifying sales in 180 days,
+  personal orders excluded, ~10 posts, content within ~60 days, “You must own your website”.
+- **PA-API registration** — final acceptance required; primary account owner only; max two key
+  pairs. Hence: no API call was attempted, and the collector reads a file instead.
+- **FTC Endorsement Guides** — fetched; the significant-minority material-connection test, the
+  honest-opinion principle, the exceptional-results principle, and the 2023 “clearly and
+  conspicuously” definition.
+- **USDA FSIS temperature chart** — fetched; the table reproduced in one guide is copied from that
+  page, with the page's own “Last Updated: Apr 14, 2025” and our read date.
+- **Google rel=sponsored + spam policies** — official-domain text matched; recorded as excerpt
+  because the docs page refused the fetch.
+- **GitHub Pages publishing sources** — fetched; chose branch `main` + `/docs` over a workflow.
+- Self-checks: `npm run check` = **2,843 assertions** (976 data, 704 links, 1,163 compliance), all
+  passing; `tools/analytics-server.mjs` was exercised with curl (accept / reject / 410 / summary)
+  and its state directory removed afterwards so no test data is committed.
+
+### Irregularities found (all published on /flagged/ with sources)
+
+1. **FLG-001** — five 9-character identifiers where an ASIN is 10. Blocks all product data and every monetized link. **Blocking.**
+2. **FLG-002** — `link.amazon` is not an Amazon product host and carries no `tag=` parameter. **Blocking.**
+3. **FLG-003** — the supplied short links' compliance status is *unobserved*, and is described that way. Not called invalid, per the brief.
+4. **FLG-004** — the air-fryer cluster is inferred from the brief's editorial titles, not from any listing.
+5. **FLG-013** — Pages sub-path vs “You must own your website”; treat the deployed URL as staging.
+6. **FLG-016** — the brief references prior artefacts (`SG-27..SG-30`, `FLG-003`, `S01/S07/S24`) with no backing files in this repo's history. SG/FLG ids were re-derived here; the S-numbers are recorded as unmapped rather than invented.
+7. Product imagery, brand name, and byline are all provisional and flagged (FLG-009, FLG-010, FLG-011).
+
+### Decisions taken without waiting (and the default each records)
+
+- Publish the site locked rather than fabricate listings; the gate enforces it.
+- Print no price/rating/availability anywhere, with a standing reason (`Q-13`, `FLG-007`).
+- Emit `Article`/`BreadcrumbList`/`FAQPage`/`CollectionPage` schema only; no `Product`, no
+  `Offer`, no `aggregateRating` — the gate fails the build if one appears.
+- Aggregate-by-day measurement only, so the no-sub-tag-per-user rule cannot be broken by accident.
+- Working masthead “The Preheat”, defined once in `config/site.config.json` so a rename is one line.
+
+### Integration note
+
+This session also acted as the integration session (single-session branch, per the Arena branch
+pin). Shared outputs — `docs/`, `data/products.json`, navigation, sitemap, feed — were changed only
+in the integration pass at the end, after the per-task files were stable. PR → merge → Pages
+enablement are recorded in §9 once they resolve.

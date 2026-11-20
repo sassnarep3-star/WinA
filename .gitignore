@@ -4,3 +4,5 @@ node_modules/
 *.log
 .DS_Store
 tools/.analytics-state/
+
+data/link-map.json
