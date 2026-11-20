@@ -1,0 +1,170 @@
+{
+  "note": "Questions, information and answers needed before any decision can reasonably be made, based on what we already have and what we do not have. Each row: what is established, what is missing, the action that closes it, what it blocks, and the default if it stays unanswered. Suggestions that discover the missing information are cross-referenced.",
+  "questions": [
+    {
+      "id": "Q-01",
+      "question": "Is the shop one category or two — air fryers only, or air fryers plus meat thermometers?",
+      "established": "Three submitted links resolve to Air Fryers (17659096011); two resolve to Meat thermometers (289810). All five destinations are live official listings (2026-11-20).",
+      "missing": "The owner's scope decision. Nothing in the repository states which categories the site should cover.",
+      "action": "Pick a path in the chooser on /suggestions/ (Path A, B, or C).",
+      "blocks": "Information architecture, category pages, editorial calendar, internal-link clusters",
+      "default": "Path B (both categories) — the build covers everything verified; fully reversible",
+      "related": ["SG-01", "SG-10", "FLG-001"],
+      "status": "open"
+    },
+    {
+      "id": "Q-02",
+      "question": "What is the intended ASIN for each of the five submitted links?",
+      "established": "All five tokens are 9 characters; Amazon's ASIN definition is 10 characters. Each token's observed redirect destination is recorded in a separate field.",
+      "missing": "intended_asin, intended_listing_url, confirmation_date, intent_source — blank on all five rows; nothing public binds a short code to a product.",
+      "action": "Owner confirms each intended ASIN (or states that the observed destination is the intended one) in data/intent-record.",
+      "blocks": "Closing FLG-006, cross-checking redirects against intent",
+      "default": "Fields stay blank and flagged; observed values are published as observations only",
+      "related": ["SG-06", "FLG-006", "FLG-002"],
+      "status": "open"
+    },
+    {
+      "id": "Q-03",
+      "question": "Is tracking ID shopnow047c-20 active, attached to this site, and showing clicks in Associates Reports?",
+      "established": "The ID was supplied by the owner and is appended to every outbound product link. Amazon requires a partnerTag on API lookups (example format xyz-20).",
+      "missing": "Associates dashboard confirmation (account access required). No click or order data exists yet.",
+      "action": "Sign in to Associates → Account → Tracking IDs; confirm status; click one tagged link and check the report.",
+      "blocks": "FLG-005, campaign ledger rows (SG-08), any revenue statement",
+      "default": "Links ship with the tag, marked unconfirmed; ledger stays empty",
+      "related": ["SG-07", "SG-08", "FLG-005"],
+      "status": "open"
+    },
+    {
+      "id": "Q-04",
+      "question": "Do the supplied link.amazon/* short links qualify as Special Links under Operating Agreement §1?",
+      "established": "§1 requires links to 'properly use the special tagged link formats we provide'. Each supplied token redirects to a live official listing (observed 2026-11-20). The brief says their exact compliance status is unresolved (FLG-003) and forbids claiming they are invalid.",
+      "missing": "Whether the format and domain are Amazon-provided Special Link formats; whether tracking is attributed in reports.",
+      "action": "One-link-per-product test in the enrolled Associates workflow: generate the official Special Link for each ASIN, confirm destination and tracking report, compare with the supplied short link (S02 of the brief).",
+      "blocks": "Scaling any outbound link style (SG-07); full FLG-003 closure",
+      "default": "Site links use official /dp/ listing URLs + tag + rel=\"sponsored\"; supplied tokens are preserved in the register only",
+      "related": ["SG-07", "FLG-003"],
+      "status": "open"
+    },
+    {
+      "id": "Q-05",
+      "question": "What commission rate applies to each category?",
+      "established": "Commission is a percentage of Qualifying Revenue (Program Policies). The official schedule page exists but redirects to sign-in.",
+      "missing": "The rate table itself — not publicly readable without an Associates account (FLG-004).",
+      "action": "While signed in, read the Commission Income Statement appendix for the US rate for Kitchen/Small Appliances and for the thermometer category.",
+      "blocks": "Any commission-potential number, prioritization by expected yield",
+      "default": "Blank + unverified everywhere; no estimate is ever published",
+      "related": ["SG-08", "FLG-004"],
+      "status": "open"
+    },
+    {
+      "id": "Q-06",
+      "question": "Who is the published author behind the guides (byline identity)?",
+      "established": "Guides need authorship to read as a publication; the brief asks for authorship polish.",
+      "missing": "Owner's chosen byline (person or brand) and bio.",
+      "action": "Owner supplies byline name + one-paragraph bio; add /about/ page.",
+      "blocks": "About page, E-E-A-T signals, disclosure phrasing around the byline",
+      "default": "Byline reads 'WinA Editorial'; no fake persona is invented",
+      "related": ["SG-16"],
+      "status": "open"
+    },
+    {
+      "id": "Q-07",
+      "question": "What is the canonical domain — the github.io project URL or a custom domain?",
+      "established": "GitHub Pages serves the repository root (S17); the project URL is https://sassnarep3-star.github.io/WinA/.",
+      "missing": "Custom-domain decision (purchase, DNS, HTTPS cert).",
+      "action": "Owner decides; if custom, add CNAME + update canonical/OG tags in the build.",
+      "blocks": "Search Console verification (Q-09), canonical tags, OG/Twitter cards, feed links",
+      "default": "Canonical = github.io project URL, used consistently",
+      "related": ["SG-13", "FLG-008"],
+      "status": "open"
+    },
+    {
+      "id": "Q-08",
+      "question": "Where will the self-hosted analytics endpoint run?",
+      "established": "GitHub Pages is static-only (S17); endpoint code ships in tools/analytics_endpoint.py; the counter queues events in the browser until an endpoint URL is set.",
+      "missing": "Hosting target (small VPS, container, serverless function on the owner's infra) and the HTTPS URL.",
+      "action": "Owner deploys the endpoint, sets ANALYTICS_ENDPOINT in assets/analytics.js, confirms /healthz.",
+      "blocks": "Real click data entering the campaign ledger (SG-03, SG-08)",
+      "default": "Events queue locally (localStorage, cap 100) and are never sent to a third party",
+      "related": ["SG-03", "FLG-010"],
+      "status": "open"
+    },
+    {
+      "id": "Q-09",
+      "question": "Who adds and verifies the Search Console property, and when?",
+      "established": "sitemap.xml and robots.txt ship with the site; Search Console needs owner verification (FLG-008).",
+      "missing": "Verification token/DNS record and the person responsible.",
+      "action": "Owner adds the property for the final domain, verifies, submits sitemap.xml, reviews the first query report.",
+      "blocks": "Choosing the next guide from measured queries (SG-18)",
+      "default": "Topic choice stays editorial-hypothesis-driven and labelled as such",
+      "related": ["SG-13", "SG-18", "SG-29", "FLG-008"],
+      "status": "open"
+    },
+    {
+      "id": "Q-10",
+      "question": "What publishing cadence does the owner commit to?",
+      "established": "The brief asks for a cadence; five guides ship now.",
+      "missing": "Owner's sustainable rate (e.g., 1 guide/week).",
+      "action": "Owner picks a number; add to the editorial calendar.",
+      "blocks": "Editorial calendar, seasonal slots (SG-15)",
+      "default": "1 guide per week suggested, not assumed",
+      "related": ["SG-02", "SG-15"],
+      "status": "open"
+    },
+    {
+      "id": "Q-11",
+      "question": "Will product imagery come from official Program Content (link builder / PA API)?",
+      "established": "Program Content includes data, images, text and link formats Amazon provides (S12). The build ships text-forward with no hotlinked images.",
+      "missing": "Account approval + image source decision.",
+      "action": "Owner exports images through Associates link builder (or PA API after approval); wire into build.",
+      "blocks": "Imagery polish pass",
+      "default": "No images; typographic design only",
+      "related": ["SG-12"],
+      "status": "open"
+    },
+    {
+      "id": "Q-12",
+      "question": "Is there a canonical list of 'the five defined events' from the original brief?",
+      "established": "No event list exists in the repository; this build defines page_view, outbound_click, affiliate_click, search_query, article_read (FLG-009).",
+      "missing": "The owner's canonical names, if any.",
+      "action": "Owner supplies the list or confirms this set; update assets/analytics.js and the platform page together.",
+      "blocks": "Closing FLG-009; event naming in the endpoint schema",
+      "default": "Documented five-event set stands",
+      "related": ["SG-03", "FLG-009"],
+      "status": "open"
+    },
+    {
+      "id": "Q-13",
+      "question": "How stale may a price be before republication requires re-verification?",
+      "established": "All published prices are 2026-11-20 buy-box readings (FLG-007).",
+      "missing": "Owner's freshness policy.",
+      "action": "Adopt a policy (recommended: re-fetch on the day of publication; never reuse a price older than 24 h).",
+      "blocks": "Automated price refresh in the build",
+      "default": "Day-of-publication re-verification rule (recommended, applied manually)",
+      "related": ["FLG-007"],
+      "status": "open"
+    },
+    {
+      "id": "Q-14",
+      "question": "Which email/reader-capture provider will be used, and what does the privacy policy say?",
+      "established": "No form ships in this build; disclosure and endorsement rules apply to any future capture (S16).",
+      "missing": "Provider choice, data-retention terms, privacy-policy text.",
+      "action": "Owner picks a provider, reviews its terms, publishes a privacy policy line before any input field ships.",
+      "blocks": "SG-19 / SG-30 reader capture",
+      "default": "No capture — nothing ships without this answered",
+      "related": ["SG-19", "SG-30"],
+      "status": "open"
+    },
+    {
+      "id": "Q-15",
+      "question": "Is the Associates account in good standing with this site's URL listed as an approved site?",
+      "established": "Monetization requires a valid enrolled account; nothing in the repository proves enrollment status.",
+      "missing": "Account status + site URL approval (account access required).",
+      "action": "Owner checks Associates account settings; add the live URL to the site list if required.",
+      "blocks": "Any commission at all; Special Link test (Q-04)",
+      "default": "No earnings claims anywhere on the site; ledger stays empty",
+      "related": ["Q-03", "Q-04", "SG-08"],
+      "status": "open"
+    }
+  ]
+}

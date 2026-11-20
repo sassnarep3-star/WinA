@@ -255,9 +255,94 @@ Multi-function claims are the easiest thing in kitchen retail to inflate and the
       "For connected devices, ask what happens when the app stops being supported."
     ]
   },
+
+  {
+    slug: "not-burn-the-rolls",
+    number: "06",
+    spot: "timing",
+    title: "Seven places an air fryer quietly beats a second oven",
+    dek: "A working list of the jobs a basket or countertop unit does better than heating the big oven — reheating, small batches, and everything you would rather not wait twenty minutes for.",
+    category: "air-fryers",
+    readingTime: "5 min",
+    topics: ["technique", "energy use", "weeknight cooking"],
+    intro: `This is a technique list, not a product pitch. Every job below is one where a countertop appliance has a structural advantage over a full-size oven — smaller space to heat, faster air, less waiting — and the appliances in this set all cover it.
+
+What we have not done is measure wattage or preheat times for these units. Those rows are blank in our register because no official source publishes them consistently. The list is about the shape of the advantage, not a number.`,
+    body: `
+<h2>1. Reheating anything that went soggy in the fridge</h2>
+<p>Leftover fries, pizza, fried chicken, roasted vegetables. A microwave steams them soft; a full oven takes twenty minutes to arrive. A small fan-driven chamber gets crisp back in minutes because the hot air is close to the food and moving fast. This is the single job that keeps an air fryer on the counter instead of in a cupboard.</p>
+<h2>2. Cooking for one or two without heating the kitchen</h2>
+<p>A full-size oven heats cubic feet of air to cook two salmon fillets. A basket unit heats a drawer. In summer, or in a small apartment, the difference is the whole decision. If most of your cooking is one or two portions, a large oven is working against you.</p>
+<h2>3. The batch that is too small to justify a tray</h2>
+<p>Six wings. A handful of sprouts. Two chicken thighs. On a full sheet pan these spread thin, dry at the edges, and take as long as a family-sized roast. In a basket they pile, toss, and crisp. The appliance that matches the batch size is the one you will actually use on a Wednesday.</p>
+<h2>4. Frozen food that claims it can go straight in</h2>
+<p>Frozen fries, nuggets, and appetizers are engineered for moving hot air — the bag says oven, but the food wants airflow more than it wants mass. A basket reaches temperature while the oven is still thinking about it.</p>
+<h2>5. Roasting vegetables hard and fast</h2>
+<p>High heat plus moving air is exactly what caramelizes vegetable surfaces. A 450&nbsp;°F finish, where a unit offers one, is a browning tool. The catch from our capacity guide still applies: a single layer crisps, a stacked pile steams. Work in rounds.</p>
+<h2>6. Keeping the second dish on schedule</h2>
+<p>When the oven holds the roast, a countertop unit handles the side dish at its own temperature. On this site the dual-basket version of that trick needs no second appliance at all: two drawers, two temperatures, one Sync Finish so both land together.</p>
+<h2>7. Toasting, melting, and small bakes</h2>
+<p>Garlic bread, a pair of bagels, a small dish of mac and cheese, crisping the top of a gratin. An oven-style countertop unit — the French-door kind in this set — does these without the ritual of the big oven, and does them while the big oven is busy or cold.</p>
+
+<h2>Where the big oven still wins</h2>
+<p>Honesty requires the reverse list. A whole turkey. Three trays of cookies at once. Anything with a long, covered braise. A large cavity with stable heat has no substitute, and a countertop unit that pretends otherwise will disappoint you on Thanksgiving. That is also why the largest unit here is judged as an oven first, air fryer second.</p>
+
+<h2>The two-minute version</h2>
+<p>Small, fast, crisp, single-rack: countertop. Large, slow, multiple racks, long roasts: the big oven. Most kitchens do not need a second oven. Most kitchens do benefit from a fast small chamber that lives on the counter — which is the entire product category this site compares.</p>
+`,
+    takeaways: [
+      "Reheating crisp food is the job that justifies the counter space.",
+      "Match the appliance to the batch size: baskets for piles, ovens for trays.",
+      "A countertop unit is a second chamber, not a replacement oven — plan around the turkey."
+    ]
+  },
+
+  {
+    slug: "holiday-batch",
+    number: "07",
+    spot: "season",
+    title: "Cooking two holiday dishes at once: the two-temperature problem",
+    dek: "Holiday cooking is a scheduling problem, not a recipe problem. When the oven is full, the second dish needs its own chamber — and its own clock.",
+    category: "air-fryers",
+    readingTime: "6 min",
+    topics: ["holidays", "batching", "two temperatures"],
+    intro: `Every December the same collision: one oven, four dishes, and a table that will not move. The turkey claims the oven; everything else competes for the stovetop. The useful fix is not a bigger oven. It is a second, small chamber that holds its own temperature on the counter.
+
+This guide is about the scheduling decision — what to move off the oven, in what order, and what to check before you trust any appliance with a holiday dish. The food photography absent here is absent on purpose: no page on this site claims to have cooked anything.`,
+    body: `
+<h2>Why holiday cooking breaks the one-oven plan</h2>
+<p>A roast occupies the oven at one temperature for hours. Sides want different temperatures: sprouts hot and fast, gratin moderate and covered, rolls brief and hot at the end. The oven cannot hold two temperatures, and its schedule collapses the moment the roast runs long.</p>
+<p>The standard fixes are all compromises: cook sides earlier and reheat (adds a warming job), or run the oven hotter and slower than any dish wants. A second chamber breaks the constraint instead of managing it.</p>
+
+<h2>What to move off the oven, in order</h2>
+<p><strong>First, the things that want high heat and a single layer.</strong> Roasted vegetables, sprouts, potatoes. A countertop chamber with moving hot air browns these well, and they hold better than most people expect — a covered bowl keeps them serviceable for twenty minutes.</p>
+<p><strong>Second, reheating duty.</strong> As dishes finish early, they go into the small chamber to revive, not into the oven you are fighting for. This is the quiet holiday win: crisp restored to anything that sat too long.</p>
+<p><strong>Third, the final bake-and-brown items.</strong> Rolls, biscuit reheats, the gratin top-up. These need short bursts of heat at the exact moment guests arrive, which is precisely when the oven is unavailable.</p>
+<p>What stays in the big oven: the roast itself, anything in a covered Dutch oven, anything whose cook is long and slow by design. Judge a countertop unit as the sous-chef, not the head chef.</p>
+
+<h2>Two drawers versus one counter oven</h2>
+<p>On this site the two-temperature problem has a machine-shaped answer: the 6-quart dual basket runs two dishes at two settings and holds the faster one so both finish together — Sync Finish is the feature to look for anywhere, not just on this model. Note the honest cost: 6 quarts total means two 3-quart cooks. Holiday-scale sides fit; a holiday bird does not.</p>
+<p>A 26-quart French-door chamber is the other answer: it <em>is</em> a second oven, big enough for a full tray of sides or a small bird of its own, with 24 one-touch presets standing in for a cook you cannot supervise. It costs most of a counter, which is a December decision you should make in October — measure first.</p>
+
+<h2>The clock is the second appliance</h2>
+<p>Two chambers do not fix a schedule by themselves; sequencing does. Work backwards from dinner: the roast gets the oven first because its clock is longest and least flexible; the small chamber handles the shortest-dated items last because they reheat well. Write the order down — on paper, on the counter — the night before. Every kitchen runs a calmer holiday with a written sequence, and the failure mode (everything ready except the thing that needed the oven) is purely a scheduling failure.</p>
+
+<h2>The thermometer is the least holiday-stressful dollar</h2>
+<p>The hidden cost of a crowded holiday kitchen is guesswork: pulling the bird because guests arrived, winging the brisket because the probe is in the wrong joint. A fast instant-read removes the guess from spot checks in seconds; a wireless leave-in reports from inside the roast while the oven stays closed. Neither claims to cook anything. Both stop the two most common holiday cooking failures, which are overcooking and opening the door too often.</p>
+
+<h2>The short version</h2>
+<p>Give the long, inflexible dish the oven. Give everything hot, fast, small, and reheated to a second chamber on the counter. Sequence the two clocks on paper the night before. Measure the counter in October, not December.</p>
+`,
+    takeaways: [
+      "Holiday cooking fails as a schedule long before it fails as a recipe.",
+      "Move high-heat, single-layer, and reheat jobs off the oven; keep the long roasts in it.",
+      "Dual baskets solve two temperatures at small scale; a 26-quart chamber is the second-oven answer.",
+      "A written sequence the night before beats any appliance feature."
+    ]
+  },
   {
     slug: "thermometer-check",
-    number: "06",
+    number: "08",
     spot: "magnify",
     title: "Do you need a thermometer in an air fryer? The one check that settles doneness",
     dek: "A small cavity with a fan is unforgiving in a way a big oven is not. The safe numbers are published, they are not secret, and a timer is not one of them.",
@@ -311,7 +396,7 @@ Everything below is about what to buy so that checking is something you actually
   },
   {
     slug: "quarts-per-household",
-    number: "07",
+    number: "09",
     spot: "scale",
     title: "How many quarts does your household need? A batching rule you can test with a plate",
     dek: "Quart figures are only comparable inside one form factor, and three of the listings in this set make that awkward on purpose. Here is the arithmetic before the spec sheet.",
@@ -354,7 +439,7 @@ Everything below is about what to buy so that checking is something you actually
   },
   {
     slug: "hi-fry",
-    number: "08",
+    number: "10",
     spot: "bolt",
     title: "What does Hi-Fry actually mean? Reading a feature name before you pay for it",
     dek: "Two listings in this set use the same marketing name. Only one publishes a number with it. That gap is the whole skill.",
@@ -400,3 +485,4 @@ What we did instead was read the official listings carefully and write about the
 
 Prices, star ratings, review counts and product photography are all absent for that last reason. That makes this site less useful than it could be. It also means nothing here is invented.`
 };
+

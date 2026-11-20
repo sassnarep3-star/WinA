@@ -457,6 +457,13 @@ table.data a { word-break: break-word; }
 .pill--recommend { background: var(--accent-wash); color: var(--accent); border-color: #c2d8dd; }
 .pill--consider { background: var(--warn-wash); color: var(--warn); border-color: #e8d3a8; }
 .pill--hold { background: #f0ece5; color: var(--ink-mute); border-color: var(--rule); }
+/* Decision-log states. Same colour logic as the status pills above: green = accepted and live,
+   accent = decided or recommended, amber = open, grey = held, clay = rejected. */
+.pill--accepted { background: var(--ok-wash); color: var(--ok); border-color: #c3dbcb; }
+.pill--adopted { background: var(--accent-wash); color: var(--accent); border-color: #c2d8dd; }
+.pill--recommended { background: var(--accent-wash); color: var(--accent); border-color: #c2d8dd; }
+.pill--open { background: var(--warn-wash); color: var(--warn); border-color: #e8d3a8; }
+.pill--rejected { background: var(--clay-wash); color: var(--stop); border-color: #e8c8bc; }
 .pill--reject { background: var(--clay-wash); color: var(--stop); border-color: #e8c8bc; }
 .pill--answered { background: var(--ok-wash); color: var(--ok); border-color: #c3dbcb; }
 .pill--unanswered { background: var(--warn-wash); color: var(--warn); border-color: #e8d3a8; }
@@ -659,6 +666,203 @@ table.data.sortable th .sort-btn:focus-visible { outline: 2px solid currentColor
 table.data.sortable th[aria-sort="ascending"] .sort-btn::after { content: " \25B2"; font-size: .7em; }
 table.data.sortable th[aria-sort="descending"] .sort-btn::after { content: " \25BC"; font-size: .7em; }
 
+/* ============================================================
+   Editorial pass (arena-27f76c22): seasonal banner, image
+   article heads, step lists. Same paper-and-ink register.
+   ============================================================ */
+
+/* Seasonal banner on the front page: image left, copy right */
+.banner {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, .95fr);
+  align-items: stretch;
+  background: var(--paper-card);
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+}
+.banner__media {
+  margin: 0;
+  min-height: 260px;
+  position: relative;
+}
+.banner__media img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.banner__body {
+  padding: clamp(1.4rem, 3vw, 2.4rem);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.banner__body .section__title { margin-top: .4rem; }
+
+/* Article heads that carry a full-bleed scene image */
+.article-head--image {
+  position: relative;
+  padding: 0;
+  border-bottom: 1px solid var(--rule);
+  overflow: hidden;
+}
+.article-head__img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.article-head__scrim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(25,21,18,.28) 0%, rgba(25,21,18,.62) 78%);
+}
+.article-head__inner {
+  position: relative;
+  z-index: 1;
+  padding-block: clamp(3.2rem, 7vw, 5.4rem) clamp(1.8rem, 4vw, 2.8rem);
+}
+.article-head--image .kicker {
+  color: #f4ede2;
+}
+.article-head--image .article-head__title {
+  color: #fdfaf5;
+  text-shadow: 0 2px 18px rgba(25,21,18,.45);
+}
+.article-head--image .article-head__dek {
+  color: #f1e9dd;
+  max-width: 44rem;
+  text-shadow: 0 1px 12px rgba(25,21,18,.4);
+}
+
+/* Numbered step lists (seasonal sequence) */
+.steps {
+  counter-reset: step;
+  list-style: none;
+  margin: 1.25rem 0 0;
+  padding: 0;
+  display: grid;
+  gap: .9rem;
+}
+.steps li {
+  counter-increment: step;
+  position: relative;
+  padding: 1rem 1.15rem 1rem 3.4rem;
+  background: var(--paper-card);
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+}
+.steps li::before {
+  content: counter(step);
+  position: absolute;
+  left: 1.05rem;
+  top: 1.05rem;
+  width: 1.6rem;
+  height: 1.6rem;
+  display: grid;
+  place-items: center;
+  background: var(--accent);
+  color: #fdfaf5;
+  font-family: var(--sans);
+  font-size: .82rem;
+  font-weight: 700;
+  border-radius: 50%;
+}
+
+@media (max-width: 900px) {
+  .banner { grid-template-columns: 1fr; }
+  .banner__media { min-height: 220px; }
+  .article-head__inner { padding-block: 3rem 2rem; }
+}
+
+/* ------------------------------------------------------------
+   SHOP-LIKE COMPONENTS — a polished marketing feel
+   Editorial type system kept; decision clarity added.
+   ------------------------------------------------------------ */
+
+/* Decision helper: short, opinionated buyer-to-product match */
+.decision-helper {
+  border: 1px solid var(--rule);
+  border-top: 3px solid var(--accent);
+  background: var(--paper-card);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  margin-top: 2rem;
+}
+.decision-helper__title {
+  font-family: var(--serif);
+  font-size: 1.5rem;
+  margin: 0 0 1rem;
+  line-height: 1.2;
+}
+.decision-helper ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.decision-helper li {
+  display: flex;
+  gap: 1rem;
+  padding: .95rem 0;
+  border-bottom: 1px solid var(--rule-soft);
+  font-size: .95rem;
+  align-items: flex-start;
+}
+.decision-helper li:last-child { border-bottom: 0; }
+.decision-helper .match {
+  font-family: var(--serif);
+  font-weight: 600;
+  color: var(--ink);
+  min-width: 13rem;
+  flex: none;
+}
+.decision-helper .match a { color: var(--ink); text-decoration: none; border-bottom: 1px solid transparent; }
+.decision-helper .match a:hover { color: var(--accent); border-bottom-color: var(--accent); }
+.decision-helper .why { color: var(--ink-soft); line-height: 1.5; }
+
+/* Trendy topic cards (suggestions roadmap) */
+.topics {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: 1fr;
+}
+@media (min-width: 760px) { .topics { grid-template-columns: repeat(2, 1fr); } }
+.topic-card {
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+  background: var(--paper-card);
+  padding: 1.1rem 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+}
+.topic-card__title {
+  font-family: var(--serif);
+  font-size: 1.05rem;
+  margin: 0;
+  line-height: 1.3;
+}
+.topic-card__intent {
+  font-size: .72rem;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--ink-mute);
+  margin: 0;
+}
+.topic-card__status {
+  font-size: .68rem;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  margin-top: auto;
+}
+
+/* Shop emphasis on the Amazon buy button */
+.btn--amazon { position: relative; z-index: 1; }
 /* ============================================================
    READER POLISH LAYER  (added 2026-11-20)
    Implements the design brief that was previously only recorded as
@@ -882,11 +1086,6 @@ table.data.sortable th[aria-sort="descending"] .sort-btn::after { content: " \25
 .honesty__stat dd { margin: 0; font-family: var(--serif); font-size: 1.05rem; font-weight: 600; }
 
 /* --- article furniture: pull quote, verified-source box -------------- */
-.pull {
-  font-family: var(--serif); font-size: clamp(1.15rem, 1rem + .7vw, 1.5rem);
-  line-height: 1.32; color: var(--ink); margin: 2rem 0; padding: 0 0 0 1.15rem;
-  border-left: 3px solid var(--clay);
-}
 .srclist {
   border: 1px solid var(--rule); border-radius: var(--radius);
   background: var(--paper-card); padding: .95rem 1.1rem; margin-top: 1.5rem;

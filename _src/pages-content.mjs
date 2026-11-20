@@ -208,7 +208,7 @@ export const seo = {
       title: "What is not verified",
       body: `<p>Search Console ownership has not been confirmed, because that requires account access. A placeholder verification token is in the markup and clearly marked as such.</p>
 <p><strong>Until that is replaced, this site has no idea whether it is indexed, what it ranks for, or whether anyone arrives.</strong> It is the single highest-value five-minute task remaining, and it is recorded as an open action rather than described as done.</p>
-<p>No search volume data exists for any of the guide topics published so far. The titles are editorial hypotheses about what people might ask, not evidence about what they do ask. Publishing the roadmap on a cadence and reading the query report is how that changes.</p>`
+<p>No search volume data exists for any of the published guide topics. The titles are editorial hypotheses about what people might ask, not evidence about what they do ask. Publishing guides on a cadence and reading the query report is how that changes.</p>`
     },
     {
       title: "What we will not do",
@@ -270,20 +270,20 @@ export const promo = {
     },
     {
       slug: "thermomaven-1-sec-thermometer",
-      hook: "The cheap insurance that stops you guessing",
+      hook: "A one-second read for a quick kitchen check",
       social:
         "One second to a reading is the threshold where checking temperature stops feeling like a delay — which is the only reason people actually do it. NIST-certified claim, AAA battery, no app, no account. → [review]",
       newsletter:
         "The best thermometer is the one you actually pick up. A one-second read is fast enough that checking stops being a chore, and this one runs on a single AAA with nothing to pair and no account to create. The manufacturer states NIST certification to ±0.5°F; we could not verify the certificate itself, so we report it as the manufacturer's claim rather than repeating it as fact. → [review]",
       disclosureNote:
         "Sponsored. As an Amazon Associate I earn from qualifying purchases.",
-      caution: "The listing says IP67; the manufacturer's own page says '100% waterproof' and publishes no IP number. Say 'waterproof as described by the manufacturer' or say nothing."
+      caution: "Two official sources describe this differently: the listing title states IP67, the manufacturer's page says '100% waterproof' and publishes no IP number. Quote whichever you linked, and do not upgrade 'IP67' into a claim about durability under a running tap."
     },
     {
       slug: "chef-iq-sense-gen3",
       hook: "For the cook who wants to be in another room",
       social:
-        "A leave-in probe earns its price on long, indirect cooks — a smoker, a slow roast, a turkey — where the whole point is not opening the lid. Three probes and five sensors in the manufacturer's count, a 1,000°F heat rating, and a range the listing states as unlimited over Wi-Fi. → [review]",
+        "A leave-in probe earns its price on long, indirect cooks — a smoker, a slow roast, a turkey — where the whole point is not opening the lid. Three probes, five sensors, 1,000°F rating, unlimited range through the hub. → [review]",
       newsletter:
         "An instant-read answers 'is this done yet?' for something you are standing next to. A wireless probe answers it for something in another room, over hours. The CHEF iQ Sense runs three probes with four internal sensors plus an ambient one, rated to 1,000°F, reporting through a Wi-Fi hub. If you do not cook low and slow, most of what you are paying for is a feature you will not use — and that is worth saying plainly. → [review]",
       disclosureNote:

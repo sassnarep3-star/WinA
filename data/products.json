@@ -8,8 +8,8 @@
     "marketplace": "amazon.com",
     "built": "2026-11-20",
     "associateStatement": "As an Amazon Associate I earn from qualifying purchases.",
-    "socialImage": "assets/img/social-card.png",
-    "analyticsEndpoint": ""
+    "analyticsEndpoint": "",
+    "socialImage": "assets/img/social-card.png"
   },
   "products": [
     {
@@ -112,6 +112,8 @@
         "basket-vs-oven",
         "capacity",
         "cleanup",
+        "not-burn-the-rolls",
+        "holiday-batch",
         "quarts-per-household",
         "hi-fry"
       ],
@@ -233,6 +235,8 @@
         "basket-vs-oven",
         "capacity",
         "multifunction",
+        "not-burn-the-rolls",
+        "holiday-batch",
         "quarts-per-household"
       ],
       "submittedLink": "https://link.amazon/B02NbDxp3",
@@ -354,6 +358,8 @@
         "capacity",
         "cleanup",
         "basket-vs-oven",
+        "not-burn-the-rolls",
+        "holiday-batch",
         "quarts-per-household",
         "hi-fry"
       ],
@@ -371,7 +377,7 @@
       "category": "thermometers",
       "formFactor": "instant-read",
       "title": "ThermoMaven 1 Sec Professional Digital Meat Thermometer, ±0.5°F Accuracy | NIST&NSF Certified, Auto-Rotate Bright LED Screen, IP67 Waterproof for Grill BBQ, Stocking Stuffers Gifts for Men, Black",
-      "verdict": "The cheap insurance. One second to a reading is fast enough that you actually use it instead of guessing.",
+      "verdict": "A one-second read for a quick kitchen check.",
       "why": [
         "A one-second read is the threshold where checking temperature stops feeling like a delay.",
         "The display auto-rotates, which sounds trivial until you are holding it at an angle over a hot pan.",
@@ -398,9 +404,9 @@
         },
         {
           "label": "Water resistance",
-          "value": "Described as 100% waterproof; no IP number published",
+          "value": "IP67, as stated in the listing title",
           "status": "verified",
-          "source": "manufacturer"
+          "source": "amazon-listing"
         },
         {
           "label": "Display",
@@ -478,8 +484,8 @@
           "label": "thermomaven.com"
         },
         "Water resistance": {
-          "url": "https://www.thermomaven.com/products/f1-stealth",
-          "label": "thermomaven.com"
+          "url": "https://www.amazon.com/dp/B0DHZTCNR5",
+          "label": "Amazon listing (title states IP67)"
         },
         "Battery type": {
           "url": "https://www.thermomaven.com/products/f1-stealth",
@@ -664,7 +670,7 @@
       "slug": "thermometers",
       "name": "Thermometers",
       "kicker": "Precision",
-      "dek": "The cheapest upgrade in the kitchen. One reads in a second; the other watches three cuts while the lid stays shut.",
+      "dek": "One reads in a second; the other watches three cuts while the lid stays shut.",
       "intro": "An air fryer you can hear and smell your way through. A roast you cannot. These two cover the two ways people actually measure doneness: a quick poke, and a long unattended cook.",
       "browseNode": "Home & Kitchen › Kitchen & Dining › Kitchen Utensils & Gadgets › Thermometers & Timers › Meat",
       "browseNodeUrl": "https://www.amazon.com/Meat-Thermometers-Timers/b?node=289810"

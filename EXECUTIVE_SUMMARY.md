@@ -9,21 +9,23 @@ deliberately not live, what the last verification pass found, and what is waitin
 
 ## 1. Where the project stands
 
-A 33-page affiliate publication is live and indexed-by-sitemap, covering three air fryers and two
-meat thermometers, with **94 tagged outbound product links**, original line art on every product
-card and product page, and 8 published guides. It is not a mockup: every page is
+A 36-page affiliate publication is live and listed in a sitemap, covering three air fryers and two
+meat thermometers, with **118 tagged outbound product links**, ten published guides and a line-art system
+of its own. It is not a mockup: every page is
 generated from a data register, and three independent gates run on every push and pull request.
+A published sitemap is not proof of indexing: whether any search engine has indexed this site is
+unverified, and Search Console has never been verified (FLG-009).
 
 | Surface | State |
 | --- | --- |
-| Reader pages | 33 total: front page + 404, 8 guides, 2 category hubs, 5 product pages, compare, register, a marketing kit, and the operations set (flagged, questions, suggestions, summary, dashboard, analytics, disclosure, privacy, about, seo, marketing, concept) |
-| Data registers | 5 products · 60 spec rows · 6 policy sources · 10 policy clauses quoted · 45 flag rows (10 resolved) · 27 questions · 29 suggestions · 9 recorded decisions · 3 ranked paths |
+| Reader pages | 36 total: front page + 404, 10 guides, a seasonal cluster, 2 category hubs, 5 product pages, compare, register, a marketing kit, and the operations set (flagged, questions, suggestions, summary, dashboard, analytics, disclosure, privacy, about, seo, marketing, concept) |
+| Data registers | 5 products · 60 spec rows · 6 policy sources · 10 policy clauses quoted · 50 flag rows (12 resolved) · 30 questions · 34 suggestions · 34 decision-log rows · 3 ranked paths |
 | Verification mix | 32 `verified` · 14 `unverified` · 10 `withheld` · 4 `claim`; **36 rows carry a value, 24 are blank with a reason**, and 22 of the valued rows cite a manufacturer page directly rather than the listing |
-| Compliance | OA §5 statement verbatim on all 30 pages; the disclosure precedes the first sponsored link on every page (asserted by byte offset, not by eyeball); `rel="sponsored nofollow noopener"` + `?tag=shopnow047c-20` on all 94 product links; the 11 submitted short-link anchors render as declared non-affiliate citations (`rel="nofollow"`, no tag), alongside 8 other citations. Counts from `scripts/compliance-gate.mjs`, cross-checked by `scripts/check-site.mjs` at 111 Amazon links / 94 sponsored, with 1279 internal links resolved |
-| Measurement | Five events defined; collector written but **not deployed**, so the client is inert by design |
+| Compliance | OA §5 statement verbatim on all 36 pages; the disclosure precedes the first sponsored link on every page (asserted by byte offset, not by eyeball); `rel="sponsored nofollow noopener"` + `?tag=shopnow047c-20` on all 118 product links; the 13 short-link anchors render as declared non-affiliate citations (`rel="nofollow"`, no tag), beside 12 source citations. Counts from `scripts/compliance-gate.mjs`, cross-checked by `scripts/check-site.mjs` at 141 Amazon links / 118 sponsored, with 1,470 internal links resolved |
+| Measurement | Five events defined; collector written but **not deployed**, so the client is inert by design. Its contract is now executed rather than asserted: `scripts/analytics-selftest.mjs` starts the collector and checks it end to end, and runs in CI (FLG-042) |
 | Money | **Zero** revenue claims; ledger holds 0 rows, by policy |
-| Gates | Four checkers, all green (1,199 compliance assertions, 1,279 internal links verified, the builder's own gates). CI fails if generated output is not committed, the build is not reproducible, or a compliance rule breaks — and Pages' deploy job now runs the compliance gate too, so a regression stops the release rather than reddening a check |
-| History | Four prior session builds preserved under `archive/` (83 files), nothing deleted |
+| Gates | Three checkers, all green (1,652 compliance assertions, 1,470 internal links verified, the builder's own gates), plus the collector self-test. CI fails if generated output is not committed, the build is not reproducible, or a compliance rule breaks — and Pages' deploy job now runs the compliance gate too, so a regression stops the release rather than reddening a check |
+| History | Five prior session builds preserved under `archive/` (119 files), nothing deleted |
 
 ## 2. What the product question turned out to be
 
@@ -93,7 +95,7 @@ main lacked:
 
 ## 4. The one number that should worry the owner
 
-**94 tagged product links are live; 0 of 5 per-product Special Link tests are recorded.**
+**118 tagged product links are live; 0 of 5 per-product Special Link tests are recorded.**
 
 The rule this project set — one tested link per product, in the enrolled workflow, before scaling —
 was skipped, and it is recorded as an open action row (FLG-024). Nothing suggests the links are
@@ -111,18 +113,16 @@ unrecorded, so nobody can close the flag quietly. A duplicate row this session n
 | Account owner | Confirm `shopnow047c-20` exists in Associates Central for `amazon.com` and that the *registered* site URL matches this deployment (FLG-002, FLG-004) |
 | Account owner | Run the five link tests, record them in `data/special_link_tests.json` (FLG-024) |
 | Account owner | Verify the property in Search Console and submit `/sitemap.xml`; nobody currently knows if the site is indexed (FLG-009, SG-29) |
-| Account owner + you | Deploy the collector (Worker or `scripts/analytics-server.mjs`), then set `governance.analytics.enabled` + `site.analyticsEndpoint` (FLG-011, FLG-015) |
+| Account owner + you | Deploy the collector (Worker or `scripts/analytics-server.mjs`) — its contract is already covered by an automated self-test, so this is a hosting choice — then set `governance.analytics.enabled` + `site.analyticsEndpoint` (FLG-011, FLG-015) |
 | You | A domain you own: Amazon's review criteria include “You must own your website”, so a `github.io/WinA` sub-path is staging, not the submission (FLG-013) |
-| You | Content volume: ~10 original posts are expected at review; 8 guides + 5 product pages is still thin, and the gap is a cadence, not a redesign (FLG-013) |
+| You | Content volume: ~10 original posts are expected at review; 5 guides + 5 product pages is thin (FLG-013). A cadence was adopted on 2026-11-20 — one new guide every Monday for eight weeks, each added to the sitemap and feed in the same commit (SUG-05 in the decision log) |
 | You | Choose a real byline and a brand that isn't a placeholder (FLG-021), and decide whether to buy the products for photography (FLG-007) |
-| You | Review the three open parallel-site pull requests (#26, #28, #2): each adds a competing root-level site, none was merged here, and merging one as-is splits the canonical host (FLG-038) |
 | No one | The 20 `unverified` spec rows: wattage, dimensions and warranty for all five products are *knowable* from the listing but were not captured; `npm run collect` is the route |
 
 ## 6. What is deliberately absent, and why that is the feature
 
 No prices and no star ratings (Policies §6(y)/§6(t)) — printed as `withheld` with the reason rather
-than left blank. No Amazon product photography: every drawing on the site is original line art, drawn
-here and captioned as a schematic, because Program Content needs tooling this account does not have. No seasonal pages (FLG-020: there is no seasonal demand
+than left blank. No product photography. No seasonal pages (FLG-020: there is no seasonal demand
 data, so a seasonal page would be fiction). No testing claims, no "best of", no income projection.
 No signup backend (FLG-010: the form is present and inert, because storing an address is a decision
 you have not made). No revenue claim of any kind, and no forecast: the ledger is empty by policy and
@@ -136,46 +136,175 @@ a row without dated first-party provenance is rejected by the gate.
    weeks — then `node scripts/next-topics.mjs` tells you what to write next instead of guessing.
 3. Decide the domain. Everything else scales; “owned site” is the one thing that gates getting paid.
 
-## 8. The reader-polish pass of 2026-11-20 (session `arena-a88ebd48`)
-
-The brief asked for a shop rather than an audit, imagery and voice that do not read as generated, and
-a reviewable path before anything else is built. That pass is shipped, not recommended:
-
-| Change | Where | What it replaces |
-| --- | --- | --- |
-| Original SVG schematic system — one drawing per product, selected from the verified record, plus spot drawings, a brand mark and a feature band | `_src/art.mjs`, every product card, product page and guide head | No imagery at all. Amazon listing photography is Program Content and cannot be used without API access, so the site draws its own and says so on each drawing |
-| Front page restructured: products first, a three-question shopper router, a dark feature band for the lead guide, guide cards instead of a ruled list, honesty stats demoted to one line | `index.html` (generated) | An audit strip — "0 products tested", "10 policy checks passed" — sitting above the products |
-| Three roadmap titles promoted to published guides: a USDA-referenced doneness check, a household capacity rule, a feature-name literacy piece | `guides/thermometer-check/`, `guides/quarts-per-household/`, `guides/hi-fry/` | Hypotheses in a table. Each is added to `sitemap.xml` and `feed.xml` in the same commit, and every stated guide count is computed and gate-checked, because a hand-typed count is a future lie |
-| Buy buttons relabelled "See it on Amazon" | `_src/build.mjs` | "Check price on Amazon" printed above a page that explains it will not show prices (FLG-037 → resolved) |
-| Head hygiene: `og:image` only because the file exists, a real SVG favicon, the placeholder `google-site-verification` token deleted | `assets/img/`, `_src/build.mjs` | A declared large social card with no image, and a token claiming a verification that had not happened (FLG-025 → resolved) |
-| Decision support: 3 ranked paths with per-step state, the decision log's first 9 entries, 5 new questions, 4 new flags | `/suggestions/`, `/questions/`, `/flagged/` | A suggestion list with no order and an empty decision log |
-
-**Verification re-run in this pass** (2026-11-20, via the page-fetch tool; `curl` from the sandbox
-cannot reach `amazon.com` or `github.io` — HTTP 000 — which is the sandbox, not the site):
-
-| Check | Result |
-| --- | --- |
-| `link.amazon/B04G1MEwY` | Lands on the amazon.com home page, **not** the recorded `/dp/B0CDY277D3` |
-| `link.amazon/B0c8moW59` | Lands on the amazon.com home page, **not** the recorded `/dp/B0DHZTCNR5` |
-| `link.amazon/B0f3GKalj` | Reaches `/dp/B0DZFD6R9Z` and matches the record — an earlier session saw it fail once, so it is inconsistent rather than broken |
-| `amazon.com/dp/B0CDY277D3` | Live; page title matches the `title` field in `data/products.json` verbatim |
-| USDA FSIS safe-temperature chart | Live, last updated 2025-04-14; the sentence quoted in the new guide is reproduced from the page |
-| Gates | `node _src/build.mjs` PASSED · `scripts/check-site.mjs` passed · `scripts/compliance-gate.mjs` 1,199 assertions / 0 failing · `scripts/publish-gate.mjs` 4 / 0, and the rebuild is byte-identical |
-| Not verified | How the new design *looks*. No browser runs in this environment, so the polish is structurally verified only (FLG-041) |
-
-The two short-link failures do not move the site: every button links to a constructed
-`amazon.com/dp/<observed ASIN>?tag=shopnow047c-20` and never through a supplied short link. They do move the
-register, which now holds both observations against FLG-036 and asks for a logged-out browser check
-(Q-25) — the only test that can tell a dead short link from a fetcher that Amazon serves differently.
-
-**What this pass deliberately did not do.** No price widget, no deal language, no star ratings, no
-scraped or AI-invented product photography, no seasonal page, no new ASINs, and no merge of the three
-open duplicate-site pull requests. Each of those is recorded as a rejected or deferred row in the
-decision log rather than left as an unwritten judgement.
-
 ---
 
 *Every count above was produced by running `node scripts/compliance-gate.mjs`,
-`node scripts/check-site.mjs` and `node _src/build.mjs` on this tree on 2026-11-20, and every claim
-on the site traces to a row in `data/policy.json` or `data/products.json`. The site's own copy of
-this summary is generated at `/summary/` from the same data, so the two cannot drift.*
+`node scripts/check-site.mjs`, `node scripts/analytics-selftest.mjs` and `node _src/build.mjs` on
+this tree on 2026-11-20, and every claim on the site traces to a row in `data/policy.json` or
+`data/products.json`. The site's own copy of this summary is generated at `/summary/` from the same
+data, so the two cannot drift.*
+
+---
+
+## 8. Re-verification pass, session `arena/119f4dc6-wina` (2026-11-20)
+
+Task T26 on `COORDINATION.md`. Everything below was checked against the live pages, not against the
+register, and each finding has its own entry on `/flagged/`.
+
+**What was checked and what came back**
+
+| Check | Method | Result |
+| --- | --- | --- |
+| Five destination ASINs | Fetched `https://www.amazon.com/dp/<ASIN>` directly for all five | **All five confirmed.** Title on each page matches `data/links.json`. Product identity is not in doubt. |
+| Five submitted short links | Fetched each `link.amazon/B0…` URL | **2 of 5** returned a product page (`B02NbDxp3`, `B00hJ57DV`). **3 of 5** returned `https://www.amazon.com/` (`B04G1MEwY`, `B0c8moW59`, `B0f3GKalj`). `B04G1MEwY` fetched twice, same result. → **FLG-036** (also found independently by a parallel session) |
+| ThermoMaven water resistance | Read the listing title | Earlier register said "no IP number published". The listing title states **IP67**. Corrected. → **FLG-038** |
+| Spec coverage per product | Script over `data/products.json` | 32 of 60 rows verified. Emeril 26QT has no wattage or warranty; Chefman 8-Quart has no wattage, dimensions or warranty. → **FLG-039** |
+| FLG-032 accuracy | Compared its text with the fetch results above | It claimed all five "resolved" to product pages. Corrected to `review` and rewritten. |
+
+**Three things corrected in this pass**
+
+1. The front-page strip read "0 Products tested" and "10 Policy checks passed". The first is honest
+   but reads as a disclaimer on a shopping page; the second is a *gate* count shown to a shopper as
+   if it were product evidence. Both are replaced with shop-facing facts computed from the register:
+   products spec-checked, categories, buying guides, and specs confirmed at source (32). The
+   no-testing statement still appears — once, in plain language, at the end of the page.
+2. `data/links.json` now carries a `reverified*` field per link, kept **separate** from
+   `observedDestination` and from `intendedAsin`, which stays `null`. Three fields, never merged.
+3. `FLG-032` was downgraded from `resolved` to `review` with its overstatement stated in the record.
+
+**What this pass did not do, and why**
+
+- It did not claim the three short links are broken or non-compliant. The destination ASINs are
+  correct; the redirect behaviour was observed from an automated client and may be an artefact of
+  that. Recorded as an observation with the action that closes it.
+- It did not fill wattage, dimensions or warranty from memory. Those rows stay blank and are flagged.
+- It did not deploy the collector, verify Search Console, or confirm the tracking ID — all three
+  need the account owner's credentials (FLG-004, FLG-009, FLG-011).
+
+**Gates after this pass:** `node _src/build.mjs` → 30 pages, all gates clear.
+`node scripts/check-site.mjs` → 30 pages, 1,120 internal links, 98 Amazon links (82 sponsored), zero
+failures. `node scripts/compliance-gate.mjs` → 1,097 checks, 0 failing, 1 warning (FLG-024, the
+Associates click test, which needs the owner).
+
+---
+
+## 9. Product-intent record and FLG-033, session `arena/6b0f2ddc-wina` (2026-11-20)
+
+Task T29 on `COORDINATION.md`.
+
+- **Product-intent confirmation record.** `data/links.json` now holds, per submitted link, four named
+  fields: `intendedAsin` (blank: the owner did not supply one), `officialListingUrl` (the Amazon ASIN
+  page, `https://www.amazon.com/dp/<ASIN>`), `confirmedOn` and `confirmationSourceIds`. The observed
+  redirect targets sit in their own list, `observedRedirectTargets`, with a date and a result for each
+  check. Intended and observed ASINs are never merged. A gate rule enforces this.
+- **FLG-033 (ASIN definition).** Amazon's own seller-education page, *Understanding ASINs*
+  (`sell.amazon.com/blog/what-is-an-asin`), defines the ASIN as a unique 10-character code and says it
+  appears after `/dp/`. Read in full on 2026-11-20. Two caveats are recorded: it is not an Amazon Help
+  article, and the page says it was "produced with the assistance of generative artificial
+  intelligence". It is kept at `review`.
+- **FLG-040 (new).** All five short links returned different landing pages across the three recorded
+  checks (first resolution, T26, T29). The product identity of all five ASINs is unchanged: each
+  `/dp/` page was re-fetched and its title matches. The short-link behaviour is not stable, and nothing
+  so far explains it. The owner check is recorded as the action.
+- **Register.** The "Link resolution" table on `/register/` now shows the four fields and the observed
+  landing as separate columns. The official-listing link is a tagged, sponsored link; the observed
+  landings are shown as text, not as links.
+
+**Gates after this pass:** `node _src/build.mjs` → 30 pages, all gates clear.
+`node scripts/check-site.mjs` → 30 pages, 1,125 internal links, 104 Amazon links (82 sponsored), zero
+failures. `node scripts/compliance-gate.mjs` → 1,207 checks, 0 failing, 1 warning (FLG-024, owner-only).
+
+**Still owner-only, not attempted:** the Associates sign-in and the one-link-per-product Special Link
+test (FLG-004, FLG-024); Search Console (FLG-009); deploying the analytics collector (FLG-011).
+
+
+## 11. Reader polish, art system and the decision paths — session `arena/a88ebd48-wina` (2026-11-20)
+
+Started from `80b45a1`, then merged `main` (`62322cb`, PRs #31/#33/#35/#36/#37/#39/#40/#42/#43/#44) and
+re-applied this session's layer on top. Nothing from another session's record was renumbered or removed;
+the merge is recorded here rather than hidden in a diff.
+
+| Change | Where | What it replaces |
+| --- | --- | --- |
+| Original SVG schematic system — one drawing per product, selected from the verified record, plus a spot drawing per guide, a brand mark and a feature band | `_src/art.mjs`, product cards, shelf rows, product pages, guide heads, `/guides/` index | Product pages with no image at all. Listing photography is Program Content and cannot be used without creative tooling, so the site draws its own and captions each drawing as a schematic |
+| Shopper router on the front page: three questions, three destinations | `index.html` (generated) | A page that opened with audit counters above the products |
+| Category hubs gained a shelf list view (drawing, three verified figures, one button) above the card grid | `air-fryers/`, `thermometers/` | The same card grid repeated on every surface |
+| Guides index leads with the newest published guide, and both indexes became cards with art instead of a ruled list | `/guides/`, front page | A flat list of ten indistinguishable rows |
+| Three roadmap titles promoted: a USDA-referenced doneness check, a household capacity rule, a feature-name literacy piece | `guides/thermometer-check/`, `guides/quarts-per-household/`, `guides/hi-fry/` | Hypotheses in a table. Guides now run 01–10 alongside the technique and seasonal pieces that landed from the parallel sessions |
+| Buy buttons kept as "View on Amazon" (T33's wording won the merge), and the front-page generated scene is now labelled as generated beside the seasonal note | `_src/build.mjs` | An unlabelled mood image next to product copy |
+| Head hygiene: `og:image`/Twitter card resolve from `site.socialImage` and are emitted only when the file exists; real SVG favicon; the placeholder `google-site-verification` token deleted | `assets/img/`, `_src/build.mjs` | A hard-coded seasonal photo as the *site's* card on every page, and a token asserting a verification that has not happened (FLG-025 → resolved) |
+| Decision support: three ranked paths with per-step state, one dated decision-log row per suggestion, four new questions, four new flags | `/suggestions/`, `/questions/`, `/flagged/` | A suggestion list with no order; rows that read "recommended" while the register says "shipped" (the gate now refuses that) |
+
+**Register deltas.** `SUG-30…SUG-34` added (line art, head hygiene, licensed imagery, the reader test, the
+duplicate-PR cleanup), `SUG-17…SUG-20` moved to `shipped`, and the decision log rewritten so every
+suggestion has exactly one row — the shape `scripts/compliance-gate.mjs` enforces. `Q-27…Q-30` added
+(reader comprehension, logged-out short-link check, duplicate-PR ownership, visual QA), `Q-08`/`Q-12`
+answers updated, `Q-24` widened to all ten guides. `FLG-043…FLG-046` added; FLG-025 resolved; FLG-036
+given a fourth observation set. Marketing-kit copy that outran the register was corrected in three
+places (unregistered cooking modes on the Emeril entry, an observed-browning claim for Hi-Fry, and a
+CHEF iQ caution that contradicted the verified 3-probe row) — that find is FLG-044's neighbour and is
+recorded under the register's own numbering rather than as a silent edit.
+
+**Verification re-run in this pass** (2026-11-20, page-tool fetches; `curl` from the sandbox reaches only
+`github.com`, so a `000` there is the sandbox, not a dead site):
+
+| Check | Result |
+| --- | --- |
+| `link.amazon/B04G1MEwY`, `link.amazon/B0c8moW59` | Home page again, not the recorded listings — third session to see this pattern |
+| `link.amazon/B0f3GKalj` | Reached `/dp/B0DZFD6R9Z`, matching the record |
+| `amazon.com/dp/B0CDY277D3` | Live; title matches `data/products.json` verbatim |
+| USDA FSIS safe-temperature chart | Live, last updated 2025-04-14; the sentence quoted in `guides/thermometer-check/` is reproduced from the page |
+| Gates on the merged tree | `node _src/build.mjs` → 36 pages, 35 in sitemap, "PASSED: all gates clear", byte-identical rebuild · `scripts/check-site.mjs` → 36 pages, 1,470 internal links, 141 Amazon links (118 sponsored), 0 failures · `scripts/compliance-gate.mjs` → 1,652 checks, 0 failing, 1 owner-only warning (FLG-024) · `scripts/publish-gate.mjs` → 4 checks, 0 failing |
+| Inline art | 12 drawings on the front page, 32 across the sampled pages, each parsed as well-formed XML, each informative one labelled |
+| Not verified | How any of it *looks*. No browser renders here, so the polish is structurally verified only (FLG-046, Q-30) |
+
+**Deliberately not done.** No price widget, no deal language, no star ratings, no scraped or
+AI-invented product photography, no new ASINs, no merge/close of the other sessions' duplicate-site
+pull requests (FLG-043, Q-29), and no claim that the tracking ID is enrolled. Path B in the decision
+log is where all of those live, and its rows are marked blocked on the owner rather than quietly
+deferred.
+
+---
+
+## 10. Decisions before anything else, session `arena/d59cd471-wina` (2026-11-20)
+
+This section is the part of the summary an owner can act on without reading the repository. Each
+row is a decision gate: what is known now, what is missing, and the exact step that would settle
+it. The full question register with discovery actions is on `/questions/`; the suggestion register
+with a dated decision log is on `/suggestions/`.
+
+| Decision | What is known now | What is missing | How it is discovered |
+| --- | --- | --- | --- |
+| Is `shopnow047c-20` active for this property? | The tag is on every outbound product link. | Associates account status, marketplace enrolment, and whether the registered site matches this deployment (FLG-002, FLG-004). | Check Associates Central with the owner's access; record the confirmation. |
+| Do the five product links attribute? | Five tagged product destinations exist; the test register is empty. | The landing destination and the reporting line for each product (FLG-024). | Build and test one Special Link per product in the enrolled workflow; record date, destination, report line and tester in `data/special_link_tests.json`. |
+| Is the site indexed, and what do people search for? | Sitemap, feed, canonicals and robots are published. | Search Console verification, index status, impressions, clicks, queries (FLG-009, SG-29). | Verify the property, submit `/sitemap.xml`, then export dated query data. A sitemap is not an indexing receipt. |
+| Which topics come next? | The roadmap topics are labelled editorial hypotheses, not demand. | Search demand and page performance. | Rank from the Search Console export with `node scripts/next-topics.mjs`; keep the dated provenance trail. |
+| What may the affiliate program license? | Prices, ratings and images are withheld today. | This account's eligibility and permitted API/Creatives access (Q-11, Q-12). | Confirm eligibility and re-read the official Program Policies before using any product content. |
+| Should analytics run, and where? | The event definitions and the collector exist; the collector's contract is now covered by an automated self-test that runs in CI (FLG-041). | Hosting, endpoint, retention, notice wording, owner approval. | Review `/privacy/`, choose a host and retention window, deploy, test the endpoint, then enable the client. |
+| Is this publication ready for an account application? | It is live on a GitHub Pages project path with five guides and an adopted publishing cadence (SUG-05). | Review status, an owned domain, a real byline, and the owner's content plan (FLG-013, FLG-021). | Re-read the current Associates requirements, then decide on a domain and a named author before applying. |
+| Is an AI-driven platform justified now? | `/concept/` documents the design; nothing is connected to it. | Authorised product data, measured traffic, operating budget, a compliance review process. | Establish authorised data sources and a baseline first; automate only with human review, provenance and a rollback path. |
+
+**The order that works, by dependency:**
+
+1. **Monetisation gate.** Confirm the tracking ID and the registered site in Associates Central, run
+   the five link tests, and record them. Until then, do not describe affiliate earnings as working.
+2. **Measurement and search evidence.** Verify Search Console, submit the sitemap, and choose a host
+   for the collector — the code is done and tested, so this is a hosting decision, not a build.
+   Keep the ledger empty until dated first-party reports supply the numbers.
+3. **Publication choices.** Owned domain, a named accountable author, and a decision about genuine
+   product testing or photography. Do not imply testing that did not happen.
+4. **Cadence.** One guide every Monday for eight weeks, each added to the sitemap and feed in the
+   same commit, each with its own verified spec pass. Prioritise the ninth week from measured
+   queries, not from instinct.
+5. **Defer AI optimisation.** No product ranking, trend claim or revenue forecast without an
+   authorised source, a stated decision criterion, and a human compliance check.
+
+**What changed in this session, in one paragraph.** The suggestions page's decision log now carries
+a dated row for every suggestion, with a token legend and live counts, and the compliance gate
+requires that log to match the suggestion register — so the reviewer-facing surface cannot drift
+into looking like decisions were taken when they were not. The self-hosted collector, which had
+never been executed, was driven end to end by a new self-test that runs in CI; that test found two
+real defects — the server did not read the browser client's payload shape, so every click would
+have lost the ASIN, page and slot it was supposed to record, and the server crashed on start when
+an origin allow-list was set — and both are fixed (FLG-042). Nothing was deployed, no endpoint was
+configured, and the client remains inert.

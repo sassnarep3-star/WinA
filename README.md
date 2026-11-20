@@ -50,7 +50,7 @@ data/                 the single source of truth
   suggestions.json    16 reviewable suggestions with cost, risk and recommendation
 _src/
   build.mjs           renders all pages, sitemap, feed, robots, 404, then gates
-  content.mjs         the eight guides
+  content.mjs         the ten guides
   art.mjs             original SVG schematics and spot drawings (no Program Content)
   pages-content.mjs   about, disclosure, privacy, marketing, SEO prose
   serve.mjs           local preview server (mirrors the /WinA/ subpath)
@@ -114,6 +114,23 @@ To turn it on:
    `analyticsEnabled: true` — or flip `enabled` in `data/governance.json` and pass the URL
    through the same config.
 4. Rebuild and commit.
+
+**Or host the dependency-free collector in this repository instead**, on any host that can run
+Node 20+:
+
+```bash
+HOST=0.0.0.0 PORT=8080 STATE_DIR=/var/lib/cs DATA_DAYS=30 \
+ALLOWED_ORIGINS=https://sassnarep3-star.github.io \
+SUMMARY_TOKEN=<a long random string> \
+node scripts/analytics-server.mjs
+```
+
+It speaks the same payload as the worker — props nested under `p`, exactly as
+`assets/js/site.js` sends them — and stores the same row (day, event, path, ASIN, slot, coarse
+viewport class). `scripts/analytics-selftest.mjs` starts it on an ephemeral port and asserts the
+collector contract end to end, including that a click keeps the ASIN that earned it; it runs in
+CI, so the two collectors cannot drift apart unnoticed. (`ALLOWED_ORIGINS` for the server,
+`ALLOWED_ORIGIN` for the worker — the names differ because the runtimes differ.)
 
 The five events are defined in `data/governance.json` and documented at `/analytics/`.
 The collector stores a day bucket, event name, page path, ASIN and coarse viewport class.
@@ -231,9 +248,12 @@ would be a false claim; leaving them undeclared is what the gate now forbids.
 All three failure modes were confirmed by injecting a deliberately bad anchor and watching the
 gate fail, then reverting.
 
-**Current state — all gates green:** `node _src/build.mjs` → 33 pages, all gates clear;
-`node scripts/check-site.mjs` → 27 pages, 946 internal links, 120 Amazon links (108 sponsored,
-12 declared citations), zero failures. Build verified byte-reproducible.
+**Current state — all gates green (2026-11-20, after the reader-polish merge):**
+`node _src/build.mjs` → 36 pages, 35 in the sitemap, all gates clear;
+`node scripts/check-site.mjs` → 36 pages, 1,470 internal links, 141 Amazon links (118 sponsored,
+12 declared citations, 13 short-link anchors), zero failures;
+`node scripts/compliance-gate.mjs` → 1,652 checks, 0 failing, 1 owner-only warning (FLG-024);
+`node scripts/publish-gate.mjs` → 4 checks, 0 failing. Build verified byte-reproducible.
 
 CI now runs both gates plus a stale-artefact check, because this merge did resurrect `shop/`,
 `tools/`, `dashboard/` and `guides/` from an older build — exactly the failure the previous
@@ -256,7 +276,7 @@ The repository has no dependencies; every command is Node standard library.
 
 | Command | What it does |
 | --- | --- |
-| `node _src/build.mjs` | Regenerates all 33 pages, the sitemap, the feed and `VALIDATION.md` from `data/`, then runs the publication gate (disclosure, tags, counts, links, archive) |
+| `node _src/build.mjs` | Regenerates all 36 pages, the sitemap, the feed and `VALIDATION.md` from `data/`, then runs the publication gate (disclosure, tags, counts, links, archive) |
 | `node scripts/check-site.mjs` | Independent structural gate: canonicals, meta, headings, alt text, asset hosts, JSON-LD, every internal link, sitemap parity, RSS |
 | `node scripts/compliance-gate.mjs` | Money-and-trust gate: disclosure **order**, three-state link classification, claim bans, register cross-references, schema bans, source staleness |
 | `node scripts/compliance-gate.mjs --refresh-sources` | Re-reads every cited policy page and diffs the text we quote; warns past 90 days |
@@ -264,6 +284,7 @@ The repository has no dependencies; every command is Node standard library.
 | `node scripts/collect.mjs` | Folds `data/inbox/*.json` into the register with provenance; refuses unsourced values, prices and ratings |
 | `node scripts/next-topics.mjs` | Ranks candidate guides from a Search Console export in `data/exports/`; refuses to rank without one |
 | `node scripts/analytics-server.mjs` | Self-hosted collector, same contract as `_worker/collector.js` (five events, key allow-list, 30-day retention, `/summary`) |
+| `node scripts/analytics-selftest.mjs` | Starts the collector on an ephemeral port and asserts its contract end to end; also compares the worker and the server against each other and against the register. Run in CI |
 
 Reading order for a reviewer: **`EXECUTIVE_SUMMARY.md`** (state of the project, one page) →
 `ARCHITECTURE.md` (why each piece is built this way, and the two human checkpoints) →
@@ -275,3 +296,26 @@ by path) → [`COORDINATION.md`](COORDINATION.md) (who did what, and the four-bu
 Three gates, deliberately overlapping: each has found something the others could not see, on this
 repository, in production. `npm run check` (or `node scripts/publish-gate.mjs --committed`) is what
 CI runs, and Pages serves exactly what is in the tree.
+
+---
+
+## Session arena/574fc8eb-wina — archived parallel build (T27, PR #26)
+
+A session that started from the pre-site commit (`df3e953`, when `main` held only this file)
+completed a full independent build while other sessions were merging the publication you see above.
+Its complete site — publication front page, shelf, five question-shaped guides, analysis,
+suggestions review with a records-only path chooser, open questions, executive summary, flagged
+page, platform/source register, search — plus its data, generator and compliance gate are preserved
+at **`archive/arena-574fc8eb-wina/`**, following this repository's archive convention. The served
+root site was not modified by that session.
+
+```bash
+python3 archive/arena-574fc8eb-wina/scripts/build_site.py   # rebuild the archive
+python3 archive/arena-574fc8eb-wina/scripts/check_site.py   # its compliance gate
+```
+
+CI runs both on every push (`.github/workflows/gate.yml`, scoped to the archive). The session's
+independent 2026-11-20 verification agrees with `data/links.json` on all five observed
+destinations; its session record, verification log and integration decision are appended to
+`COORDINATION.md` (T27).
+

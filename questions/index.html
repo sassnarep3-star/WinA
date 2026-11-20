@@ -7,10 +7,9 @@
 <meta name="description" content="Every question that must be answered before further decisions: what we know, what we do not, and the specific action that would settle each one.">
 <link rel="canonical" href="https://sassnarep3-star.github.io/WinA/questions/">
 <meta name="robots" content="index,follow,max-image-preview:large">
-<!-- No search-engine verification token is published until one exists.
-     A placeholder token in production claims a verification that has not
-     happened; FLG-009 tracks adding the real token after the owner verifies
-     the property in Search Console. -->
+<!-- No search-engine verification token is published before one exists. A
+     placeholder claims a verification that has not happened; add the real
+     token here after the owner verifies the property (FLG-025). -->
 <meta property="og:site_name" content="Counter Space">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Open questions — Counter Space">
@@ -19,6 +18,7 @@
 <meta property="og:image" content="https://sassnarep3-star.github.io/WinA/assets/img/social-card.png">
 <meta property="og:image:alt" content="Counter Space — line drawing of two air fryers on a kitchen counter">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://sassnarep3-star.github.io/WinA/assets/img/social-card.png">
 <meta name="twitter:title" content="Open questions — Counter Space">
 <meta name="twitter:description" content="Every question that must be answered before further decisions: what we know, what we do not, and the specific action that would settle each one.">
 <link rel="alternate" type="application/rss+xml" title="Counter Space" href="/WinA/feed.xml">
@@ -33,15 +33,11 @@
 <header class="masthead">
   <div class="wrap masthead__inner">
     <a class="brand" href="/WinA/">
-      <span class="brand__mark" aria-hidden="true"><svg class="brandmark" viewBox="0 0 32 32" aria-hidden="true" focusable="false">
-  <rect x="2.5" y="2.5" width="27" height="27" rx="8" fill="none" stroke="currentColor" stroke-width="2"/>
-  <path d="M9 21 h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-  <path d="M11 16 a5.5 5.5 0 1 1 8.4 -4.6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
-</svg></span>
+      <span class="brand__mark" aria-hidden="true">C</span>
       <span class="brand__name">Counter Space</span>
       <span class="brand__sub">Kitchen gear, judged honestly</span>
     </a>
-    <nav class="nav" aria-label="Primary"><a href="/WinA/air-fryers/">Air fryers</a><a href="/WinA/thermometers/">Thermometers</a><a href="/WinA/guides/">Guides</a><a href="/WinA/compare/">Compare</a><a href="/WinA/about/">About</a></nav>
+    <nav class="nav" aria-label="Primary"><a href="/WinA/air-fryers/">Air fryers</a><a href="/WinA/thermometers/">Thermometers</a><a href="/WinA/guides/">Guides</a><a href="/WinA/compare/">Compare</a><a href="/WinA/seasonal/">Holiday</a><a href="/WinA/about/">About</a></nav>
   </div>
 </header>
 
@@ -61,17 +57,17 @@
   <div class="wrap">
     <p class="kicker">Before any decision</p>
     <h1 class="article-head__title">Open questions</h1>
-    <p class="article-head__dek">Every open question this build ran into, with what we can answer today, what we cannot, and how to close it. Nothing here is resolved by assumption. Where an answer exists, it cites the source. Where it does not, the row says so and names the specific thing that would settle it.</p>
+    <p class="article-head__dek">Every open question this build ran into, with what we can answer today, what we cannot, and how to close it. Nothing here is resolved by assumption. Where an answer exists, it cites the source. Where it does not, the row says so and names the specific thing that would settle it. Q-23 to Q-26 were added by the 2026-11-20 editorial pass (arena-27f76c22).</p>
   </div>
 </div>
 <section class="section">
   <div class="wrap">
     <div class="strip" style="border:1px solid var(--rule);margin-bottom:2rem">
       <div class="strip__inner">
-        <div class="strip__cell"><p class="strip__num">27</p><p class="strip__lab">Questions logged</p></div>
+        <div class="strip__cell"><p class="strip__num">30</p><p class="strip__lab">Questions logged</p></div>
         <div class="strip__cell"><p class="strip__num">7</p><p class="strip__lab">Blocking</p></div>
         <div class="strip__cell"><p class="strip__num">4</p><p class="strip__lab">Answered</p></div>
-        <div class="strip__cell"><p class="strip__num">23</p><p class="strip__lab">Still open</p></div>
+        <div class="strip__cell"><p class="strip__num">26</p><p class="strip__lab">Still open</p></div>
       </div>
     </div>
 
@@ -141,14 +137,14 @@
     <td><span class="pill pill--blocked-on-deploy">blocked-on-deploy</span></td>
     <td class="small"><a href="https://sassnarep3-star.github.io/WinA/analytics/" rel="noopener" target="_blank">Measurement page</a></td>
   </tr><tr>
-    <td><code>Q-25</code></td>
+    <td><code>Q-28</code></td>
     <td class="small">Product identity</td>
-    <td class="qcell"><strong>Do the five submitted short links still land on the five recorded listings from a logged-out browser?</strong><br><span class="pill pill--blocking" style="margin-top:.4rem">blocking</span><details class="qmore"><summary>What we have, and why it matters</summary><p><strong>We have:</strong> Two dated observation sets, recorded separately from the intended-ASIN field, and a register row per link.</p><p><strong>Why it matters:</strong> If a supplied short link is unstable, it must not be used anywhere; if it is stable, the register should say so with a date rather than with a claim.</p></details></td>
-    <td class="small">Partly, and not reliably from this environment. Re-checked on 2026-11-20: B0f3GKalj reached /dp/B0DZFD6R9Z (the recorded product) and B04G1MEwY and B0c8moW59 both returned the amazon.com home page instead of their recorded listings. Two earlier sessions recorded all five as matching. The site is unaffected because every button links to a constructed /dp/ ASIN URL, not to a short link.</td>
-    <td class="small">A logged-out browser check of each short link, which is the only observation that settles whether the short links themselves are stable.</td>
-    <td class="small">Open each link in a private browser window, copy the final URL, and record it in data/links.json with the date. See FLG-036.</td>
+    <td class="qcell"><strong>Do the five submitted short links land on the recorded listings from a logged-out browser, not from a fetcher?</strong><br><span class="pill pill--blocking" style="margin-top:.4rem">blocking</span><details class="qmore"><summary>What we have, and why it matters</summary><p><strong>We have:</strong> Every observation is recorded per link in data/links.json (observedRedirectTargets) with date and check identity, kept separate from the intended-ASIN field; the site links no short link for any product.</p><p><strong>Why it matters:</strong> If a supplied short link is unstable it must never be used; if it is stable, the register should say so from a browser rather than from a tool that Amazon may serve differently.</p></details></td>
+    <td class="small">Unresolved, and deliberately kept unresolved. Four dated observation sets now exist and disagree with each other on three of the five links: two of them returned the amazon.com home page instead of the recorded listing. The fetch path used from this sandbox is not a browser, so it cannot distinguish a dead short link from a link that serves differently to a non-browser client.</td>
+    <td class="small">A logged-out browser check of each of the five, with the final URL pasted back into the register.</td>
+    <td class="small">Open each link in a private window, copy the final URL, add a dated entry to observedRedirectTargets in data/links.json. See FLG-036 and FLG-040.</td>
     <td><span class="pill pill--needs-review">needs-review</span></td>
-    <td class="small"><a href="https://link.amazon/B04G1MEwY" rel="nofollow noopener" target="_blank" data-nonaffiliate="true">Submitted short link, re-checked 2026-11-20</a></td>
+    <td class="small"><a href="https://link.amazon/B04G1MEwY" rel="nofollow noopener" target="_blank" data-nonaffiliate="true">Submitted short link, re-checked 2026-11-20 from the sandbox</a></td>
   </tr><tr>
     <td><code>Q-03</code></td>
     <td class="small">Product identity</td>
@@ -180,7 +176,7 @@
   </tr><tr>
     <td><code>Q-07</code></td>
     <td class="small">Demand</td>
-    <td class="qcell"><strong>Is anyone searching for these products or these questions?</strong><br><span class="pill pill--high" style="margin-top:.4rem">high</span><details class="qmore"><summary>What we have, and why it matters</summary><p><strong>We have:</strong> Eight guides are published: the working titles named in the brief, a thermometer guide, and three additions from the reader-polish pass of 2026-11-20 (a USDA-referenced doneness check, a capacity rule, and a feature-name literacy piece).</p><p><strong>Why it matters:</strong> The brief asks for trending, high-converting topics. Trending is a measurement, not a guess.</p></details></td>
+    <td class="qcell"><strong>Is anyone searching for these products or these questions?</strong><br><span class="pill pill--high" style="margin-top:.4rem">high</span><details class="qmore"><summary>What we have, and why it matters</summary><p><strong>We have:</strong> The roadmap is now published content rather than hypotheses: the working titles from the brief, the technique and seasonal pieces, and the reader-polish additions.</p><p><strong>Why it matters:</strong> The brief asks for trending, high-converting topics. Trending is a measurement, not a guess.</p></details></td>
     <td class="small">Unknown. No search volume data exists for this project, and none has been assumed.</td>
     <td class="small">Any impression, click, or query data. Search Console is not verified and the analytics collector is not deployed.</td>
     <td class="small">Verify Search Console, submit the sitemap, and read the Queries report after 2–4 weeks. That replaces instinct with measured demand.</td>
@@ -225,31 +221,49 @@
     <td class="small"><a href="https://sassnarep3-star.github.io/WinA/sitemap.xml" rel="noopener" target="_blank">Published sitemap</a></td>
   </tr><tr>
     <td><code>Q-23</code></td>
+    <td class="small">Demand</td>
+    <td class="qcell"><strong>Does anyone actually search for holiday air-fryer scheduling content?</strong><br><span class="pill pill--high" style="margin-top:.4rem">high</span><details class="qmore"><summary>What we have, and why it matters</summary><p><strong>We have:</strong> A published seasonal collection (/seasonal/), a holiday guide, and a disclosed, calendar-driven selection rationale.</p><p><strong>Why it matters:</strong> It decides whether the seasonal page earns its annual refresh or is retired under SUG-23’s hold position. Shipping it without measuring repeats the instinct-driven pattern the cadence exists to replace — which is why the disclosure sits on the page.</p></details></td>
+    <td class="small">Unknown. The seasonal cluster was chosen for the calendar, not from demand data, and the page says so — while SUG-23 recommends holding such topics until measurement exists. Both positions are recorded.</td>
+    <td class="small">Any impressions or query data at all. Search Console has never been verified for this property (SG-29, FLG-009).</td>
+    <td class="small">Verify the Search Console property, submit the sitemap, and read the query report after the cluster is indexed. Compare seasonal-page impressions against the evergreen guides.</td>
+    <td><span class="pill pill--unanswered">unanswered</span></td>
+    <td class="small"><a href="https://search.google.com/search-console" rel="noopener" target="_blank">Google Search Console (verification pending, SG-29)</a></td>
+  </tr><tr>
+    <td><code>Q-24</code></td>
+    <td class="small">Demand</td>
+    <td class="qcell"><strong>Which of the published guides earns impressions first, and does it earn a click?</strong><br><span class="pill pill--high" style="margin-top:.4rem">high</span><details class="qmore"><summary>What we have, and why it matters</summary><p><strong>We have:</strong> Ten live guides in the sitemap and feed, each with a defined topic cluster and an event definition (guide_read) waiting for the collector.</p><p><strong>Why it matters:</strong> This is the metric that replaces editorial instinct: the first guide to earn impressions defines where the next article goes (SUG-26, SUG-29).</p></details></td>
+    <td class="small">Unknown until the property is verified and the query report populates. Nothing is recorded yet: the five events are defined and both collector implementations exist, but no endpoint is deployed, so this question is structurally unanswerable until that changes (Q-16).</td>
+    <td class="small">The first query report. Nothing else can rank the hypotheses.</td>
+    <td class="small">After SG-29 closes, read the query report at week four and week eight. Record the ranking in this register with the date read.</td>
+    <td><span class="pill pill--unanswered">unanswered</span></td>
+    <td class="small"><a href="https://sassnarep3-star.github.io/WinA/guides/" rel="noopener" target="_blank">The guides index (all seven live)</a></td>
+  </tr><tr>
+    <td><code>Q-27</code></td>
     <td class="small">Brand</td>
-    <td class="qcell"><strong>Does the front page tell a stranger what to do next within fifteen seconds?</strong><br><span class="pill pill--high" style="margin-top:.4rem">high</span><details class="qmore"><summary>What we have, and why it matters</summary><p><strong>We have:</strong> The structure, the copy and the links exist and pass the compliance gate; every band has a single next action.</p><p><strong>Why it matters:</strong> If comprehension fails here, no amount of later content or measurement matters, and it is the one quality question we can answer without traffic.</p></details></td>
-    <td class="small">Unknown. The page now opens on three products, a three-question router and one feature read, which is the structure a shop uses — but no reader has been observed using it.</td>
+    <td class="qcell"><strong>Does the front page tell a stranger what to do next within fifteen seconds?</strong><br><span class="pill pill--high" style="margin-top:.4rem">high</span><details class="qmore"><summary>What we have, and why it matters</summary><p><strong>We have:</strong> The structure, the copy and the links exist and pass the compliance gate; every band has exactly one next action.</p><p><strong>Why it matters:</strong> If comprehension fails here, no later content or measurement matters, and it is the one quality question answerable without traffic.</p></details></td>
+    <td class="small">Unknown. The page now opens on three products, a three-question shopper router and a seasonal band, which is the structure a shop uses — but no reader has been observed using it.</td>
     <td class="small">Any observation of a real person scanning it: what they read first, what they skipped, what they mistook for a review.</td>
-    <td class="small">Five people, ten minutes, one question after the first screen (SUG-28). Alternatively wait for the collector and read the first-screen exit pattern.</td>
+    <td class="small">Five people, ten minutes, one question after the first screen (SUG-33). Or wait for the collector and read the first-screen exit pattern.</td>
     <td><span class="pill pill--unanswered">unanswered</span></td>
     <td class="small"><span class='faint'>—</span></td>
   </tr><tr>
-    <td><code>Q-24</code></td>
-    <td class="small">Measurement</td>
-    <td class="qcell"><strong>Which guide earned the first impression, and did it earn a click?</strong><br><span class="pill pill--high" style="margin-top:.4rem">high</span><details class="qmore"><summary>What we have, and why it matters</summary><p><strong>We have:</strong> Event definitions, a worker implementation, and a rebuilt feed and sitemap that put each new guide where a crawler will find it.</p><p><strong>Why it matters:</strong> This is the question the whole cadence depends on. Without it the eighth guide is chosen by instinct, which is what the brief explicitly forbids.</p></details></td>
-    <td class="small">Nothing is recorded. The five events are defined and the collector exists, but no endpoint is deployed, so the answer is structurally unavailable until that changes.</td>
-    <td class="small">A hosted collector and the Search Console property.</td>
-    <td class="small">Deploy _worker/collector.js, set the endpoint in data/products.json, rebuild, then read the day buckets after four full weeks.</td>
-    <td><span class="pill pill--blocked-on-deploy">blocked-on-deploy</span></td>
-    <td class="small"><span class='faint'>—</span></td>
+    <td><code>Q-29</code></td>
+    <td class="small">Technical</td>
+    <td class="qcell"><strong>Who closes the parallel pull requests that add competing sites, and how?</strong><br><span class="pill pill--high" style="margin-top:.4rem">high</span><details class="qmore"><summary>What we have, and why it matters</summary><p><strong>We have:</strong> A list of the open PRs with their file sets, and gates (duplicate-content and archive-integrity checks) that fail if a second site reaches the served root.</p><p><strong>Why it matters:</strong> Two hosts serving the same articles is the one search outcome this whole project was built to avoid, and it is also how a compliance gate gets forked into two divergent copies.</p></details></td>
+    <td class="small">Unresolved. Open pull requests from other sessions each add a root-level site of their own: their index.html, stylesheet, dashboard pages, sitemap and feed. None was merged by this session; the current build already owns the root.</td>
+    <td class="small">An owner decision per PR: close it, or port only its verified data rows into data/ and rebuild.</td>
+    <td class="small">Review each diff against the current build; keep data, reject the second site, record the choice in the decision log.</td>
+    <td><span class="pill pill--decision-needed">decision-needed</span></td>
+    <td class="small"><a href="https://github.com/sassnarep3-star/WinA/pull/28" rel="noopener" target="_blank">Open PR #28 (duplicate site; see also #26, #41, #45, #46)</a></td>
   </tr><tr>
     <td><code>Q-08</code></td>
     <td class="small">Demand</td>
-    <td class="qcell"><strong>Which guide topic should be written next?</strong><br><span class="pill pill--medium" style="margin-top:.4rem">medium</span><details class="qmore"><summary>What we have, and why it matters</summary><p><strong>We have:</strong> Five working titles, deliberately not framed as popularity claims.</p><p><strong>Why it matters:</strong> Publishing order is the main lever on a new site.</p></details></td>
-    <td class="small">Three roadmap titles were promoted on 2026-11-20: the USDA-referenced doneness check, the household capacity rule, and the feature-name literacy piece. The next one should come from the query report, not from the roadmap, because the report is still empty.</td>
+    <td class="qcell"><strong>Which of the published guide topics should be written next?</strong><br><span class="pill pill--medium" style="margin-top:.4rem">medium</span><details class="qmore"><summary>What we have, and why it matters</summary><p><strong>We have:</strong> Five working titles, deliberately not framed as popularity claims.</p><p><strong>Why it matters:</strong> Publishing order is the main lever on a new site.</p></details></td>
+    <td class="small">Three roadmap titles were promoted on 2026-11-20 — a USDA-referenced doneness check, a household capacity rule and a feature-name literacy piece — joining the technique and seasonal pieces from the parallel pass. The next one should come from the query report, not from the roadmap, because the report is still empty.</td>
     <td class="small">Evidence of which question people actually arrive with.</td>
-    <td class="small">Verify Search Console, wait for the first four full weeks of query data, then promote the topic with impressions and no page. Until then the remaining roadmap titles stay hypotheses.</td>
+    <td class="small">Ship all five, then let Search Console query data reorder them. See SUG-05.</td>
     <td><span class="pill pill--partly-answered">partly-answered</span></td>
-    <td class="small"><a href="https://sassnarep3-star.github.io/WinA/guides/" rel="noopener" target="_blank">The eight guides as published</a></td>
+    <td class="small"><a href="https://sassnarep3-star.github.io/WinA/guides/" rel="noopener" target="_blank">The guides index as published</a></td>
   </tr><tr>
     <td><code>Q-11</code></td>
     <td class="small">Editorial</td>
@@ -263,7 +277,7 @@
     <td><code>Q-12</code></td>
     <td class="small">Editorial</td>
     <td class="qcell"><strong>Can we show product images?</strong><br><span class="pill pill--medium" style="margin-top:.4rem">medium</span><details class="qmore"><summary>What we have, and why it matters</summary><p><strong>We have:</strong> The constraint, quoted in the policy register.</p><p><strong>Why it matters:</strong> Images are the single biggest lever on whether a product page converts.</p></details></td>
-    <td class="small">Not from Amazon. Program Content — including listing imagery — may only be used through the approved creative tooling, and that access does not exist for this account (Q-11). The site therefore publishes its own original line drawings, each captioned as a schematic rather than a photograph, so nothing on the page claims to be the item.</td>
+    <td class="small">Not from Amazon. Program Content — including listing imagery — may only be used through approved creative tooling, and that access does not exist for this account (Q-11). The site now publishes its own original line drawings, each captioned as a schematic rather than a photograph, plus one generated line-art social card. Real product photography remains blocked, not solved.</td>
     <td class="small">Creatives API access, or manufacturer-supplied press assets with written permission.</td>
     <td class="small">PA-API/Creatives access is the correct route. Press kits are a fallback but add a per-brand permission burden.</td>
     <td><span class="pill pill--answered-constrains-everything">answered-constrains-everything</span></td>
@@ -305,21 +319,30 @@
     <td><span class="pill pill--unanswered">unanswered</span></td>
     <td class="small"><a href="https://sassnarep3-star.github.io/WinA/feed.xml" rel="noopener" target="_blank">Published feed, currently unconsumed</a></td>
   </tr><tr>
-    <td><code>Q-26</code></td>
-    <td class="small">Technical</td>
-    <td class="qcell"><strong>Who closes the three open parallel-site pull requests, and how?</strong><br><span class="pill pill--medium" style="margin-top:.4rem">medium</span><details class="qmore"><summary>What we have, and why it matters</summary><p><strong>We have:</strong> PR #26, PR #28 and PR #2 listed with their file sets, and a gate (duplicate-content and archive-integrity checks) that fails if a second site reaches the served root.</p><p><strong>Why it matters:</strong> Two canonical hosts with the same articles is the one SEO outcome this whole project was built to avoid.</p></details></td>
-    <td class="small">Unresolved. Three pull requests from other sessions add competing root-level sites. None was merged by this session; merging any as-is recreates the duplicate-content failure the board records twice.</td>
-    <td class="small">An owner decision: close them, or port only their verified data into data/ and rebuild.</td>
-    <td class="small">Review each PR's diff against the current build; keep data, reject the second site, and record the choice in the decision log.</td>
+    <td><code>Q-25</code></td>
+    <td class="small">Brand</td>
+    <td class="qcell"><strong>Will the owner adopt the seasonal cadence — refresh /seasonal/ every November — or hold seasonal topics until demand is measured (SUG-23)?</strong><br><span class="pill pill--medium" style="margin-top:.4rem">medium</span><details class="qmore"><summary>What we have, and why it matters</summary><p><strong>We have:</strong> The shipped seasonal page, the annual-refresh recommendation (SUG-25), and the hold recommendation (SUG-23).</p><p><strong>Why it matters:</strong> An unrefreshed seasonal page is worse than none: it dates the whole publication and contradicts the &quot;recent content&quot; guidance the Associates review uses (FLG-013). But retiring it without data reverts to instinct in the other direction. The decision needs the first query report, not another opinion.</p></details></td>
+    <td class="small">Not decided, and deliberately so: SUG-23 (hold) and SUG-25 (shipped) record opposite positions with their reasons. The page is built to be refreshed: one dated spec re-check per linked product and a re-read of the linked guides.</td>
+    <td class="small">The owner’s decision between the two recorded positions, and a calendar entry for the first refresh if shipping wins.</td>
+    <td class="small">Owner decision, ideally after Q-23’s first query report. If adopted, log the refresh date on the coordination board each year; if retired, mark the page’s season explicitly rather than implying currency.</td>
     <td><span class="pill pill--decision-needed">decision-needed</span></td>
-    <td class="small"><a href="https://github.com/sassnarep3-star/WinA/pull/28" rel="noopener" target="_blank">Open PR #28 (duplicate site)</a></td>
+    <td class="small"><a href="https://sassnarep3-star.github.io/WinA/seasonal/" rel="noopener" target="_blank">The seasonal collection page</a></td>
   </tr><tr>
-    <td><code>Q-27</code></td>
+    <td><code>Q-26</code></td>
+    <td class="small">Brand</td>
+    <td class="qcell"><strong>Are generated, labelled kitchen-scene illustrations acceptable brand imagery for this publication?</strong><br><span class="pill pill--medium" style="margin-top:.4rem">medium</span><details class="qmore"><summary>What we have, and why it matters</summary><p><strong>We have:</strong> Two shipped images, an on-page labelling convention, and the constraint that no page may show or imply product photography (FLG-007).</p><p><strong>Why it matters:</strong> The labelling makes the images defensible; the owner’s taste decides whether they stay. Nobody else can decide whether generated imagery fits the brand.</p></details></td>
+    <td class="small">Not decided by the owner. This pass shipped two generated counter scenes, each labelled on-page as illustrations that do not depict the products.</td>
+    <td class="small">The owner’s position on AI-generated imagery in a publication whose whole premise is honesty about what is known.</td>
+    <td class="small">Owner decision. If rejected, remove the two images and revert to the typographic design — the site was fully compliant before they existed. If accepted, SUG-27 proposes one scene per collection.</td>
+    <td><span class="pill pill--decision-needed">decision-needed</span></td>
+    <td class="small"><a href="https://sassnarep3-star.github.io/WinA/flagged/" rel="noopener" target="_blank">FLG-007: the imagery constraint</a></td>
+  </tr><tr>
+    <td><code>Q-30</code></td>
     <td class="small">Editorial</td>
-    <td class="qcell"><strong>Is the visual result actually verified, or only structurally valid?</strong><br><span class="pill pill--medium" style="margin-top:.4rem">medium</span><details class="qmore"><summary>What we have, and why it matters</summary><p><strong>We have:</strong> Parsed HTML, deterministic builds, link and asset checks, and CSS that validates as balanced and is written mobile-first.</p><p><strong>Why it matters:</strong> The whole point of this pass was appearance. A claim about how it looks cannot be verified by a link checker, so it is recorded as unverified rather than asserted.</p></details></td>
-    <td class="small">Only structurally. Three gates pass — markup, links, compliance — but no browser render exists in this environment, so nothing has confirmed how the new type scale, art frames and grid bands look at 390px or on paper.</td>
+    <td class="qcell"><strong>Is the visual result verified, or only structurally valid?</strong><br><span class="pill pill--medium" style="margin-top:.4rem">medium</span><details class="qmore"><summary>What we have, and why it matters</summary><p><strong>We have:</strong> Parsed HTML, deterministic rebuilds, alt/aria labels on every informative drawing, and CSS written mobile-first with matched braces.</p><p><strong>Why it matters:</strong> The point of the pass was appearance, and a link checker cannot judge appearance. Claiming it looks right would be exactly the kind of unverifiable assertion the register exists to prevent.</p></details></td>
+    <td class="small">Only structurally. The build, markup, link, compliance and reproducibility gates all pass, and every inline drawing parses as well-formed XML, but no browser renders in this environment, so how the type scale, art frames, shopper router, feature band and the two generated scene images look at 390px, 768px and on paper is unverified.</td>
     <td class="small">A rendered screenshot on a small phone, a tablet and print preview, by a person.</td>
-    <td class="small">Open the site on a phone, or run any headless browser locally and capture three viewports. Report anything broken to the flag register.</td>
+    <td class="small">Open the live site on a phone, or run any headless browser locally and capture three viewports; report anything broken to the flag register (FLG-046).</td>
     <td><span class="pill pill--unanswered">unanswered</span></td>
     <td class="small"><span class='faint'>—</span></td>
   </tr><tr>
