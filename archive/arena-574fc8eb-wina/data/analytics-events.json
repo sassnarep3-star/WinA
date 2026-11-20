@@ -1,0 +1,42 @@
+{
+  "note": "The five documented events (FLG-009: no canonical list existed in the repository; this is the adopted set — replace only by owner confirmation, Q-12). Recorded by assets/analytics.js, never containing personal data: no cookies, no IPs, no fingerprinting, Do Not Track respected.",
+  "events": [
+    {
+      "name": "page_view",
+      "trigger": "any page load",
+      "payload": ["path", "referrer_host", "ts"],
+      "why": "denominator for every later ratio (views → clicks)"
+    },
+    {
+      "name": "outbound_click",
+      "trigger": "click on any external link",
+      "payload": ["path", "host", "ts"],
+      "why": "measures interest leaving the site (not just affiliate links)"
+    },
+    {
+      "name": "affiliate_click",
+      "trigger": "click on a product link carrying the tracking tag",
+      "payload": ["path", "product_id", "ts"],
+      "why": "the outbound-click counter the brief asks for, scoped to monetized links"
+    },
+    {
+      "name": "search_query",
+      "trigger": "site search submitted",
+      "payload": ["path", "q_length", "ts"],
+      "why": "demand signal from readers; queries themselves are not stored (only length) to stay privacy-preserving"
+    },
+    {
+      "name": "article_read",
+      "trigger": "reader scrolls ≥50% of a guide (once per page view)",
+      "payload": ["path", "ts"],
+      "why": "separates landed-from-clicked from actually-read"
+    }
+  ],
+  "endpoint": {
+    "code": "tools/analytics_endpoint.py",
+    "health": "/healthz",
+    "ingest": "POST /e (JSON event or batch)",
+    "storage": "append-only NDJSON, no IP or UA stored",
+    "status": "not deployed — GitHub Pages cannot host it (FLG-010, Q-08)"
+  }
+}

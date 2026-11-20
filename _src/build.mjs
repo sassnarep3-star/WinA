@@ -21,6 +21,7 @@ const gov = read("data/governance.json");
 const questions = read("data/questions.json");
 const suggestions = read("data/suggestions.json");
 const specialLink = read("data/special_link_tests.json");
+const linkRecord = read("data/links.json"); // product-intent confirmation record (T29)
 
 // Analytics is enabled only when both halves agree: the governance decision and an endpoint that
 // exists. A client switched on against an empty endpoint is a silent failure, which is worse than
@@ -418,6 +419,11 @@ function frontPage() {
   const airFryers = products.filter((p) => p.category === "air-fryers");
   const thermos = products.filter((p) => p.category === "thermometers");
   const [gForm, gCap, gClean, gMulti, gProbe] = guides;
+  // Counted, never typed: the number of spec rows carrying a confirmed value.
+  const verifiedSpecs = products.reduce(
+    (n, p) => n + p.specs.filter((s) => s.status === "verified" && s.value).length,
+    0
+  );
 
   const html = `
 <section class="hero">
@@ -470,12 +476,21 @@ function frontPage() {
       <span class="dept__sub">Instant read, or a probe you leave in</span>
     </a>
     <a class="dept" href="${url("/compare/")}">
-      <span class="dept__count">5</span>
+      <span class="dept__count">${products.length}</span>
       <span class="dept__name">Compare side by side</span>
       <span class="dept__sub">Every verified spec in one table</span>
     </a>
   </div>
 </nav>
+
+<div class="strip">
+  <div class="wrap strip__inner">
+    <div class="strip__cell"><p class="strip__num">${products.length}</p><p class="strip__lab">Products, spec-checked</p></div>
+    <div class="strip__cell"><p class="strip__num">${categories.length}</p><p class="strip__lab">Categories</p></div>
+    <div class="strip__cell"><p class="strip__num">${guides.length}</p><p class="strip__lab">Buying guides</p></div>
+    <div class="strip__cell"><p class="strip__num">${verifiedSpecs}</p><p class="strip__lab">Specs confirmed at source</p></div>
+  </div>
+</div>
 
 <section class="section" id="shelf">
   <div class="wrap">
@@ -1191,18 +1206,30 @@ function registerPage() {
     )
     .join("");
 
-  const linkRows = products
-    .map(
-      (p) => `<tr>
-    <td><code>${esc(p.submittedLink.replace("https://link.amazon/", ""))}</code></td>
-    <td><a href="${p.submittedLink}" rel="nofollow noopener" target="_blank" data-nonaffiliate="true">link.amazon</a></td>
-    <td>${cite(p.observedDestination, `<code>${esc(p.asin)}</code>`, p.asin)}</td>
-    <td class="blank">not supplied</td>
-    <td>${esc(p.observedOn)}</td>
-    <td>observed redirect</td>
-  </tr>`
-    )
+  // Product-intent confirmation record (T29). The intended ASIN is shown as "not supplied" and never
+  // filled from the observed one. The official listing and every observed landing are separate,
+  // a sponsored, tagged link (it is a product link). The observed landing is shown as text, not as a
+  // link, so the register does not send readers to a page that was never the product's own listing.
+  const landingLabel = (r) =>
+    r === "product-page" ? "Product page" : r === "homepage" ? "Amazon homepage" : r === "other" ? "Other page" : "No landing";
+  const linkRows = linkRecord.links
+    .map((l) => {
+      const last = l.observedRedirectTargets[l.observedRedirectTargets.length - 1];
+      const ids = l.confirmationSourceIds.map((id) => `<code>${esc(id)}</code>`).join(" ");
+      const shown = last.finalUrl ? last.finalUrl.replace(/\?.*$/, "") : "";
+      return `<tr>
+    <td><code>${esc(l.shortCode)}</code><br><a href="${esc(l.submitted)}" rel="nofollow noopener" target="_blank" data-nonaffiliate="true">open short link</a></td>
+    <td class="blank">${l.intendedAsin ? esc(l.intendedAsin) : "not supplied"}</td>
+    <td>${cite(l.officialListingUrl, `<code>${esc(l.observedAsin)}</code>`, l.observedAsin)}</td>
+    <td>${esc(l.confirmedOn)}<br><span class="tiny">${ids}</span></td>
+    <td>${landingLabel(last.result)} <span class="tiny">on ${esc(last.observedOn)}</span>${
+        last.finalUrl ? `<br><code>${esc(shown)}</code>` : ""
+      }</td>
+    <td><span class="pill pill--review">${l.observationsAgree ? "agree" : "disagree"}</span><br><span class="tiny">${l.observedRedirectTargets.length} checks · <a href="${url("/flagged/")}">flags</a></span></td>
+  </tr>`;
+    })
     .join("");
+  const linkDisagree = linkRecord.links.filter((l) => !l.observationsAgree).length;
 
   const html = `
 ${breadcrumb([{ href: url("/"), label: "Home" }, { label: "Source register" }])}
@@ -1217,15 +1244,16 @@ ${breadcrumb([{ href: url("/"), label: "Home" }, { label: "Source register" }])}
 <section class="section">
   <div class="wrap">
     <h2 class="section__title" style="font-size:1.4rem">Link resolution</h2>
+    <p class="section__dek" style="margin-bottom:1.25rem">One row per submitted short link. The intended ASIN is blank because the owner did not supply one. The official listing is the Amazon ASIN page. Every observed landing is kept with its date, in its own column. Full history: <code>data/links.json</code>. ${linkDisagree} of ${linkRecord.links.length} links returned different landing pages across their recorded checks.</p>
     <p class="section__dek" style="margin-bottom:1.25rem">The five submitted short links, what they resolved to, and the separation between the intended ASIN (never supplied) and the observed destination (recorded by following the link).</p>
     <div class="note note--warn" style="margin-bottom:1.25rem">
       <p class="note__title">Re-tested 2026-11-20: four of the five short links now land on the Amazon homepage</p>
-      <p>Opened again in one pass this session, <code>B04G1MEwY</code>, <code>B02NbDxp3</code>, <code>B00hJ57DV</code> and <code>B0c8moW59</code> returned <code>amazon.com</code> with no product; only <code>B0f3GKalj</code> still returned its product page. The five direct <code>/dp/</code> URLs were fetched the same day and every one still returned the expected product title, so the product identities below stand on the product pages rather than on the short links. Both readings of the short-link result are recorded, not reconciled — see <a href="${url("/flagged/#FLG-040")}">FLG-040</a>. Nothing on this site routes through a short link: every outbound link is built as <code>amazon.com/dp/&lt;ASIN&gt;?tag=</code>.</p>
+      <p>Opened again in one pass this session, <code>B04G1MEwY</code>, <code>B02NbDxp3</code>, <code>B00hJ57DV</code> and <code>B0c8moW59</code> returned <code>amazon.com</code> with no product; only <code>B0f3GKalj</code> still returned its product page. The five direct <code>/dp/</code> URLs were fetched the same day and every one still returned the expected product title, so the product identities below stand on the product pages rather than on the short links. Both readings of the short-link result are recorded, not reconciled — see <a href="${url("/flagged/#FLG-036")}">FLG-036</a> and <a href="${url("/flagged/#FLG-040")}">FLG-040</a>, which record the same split independently. Nothing on this site routes through a short link: every outbound link is built as <code>amazon.com/dp/&lt;ASIN&gt;?tag=</code>.</p>
     </div>
     <div class="tablewrap">
       <table class="data sortable">
-        <caption>Submitted link → observed destination. Intended ASIN is a separate field from observed destination and is deliberately blank.</caption>
-        <thead><tr><th scope="col">Submitted code</th><th scope="col">Link</th><th scope="col">Observed ASIN</th><th scope="col">Intended ASIN</th><th scope="col">Confirmed</th><th scope="col">Method</th></tr></thead>
+        <caption>Product-intent confirmation record. Four fields per link: intended ASIN, official listing, confirmation date and source. The observed redirect target is a separate column.</caption>
+        <thead><tr><th scope="col">Submitted code</th><th scope="col">Intended ASIN</th><th scope="col">Official listing (ASIN page)</th><th scope="col">Confirmed on · source</th><th scope="col">Latest observed redirect target</th><th scope="col">Checks</th></tr></thead>
         <tbody>${linkRows}</tbody>
       </table>
     </div>
@@ -1980,7 +2008,7 @@ ${breadcrumb([{ href: url("/"), label: "Home" }, { label: "Executive summary" }]
       <li><strong>No traffic or conversion data.</strong> The site launched with this build. Search Console is unverified and the analytics collector is not deployed, so nothing is being measured yet.</li>
       <li><strong>No automated product research.</strong> The brief asked for an agent that identifies trending, high-converting products. Identifying "trending" requires a data source; without one, any such claim would be a fabrication with a chart attached. The pipeline is defined and its data inputs are documented as missing.</li>
       <li><strong>No revenue projection.</strong> Four unknowns multiplied together produce fiction.</li>
-      <li><strong>No product photographs.</strong> The figures on the product pages, shelf cards and front page are our own form-factor diagrams, and every one says so under the image. A diagram is not a photograph of the model (<a href="${url("/flagged/#FLG-037")}">FLG-037</a>).</li>
+      <li><strong>No product photographs.</strong> The figures on the product pages, shelf cards and front page are our own form-factor diagrams, and every one says so under the image. A diagram is not a photograph of the model (<a href="${url("/flagged/#FLG-042")}">FLG-042</a>).</li>
     </ul>
 
     <h2>What is unresolved</h2>

@@ -389,7 +389,7 @@
       "status": "blocked-on-access",
       "question": "May the site show product imagery, and what would licensed imagery cost?",
       "answer": "Not from the listing: program policies restrict program content to what the API or approved tools supply. No product photograph appears anywhere on the site today.",
-      "have": "Self-drawn form-factor diagrams, captioned as drawings (FLG-037).",
+      "have": "Self-drawn form-factor diagrams, captioned as drawings (FLG-042).",
       "missing": "PA-API or Creatives access, which is the licensed route to product images (Q-12).",
       "matters": "A shop without product pictures converts badly. This is the single biggest visual gap and it is a credentials problem, not a design problem.",
       "howToFind": "Qualify for and enrol in Product Advertising API access, then render images from the licensed feed only.",
@@ -434,7 +434,7 @@
       "have": "Direct /dp/ URLs verified the same day for all five ASINs; the product identities are not in doubt.",
       "missing": "A signed-in human opening each short link and reporting what loads. That is the only test that matches how the links were originally supplied.",
       "matters": "If a short link is dead or reassigned, the intended product behind it is unconfirmed, even if the product page we point at is right today.",
-      "howToFind": "Open each of the five link.amazon URLs in a normal browser while signed in, note the landing product, and record the result against FLG-040.",
+      "howToFind": "Open each of the five link.amazon URLs in a normal browser while signed in, note the landing product, and record the result against FLG-036 / FLG-040.",
       "sourceUrl": "https://link.amazon/B04G1MEwY",
       "sourceLabel": "One of the five submitted short links (re-tested 2026-11-20)"
     }
