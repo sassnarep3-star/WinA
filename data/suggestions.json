@@ -1,11 +1,31 @@
 {
-  "intro": "A decision list, not a wish list. Each suggestion states what to do, why, what it costs, and what would make it a bad idea. Nothing here has been implemented beyond what is already live; the ones marked shipped were built in this pass because the brief asked for them directly. Everything else waits for a decision.",
+  "intro": "A decision list, not a wish list. Each suggestion states what to do, why, what it costs, and what would make it a bad idea. Nothing here is implemented without a decision, except the rows marked shipped, which were built in this pass because the brief asked for them directly. The missing-information register below is the list of things worth finding out before the next decision is made.",
   "statusKey": [
-    { "id": "shipped", "label": "Shipped", "note": "Already built on the live site in this pass." },
-    { "id": "recommend", "label": "Recommend next", "note": "Highest confidence, do this before the others." },
-    { "id": "consider", "label": "Consider", "note": "Worth doing, but depends on an earlier decision." },
-    { "id": "hold", "label": "Hold", "note": "Do not do this yet. Reason given." },
-    { "id": "reject", "label": "Rejected", "note": "Would break a rule or mislead a reader." }
+    {
+      "id": "shipped",
+      "label": "Shipped",
+      "note": "Already built on the live site in this pass."
+    },
+    {
+      "id": "recommend",
+      "label": "Recommend next",
+      "note": "Highest confidence, do this before the others."
+    },
+    {
+      "id": "consider",
+      "label": "Consider",
+      "note": "Worth doing, but depends on an earlier decision."
+    },
+    {
+      "id": "hold",
+      "label": "Hold",
+      "note": "Do not do this yet. Reason given."
+    },
+    {
+      "id": "reject",
+      "label": "Rejected",
+      "note": "Would break a rule or mislead a reader."
+    }
   ],
   "suggestions": [
     {
@@ -17,7 +37,12 @@
       "cost": "None. It is a writing constraint, enforced by the build.",
       "risk": "A guide that never says 'we tested this' competes poorly against sites that can. That is a real disadvantage and it is the correct one to accept.",
       "decide": "Accept. Every page already follows it.",
-      "links": [{ "label": "FTC Disclosures 101", "url": "https://www.ftc.gov/business-guidance/resources/disclosures-101-social-media-influencers" }]
+      "links": [
+        {
+          "label": "FTC Disclosures 101",
+          "url": "https://www.ftc.gov/business-guidance/resources/disclosures-101-social-media-influencers"
+        }
+      ]
     },
     {
       "id": "SUG-02",
@@ -39,7 +64,12 @@
       "cost": "Eligibility requires qualifying sales first — a chicken-and-egg problem for a new account.",
       "risk": "None to the site. The risk is waiting on access and shipping nothing meanwhile, which is why the current build ships without it.",
       "decide": "Apply as soon as the account qualifies. Track it in the questions register as Q-11 and Q-12.",
-      "links": [{ "label": "Associates Program Policies", "url": "https://affiliate-program.amazon.com/help/operating/policies" }]
+      "links": [
+        {
+          "label": "Associates Program Policies",
+          "url": "https://affiliate-program.amazon.com/help/operating/policies"
+        }
+      ]
     },
     {
       "id": "SUG-04",
@@ -50,7 +80,12 @@
       "cost": "None.",
       "risk": "If the tag is not enrolled, every link still earns nothing. That is the one thing this cannot fix.",
       "decide": "Already done. Next step is the proof: click one link per product while signed in, and confirm it appears in the tracking report.",
-      "links": [{ "label": "Participation Requirements §6(w)", "url": "https://affiliate-program.amazon.com/help/operating/policies" }]
+      "links": [
+        {
+          "label": "Participation Requirements §6(w)",
+          "url": "https://affiliate-program.amazon.com/help/operating/policies"
+        }
+      ]
     },
     {
       "id": "SUG-05",
@@ -60,7 +95,7 @@
       "why": "Question-shaped guides are the right shape, but four is not a sample. A weekly cadence for two months produces enough pages and enough query impressions to see which question people actually arrive with, which is the only way to stop guessing topics.",
       "cost": "One substantive guide per week. Each needs its own verified spec pass.",
       "risk": "Cadence without quality control produces the thin content the brief explicitly rejects. The build gate must stay on.",
-      "decide": "Recommend a fixed day and a fixed length. Add each new guide to the sitemap and feed in the same commit, then measure at week eight.",
+      "decide": "Partly done, deliberately. Twelve guides now exist, but they were published in one pass, which is not a cadence. The weekly rhythm is still the plan, and the next topic should be chosen from the query report once one exists. Do not mistake a bigger library for a cadence.",
       "links": []
     },
     {
@@ -94,17 +129,22 @@
       "cost": "One worker deploy and a secret.",
       "risk": "A self-hosted collector is a privacy obligation. The current design stores no identifiers, which keeps that burden small.",
       "decide": "Recommend deploying to close FLG-011. Do not import a third-party tracker as a shortcut.",
-      "links": [{ "label": "Measurement page", "url": "https://sassnarep3-star.github.io/WinA/analytics/" }]
+      "links": [
+        {
+          "label": "Measurement page",
+          "url": "https://sassnarep3-star.github.io/WinA/analytics/"
+        }
+      ]
     },
     {
       "id": "SUG-09",
       "title": "Add a 'who should not buy this' block to every product page",
-      "status": "consider",
+      "status": "shipped",
       "weight": 6,
       "why": "The single most useful thing a buying guide can say, and the thing competitors skip. It also converts better, because readers trust a page that talked them out of something.",
       "cost": "A short block per product.",
       "risk": "None. It requires actually understanding the trade-off, which is why most sites omit it.",
-      "decide": "Consider. The current pages carry a trade-off line; expanding it to a full block is the natural next edit.",
+      "decide": "Shipped. Every product page carries a \"Who it is wrong for\" section, and the front page and the new /start-here/ page name the situation each product is wrong for rather than ranking it. Re-open this only if the site acquires a second authorial voice.",
       "links": []
     },
     {
@@ -121,12 +161,12 @@
     {
       "id": "SUG-11",
       "title": "Add a short 'how we choose what to recommend' block to the front page",
-      "status": "consider",
+      "status": "shipped",
       "weight": 5,
       "why": "Readers arriving cold need one sentence on why these five products and not others. It also pre-empts the 'is this an ad' reflex.",
       "cost": "Three sentences.",
       "risk": "Can tip into self-referential process talk, which the brief explicitly wants kept off the front page. Keep it to a single block low on the page.",
-      "decide": "Consider. The About page currently carries this.",
+      "decide": "Shipped. The front page carries a \"How these recommendations were made\" note, the front page strip shows the tested count as zero, and the /about/ page states the limitation. Keep it in the same place when the front page is redesigned.",
       "links": []
     },
     {
@@ -138,7 +178,12 @@
       "cost": "Zero.",
       "risk": "It is the most requested feature on affiliate sites and the most direct route to account termination.",
       "decide": "Rejected. Documented so no future session builds it.",
-      "links": [{ "label": "Participation Requirements §6(y)", "url": "https://affiliate-program.amazon.com/help/operating/policies" }]
+      "links": [
+        {
+          "label": "Participation Requirements §6(y)",
+          "url": "https://affiliate-program.amazon.com/help/operating/policies"
+        }
+      ]
     },
     {
       "id": "SUG-13",
@@ -171,7 +216,12 @@
       "cost": "Zero.",
       "risk": "Slower initial traffic.",
       "decide": "Hold until the ledger has real click and order data.",
-      "links": [{ "label": "Participation Requirements §6(f)", "url": "https://affiliate-program.amazon.com/help/operating/policies" }]
+      "links": [
+        {
+          "label": "Participation Requirements §6(f)",
+          "url": "https://affiliate-program.amazon.com/help/operating/policies"
+        }
+      ]
     },
     {
       "id": "SUG-16",
@@ -183,6 +233,296 @@
       "risk": "A stale date is a public admission of neglect. That is the point.",
       "decide": "Consider. Pages currently record the observation date in the register rather than on the page.",
       "links": []
+    },
+    {
+      "id": "SUG-17",
+      "title": "Give every page a decision, not a summary: lead with the answer a reader came for",
+      "status": "shipped",
+      "weight": 9,
+      "why": "The brief asks for a site that reads like a shop rather than an audit. The difference in practice is that a shop answers the question the customer walked in with, in the first screen, and shows the product next to the answer. This pass added a /start-here/ decision entry point, a seasonal layer at /season/, cluster grouping on the guides index, and a source list on every guide so a claim can be checked in one click.",
+      "cost": "None beyond writing.",
+      "risk": "A decision page can read as confident when it is not. Every answer on it points at a product shape and says what would make it wrong, and no page claims testing.",
+      "decide": "Shipped. Watch which entry points earn clicks once measurement exists; if /start-here/ is never entered, the answer is to link it more prominently rather than delete it.",
+      "links": []
+    },
+    {
+      "id": "SUG-18",
+      "title": "Ask each manufacturer for the interior cavity dimensions — the one figure nobody publishes",
+      "status": "recommend",
+      "weight": 9,
+      "why": "Every capacity guide on this site currently ends in a gap: exterior dimensions are published, interior dimensions are not, and \"can a whole chicken fit\" cannot be answered from them. A single support email per model would close it, and it would close it for the reader too — this is the highest-value missing-information request on the site.",
+      "cost": "Three short emails and a week of waiting. Possibly a sample unit if they refuse to publish.",
+      "risk": "A manufacturer may publish a figure that does not match the unit actually sold, which is a different problem, not a reason not to ask. Record whatever they answer with its date and its source, exactly like every other specification.",
+      "decide": "Recommend. Do it before the next capacity guide is written, and record the answer in data/products.json with its source rather than in prose.",
+      "links": []
+    },
+    {
+      "id": "SUG-19",
+      "title": "Download the user guides for the three air fryers and record the care instructions",
+      "status": "shipped",
+      "weight": 8,
+      "why": "\"Dishwasher-safe\" currently has to be treated as a claim because no official care instruction could be found for the nonstick baskets. The user guide is the document that settles how to wash them, and it also carries the interior cavity dimensions and the model number that distinguishes the 8-quart variants. One PDF per model answers three open rows at once.",
+      "cost": "An hour of downloading and reading.",
+      "risk": "Guides are model-specific and the 8-quart family spans several SKUs. Record which model number the guide belongs to and which ASIN it belongs to, separately.",
+      "decide": "Shipped for two of the three. The owner's manuals for the Emeril French Door AirFryer 360 (FAFO-001) and the ThermoMaven F1 Stealth (HT07) were downloaded and read in full, which closed the wattage, temperature-range, interior-volume, cleaning, calibration and probe-spec rows. chefman.com's published specification pages supplied the model numbers and the basket care instructions. The remaining gap is the basket fryers' interior cavity dimensions, which no published source carries.",
+      "links": []
+    },
+    {
+      "id": "SUG-20",
+      "title": "Ask ThermoMaven what the IP rating applies to — and to which part of the device",
+      "status": "shipped",
+      "weight": 7,
+      "why": "Two official sources disagree in form. The Amazon listing title states \"IP67 Waterproof\"; the maker's own page says \"100% waterproof\" and publishes no IP number. The site currently shows both, attributed, which is honest but unsatisfying. One question to the manufacturer would settle whether IP67 covers the whole unit or only the sensing end.",
+      "cost": "One email.",
+      "risk": "Low. If they do not answer, the site keeps showing both statements, which is the correct fallback.",
+      "decide": "Shipped as far as it can be without the manufacturer replying. The maker's own user manual was read in full and publishes no IP number, so the specification row was downgraded from \"verified\" to \"claim\" and all three official wordings are shown. The row is only closable by a manufacturer reply.",
+      "links": [
+        {
+          "label": "thermomaven.com — F1 Stealth",
+          "url": "https://www.thermomaven.com/products/f1-stealth"
+        }
+      ]
+    },
+    {
+      "id": "SUG-21",
+      "title": "Ask Emeril Lagasse which preset count is current for this model",
+      "status": "shipped",
+      "weight": 6,
+      "why": "The Amazon listing title for this ASIN says \"24 One-Touch Preset Options\"; the manufacturer's own specification panel says \"25 Cooking Pre-sets\". They may be counting different things (one-touch options against total pre-sets), but a reader is entitled to know which is which.",
+      "cost": "One email.",
+      "risk": "Low. Both statements stay on the site until the answer arrives.",
+      "decide": "Shipped. The owner's manual for model FAFO-001 contains a preset mode chart naming exactly 24 presets, which agrees with the Amazon listing title and disagrees with the maker's specification panel saying 25. The product page now leads with 24, states that the manual is where the number comes from, and shows the 25 alongside it. The accessory count has the same shape and is recorded the same way.",
+      "links": [
+        {
+          "label": "emerileveryday.com — French Door AirFryer 360",
+          "url": "https://www.emerileveryday.com/products/emeril_lagasse_french_door_airfryer_360"
+        }
+      ]
+    },
+    {
+      "id": "SUG-22",
+      "title": "Ask CHEF iQ how long the app and Smart Hub service will be supported",
+      "status": "recommend",
+      "weight": 7,
+      "why": "The wireless thermometer is the one product on this site whose main feature depends on software. Nothing published states a support horizon, so the register records it as unverified rather than guessing. It is also the single most common complaint category for connected kitchen devices, and it is exactly the question a buyer should be asking before paying for it.",
+      "cost": "One email.",
+      "risk": "The honest answer might be \"we do not commit to a date\". That is still useful, and it is still publishable.",
+      "decide": "Still recommend, and now better evidenced. The full product page, its documentation links and its FAQ were read on 2026-11-20 and none states a support horizon. What is confirmed is that the probe and hub use internal rechargeable lithium batteries with no removable cells, so a probe depends on the hub as well as the app.",
+      "links": [
+        {
+          "label": "chefiq.com — iQ Sense",
+          "url": "https://chefiq.com/products/iq-sense"
+        }
+      ]
+    },
+    {
+      "id": "SUG-23",
+      "title": "Commission one hands-on test, properly disclosed, rather than guessing at everything",
+      "status": "recommend",
+      "weight": 8,
+      "why": "This is the unlock the whole site is waiting on. Every guide currently ends at the edge of a measured fact: preheat time, how much a basket browns, whether the crumb tray is awkward, what the 450°F Hi-Fry burst actually does to a chicken wing. One tested unit per form factor would convert an honest inference site into an evidence site, and it would end the awkwardness of writing about an appliance nobody has ever switched on.",
+      "cost": "Three units, or one borrowed per category. Plus the discipline to write only what was measured.",
+      "risk": "Testing a single unit invites over-generalisation, and a disclosed test must be disclosed on every page that cites it. Both are manageable; neither is a reason not to test.",
+      "decide": "Recommend, and treat it as the real content strategy rather than a compliance nicety. Until it happens, the site stays in the \"how to decide\" voice, which is the correct voice for zero tests.",
+      "links": []
+    },
+    {
+      "id": "SUG-24",
+      "title": "Add a site search once there are more pages than a reader can hold in their head",
+      "status": "consider",
+      "weight": 6,
+      "why": "Thirty-nine pages is the point where a visitor arrives knowing they want \"the chicken one\" rather than a category, and a search box is the honest answer to that. It also concentrates internal linking on the pages that matter, which helps a small site more than another guide.",
+      "cost": "A generated index file and about forty lines of client-side JavaScript. No backend.",
+      "risk": "A client-side search over a static index is only as good as the index, and it cannot rank. It is a convenience feature, not a discovery strategy, and should not be confused with one.",
+      "decide": "Consider. Do it after the cadence in SUG-05 has produced a few more pages, so the index is worth searching.",
+      "links": []
+    },
+    {
+      "id": "SUG-25",
+      "title": "Do not publish year-stamped \"best of\" listicles",
+      "status": "reject",
+      "weight": 9,
+      "why": "This is the single most recognisable pattern of a generated affiliate site, and the brief explicitly asks for something that does not read like one. A \"Best Air Fryers of 2026\" list implies a tested, ranked, current verdict; this site has neither the tests nor the prices, and the year in the title guarantees decay. It also invites the copy-paste structure that every competitor publishes, which is not a strategy.",
+      "cost": "None. This is a prohibition, not a build.",
+      "risk": "The argument for it is that it is what ranks. It is what ranks in the short term, and it is what produces the pages that get penalised and abandoned.",
+      "decide": "Reject, permanently. Listed here so that a future session does not add one in good faith. The question-shaped guides are the deliberate alternative.",
+      "links": []
     }
-  ]
+  ],
+  "discovery": {
+    "intro": "Everything the site asserts is sourced. Everything the site cannot source is listed here, with the specific artefact that would close it and who can supply it. Nothing in this table is a guess; each row is a gap that was checked against an official source and not found.",
+    "columns": [
+      "Gap",
+      "Why it matters",
+      "What would close it",
+      "Who can close it",
+      "Effort"
+    ],
+    "rows": [
+      {
+        "id": "DSC-01",
+        "gap": "Interior cavity dimensions for the two basket fryers",
+        "why": "Exterior dimensions are published; interior dimensions are not. \"Can a whole chicken fit\" and \"does this feed four in one round\" both reduce to this one number. The oven-style unit is now covered: its owner's manual gives the cavity as 26 quarts, 1519 cubic inches. The two basket fryers still have no published interior figure.",
+        "close": "For the oven-style unit this is closed — the manual gives 1519 cubic inches. For the basket fryers, one manufacturer support request per model, or the interior-dimension line in the user guide.",
+        "who": "Manufacturer (chefman.com, emerileveryday.com)",
+        "effort": "One email per basket-fryer model (two remain)",
+        "links": [
+          {
+            "label": "chefman.com — dual-basket specification",
+            "url": "https://chefman.com/products/turbofry-touch-dual-window-air-fryer"
+          },
+          {
+            "label": "emerileveryday.com — French Door AirFryer 360",
+            "url": "https://www.emerileveryday.com/products/emeril_lagasse_french_door_airfryer_360"
+          }
+        ]
+      },
+      {
+        "id": "DSC-02",
+        "gap": "Care instructions for the basket fryers’ nonstick baskets",
+        "why": "chefman.com now states \"Nonstick, dishwasher-safe baskets\" for the 6-quart dual basket and \"Top-rack dishwasher-safe basket\" for the 8-quart, so the \"dishwasher-safe\" claim is now sourced to the manufacturer for both basket fryers. What is still missing is the care section of the user guide, which says how to wash them and what happens to the coating over time.",
+        "close": "The care section of the user guide for the exact model number.",
+        "who": "Manufacturer, or the listing's own care section on Amazon",
+        "effort": "One PDF per model",
+        "links": [
+          {
+            "label": "chefman.com — dual-basket specification",
+            "url": "https://chefman.com/products/turbofry-touch-dual-window-air-fryer"
+          }
+        ]
+      },
+      {
+        "id": "DSC-03",
+        "gap": "Which dimensions and wattage apply to the 8-quart TurboFry",
+        "why": "The model is settled: the listing names RJ38-SQSS-8T and chefman.com publishes that same code. What remains is a value conflict — the listing states 12.75\"D × 13.5\"W × 10\"H and 1000 W, while the maker states 15.4 × 12.6 × 13.5 in and 1700W. Both are on the page, attributed.",
+        "close": "A manufacturer reply naming the dimensions and wattage for the unit shipped under this ASIN.",
+        "who": "Manufacturer (chefman.com)",
+        "effort": "One email",
+        "links": [
+          {
+            "label": "chefman.com — TurboFry Touch Stainless-Steel",
+            "url": "https://chefman.com/collections/air-fryers-1/products/turbofry-touch-air-fryer-1"
+          },
+          {
+            "label": "Amazon listing",
+            "url": "https://www.amazon.com/dp/B08DKYBTPH"
+          }
+        ]
+      },
+      {
+        "id": "DSC-04",
+        "gap": "What the IP rating on the ThermoMaven covers",
+        "why": "The Amazon listing title says \"IP67 Waterproof\"; the maker's page says \"100% waterproof\" and publishes no IP number; the maker's own user manual, read in full, publishes no IP rating either. The row is marked \"claim\" and carries all three wordings.",
+        "close": "A manufacturer statement of whether an IP rating exists and what it covers.",
+        "who": "Manufacturer (thermomaven.com)",
+        "effort": "One email",
+        "links": [
+          {
+            "label": "thermomaven.com — F1 Stealth",
+            "url": "https://www.thermomaven.com/products/f1-stealth"
+          }
+        ]
+      },
+      {
+        "id": "DSC-05",
+        "gap": "Whether the Emeril preset count is 24 or 25",
+        "why": "The owner's manual for model FAFO-001 has a preset mode chart naming 24 presets, which agrees with the Amazon listing title. The manufacturer's specification panel says 25 cooking pre-sets. The site leads with 24 and shows the 25 alongside it. The accessory count has the same shape of disagreement: six in the listing title, seven in the product description.",
+        "close": "A manufacturer reply naming the current preset and accessory counts.",
+        "who": "Manufacturer (emerileveryday.com)",
+        "effort": "One email",
+        "links": [
+          {
+            "label": "Emeril owner's manual, model FAFO-001",
+            "url": "https://cdn.shopify.com/s/files/1/0687/4388/8948/files/FAFO-001_VN_32451_EF_IB_T22-5004282-C_1.pdf?v=1777990358"
+          },
+          {
+            "label": "emerileveryday.com",
+            "url": "https://www.emerileveryday.com/products/emeril_lagasse_french_door_airfryer_360"
+          }
+        ]
+      },
+      {
+        "id": "DSC-06",
+        "gap": "How long the CHEF iQ app and Smart Hub service will be supported",
+        "why": "The product page, its documentation links and its FAQ were read in full and none states a support horizon. The probe and hub use internal rechargeable lithium batteries, so a probe also depends on the hub remaining serviceable.",
+        "close": "A manufacturer statement of the support horizon, and whether the device reports temperature without the app.",
+        "who": "Manufacturer (chefiq.com)",
+        "effort": "One email",
+        "links": [
+          {
+            "label": "chefiq.com — iQ Sense",
+            "url": "https://chefiq.com/products/iq-sense"
+          }
+        ]
+      },
+      {
+        "id": "DSC-07",
+        "gap": "The intended ASIN for each of the five submitted short links",
+        "why": "The short codes were never ASINs and do not match the destinations. The observed ASIN is recorded; the intended one was never supplied and stays blank rather than being inferred.",
+        "close": "The requester stating, per submitted link, which product they meant.",
+        "who": "The requester — nobody else can supply this",
+        "effort": "One message",
+        "links": []
+      },
+      {
+        "id": "DSC-08",
+        "gap": "Whether shopnow047c-20 is an enrolled Associates tracking ID",
+        "why": "Every link on this site carries it. If the account is not enrolled, nothing here earns anything and no amount of content fixes that.",
+        "close": "The Associates Central account page, or one live click test against the tracking report.",
+        "who": "The owner, in Associates Central — no access from here",
+        "effort": "One login, or one click and a 48-hour wait",
+        "links": []
+      },
+      {
+        "id": "DSC-09",
+        "gap": "Search Console impressions and queries for the published URLs",
+        "why": "Every guide title on this site is an editorial hypothesis. Nothing on it has been tested against what people actually type. Until the query report exists, topic choice is instinct.",
+        "close": "A verified Search Console property, then the Queries report after a few weeks of impressions.",
+        "who": "The owner, in Search Console — the placeholder token in every page head still has to be replaced",
+        "effort": "One verification, then patience",
+        "links": []
+      },
+      {
+        "id": "DSC-10",
+        "gap": "A deployed analytics collector",
+        "why": "Five events are defined and instrumented in the page script, but there is no endpoint, so nothing is recorded. No learning is happening.",
+        "close": "A host for the collector that is already written in _worker/collector.js, plus the endpoint written into the page config.",
+        "who": "The owner, or any host that will run a small worker",
+        "effort": "About an hour, once a host is chosen",
+        "links": []
+      },
+      {
+        "id": "DSC-11",
+        "gap": "Whether the 8-quart TurboFry reaches 450°F",
+        "why": "The Amazon listing title advertises a 450°F Hi-Fry option. The maker's own specification for the very model the listing names states 200–400°F and a 400°F maximum. The listing also calls it \"4-in-1: Bake, Dehydrate, Frozen\" where the maker says 4 cooking presets — two different things counted as four.",
+        "close": "A manufacturer reply stating the temperature ceiling for model RJ38-SQSS-8T and what its four functions are.",
+        "who": "Manufacturer (chefman.com)",
+        "effort": "One email",
+        "links": [
+          {
+            "label": "chefman.com — TurboFry Touch Stainless-Steel",
+            "url": "https://chefman.com/collections/air-fryers-1/products/turbofry-touch-air-fryer-1"
+          },
+          {
+            "label": "Amazon listing",
+            "url": "https://www.amazon.com/dp/B08DKYBTPH"
+          }
+        ]
+      },
+      {
+        "id": "DSC-12",
+        "gap": "Whether the CHEF iQ probe has five internal sensors or four plus one ambient",
+        "why": "The same manufacturer page says both. The headline reads \"Five internal sensors\"; the feature list reads \"4 internal temperature sensors for accuracy within 1°F\" plus \"1 ambient temperature sensor\". The two readings imply different measurement hardware.",
+        "close": "A manufacturer reply stating the sensor count and what each sensor measures.",
+        "who": "Manufacturer (chefiq.com)",
+        "effort": "One email",
+        "links": [
+          {
+            "label": "chefiq.com — iQ Sense",
+            "url": "https://chefiq.com/products/iq-sense"
+          }
+        ]
+      }
+    ]
+  }
 }

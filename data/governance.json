@@ -113,7 +113,7 @@
       "severity": "action",
       "title": "Content volume is below the Associates review bar",
       "detail": "Amazon's Associates help states that applications are reviewed for robust original content, with a rule of thumb of at least 10 posts and recent activity. This site has 4 guides and 5 product pages. The account's own status and review history are unknown from here. Carried forward from the parallel-session register (arena-2ca62ce9, FLG-010), which found this first.",
-      "action": "Do not submit or re-submit for review on four guides. The eight-week cadence in the suggestions register exists to clear this bar. Recorded as a commercial blocker, not a content-quality one.",
+      "action": "Do not submit or re-submit for review on a guide count alone. The eight-week cadence in the suggestions register exists to clear this bar. Recorded as a commercial blocker, not a content-quality one.",
       "sourceUrl": "https://affiliate-program.amazon.com/",
       "sourceLabel": "Amazon Associates Central (sign-in required)"
     },
@@ -175,7 +175,7 @@
       "id": "FLG-020",
       "severity": "withheld",
       "title": "No seasonal content, because there is no seasonal demand data",
-      "detail": "The brief asked for seasons and topic clusters. No seasonal query data was obtained from any source, so no seasonal calendar was invented. The four guides are editorial working titles, not popularity claims. Carried forward from arena-2ca62ce9 (FLG-015).",
+      "detail": "The brief asked for seasons and topic clusters. No seasonal query data was obtained from any source, so no seasonal calendar was invented. The guide titles are editorial working titles, not popularity claims. Carried forward from arena-2ca62ce9 (FLG-015).",
       "action": "Clusters exist as two product categories. Seasons wait for Search Console query data — choosing December topics from instinct is the failure mode being avoided.",
       "sourceUrl": "https://search.google.com/search-console",
       "sourceLabel": "Search Console (not yet verified)"
@@ -296,6 +296,150 @@
       "action": "Owner decision: whether reader capture is wanted, and if so, which email service to connect. Until then the form stays inert.",
       "sourceUrl": "https://github.com/sassnarep3-star/WinA/blob/main/data/governance.json",
       "sourceLabel": "Flag register: FLG-010 and event EV-05"
+    },
+    {
+      "id": "FLG-030",
+      "severity": "review",
+      "title": "Two official sources disagree on the ThermoMaven water-resistance wording",
+      "detail": "The Amazon listing title for B0DHZTCNR5 states \"IP67 Waterproof for Grill BBQ\". The manufacturer's own product page states \"With 100% waterproof design\" and publishes no IP number. Both are official and both were re-read on 2026-11-20. The specification row now carries both statements, each attributed, with the Amazon listing as the primary source and the manufacturer page as a second source. Neither wording is presented as the sole truth.",
+      "action": "Ask ThermoMaven whether the IP67 rating applies to the whole unit or only the sensing end. Until answered, the row keeps both wordings and both source links.",
+      "sourceUrl": "https://www.thermomaven.com/products/f1-stealth",
+      "sourceLabel": "thermomaven.com — F1 Stealth product page"
+    },
+    {
+      "id": "FLG-031",
+      "severity": "review",
+      "title": "Two official sources disagree on the Emeril Lagasse preset count",
+      "detail": "The Amazon listing title for B09B7SB46R states \"24 One-Touch Preset Options\". The manufacturer's own specification panel for the same 26-quart French-door product states \"25 Cooking Pre-sets\". They may count different sets of options, but the site cannot tell which. The specification row now carries both figures, attributed. It previously carried \"24 one-touch presets\" attributed to the manufacturer, which was not what that page said.",
+      "action": "Ask Emeril Lagasse which count is current for model 4-00675-02A-VN, and whether the two figures are the same set of options.",
+      "sourceUrl": "https://www.emerileveryday.com/products/emeril_lagasse_french_door_airfryer_360",
+      "sourceLabel": "emerileveryday.com — French Door AirFryer 360 specification"
+    },
+    {
+      "id": "FLG-032",
+      "severity": "action",
+      "title": "Interior cavity dimensions are not published for any of the three air fryers",
+      "detail": "Exterior dimensions are published for the dual-basket (13.38 x 11.81 x 10.63 in) and the oven-style unit (16.9 D x 15.8 W x 14.8 H). No official source reached publishes the interior cavity dimensions for any of them. Those are the figures that decide \"will a whole chicken fit\" and \"does this feed four in one round\", so both questions are answered as far as the published record allows and no further. The 8-quart TurboFry publishes no dimensions at all.",
+      "action": "One support request per model, or the interior-dimension line from the user guide for the exact model number. Recorded as DSC-01 and DSC-02 on the suggestions page.",
+      "sourceUrl": "https://www.amazon.com/dp/B0CDY277D3",
+      "sourceLabel": "Amazon listing for the dual-basket unit (exterior dimensions only)"
+    },
+    {
+      "id": "FLG-033",
+      "severity": "review",
+      "title": "The 8-quart TurboFry family spans multiple SKUs, so its dimensions cannot be stated",
+      "detail": "The listing re-fetched for B08DKYBTPH describes a 12.8 lb unit with its own model code, while the manufacturer publishes RJ38-8T-BLACK with different figures for the same 8-quart family. No single set of dimensions, wattage or warranty terms can honestly be attributed to the ASIN. The rows stay unverified and blank rather than borrowing another SKU's numbers.",
+      "action": "Read the model number on the physical unit or its packing slip, then use that model's specification. Recorded as DSC-03.",
+      "sourceUrl": "https://www.amazon.com/dp/B08DKYBTPH",
+      "sourceLabel": "Chefman 8 qt TurboFry listing"
+    },
+    {
+      "id": "FLG-034",
+      "severity": "review",
+      "title": "The CHEF iQ app and Smart Hub support horizon is not published",
+      "detail": "The wireless thermometer's headline capability depends on a mobile app and a hub. No official source states how long that service will be supported, or whether the device reports temperature without it. The register records this as unverified rather than guessing, and the guide on the wireless probe says so in the open.",
+      "action": "Ask CHEF iQ for the support horizon and publish the answer verbatim, whatever it is.",
+      "sourceUrl": "https://chefiq.com/products/iq-sense",
+      "sourceLabel": "chefiq.com — iQ Sense product page"
+    },
+    {
+      "id": "FLG-035",
+      "severity": "resolved",
+      "title": "Reader-facing counts on the front page and summary had drifted out of date",
+      "detail": "The front-page strip hardcoded \"4\" guides while five were published, the guides index said \"Four guides\", and the executive summary said \"Four question-shaped guides\". The numbers were literals in the build rather than values read from the data. Found by reading the rendered page against data/products.json and data/content.mjs on 2026-11-20.",
+      "action": "Fixed. Every count on every page is now derived from the data at build time, so it cannot drift again. The authoring gate would not have caught this class of error, because a stale literal is not a broken link.",
+      "sourceUrl": "https://github.com/sassnarep3-star/WinA/blob/main/_src/build.mjs",
+      "sourceLabel": "Build source — derived counts"
+    },
+    {
+      "id": "FLG-036",
+      "severity": "review",
+      "title": "The guide titles remain editorial hypotheses with no search-volume evidence behind them",
+      "detail": "Twelve guides now carry question-shaped titles, but no keyword tool, Search Console report or other query data informed any of them. They are written as the questions a buyer is likely to ask, not as claims about what people actually ask. The guides index says so on the page.",
+      "action": "Owner action: verify the site in Search Console (SG-29) and let the query report choose the next topics, rather than adding more on instinct.",
+      "sourceUrl": "https://developers.google.com/search/docs/fundamentals/do-i-need-seo",
+      "sourceLabel": "Google Search Central — SEO Starter Guide"
+    },
+    {
+      "id": "FLG-037",
+      "severity": "resolved",
+      "title": "The 8-quart TurboFry model number is now confirmed as RJ38-SQSS-8T",
+      "detail": "The Amazon listing for B08DKYBTPH names its own model in the resources line: \"1000 Watts/120 Volts – RJ38-SQSS-8T\". chefman.com publishes the same model code for its TurboFry Touch Stainless-Steel 8-quart. The 12.8 lb weight in the listing matches the maker's stated 12.8 lbs for the 8 Qt model. The two sources still disagree on dimensions and wattage, and those rows stay flagged as \"claim\" rather than \"verified\".",
+      "action": "Resolved as an identity question. The residual dimension and wattage conflicts are recorded on the product page with both figures and both source links.",
+      "sourceUrl": "https://chefman.com/collections/air-fryers-1/products/turbofry-touch-air-fryer-1",
+      "sourceLabel": "chefman.com — TurboFry Touch Stainless-Steel (RJ38-SQSS-8T)"
+    },
+    {
+      "id": "FLG-038",
+      "severity": "review",
+      "title": "Two official Chefman figures disagree on the 8-quart dimensions and wattage",
+      "detail": "The Amazon listing states 12.75\"D × 13.5\"W × 10\"H and 1000 W / 120 V. chefman.com states 15.4 × 12.6 × 13.5 in and 1700W / 120V for model RJ38-SQSS-8T. Both are official and both are recorded. The site does not pick one. The listing also advertises a 450°F Hi-Fry option in its title that the maker's own specification does not list; the maker states 200–400°F.",
+      "action": "Ask Chefman which figure applies to the unit shipped under this ASIN, and whether the listing's 450°F Hi-Fry claim applies to the RJ38-SQSS-8T. Until then the rows carry both.",
+      "sourceUrl": "https://www.amazon.com/dp/B08DKYBTPH",
+      "sourceLabel": "Amazon listing for the 8-quart TurboFry"
+    },
+    {
+      "id": "FLG-039",
+      "severity": "review",
+      "title": "The Emeril preset count now has a third official figure: the owner's manual lists 24",
+      "detail": "The owner's manual for model FAFO-001 contains a full preset mode chart naming 24 presets (Air Fry, Fries, Bacon, Grill, Eggs, Fish, Ribs, Defrost, Steak, Vegetables, Wings, Bake, Rotisserie, Toast, Chicken, Pizza, Pastry, Proof, Broil, Slow Cook, Roast, Dehydrate, Reheat, Warm). That agrees with the Amazon listing title and disagrees with the manufacturer's specification panel, which says 25 cooking pre-sets. The manual also gives 1700 W rated power, 75–500°F, 26 quarts as 1519 cubic inches, and the cleaning instruction that the appliance must not be soaked or put in a dishwasher.",
+      "action": "Ask Emeril which count is current. The manual chart is the strongest evidence available, so the product page leads with 24 and shows the 25 alongside it.",
+      "sourceUrl": "https://cdn.shopify.com/s/files/1/0687/4388/8948/files/FAFO-001_VN_32451_EF_IB_T22-5004282-C_1.pdf?v=1777990358",
+      "sourceLabel": "Emeril owner's manual, model FAFO-001"
+    },
+    {
+      "id": "FLG-040",
+      "severity": "review",
+      "title": "The accessory count also differs between the two Emeril sources",
+      "detail": "The Amazon listing title says \"Six Cooking Accessories Included\". The manufacturer's product description says \"Included are 7 premium accessories to maximize versatility — air fry basket, rotisserie spit, bake pan, and more\". Both are official.",
+      "action": "Ask Emeril which count applies. The row carries both, attributed.",
+      "sourceUrl": "https://www.emerileveryday.com/products/emeril_lagasse_french_door_airfryer_360",
+      "sourceLabel": "emerileveryday.com — French Door AirFryer 360"
+    },
+    {
+      "id": "FLG-041",
+      "severity": "resolved",
+      "title": "The ThermoMaven user manual publishes no IP rating — the IP67 claim is Amazon-only",
+      "detail": "The official F1 Stealth user manual (model HT07) was read in full. It gives the measurement range (-58 to 572°F), the operating ambient range (-4 to 122°F), the probe dimensions, the calibration procedure, and the cleaning instruction, and it publishes no IP number anywhere. The \"100% waterproof\" wording appears on the maker's product page and the \"IP67 Waterproof\" wording appears in the Amazon listing title.",
+      "action": "The specification row is now marked \"claim\" rather than \"verified\", because the only place an IP number appears is the retailer listing. Both wordings remain on the page.",
+      "sourceUrl": "https://cdn.shopify.com/s/files/1/0828/4726/9152/files/HT07_user_manual.pdf?v=1733992221",
+      "sourceLabel": "ThermoMaven F1 Stealth user manual (HT07)"
+    },
+    {
+      "id": "FLG-042",
+      "severity": "resolved",
+      "title": "The ThermoMaven unit does not ship with a per-unit calibration certificate",
+      "detail": "The row was previously left unverified because no calibration record could be found. The user manual documents a full ice-water calibration procedure with a recalibration window of 28.4–35.6°F, and the maker's page states NIST certification to ±0.5°F. No per-unit certificate ships with the device. A customer review on the maker's own page reports a slip with a serial number; that is a customer statement, not a published artefact, so it is not recorded as a specification.",
+      "action": "Resolved. The row now states the calibration procedure and that no certificate ships.",
+      "sourceUrl": "https://cdn.shopify.com/s/files/1/0828/4726/9152/files/HT07_user_manual.pdf?v=1733992221",
+      "sourceLabel": "ThermoMaven F1 Stealth user manual (HT07)"
+    },
+    {
+      "id": "FLG-043",
+      "severity": "review",
+      "title": "The CHEF iQ sensor count is described two ways on the same manufacturer page",
+      "detail": "The page headline says \"Five internal sensors and heat resistance up to 1000°F\". The feature list below it says \"4 internal temperature sensors for accuracy within 1°F\" and, as a separate bullet, \"1 ambient temperature sensor\". The product page also now publishes the measurement ranges (internal 32–212°F, ambient 32–1,000°F), the probe dimensions (0.19 in × 4.75 in), a 70+ hour battery life, self-calibration on every reading, and dishwasher safety.",
+      "action": "Ask CHEF iQ which is right. The row reads \"4 internal plus 1 ambient — five in total\" and carries the headline wording alongside it.",
+      "sourceUrl": "https://chefiq.com/products/iq-sense",
+      "sourceLabel": "chefiq.com — iQ Sense product page"
+    },
+    {
+      "id": "FLG-044",
+      "severity": "review",
+      "title": "No official source publishes the CHEF iQ app or Smart Hub support horizon",
+      "detail": "The full product page, its documentation links and the FAQ were read on 2026-11-20. None states how long the CHEF iQ app and the Smart Hub service will be supported, whether the probe reports temperature to the hub without the app, or what happens to a probe whose hub or app is retired. The page confirms the probe and hub use internal rechargeable lithium batteries with no removable cells, so a probe also depends on the hub being chargeable.",
+      "action": "Owner action: ask CHEF iQ for a support horizon before recommending this product to anyone who does not already own the hub. Until then the register records it as unverified and the guide says so in the open.",
+      "sourceUrl": "https://chefiq.com/products/iq-sense",
+      "sourceLabel": "chefiq.com — iQ Sense product page"
+    },
+    {
+      "id": "FLG-045",
+      "severity": "resolved",
+      "title": "Interior cavity dimensions are still not published, but the manual gives interior volume",
+      "detail": "The Emeril owner's manual gives the cavity as 26 quarts — 1519 cubic inches. That is a usable interior size for the oven-style unit, and it is enough to answer \"will a whole chicken fit\" with a number rather than an adjective. The two basket fryers still have no published interior figure at all: chefman.com publishes exterior dimensions only.",
+      "action": "The oven-style product now carries an interior-volume row sourced to the manual. The interior-dimension gap for the two basket fryers stays open, narrowed to two models.",
+      "sourceUrl": "https://cdn.shopify.com/s/files/1/0687/4388/8948/files/FAFO-001_VN_32451_EF_IB_T22-5004282-C_1.pdf?v=1777990358",
+      "sourceLabel": "Emeril owner's manual, model FAFO-001"
     }
   ],
   "ledger": {

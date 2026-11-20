@@ -1,5 +1,5 @@
 {
-  "intro": "Every open question this build ran into, with what we can answer today, what we cannot, and how to close it. Nothing here is resolved by assumption. Where an answer exists, it cites the source. Where it does not, the row says so and names the specific thing that would settle it.",
+  "intro": "Every open question this build ran into, with what we can answer today, what we cannot, and how to close it. Nothing here is resolved by assumption. Where an answer exists, it cites the source. Where it does not, the row says so and names the specific thing that would settle it. Read it with the missing-information register on the suggestions page, which lists the same gaps in the order they can be closed.",
   "areas": [
     {
       "id": "identity",
@@ -147,15 +147,15 @@
       "id": "Q-08",
       "area": "demand",
       "priority": "medium",
-      "question": "Which of the four guide topics should be written first?",
-      "answer": "Hypothesis only. The capacity checklist is the best starting bet because it applies to all three air fryers and does not depend on any product outperforming another.",
-      "have": "Four working titles, deliberately not framed as popularity claims.",
-      "missing": "Evidence of which question people actually arrive with.",
+      "question": "Which of the guide questions should be written next?",
+      "answer": "Twelve guides are published, in three clusters, across both categories. They were chosen by editorial judgement, not by data. The next one should come from the query report, which does not exist yet.",
+      "have": "Twelve published guides with question-shaped titles, each traced to verified specifications.",
+      "missing": "Any impression or query data. No keyword tool, no Search Console report and no click data informed the choice of these titles.",
       "matters": "Publishing order is the main lever on a new site.",
-      "howToFind": "Ship all four, then let Search Console query data reorder them. See SUG-05.",
-      "status": "hypothesis",
+      "howToFind": "Verify the site in Search Console (SG-29), wait for impressions, then read the Queries report.",
+      "status": "unanswered",
       "sourceUrl": "https://sassnarep3-star.github.io/WinA/guides/",
-      "sourceLabel": "The four guides as published"
+      "sourceLabel": "The published guides index"
     },
     {
       "id": "Q-09",
@@ -331,12 +331,12 @@
       "area": "brand",
       "priority": "low",
       "question": "Should there be an author identity?",
-      "answer": "Yes, eventually. Search quality guidance and reader trust both reward a real, attributable author.",
-      "have": "An editorial standards page describing method and constraints.",
-      "missing": "A named person, a bio, and any credentialed expertise to describe.",
+      "answer": "Partly. Every page carries a byline naming the Counter Space editorial desk, and the about page states plainly that no page describes hands-on use. No individual person is named, because naming one would be a claim this site cannot support.",
+      "have": "An editorial-desk byline on every guide and product page, and a corrections section on the about page.",
+      "missing": "A named, accountable human editor, and a published corrections log with dates.",
       "matters": "An unattributed review site reads as generated. That is exactly the failure mode the brief rejects.",
-      "howToFind": "Decide who is accountable for the content. A byline requires a real person willing to be named.",
-      "status": "decision-needed",
+      "howToFind": "Owner decision, then a corrections policy with a named contact.",
+      "status": "partly-answered",
       "sourceUrl": "https://sassnarep3-star.github.io/WinA/about/",
       "sourceLabel": "Editorial standards"
     },
@@ -353,6 +353,188 @@
       "status": "unanswered",
       "sourceUrl": "https://sassnarep3-star.github.io/WinA/feed.xml",
       "sourceLabel": "Published feed, currently unconsumed"
+    },
+    {
+      "id": "Q-23",
+      "area": "editorial",
+      "priority": "high",
+      "question": "What are the interior dimensions or volume of each air fryer?",
+      "answer": "Partly. The owner's manual gives the oven-style unit's cavity as 26 quarts — 1519 cubic inches — which is a usable interior figure. Neither basket fryer publishes an interior figure of any kind; chefman.com publishes exterior dimensions only.",
+      "have": "An interior volume for the Emeril, from the official owner's manual.",
+      "missing": "Interior dimensions for the dual basket and the 8-quart fryer. Exterior figures alone cannot answer \"will it fit\".",
+      "matters": "\"Can a whole chicken fit\" and \"will this feed four in one round\" both reduce to this number. Without it the capacity guides can describe the trade-off but cannot close it.",
+      "howToFind": "One manufacturer support request per basket-fryer model, or the interior-dimension line in the user guide.",
+      "status": "partly-answered",
+      "sourceUrl": "https://chefman.com/products/turbofry-touch-dual-window-air-fryer",
+      "sourceLabel": "chefman.com — dual-basket specification (exterior only)"
+    },
+    {
+      "id": "Q-24",
+      "area": "identity",
+      "priority": "medium",
+      "question": "Which physical model ships under ASIN B08DKYBTPH?",
+      "answer": "Yes. The Amazon listing names its own model in the resources line — \"1000 Watts/120 Volts – RJ38-SQSS-8T\" — and chefman.com publishes that same model code for its TurboFry Touch Stainless-Steel 8-quart. The 12.8 lb weight in the listing matches the maker's stated 12.8 lbs for that model.",
+      "have": "A confirmed model number, from both the listing and the maker, plus a matching weight.",
+      "missing": "Only the dimensions and wattage, where the listing and the maker still disagree. That is a value conflict, not an identity conflict.",
+      "matters": "Any specification borrowed from a sibling SKU would be wrong for the product a reader actually receives.",
+      "howToFind": "One email to Chefman about the dimension and wattage discrepancy.",
+      "status": "answered",
+      "sourceUrl": "https://www.amazon.com/dp/B08DKYBTPH",
+      "sourceLabel": "Chefman 8 qt TurboFry listing"
+    },
+    {
+      "id": "Q-25",
+      "area": "editorial",
+      "priority": "medium",
+      "question": "What is the current, correct water-resistance wording for the ThermoMaven?",
+      "answer": "Three official wordings exist and none of them is the same. The Amazon listing title says \"IP67 Waterproof\". The maker's product page says \"100% waterproof\". The maker's own user manual, read in full, publishes no IP number at all. The row is therefore marked \"claim\" rather than \"verified\", with all three wordings shown.",
+      "have": "All three official wordings, each with a working source link, recorded on the product page.",
+      "missing": "Whether any IP rating exists, and what it covers. The manual does not publish one.",
+      "matters": "A reader deciding whether the probe survives a wet sink is reading this row.",
+      "howToFind": "One email to ThermoMaven. Until then the row keeps all three wordings.",
+      "status": "needs-review",
+      "sourceUrl": "https://www.thermomaven.com/products/f1-stealth",
+      "sourceLabel": "thermomaven.com — F1 Stealth"
+    },
+    {
+      "id": "Q-26",
+      "area": "editorial",
+      "priority": "medium",
+      "question": "Is the Emeril Lagasse preset count 24 or 25?",
+      "answer": "The owner's manual settles it at 24. The manual's preset mode chart names 24 presets, which agrees with the Amazon listing title and disagrees with the manufacturer's specification panel, which says 25 cooking pre-sets. The product page leads with 24 and shows the 25 next to it.",
+      "have": "The full preset chart from the owner's manual, plus both conflicting counts, attributed.",
+      "missing": "Which count the manufacturer considers current.",
+      "matters": "A comparison table that carries two contradictory figures for one product undermines the whole table.",
+      "howToFind": "One email to Emeril Lagasse.",
+      "status": "needs-review",
+      "sourceUrl": "https://www.emerileveryday.com/products/emeril_lagasse_french_door_airfryer_360",
+      "sourceLabel": "emerileveryday.com — French Door AirFryer 360"
+    },
+    {
+      "id": "Q-27",
+      "area": "technical",
+      "priority": "medium",
+      "question": "How long will the CHEF iQ app and Smart Hub service be supported?",
+      "answer": "Still not published. The full product page, its documentation links and its FAQ were read on 2026-11-20 and none of them states a support horizon. What the page does confirm is that the probe and hub use internal rechargeable lithium batteries with no removable cells, so a probe also depends on the hub remaining chargeable.",
+      "have": "The whole product page, its documentation list and its FAQ, read and recorded.",
+      "missing": "A support horizon, and whether the probe reports temperature without the app.",
+      "matters": "The wireless thermometer is the one product here whose headline feature depends on software a reader cannot audit. It is the most common complaint category for connected kitchen devices.",
+      "howToFind": "One email to CHEF iQ, then publish the answer verbatim whatever it is.",
+      "status": "unanswered",
+      "sourceUrl": "https://chefiq.com/products/iq-sense",
+      "sourceLabel": "chefiq.com — iQ Sense"
+    },
+    {
+      "id": "Q-28",
+      "area": "demand",
+      "priority": "high",
+      "question": "Does adding more guides help, or does the site need a different kind of page?",
+      "answer": "Unknown, and untestable until there is traffic. Twelve guides in three clusters plus a decision entry point and a seasonal layer is a coherent structure, but it is a hypothesis about how people read, not a measurement.",
+      "have": "A site structure with clusters, a decision path and an entry point that can be indexed.",
+      "missing": "Impressions, queries, and click-through from each cluster and entry point.",
+      "matters": "Guides are cheap to write and expensive to write badly. If readers arrive at the decision page and leave, more guides are wasted effort.",
+      "howToFind": "Deploy the collector (Q-16), verify Search Console (SG-29), then compare entry paths after a month.",
+      "status": "unanswered",
+      "sourceUrl": "https://developers.google.com/search/docs/fundamentals/create-usable-content",
+      "sourceLabel": "Google Search Central — Creating helpful, reliable, people-first content"
+    },
+    {
+      "id": "Q-29",
+      "area": "editorial",
+      "priority": "medium",
+      "question": "Does the 8-quart TurboFry really reach 450°F?",
+      "answer": "Two official sources disagree. The Amazon listing title advertises a \"450°F Hi-Fry Option\". The maker's own specification for model RJ38-SQSS-8T states a 200–400°F range and a 400°F maximum. The maker also states 4 cooking presets where the listing title calls it \"4-in-1: Bake, Dehydrate, Frozen\" — two different things counted as four.",
+      "have": "Both statements, attributed, on the product page.",
+      "missing": "Which temperature ceiling applies to the unit sold under this ASIN, and what the four functions actually are.",
+      "matters": "450°F is the difference between a good crisp finish and a burnt one, and it is the number a buyer checks first.",
+      "howToFind": "One email to Chefman. The row carries both figures until it is answered.",
+      "status": "needs-review",
+      "sourceUrl": "https://chefman.com/collections/air-fryers-1/products/turbofry-touch-air-fryer-1",
+      "sourceLabel": "chefman.com — TurboFry Touch Stainless-Steel (RJ38-SQSS-8T)"
+    },
+    {
+      "id": "Q-30",
+      "area": "editorial",
+      "priority": "low",
+      "question": "Is the 8-quart fryer 1000 W or 1700 W?",
+      "answer": "The Amazon listing states 1000 W / 120 V. chefman.com states 1700W / 120V for model RJ38-SQSS-8T, the same model the listing names.",
+      "have": "Both figures, attributed, on the product page.",
+      "missing": "Which one applies. The gap is 700 W, which is the difference between one circuit and two.",
+      "matters": "A reader with a 15-amp kitchen circuit will want to know before they plug it in.",
+      "howToFind": "One email to Chefman.",
+      "status": "needs-review",
+      "sourceUrl": "https://www.amazon.com/dp/B08DKYBTPH",
+      "sourceLabel": "Amazon listing for the 8-quart TurboFry"
+    },
+    {
+      "id": "Q-31",
+      "area": "editorial",
+      "priority": "medium",
+      "question": "Can the CHEF iQ probe be cleaned in a dishwasher?",
+      "answer": "The maker's page says so explicitly: \"iQ Sense® is waterproof, easy to clean, and dishwasher safe.\" No separate care manual was published for it, so the product page is the only official statement.",
+      "have": "A direct statement on the manufacturer's page.",
+      "missing": "Nothing material. This one is answered.",
+      "howToFind": "No further action needed; re-check if the maker publishes a care guide.",
+      "status": "answered",
+      "sourceUrl": "https://chefiq.com/products/iq-sense",
+      "sourceLabel": "chefiq.com — iQ Sense product page"
+    }
+  ],
+  "decisionGates": [
+    {
+      "decision": "Publish more product pages and widen the catalogue",
+      "blockedBy": [
+        "Q-04",
+        "Q-05"
+      ],
+      "unblocked": "The tracking ID is confirmed enrolled and the commission for the category is known. Until then, more pages multiply the traffic on links that may earn nothing."
+    },
+    {
+      "decision": "Show prices, ratings and product photography",
+      "blockedBy": [
+        "Q-11",
+        "Q-12"
+      ],
+      "unblocked": "Product Advertising API or Creatives access. All three unlock together, and each is gated on qualifying sales, which needs Q-04 answered first."
+    },
+    {
+      "decision": "Publish guides that claim measured results",
+      "blockedBy": [
+        "Q-09"
+      ],
+      "unblocked": "Someone actually cooks in these appliances. Until then the voice stays on the decision rather than the verdict, which is the correct voice for zero tests."
+    },
+    {
+      "decision": "Publish buying guides that answer \"will it fit my dinner\"",
+      "blockedBy": [
+        "Q-23",
+        "Q-24"
+      ],
+      "unblocked": "Interior cavity dimensions, and the model number that actually ships under the 8-quart ASIN. Both are obtainable with a support request and a look at the box."
+    },
+    {
+      "decision": "Choose the next topic to write about",
+      "blockedBy": [
+        "Q-07",
+        "Q-08"
+      ],
+      "unblocked": "Search Console verification and a collector endpoint. Topic choice is currently instinct, and the register says so rather than pretending otherwise."
+    },
+    {
+      "decision": "Publish anything measured, or make any claim about performance",
+      "blockedBy": [
+        "Q-04",
+        "Q-16"
+      ],
+      "unblocked": "Attribution confirmed and measurement running. Without both, a performance claim cannot be checked and a result cannot be seen."
+    },
+    {
+      "decision": "Expand to a second category or a second publication",
+      "blockedBy": [
+        "Q-03",
+        "Q-05"
+      ],
+      "unblocked": "The intended scope, and the commission economics of the category. Adding pages to an unfocused small site is the documented failure mode (SUG-02, SUG-13)."
     }
   ]
 }

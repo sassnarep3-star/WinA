@@ -57,9 +57,12 @@
         },
         {
           "label": "Basket care",
-          "value": "Nonstick, listed dishwasher-safe",
-          "status": "claim",
-          "source": "amazon-listing"
+          "value": "Nonstick, dishwasher-safe baskets (top-rack for the rack)",
+          "status": "verified",
+          "source": "manufacturer",
+          "alsoSources": [
+            "amazon-listing"
+          ]
         },
         {
           "label": "Window",
@@ -83,7 +86,10 @@
           "label": "Warranty",
           "value": "1 year (Chefman assurance), cETL listed",
           "status": "verified",
-          "source": "manufacturer"
+          "source": "manufacturer",
+          "alsoSources": [
+            "amazon-listing"
+          ]
         },
         {
           "label": "Price",
@@ -102,6 +108,15 @@
           "value": null,
           "status": "withheld",
           "source": null
+        },
+        {
+          "label": "Max temperature",
+          "value": "200–450°F / 95–235°C, with a 450°F Hi-Fry function",
+          "status": "verified",
+          "source": "manufacturer",
+          "alsoSources": [
+            "amazon-listing"
+          ]
         }
       ],
       "bestFor": "Two-part dinners in a small kitchen",
@@ -109,7 +124,11 @@
       "guideTopics": [
         "basket-vs-oven",
         "capacity",
-        "cleanup"
+        "cleanup",
+        "air-fryer-vs-toaster-oven",
+        "air-fryer-for-a-family",
+        "whole-chicken-in-an-air-fryer",
+        "dishwasher-safe-air-fryer-baskets"
       ],
       "submittedLink": "https://link.amazon/B04G1MEwY",
       "observedDestination": "https://www.amazon.com/dp/B0CDY277D3",
@@ -128,6 +147,26 @@
           "label": "chefman.com specification"
         },
         "Capacity": {
+          "url": "https://chefman.com/products/turbofry-touch-dual-window-air-fryer",
+          "label": "chefman.com specification"
+        },
+        "Max temperature": {
+          "url": "https://chefman.com/products/turbofry-touch-dual-window-air-fryer",
+          "label": "chefman.com specification"
+        },
+        "Finish sync": {
+          "url": "https://chefman.com/products/turbofry-touch-dual-window-air-fryer",
+          "label": "chefman.com specification"
+        },
+        "Controls": {
+          "url": "https://chefman.com/products/turbofry-touch-dual-window-air-fryer",
+          "label": "chefman.com specification"
+        },
+        "Window": {
+          "url": "https://chefman.com/products/turbofry-touch-dual-window-air-fryer",
+          "label": "chefman.com specification"
+        },
+        "Basket care": {
           "url": "https://chefman.com/products/turbofry-touch-dual-window-air-fryer",
           "label": "chefman.com specification"
         }
@@ -163,6 +202,12 @@
           "source": "manufacturer"
         },
         {
+          "label": "Manufacturer serving guide",
+          "value": "\"26-Quart Capacity — preparing food for 4–6 people\"",
+          "status": "claim",
+          "source": "manufacturer"
+        },
+        {
           "label": "Form factor",
           "value": "Oven-style, French door",
           "status": "verified",
@@ -170,15 +215,21 @@
         },
         {
           "label": "Presets",
-          "value": "24 one-touch presets",
-          "status": "verified",
-          "source": "manufacturer"
+          "value": "24 one-touch presets per the owner's manual preset chart. The Amazon listing title says 24; the product page specification panel says 25 cooking pre-sets",
+          "status": "claim",
+          "source": "amazon-listing",
+          "alsoSources": [
+            "manufacturer"
+          ]
         },
         {
           "label": "Included accessories",
-          "value": "Six cooking accessories",
-          "status": "verified",
-          "source": "amazon-listing"
+          "value": "Six cooking accessories (Amazon listing). The product page says 7 premium accessories including air fry basket, rotisserie spit and bake pan",
+          "status": "claim",
+          "source": "amazon-listing",
+          "alsoSources": [
+            "manufacturer"
+          ]
         },
         {
           "label": "Cooking method",
@@ -188,9 +239,15 @@
         },
         {
           "label": "Wattage",
-          "value": null,
-          "status": "unverified",
-          "source": null
+          "value": "1700 W rated, 120 V / 60 Hz (owner's manual)",
+          "status": "verified",
+          "source": "manufacturer"
+        },
+        {
+          "label": "Voltage",
+          "value": "120 V",
+          "status": "verified",
+          "source": "manufacturer"
         },
         {
           "label": "Dimensions",
@@ -200,9 +257,9 @@
         },
         {
           "label": "Warranty",
-          "value": null,
-          "status": "unverified",
-          "source": null
+          "value": "1 year (product page: 1-Years Warranty)",
+          "status": "verified",
+          "source": "manufacturer"
         },
         {
           "label": "Price",
@@ -221,6 +278,24 @@
           "value": null,
           "status": "withheld",
           "source": null
+        },
+        {
+          "label": "Max temperature",
+          "value": "75–500°F / 25–260°C (owner's manual)",
+          "status": "verified",
+          "source": "manufacturer"
+        },
+        {
+          "label": "Interior volume",
+          "value": "26 quarts — 1519 cubic inches (owner's manual)",
+          "status": "verified",
+          "source": "manufacturer"
+        },
+        {
+          "label": "Cleaning",
+          "value": "Hand-washing the accessories is recommended; the appliance itself must not be soaked, submerged or put in the dishwasher (owner's manual)",
+          "status": "verified",
+          "source": "manufacturer"
         }
       ],
       "bestFor": "Cooking for a crowd, or replacing a wall oven",
@@ -228,7 +303,10 @@
       "guideTopics": [
         "basket-vs-oven",
         "capacity",
-        "multifunction"
+        "multifunction",
+        "air-fryer-vs-toaster-oven",
+        "air-fryer-for-a-family",
+        "whole-chicken-in-an-air-fryer"
       ],
       "submittedLink": "https://link.amazon/B02NbDxp3",
       "observedDestination": "https://www.amazon.com/dp/B09B7SB46R",
@@ -239,14 +317,55 @@
           "label": "emerileveryday.com specification"
         },
         "Presets": {
-          "url": "https://www.emerileveryday.com/products/emeril_lagasse_french_door_airfryer_360",
-          "label": "emerileveryday.com specification"
+          "url": "https://cdn.shopify.com/s/files/1/0687/4388/8948/files/FAFO-001_VN_32451_EF_IB_T22-5004282-C_1.pdf?v=1777990358",
+          "label": "Emeril owner's manual, model FAFO-001"
         },
         "Capacity": {
           "url": "https://www.emerileveryday.com/products/emeril_lagasse_french_door_airfryer_360",
           "label": "emerileveryday.com specification"
+        },
+        "Manufacturer serving guide": {
+          "url": "https://www.emerileveryday.com/products/emeril_lagasse_french_door_airfryer_360",
+          "label": "emerileveryday.com — 26-quart capacity / serving guide"
+        },
+        "Voltage": {
+          "url": "https://cdn.shopify.com/s/files/1/0687/4388/8948/files/FAFO-001_VN_32451_EF_IB_T22-5004282-C_1.pdf?v=1777990358",
+          "label": "Emeril owner's manual, model FAFO-001"
+        },
+        "Wattage": {
+          "url": "https://cdn.shopify.com/s/files/1/0687/4388/8948/files/FAFO-001_VN_32451_EF_IB_T22-5004282-C_1.pdf?v=1777990358",
+          "label": "Emeril owner's manual, model FAFO-001"
+        },
+        "Max temperature": {
+          "url": "https://cdn.shopify.com/s/files/1/0687/4388/8948/files/FAFO-001_VN_32451_EF_IB_T22-5004282-C_1.pdf?v=1777990358",
+          "label": "Emeril owner's manual, model FAFO-001"
+        },
+        "Interior volume": {
+          "url": "https://cdn.shopify.com/s/files/1/0687/4388/8948/files/FAFO-001_VN_32451_EF_IB_T22-5004282-C_1.pdf?v=1777990358",
+          "label": "Emeril owner's manual, model FAFO-001"
+        },
+        "Included accessories": {
+          "url": "https://cdn.shopify.com/s/files/1/0687/4388/8948/files/FAFO-001_VN_32451_EF_IB_T22-5004282-C_1.pdf?v=1777990358",
+          "label": "Emeril owner's manual, model FAFO-001"
+        },
+        "Warranty": {
+          "url": "https://cdn.shopify.com/s/files/1/0687/4388/8948/files/FAFO-001_VN_32451_EF_IB_T22-5004282-C_1.pdf?v=1777990358",
+          "label": "Emeril owner's manual, model FAFO-001"
+        },
+        "Cleaning": {
+          "url": "https://cdn.shopify.com/s/files/1/0687/4388/8948/files/FAFO-001_VN_32451_EF_IB_T22-5004282-C_1.pdf?v=1777990358",
+          "label": "Emeril owner's manual, model FAFO-001"
+        },
+        "Cooking method": {
+          "url": "https://www.emerileveryday.com/products/emeril_lagasse_french_door_airfryer_360",
+          "label": "emerileveryday.com specification"
+        },
+        "Form factor": {
+          "url": "https://www.emerileveryday.com/products/emeril_lagasse_french_door_airfryer_360",
+          "label": "emerileveryday.com specification"
         }
-      }
+      },
+      "modelNumber": "FAFO-001 (owner's manual) / 4-00675-02A-VN (product page)"
     },
     {
       "slug": "chefman-8-quart-turbofry",
@@ -272,9 +391,12 @@
       "specs": [
         {
           "label": "Capacity",
-          "value": "8 qt",
+          "value": "8 qt / 7.57 L",
           "status": "verified",
-          "source": "amazon-listing"
+          "source": "manufacturer",
+          "alsoSources": [
+            "amazon-listing"
+          ]
         },
         {
           "label": "Form factor",
@@ -284,45 +406,66 @@
         },
         {
           "label": "Max temperature",
-          "value": "400°F standard range; 450°F Hi-Fry for the final 2 minutes of a cycle",
-          "status": "verified",
-          "source": "amazon-listing"
+          "value": "200–400°F / 95–205°C (chefman.com). The Amazon listing title also advertises a 450°F Hi-Fry option, which the manufacturer specification does not list",
+          "status": "claim",
+          "source": "manufacturer",
+          "alsoSources": [
+            "amazon-listing"
+          ]
         },
         {
           "label": "Functions",
-          "value": "4-in-1: air fry, bake, dehydrate, frozen",
-          "status": "verified",
-          "source": "amazon-listing"
+          "value": "4 cooking presets: fries, chicken, meat and fish (chefman.com). The Amazon listing title calls it \"4-in-1: Bake, Dehydrate, Frozen\"",
+          "status": "claim",
+          "source": "manufacturer",
+          "alsoSources": [
+            "amazon-listing"
+          ]
         },
         {
           "label": "Body material",
           "value": "Stainless steel",
           "status": "verified",
-          "source": "amazon-listing"
+          "source": "amazon-listing",
+          "alsoSources": [
+            "manufacturer"
+          ]
         },
         {
           "label": "Basket care",
-          "value": "Nonstick, listed dishwasher-safe",
-          "status": "claim",
-          "source": "amazon-listing"
+          "value": "Nonstick basket and flat frying tray, both top-rack dishwasher safe",
+          "status": "verified",
+          "source": "amazon-listing",
+          "alsoSources": [
+            "manufacturer"
+          ]
         },
         {
           "label": "Wattage",
-          "value": null,
-          "status": "unverified",
-          "source": null
+          "value": "Amazon listing states 1000 W / 120 V; chefman.com states 1700W / 120V for model RJ38-SQSS-8T — the two official figures disagree",
+          "status": "claim",
+          "source": "amazon-listing",
+          "alsoSources": [
+            "manufacturer"
+          ]
         },
         {
           "label": "Dimensions",
-          "value": null,
-          "status": "unverified",
-          "source": null
+          "value": "Amazon listing states 12.75\"D × 13.5\"W × 10\"H; chefman.com states 15.4 × 12.6 × 13.5 in for model RJ38-SQSS-8T — the two official figures disagree",
+          "status": "claim",
+          "source": "amazon-listing",
+          "alsoSources": [
+            "manufacturer"
+          ]
         },
         {
           "label": "Warranty",
-          "value": null,
-          "status": "unverified",
-          "source": null
+          "value": "1 year (Chefman assurance), cETL listed",
+          "status": "verified",
+          "source": "manufacturer",
+          "alsoSources": [
+            "amazon-listing"
+          ]
         },
         {
           "label": "Price",
@@ -341,6 +484,12 @@
           "value": null,
           "status": "withheld",
           "source": null
+        },
+        {
+          "label": "Weight",
+          "value": "12.8 lbs / 5.8 kg (chefman.com, 8 Qt model)",
+          "status": "verified",
+          "source": "manufacturer"
         }
       ],
       "bestFor": "One-batch dinners and the crispiest finish",
@@ -348,12 +497,55 @@
       "guideTopics": [
         "capacity",
         "cleanup",
-        "basket-vs-oven"
+        "basket-vs-oven",
+        "air-fryer-vs-toaster-oven",
+        "air-fryer-for-a-family",
+        "whole-chicken-in-an-air-fryer",
+        "dishwasher-safe-air-fryer-baskets"
       ],
       "submittedLink": "https://link.amazon/B00hJ57DV",
       "observedDestination": "https://www.amazon.com/dp/B08DKYBTPH",
       "observedOn": "2026-11-20",
-      "modelAmbiguity": "The 8-qt family spans at least five SKUs. chefman.com publishes RJ38-8T-BLACK (matte black, 8 qt/7.57 L, Hi-Fry 450 F, 1700 W/120 V); the listing re-fetched for this ASIN (12.8 lb, RJ38-SQSS-8T per retailer records) describes a stainless-steel body. Because the colour and model strings disagree, no dimension, weight or wattage is taken from the black SKU's page."
+      "modelAmbiguity": "The 8-qt family spans at least five SKUs. chefman.com publishes RJ38-8T-BLACK (matte black, 8 qt/7.57 L, Hi-Fry 450 F, 1700 W/120 V); the listing re-fetched for this ASIN (12.8 lb, RJ38-SQSS-8T per retailer records) describes a stainless-steel body. Because the colour and model strings disagree, no dimension, weight or wattage is taken from the black SKU's page.",
+      "modelNumber": "RJ38-SQSS-8T",
+      "specSources": {
+        "Dimensions": {
+          "url": "https://chefman.com/collections/air-fryers-1/products/turbofry-touch-air-fryer-1",
+          "label": "chefman.com — TurboFry Touch Stainless-Steel (RJ38-SQSS-8T)"
+        },
+        "Wattage": {
+          "url": "https://chefman.com/collections/air-fryers-1/products/turbofry-touch-air-fryer-1",
+          "label": "chefman.com — TurboFry Touch Stainless-Steel (RJ38-SQSS-8T)"
+        },
+        "Weight": {
+          "url": "https://chefman.com/collections/air-fryers-1/products/turbofry-touch-air-fryer-1",
+          "label": "chefman.com — TurboFry Touch Stainless-Steel (RJ38-SQSS-8T)"
+        },
+        "Warranty": {
+          "url": "https://chefman.com/collections/air-fryers-1/products/turbofry-touch-air-fryer-1",
+          "label": "chefman.com — TurboFry Touch Stainless-Steel (RJ38-SQSS-8T)"
+        },
+        "Max temperature": {
+          "url": "https://chefman.com/collections/air-fryers-1/products/turbofry-touch-air-fryer-1",
+          "label": "chefman.com — TurboFry Touch Stainless-Steel (RJ38-SQSS-8T)"
+        },
+        "Functions": {
+          "url": "https://chefman.com/collections/air-fryers-1/products/turbofry-touch-air-fryer-1",
+          "label": "chefman.com — TurboFry Touch Stainless-Steel (RJ38-SQSS-8T)"
+        },
+        "Capacity": {
+          "url": "https://chefman.com/collections/air-fryers-1/products/turbofry-touch-air-fryer-1",
+          "label": "chefman.com — TurboFry Touch Stainless-Steel (RJ38-SQSS-8T)"
+        },
+        "Basket care": {
+          "url": "https://chefman.com/collections/air-fryers-1/products/turbofry-touch-air-fryer-1",
+          "label": "chefman.com — TurboFry Touch Stainless-Steel (RJ38-SQSS-8T)"
+        },
+        "Body material": {
+          "url": "https://chefman.com/collections/air-fryers-1/products/turbofry-touch-air-fryer-1",
+          "label": "chefman.com — TurboFry Touch Stainless-Steel (RJ38-SQSS-8T)"
+        }
+      }
     },
     {
       "slug": "thermomaven-1-sec-thermometer",
@@ -391,20 +583,23 @@
         },
         {
           "label": "Water resistance",
-          "value": "Described as 100% waterproof; no IP number published",
-          "status": "verified",
-          "source": "manufacturer"
+          "value": "The maker's product page says \"100% waterproof\" and the user manual publishes no IP number at all. The Amazon listing title says \"IP67 Waterproof\"",
+          "status": "claim",
+          "source": "amazon-listing",
+          "alsoSources": [
+            "manufacturer"
+          ]
         },
         {
           "label": "Display",
-          "value": "Auto-rotate bright LED",
+          "value": "0.83 × 1.61 in LED, rotates 180°",
           "status": "verified",
           "source": "manufacturer"
         },
         {
           "label": "Certification",
-          "value": "NIST and NSF logos displayed; no certificate number published",
-          "status": "claim",
+          "value": "FCC, CE, NSF and RoHS marks shown on the maker's page and in the user manual",
+          "status": "verified",
           "source": "manufacturer"
         },
         {
@@ -415,9 +610,9 @@
         },
         {
           "label": "Calibration record",
-          "value": null,
-          "status": "unverified",
-          "source": null
+          "value": "The user manual documents an ice-water calibration procedure and a recalibration range of 28.4–35.6°F. The unit does not ship with a per-unit calibration certificate",
+          "status": "verified",
+          "source": "manufacturer"
         },
         {
           "label": "Battery type",
@@ -448,6 +643,24 @@
           "value": null,
           "status": "withheld",
           "source": null
+        },
+        {
+          "label": "Temperature range",
+          "value": "-58 to 572°F (-49.9 to 299.9°C) measured; -4 to 122°F (-20 to 50°C) operating ambient",
+          "status": "verified",
+          "source": "manufacturer"
+        },
+        {
+          "label": "Probe",
+          "value": "304 stainless steel, 4.3 in long × 0.14 in diameter, tapering to 0.06 in",
+          "status": "verified",
+          "source": "manufacturer"
+        },
+        {
+          "label": "Care",
+          "value": "Clean with an alcohol or food-safe antibacterial wipe. The manual says not to leave the device in the oven, microwave or dishwasher",
+          "status": "verified",
+          "source": "manufacturer"
         }
       ],
       "bestFor": "Weeknight cooking and grill checks",
@@ -455,7 +668,10 @@
       "guideTopics": [
         "multifunction",
         "capacity",
-        "instant-vs-wireless"
+        "instant-vs-wireless",
+        "how-hot-should-chicken-be",
+        "where-to-probe-a-chicken",
+        "wireless-thermometer-for-smoking"
       ],
       "submittedLink": "https://link.amazon/B0c8moW59",
       "observedDestination": "https://www.amazon.com/dp/B0DHZTCNR5",
@@ -470,8 +686,8 @@
           "label": "thermomaven.com"
         },
         "Water resistance": {
-          "url": "https://www.thermomaven.com/products/f1-stealth",
-          "label": "thermomaven.com"
+          "url": "https://cdn.shopify.com/s/files/1/0828/4726/9152/files/HT07_user_manual.pdf?v=1733992221",
+          "label": "ThermoMaven F1 Stealth user manual (HT07)"
         },
         "Battery type": {
           "url": "https://www.thermomaven.com/products/f1-stealth",
@@ -482,16 +698,32 @@
           "label": "thermomaven.com"
         },
         "Certification": {
-          "url": "https://www.thermomaven.com/products/f1-stealth",
-          "label": "thermomaven.com"
+          "url": "https://cdn.shopify.com/s/files/1/0828/4726/9152/files/HT07_user_manual.pdf?v=1733992221",
+          "label": "ThermoMaven F1 Stealth user manual (HT07)"
         },
         "Type": {
           "url": "https://www.thermomaven.com/products/f1-stealth",
           "label": "thermomaven.com"
         },
         "Display": {
-          "url": "https://www.thermomaven.com/products/f1-stealth",
-          "label": "thermomaven.com"
+          "url": "https://cdn.shopify.com/s/files/1/0828/4726/9152/files/HT07_user_manual.pdf?v=1733992221",
+          "label": "ThermoMaven F1 Stealth user manual (HT07)"
+        },
+        "Temperature range": {
+          "url": "https://cdn.shopify.com/s/files/1/0828/4726/9152/files/HT07_user_manual.pdf?v=1733992221",
+          "label": "ThermoMaven F1 Stealth user manual (HT07)"
+        },
+        "Probe": {
+          "url": "https://cdn.shopify.com/s/files/1/0828/4726/9152/files/HT07_user_manual.pdf?v=1733992221",
+          "label": "ThermoMaven F1 Stealth user manual (HT07)"
+        },
+        "Calibration record": {
+          "url": "https://cdn.shopify.com/s/files/1/0828/4726/9152/files/HT07_user_manual.pdf?v=1733992221",
+          "label": "ThermoMaven F1 Stealth user manual (HT07)"
+        },
+        "Care": {
+          "url": "https://cdn.shopify.com/s/files/1/0828/4726/9152/files/HT07_user_manual.pdf?v=1733992221",
+          "label": "ThermoMaven F1 Stealth user manual (HT07)"
         }
       },
       "modelNumber": "HT07"
@@ -521,14 +753,17 @@
       "specs": [
         {
           "label": "Probes",
-          "value": "3 ultra-thin probes",
+          "value": "3 ultra-thin probes (this listing); the maker sells the same hub system in 1-, 2-, 3- and 4-probe versions",
           "status": "verified",
-          "source": "manufacturer"
+          "source": "amazon-listing",
+          "alsoSources": [
+            "manufacturer"
+          ]
         },
         {
           "label": "Sensors",
-          "value": "4 internal + 1 ambient",
-          "status": "verified",
+          "value": "4 internal temperature sensors for accuracy within 1°F, plus 1 ambient sensor — five in total. The page headline calls them \"five internal sensors\" while the feature list says \"4 internal temperature sensors\" and \"1 ambient temperature sensor\"",
+          "status": "claim",
           "source": "manufacturer"
         },
         {
@@ -544,8 +779,14 @@
           "source": "manufacturer"
         },
         {
+          "label": "Compatible with",
+          "value": "Oven, stovetop, gas and charcoal grills, smoker, air fryer, deep fryer and sous vide",
+          "status": "verified",
+          "source": "manufacturer"
+        },
+        {
           "label": "Range",
-          "value": "Stated unlimited over WiFi",
+          "value": "Stated \"unlimited\" range through the CHEF iQ Smart Hub",
           "status": "claim",
           "source": "manufacturer"
         },
@@ -563,15 +804,15 @@
         },
         {
           "label": "App requirement",
-          "value": null,
-          "status": "unverified",
-          "source": null
+          "value": "CHEF iQ app (free) and a CHEF iQ Smart Hub for wireless monitoring",
+          "status": "verified",
+          "source": "manufacturer"
         },
         {
           "label": "Battery life",
-          "value": null,
-          "status": "unverified",
-          "source": null
+          "value": "70+ hours per charge (maker's page); \"multiple days of probe battery life per charge\" in the feature list",
+          "status": "verified",
+          "source": "manufacturer"
         },
         {
           "label": "Warranty",
@@ -596,6 +837,42 @@
           "value": null,
           "status": "withheld",
           "source": null
+        },
+        {
+          "label": "Temperature range",
+          "value": "Internal 32–212°F; ambient 32–1,000°F",
+          "status": "verified",
+          "source": "manufacturer"
+        },
+        {
+          "label": "Probe",
+          "value": "0.19 in thick, 4.75 in long; stainless steel and zirconia",
+          "status": "verified",
+          "source": "manufacturer"
+        },
+        {
+          "label": "Water resistance",
+          "value": "Waterproof and dishwasher safe, per the maker's page",
+          "status": "verified",
+          "source": "manufacturer"
+        },
+        {
+          "label": "Self-calibration",
+          "value": "Self-calibrates with each temperature measurement, per the maker's page",
+          "status": "verified",
+          "source": "manufacturer"
+        },
+        {
+          "label": "In the box",
+          "value": "Wireless probe, Smart Hub and USB-C charging cable. No charging brick and no removable batteries — the probe and hub use internal rechargeable lithium batteries",
+          "status": "verified",
+          "source": "manufacturer"
+        },
+        {
+          "label": "Hub",
+          "value": "Smart Hub charges probes over USB-C, relays data over Wi-Fi and has a built-in speaker for audible alerts",
+          "status": "verified",
+          "source": "manufacturer"
         }
       ],
       "bestFor": "Long cooks, smokers, and oven roasts",
@@ -603,7 +880,10 @@
       "guideTopics": [
         "multifunction",
         "basket-vs-oven",
-        "instant-vs-wireless"
+        "instant-vs-wireless",
+        "how-hot-should-chicken-be",
+        "where-to-probe-a-chicken",
+        "wireless-thermometer-for-smoking"
       ],
       "submittedLink": "https://link.amazon/B0f3GKalj",
       "observedDestination": "https://www.amazon.com/dp/B0DZFD6R9Z",
@@ -611,19 +891,19 @@
       "specSources": {
         "Sensors": {
           "url": "https://chefiq.com/products/iq-sense",
-          "label": "chefiq.com"
+          "label": "chefiq.com — iQ Sense product page"
         },
         "Connectivity": {
           "url": "https://chefiq.com/products/iq-sense",
-          "label": "chefiq.com"
+          "label": "chefiq.com — iQ Sense product page"
         },
         "Heat rating": {
           "url": "https://chefiq.com/products/iq-sense",
-          "label": "chefiq.com"
+          "label": "chefiq.com — iQ Sense product page"
         },
         "Range": {
           "url": "https://chefiq.com/products/iq-sense",
-          "label": "chefiq.com"
+          "label": "chefiq.com — iQ Sense product page"
         },
         "Probes": {
           "url": "https://chefiq.com/products/iq-sense",
@@ -631,14 +911,51 @@
         },
         "Type": {
           "url": "https://chefiq.com/products/iq-sense",
-          "label": "chefiq.com"
+          "label": "chefiq.com — iQ Sense product page"
         },
         "Generation": {
           "url": "https://chefiq.com/products/iq-sense",
-          "label": "chefiq.com"
+          "label": "chefiq.com — iQ Sense product page"
+        },
+        "Compatible with": {
+          "url": "https://chefiq.com/products/iq-sense",
+          "label": "chefiq.com — iQ Sense product page"
+        },
+        "App requirement": {
+          "url": "https://chefiq.com/products/iq-sense",
+          "label": "chefiq.com — iQ Sense product page"
+        },
+        "Battery life": {
+          "url": "https://chefiq.com/products/iq-sense",
+          "label": "chefiq.com — iQ Sense product page"
+        },
+        "Temperature range": {
+          "url": "https://chefiq.com/products/iq-sense",
+          "label": "chefiq.com — iQ Sense product page"
+        },
+        "Probe": {
+          "url": "https://chefiq.com/products/iq-sense",
+          "label": "chefiq.com — iQ Sense product page"
+        },
+        "Water resistance": {
+          "url": "https://chefiq.com/products/iq-sense",
+          "label": "chefiq.com — iQ Sense product page"
+        },
+        "Self-calibration": {
+          "url": "https://chefiq.com/products/iq-sense",
+          "label": "chefiq.com — iQ Sense product page"
+        },
+        "In the box": {
+          "url": "https://chefiq.com/products/iq-sense",
+          "label": "chefiq.com — iQ Sense product page"
+        },
+        "Hub": {
+          "url": "https://chefiq.com/products/iq-sense",
+          "label": "chefiq.com — iQ Sense product page"
         }
       },
-      "modelNumber": "CQ60-1C-Z1-E"
+      "modelNumber": "CQ60-1C-Z1-E",
+      "modelAmbiguity": "The listing is the 3-probe version of the iQ Sense hub system. The maker's own product page shows SKU CQ60-1C-Z1-E with the size selector defaulting to 1 probe and offering 1-, 2-, 3- and 4-probe versions of the same hub. The probe count above is taken from this listing's own title; the base SKU alone does not identify the variant."
     }
   ],
   "categories": [
