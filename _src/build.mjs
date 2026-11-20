@@ -800,6 +800,34 @@ ${breadcrumb([{ href: url("/"), label: "Home" }, { label: "Suggestions & decisio
     </div>
     <p class="small muted" style="margin-top:1rem">These four numbers are computed from <code>data/suggestions.json</code> at build time. They cannot say the work is finished unless the data says so.</p>
 
+    <h2 class="section__title" style="margin-top:3rem">What the table does not say</h2>
+    <p class="section__dek" style="margin-bottom:1.5rem">A specification table compares parts. These are the sentences a table cannot hold: the one thing each machine is for, and the one thing that makes it wrong.</p>
+    <div class="pickrows">${products
+      .map(
+        (p) => `<article class="pickrow">
+      <div class="pickrow__head">
+        <img class="pickrow__mark" src="${url(`/assets/img/form-${p.formFactor}.svg`)}" width="120" height="120" alt="${esc(
+          p.formFactor.replace(/-/g, " ")
+        )} form-factor mark, drawn not photographed.">
+        <div>
+          <p class="pickrow__kicker">${esc(p.bestFor)}</p>
+          <h3 class="pickrow__name"><a href="${url(`/products/${p.slug}/`)}">${esc(p.shortName)}</a></h3>
+        </div>
+      </div>
+      <dl class="pickrow__body">
+        <div><dt>Buy it if</dt><dd>${esc(p.bestFor)} is the shape of most of your dinners.</dd></div>
+        <div><dt>Skip it if</dt><dd>${esc(p.tradeoff)} would be the thing you notice every time you use it.</dd></div>
+      </dl>
+      <div class="pickrow__foot">
+        <a class="btn btn--amazon" href="${special(p.asin)}" rel="sponsored nofollow noopener" target="_blank"
+           data-affiliate="${p.asin}" data-slot="compare-pick">Check price on Amazon →</a>
+        <a class="pickrow__link" href="${url(`/products/${p.slug}/`)}">Full specification record</a>
+      </div>
+      <p class="pcard__note">Sponsored. ${esc(site.associateStatement)}</p>
+    </article>`
+      )
+      .join("")}</div>
+
     <div class="note note--warn mt2">
       <p class="note__title">How to use this page</p>
       <p>${esc(suggestions.decisionLog.note)}</p>
@@ -943,8 +971,9 @@ ${breadcrumb([
 <div class="article-head">
   <div class="wrap">
     <p class="kicker">${esc(p.brand)} · ${esc(p.formFactor.replace(/-/g, " "))}</p>
-    <h1 class="article-head__title">${esc(p.name)}</h1>
+    <h1 class="article-head__title">${esc(p.shortName)}</h1>
     <p class="article-head__dek">${esc(p.verdict)}</p>
+    <p class="tiny muted" style="margin:.9rem 0 0;max-width:46rem">Sold as: <cite style="font-style:normal">${esc(p.title)}</cite> — the listing title, reproduced verbatim (capitals included) so this page and the live listing can be matched by eye.</p>
     <div class="byline">
       <span>${esc(site.name)} editorial</span>
       <span class="byline__dot" aria-hidden="true"></span>
@@ -2106,9 +2135,16 @@ ${breadcrumb([{ href: url("/"), label: "Home" }, { label: "Executive summary" }]
       <li><strong>A publication gate</strong> in the build: it fails if any page loses its disclosure, or if any Amazon link loses its sponsored marking.</li>
       <li><strong>SEO foundations</strong>: sitemap, RSS feed, canonical URLs, structured data, and descriptions written for humans.</li>
       <li><strong>A defined measurement plan</strong>: five events, a self-hosted collector, and a ledger schema.</li>
-      <li><strong>A design-prompt suggestion layer</strong>: a draft design brief for a polished-marketing look, a topic roadmap of catchy question-shaped hypotheses, organic-traffic levers, and a decision log — all on <a href="${url(
-        "/suggestions/"
-      )}">the suggestions page</a> for review before anything is implemented.</li>
+      <li><strong>A review surface</strong>: ${suggestions.suggestions.length} suggestions with their cost and risk, ${suggestions.decisionLog.entries.length} recorded decisions with dates and reasons, and a single <a href="${url(
+        "/decisions/"
+      )}">decisions page</a> where the current state of every row is visible before anything is implemented.</li>
+      <li><strong>Two job-first service pages</strong> — <a href="${url("/dinner-in-one-drawer/")}">Dinner in one drawer</a> and <a href="${url(
+        "/hands-off-the-grill/"
+      )}">Hands off the grill</a> — which start from the meal rather than the machine.</li>
+      <li><strong>Original illustration, no borrowed photography</strong>: ${art.files(products).size} generated SVG assets and two self-hosted OFL fonts, served from this repository. Nothing is hot-linked, and nothing depicts a product it has not measured.</li>
+      <li><strong>${questions.discovery.rows.length} documented gaps</strong> on <a href="${url(
+        "/questions/"
+      )}">open questions</a>, each with the artifact that would close it and who holds it.</li>
     </ul>
 
     <h2>What does not exist, and why</h2>
