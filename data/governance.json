@@ -95,7 +95,7 @@
       "severity": "action",
       "title": "Analytics endpoint not deployed",
       "detail": "A self-hosted collector exists in _worker/ and the client is written to POST five defined events. No endpoint is deployed, so the client is switched off rather than sending events into a void.",
-      "action": "Deploy the worker, set SITE_ANALYTICS_ENDPOINT, rebuild. Until then no analytics data exists and the dashboard says so. A zero-dependency reference collector now ships at scripts/analytics-server.mjs: same event set, same key allow-list, same scrubbing and 30-day retention as _worker/collector.js, so choosing a host no longer requires writing anything. To turn it on: run it (or the Worker), set site.analyticsEndpoint in data/products.json and governance.analytics.enabled to true, rebuild — the build holds the client inert if only one of the two is set.",
+      "action": "Deploy the worker, set SITE_ANALYTICS_ENDPOINT, rebuild. Until then no analytics data exists and the dashboard says so. A zero-dependency reference collector now ships at scripts/analytics-server.mjs: same event set, same key allow-list, same scrubbing and 30-day retention as _worker/collector.js, so choosing a host no longer requires writing anything. That contract is now executed rather than asserted: scripts/analytics-selftest.mjs drives the collector end to end and compares it against the worker and the register — it found two real defects, both fixed (FLG-042). To turn it on: run it (or the Worker), set site.analyticsEndpoint in data/products.json and governance.analytics.enabled to true, rebuild — the build holds the client inert if only one of the two is set.",
       "sourceUrl": "https://sassnarep3-star.github.io/WinA/analytics/",
       "sourceLabel": "This site's measurement page"
     },
@@ -362,12 +362,12 @@
     },
     {
       "id": "FLG-037",
-      "severity": "review",
-      "title": "Buy buttons say 'Check price on Amazon' while the site states prices are not shown",
-      "detail": "Every product card and hero button is labelled 'Check price on Amazon'. Other pages state that prices are not shown on this site, and data/products.json withholds prices (FLG-005). The label does not display a price, but it is worded as if one is on the page. It is flagged for an owner decision on wording, not changed here, because it is a visible copy decision and it appears on every product card. Amazon Associates Program Policies §6(y) is cited in this register for the no-price-tracking rule; that section was not re-read in this check.",
-      "action": "Owner: choose the button wording. If changed, rebuild with node _src/build.mjs; the compliance gate checks the disclosure and link classes, not the label wording.",
+      "severity": "resolved",
+      "title": "Buyer-action and category copy no longer imply an on-page price or an unverified low cost",
+      "detail": "Resolved in task T33 on the shared board (2026-11-20; first claimed as T27, renumbered at merge time because main already held rows for other sessions). Product buttons in all three templates — buy box, product card, front-page hero — now read ‘View on Amazon’ rather than ‘Check price on Amazon’, while the site itself displays no prices. Two price superlatives that no data supports were also removed: the ThermoMaven line ‘The cheap insurance that stops you guessing’ became ‘A one-second read for a quick kitchen check’, and the thermometers category dek and front-page section head lost ‘The cheapest upgrade in the kitchen’. Replacement wording states only rows already recorded as verified in the register: ‘Truly instant read in 1 second’ (thermomaven.com product page, read 2026-11-20) and ‘3 ultra-thin probes’ (chefiq.com product page). No price, commission, conversion or performance figure was added, and the Price / Star rating / Review count rows remain blank or withheld.",
+      "action": "No further action on wording. If API-backed price display is ever considered, re-read the Associates Program Policies first and extend scripts/check-site.mjs so the no-price rule is re-checked against whatever the new copy claims.",
       "sourceUrl": "https://affiliate-program.amazon.com/help/operating/policies",
-      "sourceLabel": "Amazon Associates Program Policies (cited elsewhere in this register)"
+      "sourceLabel": "Amazon Associates Program Policies (page states “Updated: April 14, 2026”); price/rating display and tracking rules reviewed 2026-11-20"
     },
     {
       "id": "FLG-038",
@@ -404,6 +404,15 @@
       "action": "Left as observed: no value was invented to resolve it. To close it, pick the exact variant URL on chefiq.com for the three-probe model and update specSources — an owner or a later session with the variant URL can do this. No page claim depends on the variant count beyond the listing itself, which already states three probes.",
       "sourceUrl": "https://chefiq.com/products/iq-sense",
       "sourceLabel": "CHEF iQ Sense family page (variant selector observed 2026-11-20)"
+    },
+    {
+      "id": "FLG-042",
+      "severity": "resolved",
+      "title": "The self-hosted collector did not speak the browser client's payload, and crashed when an origin allow-list was set",
+      "detail": "scripts/analytics-server.mjs had never been executed against a request. Two defects followed from that: (1) it read the page path, ASIN and slot from the top level of the request body, while assets/js/site.js and _worker/collector.js both send them nested under \"p\" — so every click would have been recorded with no product, no page and no slot, and the one number the measurement plan exists to produce would never have existed; (2) it parsed the ALLOWED_ORIGINS environment variable with Array.map, so starting the collector with an origin allow-list — the exact command its own startup message recommends — crashed it on line 25. Both were found by scripts/analytics-selftest.mjs, added in this pass and run in CI. (FLG-040 and FLG-041 were taken on main in the same window, so this finding is numbered after them.)",
+      "action": "Both fixed in scripts/analytics-server.mjs: the payload now matches the client and the worker (props nested under \"p\", the same stored row fields and length limits), and ALLOWED_ORIGINS is parsed as a comma-separated string. The self-test now asserts the collector contract end to end and compares the worker and the server against each other and against the register, so the two cannot drift apart again. Nothing was deployed and the client is still inert: FLG-011 remains open and now needs only a host.",
+      "sourceUrl": "https://github.com/sassnarep3-star/WinA/blob/main/scripts/analytics-selftest.mjs",
+      "sourceLabel": "Repository — the collector self-test that found both defects"
     }
   ],
   "ledger": {

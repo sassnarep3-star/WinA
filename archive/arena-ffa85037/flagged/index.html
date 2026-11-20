@@ -159,11 +159,6 @@
           <td><span class="pill pill--review">review</span></td>
           <td><a href="https://link.amazon/B04G1MEwY" rel="nofollow noopener" target="_blank" data-nonaffiliate="true">open</a></td>
         </tr><tr>
-          <td><code>FLG-037</code></td>
-          <td>Buy buttons say 'Check price on Amazon' while the site states prices are not shown</td>
-          <td><span class="pill pill--review">review</span></td>
-          <td><a href="https://affiliate-program.amazon.com/help/operating/policies" rel="noopener" target="_blank">open</a></td>
-        </tr><tr>
           <td><code>FLG-039</code></td>
           <td>Spec coverage is uneven, and two products carry no warranty or dimensions at all</td>
           <td><span class="pill pill--review">review</span></td>
@@ -284,10 +279,20 @@
           <td><span class="pill pill--resolved">resolved</span></td>
           <td><a href="https://affiliate-program.amazon.com/help/operating/agreement" rel="noopener" target="_blank">open</a></td>
         </tr><tr>
+          <td><code>FLG-037</code></td>
+          <td>Buyer-action and category copy no longer imply an on-page price or an unverified low cost</td>
+          <td><span class="pill pill--resolved">resolved</span></td>
+          <td><a href="https://affiliate-program.amazon.com/help/operating/policies" rel="noopener" target="_blank">open</a></td>
+        </tr><tr>
           <td><code>FLG-038</code></td>
           <td>ThermoMaven water-resistance row said no IP number was published; the listing states IP67</td>
           <td><span class="pill pill--resolved">resolved</span></td>
           <td><a href="https://www.amazon.com/dp/B0DHZTCNR5" rel="nofollow noopener" target="_blank" data-nonaffiliate="true">open</a></td>
+        </tr><tr>
+          <td><code>FLG-042</code></td>
+          <td>The self-hosted collector did not speak the browser client's payload, and crashed when an origin allow-list was set</td>
+          <td><span class="pill pill--resolved">resolved</span></td>
+          <td><a href="https://github.com/sassnarep3-star/WinA/blob/main/scripts/analytics-selftest.mjs" rel="noopener" target="_blank">open</a></td>
         </tr></tbody>
       </table>
     </div>
@@ -408,12 +413,6 @@
     <p style="margin:0 0 .6rem"><strong>What we did:</strong> Owner: open each of the five short links in a normal browser, logged out, and record the landing URL. If any short link lands somewhere other than its recorded /dp/ page, correct data/links.json and add a dated note. Do not rely on the recorded values until this is done.</p>
     <p class="small" style="margin:0"><a href="https://link.amazon/B04G1MEwY" rel="nofollow noopener" target="_blank" data-nonaffiliate="true">Submitted short link (re-checked 2026-11-20 by two sessions; see detail)</a></p>
   </article><article class="note note--warn" style="margin-bottom:1.25rem">
-    <p class="note__title">FLG-037 <span class="pill pill--review">review</span></p>
-    <h3 style="font-family:var(--serif);font-size:1.15rem;margin:.2rem 0 .5rem;color:var(--ink)">Buy buttons say 'Check price on Amazon' while the site states prices are not shown</h3>
-    <p style="margin:0 0 .6rem">Every product card and hero button is labelled 'Check price on Amazon'. Other pages state that prices are not shown on this site, and data/products.json withholds prices (FLG-005). The label does not display a price, but it is worded as if one is on the page. It is flagged for an owner decision on wording, not changed here, because it is a visible copy decision and it appears on every product card. Amazon Associates Program Policies §6(y) is cited in this register for the no-price-tracking rule; that section was not re-read in this check.</p>
-    <p style="margin:0 0 .6rem"><strong>What we did:</strong> Owner: choose the button wording. If changed, rebuild with node _src/build.mjs; the compliance gate checks the disclosure and link classes, not the label wording.</p>
-    <p class="small" style="margin:0"><a href="https://affiliate-program.amazon.com/help/operating/policies" rel="noopener" target="_blank">Amazon Associates Program Policies (cited elsewhere in this register)</a></p>
-  </article><article class="note note--warn" style="margin-bottom:1.25rem">
     <p class="note__title">FLG-039 <span class="pill pill--review">review</span></p>
     <h3 style="font-family:var(--serif);font-size:1.15rem;margin:.2rem 0 .5rem;color:var(--ink)">Spec coverage is uneven, and two products carry no warranty or dimensions at all</h3>
     <p style="margin:0 0 .6rem">Counted from data/products.json on 2026-11-20 by script over the published rows: 32 of 60 spec rows carry a verified value. Per product, verified of total: Chefman 6-Quart Dual Basket 8/12; Emeril 26QT French Door 6/11; Chefman 8-Quart TurboFry 5/12; ThermoMaven 1-Second 7/12; CHEF iQ Sense Gen3 6/13. The Emeril has no confirmed wattage or warranty; the Chefman 8-Quart has no confirmed wattage, dimensions or warranty. Those are the fields a buyer most often needs — will it fit, will it trip the outlet, what happens if it fails — and they are blank because the listing did not state them and no manufacturer page was cited for them. (Originally drafted as FLG-038 and moved when that id was taken in a parallel claim.)</p>
@@ -453,7 +452,7 @@
     <p class="note__title">FLG-011 <span class="pill pill--action">action</span></p>
     <h3 style="font-family:var(--serif);font-size:1.15rem;margin:.2rem 0 .5rem;color:var(--ink)">Analytics endpoint not deployed</h3>
     <p style="margin:0 0 .6rem">A self-hosted collector exists in _worker/ and the client is written to POST five defined events. No endpoint is deployed, so the client is switched off rather than sending events into a void.</p>
-    <p style="margin:0 0 .6rem"><strong>What we did:</strong> Deploy the worker, set SITE_ANALYTICS_ENDPOINT, rebuild. Until then no analytics data exists and the dashboard says so. A zero-dependency reference collector now ships at scripts/analytics-server.mjs: same event set, same key allow-list, same scrubbing and 30-day retention as _worker/collector.js, so choosing a host no longer requires writing anything. To turn it on: run it (or the Worker), set site.analyticsEndpoint in data/products.json and governance.analytics.enabled to true, rebuild — the build holds the client inert if only one of the two is set.</p>
+    <p style="margin:0 0 .6rem"><strong>What we did:</strong> Deploy the worker, set SITE_ANALYTICS_ENDPOINT, rebuild. Until then no analytics data exists and the dashboard says so. A zero-dependency reference collector now ships at scripts/analytics-server.mjs: same event set, same key allow-list, same scrubbing and 30-day retention as _worker/collector.js, so choosing a host no longer requires writing anything. That contract is now executed rather than asserted: scripts/analytics-selftest.mjs drives the collector end to end and compares it against the worker and the register — it found two real defects, both fixed (FLG-042). To turn it on: run it (or the Worker), set site.analyticsEndpoint in data/products.json and governance.analytics.enabled to true, rebuild — the build holds the client inert if only one of the two is set.</p>
     <p class="small" style="margin:0"><a href="https://sassnarep3-star.github.io/WinA/analytics/" rel="noopener" target="_blank">This site's measurement page</a></p>
   </article><article class="note note--warn" style="margin-bottom:1.25rem">
     <p class="note__title">FLG-013 <span class="pill pill--action">action</span></p>
@@ -558,11 +557,23 @@
     <p style="margin:0 0 .6rem"><strong>What we did:</strong> Re-run this check when Amazon or the FTC updates a document (FLG-031).</p>
     <p class="small" style="margin:0"><a href="https://affiliate-program.amazon.com/help/operating/agreement" rel="noopener" target="_blank">Associates Operating Agreement §5 (checked 2026-11-20)</a></p>
   </article><article class="note " style="margin-bottom:1.25rem">
+    <p class="note__title">FLG-037 <span class="pill pill--resolved">resolved</span></p>
+    <h3 style="font-family:var(--serif);font-size:1.15rem;margin:.2rem 0 .5rem;color:var(--ink)">Buyer-action and category copy no longer imply an on-page price or an unverified low cost</h3>
+    <p style="margin:0 0 .6rem">Resolved in task T33 on the shared board (2026-11-20; first claimed as T27, renumbered at merge time because main already held rows for other sessions). Product buttons in all three templates — buy box, product card, front-page hero — now read ‘View on Amazon’ rather than ‘Check price on Amazon’, while the site itself displays no prices. Two price superlatives that no data supports were also removed: the ThermoMaven line ‘The cheap insurance that stops you guessing’ became ‘A one-second read for a quick kitchen check’, and the thermometers category dek and front-page section head lost ‘The cheapest upgrade in the kitchen’. Replacement wording states only rows already recorded as verified in the register: ‘Truly instant read in 1 second’ (thermomaven.com product page, read 2026-11-20) and ‘3 ultra-thin probes’ (chefiq.com product page). No price, commission, conversion or performance figure was added, and the Price / Star rating / Review count rows remain blank or withheld.</p>
+    <p style="margin:0 0 .6rem"><strong>What we did:</strong> No further action on wording. If API-backed price display is ever considered, re-read the Associates Program Policies first and extend scripts/check-site.mjs so the no-price rule is re-checked against whatever the new copy claims.</p>
+    <p class="small" style="margin:0"><a href="https://affiliate-program.amazon.com/help/operating/policies" rel="noopener" target="_blank">Amazon Associates Program Policies (page states “Updated: April 14, 2026”); price/rating display and tracking rules reviewed 2026-11-20</a></p>
+  </article><article class="note " style="margin-bottom:1.25rem">
     <p class="note__title">FLG-038 <span class="pill pill--resolved">resolved</span></p>
     <h3 style="font-family:var(--serif);font-size:1.15rem;margin:.2rem 0 .5rem;color:var(--ink)">ThermoMaven water-resistance row said no IP number was published; the listing states IP67</h3>
     <p style="margin:0 0 .6rem">The register recorded &quot;Described as 100% waterproof; no IP number published&quot; from the manufacturer page. The Amazon listing title on 2026-11-20 reads &quot;... IP67 Waterproof for Grill BBQ ...&quot;, so an IP rating is published. The row now reads &quot;IP67, as stated in the listing title&quot; and cites the listing. This was a factual error in the register, found by re-reading the listing, and is corrected rather than left. (Originally drafted as FLG-036; renumbered because a parallel session claimed that id first. Both findings are kept.)</p>
     <p style="margin:0 0 .6rem"><strong>What we did:</strong> None. Corrected in data/products.json and rebuilt.</p>
     <p class="small" style="margin:0"><a href="https://www.amazon.com/dp/B0DHZTCNR5" rel="nofollow noopener" target="_blank" data-nonaffiliate="true">Amazon listing title, fetched 2026-11-20</a></p>
+  </article><article class="note " style="margin-bottom:1.25rem">
+    <p class="note__title">FLG-042 <span class="pill pill--resolved">resolved</span></p>
+    <h3 style="font-family:var(--serif);font-size:1.15rem;margin:.2rem 0 .5rem;color:var(--ink)">The self-hosted collector did not speak the browser client's payload, and crashed when an origin allow-list was set</h3>
+    <p style="margin:0 0 .6rem">scripts/analytics-server.mjs had never been executed against a request. Two defects followed from that: (1) it read the page path, ASIN and slot from the top level of the request body, while assets/js/site.js and _worker/collector.js both send them nested under &quot;p&quot; — so every click would have been recorded with no product, no page and no slot, and the one number the measurement plan exists to produce would never have existed; (2) it parsed the ALLOWED_ORIGINS environment variable with Array.map, so starting the collector with an origin allow-list — the exact command its own startup message recommends — crashed it on line 25. Both were found by scripts/analytics-selftest.mjs, added in this pass and run in CI. (FLG-040 and FLG-041 were taken on main in the same window, so this finding is numbered after them.)</p>
+    <p style="margin:0 0 .6rem"><strong>What we did:</strong> Both fixed in scripts/analytics-server.mjs: the payload now matches the client and the worker (props nested under &quot;p&quot;, the same stored row fields and length limits), and ALLOWED_ORIGINS is parsed as a comma-separated string. The self-test now asserts the collector contract end to end and compares the worker and the server against each other and against the register, so the two cannot drift apart again. Nothing was deployed and the client is still inert: FLG-011 remains open and now needs only a host.</p>
+    <p class="small" style="margin:0"><a href="https://github.com/sassnarep3-star/WinA/blob/main/scripts/analytics-selftest.mjs" rel="noopener" target="_blank">Repository — the collector self-test that found both defects</a></p>
   </article></div>
 
     <h2 class="section__title" style="font-size:1.4rem;margin-top:2.5rem">Prior audit work on this repository</h2>

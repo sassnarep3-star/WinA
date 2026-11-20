@@ -248,7 +248,7 @@ function buybox(p, slot) {
   <a class="btn btn--amazon" href="${special(p.asin)}"
      rel="sponsored nofollow noopener" target="_blank"
      data-affiliate="${p.asin}" data-slot="${slot}">
-     Check price on Amazon →
+     View on Amazon →
   </a>
   <p class="buybox__legal">Opens amazon.com. We earn a commission if you buy, at no extra cost to you. ${esc(
     site.associateStatement
@@ -325,7 +325,7 @@ function productCard(p, rank) {
   </div>
   <div class="pcard__foot">
     <a class="btn btn--amazon" href="${special(p.asin)}" rel="sponsored nofollow noopener"
-       target="_blank" data-affiliate="${p.asin}" data-slot="card">Check price on Amazon →</a>
+       target="_blank" data-affiliate="${p.asin}" data-slot="card">View on Amazon →</a>
     <p class="pcard__note">Sponsored. ${esc(site.associateStatement)}</p>
   </div>
 </article>`;
@@ -352,6 +352,19 @@ function frontPage() {
     0
   );
 
+  // Opinionated buyer-to-product match — helps a reader self-identify instead of guessing.
+  const decide = products.map((p) => {
+    const lines = {
+      'chefman-6-quart-dual-basket': 'you cook a protein and a side at the same time, and want both ready together.',
+      'emeril-lagasse-26qt-french-door': 'you would otherwise buy a second oven, and you have the counter to spare.',
+      'chefman-8-quart-turbofry': 'you cook one big batch and want the crispiest finish.',
+      'thermomaven-1-sec-thermometer': 'you want a number right now, without an app.',
+      'chef-iq-sense-gen3': 'you cook long roasts or smokes and want to walk away.',
+    };
+    const line = lines[p.slug] || '';
+    return '<li><span class="match"><a href="' + url('/products/' + p.slug + '/') + '">' + esc(p.shortName) + '</a></span><span class="why">— ' + line + '</span></li>';
+  }).join("");
+
   const html = `
 <section class="hero">
   <div class="wrap hero__grid">
@@ -375,7 +388,7 @@ function frontPage() {
         <div class="pick__stat"><dt>Best for</dt><dd style="font-size:.86rem;font-family:var(--sans)">Two-part dinners</dd></div>
       </dl>
       <a class="btn btn--amazon" href="${special(lead.asin)}" rel="sponsored nofollow noopener"
-         target="_blank" data-affiliate="${lead.asin}" data-slot="hero">Check price on Amazon →</a>
+         target="_blank" data-affiliate="${lead.asin}" data-slot="hero">View on Amazon →</a>
       <p class="pcard__note">Sponsored. ${esc(site.associateStatement)}</p>
     </aside>
   </div>
@@ -409,8 +422,8 @@ function frontPage() {
   <div class="wrap">
     <div class="section__head section__head--split">
       <div>
-        <h2 class="section__title">The cheapest upgrade in the kitchen</h2>
-        <p class="section__dek">An air fryer you can hear and smell your way through. A roast you cannot. Two ways to stop guessing.</p>
+        <h2 class="section__title">Two ways to stop guessing</h2>
+        <p class="section__dek">An air fryer you can hear and smell your way through. A roast you cannot — that is what the thermometers are for.</p>
       </div>
       <a class="section__more" href="${url("/thermometers/")}">Both thermometers</a>
     </div>
@@ -436,6 +449,15 @@ function frontPage() {
         </div>
         <p class="tiny faint" style="margin-top:1rem">Seasonal topics follow the calendar, not demand data — that trade-off is recorded in <a href="${url("/suggestions/")}">SUG-25 and SUG-23</a>, not hidden.</p>
       </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section--deep">
+  <div class="wrap">
+    <div class="decision-helper">
+      <h2 class="decision-helper__title">Which one fits your kitchen?</h2>
+      <ul>${decide}</ul>
     </div>
   </div>
 </section>
@@ -1499,9 +1521,34 @@ function renderTopicRoadmap() {
 </section>`;
 }
 
+function renderDesignPrompt() {
+  const dp = suggestions.designPrompt;
+  const items = dp.constraints.map(function (c) { return '<li>' + esc(c) + '</li>'; }).join('');
+  const source = dp.source ? cite(dp.source.url, esc(dp.source.label)) : '<span class="faint">none</span>';
+  return [
+    '<section class="section section--deep">',
+    '  <div class="wrap">',
+    '    <div class="section__head">',
+    '      <h2 class="section__title" style="font-size:1.4rem">Design prompt (copy-ready)</h2>',
+    '      <p class="section__dek">' + esc(dp.intro) + '</p>',
+    '    </div>',
+    '    <div class="note mt2">',
+    '      <p class="note__title">Prompt</p>',
+    '      <p class="small" style="white-space:pre-wrap;line-height:1.6;">' + esc(dp.prompt) + '</p>',
+    '      <p class="small mt1"><strong>Constraints to design against:</strong></p>',
+    '      <ul style="margin:.4rem 0 0;padding-left:1.1rem">' + items + '</ul>',
+    '      <p class="small mt1"><span class="faint">Source: </span>' + source + '</p>',
+    '    </div>',
+    '  </div>',
+    '</section>'
+  ].join('\n');
+}
+
 function renderDecisionLog() {
   const dl = suggestions.decisionLog;
   const entries = dl.entries;
+  const counts = {};
+  for (const e of entries) counts[e.decision] = (counts[e.decision] || 0) + 1;
   const rows = entries
     .map(
       (e) => `<tr>
@@ -1509,6 +1556,15 @@ function renderDecisionLog() {
     <td><span class="pill pill--${esc(e.decision)}" >${esc(e.decision)}</span></td>
     <td><code>${esc(e.item)}</code></td>
     <td class="small">${esc(e.reason)}</td>
+  </tr>`
+    )
+    .join("");
+  const key = (dl.decisionKey || [])
+    .map(
+      (k) => `<tr>
+    <td><span class="pill pill--${esc(k.id)}">${esc(k.label || k.id)}</span></td>
+    <td class="small">${esc(k.note)}</td>
+    <td class="num">${counts[k.id] || 0}</td>
   </tr>`
     )
     .join("");
@@ -1528,6 +1584,18 @@ function renderDecisionLog() {
         }</tbody>
       </table>
     </div>
+
+    ${
+      key
+        ? `<div class="tablewrap mt2">
+      <table class="data sortable">
+        <caption>What each decision state means, and how many suggestions currently sit in it.</caption>
+        <thead><tr><th scope="col">Decision</th><th scope="col">Meaning</th><th scope="col">Items</th></tr></thead>
+        <tbody>${key}</tbody>
+      </table>
+    </div>`
+        : ""
+    }
 
     <div class="tablewrap mt2">
       <table class="data sortable">
@@ -1634,6 +1702,7 @@ ${breadcrumb([{ href: url("/"), label: "Home" }, { label: "Suggestions" }])}
 
 ${renderDesignBrief()}
 ${renderTopicRoadmap()}
+${renderDesignPrompt()}
 ${renderDecisionLog()}
 `;
   pages.push({
@@ -1800,7 +1869,7 @@ ${breadcrumb([{ href: url("/"), label: "Home" }, { label: "Measurement" }])}
 
     <h2 class="section__title" style="font-size:1.4rem;margin-top:2.5rem">Deploying it</h2>
     <div class="prose">
-      <p>The collector is in <code>_worker/</code> and is a single small handler with no third-party dependency. Deploy it, set the endpoint in the build config, rebuild, and the flag flips. The exact steps are in the repository README.</p>
+      <p>The collector is in <code>_worker/</code> and is a single small handler with no third-party dependency, and an equivalent dependency-free server ships at <code>scripts/analytics-server.mjs</code> for a host without Workers. Deploy one, set the endpoint in the build config, rebuild, and the flag flips. The exact steps are in the repository README, and <code>scripts/analytics-selftest.mjs</code> checks the contract on every build, so what gets deployed has been executed rather than assumed.</p>
       <p>Until that happens, this page is a plan rather than a report. It is marked as such deliberately, because a measurement page that implies data exists when it does not is worse than no measurement page.</p>
     </div>
   </div>
