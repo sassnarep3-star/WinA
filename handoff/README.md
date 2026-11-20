@@ -1,6 +1,6 @@
-# Handoff — T33 requested changes to shared outputs
+# Handoff — T34 requested changes to shared outputs
 
-These patches hold the spec-row corrections and flag changes from T33 (arena/1cf62cfb-wina, 2026-11-20).
+These patches hold the spec-row corrections and flag changes from T34 (arena/1cf62cfb-wina, 2026-11-20).
 They are **not applied**. Board rule 10 reserves `data/*.json`, nav and `index.html` for the final integration session.
 
 Both patches apply cleanly to `main` at f3f9541 (checked with `git apply --cached --check` against that tree).
@@ -8,8 +8,8 @@ Verified in a scratch copy of f3f9541: both applied; `node _src/build.mjs` passe
 
 ## To apply (integration session only)
 
-    git apply handoff/T33-products.patch
-    git apply handoff/T33-governance.patch
+    git apply handoff/T34-products.patch
+    git apply handoff/T34-governance.patch
     node _src/build.mjs && node scripts/check-site.mjs && node scripts/compliance-gate.mjs && node scripts/publish-gate.mjs --committed
 
 Figures on the patched tree, for `EXECUTIVE_SUMMARY.md`. Recompute them with a script before writing them:
@@ -19,12 +19,12 @@ Figures on the patched tree, for `EXECUTIVE_SUMMARY.md`. Recompute them with a s
 
 ## What the patches change
 
-`T33-products.patch` (`data/products.json`, 11 spec rows):
+`T34-products.patch` (`data/products.json`, 11 spec rows):
 - Corrected to the cited page (5): Chefman 6-qt capacity; ThermoMaven display (manual: rotates 180°); ThermoMaven battery (manual: one 1.5 V AAA); CHEF iQ type; Chefman 8-qt max temperature (listing only).
 - Blanked, sources conflict (2): Emeril presets; Emeril accessories.
 - Filled from an official page (4): Emeril warranty ("1-Years Warranty" badge); CHEF iQ battery life ("70+ Hours"); Chefman 8-qt dimensions and warranty (its own ASIN listing).
 
-`T33-governance.patch` (`data/governance.json`):
+`T34-governance.patch` (`data/governance.json`):
 - FLG-028 revised (Chefman 8-qt wattage conflict).
 - FLG-029 revised (Emeril preset and accessory conflict).
 - FLG-039 revised (coverage 34 of 60 with the products patch applied).

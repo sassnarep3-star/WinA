@@ -159,11 +159,6 @@
           <td><span class="pill pill--review">review</span></td>
           <td><a href="https://link.amazon/B04G1MEwY" rel="nofollow noopener" target="_blank" data-nonaffiliate="true">open</a></td>
         </tr><tr>
-          <td><code>FLG-037</code></td>
-          <td>Buy buttons say 'Check price on Amazon' while the site states prices are not shown</td>
-          <td><span class="pill pill--review">review</span></td>
-          <td><a href="https://affiliate-program.amazon.com/help/operating/policies" rel="noopener" target="_blank">open</a></td>
-        </tr><tr>
           <td><code>FLG-039</code></td>
           <td>Spec coverage is uneven, and two products carry no warranty or dimensions at all</td>
           <td><span class="pill pill--review">review</span></td>
@@ -283,6 +278,11 @@
           <td>Policy and FTC quotes checked word for word against the official text (2026-11-20)</td>
           <td><span class="pill pill--resolved">resolved</span></td>
           <td><a href="https://affiliate-program.amazon.com/help/operating/agreement" rel="noopener" target="_blank">open</a></td>
+        </tr><tr>
+          <td><code>FLG-037</code></td>
+          <td>Buyer-action and category copy no longer imply an on-page price or an unverified low cost</td>
+          <td><span class="pill pill--resolved">resolved</span></td>
+          <td><a href="https://affiliate-program.amazon.com/help/operating/policies" rel="noopener" target="_blank">open</a></td>
         </tr><tr>
           <td><code>FLG-038</code></td>
           <td>ThermoMaven water-resistance row said no IP number was published; the listing states IP67</td>
@@ -412,12 +412,6 @@
     <p style="margin:0 0 .6rem">On 2026-11-20 each submitted link.amazon URL was re-opened with the page tool. B02NbDxp3 (-&gt; /dp/B09B7SB46R) and B00hJ57DV (-&gt; /dp/B08DKYBTPH) matched data/links.json. B04G1MEwY and B0c8moW59 each returned the amazon.com home page on both attempts, not the recorded /dp/B0CDY277D3 and /dp/B0DHZTCNR5 pages. B0f3GKalj returned the home page on one attempt and the recorded /dp/B0DZFD6R9Z page on the other, so it is inconsistent. A second session (arena/119f4dc6-wina) re-checked the same five links on the same date, independently, and got the same split: B04G1MEwY and B0c8moW59 to the home page on both attempts, B0f3GKalj to the home page once. All five destination ASINs were separately re-confirmed by fetching https://www.amazon.com/dp/&lt;ASIN&gt; directly, so the product identity in data/links.json is correct. The recorded observations are kept unchanged. The cause is not known: it could be the short link, the redirect handling of the page tool, or a session-dependent redirect. The site is not affected, because every product button links to amazon.com/dp/&lt;observed ASIN&gt;?tag=shopnow047c-20 directly and not through the short links. Third check, this session (arena-f5d87e09-wina, 2026-11-20): B04G1MEwY, B02NbDxp3, B00hJ57DV and B0c8moW59 returned the amazon.com homepage; B0f3GKalj returned /dp/B0DZFD6R9Z. Every submitted link has now returned the homepage at least once across the 2026-11-20 checks. Recorded in data/links.json under verificationLog.</p>
     <p style="margin:0 0 .6rem"><strong>What we did:</strong> Owner: open each of the five short links in a normal browser, logged out, and record the landing URL. If any short link lands somewhere other than its recorded /dp/ page, correct data/links.json and add a dated note. Do not rely on the recorded values until this is done.</p>
     <p class="small" style="margin:0"><a href="https://link.amazon/B04G1MEwY" rel="nofollow noopener" target="_blank" data-nonaffiliate="true">Submitted short link (re-checked 2026-11-20 by two sessions; see detail)</a></p>
-  </article><article class="note note--warn" style="margin-bottom:1.25rem">
-    <p class="note__title">FLG-037 <span class="pill pill--review">review</span></p>
-    <h3 style="font-family:var(--serif);font-size:1.15rem;margin:.2rem 0 .5rem;color:var(--ink)">Buy buttons say 'Check price on Amazon' while the site states prices are not shown</h3>
-    <p style="margin:0 0 .6rem">Every product card and hero button is labelled 'Check price on Amazon'. Other pages state that prices are not shown on this site, and data/products.json withholds prices (FLG-005). The label does not display a price, but it is worded as if one is on the page. It is flagged for an owner decision on wording, not changed here, because it is a visible copy decision and it appears on every product card. Amazon Associates Program Policies §6(y) is cited in this register for the no-price-tracking rule; that section was not re-read in this check.</p>
-    <p style="margin:0 0 .6rem"><strong>What we did:</strong> Owner: choose the button wording. If changed, rebuild with node _src/build.mjs; the compliance gate checks the disclosure and link classes, not the label wording.</p>
-    <p class="small" style="margin:0"><a href="https://affiliate-program.amazon.com/help/operating/policies" rel="noopener" target="_blank">Amazon Associates Program Policies (cited elsewhere in this register)</a></p>
   </article><article class="note note--warn" style="margin-bottom:1.25rem">
     <p class="note__title">FLG-039 <span class="pill pill--review">review</span></p>
     <h3 style="font-family:var(--serif);font-size:1.15rem;margin:.2rem 0 .5rem;color:var(--ink)">Spec coverage is uneven, and two products carry no warranty or dimensions at all</h3>
@@ -562,6 +556,12 @@
     <p style="margin:0 0 .6rem">Operating Agreement §5: the Associates statement and the 'misrepresent or embellish' sentence matched. Program Policies, Participation Requirements: §2(b) (price display), §6(a) (Program Content), §6(f) (keyword clause), §6(t) (ratings), §6(w) (link clarity), §6(y) (price tracking) and §3(e) (data disclosure) matched. FTC Disclosures 101: 'Place it so it's hard to miss', 'The disclosure should be placed with the endorsement message itself', and 'You can't talk about your experience with a product you haven't tried' matched. The policy quotes in data/policy.json are the same text. POL-09 is an internal rule, not a quote.</p>
     <p style="margin:0 0 .6rem"><strong>What we did:</strong> Re-run this check when Amazon or the FTC updates a document (FLG-031).</p>
     <p class="small" style="margin:0"><a href="https://affiliate-program.amazon.com/help/operating/agreement" rel="noopener" target="_blank">Associates Operating Agreement §5 (checked 2026-11-20)</a></p>
+  </article><article class="note " style="margin-bottom:1.25rem">
+    <p class="note__title">FLG-037 <span class="pill pill--resolved">resolved</span></p>
+    <h3 style="font-family:var(--serif);font-size:1.15rem;margin:.2rem 0 .5rem;color:var(--ink)">Buyer-action and category copy no longer imply an on-page price or an unverified low cost</h3>
+    <p style="margin:0 0 .6rem">Resolved in task T33 on the shared board (2026-11-20; first claimed as T27, renumbered at merge time because main already held rows for other sessions). Product buttons in all three templates — buy box, product card, front-page hero — now read ‘View on Amazon’ rather than ‘Check price on Amazon’, while the site itself displays no prices. Two price superlatives that no data supports were also removed: the ThermoMaven line ‘The cheap insurance that stops you guessing’ became ‘A one-second read for a quick kitchen check’, and the thermometers category dek and front-page section head lost ‘The cheapest upgrade in the kitchen’. Replacement wording states only rows already recorded as verified in the register: ‘Truly instant read in 1 second’ (thermomaven.com product page, read 2026-11-20) and ‘3 ultra-thin probes’ (chefiq.com product page). No price, commission, conversion or performance figure was added, and the Price / Star rating / Review count rows remain blank or withheld.</p>
+    <p style="margin:0 0 .6rem"><strong>What we did:</strong> No further action on wording. If API-backed price display is ever considered, re-read the Associates Program Policies first and extend scripts/check-site.mjs so the no-price rule is re-checked against whatever the new copy claims.</p>
+    <p class="small" style="margin:0"><a href="https://affiliate-program.amazon.com/help/operating/policies" rel="noopener" target="_blank">Amazon Associates Program Policies (page states “Updated: April 14, 2026”); price/rating display and tracking rules reviewed 2026-11-20</a></p>
   </article><article class="note " style="margin-bottom:1.25rem">
     <p class="note__title">FLG-038 <span class="pill pill--resolved">resolved</span></p>
     <h3 style="font-family:var(--serif);font-size:1.15rem;margin:.2rem 0 .5rem;color:var(--ink)">ThermoMaven water-resistance row said no IP number was published; the listing states IP67</h3>
