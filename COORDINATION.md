@@ -5,19 +5,19 @@ Branch: `arena/4a5044b0-wina` (branched from `df3e9534` on `main`).
 
 ## Session claims
 
-| Session ID | Task | Status | Files touched | Started | Sources / verification |
-|---|---|---|---|---|---|
-| arena-4a5044b0-wina | Coordination board + repo review | in progress | COORDINATION.md | 2026-11-20 | repo state (empty) |
-| arena-4a5044b0-wina | Shared site assets (CSS, JS, click-tracker, analytics) | in progress | assets/css/style.css, assets/js/app.js, assets/js/click-tracker.js | 2026-11-20 | n/a (frontend) |
-| arena-4a5044b0-wina | Landing page (publication front page, product-led) | in progress | index.html | 2026-11-20 | n/a |
-| arena-4a5044b0-wina | Products page (table + verification + source links) | claimed | products.html | 2026-11-20 | Amazon (blocked — see irregularities) |
-| arena-4a5044b0-wina | Buying guides (question-shaped) | claimed | guides.html | 2026-11-20 | n/a |
-| arena-4a5044b0-wina | Suggestions section (review-before-implement) | claimed | suggest.html | 2026-11-20 | n/a |
-| arena-4a5044b0-wina | Pre-decision Q&A (missing-information discovery) | claimed | questions.html | 2026-11-20 | n/a |
-| arena-4a5044b0-wina | Executive summary | claimed | executive-summary.html | 2026-11-20 | n/a |
-| arena-4a5044b0-wina | Flagged for Review page | claimed | flagged.html | 2026-11-20 | n/a |
-| arena-4a5044b0-wina | SEO: sitemap.xml + RSS feed.xml | claimed | sitemap.xml, feed.xml | 2026-11-20 | n/a |
-| arena-4a5044b0-wina | GitHub Pages enable + PR + merge | unclaimed | .github/, repo settings | — | GitHub |
+| Session ID | Task | Status | Files touched | Started | Finished | Sources / verification |
+|---|---|---|---|---|---|---|
+| arena-4a5044b0-wina | Coordination board + repo review | done | COORDINATION.md | 2026-11-20 | 2026-11-20 | repo state (empty, greenfield) |
+| arena-4a5044b0-wina | Shared site assets (CSS, JS, click-tracker, analytics) | done | assets/css/style.css, assets/js/app.js, assets/js/click-tracker.js | 2026-11-20 | 2026-11-20 | n/a (frontend; no external deps) |
+| arena-4a5044b0-wina | Landing page (publication front page, product-led) | done | index.html | 2026-11-20 | 2026-11-20 | n/a |
+| arena-4a5044b0-wina | Products page (table + verification + source links) | done | products.html | 2026-11-20 | 2026-11-20 | Amazon (blocked — see irregularities; values left blank/unverified, never inferred) |
+| arena-4a5044b0-wina | Buying guides (question-shaped) | done | guides.html | 2026-11-20 | 2026-11-20 | n/a (added to sitemap.xml + feed.xml) |
+| arena-4a5044b0-wina | Suggestions section (review-before-implement) | done | suggest.html | 2026-11-20 | 2026-11-20 | n/a |
+| arena-4a5044b0-wina | Pre-decision Q&A (missing-information discovery) | done | questions.html | 2026-11-20 | 2026-11-20 | n/a |
+| arena-4a5044b0-wina | Executive summary | done | executive-summary.html | 2026-11-20 | 2026-11-20 | n/a |
+| arena-4a5044b0-wina | Flagged for Review page | done | flagged.html | 2026-11-20 | 2026-11-20 | irregularities + unverified items published |
+| arena-4a5044b0-wina | SEO: sitemap.xml + RSS feed.xml | done | sitemap.xml, feed.xml | 2026-11-20 | 2026-11-20 | n/a |
+| arena-4a5044b0-wina | GitHub Pages enable + PR + merge | done | repo settings (Pages), PR #1 | 2026-11-20 | 2026-11-20 | PR: https://github.com/sassnarep3-star/WinA/pull/1 ; merged into main (commit 48af6e0); GitHub Pages built at https://sassnarep3-star.github.io/WinA/ |
 
 ## Rules for this board
 - Claim a task by writing your session ID + file scope, then commit and push that claim immediately.
@@ -41,5 +41,11 @@ Branch: `arena/4a5044b0-wina` (branched from `df3e9534` on `main`).
 - Amazon Associates program policies / Operating Agreement: https://affiliate-program.amazon.com/help/operating/policies (referenced; not re-fetched due to sandbox host limits)
 - FTC endorsement/disclosure guidance: https://www.ftc.gov (referenced; not re-fetched due to sandbox host limits)
 - GitHub Pages: https://docs.github.com/pages (referenced; not re-fetched due to sandbox host limits)
+
+## Integration complete
+- PR #1 (https://github.com/sassnarep3-star/WinA/pull/1) merged into `main` at commit 48af6e0.
+- GitHub Pages enabled on `main`, path `/`; site built and live: https://sassnarep3-star.github.io/WinA/
+- Homepage, products, guides, suggestions, Q&A, executive summary, Flagged for Review, sitemap.xml, and feed.xml all verified live with no broken internal links.
+- Flagged irregularities and unverified items are published on flagged.html and do not block the merge; reviewer can request changes after the site is live.
 
 ---
