@@ -1,38 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<rss version="2.0">
-<channel>
-  <title>The Counter Guide: buyer guides</title>
-  <link>https://sassnarep3-star.github.io/WinA/</link>
-  <description>Buyer questions for kitchen appliances, with every listing checked against its source</description>
-  <language>en-us</language>
-  <lastBuildDate>Fri, 20 Nov 2026 00:00:00 +0000</lastBuildDate>
-  <item>
-    <title>Basket or oven-style air fryer: what should you compare?</title>
-    <link>https://sassnarep3-star.github.io/WinA/guides/basket-vs-oven-air-fryer.html</link>
-    <guid isPermaLink="true">https://sassnarep3-star.github.io/WinA/guides/basket-vs-oven-air-fryer.html</guid>
-    <pubDate>Fri, 20 Nov 2026 00:00:00 +0000</pubDate>
-    <description>Shape decides how much room you need and what you can cook at once. Here is what the register shows for each shape, and what it does not show.</description>
-  </item>
-  <item>
-    <title>A no-hype checklist for comparing air fryer capacity</title>
-    <link>https://sassnarep3-star.github.io/WinA/guides/air-fryer-capacity-checklist.html</link>
-    <guid isPermaLink="true">https://sassnarep3-star.github.io/WinA/guides/air-fryer-capacity-checklist.html</guid>
-    <pubDate>Fri, 20 Nov 2026 00:00:00 +0000</pubDate>
-    <description>Capacity is written in different ways. This checklist shows how to read it on a listing before you compare two units.</description>
-  </item>
-  <item>
-    <title>How to assess cleanup and counter-space trade-offs</title>
-    <link>https://sassnarep3-star.github.io/WinA/guides/cleanup-and-counter-space.html</link>
-    <guid isPermaLink="true">https://sassnarep3-star.github.io/WinA/guides/cleanup-and-counter-space.html</guid>
-    <pubDate>Fri, 20 Nov 2026 00:00:00 +0000</pubDate>
-    <description>Dishwasher-safe parts save time, but they do not tell you how much counter the unit takes up. Here is how to check both.</description>
-  </item>
-  <item>
-    <title>Questions to ask before buying a multi-function kitchen appliance</title>
-    <link>https://sassnarep3-star.github.io/WinA/guides/questions-before-multi-function-appliance.html</link>
-    <guid isPermaLink="true">https://sassnarep3-star.github.io/WinA/guides/questions-before-multi-function-appliance.html</guid>
-    <pubDate>Fri, 20 Nov 2026 00:00:00 +0000</pubDate>
-    <description>Multi-function appliances bundle many jobs into one box. These are the questions to answer from the listing before you buy.</description>
-  </item>
-</channel>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Counter Space</title>
+    <link>https://sassnarep3-star.github.io/WinA/</link>
+    <description>Kitchen gear, judged by what it does on a Tuesday night.</description>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 20 Nov 2026 00:00:00 GMT</lastBuildDate>
+    <atom:link href="https://sassnarep3-star.github.io/WinA/feed.xml" rel="self" type="application/rss+xml"/>
+    <item>
+      <title>Basket or oven-style air fryer: what should you compare?</title>
+      <link>https://sassnarep3-star.github.io/WinA/guides/basket-vs-oven/</link>
+      <guid isPermaLink="true">https://sassnarep3-star.github.io/WinA/guides/basket-vs-oven/</guid>
+      <description>They share a name and almost nothing else. The decision is not about which fries better — it is about how you cook on a normal weeknight.</description>
+      <pubDate>Fri, 20 Nov 2026 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>A no-hype checklist for comparing air fryer capacity</title>
+      <link>https://sassnarep3-star.github.io/WinA/guides/capacity/</link>
+      <guid isPermaLink="true">https://sassnarep3-star.github.io/WinA/guides/capacity/</guid>
+      <description>Quarts are the least honest number on the box. Here is what to check instead, and why the biggest number is often the wrong buy.</description>
+      <pubDate>Fri, 20 Nov 2026 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>How to assess cleanup and counter-space trade-offs</title>
+      <link>https://sassnarep3-star.github.io/WinA/guides/cleanup/</link>
+      <guid isPermaLink="true">https://sassnarep3-star.github.io/WinA/guides/cleanup/</guid>
+      <description>The appliance you stop using is the one that is annoying to wash. This is the least glamorous part of the decision and the most predictive.</description>
+      <pubDate>Fri, 20 Nov 2026 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Questions to ask before buying a multi-function kitchen appliance</title>
+      <link>https://sassnarep3-star.github.io/WinA/guides/multifunction/</link>
+      <guid isPermaLink="true">https://sassnarep3-star.github.io/WinA/guides/multifunction/</guid>
+      <description>Every appliance claims ten jobs. The useful question is which two it does well, and whether those two are the jobs you have.</description>
+      <pubDate>Fri, 20 Nov 2026 00:00:00 GMT</pubDate>
+    </item>
+  </channel>
 </rss>
