@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Flagged for review — WinA</title>
+  <meta name="description" content="Ten flagged irregularities with severities, statuses, and official source links — including the unresolved Special Link question.">
+  <link rel="canonical" href="https://sassnarep3-star.github.io/WinA/flagged.html">
+  <meta property="og:title" content="Flagged for review — WinA">
+  <meta property="og:description" content="Ten flagged irregularities with severities, statuses, and official source links — including the unresolved Special Link question.">
+  <meta property="og:url" content="https://sassnarep3-star.github.io/WinA/flagged.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="WinA — Kitchen Field Guide">
+  <link rel="alternate" type="application/rss+xml" title="WinA feed" href="feed.xml">
+  <link rel="stylesheet" href="assets/styles.css">
+  <script src="assets/analytics.js" defer></script>
+  <script src="assets/site.js" defer></script>
+</head>
+<body>
+  <header class="masthead">
+    <div class="masthead-inner">
+      <a class="brand" href="index.html">
+        <span class="brand-mark">WinA<span class="dot">.</span></span>
+        <span class="brand-sub">Kitchen Field Guide</span>
+      </a>
+      <nav class="nav-shop" aria-label="Shop">
+        <a href="index.html">Home</a><a href="products.html">Shelf</a><a href="guides/index.html">Guides</a>
+      </nav>
+      <a class="nav-search" href="search.html" aria-label="Search the site">⌕ Search</a>
+    </div>
+  </header>
+
+  <div class="disclosure-strip" role="note">
+    <div class="inner">
+      <span class="pip" aria-hidden="true"></span>
+      <span><strong>As an Amazon Associate I earn from qualifying purchases.</strong></span>
+      <span class="aside">We may earn a commission if you buy through our links — at no extra cost to you.</span>
+    </div>
+  </div>
+
+  <main>
+    <p class="eyebrow">Flagged for review</p>
+    <h1>Everything we could not verify, in the open</h1>
+    <p class="lede">Ten flags with their source links, so review happens after the site is live — flagged items do not block the merge, and none of them are hidden behind “trust us.” If a value here is wrong, the source link is how you check it.</p>
+    <div class="flag-list">
+<div class="flag sev-high">
+          <div class="flag-head">
+            <span class="flag-id">FLG-001</span>
+            <span class="sev"><span class="high">High</span></span>
+            <h3>Two of five submitted links resolve to a different product category than the other three</h3>
+          </div>
+          <p>Three links resolve to Air Fryers (browse node 17659096011); two resolve to Meat thermometers (browse node 289810). Site information architecture must cover both categories until the owner decides scope (Q-01).</p>
+          <p class="flag-status">Status: open — owner scope decision required</p>
+          <p class="flag-sources">Sources: <a href="https://www.amazon.com/dp/B0CDY277D3" rel="sponsored nofollow" class="src">S01 — Amazon listing — CHEFMAN 6 Quart Dual Basket Air Fryer Oven </a> · <a href="https://www.amazon.com/dp/B09B7SB46R" rel="sponsored nofollow" class="src">S02 — Amazon listing — Emeril Lagasse 26QT French Door Multi-Funct</a> · <a href="https://www.amazon.com/dp/B08DKYBTPH" rel="sponsored nofollow" class="src">S03 — Amazon listing — Chefman Air Fryer 8 Qt TurboFry 4-in-1 (B08</a> · <a href="https://www.amazon.com/dp/B0DHZTCNR5" rel="sponsored nofollow" class="src">S04 — Amazon listing — ThermoMaven 1 Sec Professional Digital Meat</a> · <a href="https://www.amazon.com/dp/B0DZFD6R9Z" rel="sponsored nofollow" class="src">S05 — Amazon listing — CHEF iQ Sense Smart Wireless Meat Thermomet</a></p>
+        </div>
+<div class="flag sev-high">
+          <div class="flag-head">
+            <span class="flag-id">FLG-002</span>
+            <span class="sev"><span class="high">High</span></span>
+            <h3>All five submitted tokens are 9 characters; Amazon&#x27;s official ASIN definition is 10 characters</h3>
+          </div>
+          <p>Amazon&#x27;s Creators API documents ASIN as a &#x27;10-Character alphanumeric unique identifier assigned by Amazon&#x27;. Each submitted token is 9 characters, so none of the tokens is itself an ASIN. Direct /dp/&lt;token&gt; fetches did not render a product page (two independent tokens tested); the /dp/&lt;10-char ASIN&gt; control renders normally.</p>
+          <p class="flag-status">Status: open — recorded as observation; no claim that the short links are invalid (see FLG-003)</p>
+          <p class="flag-sources">Sources: <a href="https://affiliate-program.amazon.com/creatorsapi/docs/en-us/api-reference/operations/get-items" rel="sponsored nofollow" class="src">S11 — Amazon Associates Creators API — GetItems operation (ItemIdT</a> · <a href="https://www.amazon.com/dp/B04G1MEwY" rel="sponsored nofollow" class="src">S18 — Direct fetch of /dp/B04G1MEwY (submitted token used as ASIN)</a> · <a href="https://www.amazon.com/dp/B0f3GKalj" rel="sponsored nofollow" class="src">S19 — Direct fetch of /dp/B0f3GKalj (submitted token used as ASIN)</a></p>
+        </div>
+<div class="flag sev-high">
+          <div class="flag-head">
+            <span class="flag-id">FLG-003</span>
+            <span class="sev"><span class="high">High</span></span>
+            <h3>Compliance status of the supplied link.amazon/* short links is unresolved</h3>
+          </div>
+          <p>The brief forbids claiming the supplied short links are invalid, and their exact status is unresolved here. What is verified: each token redirects to a live official listing (observed 2026-11-20). What is missing: whether the link.amazon domain and format qualify as a &#x27;Special Link&#x27; under Operating Agreement §1 (tagged link formats Amazon provides), and whether the operator of the link.amazon domain is Amazon. Required action: test one link per product in the enrolled Associates workflow, confirm destination and tracking report, then scale (S02 of the brief). Until then the site links to official /dp/ listing URLs with the owner-supplied tracking tag and rel=&quot;sponsored&quot;.</p>
+          <p class="flag-status">Status: open — one-link-per-product Special Link test required</p>
+          <p class="flag-sources">Sources: <a href="https://link.amazon/B04G1MEwY" rel="sponsored nofollow" class="src">S06 — Submitted short link — link.amazon/B04G1MEwY</a> · <a href="https://link.amazon/B02NbDxp3" rel="sponsored nofollow" class="src">S07 — Submitted short link — link.amazon/B02NbDxp3</a> · <a href="https://link.amazon/B00hJ57DV" rel="sponsored nofollow" class="src">S08 — Submitted short link — link.amazon/B00hJ57DV</a> · <a href="https://link.amazon/B0c8moW59" rel="sponsored nofollow" class="src">S09 — Submitted short link — link.amazon/B0c8moW59</a> · <a href="https://link.amazon/B0f3GKalj" rel="sponsored nofollow" class="src">S10 — Submitted short link — link.amazon/B0f3GKalj</a> · <a href="https://affiliate-program.amazon.com/help/operating/agreement" rel="sponsored nofollow" class="src">S12 — Associates Program Operating Agreement (Updated: October 15,</a></p>
+        </div>
+<div class="flag sev-medium">
+          <div class="flag-head">
+            <span class="flag-id">FLG-004</span>
+            <span class="sev"><span class="medium">Medium</span></span>
+            <h3>Commission rates cannot be confirmed from a public official source</h3>
+          </div>
+          <p>The official commission schedule redirects to Associates sign-in, so category commission rates are left blank and marked unverified. No commission figure is estimated anywhere on this site.</p>
+          <p class="flag-status">Status: open — read the schedule while signed in (Q-05)</p>
+          <p class="flag-sources">Sources: <a href="https://affiliate-program.amazon.com/help/operating/schedule" rel="sponsored nofollow" class="src">S14 — Associates Commission schedule (Standard/Special Commission </a></p>
+        </div>
+<div class="flag sev-medium">
+          <div class="flag-head">
+            <span class="flag-id">FLG-005</span>
+            <span class="sev"><span class="medium">Medium</span></span>
+            <h3>Tracking ID shopnow047c-20 is owner-supplied and unconfirmed in reports</h3>
+          </div>
+          <p>The ID is used on all outbound product links exactly as supplied. Its active status, domain/site association, and appearance in Associates Reports cannot be confirmed without account access.</p>
+          <p class="flag-status">Status: open — confirm in Associates dashboard (Q-03)</p>
+          <p class="flag-sources">Sources: <a href="https://affiliate-program.amazon.com/creatorsapi/docs/en-us/api-reference/operations/get-items" rel="sponsored nofollow" class="src">S11 — Amazon Associates Creators API — GetItems operation (ItemIdT</a> · <a href="https://affiliate-program.amazon.com/help/operating/agreement" rel="sponsored nofollow" class="src">S12 — Associates Program Operating Agreement (Updated: October 15,</a></p>
+        </div>
+<div class="flag sev-medium">
+          <div class="flag-head">
+            <span class="flag-id">FLG-006</span>
+            <span class="sev"><span class="medium">Medium</span></span>
+            <h3>Intended ASIN is unknown for all five products</h3>
+          </div>
+          <p>intended_asin, intended_listing_url, confirmation_date and intent_source are blank for all five rows of the intent record. They stay blank until the owner confirms them, and are never merged with the observed redirect fields.</p>
+          <p class="flag-status">Status: open — owner confirmation (Q-02)</p>
+          <p class="flag-sources">Sources: <a href="https://affiliate-program.amazon.com/creatorsapi/docs/en-us/api-reference/operations/get-items" rel="sponsored nofollow" class="src">S11 — Amazon Associates Creators API — GetItems operation (ItemIdT</a></p>
+        </div>
+<div class="flag sev-medium">
+          <div class="flag-head">
+            <span class="flag-id">FLG-007</span>
+            <span class="sev"><span class="medium">Medium</span></span>
+            <h3>Prices are point-in-time observations and will change</h3>
+          </div>
+          <p>All five prices are buy-box readings taken 2026-11-20 from the official listings. Prices change without notice; no price may be republished without re-verification against the listing on the day of publication (Q-13).</p>
+          <p class="flag-status">Status: open — standing re-verification rule enforced at publish time</p>
+          <p class="flag-sources">Sources: <a href="https://www.amazon.com/dp/B0CDY277D3" rel="sponsored nofollow" class="src">S01 — Amazon listing — CHEFMAN 6 Quart Dual Basket Air Fryer Oven </a> · <a href="https://www.amazon.com/dp/B09B7SB46R" rel="sponsored nofollow" class="src">S02 — Amazon listing — Emeril Lagasse 26QT French Door Multi-Funct</a> · <a href="https://www.amazon.com/dp/B08DKYBTPH" rel="sponsored nofollow" class="src">S03 — Amazon listing — Chefman Air Fryer 8 Qt TurboFry 4-in-1 (B08</a> · <a href="https://www.amazon.com/dp/B0DHZTCNR5" rel="sponsored nofollow" class="src">S04 — Amazon listing — ThermoMaven 1 Sec Professional Digital Meat</a> · <a href="https://www.amazon.com/dp/B0DZFD6R9Z" rel="sponsored nofollow" class="src">S05 — Amazon listing — CHEF iQ Sense Smart Wireless Meat Thermomet</a></p>
+        </div>
+<div class="flag sev-low">
+          <div class="flag-head">
+            <span class="flag-id">FLG-008</span>
+            <span class="sev"><span class="low">Low</span></span>
+            <h3>Google Search Console property for this site is not yet added or verified</h3>
+          </div>
+          <p>Sitemap and robots files ship with the site, but the Search Console property (owner action) is not created, so no query data exists yet. Topic selection stays evidence-free until it does (Q-09).</p>
+          <p class="flag-status">Status: open — owner action</p>
+          <p class="flag-sources">Sources: <a href="https://developers.google.com/search/docs/crawling-indexing/qualify-outbound-links" rel="noopener" class="src">S15 — Google Search Central — Qualify your outbound links to Googl</a> · <a href="https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site" rel="noopener" class="src">S17 — GitHub Docs — Configuring a publishing source for your GitHu</a></p>
+        </div>
+<div class="flag sev-low">
+          <div class="flag-head">
+            <span class="flag-id">FLG-009</span>
+            <span class="sev"><span class="low">Low</span></span>
+            <h3>The &#x27;five defined events&#x27; could not be matched to a canonical list in the repository</h3>
+          </div>
+          <p>The brief says &#x27;record the five defined events&#x27; but no canonical event list exists in the repository (it started empty). This build defines and documents exactly five events — page_view, outbound_click, affiliate_click, search_query, article_read — in assets/analytics.js and the platform page. If an owner-supplied canonical list exists, it replaces this set (Q-12).</p>
+          <p class="flag-status">Status: open — owner confirmation</p>
+          <p class="flag-sources">Sources: <em>no external source — repository-internal definition (FLG-009)</em></p>
+        </div>
+<div class="flag sev-low">
+          <div class="flag-head">
+            <span class="flag-id">FLG-010</span>
+            <span class="sev"><span class="low">Low</span></span>
+            <h3>Self-hosted analytics endpoint cannot run on GitHub Pages</h3>
+          </div>
+          <p>GitHub Pages serves static files only (S17). The endpoint code ships in tools/analytics_endpoint.py and the counter queues events in the browser until a first-party endpoint URL is configured. No third-party tracker is used (Q-08).</p>
+          <p class="flag-status">Status: open — deployment target decision</p>
+          <p class="flag-sources">Sources: <a href="https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site" rel="noopener" class="src">S17 — GitHub Docs — Configuring a publishing source for your GitHu</a></p>
+        </div>
+    </div>
+    <div class="callout"><strong>Nothing on this page is a verdict.</strong> The supplied short links are <em>not</em> claimed invalid — their exact compliance status is unresolved (FLG-003) and the closing action is the one-link-per-product test described in <a href="questions.html">Q-04</a>.</div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-disclosure">As an Amazon Associate I earn from qualifying purchases. Product prices and availability observed on official listings on 2026-11-20 and subject to change.</div>
+      <div class="footer-cols">
+        <div class="footer-brand">
+          <span class="brand-mark">WinA<span class="dot">.</span></span>
+          <p>Kitchen Field Guide — five verified kitchen products, guides written as buyer questions, and a public record of everything we could not verify.</p>
+        </div>
+        <div>
+          <h4>The shop</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="products.html">The shelf</a></li>
+            <li><a href="guides/index.html">Guides</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Dashboard</h4>
+          <ul>
+            <li><a href="platform.html">Platform &amp; sources</a></li>
+            <li><a href="analysis.html">Field Notes (analysis)</a></li>
+            <li><a href="suggestions.html">Suggestions review</a></li>
+            <li><a href="questions.html">Open questions</a></li>
+            <li><a href="executive-summary.html">Executive summary</a></li>
+            <li><a href="flagged.html">Flagged for review</a></li>
+            <li><a href="search.html">Search</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-cols" style="margin-top:22px">
+        <div></div>
+        <div>
+          <h4>Follow &amp; index</h4>
+          <ul>
+            <li><a href="feed.xml">RSS feed</a></li>
+            <li><a href="sitemap.xml">Sitemap</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Legal</h4>
+          <ul>
+            <li><a href="flagged.html">Flagged for review</a></li>
+            <li><a href="questions.html">What we don't know yet</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-legal">
+        <span>© <span data-year>2026</span> WinA. All prices are point-in-time observations from official listings.</span>
+        <span>Tracking ID <span class="mono">shopnow047c-20</span></span>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

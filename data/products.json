@@ -398,9 +398,9 @@
         },
         {
           "label": "Water resistance",
-          "value": "Described as 100% waterproof; no IP number published",
+          "value": "IP67, as stated in the listing title",
           "status": "verified",
-          "source": "manufacturer"
+          "source": "amazon-listing"
         },
         {
           "label": "Display",
@@ -477,8 +477,8 @@
           "label": "thermomaven.com"
         },
         "Water resistance": {
-          "url": "https://www.thermomaven.com/products/f1-stealth",
-          "label": "thermomaven.com"
+          "url": "https://www.amazon.com/dp/B0DHZTCNR5",
+          "label": "Amazon listing (title states IP67)"
         },
         "Battery type": {
           "url": "https://www.thermomaven.com/products/f1-stealth",

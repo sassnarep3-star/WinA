@@ -345,6 +345,11 @@ const breadcrumb = (trail) =>
 function frontPage() {
   const picks = products.slice(0, 3);
   const lead = products[0];
+  // Counted, never typed: the number of spec rows carrying a confirmed value.
+  const verifiedSpecs = products.reduce(
+    (n, p) => n + p.specs.filter((s) => s.status === "verified" && s.value).length,
+    0
+  );
 
   const html = `
 <section class="hero">
@@ -377,10 +382,10 @@ function frontPage() {
 
 <div class="strip">
   <div class="wrap strip__inner">
-    <div class="strip__cell"><p class="strip__num">${products.length}</p><p class="strip__lab">Products compared</p></div>
-    <div class="strip__cell"><p class="strip__num">${guides.length}</p><p class="strip__lab">Guides</p></div>
-    <div class="strip__cell"><p class="strip__num">0</p><p class="strip__lab">Products tested</p></div>
-    <div class="strip__cell"><p class="strip__num">${policy.policy.length}</p><p class="strip__lab">Policy checks passed</p></div>
+    <div class="strip__cell"><p class="strip__num">${products.length}</p><p class="strip__lab">Products, spec-checked</p></div>
+    <div class="strip__cell"><p class="strip__num">${categories.length}</p><p class="strip__lab">Categories</p></div>
+    <div class="strip__cell"><p class="strip__num">${guides.length}</p><p class="strip__lab">Buying guides</p></div>
+    <div class="strip__cell"><p class="strip__num">${verifiedSpecs}</p><p class="strip__lab">Specs confirmed at source</p></div>
   </div>
 </div>
 

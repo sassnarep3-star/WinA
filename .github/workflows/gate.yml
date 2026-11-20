@@ -1,0 +1,32 @@
+name: archive-gate (574fc8eb)
+
+# Keeps this session's archived build reproducible without touching the served site.
+# Everything is scoped to archive/arena-574fc8eb-wina/ — the root publication is
+# built and gated by .github/workflows/build.yml.
+
+on:
+  push:
+    branches: [main, 'arena/**']
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  gate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Rebuild archived site from its data/
+        run: python3 archive/arena-574fc8eb-wina/scripts/build_site.py
+
+      - name: Committed archive output matches its generator
+        run: git diff --exit-code -- archive/arena-574fc8eb-wina
+
+      - name: Compliance gate (disclosure, sponsored links, source coverage, links, sync)
+        run: python3 archive/arena-574fc8eb-wina/scripts/check_site.py
