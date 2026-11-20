@@ -168,7 +168,7 @@ shapes differ.
 ---
 | T40 | Final integration for this brief: claim first; run every gate on the combined tree; line-by-line re-verification against official sources; review stale open PRs #26/#28; PR `arena/05278ba2-wina` → `main`, merge, confirm Pages deploy, record result here | **done** | arena/05278ba2-wina | `COORDINATION.md` (this row + the arena/05278ba2-wina section only); `data/governance.json` (FLG-033/FLG-036 merge), `data/policy.json` (one source row), `data/{products,links}.json` (two exact title corrections), generated pages via build | Claimed 2026-11-20 immediately on session start per board rule 2 as **T27**; base `e886175` then equalled `main` and T27 was free. `main` advanced while this session worked: T27 was taken (arena-574fc8eb-wina, PR #39), then T28/T29, then T30-T32 (d59cd471, PR #44), then T33 (508d0df8, PR #36), then T34 (arena/1cf62cfb-wina, PR #38), then T35-T39 (266b1b8f and the T36-T39 sessions) — renumbered **T40** here at the seventh merge (T35-T39 were all taken on main while this session verified), no other session's row changed. Extends the existing build; no second site. |---
 | T41 | Line-by-line verification of the reviewer-facing documents against the register; repair every stale figure; add a gate so the figures cannot drift again | done | arena/f14580cb-wina | `data-room/flagged.html`, `executive-summary.html`, `data-room/compliance-gate.html`, `README.md`, `tools/check_site.py` (new rule R-12), `COORDINATION.md` (this row + T41 section only) | Claimed as T26 on base `80b45a1`, renumbered to T36 when `main` had taken T26 twice, then to **T41** when `main` reached T40. Renumbered three times without another session's record being touched. |
-| T42 | **Critical live-site repair:** resolve the committed git conflict markers (29 blocks across 10 files: `index.html`, `shop.html`, `questions.html`, `executive-summary.html`, `guides/*` ×3, `data-room/product-intent.html`, `data/links.json`, `data/suggestions.json`) that PRs #67/#68 merged into `main` and that GitHub Pages is now serving to readers; keep both sides’ intent (the compliant price/rating wording wins where they diverge); add a gate rule so conflict markers can never ship again; verify the deployed site is clean; PR → `main`, merge, confirm Pages deploy, record result here | claimed (in progress) | arena-126174a5-wina (session `arena-126174a5`) | `COORDINATION.md` (this row + the arena-126174a5-wina section only), the 10 marker-bearing files listed above, `tools/check_site.py` (one new rule), generated pages via rebuild if any generator exists | Claimed 2026-11-20 immediately on session start per board rule 2, before any edit. Base: `e339bad` (= `main` at claim time). Extends main’s build; no second site. T40 was taken by arena/05278ba2-wina; T41 was free on every remote branch when claimed; `main` took T41 (arena/f14580cb-wina reviewer-documents pass) and the marker repair landed as hotfix PR #70 (arena/2739f0fb-wina) while this claim was in flight, so this row was renumbered **T42** at merge and now records independent verification of that repair rather than performing it. |
+| T42 | **Critical live-site repair:** resolve the committed git conflict markers (29 blocks across 10 files: `index.html`, `shop.html`, `questions.html`, `executive-summary.html`, `guides/*` ×3, `data-room/product-intent.html`, `data/links.json`, `data/suggestions.json`) that PRs #67/#68 merged into `main` and that GitHub Pages is now serving to readers; keep both sides’ intent (the compliant price/rating wording wins where they diverge); add a gate rule so conflict markers can never ship again; verify the deployed site is clean; independent line-by-line verification of the 29-block repair, injection-test of the new gate rule, live-site check; PR → `main`, merge, confirm Pages deploy, record result here | **done** (verified; repair itself landed as hotfix PR #70 by arena/2739f0fb-wina while this claim was in flight) | arena-126174a5-wina (session `arena-126174a5`) | `COORDINATION.md` (this row + the arena-126174a5-wina section only), the 10 marker-bearing files listed above, `tools/check_site.py` (one new rule), generated pages via rebuild if any generator exists | Claimed 2026-11-20 immediately on session start per board rule 2, before any edit. Renumbered T41→T42 at merge because `main` took T41 (arena/f14580cb-wina) during the flight; this session then independently verified the parallel repair instead of duplicating it. Base: `e339bad` (= `main` at claim time). Extends main’s build; no second site. T40 was taken by arena/05278ba2-wina; T41 was free on every remote branch when claimed; `main` took T41 (arena/f14580cb-wina reviewer-documents pass) and the marker repair landed as hotfix PR #70 (arena/2739f0fb-wina) while this claim was in flight, so this row was renumbered **T42** at merge and now records independent verification of that repair rather than performing it. |
 
 ## Session arena/1323e80f-wina — T17 claim (2026-11-20)
 
@@ -7143,6 +7143,36 @@ broken pages to readers while every gate stayed green, because no gate looked fo
   `origin/main`’s side), and keep `HEAD`’s side only where it adds structure the page needs.
   Both sides’ meaning is preserved; nothing is dropped silently.
 - **Base:** `e339bad` (= `origin/main` at claim time). Extends the existing build; no second site.
-- **Status:** in progress.
-- **PR / merge:** pending.
+- **What changed while this claim was in flight:** the repair landed on `main` as hotfix PR #70
+  (arena/2739f0fb-wina, commit `f18fc4c` "Resolve the 29 merge conflict markers") plus gate rule
+  R-06/R-13 (`ecfe7f5`), and `main` took the T41 number (arena/f14580cb-wina reviewer-documents
+  pass). This claim was renumbered **T42** at merge and re-scoped to independent verification —
+  no duplicate repair was made.
+- **Verification performed (2026-11-20, on the merged tree at `65068a7`):**
+  - **All 29 blocks kept the correct side.** Each `THEIRS` side was compared byte-for-byte against
+    `c8b371c` (the last pre-breakage gate-passing `main`): every surviving block matches the
+    validated side. The 8 blocks whose text has since changed (index ×3, shop ×1–5, questions ×1)
+    were re-checked phrase-by-phrase: structure intact, wording only advanced (citation corrected
+    from "IP License §2(b)" to "Participation Requirements §2(b)"; "PA API" phrasing updated).
+    No stale "See price on Amazon", "Star ratings are not published" or "Up to 50 hours" wording
+    survives anywhere.
+  - **`data/links.json`** parses; all three verification sessions preserved
+    (`arena-f5d87e09-wina`, `arena-266b1b8f-wina`, `arena/2739f0fb-wina`) — both sides of the
+    conflict were merged, not dropped.
+  - **`data/suggestions.json`** parses; SUG-16 decision-log entry = `accepted` (the correct
+    `origin/main` side; the stale `open` side did not survive); both escaping-only differences
+    (U+2014 vs `\u2014`) are semantically identical.
+  - **Gate injection test:** appending a synthetic conflict block to `about.html` fails the gate
+    with three `[R-06] unresolved merge-conflict marker ships` violations (exit 1); restoring the
+    file passes (exit 0). `data/*.json` markers are covered by R-13.
+  - **Live site:** page tool on `https://sassnarep3-star.github.io/WinA/shop.html` after the
+    repair shows zero markers, the §6(t)/§2(b) copy, `View on Amazon` buttons, sponsored links
+    tagged `shopnow047c-20`, and the disclosure strip under the masthead.
+  - **Gate:** `python3 tools/check_site.py` → PASS (27 pages, G-1/G-2/G-3).
+- **Irregularity recorded (not blocking):** the flat site's disclosure and product cards
+  hot-link `m.media-amazon.com` thumbnails while FLG-005/FLG-007 in the same register call
+  hot-linked Program Content "unconfirmed" coverage — already published on the flagged page as
+  FLG-005 with the PA-API remedy (S-04); left for the owner decision, not changed here.
+- **Status:** done.
+- **PR / merge:** pending (this record ships with the T42 PR).
 - **Deploy:** pending.
