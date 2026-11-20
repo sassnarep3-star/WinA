@@ -520,6 +520,11 @@
             "title": "What 'Hi-Fry' actually means — and when the extra heat is worth it",
             "intent": "Feature decision",
             "status": "hypothesis"
+          },
+          {
+            "title": "Dual basket vs single basket: the counter-space math nobody shows you",
+            "intent": "Form-factor decision",
+            "status": "hypothesis"
           }
         ]
       },
@@ -545,6 +550,11 @@
             "title": "Wireless meat thermometer: what to check before you rely on it for a long cook",
             "intent": "Reliability decision",
             "status": "hypothesis"
+          },
+          {
+            "title": "Instant-read vs leave-in: which thermometer fits your weeknight?",
+            "intent": "Tool-match decision",
+            "status": "hypothesis"
           }
         ]
       },
@@ -566,6 +576,11 @@
           {
             "title": "How to read a spec sheet without getting sold",
             "intent": "Literacy framework",
+            "status": "hypothesis"
+          },
+          {
+            "title": "Counter depth, wattage, basket size: the numbers that decide a purchase",
+            "intent": "Buying framework",
             "status": "hypothesis"
           }
         ]
@@ -594,5 +609,20 @@
         "reason": "Publishing cadence adopted: a new guide every Monday (New York time) for eight weeks, each added to the sitemap and feed in the same commit and passing the build and compliance gates. Basis: Associates Help 'Application Review Process' (FLG-013). This sets the schedule only; no new guide is published by this decision. Week-eight measurement waits on owner-connected Search Console and analytics (FLG-009, FLG-011)."
       }
     ]
+  },
+  "designPrompt": {
+    "intro": "A ready-to-use design prompt for the visual redesign. The goal is a polished marketing affiliate publication — not a templated, AI-generated shop. It consolidates the design brief (DB-01 to DB-08) and the compliance constraints so a designer, or an AI design prompt, has a single source to act on. Nothing here is a verified fact; it is a recommendation awaiting a decision in the decision log.",
+    "prompt": "Design Counter Space, a polished marketing affiliate publication about kitchen gear. Visual direction: an opinionated editorial type system — serif display headlines, clean sans body, generous line height, readable measure. Restrained palette with one accent color; no blue-to-purple gradients, no neon highlights, no emoji or decorative icons. Vary section layouts — a strong editorial hero, a reading column for guides, at least one non-card treatment per page; do not repeat the identical card grid everywhere. Keep the disclosure strip above the fold on every page and the Sponsored label on every outbound product link; these are compliance requirements, not afterthoughts. Write in a concrete, human voice using specifics and named trade-offs; ban filler phrases and generic marketing boilerplate. Until compliant product imagery is available, keep the site typographic: color, type and an illustration or pattern system carry the design. Do not hot-link, store, or substitute Amazon imagery, and do not use stock photos of a different appliance. Meet WCAG contrast and stay readable on mobile, especially tables and cards. HTML/CSS only; no third-party analytics or tracking scripts.",
+    "constraints": [
+      "FTC Disclosures 101 — disclosure hard to miss, placed with the endorsement",
+      "Associates Operating Agreement §5 — verbatim Associate statement above the fold",
+      "Program Policies §6(a) and IP License — no unlicensed or misrepresenting imagery",
+      "FTC 16 CFR 255.5 — sponsored status visible at the link",
+      "Google Search Central helpful-content — concrete human voice, no filler"
+    ],
+    "source": {
+      "label": "Design brief DB-01 to DB-08",
+      "url": "/WinA/suggestions/"
+    }
   }
 }
