@@ -1822,15 +1822,16 @@ ${breadcrumb([{ href: url("/"), label: "Home" }, { label: "Executive summary" }]
       <li><strong>A publication gate</strong> in the build: it fails if any page loses its disclosure, or if any Amazon link loses its sponsored marking.</li>
       <li><strong>SEO foundations</strong>: sitemap, RSS feed, canonical URLs, structured data, and descriptions written for humans.</li>
       <li><strong>A defined measurement plan</strong>: five events, a self-hosted collector, and a ledger schema.</li>
-      <li><strong>A design-prompt suggestion layer</strong>: a draft design brief for a polished-marketing look, a topic roadmap of catchy question-shaped hypotheses, organic-traffic levers, and a decision log — all on <a href="${url(
-        "/suggestions/"
-      )}">the suggestions page</a> for review before anything is implemented.</li>
+      <li><strong>A design-prompt suggestion layer, implemented rather than recommended</strong>: the draft brief, the topic roadmap, a decision log with its first ${suggestions.decisionLog.entries.length} dated entries, and ${word(
+        suggestions.paths.options.length
+      )} ranked paths — the picked one is the reader-polish pass now live, the next one is the owner's link test, and the third waits on API access.</li>
+      <li><strong>Original artwork in place of the imagery the program will not let us use</strong>: ${products.length} hand-drawn schematics (one per product, chosen from the verified record), ${guides.length} editorial spot drawings, a brand mark, and a social card that is advertised only because the file exists.</li>
     </ul>
 
     <h2>What does not exist, and why</h2>
     <p>This section is the important one.</p>
     <ul>
-      <li><strong>No prices, ratings, reviews or product photos.</strong> Amazon's program policies prohibit displaying these without API access. We do not have it. Showing them anyway would risk the account; inventing them would be worse.</li>
+      <li><strong>No prices, no ratings, no reviews and no Amazon photography.</strong> Amazon's program policies prohibit displaying these without API access. We do not have it. Showing them anyway would risk the account; inventing them would be worse. The product images on this site are therefore our own schematic drawings, each captioned as one.</li>
       <li><strong>No hands-on testing.</strong> None took place, so none is claimed. Every page writes about the decision instead of a verdict, and the FTC's rule against describing experience you do not have is the reason.</li>
       <li><strong>No traffic or conversion data.</strong> The site launched with this build. Search Console is unverified and the analytics collector is not deployed, so nothing is being measured yet.</li>
       <li><strong>No automated product research.</strong> The brief asked for an agent that identifies trending, high-converting products. Identifying "trending" requires a data source; without one, any such claim would be a fabrication with a chart attached. The pipeline is defined and its data inputs are documented as missing.</li>
@@ -1840,9 +1841,10 @@ ${breadcrumb([{ href: url("/"), label: "Home" }, { label: "Executive summary" }]
     <h2>What is unresolved</h2>
     <p>${gov.flagged.length} items on the <a href="${url(
       "/flagged/"
-    )}">flagged for review</a> page. Four matter commercially:</p>
+    )}">flagged for review</a> page, ${gov.flagged.filter((f) => f.severity === "resolved").length} of them recorded as resolved. Five matter commercially:</p>
     <ol>
       <li>The tracking ID <code>${esc(TAG)}</code> may not be enrolled. If it is not, nothing on this site earns anything.</li>
+      <li>Three open pull requests from parallel sessions each carry a competing root-level site. None was merged here; merging one as-is would split the canonical host this build exists to protect.</li>
       <li>The compliance status of the submitted <code>link.amazon</code> short links is genuinely unknown — we did not declare them invalid, we simply do not depend on them.</li>
       <li>Search Console is unverified, so nobody knows whether the site is indexed.</li>
       <li>No analytics collector is deployed, so no learning is happening.</li>
@@ -1855,7 +1857,8 @@ ${breadcrumb([{ href: url("/"), label: "Home" }, { label: "Executive summary" }]
       )}">/suggestions/</a>, and record accept / reject decisions in the decision log before implementing anything.</li>
       <li>Sign in to Associates and confirm one product link per product appears in the tracking report.</li>
       <li>Deploy the collector in <code>_worker/</code> and set the endpoint, then rebuild.</li>
-      <li>Verify Search Console, replace the placeholder token, submit the sitemap.</li>
+      <li>Verify Search Console, paste the token the verification actually issues, submit the sitemap.</li>
+      <li>Run the ten-minute read test on the front page (Q-23) — it is the only comprehension data available before there is traffic.</li>
       <li>Publish a new guide every week for eight weeks.</li>
       <li>At week eight, read the query report and replace the topic hypotheses with measured demand.</li>
       <li>Apply for Product Advertising API access once the account qualifies — it unlocks prices, ratings and images together.</li>
@@ -1864,6 +1867,10 @@ ${breadcrumb([{ href: url("/"), label: "Home" }, { label: "Executive summary" }]
     <h2>The honest verdict</h2>
     <p>What exists is a small, well-documented, compliant publication with ${word(guides.length)} guides and ${products.length} products. It is not yet a business: it has no traffic, no verified affiliate attribution, and no data. It is, however, built so that when those three things arrive, nothing has to be torn down — and so that nothing on it is a lie.</p>
     <p>The main strategic risk is not technical. It is that ${word(guides.length)} guides is not enough content to rank in a crowded category, and the plan for fixing that is a cadence, not a feature.</p>
+    <h2>What the ${esc(
+      site.built
+    )} polish pass changed, and what it did not</h2>
+    <p>It changed the reader-facing surface: the front page now opens on products and three shopper questions instead of audit counters; every product carries an original schematic; the buy buttons say what the link does; three roadmap titles became published guides; and the head no longer advertises a social card or a verification token that do not exist. It changed nothing commercial. The tracking ID is still unconfirmed, no link has been proven to attribute, no reader has been measured, and the ledger is still empty by design. Anyone reading the visual polish as progress toward revenue should read the previous paragraph instead.</p>
   </div>
 </section>
 `;

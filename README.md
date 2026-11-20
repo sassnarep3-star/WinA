@@ -50,13 +50,15 @@ data/                 the single source of truth
   suggestions.json    16 reviewable suggestions with cost, risk and recommendation
 _src/
   build.mjs           renders all pages, sitemap, feed, robots, 404, then gates
-  content.mjs         the five guides
+  content.mjs         the eight guides
+  art.mjs             original SVG schematics and spot drawings (no Program Content)
   pages-content.mjs   about, disclosure, privacy, marketing, SEO prose
   serve.mjs           local preview server (mirrors the /WinA/ subpath)
 _worker/
   collector.js        first-party analytics collector, not deployed
-assets/css/site.css   design system
+assets/css/site.css   design system, plus the reader-polish layer (art frames, bands)
 assets/js/site.js     five events + sponsored-link confirmation
+assets/img/           favicon and the social card — the only two raster/vector assets served
 ```
 
 Generated output lives at the repo root so GitHub Pages serves it directly from `main`.
@@ -229,7 +231,7 @@ would be a false claim; leaving them undeclared is what the gate now forbids.
 All three failure modes were confirmed by injecting a deliberately bad anchor and watching the
 gate fail, then reverting.
 
-**Current state — both gates green:** `node _src/build.mjs` → 27 pages, all gates clear;
+**Current state — all gates green:** `node _src/build.mjs` → 33 pages, all gates clear;
 `node scripts/check-site.mjs` → 27 pages, 946 internal links, 120 Amazon links (108 sponsored,
 12 declared citations), zero failures. Build verified byte-reproducible.
 
@@ -254,7 +256,7 @@ The repository has no dependencies; every command is Node standard library.
 
 | Command | What it does |
 | --- | --- |
-| `node _src/build.mjs` | Regenerates all 29 pages, the sitemap, the feed and `VALIDATION.md` from `data/`, then runs the publication's own 9 gates |
+| `node _src/build.mjs` | Regenerates all 33 pages, the sitemap, the feed and `VALIDATION.md` from `data/`, then runs the publication gate (disclosure, tags, counts, links, archive) |
 | `node scripts/check-site.mjs` | Independent structural gate: canonicals, meta, headings, alt text, asset hosts, JSON-LD, every internal link, sitemap parity, RSS |
 | `node scripts/compliance-gate.mjs` | Money-and-trust gate: disclosure **order**, three-state link classification, claim bans, register cross-references, schema bans, source staleness |
 | `node scripts/compliance-gate.mjs --refresh-sources` | Re-reads every cited policy page and diffs the text we quote; warns past 90 days |
