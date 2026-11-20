@@ -849,7 +849,10 @@ ${breadcrumb([
     </div>
 
     <div class="prose" style="margin-top:1.75rem">
-      ${body(g.body)}
+      ${(() => {
+        let n = 0;
+        return body(g.body).replace(/<h2>/g, () => `<h2 id="s${++n}">`);
+      })()}
     </div>
 
     <div class="note note--warn mt2">
@@ -874,6 +877,29 @@ ${breadcrumb([
   </div>
 
   <aside class="layout__aside">
+    ${(() => {
+      const heads = [...g.body.matchAll(/<h2[^>]*>([\s\S]*?)<\/h2>/g)].map((m, i) => ({
+        i,
+        text: m[1]
+          .replace(/<[^>]+>/g, "")
+          .replace(/&quot;/g, '"')
+          .replace(/&amp;/g, "&")
+          .replace(/&nbsp;/g, " ")
+          .trim()
+      }));
+      if (heads.length < 3) return "";
+      return `<nav class="toc" aria-labelledby="toc-title">
+      <p class="toc__title" id="toc-title">In this guide</p>
+      <ol class="toc__list">
+        ${heads
+          .map(
+            (h) =>
+              `<li><a href="#s${h.i + 1}">${esc(h.text)}</a></li>`
+          )
+          .join("")}
+      </ol>
+    </nav>`;
+    })()}
     <div class="buybox">
       <p class="buybox__label">Sponsored</p>
       <p class="small" style="margin:0 0 .9rem">The products discussed in this guide, with current pricing on Amazon — we do not display prices ourselves.</p>

@@ -1222,3 +1222,26 @@ table.data.sortable th[aria-sort="descending"] .sort-btn::after { content: " \25
    wrapper spelled differently in one older renderer block. */
 .pill--met { background: var(--ok-wash); color: var(--ok); border-color: #c3dbcb; }
 .table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+
+/* ------------------------------------------------------------
+   IN-GUIDE TABLE OF CONTENTS — the sidebar nav on guides
+   ------------------------------------------------------------ */
+.toc {
+  background: var(--paper-card); border: 1px solid var(--rule);
+  border-radius: var(--radius); padding: 1rem 1.15rem 1.1rem;
+  margin-bottom: 1.25rem;
+}
+.toc__title {
+  margin: 0 0 .6rem; font-size: .62rem; letter-spacing: .12em;
+  text-transform: uppercase; color: var(--ink-faint); font-weight: 700;
+}
+.toc__list { margin: 0; padding-left: 1.1rem; counter-reset: none; }
+.toc__list li { margin-bottom: .45rem; line-height: 1.35; }
+.toc__list li::marker { color: var(--ink-faint); font-size: .8em; }
+.toc__list a {
+  font-size: .82rem; color: var(--ink-soft); text-decoration: none;
+}
+.toc__list a:hover { color: var(--accent); text-decoration: underline; }
+.toc__list a:target { }
+/* Reading target should clear the sticky bar on product pages only. */
+.prose h2[id] { scroll-margin-top: 1.5rem; }
