@@ -23,6 +23,7 @@ Generated 2026-11-20 by `_src/build.mjs` (deterministic: no wall-clock timestamp
 - `PASS` no phrase from the 42-word banned list appears in reader copy on any of the 35 pages
 - `PASS` finder covers all 5 products with tagged anchors in the served HTML, and stores nothing
 - `PASS` the about page states the imagery rule, the voice list, and how a drawn figure is tied to its source
+- `PASS` no prices, star ratings, review counts or merchandising badges on any served page outside explanatory copy
 - `PASS` sitemap lists all 34 pages
 
 ## What the gate enforces

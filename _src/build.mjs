@@ -2685,6 +2685,28 @@ else ok(`archive intact: ${archiveCount} files preserved from three prior builds
   else ok("the about page states the imagery rule, the voice list, and how a drawn figure is tied to its source");
 }
 
+// 7. Display content this program reserves for API output — the rule the parallel
+//    build's own gate (its R-10/R-11, added in PR #54) was written to catch. Carried
+//    into this tree so the restored root cannot regain a badge in a copy edit.
+{
+  const BADGE = /★|\b[0-5]\.\d\s*(?:out of|\/)?\s*5\b|\b\d+(?:\.\d+)?\s*stars?\b|\b\d[\d,.]*\s*(?:customer\s+)?(?:ratings|reviews)\b|amazon'?s\s+choice|bought\s+(?:last month|in the past month|this month)|\b\d+k\+\s*bought|\$\s?\d+[.,]\d{2}\b/i;
+  const ALLOWED = /not shown|not reproduced|not displayed|withheld|no star ratings|not obtain|current price is on|read the current price|§2\(b\)|§6\(t\)|§6\(y\)|deliberately blank|removed from|hand-copied|the rule being stated|reserves these|prohibit/i;
+  const hits = [];
+  for (const f of htmlFiles) {
+    const rel = path.relative(ROOT, f).replace(/\\/g, "/");
+    const raw = fs.readFileSync(f, "utf8").replace(/<script[\s\S]*?<\/script>/g, " ").replace(/<[^>]+>/g, " ");
+    const chunks = raw.split(/(?<=[.!?])\s+/);
+    for (const ch of chunks) {
+      const m = ch.match(BADGE);
+      if (!m) continue;
+      if (ALLOWED.test(ch)) continue; /* copy explaining the withholding is allowed to name it */
+      hits.push(`${rel}: "${m[0]}"`);
+    }
+  }
+  if (hits.length) fail(`display content reserved for API output appears on a served page: ${hits.slice(0, 6).join("; ")}`);
+  else ok("no prices, star ratings, review counts or merchandising badges on any served page outside explanatory copy");
+}
+
 // sitemap covers all pages
 const sitemap = fs.readFileSync(path.join(ROOT, "sitemap.xml"), "utf8");
 const uncited = pages.filter((p) => !sitemap.includes(abs(p.path)));
