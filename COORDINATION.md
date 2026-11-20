@@ -359,3 +359,10 @@ wanted, port it into `data/` and rebuild.
 - Irregularities: no new flags. Existing flags (FLG-001 to FLG-018 per their register; FLG-009 overlapping claim noted earlier) are published on `flagged/index.html` and `data/...` and do not block the merge.
 - Build: this integration is committed together with the output of `node _src/build.mjs` so CI's reproducibility check stays green (generated files committed, `git status --porcelain` clean).
 - Guide 05 added: "Instant-read or wireless: which meat thermometer fits your grill?" (`guides/instant-vs-wireless/`). Both thermometer products (B0DHZTCNR5, B0DZFD6R9Z) tagged `instant-vs-wireless` in `data/products.json` so the guide page renders tagged sponsored affiliate links via `productCard()`. Build gate PASSED: canonical present, all Amazon anchors `rel="sponsored"` + `data-affiliate` + `tag=shopnow047c-20`.
+
+### Deploy result — session arena-59299521-wina (2026-11-20)
+
+- Commit: `a145d02` (merge of origin/main 211dc0e + build), pushed directly to `main` (fast-forward). No separate PR; merged via direct push per integration flow.
+- Build gate: **PASSED** — 29 pages, 28 in sitemap, canonical + all Amazon anchors `rel="sponsored"` + `data-affiliate` + `tag=shopnow047c-20`.
+- GitHub Pages: **built** and live — source `main` `/`, URL `https://sassnarep3-star.github.io/WinA/`. Pages build+deployment workflow completed `success` for commit `a145d02`.
+- Result: **deployed**. Flagged items (FLG-001 to FLG-025) did not block the merge/deploy. Special Link test (FLG-024) still pending owner action.
