@@ -486,4 +486,12 @@ build twice + diff          → no changes
   - Deploying the analytics collector (FLG-011). This also needs a hosting account, and the sandbox cannot reach one.
   - The reader-capture email backend (FLG-010).
 - **Not re-verified in this pass:** the 60 specification rows in `data/products.json`. Earlier sessions verified them and recorded corrections (FLG-026 to FLG-029). A line-by-line pass over the specs is a separate task.
+- **PR and merge (recorded 2026-11-20).**
+  - PR: https://github.com/sassnarep3-star/WinA/pull/22 (`arena/301b1534-wina` → `main`).
+  - Merged with `gh pr merge 22 --merge` at 2026-11-20 06:07:04 UTC. Merge commit `425bfbd6766cf564f1d8436a62bfd5aab596737e`.
+  - Checks before merge: `Build and verify` pass, `validate` pass.
+  - Pages after merge: build for `425bfbd` **built**. Workflows `build` and `pages build and deployment` both **success** on `425bfbd`.
+  - Live check, cache-busted (`?v=425bfbd`): `/guides/` shows "Five guides"; `/flagged/` lists FLG-030 to FLG-033.
+  - This record was committed on `arena/301b1534-wina` after the merge, because `main` cannot take a direct push from this session. It follows the same record-only convention as PR #21.
+- **Owner actions still open.** The Special Link test (FLG-024), the enrolment check (FLG-004), Search Console (SG-29, FLG-009), the analytics deploy (FLG-011), the reader-capture backend (FLG-010), and the SUG-05 cadence decision.
 
