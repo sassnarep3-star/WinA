@@ -1352,3 +1352,18 @@ Not used as sources: eBay and manualsfile search results (leads only, nothing ta
 
 - **PR #38** — https://github.com/sassnarep3-star/WinA/pull/38 — `arena/1cf62cfb-wina` → `main`. Board and handoff only. Its merge result is recorded in the next board-only commit, as with T26 and T28.
 - Other open PRs, not touched by this session: #2 (stale, from an earlier build). Owner decision, unchanged since T26.
+
+### T34 — PR and deploy record (arena/1cf62cfb-wina, 2026-11-20)
+
+| Item | Result |
+|---|---|
+| Pull request | **#38** — https://github.com/sassnarep3-star/WinA/pull/38 — `arena/1cf62cfb-wina` → `main`. Board and handoff only. |
+| Merge | **merged** by merge commit `15642e4872ae9efd923b96e58202a100b7c6c7b1`, 2026-11-20 06:42:53 UTC. Not auto-merged; no approval waited for. |
+| CI on the PR head (`e2fcfe5`) | `validate` pass · `Build and verify` pass · `gate` pass · Pages deploy skipped on PRs, as designed. |
+| CI after merge (`15642e4`) | `build` success · `archive-gate (574fc8eb)` success · `Build, verify and deploy` success · `pages-build-deployment` success. |
+| GitHub Pages | `pages/builds/latest` → `status: built`, `commit: 15642e4`. |
+| Live check | Fetch of `/flagged/?v=15642e4` served the page. It lists FLG-028, 029, 036, 039, 040 and 041. |
+| Not applied, by design | `handoff/T34-products.patch` and `handoff/T34-governance.patch` wait for the final integration session (rule 10). The live site still shows the pre-T34 spec values, and FLG-043 (ThermoMaven listing identity) is not yet on the Flagged page. |
+| Merge races, handled | `main` moved five times during this PR (PRs #36, #43, #44, #47, #48). Each time the board was resolved by content, keeping every section. No shared output was overwritten. |
+| Id collisions, handled | T27, T29, T30 and T33 were each already held on `main` when this work was recorded, so the work is T34. |
+| Record PR | This record is in a separate, board-only PR, opened after the merge. |
