@@ -74,7 +74,7 @@ function cite(url, label, asin) {
     return `<a href="${special(asin)}" rel="sponsored nofollow noopener" target="_blank"
       data-affiliate="${asin}" data-slot="citation">${label}</a>`;
   }
-  if (/amazon\.com/.test(url)) {
+  if (/^https:\/\/(?:www\.)?(?:amazon\.[a-z.]+|link\.amazon|amzn\.to)\//.test(url)) {
     return `<a href="${url}" rel="nofollow noopener" target="_blank" data-nonaffiliate="true">${label}</a>`;
   }
   return `<a href="${url}" rel="noopener" target="_blank">${label}</a>`;
@@ -971,7 +971,7 @@ function registerPage() {
     <td class="small">${esc(p.requirement)}</td>
     <td><span class="pill pill--${p.status}">${esc(p.status)}</span></td>
     <td class="small">${esc(p.howMet)}</td>
-    <td><a href="${p.sourceUrl}" rel="noopener" target="_blank">${esc(p.source)}</a></td>
+    <td><a href="${p.sourceUrl}" rel="${/^https:\/\/link\.amazon\//.test(p.sourceUrl) ? "nofollow noopener" : "noopener"}" target="_blank"${/^https:\/\/link\.amazon\//.test(p.sourceUrl) ? ' data-nonaffiliate="true"' : ""}>${esc(p.source)}</a></td>
   </tr>`
     )
     .join("");
@@ -980,7 +980,7 @@ function registerPage() {
     .map(
       (p) => `<tr>
     <td><code>${esc(p.submittedLink.replace("https://link.amazon/", ""))}</code></td>
-    <td><a href="${p.submittedLink}" rel="noopener" target="_blank">link.amazon</a></td>
+    <td><a href="${p.submittedLink}" rel="nofollow noopener" target="_blank" data-nonaffiliate="true">link.amazon</a></td>
     <td>${cite(p.observedDestination, `<code>${esc(p.asin)}</code>`, p.asin)}</td>
     <td class="blank">not supplied</td>
     <td>${esc(p.observedOn)}</td>
@@ -1389,7 +1389,7 @@ function suggestionsPage() {
     <td class="small">${esc(s.decide)}${
         s.links && s.links.length
           ? `<br><span class="tiny">${s.links
-              .map((l) => `<a href="${l.url}" rel="noopener" target="_blank">${esc(l.label)}</a>`)
+              .map((l) => cite(l.url, esc(l.label)))
               .join(" · ")}</span>`
           : ""
       }</td>
@@ -1867,7 +1867,7 @@ for (const f of htmlFiles) {
   //   (a) a monetised Special Link  -> carries the tag AND rel="sponsored"
   //   (b) a deliberate citation     -> data-nonaffiliate, no tag, rel="nofollow"
   // Anything else is ambiguous and fails the gate.
-  const anchors = [...src.matchAll(/<a\b[^>]*href="(https:\/\/www\.amazon\.com[^"]*)"[^>]*>/g)];
+  const anchors = [...src.matchAll(/<a\b[^>]*href="(https:\/\/(?:www\.)?(?:amazon\.[a-z.]+|link\.amazon|amzn\.to)[^"]*)"[^>]*>/g)];
   for (const a of anchors) {
     const tag = a[0];
     const link = a[1];
@@ -1882,7 +1882,7 @@ for (const f of htmlFiles) {
       }
     } else if (!sponsored || !hasTag) {
       amazonUnsponsored++;
-      fail(`${rel}: Amazon anchor is neither a tagged sponsored link nor a declared citation: ${link}`);
+      fail(`${rel}: Amazon anchor is neither a tagged sponsored link nor a declared non-affiliate citation: ${link}`);
     }
   }
 

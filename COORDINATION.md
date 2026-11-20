@@ -186,6 +186,70 @@ string.
 
 ---
 
+## Session `41096d21` — 2026-11-20 — merged in, deleted its own site, fixed a live defect
+
+**Claimed scope:** none that survives. This session had a 23-page edition built at `/v2/`.
+On finding the current `main`, it **deleted it**. A fifth site on a repo holding four was not an
+improvement, and the existing build already satisfies every acceptance criterion.
+
+**What it contributed instead:**
+
+### A defect in the live site, now fixed
+
+The authoring gate scanned for Amazon anchors with a regex limited to `https://www.amazon.com`.
+The five submitted `link.amazon` short links therefore bypassed it entirely. On `/flagged/`,
+`/questions/`, `/register/` and `/suggestions/` they rendered as plain `<a rel="noopener">` —
+neither sponsored nor declared — while the gate printed *"every Amazon anchor is either a tagged
+sponsored link or a declared non-affiliate citation."* Six anchors were neither.
+
+These are live product pages. Under FTC 16 CFR 255.5 the material connection has to be disclosed
+at the link. It was not.
+
+The fix is in `_src/build.mjs`, not in the HTML, so regeneration keeps it: the sweep matches
+`amazon.*` / `link.amazon` / `amzn.to`; `cite()` handles all three; and the two places that built
+their own anchors now call `cite()`.
+
+The short links carry no tag, so they earn nothing. They are declared
+`rel="nofollow" data-nonaffiliate="true"` — an evidence citation. Marking them sponsored would be
+a false statement; leaving them bare is what the gate now rejects.
+
+### Second gate, adopted
+
+`scripts/check-site.mjs` was written by this session without reading `_src/build.mjs`, then run
+against the current site. That independence is why it found the hole. It now runs in CI alongside
+the authoring gate, plus a stale-artefact check.
+
+It checks 13 things the authoring gate does differently or additionally: canonical presence and
+correctness, per-page meta/description, heading order and image alt text, third-party asset
+hosts, JSON-LD parseability, every internal link resolving to a file on disk, sitemap coverage in
+both directions, robots, and RSS validity. Sponsored-link classification is now three-state and
+all three failure modes were confirmed by injection.
+
+### What this merge did wrong, so the next session does not repeat it
+
+Merging `main` into this branch **resurrected** `shop/`, `tools/`, `dashboard/`, `guides/` and the
+old `data/*.json`, which the previous session had deliberately deleted. Its duplicate-content and
+archive-integrity guards caught it — 30 files in `archive/` instead of 64 — but only after the
+build had already failed. Cleared by deleting all generated output and rebuilding from `data/`,
+then restoring `archive/` from `origin/main`.
+
+**Rule for the next session:** after any merge that touches the root, run
+`node _src/build.mjs`. If it reports "prior build resurrected", do not reason about which files
+are stale — delete every generated `.html`, `feed.xml`, `sitemap.xml`, `VALIDATION.md` and
+`robots.txt`, rebuild, and restore `archive/` from `origin/main`.
+
+### Verified
+
+```
+node _src/build.mjs        → Generated 27 pages, 26 in sitemap. PASSED: all gates clear
+node scripts/check-site.mjs → 27 pages · 946 internal links · 120 Amazon (108 sponsored)
+                              12 declared citations · 0 failures · 0 warnings
+build twice + diff          → identical
+```
+
+Not done here, unchanged from before: no browser rendering, no Associates Central login, no live
+click test. **Q03 remains the one action that needs a human:** click a sponsored link from a phone
+on cellular, then check the Associates click report within 48 hours.
 ## Session arena-5a289bff-wina: claims carried into the converged board
 
 Branch `arena/5a289bff-wina` was merged with `origin/main` at `f421d5c` on 2026-11-20. These rows are kept from this session's claims. Their outputs are on main through the converged build (ffa85037). Each row is marked by its status at merge time.
