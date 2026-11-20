@@ -88,6 +88,7 @@ fourth site. Claim the scope here first and push the claim before writing code.
 | T22 | Register hygiene: 5 dangling `SRC-02` refs repaired; citation-misattribution fixed in `_src/build.mjs`; FLG-024 extended with computed counts instead of adding a duplicate row | done | arena-4b28af50 | `data/{special_link_tests,governance,products}.json`, `_src/build.mjs` | HTML for all pages except `/flagged/` is byte-identical — the fixes are inert for current data |---
 | T23 | Register: define the `manufacturer` source id that 22 spec rows already cite, and de-number FLG-024 so the register cannot drift out of date | done | arena-4b28af50 | `data/policy.json`, `data/governance.json` | Found by `scripts/compliance-gate.mjs`'s cross-reference rule on main's post-#22 data |
 | T24 | Register hygiene: 5 dangling `SRC-02` refs repaired; citation-misattribution fixed in `_src/build.mjs`; FLG-024 extended with computed counts instead of adding a duplicate row | done | arena-4b28af50 | `data/{special_link_tests,governance,products}.json`, `_src/build.mjs` | HTML for all pages except `/flagged/` is byte-identical — the fixes are inert for current data |---
+| T25 | Design-prompt suggestion layer: polished-marketing design direction, catchy topic roadmap (hypotheses), organic-traffic levers, decision log — feeding the reviewable suggestions section | done | arena-829ea2fd-wina | `data/suggestions.json`, `data/governance.json`, `_src/build.mjs`, `COORDINATION.md` (arena-829ea2fd-wina section only), generated pages | Renumbered three times on merge (T17→T19→T21→T25) because T17, T19–T24 were taken on `main` first. Extends main's build; no second site. Verification of the 5 links re-done 2026-11-20 by this session |
 
 ## Link resolution (verified by three independent sessions)
 
@@ -618,3 +619,84 @@ whether this earns anything are the link tests (FLG-024) and an owned domain (FL
   SG-29 (Search Console unverified), FLG-011 (collector written, not hosted), FLG-013 (owned domain
   and content volume), FLG-002 / FLG-004 (tracking-ID enrolment), FLG-010 (capture backend),
   FLG-021 (byline and brand). None of them is a code problem; see §5 of `EXECUTIVE_SUMMARY.md`.
+
+---
+
+## Session `arena-829ea2fd-wina` — 2026-11-20 — T25 (renumbered T17→T19→T21→T25)
+
+**Claimed scope (T25):** the design-prompt suggestion layer the latest brief asks for — a
+polished-marketing design direction, a catchy topic roadmap (explicitly hypotheses, not
+popularity claims), organic-traffic levers, and a decision log — rendered into the existing
+reviewable suggestions section. Files: `data/suggestions.json`, `data/governance.json`,
+`_src/build.mjs`, generated pages, and this board's T25 section only. No second site. No change
+to another session's scope.
+
+**Renumber note:** this session claimed T17, but on merge `main` had already assigned T17 to
+`arena/1323e80f-wina` (script wrappers), then T19–T24 to `arena-4b28af50` (compliance gate,
+tooling, docs, register hygiene). To keep every session's records intact without an ID collision,
+this task is renumbered **T25** here and in the task board. The flag IDs were likewise
+renumbered: this session's design/topic flags are **FLG-034** and **FLG-035**, because `main`'s
+T18 session used FLG-030..033 for policy-quote and link-resolution findings.
+
+**Re-verification performed before claiming (2026-11-20, this session):**
+- All five submitted `link.amazon` short links were re-opened with the page tool. Every
+  observed destination and title matches `data/links.json` exactly:
+  B04G1MEwY → B0CDY277D3 · B02NbDxp3 → B09B7SB46R · B00hJ57DV → B08DKYBTPH ·
+  B0c8moW59 → B0DHZTCNR5 · B0f3GKalj → B0DZFD6R9Z.
+- `node _src/build.mjs` → 30 pages, 29 in sitemap, all gates clear.
+- `node scripts/check-site.mjs` → repository gate passed — safe to publish.
+- Official sources re-read and confirmed reachable: FTC *Disclosures 101* (hard-to-miss
+  placement; "you can't talk about your experience with a product you haven't tried"), Google
+  Search Central *Creating Helpful, Reliable, People-First Content*, and the Amazon
+  *Associates Program Policies* (updated 2026-04-14).
+
+**What was added** (the layer the latest brief asked for — a reviewable path to a polished
+marketing look, catchy topics, organic traffic, and explicit decisions before implementation):
+
+- **`data/suggestions.json`** — eight new suggestions **SUG-17..SUG-24** (design brief,
+  editorial type/color system, layout variation, concrete voice, topic-roadmap cadence, topic
+  clusters, hold seasonal topics, decision log), plus three new data blocks:
+  - `designBrief` — eight principles (DB-01..DB-08) feeding a design prompt, each naming the
+    constraint it respects. Cites FTC Disclosures 101, Google Search Central helpful-content,
+    and Amazon Associates Program Policies — all re-read and verified this session.
+  - `topicRoadmap` — three clusters (air fryers, thermometers, cross-category evergreen) with
+    catchy question-shaped titles. **Every title is labelled a hypothesis**; no search-volume,
+    popularity, or product-superiority claim is made.
+  - `decisionLog` — review rubric, kill criteria, and an empty entries table so accept/reject
+    decisions are recorded with a date and reason.
+- **`data/governance.json`** — **FLG-034** (no design brief/brand source; site deliberately
+  typographic because imagery is withheld, FLG-007) and **FLG-035** (topic roadmap titles are
+  hypotheses with no measured demand). Both published on `/flagged/`.
+- **`_src/build.mjs`** — renders the design brief, topic roadmap and decision log on
+  `/suggestions/`; executive summary updated to reference the new layer and to put "review and
+  record decisions" first in the next-actions list.
+
+**Merge resolution (2026-11-20).** `main` advanced ahead of this branch's base three times during
+the session (T17/T18, then T19/T20, then the T21–T24 register-hygiene merges). Merged
+`origin/main` into this branch each time:
+- `data/governance.json`, `data/suggestions.json`, `_src/build.mjs` auto-merged cleanly each
+  time (the sessions' additions are disjoint; all flag IDs remain unique at 39).
+- `COORDINATION.md` resolved by taking `main`'s board and re-adding this session's task row and
+  section. Nothing from the prior sessions' records was removed.
+- Generated pages regenerated from the merged source via `_src/build.mjs`, not hand-merged.
+- One real gate interaction fixed: the T18 guide-count gate flagged this session's SUG-21 cost
+  text "One substantive guide per week" as a miscount; rephrased to "A substantive guide each
+  week" so it reads as a rate, not a published-count claim.
+
+**Verification performed this session (post-merge, on the combined tree):**
+
+| Check | Method | Result |
+|---|---|---|
+| 5 submitted links resolve | Page-tool fetch of each `link.amazon` URL | All 5 match `data/links.json` (ASIN + title) |
+| Official sources reachable | FTC Disclosures 101, Google helpful-content, Amazon Program Policies | All three fetched and read 2026-11-20 |
+| JSON validity | `JSON.parse` on `suggestions.json`, `governance.json` | OK |
+| Flag ID uniqueness | Scan `data/governance.json` for duplicate IDs | All unique (39 flags) |
+| Build | `node _src/build.mjs` | 30 pages, 29 in sitemap, all gates clear |
+| Second gate | `node scripts/check-site.mjs` | pass — safe to publish |
+| Determinism | build twice, diff `VALIDATION.md` + `sitemap.xml` | byte-identical |
+
+**Irregularities:** none new beyond the two flags above, which are published rather than hidden.
+No value was inferred; the topic roadmap is explicitly hypothetical and the design brief is
+explicitly a recommendation. Nothing blocks the merge. (Note observed, not changed here: `main`'s
+board carries a duplicate T24 row identical to T22; left as-is since it is another session's
+record and out of this session's scope.)

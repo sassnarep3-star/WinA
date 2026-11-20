@@ -1391,6 +1391,123 @@ ${breadcrumb([{ href: url("/"), label: "Home" }, { label: "Open questions" }])}
 }
 
 /* ============================================================
+   SUGGESTIONS — design brief, topic roadmap, decision log
+   ============================================================ */
+function renderDesignBrief() {
+  const db = suggestions.designBrief;
+  const rows = db.principles
+    .map((p) => `<tr>
+    <td><code>${esc(p.id)}</code></td>
+    <td class="small">${esc(p.area)}</td>
+    <td class="small"><strong>${esc(p.principle)}</strong></td>
+    <td class="small">${esc(p.why)}</td>
+    <td class="small">${esc(p.constraint)}</td>
+    <td class="small">${
+      p.source ? cite(p.source.url, esc(p.source.label)) : '<span class="faint">recommendation — no source</span>'
+    }</td>
+  </tr>`)
+    .join("");
+  return `<section class="section section--deep">
+  <div class="wrap">
+    <div class="section__head">
+      <h2 class="section__title" style="font-size:1.4rem">Draft design brief</h2>
+      <p class="section__dek">${esc(db.intro)}</p>
+    </div>
+    <div class="tablewrap">
+      <table class="data sortable">
+        <caption>Visual and editorial direction to feed a design prompt. These are recommendations, not verified facts. Each principle names the constraint it respects.</caption>
+        <thead><tr><th scope="col">ID</th><th scope="col">Area</th><th scope="col">Principle</th><th scope="col">Why</th><th scope="col">Constraint</th><th scope="col">Source</th></tr></thead>
+        <tbody>${rows}</tbody>
+      </table>
+    </div>
+  </div>
+</section>`;
+}
+
+function renderTopicRoadmap() {
+  const tr = suggestions.topicRoadmap;
+  const rows = tr.clusters
+    .flatMap((c) =>
+      c.topics.map(
+        (t) => `<tr>
+      <td><strong>${esc(c.name)}</strong><br><span class="tiny muted">${esc(
+          c.products.length ? c.products.join(" · ") : "no product tie-in"
+        )}</span></td>
+      <td>${esc(t.title)}</td>
+      <td class="small">${esc(t.intent)}</td>
+      <td><span class="pill pill--claim">${esc(t.status)}</span></td>
+    </tr>`
+      )
+    )
+    .join("");
+  return `<section class="section">
+  <div class="wrap">
+    <div class="section__head">
+      <h2 class="section__title" style="font-size:1.4rem">Topic roadmap</h2>
+      <p class="section__dek">${esc(tr.note)}</p>
+    </div>
+    <div class="tablewrap">
+      <table class="data sortable">
+        <caption>Candidate catchy, question-shaped topics by cluster. All are hypotheses; none is a claim about search volume, popularity or product superiority.</caption>
+        <thead><tr><th scope="col">Cluster</th><th scope="col">Topic (hypothesis)</th><th scope="col">Decision it serves</th><th scope="col">Status</th></tr></thead>
+        <tbody>${rows}</tbody>
+      </table>
+    </div>
+  </div>
+</section>`;
+}
+
+function renderDecisionLog() {
+  const dl = suggestions.decisionLog;
+  const entries = dl.entries;
+  const rows = entries
+    .map(
+      (e) => `<tr>
+    <td>${esc(e.date)}</td>
+    <td><span class="pill pill--${esc(e.decision)}" >${esc(e.decision)}</span></td>
+    <td><code>${esc(e.item)}</code></td>
+    <td class="small">${esc(e.reason)}</td>
+  </tr>`
+    )
+    .join("");
+  return `<section class="section section--deep">
+  <div class="wrap">
+    <div class="section__head">
+      <h2 class="section__title" style="font-size:1.4rem">Decision log</h2>
+      <p class="section__dek">${esc(dl.note)}</p>
+    </div>
+    <div class="tablewrap">
+      <table class="data sortable">
+        <caption>Accept or reject a suggestion here before implementing it. Recorded so the choice is auditable and rejected items are not re-litigated.</caption>
+        <thead><tr><th scope="col">Date</th><th scope="col">Decision</th><th scope="col">Item</th><th scope="col">Reason</th></tr></thead>
+        <tbody>${
+          rows ||
+          `<tr><td colspan="4" style="text-align:center;padding:1.5rem;color:var(--ink-mute)"><strong style="display:block;font-family:var(--serif);font-size:1.05rem;color:var(--ink);margin-bottom:.3rem">No decisions recorded yet</strong>Each accepted or rejected suggestion is recorded here with a date and a one-line reason.</td></tr>`
+        }</tbody>
+      </table>
+    </div>
+
+    <div class="tablewrap mt2">
+      <table class="data sortable">
+        <caption>How to review and choose. Score each suggestion, read the risk, then accept or reject in writing.</caption>
+        <thead><tr><th scope="col">Step</th><th scope="col">Rule</th></tr></thead>
+        <tbody>${dl.rubric
+          .map((r, i) => `<tr><td class="num">${i + 1}</td><td class="small">${esc(r)}</td></tr>`)
+          .join("")}</tbody>
+      </table>
+    </div>
+
+    <div class="note note--warn mt2">
+      <p class="note__title">Kill criteria</p>
+      <ul style="margin:.3rem 0 0;padding-left:1.1rem">${dl.killCriteria
+        .map((k) => `<li>${esc(k)}</li>`)
+        .join("")}</ul>
+    </div>
+  </div>
+</section>`;
+}
+
+/* ============================================================
    SUGGESTIONS
    ============================================================ */
 function suggestionsPage() {
@@ -1472,11 +1589,15 @@ ${breadcrumb([{ href: url("/"), label: "Home" }, { label: "Suggestions" }])}
     </div>
   </div>
 </section>
+
+${renderDesignBrief()}
+${renderTopicRoadmap()}
+${renderDecisionLog()}
 `;
   pages.push({
     path: "/suggestions/",
     title: "Suggestions",
-    desc: "A reviewable decision list: sixteen suggestions with rationale, cost, risk, and a recommendation — nothing implemented without a decision.",
+    desc: "A reviewable decision list: suggestions with rationale, cost, risk and a recommendation, plus a draft design brief, a topic roadmap of hypotheses, and a decision log. Nothing is implemented without a decision.",
     html,
     priority: "0.6",
     changefreq: "weekly"
@@ -1521,6 +1642,9 @@ ${breadcrumb([{ href: url("/"), label: "Home" }, { label: "Executive summary" }]
       <li><strong>A publication gate</strong> in the build: it fails if any page loses its disclosure, or if any Amazon link loses its sponsored marking.</li>
       <li><strong>SEO foundations</strong>: sitemap, RSS feed, canonical URLs, structured data, and descriptions written for humans.</li>
       <li><strong>A defined measurement plan</strong>: five events, a self-hosted collector, and a ledger schema.</li>
+      <li><strong>A design-prompt suggestion layer</strong>: a draft design brief for a polished-marketing look, a topic roadmap of catchy question-shaped hypotheses, organic-traffic levers, and a decision log — all on <a href="${url(
+        "/suggestions/"
+      )}">the suggestions page</a> for review before anything is implemented.</li>
     </ul>
 
     <h2>What does not exist, and why</h2>
@@ -1546,6 +1670,9 @@ ${breadcrumb([{ href: url("/"), label: "Home" }, { label: "Executive summary" }]
 
     <h2>What to do next, in order</h2>
     <ol>
+      <li>Review the suggestions, the draft design brief and the topic roadmap on <a href="${url(
+        "/suggestions/"
+      )}">/suggestions/</a>, and record accept / reject decisions in the decision log before implementing anything.</li>
       <li>Sign in to Associates and confirm one product link per product appears in the tracking report.</li>
       <li>Deploy the collector in <code>_worker/</code> and set the endpoint, then rebuild.</li>
       <li>Verify Search Console, replace the placeholder token, submit the sitemap.</li>
