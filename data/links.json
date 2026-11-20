@@ -52,6 +52,12 @@
           "check": "Re-check by arena/b37e1a98-wina (T33): one page-tool fetch of the submitted link.",
           "finalUrl": "https://www.amazon.com/",
           "result": "homepage"
+        },
+        {
+          "observedOn": "2026-11-20",
+          "check": "Re-check by arena/266b1b8f-wina (T35): one page-tool fetch; independently matched the arena/b37e1a98 check.",
+          "finalUrl": "https://www.amazon.com/",
+          "result": "homepage"
         }
       ],
       "observationsAgree": false
@@ -102,6 +108,12 @@
           "check": "Re-check by arena/b37e1a98-wina (T33): one page-tool fetch of the submitted link.",
           "finalUrl": "https://www.amazon.com/",
           "result": "homepage"
+        },
+        {
+          "observedOn": "2026-11-20",
+          "check": "Re-check by arena/266b1b8f-wina (T35): one page-tool fetch; independently matched the arena/b37e1a98 check.",
+          "finalUrl": "https://www.amazon.com/",
+          "result": "homepage"
         }
       ],
       "observationsAgree": false
@@ -120,7 +132,7 @@
       ],
       "confirmationSourceUrl": "https://www.amazon.com/dp/B08DKYBTPH",
       "observedDestination": "https://www.amazon.com/dp/B08DKYBTPH",
-      "resolvedTitle": "Chefman Air Fryer 8 Qt | TurboFry 4-in-1 with 450°F Hi-Fry Option for Crispier Results | Bake, Dehydrate, Frozen | XL Nonstick Dishwasher-Safe Basket | Stainless Steel",
+      "resolvedTitle": "Chefman Air Fryer 8 Qt | TurboFry 4-in-1 with 450\u00b0F Hi-Fry Option for Crispier Results | Bake, Dehydrate, Frozen | XL Nonstick Dishwasher-Safe Basket | Stainless Steel",
       "confidence": "observed",
       "flag": "FLG-001",
       "reverifiedOn": "2026-11-20",
@@ -152,6 +164,12 @@
           "check": "Re-check by arena/b37e1a98-wina (T33): one page-tool fetch of the submitted link.",
           "finalUrl": "https://www.amazon.com/",
           "result": "homepage"
+        },
+        {
+          "observedOn": "2026-11-20",
+          "check": "Re-check by arena/266b1b8f-wina (T35): one page-tool fetch; independently matched the arena/b37e1a98 check.",
+          "finalUrl": "https://www.amazon.com/",
+          "result": "homepage"
         }
       ],
       "observationsAgree": false
@@ -170,7 +188,7 @@
       ],
       "confirmationSourceUrl": "https://www.amazon.com/dp/B0DHZTCNR5",
       "observedDestination": "https://www.amazon.com/dp/B0DHZTCNR5",
-      "resolvedTitle": "ThermoMaven 1 Sec Professional Digital Meat Thermometer, ±0.5°F Accuracy | NIST&NSF Certified, Auto-Rotate Bright LED Screen, IP67 Waterproof for Grill BBQ, Stocking Stuffers Gifts for Men, Black",
+      "resolvedTitle": "ThermoMaven 1 Sec Professional Digital Meat Thermometer, \u00b10.5\u00b0F Accuracy | NIST&NSF Certified, Auto-Rotate Bright LED Screen, IP67 Waterproof for Grill BBQ, Stocking Stuffers Gifts for Men, Black",
       "confidence": "observed",
       "flag": "FLG-001",
       "reverifiedOn": "2026-11-20",
@@ -202,6 +220,12 @@
           "check": "Re-check by arena/b37e1a98-wina (T33): one page-tool fetch of the submitted link.",
           "finalUrl": "https://www.amazon.com/",
           "result": "homepage"
+        },
+        {
+          "observedOn": "2026-11-20",
+          "check": "Re-check by arena/266b1b8f-wina (T35): one page-tool fetch; independently matched the arena/b37e1a98 check.",
+          "finalUrl": "https://www.amazon.com/",
+          "result": "homepage"
         }
       ],
       "observationsAgree": false
@@ -220,7 +244,7 @@
       ],
       "confirmationSourceUrl": "https://www.amazon.com/dp/B0DZFD6R9Z",
       "observedDestination": "https://www.amazon.com/dp/B0DZFD6R9Z",
-      "resolvedTitle": "CHEF iQ Sense | Smart Wireless Meat Thermometer | 3 Ultra-Thin Probes | WiFi Unlimited Range | 1000°F Heat Safe | 5 Sensors | BBQ, Grill, Oven, Smoker, Air Fryer | Gen3",
+      "resolvedTitle": "CHEF iQ Sense | Smart Wireless Meat Thermometer | 3 Ultra-Thin Probes | WiFi Unlimited Range | 1000\u00b0F Heat Safe | 5 Sensors | BBQ, Grill, Oven, Smoker, Air Fryer | Gen3",
       "confidence": "observed",
       "flag": "FLG-001",
       "reverifiedOn": "2026-11-20",
@@ -250,6 +274,12 @@
         {
           "observedOn": "2026-11-20",
           "check": "Re-check by arena/b37e1a98-wina (T33): one page-tool fetch of the submitted link.",
+          "finalUrl": "https://www.amazon.com/dp/B0DZFD6R9Z",
+          "result": "product-page"
+        },
+        {
+          "observedOn": "2026-11-20",
+          "check": "Re-check by arena/266b1b8f-wina (T35): one page-tool fetch; independently matched the arena/b37e1a98 check.",
           "finalUrl": "https://www.amazon.com/dp/B0DZFD6R9Z",
           "result": "product-page"
         }
@@ -327,8 +357,13 @@
     },
     {
       "checkedOn": "2026-11-20",
+<<<<<<< HEAD
       "session": "arena/2739f0fb-wina",
       "method": "Fourth independent check. Page-tool fetch of each link.amazon URL, one attempt each; destination taken from the returned url field. The five amazon.com/dp listing pages re-read the same date and their titles compared with the register. No retry, no inference.",
+=======
+      "session": "arena-266b1b8f-wina",
+      "method": "Page-tool fetch of each link.amazon URL, one attempt each. Destination taken from the returned url field. In addition, two official listings (/dp/B0CDY277D3, /dp/B0DZFD6R9Z) were fetched directly and their page titles matched data/links.json exactly.",
+>>>>>>> origin/main
       "results": [
         {
           "submitted": "https://link.amazon/B04G1MEwY",
@@ -338,14 +373,24 @@
         },
         {
           "submitted": "https://link.amazon/B02NbDxp3",
+<<<<<<< HEAD
           "returnedUrl": "https://www.amazon.com/dp/B09B7SB46R",
           "result": "product page; listing title matches the register exactly",
+=======
+          "returnedUrl": "https://www.amazon.com/",
+          "result": "homepage",
+>>>>>>> origin/main
           "recordedObservedAsin": "B09B7SB46R"
         },
         {
           "submitted": "https://link.amazon/B00hJ57DV",
+<<<<<<< HEAD
           "returnedUrl": null,
           "result": "fetch failed (HTTP 500); not resolved this round",
+=======
+          "returnedUrl": "https://www.amazon.com/",
+          "result": "homepage",
+>>>>>>> origin/main
           "recordedObservedAsin": "B08DKYBTPH"
         },
         {
@@ -357,6 +402,7 @@
         {
           "submitted": "https://link.amazon/B0f3GKalj",
           "returnedUrl": "https://www.amazon.com/dp/B0DZFD6R9Z",
+<<<<<<< HEAD
           "result": "product page; listing title matches the register exactly",
           "recordedObservedAsin": "B0DZFD6R9Z"
         }
@@ -381,6 +427,13 @@
           "https://www.ftc.gov/business-guidance/resources/disclosures-101-social-media-influencers"
         ]
       }
+=======
+          "result": "product-page",
+          "recordedObservedAsin": "B0DZFD6R9Z"
+        }
+      ],
+      "note": "Independent fifth check; results identical to arena/b37e1a98's fourth check (four of five to the amazon.com home page, B0f3GKalj to its product page). See FLG-040/FLG-047."
+>>>>>>> origin/main
     }
   ]
 }
