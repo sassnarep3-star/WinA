@@ -203,9 +203,9 @@
         },
         {
           "label": "Warranty",
-          "value": null,
-          "status": "unverified",
-          "source": null
+          "value": "1 year",
+          "status": "verified",
+          "source": "manufacturer"
         },
         {
           "label": "Price",
@@ -248,6 +248,10 @@
           "label": "emerileveryday.com specification"
         },
         "Capacity": {
+          "url": "https://www.emerileveryday.com/products/emeril_lagasse_french_door_airfryer_360",
+          "label": "emerileveryday.com specification"
+        },
+        "Warranty": {
           "url": "https://www.emerileveryday.com/products/emeril_lagasse_french_door_airfryer_360",
           "label": "emerileveryday.com specification"
         }
@@ -570,21 +574,21 @@
         },
         {
           "label": "App requirement",
-          "value": null,
-          "status": "unverified",
-          "source": null
+          "value": "CHEF iQ App (free); required for use",
+          "status": "verified",
+          "source": "manufacturer"
         },
         {
           "label": "Battery life",
-          "value": null,
-          "status": "unverified",
-          "source": null
+          "value": "Up to 70 hours per full charge (probe)",
+          "status": "verified",
+          "source": "manufacturer"
         },
         {
           "label": "Warranty",
-          "value": null,
-          "status": "unverified",
-          "source": null
+          "value": "2 years, activated on first connection to the CHEF iQ App",
+          "status": "verified",
+          "source": "manufacturer"
         },
         {
           "label": "Price",
@@ -643,6 +647,18 @@
         "Generation": {
           "url": "https://chefiq.com/products/iq-sense",
           "label": "chefiq.com"
+        },
+        "App requirement": {
+          "url": "https://chefiq.com/products/iq-sense",
+          "label": "chefiq.com"
+        },
+        "Battery life": {
+          "url": "https://chefiq.com/products/iq-sense",
+          "label": "chefiq.com"
+        },
+        "Warranty": {
+          "url": "https://cdn.shopify.com/s/files/1/0267/8118/8171/files/CQ60-ALL-SET-C_UG_OTP_050126.pdf",
+          "label": "CHEF iQ user guide (chefiq.com)"
         }
       },
       "modelNumber": "CQ60-1C-Z1-E"
