@@ -889,3 +889,24 @@ once on `/flagged/` (1,118 checks).
 **Post-merge state:** build passes (30 pages, 29 in sitemap); `check-site` passes (1,120 internal
 links, 102 Amazon links, 82 sponsored, zero failures); compliance gate 1,118 checks, 0 failing,
 1 warning (FLG-024, owner-only).
+
+---
+
+## PR and deploy result — T26 (2026-11-20)
+
+| Item | Result |
+|---|---|
+| Pull request | **#31** — https://github.com/sassnarep3-star/WinA/pull/31 — merged by squash |
+| Merge commit | `e886175ded00095d4966fce3951454b5798783cb` |
+| Merged at | 2026-11-20 06:26:19 UTC |
+| CI `build` job | success (run 44687800316) |
+| CI `Build, verify and deploy` | success — all gates passed, deploy job ran (run 44687800416) |
+| GitHub Pages | `status: built` for the merge commit |
+| Live verification | Homepage and `/flagged/` fetched after deploy: strip reads "Products, spec-checked / Categories / Buying guides / Specs confirmed at source"; `/flagged/` renders **43** rows including FLG-036, FLG-037, FLG-038 and FLG-039, with the downgraded FLG-032 title |
+| Flagged irregularities | Published on `/flagged/` — they did not block the merge, per the brief |
+
+**Merge conflict, recorded:** T26 was claimed by two sessions and both merged. The conflict in
+`data/governance.json` was resolved by keeping both sessions' findings and renumbering this
+session's two rows (FLG-036→038, FLG-037→039 at the time of writing). No other session's content was
+overwritten or deleted. `COORDINATION.md` retains both sections verbatim. Generated pages were
+rebuilt from the merged data rather than hand-merged.
