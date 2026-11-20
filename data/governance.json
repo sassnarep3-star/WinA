@@ -350,6 +350,24 @@
       "action": "Owner: decide whether the intended-ASIN field should be filled from the submitted link (FLG-019). If the rationale is kept, cite an Amazon Help page for the definition before publishing it.",
       "sourceUrl": "https://sellercentral.amazon.com/seller-forums/discussions/t/1e22c5df-d27a-4e2b-a0c1-90938b6cdcdc",
       "sourceLabel": "Seller Central forum thread (not Amazon Help; definition not confirmed as Amazon's)"
+    },
+    {
+      "id": "FLG-036",
+      "severity": "review",
+      "title": "Re-check on 2026-11-20 did not reproduce the recorded destination for three submitted short links",
+      "detail": "On 2026-11-20 each submitted link.amazon URL was re-opened with the page tool. B02NbDxp3 (-> /dp/B09B7SB46R) and B00hJ57DV (-> /dp/B08DKYBTPH) matched data/links.json. B04G1MEwY and B0c8moW59 each returned the amazon.com home page on both attempts, not the recorded /dp/B0CDY277D3 and /dp/B0DHZTCNR5 pages. B0f3GKalj returned the home page on one attempt and the recorded /dp/B0DZFD6R9Z page on the other, so it is inconsistent. The recorded observations are kept unchanged. The cause is not known: it could be the short link, the redirect handling of the page tool, or a session-dependent redirect. The site is not affected, because every product button links to amazon.com/dp/<observed ASIN>?tag=shopnow047c-20 directly and not through the short links.",
+      "action": "Owner: open each of the five short links in a normal browser, logged out, and record the landing URL. If any short link lands somewhere other than its recorded /dp/ page, correct data/links.json and add a dated note. Do not rely on the recorded values until this is done.",
+      "sourceUrl": "https://link.amazon/B04G1MEwY",
+      "sourceLabel": "Submitted short link (re-checked 2026-11-20; see detail)"
+    },
+    {
+      "id": "FLG-037",
+      "severity": "review",
+      "title": "Buy buttons say 'Check price on Amazon' while the site states prices are not shown",
+      "detail": "Every product card and hero button is labelled 'Check price on Amazon'. Other pages state that prices are not shown on this site, and data/products.json withholds prices (FLG-005). The label does not display a price, but it is worded as if one is on the page. It is flagged for an owner decision on wording, not changed here, because it is a visible copy decision and it appears on every product card. Amazon Associates Program Policies §6(y) is cited in this register for the no-price-tracking rule; that section was not re-read in this check.",
+      "action": "Owner: choose the button wording. If changed, rebuild with node _src/build.mjs; the compliance gate checks the disclosure and link classes, not the label wording.",
+      "sourceUrl": "https://affiliate-program.amazon.com/help/operating/policies",
+      "sourceLabel": "Amazon Associates Program Policies (cited elsewhere in this register)"
     }
   ],
   "ledger": {
