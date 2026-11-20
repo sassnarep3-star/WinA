@@ -31,7 +31,11 @@
       <span class="brand__name">Counter Space</span>
       <span class="brand__sub">Kitchen gear, judged honestly</span>
     </a>
-    <nav class="nav" aria-label="Primary"><a href="/WinA/air-fryers/">Air fryers</a><a href="/WinA/thermometers/">Thermometers</a><a href="/WinA/guides/">Guides</a><a href="/WinA/compare/">Compare</a><a href="/WinA/about/">About</a></nav>
+    <nav class="nav" aria-label="Primary"><a href="/WinA/start-here/">Start here</a><a href="/WinA/air-fryers/">Air fryers</a><a href="/WinA/thermometers/">Thermometers</a><a href="/WinA/guides/">Guides</a><a href="/WinA/compare/">Compare</a><a href="/WinA/about/">About</a></nav>
+    <button class="searchbtn" type="button" data-search-open aria-label="Search this site">
+      <svg viewBox="0 0 20 20" width="17" height="17" aria-hidden="true" focusable="false"><circle cx="8.5" cy="8.5" r="5.5" fill="none" stroke="currentColor" stroke-width="1.8"/><line x1="12.8" y1="12.8" x2="17" y2="17" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+      <span class="searchbtn__label">Search</span>
+    </button>
   </div>
 </header>
 
@@ -51,20 +55,60 @@
   <div class="wrap">
     <p class="kicker">Before any decision</p>
     <h1 class="article-head__title">Open questions</h1>
-    <p class="article-head__dek">Every open question this build ran into, with what we can answer today, what we cannot, and how to close it. Nothing here is resolved by assumption. Where an answer exists, it cites the source. Where it does not, the row says so and names the specific thing that would settle it.</p>
+    <p class="article-head__dek">Every open question this build ran into, with what we can answer today, what we cannot, and how to close it. Nothing here is resolved by assumption. Where an answer exists, it cites the source. Where it does not, the row says so and names the specific thing that would settle it. Read it with the missing-information register on the suggestions page, which lists the same gaps in the order they can be closed.</p>
   </div>
 </div>
 <section class="section">
   <div class="wrap">
     <div class="strip" style="border:1px solid var(--rule);margin-bottom:2rem">
       <div class="strip__inner">
-        <div class="strip__cell"><p class="strip__num">22</p><p class="strip__lab">Questions logged</p></div>
+        <div class="strip__cell"><p class="strip__num">31</p><p class="strip__lab">Questions logged</p></div>
         <div class="strip__cell"><p class="strip__num">6</p><p class="strip__lab">Blocking</p></div>
-        <div class="strip__cell"><p class="strip__num">4</p><p class="strip__lab">Answered</p></div>
-        <div class="strip__cell"><p class="strip__num">18</p><p class="strip__lab">Still open</p></div>
+        <div class="strip__cell"><p class="strip__num">6</p><p class="strip__lab">Answered</p></div>
+        <div class="strip__cell"><p class="strip__num">25</p><p class="strip__lab">Still open</p></div>
       </div>
     </div>
 
+    <h2 class="section__title" style="font-size:1.4rem">Decisions and what is standing in the way</h2>
+    <p class="section__dek" style="margin-bottom:1.2rem">Seven decisions this publication is likely to face, and the questions that have to be answered first. A decision whose blockers are open is not ready to make, and saying so is cheaper than making it badly.</p>
+    <div class="tablewrap" style="margin-bottom:2rem">
+      <table class="data sortable">
+        <caption>Decision gates. Each row names a decision someone may want to make, the questions that must be answered before it can be made responsibly, and what happens once they are.</caption>
+        <thead><tr><th scope="col">Decision</th><th scope="col">Blocked by</th><th scope="col">What happens when it is unblocked</th></tr></thead>
+        <tbody><tr>
+          <td><strong>Publish more product pages and widen the catalogue</strong></td>
+          <td><code>Q-04</code><br><span class="tiny">Is shopnow047c-20 a live, enrolled Associates tracking ID?</span><br><code>Q-05</code><br><span class="tiny">What commission does each product actually pay?</span></td>
+          <td class="small">The tracking ID is confirmed enrolled and the commission for the category is known. Until then, more pages multiply the traffic on links that may earn nothing.</td>
+        </tr><tr>
+          <td><strong>Show prices, ratings and product photography</strong></td>
+          <td><code>Q-11</code><br><span class="tiny">Can we show prices?</span><br><code>Q-12</code><br><span class="tiny">Can we show product images?</span></td>
+          <td class="small">Product Advertising API or Creatives access. All three unlock together, and each is gated on qualifying sales, which needs Q-04 answered first.</td>
+        </tr><tr>
+          <td><strong>Publish guides that claim measured results</strong></td>
+          <td><code>Q-09</code><br><span class="tiny">Has anyone here used these products?</span></td>
+          <td class="small">Someone actually cooks in these appliances. Until then the voice stays on the decision rather than the verdict, which is the correct voice for zero tests.</td>
+        </tr><tr>
+          <td><strong>Publish buying guides that answer &quot;will it fit my dinner&quot;</strong></td>
+          <td><code>Q-23</code><br><span class="tiny">What are the interior dimensions or volume of each air fryer?</span><br><code>Q-24</code><br><span class="tiny">Which physical model ships under ASIN B08DKYBTPH?</span></td>
+          <td class="small">Interior cavity dimensions, and the model number that actually ships under the 8-quart ASIN. Both are obtainable with a support request and a look at the box.</td>
+        </tr><tr>
+          <td><strong>Choose the next topic to write about</strong></td>
+          <td><code>Q-07</code><br><span class="tiny">Is anyone searching for these products or these questions?</span><br><code>Q-08</code><br><span class="tiny">Which of the guide questions should be written next?</span></td>
+          <td class="small">Search Console verification and a collector endpoint. Topic choice is currently instinct, and the register says so rather than pretending otherwise.</td>
+        </tr><tr>
+          <td><strong>Publish anything measured, or make any claim about performance</strong></td>
+          <td><code>Q-04</code><br><span class="tiny">Is shopnow047c-20 a live, enrolled Associates tracking ID?</span><br><code>Q-16</code><br><span class="tiny">Is anything being measured right now?</span></td>
+          <td class="small">Attribution confirmed and measurement running. Without both, a performance claim cannot be checked and a result cannot be seen.</td>
+        </tr><tr>
+          <td><strong>Expand to a second category or a second publication</strong></td>
+          <td><code>Q-03</code><br><span class="tiny">Do the five products belong to one niche, or two?</span><br><code>Q-05</code><br><span class="tiny">What commission does each product actually pay?</span></td>
+          <td class="small">The intended scope, and the commission economics of the category. Adding pages to an unfocused small site is the documented failure mode (SUG-02, SUG-13).</td>
+        </tr></tbody>
+      </table>
+    </div>
+
+    <h2 class="section__title" style="font-size:1.4rem">The full register</h2>
+    <p class="section__dek" style="margin-bottom:1.2rem">Every question, with the answer so far, what is still missing, and the specific action that would close it.</p>
     <div class="tablewrap">
       <table class="data sortable">
         <caption>Every open question, ordered by how much it blocks. "What is missing" is the honest list of what this build does not know; "how to close it" names the specific action or document.</caption>
@@ -205,14 +249,32 @@
     <td><span class="pill pill--built-unverified">built-unverified</span></td>
     <td class="small"><a href="https://sassnarep3-star.github.io/WinA/sitemap.xml" rel="noopener" target="_blank">Published sitemap</a></td>
   </tr><tr>
+    <td><code>Q-23</code></td>
+    <td class="small">Editorial</td>
+    <td><strong>What are the interior dimensions or volume of each air fryer?</strong><br><span class="pill pill--high" style="margin-top:.4rem">high</span></td>
+    <td class="small">Partly. The owner's manual gives the oven-style unit's cavity as 26 quarts — 1519 cubic inches — which is a usable interior figure. Neither basket fryer publishes an interior figure of any kind; chefman.com publishes exterior dimensions only.</td>
+    <td class="small">Interior dimensions for the dual basket and the 8-quart fryer. Exterior figures alone cannot answer &quot;will it fit&quot;.</td>
+    <td class="small">One manufacturer support request per basket-fryer model, or the interior-dimension line in the user guide.</td>
+    <td><span class="pill pill--partly-answered">partly-answered</span></td>
+    <td class="small"><a href="https://chefman.com/products/turbofry-touch-dual-window-air-fryer" rel="noopener" target="_blank">chefman.com — dual-basket specification (exterior only)</a></td>
+  </tr><tr>
+    <td><code>Q-28</code></td>
+    <td class="small">Demand</td>
+    <td><strong>Does adding more guides help, or does the site need a different kind of page?</strong><br><span class="pill pill--high" style="margin-top:.4rem">high</span></td>
+    <td class="small">Unknown, and untestable until there is traffic. Twelve guides in three clusters plus a decision entry point and a seasonal layer is a coherent structure, but it is a hypothesis about how people read, not a measurement.</td>
+    <td class="small">Impressions, queries, and click-through from each cluster and entry point.</td>
+    <td class="small">Deploy the collector (Q-16), verify Search Console (SG-29), then compare entry paths after a month.</td>
+    <td><span class="pill pill--unanswered">unanswered</span></td>
+    <td class="small"><a href="https://developers.google.com/search/docs/fundamentals/create-usable-content" rel="noopener" target="_blank">Google Search Central — Creating helpful, reliable, people-first content</a></td>
+  </tr><tr>
     <td><code>Q-08</code></td>
     <td class="small">Demand</td>
-    <td><strong>Which of the four guide topics should be written first?</strong><br><span class="pill pill--medium" style="margin-top:.4rem">medium</span></td>
-    <td class="small">Hypothesis only. The capacity checklist is the best starting bet because it applies to all three air fryers and does not depend on any product outperforming another.</td>
-    <td class="small">Evidence of which question people actually arrive with.</td>
-    <td class="small">Ship all four, then let Search Console query data reorder them. See SUG-05.</td>
-    <td><span class="pill pill--hypothesis">hypothesis</span></td>
-    <td class="small"><a href="https://sassnarep3-star.github.io/WinA/guides/" rel="noopener" target="_blank">The four guides as published</a></td>
+    <td><strong>Which of the guide questions should be written next?</strong><br><span class="pill pill--medium" style="margin-top:.4rem">medium</span></td>
+    <td class="small">Twelve guides are published, in three clusters, across both categories. They were chosen by editorial judgement, not by data. The next one should come from the query report, which does not exist yet.</td>
+    <td class="small">Any impression or query data. No keyword tool, no Search Console report and no click data informed the choice of these titles.</td>
+    <td class="small">Verify the site in Search Console (SG-29), wait for impressions, then read the Queries report.</td>
+    <td><span class="pill pill--unanswered">unanswered</span></td>
+    <td class="small"><a href="https://sassnarep3-star.github.io/WinA/guides/" rel="noopener" target="_blank">The published guides index</a></td>
   </tr><tr>
     <td><code>Q-11</code></td>
     <td class="small">Editorial</td>
@@ -268,14 +330,77 @@
     <td><span class="pill pill--unanswered">unanswered</span></td>
     <td class="small"><a href="https://sassnarep3-star.github.io/WinA/feed.xml" rel="noopener" target="_blank">Published feed, currently unconsumed</a></td>
   </tr><tr>
+    <td><code>Q-24</code></td>
+    <td class="small">Product identity</td>
+    <td><strong>Which physical model ships under ASIN B08DKYBTPH?</strong><br><span class="pill pill--medium" style="margin-top:.4rem">medium</span></td>
+    <td class="small">Yes. The Amazon listing names its own model in the resources line — &quot;1000 Watts/120 Volts – RJ38-SQSS-8T&quot; — and chefman.com publishes that same model code for its TurboFry Touch Stainless-Steel 8-quart. The 12.8 lb weight in the listing matches the maker's stated 12.8 lbs for that model.</td>
+    <td class="small">Only the dimensions and wattage, where the listing and the maker still disagree. That is a value conflict, not an identity conflict.</td>
+    <td class="small">One email to Chefman about the dimension and wattage discrepancy.</td>
+    <td><span class="pill pill--answered">answered</span></td>
+    <td class="small"><a href="https://www.amazon.com/dp/B08DKYBTPH" rel="nofollow noopener" target="_blank" data-nonaffiliate="true">Chefman 8 qt TurboFry listing</a></td>
+  </tr><tr>
+    <td><code>Q-25</code></td>
+    <td class="small">Editorial</td>
+    <td><strong>What is the current, correct water-resistance wording for the ThermoMaven?</strong><br><span class="pill pill--medium" style="margin-top:.4rem">medium</span></td>
+    <td class="small">Three official wordings exist and none of them is the same. The Amazon listing title says &quot;IP67 Waterproof&quot;. The maker's product page says &quot;100% waterproof&quot;. The maker's own user manual, read in full, publishes no IP number at all. The row is therefore marked &quot;claim&quot; rather than &quot;verified&quot;, with all three wordings shown.</td>
+    <td class="small">Whether any IP rating exists, and what it covers. The manual does not publish one.</td>
+    <td class="small">One email to ThermoMaven. Until then the row keeps all three wordings.</td>
+    <td><span class="pill pill--needs-review">needs-review</span></td>
+    <td class="small"><a href="https://www.thermomaven.com/products/f1-stealth" rel="noopener" target="_blank">thermomaven.com — F1 Stealth</a></td>
+  </tr><tr>
+    <td><code>Q-26</code></td>
+    <td class="small">Editorial</td>
+    <td><strong>Is the Emeril Lagasse preset count 24 or 25?</strong><br><span class="pill pill--medium" style="margin-top:.4rem">medium</span></td>
+    <td class="small">The owner's manual settles it at 24. The manual's preset mode chart names 24 presets, which agrees with the Amazon listing title and disagrees with the manufacturer's specification panel, which says 25 cooking pre-sets. The product page leads with 24 and shows the 25 next to it.</td>
+    <td class="small">Which count the manufacturer considers current.</td>
+    <td class="small">One email to Emeril Lagasse.</td>
+    <td><span class="pill pill--needs-review">needs-review</span></td>
+    <td class="small"><a href="https://www.emerileveryday.com/products/emeril_lagasse_french_door_airfryer_360" rel="noopener" target="_blank">emerileveryday.com — French Door AirFryer 360</a></td>
+  </tr><tr>
+    <td><code>Q-27</code></td>
+    <td class="small">Technical</td>
+    <td><strong>How long will the CHEF iQ app and Smart Hub service be supported?</strong><br><span class="pill pill--medium" style="margin-top:.4rem">medium</span></td>
+    <td class="small">Still not published. The full product page, its documentation links and its FAQ were read on 2026-11-20 and none of them states a support horizon. What the page does confirm is that the probe and hub use internal rechargeable lithium batteries with no removable cells, so a probe also depends on the hub remaining chargeable.</td>
+    <td class="small">A support horizon, and whether the probe reports temperature without the app.</td>
+    <td class="small">One email to CHEF iQ, then publish the answer verbatim whatever it is.</td>
+    <td><span class="pill pill--unanswered">unanswered</span></td>
+    <td class="small"><a href="https://chefiq.com/products/iq-sense" rel="noopener" target="_blank">chefiq.com — iQ Sense</a></td>
+  </tr><tr>
+    <td><code>Q-29</code></td>
+    <td class="small">Editorial</td>
+    <td><strong>Does the 8-quart TurboFry really reach 450°F?</strong><br><span class="pill pill--medium" style="margin-top:.4rem">medium</span></td>
+    <td class="small">Two official sources disagree. The Amazon listing title advertises a &quot;450°F Hi-Fry Option&quot;. The maker's own specification for model RJ38-SQSS-8T states a 200–400°F range and a 400°F maximum. The maker also states 4 cooking presets where the listing title calls it &quot;4-in-1: Bake, Dehydrate, Frozen&quot; — two different things counted as four.</td>
+    <td class="small">Which temperature ceiling applies to the unit sold under this ASIN, and what the four functions actually are.</td>
+    <td class="small">One email to Chefman. The row carries both figures until it is answered.</td>
+    <td><span class="pill pill--needs-review">needs-review</span></td>
+    <td class="small"><a href="https://chefman.com/collections/air-fryers-1/products/turbofry-touch-air-fryer-1" rel="noopener" target="_blank">chefman.com — TurboFry Touch Stainless-Steel (RJ38-SQSS-8T)</a></td>
+  </tr><tr>
+    <td><code>Q-31</code></td>
+    <td class="small">Editorial</td>
+    <td><strong>Can the CHEF iQ probe be cleaned in a dishwasher?</strong><br><span class="pill pill--medium" style="margin-top:.4rem">medium</span></td>
+    <td class="small">The maker's page says so explicitly: &quot;iQ Sense® is waterproof, easy to clean, and dishwasher safe.&quot; No separate care manual was published for it, so the product page is the only official statement.</td>
+    <td class="small">Nothing material. This one is answered.</td>
+    <td class="small">No further action needed; re-check if the maker publishes a care guide.</td>
+    <td><span class="pill pill--answered">answered</span></td>
+    <td class="small"><a href="https://chefiq.com/products/iq-sense" rel="noopener" target="_blank">chefiq.com — iQ Sense product page</a></td>
+  </tr><tr>
     <td><code>Q-21</code></td>
     <td class="small">Brand</td>
     <td><strong>Should there be an author identity?</strong><br><span class="pill pill--low" style="margin-top:.4rem">low</span></td>
-    <td class="small">Yes, eventually. Search quality guidance and reader trust both reward a real, attributable author.</td>
-    <td class="small">A named person, a bio, and any credentialed expertise to describe.</td>
-    <td class="small">Decide who is accountable for the content. A byline requires a real person willing to be named.</td>
-    <td><span class="pill pill--decision-needed">decision-needed</span></td>
+    <td class="small">Partly. Every page carries a byline naming the Counter Space editorial desk, and the about page states plainly that no page describes hands-on use. No individual person is named, because naming one would be a claim this site cannot support.</td>
+    <td class="small">A named, accountable human editor, and a published corrections log with dates.</td>
+    <td class="small">Owner decision, then a corrections policy with a named contact.</td>
+    <td><span class="pill pill--partly-answered">partly-answered</span></td>
     <td class="small"><a href="https://sassnarep3-star.github.io/WinA/about/" rel="noopener" target="_blank">Editorial standards</a></td>
+  </tr><tr>
+    <td><code>Q-30</code></td>
+    <td class="small">Editorial</td>
+    <td><strong>Is the 8-quart fryer 1000 W or 1700 W?</strong><br><span class="pill pill--low" style="margin-top:.4rem">low</span></td>
+    <td class="small">The Amazon listing states 1000 W / 120 V. chefman.com states 1700W / 120V for model RJ38-SQSS-8T, the same model the listing names.</td>
+    <td class="small">Which one applies. The gap is 700 W, which is the difference between one circuit and two.</td>
+    <td class="small">One email to Chefman.</td>
+    <td><span class="pill pill--needs-review">needs-review</span></td>
+    <td class="small"><a href="https://www.amazon.com/dp/B08DKYBTPH" rel="nofollow noopener" target="_blank" data-nonaffiliate="true">Amazon listing for the 8-quart TurboFry</a></td>
   </tr></tbody>
       </table>
     </div>
@@ -298,10 +423,12 @@
       <div>
         <h3>Shop</h3>
         <ul>
+          <li><a href="/WinA/start-here/">Start here</a></li>
           <li><a href="/WinA/air-fryers/">Air fryers</a></li>
           <li><a href="/WinA/thermometers/">Thermometers</a></li>
           <li><a href="/WinA/compare/">Compare all five</a></li>
           <li><a href="/WinA/guides/">Buying guides</a></li>
+          <li><a href="/WinA/season/">Cooking by season</a></li>
         </ul>
       </div>
       <div>
@@ -337,6 +464,18 @@
     </div>
   </div>
 </footer>
+
+<div class="searchbox" data-search hidden>
+  <div class="searchbox__panel" role="dialog" aria-modal="true" aria-label="Search this site">
+    <div class="searchbox__row">
+      <input class="searchbox__input" type="search" data-search-input placeholder="Search guides, products and pages…" aria-label="Search this site" autocomplete="off" spellcheck="false">
+      <button class="searchbox__close" type="button" data-search-close aria-label="Close search">Esc</button>
+    </div>
+    <p class="searchbox__hint">Type a question you would actually ask. Nothing is tracked and nothing leaves your browser.</p>
+    <ul class="searchbox__results" data-search-results></ul>
+    <p class="searchbox__empty" data-search-empty hidden>No page matches that. The <a href="/WinA/guides/">guides index</a> and <a href="/WinA/start-here/">start here</a> page are the best way in.</p>
+  </div>
+</div>
 
 <script src="/WinA/assets/js/site.js" defer></script>
 </body>

@@ -31,7 +31,11 @@
       <span class="brand__name">Counter Space</span>
       <span class="brand__sub">Kitchen gear, judged honestly</span>
     </a>
-    <nav class="nav" aria-label="Primary"><a href="/WinA/air-fryers/">Air fryers</a><a href="/WinA/thermometers/">Thermometers</a><a href="/WinA/guides/">Guides</a><a href="/WinA/compare/">Compare</a><a href="/WinA/about/">About</a></nav>
+    <nav class="nav" aria-label="Primary"><a href="/WinA/start-here/">Start here</a><a href="/WinA/air-fryers/">Air fryers</a><a href="/WinA/thermometers/">Thermometers</a><a href="/WinA/guides/">Guides</a><a href="/WinA/compare/">Compare</a><a href="/WinA/about/">About</a></nav>
+    <button class="searchbtn" type="button" data-search-open aria-label="Search this site">
+      <svg viewBox="0 0 20 20" width="17" height="17" aria-hidden="true" focusable="false"><circle cx="8.5" cy="8.5" r="5.5" fill="none" stroke="currentColor" stroke-width="1.8"/><line x1="12.8" y1="12.8" x2="17" y2="17" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+      <span class="searchbtn__label">Search</span>
+    </button>
   </div>
 </header>
 
@@ -62,10 +66,13 @@
     <h2>What exists</h2>
     <ul>
       <li><strong>A five-product publication</strong> — three air fryers, two thermometers — with individual pages, two category hubs, and a full comparison table.</li>
-      <li><strong>Four question-shaped guides</strong>, written as decisions rather than rankings.</li>
-      <li><strong>A complete source register</strong>: 5 primary sources and 60 specification rows, 36 of them filled and each with a verification status; the rest are blank on purpose, with the reason recorded.</li>
+      <li><strong>12 question-shaped guides</strong>, written as decisions rather than rankings, in 3 clusters — choosing, living with it, and cooking with confidence.</li>
+      <li><strong>A decision entry point</strong> at <a href="/WinA/start-here/">/start-here/</a>: seven kitchen situations, each naming the product shape that fits it and what would make it wrong. It is the page a reader with no idea what they want lands on.</li>
+      <li><strong>A seasonal layer</strong> at <a href="/WinA/season/">/season/</a>, which shows that the same five products have five different reasons to be chosen across the year.</li>
+      <li><strong>Original illustration throughout</strong> — schematics drawn by the build itself, not product photography, because Amazon's program policies require API-supplied content for anything we cannot license.</li>
+      <li><strong>A complete source register</strong>: 5 primary sources and 77 specification rows, 61 of them filled and each with a verification status; the rest are blank on purpose, with the reason recorded.</li>
       <li><strong>Marketing copy for all five links</strong> — a social post, a newsletter paragraph and its mandatory disclosure per product, on <a href="/WinA/marketing/kit/">the marketing kit</a>.</li>
-      <li><strong>Ten policy checks</strong> traced to the exact clause, with the text quoted verbatim so the summary can be audited.</li>
+      <li><strong>10 policy checks</strong> traced to the exact clause, with the text quoted verbatim so the summary can be audited, plus 49 items on the flagged register.</li>
       <li><strong>A publication gate</strong> in the build: it fails if any page loses its disclosure, or if any Amazon link loses its sponsored marking.</li>
       <li><strong>SEO foundations</strong>: sitemap, RSS feed, canonical URLs, structured data, and descriptions written for humans.</li>
       <li><strong>A defined measurement plan</strong>: five events, a self-hosted collector, and a ledger schema.</li>
@@ -76,13 +83,15 @@
     <ul>
       <li><strong>No prices, ratings, reviews or product photos.</strong> Amazon's program policies prohibit displaying these without API access. We do not have it. Showing them anyway would risk the account; inventing them would be worse.</li>
       <li><strong>No hands-on testing.</strong> None took place, so none is claimed. Every page writes about the decision instead of a verdict, and the FTC's rule against describing experience you do not have is the reason.</li>
-      <li><strong>No traffic or conversion data.</strong> The site launched with this build. Search Console is unverified and the analytics collector is not deployed, so nothing is being measured yet.</li>
+      <li><strong>No traffic or conversion data.</strong> Search Console is unverified and the analytics collector is not deployed, so nothing is being measured yet. Every guide title on this site is an editorial hypothesis, not a measured claim about what people search for.</li>
+      <li><strong>Interior cavity dimensions for the two basket fryers.</strong> The oven-style unit is covered: its owner's manual gives the cavity as 26 quarts, 1519 cubic inches. Neither basket fryer publishes an interior figure, so "will a whole chicken fit" for those two is answered as far as the published record allows and no further.</li>
+      <li><strong>Official sources that disagree with each other.</strong> The ThermoMaven water-resistance wording: the retailer says IP67, the maker says "100% waterproof", and the maker's own manual publishes no IP rating at all. The Emeril preset count: the owner's manual names 24 presets, the maker's specification panel says 25. The 8-quart Chefman dimensions and wattage: the listing and the maker give different numbers for the same model. Every one of them is shown, each attributed to the page that says it, rather than one being silently preferred.</li>
       <li><strong>No automated product research.</strong> The brief asked for an agent that identifies trending, high-converting products. Identifying "trending" requires a data source; without one, any such claim would be a fabrication with a chart attached. The pipeline is defined and its data inputs are documented as missing.</li>
-      <li><strong>No revenue projection.</strong> Four unknowns multiplied together produce fiction.</li>
+      <li><strong>No revenue projection.</strong> Several unknowns multiplied together produce fiction.</li>
     </ul>
 
     <h2>What is unresolved</h2>
-    <p>33 items on the <a href="/WinA/flagged/">flagged for review</a> page. Four matter commercially:</p>
+    <p>49 items on the <a href="/WinA/flagged/">flagged for review</a> page, and 31 questions on the <a href="/WinA/questions/">open questions</a> page, which also carries a table of the seven decisions that are not yet ready to be made and the questions standing in the way of each. Four matter commercially:</p>
     <ol>
       <li>The tracking ID <code>shopnow047c-20</code> may not be enrolled. If it is not, nothing on this site earns anything.</li>
       <li>The compliance status of the submitted <code>link.amazon</code> short links is genuinely unknown — we did not declare them invalid, we simply do not depend on them.</li>
@@ -95,14 +104,15 @@
       <li>Sign in to Associates and confirm one product link per product appears in the tracking report.</li>
       <li>Deploy the collector in <code>_worker/</code> and set the endpoint, then rebuild.</li>
       <li>Verify Search Console, replace the placeholder token, submit the sitemap.</li>
-      <li>Publish one guide a week for eight weeks.</li>
+      <li>Publish one guide a week for eight weeks. 12 guides already exist, but they were written in one sitting, which is not a cadence.</li>
       <li>At week eight, read the query report and replace the topic hypotheses with measured demand.</li>
       <li>Apply for Product Advertising API access once the account qualifies — it unlocks prices, ratings and images together.</li>
+      <li>Ask the manufacturers the questions that only they can answer: the basket fryers' interior cavity dimensions, whether the 8-quart TurboFry reaches 450°F and whether it is 1000 W or 1700 W, the Emeril preset and accessory counts, the ThermoMaven IP rating, and the CHEF iQ app support horizon. All of them are listed on the <a href="/WinA/suggestions/">suggestions</a> page as the missing-information register, and each is one email.</li>
     </ol>
 
     <h2>The honest verdict</h2>
-    <p>What exists is a small, well-documented, compliant publication with four decent guides and five products. It is not yet a business: it has no traffic, no verified affiliate attribution, and no data. It is, however, built so that when those three things arrive, nothing has to be torn down — and so that nothing on it is a lie.</p>
-    <p>The main strategic risk is not technical. It is that four guides is not enough content to rank in a crowded category, and the plan for fixing that is a cadence, not a feature.</p>
+    <p>What exists is a small, well-documented, compliant publication with 12 guides and 5 products. It is not yet a business: it has no traffic, no verified affiliate attribution, and no data. It is, however, built so that when those three things arrive, nothing has to be torn down — and so that nothing on it is a lie.</p>
+    <p>The main strategic risk is not technical. It is that 12 guides, published in one sitting, is still not a body of content that ranks in a crowded category, and the plan for fixing that is a cadence, not a feature.</p>
   </div>
 </section>
 
@@ -122,10 +132,12 @@
       <div>
         <h3>Shop</h3>
         <ul>
+          <li><a href="/WinA/start-here/">Start here</a></li>
           <li><a href="/WinA/air-fryers/">Air fryers</a></li>
           <li><a href="/WinA/thermometers/">Thermometers</a></li>
           <li><a href="/WinA/compare/">Compare all five</a></li>
           <li><a href="/WinA/guides/">Buying guides</a></li>
+          <li><a href="/WinA/season/">Cooking by season</a></li>
         </ul>
       </div>
       <div>
@@ -161,6 +173,18 @@
     </div>
   </div>
 </footer>
+
+<div class="searchbox" data-search hidden>
+  <div class="searchbox__panel" role="dialog" aria-modal="true" aria-label="Search this site">
+    <div class="searchbox__row">
+      <input class="searchbox__input" type="search" data-search-input placeholder="Search guides, products and pages…" aria-label="Search this site" autocomplete="off" spellcheck="false">
+      <button class="searchbox__close" type="button" data-search-close aria-label="Close search">Esc</button>
+    </div>
+    <p class="searchbox__hint">Type a question you would actually ask. Nothing is tracked and nothing leaves your browser.</p>
+    <ul class="searchbox__results" data-search-results></ul>
+    <p class="searchbox__empty" data-search-empty hidden>No page matches that. The <a href="/WinA/guides/">guides index</a> and <a href="/WinA/start-here/">start here</a> page are the best way in.</p>
+  </div>
+</div>
 
 <script src="/WinA/assets/js/site.js" defer></script>
 </body>

@@ -4,18 +4,18 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Suggestions — Counter Space</title>
-<meta name="description" content="A reviewable decision list: sixteen suggestions with rationale, cost, risk, and a recommendation — nothing implemented without a decision.">
+<meta name="description" content="A reviewable decision list: 25 suggestions with rationale, cost, risk and a recommendation, plus a missing-information register naming what would close each open gap. Nothing implemented without a decision.">
 <link rel="canonical" href="https://sassnarep3-star.github.io/WinA/suggestions/">
 <meta name="robots" content="index,follow,max-image-preview:large">
 <meta name="google-site-verification" content="REPLACE_WITH_REAL_TOKEN_FLG009">
 <meta property="og:site_name" content="Counter Space">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Suggestions — Counter Space">
-<meta property="og:description" content="A reviewable decision list: sixteen suggestions with rationale, cost, risk, and a recommendation — nothing implemented without a decision.">
+<meta property="og:description" content="A reviewable decision list: 25 suggestions with rationale, cost, risk and a recommendation, plus a missing-information register naming what would close each open gap. Nothing implemented without a decision.">
 <meta property="og:url" content="https://sassnarep3-star.github.io/WinA/suggestions/">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Suggestions — Counter Space">
-<meta name="twitter:description" content="A reviewable decision list: sixteen suggestions with rationale, cost, risk, and a recommendation — nothing implemented without a decision.">
+<meta name="twitter:description" content="A reviewable decision list: 25 suggestions with rationale, cost, risk and a recommendation, plus a missing-information register naming what would close each open gap. Nothing implemented without a decision.">
 <link rel="alternate" type="application/rss+xml" title="Counter Space" href="/WinA/feed.xml">
 <link rel="stylesheet" href="/WinA/assets/css/site.css">
 <script>window.CS_CONFIG={analyticsEnabled:false,analyticsEndpoint:""};</script>
@@ -31,7 +31,11 @@
       <span class="brand__name">Counter Space</span>
       <span class="brand__sub">Kitchen gear, judged honestly</span>
     </a>
-    <nav class="nav" aria-label="Primary"><a href="/WinA/air-fryers/">Air fryers</a><a href="/WinA/thermometers/">Thermometers</a><a href="/WinA/guides/">Guides</a><a href="/WinA/compare/">Compare</a><a href="/WinA/about/">About</a></nav>
+    <nav class="nav" aria-label="Primary"><a href="/WinA/start-here/">Start here</a><a href="/WinA/air-fryers/">Air fryers</a><a href="/WinA/thermometers/">Thermometers</a><a href="/WinA/guides/">Guides</a><a href="/WinA/compare/">Compare</a><a href="/WinA/about/">About</a></nav>
+    <button class="searchbtn" type="button" data-search-open aria-label="Search this site">
+      <svg viewBox="0 0 20 20" width="17" height="17" aria-hidden="true" focusable="false"><circle cx="8.5" cy="8.5" r="5.5" fill="none" stroke="currentColor" stroke-width="1.8"/><line x1="12.8" y1="12.8" x2="17" y2="17" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+      <span class="searchbtn__label">Search</span>
+    </button>
   </div>
 </header>
 
@@ -51,7 +55,7 @@
   <div class="wrap">
     <p class="kicker">Review before implementing</p>
     <h1 class="article-head__title">Suggestions</h1>
-    <p class="article-head__dek">A decision list, not a wish list. Each suggestion states what to do, why, what it costs, and what would make it a bad idea. Nothing here has been implemented beyond what is already live; the ones marked shipped were built in this pass because the brief asked for them directly. Everything else waits for a decision.</p>
+    <p class="article-head__dek">A decision list, not a wish list. Each suggestion states what to do, why, what it costs, and what would make it a bad idea. Nothing here is implemented without a decision, except the rows marked shipped, which were built in this pass because the brief asked for them directly. The missing-information register below is the list of things worth finding out before the next decision is made.</p>
   </div>
 </div>
 <section class="section">
@@ -63,15 +67,15 @@
         <tbody><tr>
           <td><span class="pill pill--shipped">shipped</span></td>
           <td>Already built on the live site in this pass.</td>
-          <td class="num">2</td>
+          <td class="num">8</td>
         </tr><tr>
           <td><span class="pill pill--recommend">recommend</span></td>
           <td>Highest confidence, do this before the others.</td>
-          <td class="num">6</td>
+          <td class="num">9</td>
         </tr><tr>
           <td><span class="pill pill--consider">consider</span></td>
           <td>Worth doing, but depends on an earlier decision.</td>
-          <td class="num">4</td>
+          <td class="num">3</td>
         </tr><tr>
           <td><span class="pill pill--hold">hold</span></td>
           <td>Do not do this yet. Reason given.</td>
@@ -79,7 +83,7 @@
         </tr><tr>
           <td><span class="pill pill--reject">reject</span></td>
           <td>Would break a rule or mislead a reader.</td>
-          <td class="num">2</td>
+          <td class="num">3</td>
         </tr></tbody>
       </table>
     </div>
@@ -149,6 +153,33 @@
     <td class="small">If the tag is not enrolled, every link still earns nothing. That is the one thing this cannot fix.</td>
     <td class="small">Already done. Next step is the proof: click one link per product while signed in, and confirm it appears in the tracking report.<br><span class="tiny"><a href="https://affiliate-program.amazon.com/help/operating/policies" rel="noopener" target="_blank">Participation Requirements §6(w)</a></span></td>
   </tr><tr>
+    <td><code>SUG-17</code></td>
+    <td><strong>Give every page a decision, not a summary: lead with the answer a reader came for</strong></td>
+    <td><span class="pill pill--shipped">shipped</span></td>
+    <td class="num">9</td>
+    <td class="small">The brief asks for a site that reads like a shop rather than an audit. The difference in practice is that a shop answers the question the customer walked in with, in the first screen, and shows the product next to the answer. This pass added a /start-here/ decision entry point, a seasonal layer at /season/, cluster grouping on the guides index, and a source list on every guide so a claim can be checked in one click.</td>
+    <td class="small">None beyond writing.</td>
+    <td class="small">A decision page can read as confident when it is not. Every answer on it points at a product shape and says what would make it wrong, and no page claims testing.</td>
+    <td class="small">Shipped. Watch which entry points earn clicks once measurement exists; if /start-here/ is never entered, the answer is to link it more prominently rather than delete it.</td>
+  </tr><tr>
+    <td><code>SUG-18</code></td>
+    <td><strong>Ask each manufacturer for the interior cavity dimensions — the one figure nobody publishes</strong></td>
+    <td><span class="pill pill--recommend">recommend</span></td>
+    <td class="num">9</td>
+    <td class="small">Every capacity guide on this site currently ends in a gap: exterior dimensions are published, interior dimensions are not, and &quot;can a whole chicken fit&quot; cannot be answered from them. A single support email per model would close it, and it would close it for the reader too — this is the highest-value missing-information request on the site.</td>
+    <td class="small">Three short emails and a week of waiting. Possibly a sample unit if they refuse to publish.</td>
+    <td class="small">A manufacturer may publish a figure that does not match the unit actually sold, which is a different problem, not a reason not to ask. Record whatever they answer with its date and its source, exactly like every other specification.</td>
+    <td class="small">Recommend. Do it before the next capacity guide is written, and record the answer in data/products.json with its source rather than in prose.</td>
+  </tr><tr>
+    <td><code>SUG-25</code></td>
+    <td><strong>Do not publish year-stamped &quot;best of&quot; listicles</strong></td>
+    <td><span class="pill pill--reject">reject</span></td>
+    <td class="num">9</td>
+    <td class="small">This is the single most recognisable pattern of a generated affiliate site, and the brief explicitly asks for something that does not read like one. A &quot;Best Air Fryers of 2026&quot; list implies a tested, ranked, current verdict; this site has neither the tests nor the prices, and the year in the title guarantees decay. It also invites the copy-paste structure that every competitor publishes, which is not a strategy.</td>
+    <td class="small">None. This is a prohibition, not a build.</td>
+    <td class="small">The argument for it is that it is what ranks. It is what ranks in the short term, and it is what produces the pages that get penalised and abandoned.</td>
+    <td class="small">Reject, permanently. Listed here so that a future session does not add one in good faith. The question-shaped guides are the deliberate alternative.</td>
+  </tr><tr>
     <td><code>SUG-05</code></td>
     <td><strong>Publish on a real cadence: one guide a week for eight weeks, then read the query data</strong></td>
     <td><span class="pill pill--recommend">recommend</span></td>
@@ -156,7 +187,7 @@
     <td class="small">Question-shaped guides are the right shape, but four is not a sample. A weekly cadence for two months produces enough pages and enough query impressions to see which question people actually arrive with, which is the only way to stop guessing topics.</td>
     <td class="small">One substantive guide per week. Each needs its own verified spec pass.</td>
     <td class="small">Cadence without quality control produces the thin content the brief explicitly rejects. The build gate must stay on.</td>
-    <td class="small">Recommend a fixed day and a fixed length. Add each new guide to the sitemap and feed in the same commit, then measure at week eight.</td>
+    <td class="small">Partly done, deliberately. Twelve guides now exist, but they were published in one pass, which is not a cadence. The weekly rhythm is still the plan, and the next topic should be chosen from the query report once one exists. Do not mistake a bigger library for a cadence.</td>
   </tr><tr>
     <td><code>SUG-06</code></td>
     <td><strong>Add a real author byline with a named person</strong></td>
@@ -166,6 +197,24 @@
     <td class="small">Requires a real person willing to be named and accountable.</td>
     <td class="small">A byline attached to content the person did not write is worse than no byline.</td>
     <td class="small">Decision needed from the requester. Cannot be fabricated.</td>
+  </tr><tr>
+    <td><code>SUG-19</code></td>
+    <td><strong>Download the user guides for the three air fryers and record the care instructions</strong></td>
+    <td><span class="pill pill--shipped">shipped</span></td>
+    <td class="num">8</td>
+    <td class="small">&quot;Dishwasher-safe&quot; currently has to be treated as a claim because no official care instruction could be found for the nonstick baskets. The user guide is the document that settles how to wash them, and it also carries the interior cavity dimensions and the model number that distinguishes the 8-quart variants. One PDF per model answers three open rows at once.</td>
+    <td class="small">An hour of downloading and reading.</td>
+    <td class="small">Guides are model-specific and the 8-quart family spans several SKUs. Record which model number the guide belongs to and which ASIN it belongs to, separately.</td>
+    <td class="small">Shipped for two of the three. The owner's manuals for the Emeril French Door AirFryer 360 (FAFO-001) and the ThermoMaven F1 Stealth (HT07) were downloaded and read in full, which closed the wattage, temperature-range, interior-volume, cleaning, calibration and probe-spec rows. chefman.com's published specification pages supplied the model numbers and the basket care instructions. The remaining gap is the basket fryers' interior cavity dimensions, which no published source carries.</td>
+  </tr><tr>
+    <td><code>SUG-23</code></td>
+    <td><strong>Commission one hands-on test, properly disclosed, rather than guessing at everything</strong></td>
+    <td><span class="pill pill--recommend">recommend</span></td>
+    <td class="num">8</td>
+    <td class="small">This is the unlock the whole site is waiting on. Every guide currently ends at the edge of a measured fact: preheat time, how much a basket browns, whether the crumb tray is awkward, what the 450°F Hi-Fry burst actually does to a chicken wing. One tested unit per form factor would convert an honest inference site into an evidence site, and it would end the awkwardness of writing about an appliance nobody has ever switched on.</td>
+    <td class="small">Three units, or one borrowed per category. Plus the discipline to write only what was measured.</td>
+    <td class="small">Testing a single unit invites over-generalisation, and a disclosed test must be disclosed on every page that cites it. Both are manageable; neither is a reason not to test.</td>
+    <td class="small">Recommend, and treat it as the real content strategy rather than a compliance nicety. Until it happens, the site stays in the &quot;how to decide&quot; voice, which is the correct voice for zero tests.</td>
   </tr><tr>
     <td><code>SUG-07</code></td>
     <td><strong>Move to a custom domain before building any authority</strong></td>
@@ -185,14 +234,32 @@
     <td class="small">A self-hosted collector is a privacy obligation. The current design stores no identifiers, which keeps that burden small.</td>
     <td class="small">Recommend deploying to close FLG-011. Do not import a third-party tracker as a shortcut.<br><span class="tiny"><a href="https://sassnarep3-star.github.io/WinA/analytics/" rel="noopener" target="_blank">Measurement page</a></span></td>
   </tr><tr>
+    <td><code>SUG-20</code></td>
+    <td><strong>Ask ThermoMaven what the IP rating applies to — and to which part of the device</strong></td>
+    <td><span class="pill pill--shipped">shipped</span></td>
+    <td class="num">7</td>
+    <td class="small">Two official sources disagree in form. The Amazon listing title states &quot;IP67 Waterproof&quot;; the maker's own page says &quot;100% waterproof&quot; and publishes no IP number. The site currently shows both, attributed, which is honest but unsatisfying. One question to the manufacturer would settle whether IP67 covers the whole unit or only the sensing end.</td>
+    <td class="small">One email.</td>
+    <td class="small">Low. If they do not answer, the site keeps showing both statements, which is the correct fallback.</td>
+    <td class="small">Shipped as far as it can be without the manufacturer replying. The maker's own user manual was read in full and publishes no IP number, so the specification row was downgraded from &quot;verified&quot; to &quot;claim&quot; and all three official wordings are shown. The row is only closable by a manufacturer reply.<br><span class="tiny"><a href="https://www.thermomaven.com/products/f1-stealth" rel="noopener" target="_blank">thermomaven.com — F1 Stealth</a></span></td>
+  </tr><tr>
+    <td><code>SUG-22</code></td>
+    <td><strong>Ask CHEF iQ how long the app and Smart Hub service will be supported</strong></td>
+    <td><span class="pill pill--recommend">recommend</span></td>
+    <td class="num">7</td>
+    <td class="small">The wireless thermometer is the one product on this site whose main feature depends on software. Nothing published states a support horizon, so the register records it as unverified rather than guessing. It is also the single most common complaint category for connected kitchen devices, and it is exactly the question a buyer should be asking before paying for it.</td>
+    <td class="small">One email.</td>
+    <td class="small">The honest answer might be &quot;we do not commit to a date&quot;. That is still useful, and it is still publishable.</td>
+    <td class="small">Still recommend, and now better evidenced. The full product page, its documentation links and its FAQ were read on 2026-11-20 and none states a support horizon. What is confirmed is that the probe and hub use internal rechargeable lithium batteries with no removable cells, so a probe depends on the hub as well as the app.<br><span class="tiny"><a href="https://chefiq.com/products/iq-sense" rel="noopener" target="_blank">chefiq.com — iQ Sense</a></span></td>
+  </tr><tr>
     <td><code>SUG-09</code></td>
     <td><strong>Add a 'who should not buy this' block to every product page</strong></td>
-    <td><span class="pill pill--consider">consider</span></td>
+    <td><span class="pill pill--shipped">shipped</span></td>
     <td class="num">6</td>
     <td class="small">The single most useful thing a buying guide can say, and the thing competitors skip. It also converts better, because readers trust a page that talked them out of something.</td>
     <td class="small">A short block per product.</td>
     <td class="small">None. It requires actually understanding the trade-off, which is why most sites omit it.</td>
-    <td class="small">Consider. The current pages carry a trade-off line; expanding it to a full block is the natural next edit.</td>
+    <td class="small">Shipped. Every product page carries a &quot;Who it is wrong for&quot; section, and the front page and the new /start-here/ page name the situation each product is wrong for rather than ranking it. Re-open this only if the site acquires a second authorial voice.</td>
   </tr><tr>
     <td><code>SUG-10</code></td>
     <td><strong>Build a real comparison table with measured dimensions</strong></td>
@@ -203,14 +270,32 @@
     <td class="small">A wrong dimension is worse than a blank. Only add numbers with a source.</td>
     <td class="small">Consider once manufacturer sheets are gathered. Until then the table shows what is verified and says what is not.</td>
   </tr><tr>
+    <td><code>SUG-21</code></td>
+    <td><strong>Ask Emeril Lagasse which preset count is current for this model</strong></td>
+    <td><span class="pill pill--shipped">shipped</span></td>
+    <td class="num">6</td>
+    <td class="small">The Amazon listing title for this ASIN says &quot;24 One-Touch Preset Options&quot;; the manufacturer's own specification panel says &quot;25 Cooking Pre-sets&quot;. They may be counting different things (one-touch options against total pre-sets), but a reader is entitled to know which is which.</td>
+    <td class="small">One email.</td>
+    <td class="small">Low. Both statements stay on the site until the answer arrives.</td>
+    <td class="small">Shipped. The owner's manual for model FAFO-001 contains a preset mode chart naming exactly 24 presets, which agrees with the Amazon listing title and disagrees with the maker's specification panel saying 25. The product page now leads with 24, states that the manual is where the number comes from, and shows the 25 alongside it. The accessory count has the same shape and is recorded the same way.<br><span class="tiny"><a href="https://www.emerileveryday.com/products/emeril_lagasse_french_door_airfryer_360" rel="noopener" target="_blank">emerileveryday.com — French Door AirFryer 360</a></span></td>
+  </tr><tr>
+    <td><code>SUG-24</code></td>
+    <td><strong>Add a site search once there are more pages than a reader can hold in their head</strong></td>
+    <td><span class="pill pill--consider">consider</span></td>
+    <td class="num">6</td>
+    <td class="small">Thirty-nine pages is the point where a visitor arrives knowing they want &quot;the chicken one&quot; rather than a category, and a search box is the honest answer to that. It also concentrates internal linking on the pages that matter, which helps a small site more than another guide.</td>
+    <td class="small">A generated index file and about forty lines of client-side JavaScript. No backend.</td>
+    <td class="small">A client-side search over a static index is only as good as the index, and it cannot rank. It is a convenience feature, not a discovery strategy, and should not be confused with one.</td>
+    <td class="small">Consider. Do it after the cadence in SUG-05 has produced a few more pages, so the index is worth searching.</td>
+  </tr><tr>
     <td><code>SUG-11</code></td>
     <td><strong>Add a short 'how we choose what to recommend' block to the front page</strong></td>
-    <td><span class="pill pill--consider">consider</span></td>
+    <td><span class="pill pill--shipped">shipped</span></td>
     <td class="num">5</td>
     <td class="small">Readers arriving cold need one sentence on why these five products and not others. It also pre-empts the 'is this an ad' reflex.</td>
     <td class="small">Three sentences.</td>
     <td class="small">Can tip into self-referential process talk, which the brief explicitly wants kept off the front page. Keep it to a single block low on the page.</td>
-    <td class="small">Consider. The About page currently carries this.</td>
+    <td class="small">Shipped. The front page carries a &quot;How these recommendations were made&quot; note, the front page strip shows the tested count as zero, and the /about/ page states the limitation. Keep it in the same place when the front page is redesigned.</td>
   </tr><tr>
     <td><code>SUG-14</code></td>
     <td><strong>Hold the email capture until there is something to send</strong></td>
@@ -242,14 +327,113 @@
       </table>
     </div>
 
+    <h2 class="section__title" style="font-size:1.4rem;margin-top:2.5rem">Missing information register</h2>
+    <p class="section__dek" style="margin-bottom:1.2rem">Everything the site asserts is sourced. Everything the site cannot source is listed here, with the specific artefact that would close it and who can supply it. Nothing in this table is a guess; each row is a gap that was checked against an official source and not found.</p>
+    <div class="tablewrap">
+      <table class="data sortable">
+        <caption>Every gap this site checked for and could not close from an official source, with the specific artefact that would close it. Sorted by ID.</caption>
+        <thead>
+          <tr>
+            <th scope="col">ID</th><th scope="col">What is missing</th><th scope="col">Why it matters</th>
+            <th scope="col">What would close it</th><th scope="col">Who can close it</th><th scope="col">Effort</th>
+          </tr>
+        </thead>
+        <tbody><tr>
+          <td><code>DSC-01</code></td>
+          <td><strong>Interior cavity dimensions for the two basket fryers</strong></td>
+          <td class="small">Exterior dimensions are published; interior dimensions are not. &quot;Can a whole chicken fit&quot; and &quot;does this feed four in one round&quot; both reduce to this one number. The oven-style unit is now covered: its owner's manual gives the cavity as 26 quarts, 1519 cubic inches. The two basket fryers still have no published interior figure.</td>
+          <td class="small">For the oven-style unit this is closed — the manual gives 1519 cubic inches. For the basket fryers, one manufacturer support request per model, or the interior-dimension line in the user guide.</td>
+          <td class="small">Manufacturer (chefman.com, emerileveryday.com)<br><span class="tiny"><a href="https://chefman.com/products/turbofry-touch-dual-window-air-fryer" rel="noopener" target="_blank">chefman.com — dual-basket specification</a> · <a href="https://www.emerileveryday.com/products/emeril_lagasse_french_door_airfryer_360" rel="noopener" target="_blank">emerileveryday.com — French Door AirFryer 360</a></span></td>
+          <td class="small">One email per basket-fryer model (two remain)</td>
+        </tr><tr>
+          <td><code>DSC-02</code></td>
+          <td><strong>Care instructions for the basket fryers’ nonstick baskets</strong></td>
+          <td class="small">chefman.com now states &quot;Nonstick, dishwasher-safe baskets&quot; for the 6-quart dual basket and &quot;Top-rack dishwasher-safe basket&quot; for the 8-quart, so the &quot;dishwasher-safe&quot; claim is now sourced to the manufacturer for both basket fryers. What is still missing is the care section of the user guide, which says how to wash them and what happens to the coating over time.</td>
+          <td class="small">The care section of the user guide for the exact model number.</td>
+          <td class="small">Manufacturer, or the listing's own care section on Amazon<br><span class="tiny"><a href="https://chefman.com/products/turbofry-touch-dual-window-air-fryer" rel="noopener" target="_blank">chefman.com — dual-basket specification</a></span></td>
+          <td class="small">One PDF per model</td>
+        </tr><tr>
+          <td><code>DSC-03</code></td>
+          <td><strong>Which dimensions and wattage apply to the 8-quart TurboFry</strong></td>
+          <td class="small">The model is settled: the listing names RJ38-SQSS-8T and chefman.com publishes that same code. What remains is a value conflict — the listing states 12.75&quot;D × 13.5&quot;W × 10&quot;H and 1000 W, while the maker states 15.4 × 12.6 × 13.5 in and 1700W. Both are on the page, attributed.</td>
+          <td class="small">A manufacturer reply naming the dimensions and wattage for the unit shipped under this ASIN.</td>
+          <td class="small">Manufacturer (chefman.com)<br><span class="tiny"><a href="https://chefman.com/collections/air-fryers-1/products/turbofry-touch-air-fryer-1" rel="noopener" target="_blank">chefman.com — TurboFry Touch Stainless-Steel</a> · <a href="https://www.amazon.com/dp/B08DKYBTPH" rel="nofollow noopener" target="_blank" data-nonaffiliate="true">Amazon listing</a></span></td>
+          <td class="small">One email</td>
+        </tr><tr>
+          <td><code>DSC-04</code></td>
+          <td><strong>What the IP rating on the ThermoMaven covers</strong></td>
+          <td class="small">The Amazon listing title says &quot;IP67 Waterproof&quot;; the maker's page says &quot;100% waterproof&quot; and publishes no IP number; the maker's own user manual, read in full, publishes no IP rating either. The row is marked &quot;claim&quot; and carries all three wordings.</td>
+          <td class="small">A manufacturer statement of whether an IP rating exists and what it covers.</td>
+          <td class="small">Manufacturer (thermomaven.com)<br><span class="tiny"><a href="https://www.thermomaven.com/products/f1-stealth" rel="noopener" target="_blank">thermomaven.com — F1 Stealth</a></span></td>
+          <td class="small">One email</td>
+        </tr><tr>
+          <td><code>DSC-05</code></td>
+          <td><strong>Whether the Emeril preset count is 24 or 25</strong></td>
+          <td class="small">The owner's manual for model FAFO-001 has a preset mode chart naming 24 presets, which agrees with the Amazon listing title. The manufacturer's specification panel says 25 cooking pre-sets. The site leads with 24 and shows the 25 alongside it. The accessory count has the same shape of disagreement: six in the listing title, seven in the product description.</td>
+          <td class="small">A manufacturer reply naming the current preset and accessory counts.</td>
+          <td class="small">Manufacturer (emerileveryday.com)<br><span class="tiny"><a href="https://cdn.shopify.com/s/files/1/0687/4388/8948/files/FAFO-001_VN_32451_EF_IB_T22-5004282-C_1.pdf?v=1777990358" rel="noopener" target="_blank">Emeril owner's manual, model FAFO-001</a> · <a href="https://www.emerileveryday.com/products/emeril_lagasse_french_door_airfryer_360" rel="noopener" target="_blank">emerileveryday.com</a></span></td>
+          <td class="small">One email</td>
+        </tr><tr>
+          <td><code>DSC-06</code></td>
+          <td><strong>How long the CHEF iQ app and Smart Hub service will be supported</strong></td>
+          <td class="small">The product page, its documentation links and its FAQ were read in full and none states a support horizon. The probe and hub use internal rechargeable lithium batteries, so a probe also depends on the hub remaining serviceable.</td>
+          <td class="small">A manufacturer statement of the support horizon, and whether the device reports temperature without the app.</td>
+          <td class="small">Manufacturer (chefiq.com)<br><span class="tiny"><a href="https://chefiq.com/products/iq-sense" rel="noopener" target="_blank">chefiq.com — iQ Sense</a></span></td>
+          <td class="small">One email</td>
+        </tr><tr>
+          <td><code>DSC-07</code></td>
+          <td><strong>The intended ASIN for each of the five submitted short links</strong></td>
+          <td class="small">The short codes were never ASINs and do not match the destinations. The observed ASIN is recorded; the intended one was never supplied and stays blank rather than being inferred.</td>
+          <td class="small">The requester stating, per submitted link, which product they meant.</td>
+          <td class="small">The requester — nobody else can supply this</td>
+          <td class="small">One message</td>
+        </tr><tr>
+          <td><code>DSC-08</code></td>
+          <td><strong>Whether shopnow047c-20 is an enrolled Associates tracking ID</strong></td>
+          <td class="small">Every link on this site carries it. If the account is not enrolled, nothing here earns anything and no amount of content fixes that.</td>
+          <td class="small">The Associates Central account page, or one live click test against the tracking report.</td>
+          <td class="small">The owner, in Associates Central — no access from here</td>
+          <td class="small">One login, or one click and a 48-hour wait</td>
+        </tr><tr>
+          <td><code>DSC-09</code></td>
+          <td><strong>Search Console impressions and queries for the published URLs</strong></td>
+          <td class="small">Every guide title on this site is an editorial hypothesis. Nothing on it has been tested against what people actually type. Until the query report exists, topic choice is instinct.</td>
+          <td class="small">A verified Search Console property, then the Queries report after a few weeks of impressions.</td>
+          <td class="small">The owner, in Search Console — the placeholder token in every page head still has to be replaced</td>
+          <td class="small">One verification, then patience</td>
+        </tr><tr>
+          <td><code>DSC-10</code></td>
+          <td><strong>A deployed analytics collector</strong></td>
+          <td class="small">Five events are defined and instrumented in the page script, but there is no endpoint, so nothing is recorded. No learning is happening.</td>
+          <td class="small">A host for the collector that is already written in _worker/collector.js, plus the endpoint written into the page config.</td>
+          <td class="small">The owner, or any host that will run a small worker</td>
+          <td class="small">About an hour, once a host is chosen</td>
+        </tr><tr>
+          <td><code>DSC-11</code></td>
+          <td><strong>Whether the 8-quart TurboFry reaches 450°F</strong></td>
+          <td class="small">The Amazon listing title advertises a 450°F Hi-Fry option. The maker's own specification for the very model the listing names states 200–400°F and a 400°F maximum. The listing also calls it &quot;4-in-1: Bake, Dehydrate, Frozen&quot; where the maker says 4 cooking presets — two different things counted as four.</td>
+          <td class="small">A manufacturer reply stating the temperature ceiling for model RJ38-SQSS-8T and what its four functions are.</td>
+          <td class="small">Manufacturer (chefman.com)<br><span class="tiny"><a href="https://chefman.com/collections/air-fryers-1/products/turbofry-touch-air-fryer-1" rel="noopener" target="_blank">chefman.com — TurboFry Touch Stainless-Steel</a> · <a href="https://www.amazon.com/dp/B08DKYBTPH" rel="nofollow noopener" target="_blank" data-nonaffiliate="true">Amazon listing</a></span></td>
+          <td class="small">One email</td>
+        </tr><tr>
+          <td><code>DSC-12</code></td>
+          <td><strong>Whether the CHEF iQ probe has five internal sensors or four plus one ambient</strong></td>
+          <td class="small">The same manufacturer page says both. The headline reads &quot;Five internal sensors&quot;; the feature list reads &quot;4 internal temperature sensors for accuracy within 1°F&quot; plus &quot;1 ambient temperature sensor&quot;. The two readings imply different measurement hardware.</td>
+          <td class="small">A manufacturer reply stating the sensor count and what each sensor measures.</td>
+          <td class="small">Manufacturer (chefiq.com)<br><span class="tiny"><a href="https://chefiq.com/products/iq-sense" rel="noopener" target="_blank">chefiq.com — iQ Sense</a></span></td>
+          <td class="small">One email</td>
+        </tr></tbody>
+      </table>
+    </div>
+
     <div class="note mt2">
       <p class="note__title">If you accept only three</p>
-      <p><strong>SUG-04</strong> — prove one affiliate link actually tracks, because nothing else matters if it does not. <strong>SUG-03</strong> — get API access, which unlocks prices, ratings and images at once. <strong>SUG-05</strong> — publish weekly for eight weeks, then let the query report choose the next topic instead of instinct.</p>
+      <p><strong>SUG-04</strong> — prove one affiliate link actually tracks, because nothing else matters if it does not. <strong>SUG-03</strong> — get API access, which unlocks prices, ratings and images at once. <strong>SUG-23</strong> — test one unit per form factor, which is the only thing that turns this from an inference site into an evidence site.</p>
     </div>
 
     <div class="note note--stop mt1">
-      <p class="note__title">Two suggestions are rejections</p>
-      <p><strong>SUG-12</strong> (price tracking) and <strong>SUG-13</strong> (generated near-duplicate pages) are listed so that a future session does not build them in good faith. The first breaches Amazon's program policies outright; the second produces the exact content this publication exists to avoid.</p>
+      <p class="note__title">Three suggestions are rejections</p>
+      <p><strong>SUG-12</strong> (price tracking), <strong>SUG-13</strong> (generated near-duplicate pages) and <strong>SUG-25</strong> (year-stamped "best of" listicles) are listed so that a future session does not build them in good faith. The first breaches Amazon's program policies outright; the second and third produce the exact content this publication exists to avoid.</p>
     </div>
   </div>
 </section>
@@ -270,10 +454,12 @@
       <div>
         <h3>Shop</h3>
         <ul>
+          <li><a href="/WinA/start-here/">Start here</a></li>
           <li><a href="/WinA/air-fryers/">Air fryers</a></li>
           <li><a href="/WinA/thermometers/">Thermometers</a></li>
           <li><a href="/WinA/compare/">Compare all five</a></li>
           <li><a href="/WinA/guides/">Buying guides</a></li>
+          <li><a href="/WinA/season/">Cooking by season</a></li>
         </ul>
       </div>
       <div>
@@ -309,6 +495,18 @@
     </div>
   </div>
 </footer>
+
+<div class="searchbox" data-search hidden>
+  <div class="searchbox__panel" role="dialog" aria-modal="true" aria-label="Search this site">
+    <div class="searchbox__row">
+      <input class="searchbox__input" type="search" data-search-input placeholder="Search guides, products and pages…" aria-label="Search this site" autocomplete="off" spellcheck="false">
+      <button class="searchbox__close" type="button" data-search-close aria-label="Close search">Esc</button>
+    </div>
+    <p class="searchbox__hint">Type a question you would actually ask. Nothing is tracked and nothing leaves your browser.</p>
+    <ul class="searchbox__results" data-search-results></ul>
+    <p class="searchbox__empty" data-search-empty hidden>No page matches that. The <a href="/WinA/guides/">guides index</a> and <a href="/WinA/start-here/">start here</a> page are the best way in.</p>
+  </div>
+</div>
 
 <script src="/WinA/assets/js/site.js" defer></script>
 </body>

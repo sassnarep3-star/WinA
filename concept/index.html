@@ -31,7 +31,11 @@
       <span class="brand__name">Counter Space</span>
       <span class="brand__sub">Kitchen gear, judged honestly</span>
     </a>
-    <nav class="nav" aria-label="Primary"><a href="/WinA/air-fryers/">Air fryers</a><a href="/WinA/thermometers/">Thermometers</a><a href="/WinA/guides/">Guides</a><a href="/WinA/compare/">Compare</a><a href="/WinA/about/">About</a></nav>
+    <nav class="nav" aria-label="Primary"><a href="/WinA/start-here/">Start here</a><a href="/WinA/air-fryers/">Air fryers</a><a href="/WinA/thermometers/">Thermometers</a><a href="/WinA/guides/">Guides</a><a href="/WinA/compare/">Compare</a><a href="/WinA/about/">About</a></nav>
+    <button class="searchbtn" type="button" data-search-open aria-label="Search this site">
+      <svg viewBox="0 0 20 20" width="17" height="17" aria-hidden="true" focusable="false"><circle cx="8.5" cy="8.5" r="5.5" fill="none" stroke="currentColor" stroke-width="1.8"/><line x1="12.8" y1="12.8" x2="17" y2="17" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+      <span class="searchbtn__label">Search</span>
+    </button>
   </div>
 </header>
 
@@ -58,7 +62,7 @@
   <div class="wrap narrow prose">
 <p><strong>Concept only. Not implemented.</strong> This page describes what a system could do. Nothing here is running. No model, no data feed, no pricing source and no review data is connected to this site, and no output from such a system is published. Every claim on the site is written by hand from a cited source.</p>
 <h2>Five functions, each a candidate design</h2>
-<table class="data sortable">
+<div class="tablewrap"><table class="data sortable" data-body-table>
 <thead><tr><th scope="col">Function</th><th scope="col">Concept (not implemented)</th><th scope="col">Requirement before any use</th></tr></thead>
 <tbody>
 <tr><td>Product research</td><td>Collect candidate listings from a permitted source and group them by category.</td><td>Only sources Associates permits. Product data kept separate from intended and observed fields.</td></tr>
@@ -67,7 +71,7 @@
 <tr><td>Link management</td><td>Build and check outbound links, mark them sponsored, and find broken ones.</td><td>Each product passes one Special Link test first (FLG-003, FLG-024). Short-link status is unresolved and is not claimed invalid.</td></tr>
 <tr><td>Tracking</td><td>Count outbound clicks and sessions with no personal data and no sub-tag per reader.</td><td>The collector is not deployed (FLG-011). The five events are defined but not recording. The campaign ledger takes only authorised first-party reports (FLG-012).</td></tr>
 </tbody>
-</table>
+</table></div>
 <h2>What it is not</h2>
 <p>It is not a recommendation engine, a conversion predictor, a revenue forecast, or a source of product claims. It makes no statement about how any product performs. Whether to build any part of it is an owner decision. See the <a href="/WinA/suggestions/">suggestions</a> and <a href="/WinA/flagged/">flagged items</a>.</p>
 </div>
@@ -88,10 +92,12 @@
       <div>
         <h3>Shop</h3>
         <ul>
+          <li><a href="/WinA/start-here/">Start here</a></li>
           <li><a href="/WinA/air-fryers/">Air fryers</a></li>
           <li><a href="/WinA/thermometers/">Thermometers</a></li>
           <li><a href="/WinA/compare/">Compare all five</a></li>
           <li><a href="/WinA/guides/">Buying guides</a></li>
+          <li><a href="/WinA/season/">Cooking by season</a></li>
         </ul>
       </div>
       <div>
@@ -127,6 +133,18 @@
     </div>
   </div>
 </footer>
+
+<div class="searchbox" data-search hidden>
+  <div class="searchbox__panel" role="dialog" aria-modal="true" aria-label="Search this site">
+    <div class="searchbox__row">
+      <input class="searchbox__input" type="search" data-search-input placeholder="Search guides, products and pages…" aria-label="Search this site" autocomplete="off" spellcheck="false">
+      <button class="searchbox__close" type="button" data-search-close aria-label="Close search">Esc</button>
+    </div>
+    <p class="searchbox__hint">Type a question you would actually ask. Nothing is tracked and nothing leaves your browser.</p>
+    <ul class="searchbox__results" data-search-results></ul>
+    <p class="searchbox__empty" data-search-empty hidden>No page matches that. The <a href="/WinA/guides/">guides index</a> and <a href="/WinA/start-here/">start here</a> page are the best way in.</p>
+  </div>
+</div>
 
 <script src="/WinA/assets/js/site.js" defer></script>
 </body>

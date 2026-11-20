@@ -65,6 +65,7 @@ fourth site. Claim the scope here first and push the claim before writing code.
 | T14 | Merge prior findings into one register | done | arena-ffa85037 | `data/governance.json` | 23 flags; 14 carried forward with attribution |
 | T15 | PR → `main`, merge, confirm Pages deploy | in progress | arena-ffa85037 | — | See integration result below |
 | T16 | Gap closure against the brief: sortable tables on every data table; SG-27..SG-30 parallel rows (nav labels, RSS feed, Search Console, reader capture); verified policy-citation corrections | done | arena-a86cb9d0 | `_src/build.mjs`, `_src/pages-content.mjs`, `assets/js/site.js`, `data/governance.json`, `COORDINATION.md` (arena-a86cb9d0 section only) | Extends main; does not add a second site (see conflict record) |
+| T17 | Reader-facing publication polish and organic-traffic expansion: count drift fixed, 7 new question-shaped guides (12 total in 3 clusters), `/start-here/` decision entry point, `/season/` seasonal layer, original SVG art, local search, responsive fixes, and a full manufacturer-source verification pass (model numbers, owner's manuals, discrepancy recording) | done | arena-86c88fd3 | `_src/build.mjs`, `_src/content.mjs`, `_src/pages-content.mjs`, `assets/css/site.css`, `assets/js/site.js`, `data/products.json`, `data/governance.json`, `data/suggestions.json`, `data/questions.json`, plus generated pages, `sitemap.xml`, `feed.xml`, `VALIDATION.md` | Extends main; does not add a second site. See the session section below for the verification findings |
 
 ---
 
@@ -432,4 +433,81 @@ Scope of work:
    for, and refresh the questions register and the executive summary.
 6. **Re-verify** all five product identities against their official Amazon listings, and every
    policy clause against the primary source, before writing.
+
+### T17 — what was done
+
+**Reader-facing layer.**
+- Count drift fixed: every guide/situation/spec count on the front page, guides index, summary and
+  dashboards is now derived from the data, not hardcoded.
+- Seven new question-shaped guides: `air-fryer-vs-toaster-oven`, `air-fryer-for-a-family`,
+  `whole-chicken-in-an-air-fryer`, `how-hot-should-chicken-be`,
+  `dishwasher-safe-air-fryer-baskets`, `wireless-thermometer-for-smoking`, `where-to-probe-a-chicken`.
+  Twelve guides total, in three clusters: choosing (5), keeping (2), cooking (5).
+- `/start-here/` decision entry point (seven kitchen situations, each naming the product shape that
+  fits and what would make it wrong) and `/season/` seasonal layer.
+- Original SVG cover art generated deterministically by the build; no product photography, no
+  third-party asset hosts.
+- Local search over a generated static index (38 page records); browser-verified that `chicken`
+  returns three relevant results.
+- Responsive fixes: masthead wraps under 780px, nav scrolls internally, article grid shrinks,
+  authored tables wrapped in `.tablewrap`, long flagged-page strings wrap. Final 390px sweep:
+  every valid sampled route is 390/390. `/products/` is intentionally not generated (404 expected).
+- The comparison table is 1391px wide inside an 1102px wrapper; the wrapper scrolls horizontally
+  and the page itself does not overflow (verified in a browser at 1440px).
+
+**Manufacturer-source verification pass (2026-11-20).** Every product identity and every
+specification was re-checked against the manufacturer's own page, and the owner's manuals for
+two products were downloaded and read in full. Findings, all recorded in `data/products.json`,
+`data/governance.json` (FLG-037…FLG-045), `data/questions.json` (Q-29…Q-31) and
+`data/suggestions.json` (DSC-11, DSC-12):
+
+- **Chefman 8-quart TurboFry identity resolved.** The Amazon listing for B08DKYBTPH names its own
+  model: `RJ38-SQSS-8T`, which is the model chefman.com publishes for its TurboFry Touch
+  Stainless-Steel 8-quart. The listing's 12.8 lb weight matches the maker's stated 12.8 lbs.
+- **But the two official sources disagree on values.** The listing states 12.75"D × 13.5"W × 10"H
+  and 1000 W / 120 V; chefman.com states 15.4 × 12.6 × 13.5 in and 1700W / 120V. The listing title
+  also advertises a 450°F Hi-Fry option that the maker's specification does not list (maker: 200–400°F).
+  Both figures are shown, attributed, and the rows are marked `claim`, not `verified`.
+- **Chefman 6-quart dual basket:** model `RJ38-SQPF-3TDB-2W` confirmed on chefman.com; 6 qt / 5.67 L,
+  200–450°F, 13.38 × 11.81 × 10.63 in, 1700W/120V, cETL, one-year assurance. Amazon metadata
+  incorrectly says "6 liters" — recorded as a discrepancy.
+- **Emeril Lagasse 26QT:** owner's manual for model `FAFO-001` read in full. It gives 1700 W rated
+  power, 75–500°F, the cavity as 26 quarts — 1519 cubic inches — and a preset mode chart naming
+  **24 presets**, which agrees with the Amazon title and disagrees with the maker's specification
+  panel (25). The accessory count also differs: six in the listing title, seven in the product
+  description. The manual's cleaning instruction (the appliance must not be soaked or put in a
+  dishwasher) is now on the product page.
+- **ThermoMaven F1 Stealth:** user manual (model `HT07`) read in full. It publishes **no IP rating
+  anywhere** — the "IP67" wording appears only in the Amazon listing title; the maker's page says
+  "100% waterproof". The water-resistance row was therefore downgraded from `verified` to `claim`.
+  The manual also gives the measurement range (-58 to 572°F), probe dimensions, and an ice-water
+  calibration procedure; no per-unit calibration certificate ships.
+- **CHEF iQ Sense Gen 3:** the maker's page now publishes the measurement ranges (internal
+  32–212°F, ambient 32–1,000°F), probe dimensions (0.19 × 4.75 in), 70+ hour battery life,
+  self-calibration and dishwasher safety. The same page says "five internal sensors" in its
+  headline and "4 internal temperature sensors" plus "1 ambient temperature sensor" in its feature
+  list — recorded as an open discrepancy. No official source publishes an app or Smart Hub support
+  horizon; that remains unverified.
+
+**Registers.** `data/governance.json` now carries 49 flags (FLG-037…FLG-045 added);
+`data/questions.json` 31 questions (Q-29…Q-31 added, Q-23/Q-24/Q-25/Q-26/Q-27 refreshed);
+`data/suggestions.json` 25 suggestions and 12 discovery rows (DSC-11, DSC-12 added; DSC-01…DSC-06
+updated to reflect what is now closed). The executive summary was rewritten to describe the
+current state, including the three live official-source disagreements.
+
+**Gates on the final tree.**
+```
+node _src/build.mjs        → Generated 39 pages, 38 in sitemap. PASSED: all gates clear
+node scripts/check-site.mjs → 39 pages · 1759 internal links · 156 Amazon links (130 sponsored)
+                              repository gate passed — safe to publish
+```
+Browser verification: desktop and 390px mobile screenshots of `/`, `/compare/` and
+`/products/chefman-8-quart-turbofry/`; the comparison table wrapper scrolls horizontally with
+no page overflow; local search returns results.
+
+**Not done here, unchanged from before:** no Associates Central login, no live click test, no
+Search Console verification, no analytics collector deployment. Q03 remains the one action that
+needs a human. The remaining manufacturer questions (basket-fryer interior dimensions, the
+8-quart 450°F/1000 W discrepancies, the Emeril preset and accessory counts, the ThermoMaven IP
+rating, the CHEF iQ support horizon) are each one email and are listed on `/suggestions/`.
 

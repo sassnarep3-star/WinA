@@ -31,7 +31,11 @@
       <span class="brand__name">Counter Space</span>
       <span class="brand__sub">Kitchen gear, judged honestly</span>
     </a>
-    <nav class="nav" aria-label="Primary"><a href="/WinA/air-fryers/">Air fryers</a><a href="/WinA/thermometers/">Thermometers</a><a href="/WinA/guides/">Guides</a><a href="/WinA/compare/">Compare</a><a href="/WinA/about/">About</a></nav>
+    <nav class="nav" aria-label="Primary"><a href="/WinA/start-here/">Start here</a><a href="/WinA/air-fryers/">Air fryers</a><a href="/WinA/thermometers/">Thermometers</a><a href="/WinA/guides/">Guides</a><a href="/WinA/compare/">Compare</a><a href="/WinA/about/">About</a></nav>
+    <button class="searchbtn" type="button" data-search-open aria-label="Search this site">
+      <svg viewBox="0 0 20 20" width="17" height="17" aria-hidden="true" focusable="false"><circle cx="8.5" cy="8.5" r="5.5" fill="none" stroke="currentColor" stroke-width="1.8"/><line x1="12.8" y1="12.8" x2="17" y2="17" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+      <span class="searchbtn__label">Search</span>
+    </button>
   </div>
 </header>
 
@@ -68,7 +72,7 @@
 </ul><h2>Why it deserves to rank</h2><p>Not because of technical tricks — those are table stakes and everyone has them. The reason is that each guide answers a question in a way the competing pages do not: it gives the reader a decision procedure instead of a verdict, and it says plainly when the recommended product is wrong for them.</p>
 <p>It also refuses to fabricate. No invented prices, no borrowed star ratings, no claimed testing. On a topic where most pages are generated and interchangeable, a page that is specific about trade-offs and honest about its limits has something no amount of keyword optimisation can imitate.</p><h2>What is not verified</h2><p>Search Console ownership has not been confirmed, because that requires account access. A placeholder verification token is in the markup and clearly marked as such.</p>
 <p><strong>Until that is replaced, this site has no idea whether it is indexed, what it ranks for, or whether anyone arrives.</strong> It is the single highest-value five-minute task remaining, and it is recorded as an open action rather than described as done.</p>
-<p>No search volume data exists for any of the four guide topics. The titles are editorial hypotheses about what people might ask, not evidence about what they do ask. Publishing four guides and reading the query report is how that changes.</p><h2>What we will not do</h2><p>No buying of Amazon trademarks as search keywords, whether through ads or any other mechanism — that is prohibited and would risk the account. No keyword-stuffed doorway pages. No spinning one article into twenty near-duplicate variants to chase long-tail queries; it works briefly and then gets the whole domain discounted. No cloaking the destination of a product link.</p>
+<p>No search volume data exists for any of the guide topics. The titles are editorial hypotheses about what people might ask, not evidence about what they do ask. Publishing more guides and reading the query report is how that changes.</p><h2>What we will not do</h2><p>No buying of Amazon trademarks as search keywords, whether through ads or any other mechanism — that is prohibited and would risk the account. No keyword-stuffed doorway pages. No spinning one article into twenty near-duplicate variants to chase long-tail queries; it works briefly and then gets the whole domain discounted. No cloaking the destination of a product link.</p>
 <p>The build enforces part of this mechanically: a page cannot publish without a unique title and description, and the validation step fails if any outbound Amazon link is missing its sponsored marking.</p>
     </div>
   </div>
@@ -89,10 +93,12 @@
       <div>
         <h3>Shop</h3>
         <ul>
+          <li><a href="/WinA/start-here/">Start here</a></li>
           <li><a href="/WinA/air-fryers/">Air fryers</a></li>
           <li><a href="/WinA/thermometers/">Thermometers</a></li>
           <li><a href="/WinA/compare/">Compare all five</a></li>
           <li><a href="/WinA/guides/">Buying guides</a></li>
+          <li><a href="/WinA/season/">Cooking by season</a></li>
         </ul>
       </div>
       <div>
@@ -128,6 +134,18 @@
     </div>
   </div>
 </footer>
+
+<div class="searchbox" data-search hidden>
+  <div class="searchbox__panel" role="dialog" aria-modal="true" aria-label="Search this site">
+    <div class="searchbox__row">
+      <input class="searchbox__input" type="search" data-search-input placeholder="Search guides, products and pages…" aria-label="Search this site" autocomplete="off" spellcheck="false">
+      <button class="searchbox__close" type="button" data-search-close aria-label="Close search">Esc</button>
+    </div>
+    <p class="searchbox__hint">Type a question you would actually ask. Nothing is tracked and nothing leaves your browser.</p>
+    <ul class="searchbox__results" data-search-results></ul>
+    <p class="searchbox__empty" data-search-empty hidden>No page matches that. The <a href="/WinA/guides/">guides index</a> and <a href="/WinA/start-here/">start here</a> page are the best way in.</p>
+  </div>
+</div>
 
 <script src="/WinA/assets/js/site.js" defer></script>
 </body>
