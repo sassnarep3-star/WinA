@@ -1811,6 +1811,12 @@ the deployed page rather than the diff.
 - **Owner-side items, not claimed, unchanged:** FLG-004/FLG-024 (Associates enrolment + Special Link
   test), FLG-009/SG-29 (Search Console), FLG-011 (analytics collector deploy), FLG-010 (capture backend),
   FLG-003 (short-link compliance status), S-14 (display-posture decision).
+- **Live deploy check + residuals.** After the merge (commit 022e00e) and Pages build, the live
+  /shop.html was fetched with a cache-buster: prices, ratings and badges are gone from the served page.
+  Three residuals were then found on the live page and fixed in a follow-up commit: 'Deal −NN%'
+  discount badges (price-derived figures) on shop/index, the CHEF iQ shop-card battery figure
+  ('up to 50 hours' vs chefiq.com's 70+ hours claim), and 'Check price on Amazon' button labels that
+  contradicted T33's recorded 'View on Amazon' resolution (FLG-037). Recorded on FLG-048.
 - **Verification on the final tree:** `python3 tools/check_site.py` → PASS (G-1/G-2/G-3, including the
   new R-10/R-11 rules); `data/products.json` (with specsVerifiedOn), `data/governance.json` (52 flags,
   unique IDs), `data/suggestions.json` (SUG-16 shipped; log consistent) all load as JSON; every served
