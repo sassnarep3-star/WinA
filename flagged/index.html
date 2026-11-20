@@ -91,6 +91,26 @@
           <td><span class="pill pill--review">review</span></td>
           <td><a href="https://sassnarep3-star.github.io/WinA/about/" rel="noopener" target="_blank">open</a></td>
         </tr><tr>
+          <td><code>FLG-026</code></td>
+          <td>Every specification cited the Amazon listing, including values the listing does not state</td>
+          <td><span class="pill pill--review">review</span></td>
+          <td><a href="https://chefman.com/products/turbofry-touch-dual-window-air-fryer" rel="noopener" target="_blank">open</a></td>
+        </tr><tr>
+          <td><code>FLG-027</code></td>
+          <td>The 8-quart Chefman's 450°F was presented as its maximum temperature</td>
+          <td><span class="pill pill--review">review</span></td>
+          <td><a href="https://chefman.com/products/turbofry-8-qt-air-fryer-w-high-fry" rel="noopener" target="_blank">open</a></td>
+        </tr><tr>
+          <td><code>FLG-028</code></td>
+          <td>Chefman's 8-quart family has at least five SKUs and the listing names none of them</td>
+          <td><span class="pill pill--review">review</span></td>
+          <td><a href="https://chefman.com/products/turbofry-8-qt-air-fryer-w-high-fry" rel="noopener" target="_blank">open</a></td>
+        </tr><tr>
+          <td><code>FLG-029</code></td>
+          <td>Emeril's own page contradicts the Amazon listing on preset count</td>
+          <td><span class="pill pill--review">review</span></td>
+          <td><a href="https://www.emerileveryday.com/products/emeril_lagasse_french_door_airfryer_360" rel="noopener" target="_blank">open</a></td>
+        </tr><tr>
           <td><code>FLG-002</code></td>
           <td>Submitted links carry no Associates tag of their own</td>
           <td><span class="pill pill--action">action</span></td>
@@ -226,6 +246,30 @@
     <p style="margin:0 0 .6rem">No author was named in the source material, so no byline was invented. 'Counter Space' is a working name chosen for this build and is not a registered brand. Carried forward from arena-2ca62ce9 (FLG-013).</p>
     <p style="margin:0 0 .6rem"><strong>What we did:</strong> Both need a decision from the owner. Before adopting the name publicly, check it is not an active trademark in this category. See SUG-06 and Q-20.</p>
     <p class="small" style="margin:0"><a href="https://sassnarep3-star.github.io/WinA/about/" rel="noopener" target="_blank">About page</a></p>
+  </article><article class="note note--warn" style="margin-bottom:1.25rem">
+    <p class="note__title">FLG-026 <span class="pill pill--review">review</span></p>
+    <h3 style="font-family:var(--serif);font-size:1.15rem;margin:.2rem 0 .5rem;color:var(--ink)">Every specification cited the Amazon listing, including values the listing does not state</h3>
+    <p style="margin:0 0 .6rem">The source column on /products/ and /register/ linked every row to amazon.com/dp/&lt;ASIN&gt;, whether or not that page carried the value. Nine rows that had been recorded as 'unverified' are in fact published by the manufacturer, and three product pages had no manufacturer citation at all.</p>
+    <p style="margin:0 0 .6rem"><strong>What we did:</strong> Fixed. Each row now resolves to its own source: Amazon listing rows still link to the listing; manufacturer rows link to the page that states them (chefman.com, emerileveryday.com, thermomaven.com, chefiq.com). The build throws if a row claims a manufacturer source without a URL.</p>
+    <p class="small" style="margin:0"><a href="https://chefman.com/products/turbofry-touch-dual-window-air-fryer" rel="noopener" target="_blank">Chefman product specification block</a></p>
+  </article><article class="note note--warn" style="margin-bottom:1.25rem">
+    <p class="note__title">FLG-027 <span class="pill pill--review">review</span></p>
+    <h3 style="font-family:var(--serif);font-size:1.15rem;margin:.2rem 0 .5rem;color:var(--ink)">The 8-quart Chefman's 450°F was presented as its maximum temperature</h3>
+    <p style="margin:0 0 .6rem">The listing title says '450°F Hi-Fry Option'; the manufacturer states Hi-Fry 'raises the heat to 450°F for the last two minutes', against a normal range topping out at 400°F. This site had recorded 'Max temperature: 450°F (Hi-Fry)' and a guide called it 'the top of the range in this set'. That overstates a two-minute browning finish as a continuous capability.</p>
+    <p style="margin:0 0 .6rem"><strong>What we did:</strong> Corrected. The row now reads '400°F standard range; 450°F Hi-Fry for the final 2 minutes of a cycle', and the basket-vs-oven guide describes it the same way.</p>
+    <p class="small" style="margin:0"><a href="https://chefman.com/products/turbofry-8-qt-air-fryer-w-high-fry" rel="noopener" target="_blank">Chefman product page, Hi-Fry description</a></p>
+  </article><article class="note note--warn" style="margin-bottom:1.25rem">
+    <p class="note__title">FLG-028 <span class="pill pill--review">review</span></p>
+    <h3 style="font-family:var(--serif);font-size:1.15rem;margin:.2rem 0 .5rem;color:var(--ink)">Chefman's 8-quart family has at least five SKUs and the listing names none of them</h3>
+    <p style="margin:0 0 .6rem">chefman.com publishes RJ38-8T-BLACK (matte black) for the 8-qt Hi-Fry machine; retailer records for this ASIN give RJ38-SQSS-8T and a stainless-steel body of 12.75 x 13.5 x 10 in at 12.8 lb. The two disagree on colour and model, so no dimension, weight or wattage from either page can be attached to this listing.</p>
+    <p style="margin:0 0 .6rem"><strong>What we did:</strong> Left blank rather than guessed, and recorded on the product page. The figures are not in dispute; which SKU this listing ships is.</p>
+    <p class="small" style="margin:0"><a href="https://chefman.com/products/turbofry-8-qt-air-fryer-w-high-fry" rel="noopener" target="_blank">Chefman 8 Qt Hi-Fry page (RJ38-8T-BLACK) vs the Amazon listing</a></p>
+  </article><article class="note note--warn" style="margin-bottom:1.25rem">
+    <p class="note__title">FLG-029 <span class="pill pill--review">review</span></p>
+    <h3 style="font-family:var(--serif);font-size:1.15rem;margin:.2rem 0 .5rem;color:var(--ink)">Emeril's own page contradicts the Amazon listing on preset count</h3>
+    <p style="margin:0 0 .6rem">emerileveryday.com states '25 Cooking Pre-sets' in its specification block and '10-in-1' in the product description; the Amazon listing states 24 one-touch presets. Three different numbers for one feature.</p>
+    <p style="margin:0 0 .6rem"><strong>What we did:</strong> Recorded as 24 (the listing) with the manufacturer figure noted. Neither is published as settled. Unchanged from FLG-005's finding, now with the third number and its URL.</p>
+    <p class="small" style="margin:0"><a href="https://www.emerileveryday.com/products/emeril_lagasse_french_door_airfryer_360" rel="noopener" target="_blank">Emeril Everyday specification block</a></p>
   </article><article class="note note--warn" style="margin-bottom:1.25rem">
     <p class="note__title">FLG-002 <span class="pill pill--action">action</span></p>
     <h3 style="font-family:var(--serif);font-size:1.15rem;margin:.2rem 0 .5rem;color:var(--ink)">Submitted links carry no Associates tag of their own</h3>
@@ -427,6 +471,7 @@
           <li><a href="/WinA/suggestions/">Suggestions</a></li>
           <li><a href="/WinA/summary/">Executive summary</a></li>
           <li><a href="/WinA/marketing/">Marketing plan</a></li>
+          <li><a href="/WinA/marketing/kit/">Marketing kit</a></li>
           <li><a href="/WinA/seo/">Search &amp; findability</a></li>
         </ul>
       </div>

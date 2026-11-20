@@ -25,7 +25,7 @@ If you are choosing between them, the useful question is not which one is better
 
 <h2>Then count your temperatures</h2>
 <p>This is where people get caught. Most air fryer regret is not about crispness. It is about running the machine twice.</p>
-<p>A single-basket unit cooks at one temperature at a time. The Chefman 8-quart TurboFry is that machine, and it is very good at it — 8 quarts is a lot of one thing, and the 450°F Hi-Fry setting is the top of the range in this set. But if your plate is fries that want 400°F for 18 minutes and chicken that wants 380°F for 14, you are either compromising on temperature or cooking in sequence.</p>
+<p>A single-basket unit cooks at one temperature at a time. The Chefman 8-quart TurboFry is that machine, and it is very good at it — 8 quarts is a lot of one thing, and its Hi-Fry option adds a 450°F burst for the final two minutes rather than holding 450°F throughout. But if your plate is fries that want 400°F for 18 minutes and chicken that wants 380°F for 14, you are either compromising on temperature or cooking in sequence.</p>
 <p>Two independent drawers solve that, which is the entire argument for the Chefman 6-quart dual-basket. Two 3-quart baskets, two temperatures, and a Sync Finish feature that holds the faster basket so both land at once. Note the trade honestly: that is 6 quarts <em>total</em>, split in half. It is two small cooks, not one big one.</p>
 <p>A large single-chamber oven does not solve it either — it has one chamber. What it gives you instead is sheer volume, which is a different answer to a different problem.</p>
 
