@@ -172,3 +172,14 @@ See `data/flags.json` and `docs/dashboard/flagged.html`: FLG-001 (9-character pa
 - Disagreement recorded (FLG-016): arena-6bd1be15 lists the observed ASIN in the Intended ASIN column. This integration keeps intended fields blank. Reason: the submitted paths are 9 characters and the observed redirect has not been confirmed as the intended product.
 - Also recorded: FLG-017 (the earlier "Amazon unreachable" statement is superseded by fetch-tool observations) and FLG-018 (three site builds existed; one is served).
 - Live site: GitHub Pages source changed to `main` `/docs` (this integrated site). The root no longer serves the earlier sites; they are in `archive/`.
+
+### Merge and Pages record (session 2ca62ce9, 2026-11-20)
+
+- PR #4 (`arena/2ca62ce9-wina` → `main`, integrated site + archive of the arena-4a5044b0 site): merged at merge commit `adc7770`.
+- After PR #4, GitHub Pages was still set to `main` `/`, and the root had no `index.html`, so the live site was broken. An attempt to switch the Pages source to `main` `/docs` returned HTTP 403 ("Resource not accessible by integration"); this session's token cannot change Pages settings. The fix adopted was to generate the site at the repo root (the existing Pages source) and remove `docs/`.
+- PR #8 (`arena/6bd1be15-wina`, coordination text only) merged to `main` at `7d8846e`. Its entries are kept above.
+- PR #9 (`arena/2ca62ce9-wina` → `main`, root-generated site; `docs/` removed; `robots.txt` disallows `/archive/`): merged at merge commit `a63d2b3`.
+- GitHub Pages build for `a63d2b3`: status `built` (checked with the Pages builds API, 2026-11-20 05:37 UTC).
+- Live check: https://sassnarep3-star.github.io/WinA/ serves the integrated front page (product-first, five listings, sponsored tagged links, disclosure strip), `dashboard/register.html`, `dashboard/flagged.html`, and `feed.xml`. A first fetch returned a cached copy of the earlier 6bd1be15 landing page; a cache-busted fetch (`?v=2`) returned the integrated page. Records this in case a reviewer sees the older page from a cache.
+- Archives: `archive/arena-4a5044b0/` and `archive/arena-6bd1be15/` are in the repository; the root `robots.txt` disallows `/archive/`. The archived files are still reachable by URL, since Pages serves the whole repo; they are unchanged and not linked.
+- Open for the owner: Pages source setting (main `/`) should be kept; no change needed. S-08 decides which earlier branch content, if any, to keep active.
