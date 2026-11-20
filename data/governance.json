@@ -112,7 +112,7 @@
       "id": "FLG-013",
       "severity": "action",
       "title": "Content volume is below the Associates review bar",
-      "detail": "Amazon's Associates Help, 'Application Review Process' (checked 2026-11-20, US help topic G8TW5AE9XL2VX9VM), says: \"All Sites must have robust original content (even when advertising is removed) – a good rule of thumb is at least 10 posts.\" It also says: \"Content on your website must be recent (generally within the last 60 days).\" This site has 5 guides and 5 product pages. Amazon does not say whether product and hub pages count as posts, but 5 guides is below the rule of thumb on any reading. The account's own status and review history are unknown from here. Carried forward from the parallel-session register (arena-2ca62ce9, FLG-010), which found this first.",
+      "detail": "Amazon's Associates Help, 'Application Review Process' (checked 2026-11-20, US help topic G8TW5AE9XL2VX9VM), says: \"All Sites must have robust original content (even when advertising is removed) – a good rule of thumb is at least 10 posts.\" It also says: \"Content on your website must be recent (generally within the last 60 days).\" This site has 7 guides and 5 product pages. Amazon does not say whether product and hub pages count as posts, but 7 guides is still below the rule of thumb on any reading. The account's own status and review history are unknown from here. Carried forward from the parallel-session register (arena-2ca62ce9, FLG-010), which found this first.",
       "action": "Do not submit or re-submit for review until the site has at least 10 posts and content dated within the last 60 days. The weekly cadence in the suggestions register (SUG-05) is the proposed path. Recorded as a commercial blocker, not a content-quality one.",
       "sourceUrl": "https://affiliate-program.amazon.com/help/node/topic/G8TW5AE9XL2VX9VM",
       "sourceLabel": "Associates Help: Application Review Process (checked 2026-11-20)"
@@ -173,12 +173,12 @@
     },
     {
       "id": "FLG-020",
-      "severity": "withheld",
-      "title": "No seasonal content, because there is no seasonal demand data",
-      "detail": "The brief asked for seasons and topic clusters. No seasonal query data was obtained from any source, so no seasonal calendar was invented. The five guides are editorial working titles, not popularity claims. Carried forward from arena-2ca62ce9 (FLG-015).",
-      "action": "Clusters exist as two product categories. Seasons wait for Search Console query data — choosing December topics from instinct is the failure mode being avoided.",
-      "sourceUrl": "https://search.google.com/search-console",
-      "sourceLabel": "Search Console (not yet verified)"
+      "severity": "resolved",
+      "title": "Seasonal content shipped as calendar-driven, not demand-driven; a hold position is recorded alongside it",
+      "detail": "The brief asked for seasons and topic clusters, but no seasonal query data was ever obtained, so a seasonal calendar could not be invented. Carried forward from arena-2ca62ce9 (FLG-015). Updated 2026-11-20 by arena-27f76c22: a seasonal collection page (/seasonal/) and a holiday guide (/guides/holiday-batch/) now exist, chosen for the calendar and labelled on the page itself as calendar-driven. The disagreement about this choice is kept visible rather than resolved by one side: SUG-23 (arena-829ea2fd) recommends holding seasonal topics until demand is measured; SUG-25 (this session) records why the cluster shipped anyway — a direct publishing brief asked for seasonal coverage, and the limitation is disclosed on the page itself. The guides remain editorial working titles, not popularity claims.",
+      "action": "Resolved as shipped with its limitation disclosed and the opposing recommendation kept live. The open half is now Q-23: whether the seasonal cluster earns impressions will be known only from Search Console query data (SG-29, FLG-009). Owner decides at Q-25 whether the page earns its annual November refresh or is retired in favour of the hold position. If kept, re-check its linked specs on each refresh.",
+      "sourceUrl": "https://sassnarep3-star.github.io/WinA/seasonal/",
+      "sourceLabel": "The seasonal collection (calendar-driven selection disclosed on-page)"
     },
     {
       "id": "FLG-021",
@@ -368,6 +368,15 @@
       "action": "Owner: choose the button wording. If changed, rebuild with node _src/build.mjs; the compliance gate checks the disclosure and link classes, not the label wording.",
       "sourceUrl": "https://affiliate-program.amazon.com/help/operating/policies",
       "sourceLabel": "Amazon Associates Program Policies (cited elsewhere in this register)"
+    },
+    {
+      "id": "FLG-038",
+      "severity": "review",
+      "title": "The CHEF iQ specification source is a family page whose default variant is not the promoted SKU",
+      "detail": "The chefiq.com page used as the specification source (chefiq.com/products/iq-sense, re-checked 2026-11-20) shows model CQ60-1C-Z1-E, which is the one-probe variant of the Sense line; the store sells one- to four-probe configurations. The promoted Amazon listing (B0DZFD6R9Z) is the three-probe Gen3. The cited spec values — Wi-Fi and Bluetooth connectivity, 4 internal + 1 ambient sensors, 1,000°F heat rating, air-fryer compatibility — are stated on the manufacturer page for the Sense line and match the listing's own claims, so no specification changed. But the source page, as loaded, does not pin the three-probe variant, and the product page carries modelNumber CQ60-1C-Z1-E. Found during the 2026-11-20 re-verification pass by arena-27f76c22 (originally logged as FLG-034 on the session branch; renumbered on merge because main's FLG-034 was taken).",
+      "action": "Left as observed: no value was invented to resolve it. To close it, pick the exact variant URL on chefiq.com for the three-probe model and update specSources — an owner or a later session with the variant URL can do this. No page claim depends on the variant count beyond the listing itself, which already states three probes.",
+      "sourceUrl": "https://chefiq.com/products/iq-sense",
+      "sourceLabel": "CHEF iQ Sense family page (variant selector observed 2026-11-20)"
     }
   ],
   "ledger": {

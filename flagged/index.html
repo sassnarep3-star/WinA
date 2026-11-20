@@ -13,7 +13,10 @@
 <meta property="og:title" content="Flagged for review — Counter Space">
 <meta property="og:description" content="Every item this build could not resolve or deliberately withheld, with a source link and the specific action that would close it.">
 <meta property="og:url" content="https://sassnarep3-star.github.io/WinA/flagged/">
+<meta property="og:image" content="https://sassnarep3-star.github.io/WinA/assets/img/holiday-counter.jpg">
+<meta property="og:image:alt" content="A kitchen counter set for holiday cooking: seasonal ingredients, herbs and prep tools on a wooden surface.">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://sassnarep3-star.github.io/WinA/assets/img/holiday-counter.jpg">
 <meta name="twitter:title" content="Flagged for review — Counter Space">
 <meta name="twitter:description" content="Every item this build could not resolve or deliberately withheld, with a source link and the specific action that would close it.">
 <link rel="alternate" type="application/rss+xml" title="Counter Space" href="/WinA/feed.xml">
@@ -31,7 +34,7 @@
       <span class="brand__name">Counter Space</span>
       <span class="brand__sub">Kitchen gear, judged honestly</span>
     </a>
-    <nav class="nav" aria-label="Primary"><a href="/WinA/air-fryers/">Air fryers</a><a href="/WinA/thermometers/">Thermometers</a><a href="/WinA/guides/">Guides</a><a href="/WinA/compare/">Compare</a><a href="/WinA/about/">About</a></nav>
+    <nav class="nav" aria-label="Primary"><a href="/WinA/air-fryers/">Air fryers</a><a href="/WinA/thermometers/">Thermometers</a><a href="/WinA/guides/">Guides</a><a href="/WinA/compare/">Compare</a><a href="/WinA/seasonal/">Holiday</a><a href="/WinA/about/">About</a></nav>
   </div>
 </header>
 
@@ -156,6 +159,11 @@
           <td><span class="pill pill--review">review</span></td>
           <td><a href="https://affiliate-program.amazon.com/help/operating/policies" rel="noopener" target="_blank">open</a></td>
         </tr><tr>
+          <td><code>FLG-038</code></td>
+          <td>The CHEF iQ specification source is a family page whose default variant is not the promoted SKU</td>
+          <td><span class="pill pill--review">review</span></td>
+          <td><a href="https://chefiq.com/products/iq-sense" rel="noopener" target="_blank">open</a></td>
+        </tr><tr>
           <td><code>FLG-002</code></td>
           <td>Submitted links carry no Associates tag of their own</td>
           <td><span class="pill pill--action">action</span></td>
@@ -206,11 +214,6 @@
           <td><span class="pill pill--withheld">withheld</span></td>
           <td><a href="https://affiliate-program.amazon.com/" rel="noopener" target="_blank">open</a></td>
         </tr><tr>
-          <td><code>FLG-020</code></td>
-          <td>No seasonal content, because there is no seasonal demand data</td>
-          <td><span class="pill pill--withheld">withheld</span></td>
-          <td><a href="https://search.google.com/search-console" rel="noopener" target="_blank">open</a></td>
-        </tr><tr>
           <td><code>FLG-022</code></td>
           <td>Cited register identifiers (S01, S02, S07, S24) do not exist in this repo</td>
           <td><span class="pill pill--low">low</span></td>
@@ -255,6 +258,11 @@
           <td>Readers had no way to find the dashboard surfaces from the front page</td>
           <td><span class="pill pill--resolved">resolved</span></td>
           <td><a href="https://sassnarep3-star.github.io/WinA/" rel="noopener" target="_blank">open</a></td>
+        </tr><tr>
+          <td><code>FLG-020</code></td>
+          <td>Seasonal content shipped as calendar-driven, not demand-driven; a hold position is recorded alongside it</td>
+          <td><span class="pill pill--resolved">resolved</span></td>
+          <td><a href="https://sassnarep3-star.github.io/WinA/seasonal/" rel="noopener" target="_blank">open</a></td>
         </tr><tr>
           <td><code>FLG-030</code></td>
           <td>Policy and FTC quotes checked word for word against the official text (2026-11-20)</td>
@@ -385,6 +393,12 @@
     <p style="margin:0 0 .6rem"><strong>What we did:</strong> Owner: choose the button wording. If changed, rebuild with node _src/build.mjs; the compliance gate checks the disclosure and link classes, not the label wording.</p>
     <p class="small" style="margin:0"><a href="https://affiliate-program.amazon.com/help/operating/policies" rel="noopener" target="_blank">Amazon Associates Program Policies (cited elsewhere in this register)</a></p>
   </article><article class="note note--warn" style="margin-bottom:1.25rem">
+    <p class="note__title">FLG-038 <span class="pill pill--review">review</span></p>
+    <h3 style="font-family:var(--serif);font-size:1.15rem;margin:.2rem 0 .5rem;color:var(--ink)">The CHEF iQ specification source is a family page whose default variant is not the promoted SKU</h3>
+    <p style="margin:0 0 .6rem">The chefiq.com page used as the specification source (chefiq.com/products/iq-sense, re-checked 2026-11-20) shows model CQ60-1C-Z1-E, which is the one-probe variant of the Sense line; the store sells one- to four-probe configurations. The promoted Amazon listing (B0DZFD6R9Z) is the three-probe Gen3. The cited spec values — Wi-Fi and Bluetooth connectivity, 4 internal + 1 ambient sensors, 1,000°F heat rating, air-fryer compatibility — are stated on the manufacturer page for the Sense line and match the listing's own claims, so no specification changed. But the source page, as loaded, does not pin the three-probe variant, and the product page carries modelNumber CQ60-1C-Z1-E. Found during the 2026-11-20 re-verification pass by arena-27f76c22 (originally logged as FLG-034 on the session branch; renumbered on merge because main's FLG-034 was taken).</p>
+    <p style="margin:0 0 .6rem"><strong>What we did:</strong> Left as observed: no value was invented to resolve it. To close it, pick the exact variant URL on chefiq.com for the three-probe model and update specSources — an owner or a later session with the variant URL can do this. No page claim depends on the variant count beyond the listing itself, which already states three probes.</p>
+    <p class="small" style="margin:0"><a href="https://chefiq.com/products/iq-sense" rel="noopener" target="_blank">CHEF iQ Sense family page (variant selector observed 2026-11-20)</a></p>
+  </article><article class="note note--warn" style="margin-bottom:1.25rem">
     <p class="note__title">FLG-002 <span class="pill pill--action">action</span></p>
     <h3 style="font-family:var(--serif);font-size:1.15rem;margin:.2rem 0 .5rem;color:var(--ink)">Submitted links carry no Associates tag of their own</h3>
     <p style="margin:0 0 .6rem">The submitted link.amazon URLs resolve to plain product pages. No tag parameter was observed on them, so they do not by themselves attribute a purchase to shopnow047c-20.</p>
@@ -411,7 +425,7 @@
   </article><article class="note note--warn" style="margin-bottom:1.25rem">
     <p class="note__title">FLG-013 <span class="pill pill--action">action</span></p>
     <h3 style="font-family:var(--serif);font-size:1.15rem;margin:.2rem 0 .5rem;color:var(--ink)">Content volume is below the Associates review bar</h3>
-    <p style="margin:0 0 .6rem">Amazon's Associates Help, 'Application Review Process' (checked 2026-11-20, US help topic G8TW5AE9XL2VX9VM), says: &quot;All Sites must have robust original content (even when advertising is removed) – a good rule of thumb is at least 10 posts.&quot; It also says: &quot;Content on your website must be recent (generally within the last 60 days).&quot; This site has 5 guides and 5 product pages. Amazon does not say whether product and hub pages count as posts, but 5 guides is below the rule of thumb on any reading. The account's own status and review history are unknown from here. Carried forward from the parallel-session register (arena-2ca62ce9, FLG-010), which found this first.</p>
+    <p style="margin:0 0 .6rem">Amazon's Associates Help, 'Application Review Process' (checked 2026-11-20, US help topic G8TW5AE9XL2VX9VM), says: &quot;All Sites must have robust original content (even when advertising is removed) – a good rule of thumb is at least 10 posts.&quot; It also says: &quot;Content on your website must be recent (generally within the last 60 days).&quot; This site has 7 guides and 5 product pages. Amazon does not say whether product and hub pages count as posts, but 7 guides is still below the rule of thumb on any reading. The account's own status and review history are unknown from here. Carried forward from the parallel-session register (arena-2ca62ce9, FLG-010), which found this first.</p>
     <p style="margin:0 0 .6rem"><strong>What we did:</strong> Do not submit or re-submit for review until the site has at least 10 posts and content dated within the last 60 days. The weekly cadence in the suggestions register (SUG-05) is the proposed path. Recorded as a commercial blocker, not a content-quality one.</p>
     <p class="small" style="margin:0"><a href="https://affiliate-program.amazon.com/help/node/topic/G8TW5AE9XL2VX9VM" rel="noopener" target="_blank">Associates Help: Application Review Process (checked 2026-11-20)</a></p>
   </article><article class="note note--warn" style="margin-bottom:1.25rem">
@@ -444,12 +458,6 @@
     <p style="margin:0 0 .6rem">There is no authorized first-party report yet. Every ledger row requires a timestamp, source, channel, eligible sessions, clicks and reported orders taken from an Associates report.</p>
     <p style="margin:0 0 .6rem"><strong>What we did:</strong> The ledger starts empty with its schema defined, so the first real report can be added without redesigning it. No placeholder numbers.</p>
     <p class="small" style="margin:0"><a href="https://affiliate-program.amazon.com/" rel="noopener" target="_blank">Associates reports (sign-in required)</a></p>
-  </article><article class="note note--stop" style="margin-bottom:1.25rem">
-    <p class="note__title">FLG-020 <span class="pill pill--withheld">withheld</span></p>
-    <h3 style="font-family:var(--serif);font-size:1.15rem;margin:.2rem 0 .5rem;color:var(--ink)">No seasonal content, because there is no seasonal demand data</h3>
-    <p style="margin:0 0 .6rem">The brief asked for seasons and topic clusters. No seasonal query data was obtained from any source, so no seasonal calendar was invented. The five guides are editorial working titles, not popularity claims. Carried forward from arena-2ca62ce9 (FLG-015).</p>
-    <p style="margin:0 0 .6rem"><strong>What we did:</strong> Clusters exist as two product categories. Seasons wait for Search Console query data — choosing December topics from instinct is the failure mode being avoided.</p>
-    <p class="small" style="margin:0"><a href="https://search.google.com/search-console" rel="noopener" target="_blank">Search Console (not yet verified)</a></p>
   </article><article class="note note--warn" style="margin-bottom:1.25rem">
     <p class="note__title">FLG-022 <span class="pill pill--low">low</span></p>
     <h3 style="font-family:var(--serif);font-size:1.15rem;margin:.2rem 0 .5rem;color:var(--ink)">Cited register identifiers (S01, S02, S07, S24) do not exist in this repo</h3>
@@ -504,6 +512,12 @@
     <p style="margin:0 0 .6rem">The brief required every dashboard surface to stay reachable while the front page led with products. Putting them in the primary navigation would have put the audit in front of the shopper.</p>
     <p style="margin:0 0 .6rem"><strong>What we did:</strong> Resolved structurally. The primary navigation carries five reader destinations only; all nine record and review surfaces are grouped in the footer under 'Record &amp; review', so they remain one click from every page.</p>
     <p class="small" style="margin:0"><a href="https://sassnarep3-star.github.io/WinA/" rel="noopener" target="_blank">Live front page</a></p>
+  </article><article class="note " style="margin-bottom:1.25rem">
+    <p class="note__title">FLG-020 <span class="pill pill--resolved">resolved</span></p>
+    <h3 style="font-family:var(--serif);font-size:1.15rem;margin:.2rem 0 .5rem;color:var(--ink)">Seasonal content shipped as calendar-driven, not demand-driven; a hold position is recorded alongside it</h3>
+    <p style="margin:0 0 .6rem">The brief asked for seasons and topic clusters, but no seasonal query data was ever obtained, so a seasonal calendar could not be invented. Carried forward from arena-2ca62ce9 (FLG-015). Updated 2026-11-20 by arena-27f76c22: a seasonal collection page (/seasonal/) and a holiday guide (/guides/holiday-batch/) now exist, chosen for the calendar and labelled on the page itself as calendar-driven. The disagreement about this choice is kept visible rather than resolved by one side: SUG-23 (arena-829ea2fd) recommends holding seasonal topics until demand is measured; SUG-25 (this session) records why the cluster shipped anyway — a direct publishing brief asked for seasonal coverage, and the limitation is disclosed on the page itself. The guides remain editorial working titles, not popularity claims.</p>
+    <p style="margin:0 0 .6rem"><strong>What we did:</strong> Resolved as shipped with its limitation disclosed and the opposing recommendation kept live. The open half is now Q-23: whether the seasonal cluster earns impressions will be known only from Search Console query data (SG-29, FLG-009). Owner decides at Q-25 whether the page earns its annual November refresh or is retired in favour of the hold position. If kept, re-check its linked specs on each refresh.</p>
+    <p class="small" style="margin:0"><a href="https://sassnarep3-star.github.io/WinA/seasonal/" rel="noopener" target="_blank">The seasonal collection (calendar-driven selection disclosed on-page)</a></p>
   </article><article class="note " style="margin-bottom:1.25rem">
     <p class="note__title">FLG-030 <span class="pill pill--resolved">resolved</span></p>
     <h3 style="font-family:var(--serif);font-size:1.15rem;margin:.2rem 0 .5rem;color:var(--ink)">Policy and FTC quotes checked word for word against the official text (2026-11-20)</h3>
