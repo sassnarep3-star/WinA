@@ -17,7 +17,7 @@ machinery kept reachable in a "data room" instead of in the reader's face.
 |---|---|---|
 | Front | `index.html` | Publication front page: featured lineup, guides, seasonal note |
 | Shop | `shop.html`, `compare.html` | All 5 products by category + full source-linked comparison table |
-| Guides | `guides/` | 6 question-shaped buyer guides (working editorial hypotheses, labeled as such) |
+| Guides | `guides/` | 9 question-shaped buyer guides (working editorial hypotheses, labeled as such) |
 | Decisions | `suggestions.html`, `questions.html` | Review-before-build suggestion queue · open-questions register |
 | Summary | `executive-summary.html`, `about.html` | One-page project state · method & money disclosure |
 | Data room | `data-room/` | Source register, product-intent record, campaign ledger (empty by design), measurement spec, compliance gate, **Flagged for Review**, methodology |
@@ -79,3 +79,28 @@ COORDINATION.md              shared task board (multi-session protocol)
 
 See `COORDINATION.md` for the task log, sources used, verification performed, and the PR /
 Pages-publish record.
+
+## Session arena-266b1b8f — reader-facing polish (T36, 2026-11-20)
+
+This session's brief: make the publication read like a shop, not an audit — imagery,
+authorship, seasons, clusters, a suggestions decision board, and the product-intent
+confirmation record split. Work landed across two site generations:
+
+- **On the earlier `_src/build.mjs` publication ("Counter Space")**: de-audited front page,
+  five generated editorial illustrations (provenance flag FLG-048), the 2026 hosting edit,
+  topic clusters, house byline, three question-shaped guides, and the decision board.
+  That build was retired on `main` by the parallel integration (PR #28) while this session
+  was working; its generated pages live in git history and the archives.
+- **On the current publication ("The Crisp Counter")**, delivered in this session's PR:
+  three new question-shaped guides (`guides/hosting-season.html`,
+  `guides/thermometer-gifting.html`, `guides/air-fryer-claims.html`) in the site's own
+  template, wired into the guides index, sitemap and RSS feed; the **decision board** on
+  `suggestions.html` (adopt / modify / hold / reject per suggestion, browser-local storage,
+  text export — nothing is implemented before a recorded choice); imagery provenance flag
+  **FLG-048** and brand-mismatch flag **FLG-049** in the governance register; and this
+  session's fifth independent short-link re-check recorded in `data/links.json`.
+
+Verification (2026-11-20): all five submitted short links re-opened — one reached its
+product page, four reached the Amazon home page, independently matching arena/b37e1a98's
+check (FLG-040/FLG-047); two official listings fetched directly and matched the register
+titles exactly. Gate `tools/check_site.py`: PASS.

@@ -4,21 +4,21 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Open questions — Counter Space</title>
-<meta name="description" content="Every question that must be answered before further decisions: what we know, what we do not, and the specific action that would settle each one.">
+<meta name="description" content="Every question that must be answered before further decisions, plus a decision-readiness map: what is already known from a source, what is not known, and the specific discovery that would settle each gap.">
 <link rel="canonical" href="https://sassnarep3-star.github.io/WinA/questions/">
 <meta name="robots" content="index,follow,max-image-preview:large">
 <meta name="google-site-verification" content="REPLACE_WITH_REAL_TOKEN_FLG009">
 <meta property="og:site_name" content="Counter Space">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Open questions — Counter Space">
-<meta property="og:description" content="Every question that must be answered before further decisions: what we know, what we do not, and the specific action that would settle each one.">
+<meta property="og:description" content="Every question that must be answered before further decisions, plus a decision-readiness map: what is already known from a source, what is not known, and the specific discovery that would settle each gap.">
 <meta property="og:url" content="https://sassnarep3-star.github.io/WinA/questions/">
 <meta property="og:image" content="https://sassnarep3-star.github.io/WinA/assets/img/holiday-counter.jpg">
 <meta property="og:image:alt" content="A kitchen counter set for holiday cooking: seasonal ingredients, herbs and prep tools on a wooden surface.">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://sassnarep3-star.github.io/WinA/assets/img/holiday-counter.jpg">
 <meta name="twitter:title" content="Open questions — Counter Space">
-<meta name="twitter:description" content="Every question that must be answered before further decisions: what we know, what we do not, and the specific action that would settle each one.">
+<meta name="twitter:description" content="Every question that must be answered before further decisions, plus a decision-readiness map: what is already known from a source, what is not known, and the specific discovery that would settle each gap.">
 <link rel="alternate" type="application/rss+xml" title="Counter Space" href="/WinA/feed.xml">
 <link rel="stylesheet" href="/WinA/assets/css/site.css">
 <script>window.CS_CONFIG={analyticsEnabled:false,analyticsEndpoint:""};</script>
@@ -57,6 +57,86 @@
     <p class="article-head__dek">Every open question this build ran into, with what we can answer today, what we cannot, and how to close it. Nothing here is resolved by assumption. Where an answer exists, it cites the source. Where it does not, the row says so and names the specific thing that would settle it. Q-23 to Q-26 were added by the 2026-11-20 editorial pass (arena-27f76c22).</p>
   </div>
 </div>
+
+<section class="section" id="readiness">
+  <div class="wrap">
+    <div class="section__head">
+      <h2 class="section__title">Before you decide: what we know, what we do not</h2>
+      <p class="section__dek">The table below answers the question behind the questions: before a decision can be reasonably made, what is already known, what is not known, and what single discovery would close the gap. Nothing here is inferred — where a fact is not confirmed from a source, the cell says it is missing and names the action that would find it.</p>
+    </div>
+    <div class="tablewrap">
+      <table class="data sortable">
+        <caption>Decision readiness. "Already known" is what a source confirms. "Still missing" is what nothing here can confirm. "How to discover it" is the specific action that would close the gap — a suggestion to find the missing information, not a guess at it.</caption>
+        <thead>
+          <tr>
+            <th scope="col">ID</th><th scope="col">Decision</th>
+            <th scope="col">Already known</th><th scope="col">Still missing</th>
+            <th scope="col">Blocking questions</th><th scope="col">How to discover the missing information</th>
+            <th scope="col">Ready?</th>
+          </tr>
+        </thead>
+        <tbody><tr>
+    <td><code>D-01</code></td>
+    <td><strong>Whether the site can earn at all: tracking ID enrolment and one proven Special Link per product</strong></td>
+    <td class="small">All five product identities are resolved and re-checked against the live listings (Q-01, Q-02, register).<br>The disclosure required by Operating Agreement §5 is on every page in the exact agreed words (Q-13).<br>The tracking ID has the form of a US store id and the marketplace matches (compliance gate rule).</td>
+    <td class="small">Whether shopnow047c-20 is actually enrolled in the Associates Program (Q-04).<br>Whether a click on a constructed Special Link produces a tracking-report line — 0 of 5 tests are recorded (FLG-024).</td>
+    <td class="small"><code>Q-04</code></td>
+    <td class="small">Owner: sign in to Associates Central, build one Special Link per product, click each logged out, and record the next day's report in data/special_link_tests.json (SUG-04). One pass settles both gaps.</td>
+    <td><span class="pill pill--open">not ready</span></td>
+  </tr><tr>
+    <td><code>D-02</code></td>
+    <td><strong>Whether the submitted link.amazon short links may be used in marketing at all</strong></td>
+    <td class="small">The site does not depend on them: every buy button goes straight to the amazon.com product page with the tag (SUG-04, shipped).<br>The short links' observed destinations are logged per check and are not stable across fetches (FLG-036, FLG-040).<br>Amazon's ASIN definition is confirmed from Amazon's own page (FLG-033, resolved).</td>
+    <td class="small">A compliance determination for the short links themselves (Q-06) — genuinely unresolved in the policy text, and not asserted to be invalid.</td>
+    <td class="small"><code>Q-06</code></td>
+    <td class="small">Owner: open each link in a normal browser and compare the landing page with the register; if the destinations hold, ask Associates support whether this link style is permitted, and keep the answer as the record.</td>
+    <td><span class="pill pill--hold">partly ready</span></td>
+  </tr><tr>
+    <td><code>D-03</code></td>
+    <td><strong>Which topics to publish next</strong></td>
+    <td class="small">Seven guides are live in two clusters plus a seasonal collection, and the Monday cadence is adopted in the decision log (SUG-05).<br>The topic roadmap exists, with every title labelled a hypothesis rather than a claim about demand.</td>
+    <td class="small">Whether anyone searches for these products or these questions (Q-07).<br>Which of the seven guides earns the first impressions (Q-24).<br>Whether holiday scheduling content has measured demand (Q-23).</td>
+    <td class="small"><code>Q-07</code> <code>Q-18</code> <code>Q-23</code> <code>Q-24</code></td>
+    <td class="small">Verify Search Console, keep the cadence, and choose the next month's topics from the query report instead of instinct — the kill criteria then drop anything with no measured demand after four weeks.</td>
+    <td><span class="pill pill--open">not ready</span></td>
+  </tr><tr>
+    <td><code>D-04</code></td>
+    <td><strong>Design and brand direction: how far to push the polished-marketing look now</strong></td>
+    <td class="small">A written design brief (DB-01 to DB-08) and a copy-ready design prompt live on the suggestions page.<br>Generated, labelled kitchen-scene illustrations are shipped as samples (Q-26), so the imagery question can be judged by eye.</td>
+    <td class="small">The brand identity decision: what this publication is called and who it is for (Q-20).<br>Whether generated illustrations are acceptable brand imagery, by the owner's standard (Q-26).<br>Whether there should be a named author (Q-21).</td>
+    <td class="small"><code>Q-20</code> <code>Q-26</code></td>
+    <td class="small">Owner: read the design prompt and look at the shipped samples, then answer Q-20 and Q-26 in the decision log. Only then does a full design pass avoid rework (Path 3 on the suggestions page).</td>
+    <td><span class="pill pill--hold">partly ready</span></td>
+  </tr><tr>
+    <td><code>D-05</code></td>
+    <td><strong>Seasonal strategy: adopt the November refresh or hold seasonal content</strong></td>
+    <td class="small">A holiday collection is shipped as calendar-driven, with the SUG-23 versus SUG-25 disagreement kept visible on the page.<br>The topic is labelled as an editorial choice, not a demand claim.</td>
+    <td class="small">Measured demand for holiday air-fryer scheduling content (Q-23).<br>The owner's adoption decision (Q-25).</td>
+    <td class="small"><code>Q-23</code> <code>Q-25</code></td>
+    <td class="small">Read the November–December query report after Search Console is verified; until then, the owner's call is explicitly a judgment, recorded as such.</td>
+    <td><span class="pill pill--hold">partly ready</span></td>
+  </tr><tr>
+    <td><code>D-06</code></td>
+    <td><strong>Category structure: one publication or two (SUG-02)</strong></td>
+    <td class="small">Three air fryers and two thermometers, compared on verified specifications only (Q-03, Q-10).</td>
+    <td class="small">What commission each product actually pays (Q-05).<br>Which category draws measured clicks (Q-16).</td>
+    <td class="small"><code>Q-03</code> <code>Q-05</code> <code>Q-16</code></td>
+    <td class="small">Nothing measurable exists yet — that is the finding. Defer the decision until the ledger has rows; deciding it now would be instinct dressed as strategy (Path 4 on the suggestions page).</td>
+    <td><span class="pill pill--open">not ready</span></td>
+  </tr><tr>
+    <td><code>D-07</code></td>
+    <td><strong>Turning on measurement: the click counter, the collector, and the ledger</strong></td>
+    <td class="small">Five events are defined (EV-01 to EV-05), the privacy-preserving collector is written and its contract tested, and the ledger schema admits measured rows only (Q-17).</td>
+    <td class="small">A deployed endpoint — nothing is being measured right now (Q-16, FLG-011).<br>Search Console verification and its real token (Q-18, FLG-009).</td>
+    <td class="small"><code>Q-16</code> <code>Q-18</code></td>
+    <td class="small">Deploy the collector on any host reachable from the site's origin and replace the placeholder verification token; both are owner-side steps and both are recorded as blocked until done.</td>
+    <td><span class="pill pill--open">not ready</span></td>
+  </tr></tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
 <section class="section">
   <div class="wrap">
     <div class="strip" style="border:1px solid var(--rule);margin-bottom:2rem">
@@ -219,7 +299,7 @@
   </tr><tr>
     <td><code>Q-24</code></td>
     <td class="small">Demand</td>
-    <td><strong>Which of the seven guides earns impressions first?</strong><br><span class="pill pill--high" style="margin-top:.4rem">high</span></td>
+    <td><strong>Which of the ten guides earns impressions first?</strong><br><span class="pill pill--high" style="margin-top:.4rem">high</span></td>
     <td class="small">Unknown until the property is verified and the query report populates.</td>
     <td class="small">The first query report. Nothing else can rank the hypotheses.</td>
     <td class="small">After SG-29 closes, read the query report at week four and week eight. Record the ranking in this register with the date read.</td>
@@ -316,6 +396,21 @@
     <td><span class="pill pill--decision-needed">decision-needed</span></td>
     <td class="small"><a href="https://sassnarep3-star.github.io/WinA/about/" rel="noopener" target="_blank">Editorial standards</a></td>
   </tr></tbody>
+      </table>
+    </div>
+
+    <h2 class="section__title" style="font-size:1.35rem;margin-top:2.75rem">How the missing information gets discovered</h2>
+    <p class="section__dek" style="margin-bottom:1.25rem">Most of the blanks above close through one of four doors. Each is named here so no question is left waiting on an abstraction.</p>
+    <div class="tablewrap">
+      <table class="data sortable">
+        <caption>Discovery routes: the specific action or document that converts an unknown into a recorded fact. Questions stay open until one of these happens.</caption>
+        <thead><tr><th scope="col">Door</th><th scope="col">What it unlocks</th><th scope="col">Who holds the key</th><th scope="col">Questions it closes</th></tr></thead>
+        <tbody>
+          <tr><td>Associates Central sign-in</td><td>Tracking-ID enrolment, the Special Link test, the campaign ledger's first rows</td><td>The owner</td><td>Q-04, Q-05, Q-06 (with Associates support)</td></tr>
+          <tr><td>Product Advertising API / Creatives access</td><td>Prices, star ratings and licensed product imagery — the three things policy forbids us to show without it</td><td>Amazon, after the account qualifies</td><td>Q-11, Q-12</td></tr>
+          <tr><td>Search Console verification</td><td>Index status and the query report that replaces topic hypotheses with measured demand</td><td>The owner (domain/token)</td><td>Q-07, Q-08, Q-18</td></tr>
+          <tr><td>Deploying the analytics collector</td><td>Outbound-click and session measurement from the five defined events</td><td>The owner (hosting)</td><td>Q-16, Q-17</td></tr>
+        </tbody>
       </table>
     </div>
   </div>

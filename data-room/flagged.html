@@ -49,7 +49,7 @@
     <div class="wrap">
       <div class="table-scroll">
         <table class="data">
-          <caption>Flags a reader can act on, as of 2026-11-20. 37 more are in the register &mdash; 25 of them still open, most of them owner-side credentials and verification steps &mdash; and the resolved ones are recorded rather than deleted. Counts on this line are checked against <code>data/governance.json</code> on every build.</caption>
+          <caption>Flags a reader can act on, as of 2026-11-20. 38 more are in the register &mdash; 25 of them still open, most of them owner-side credentials and verification steps &mdash; and the resolved ones are recorded rather than deleted. Counts on this line are checked against <code>data/governance.json</code> on every build.</caption>
           <thead>
             <tr><th scope="col">ID</th><th scope="col">What was found</th><th scope="col">Why it's flagged</th><th scope="col">Source</th><th scope="col">Suggested resolution</th></tr>
           </thead>
@@ -106,7 +106,7 @@
             <tr>
               <th scope="row">FLG-009</th>
               <td>Displaying observed prices and ratings outside PA-API may conflict with Associates Program policy: the parallel build's register cites the Program Policies (updated 2026-04-14) §6 as restricting review/rating and price display without API-supplied data, and chose to show no prices at all.</td>
-              <td>This site shows dated, source-linked observed prices/ratings as part of the buyer-research tables. Whether that posture is compliant enough is an owner decision — the conservative alternative is implemented in the <a href="../archive/arena-ffa85037/">archived parallel build</a>.</td>
+              <td><strong>Updated 2026-11-20 (session arena-f515c465-wina, T36):</strong> Participation Requirements §6(t) was verified verbatim from the official Program Policies page — it flatly prohibits displaying customer reviews or star ratings unless they were obtained through Creators API/PA API, and Participation Requirements §2(b) limits price and availability display to API-served links (Creators API / PA API). This site has no PA API access, so the conservative alternative is now implemented on this site itself: all prices, star ratings, review counts, "Amazon's Choice" and popularity badges were removed from every served page (recorded as <a href="#FLG-048">FLG-048</a>), and gate rules R-10/R-11 enforce it. The owner decision (S-14) can revisit this deliberately if PA-API access is ever granted.</td>
               <td class="src"><a href="https://affiliate-program.amazon.com/help/operating/policies" rel="nofollow">Program Policies</a> · <a href="https://github.com/sassnarep3-star/WinA/blob/main/data/policy.json">policy.json (verbatim clauses)</a></td>
               <td>Owner reads POL-03/POL-04 in policy.json, decides: keep dated snapshots (current site) or suppress prices/ratings (archived build's posture); log the choice as S-14.</td>
             </tr>
@@ -116,6 +116,7 @@
               <td>If the owner has a different canonical list, the events and endpoint allowlist must be renamed to match.</td>
               <td class="src"><a href="measurement.html">measurement spec</a> · <a href="https://github.com/sassnarep3-star/WinA/blob/main/assets/js/analytics.js">analytics.js</a></td>
               <td>Owner compares the defined five with any prior spec; approve or replace via Q-15.</td>
+            </tr>
 
             <tr>
               <th scope="row">FLG-043</th>
@@ -152,22 +153,378 @@
               <td class="src"><a href="product-intent.html">intent record</a> · <a href="https://affiliate-program.amazon.com/help/operating/policies" rel="nofollow">Program Policies §6(v)</a></td>
               <td>Owner opens each link in a normal browser signed out and records the landing URL. Each check is stored as its own dated observation; none is merged into a single value.</td>
             </tr>
+            <tr id="FLG-048">
+              <th scope="row">FLG-048</th>
+              <td>The integrated shop-style publication (PR #28) displayed hand-copied prices, list prices, star ratings, review counts ("18,379 ratings"), "Amazon's Choice" badges and "bought last month" figures on shop, index, compare, questions, executive-summary, guide and data-room pages — figures typed by hand from the listings, not obtained through PA API, with no source link per figure. The rewritten Python gate (R-01…R-09) did not check for them, so CI passed. Found 2026-11-20 during the line-by-line verification pass (session arena-f515c465-wina, T35/T36).</td>
+              <td><span class="chip verified">resolved</span> All such figures removed from every served page and replaced with "not shown / not reproduced" copy citing the rule (IP License §2(b); Participation Requirements §6(t)/§6(y) — verified verbatim from the official policies page). Gate rules R-10 (price figures) and R-11 (ratings, review counts, merchandising badges) added to <a href="https://github.com/sassnarep3-star/WinA/blob/main/tools/check_site.py">tools/check_site.py</a> so the regression cannot return; the G-3 row on <a href="compliance-gate.html">the gate page</a> documents R-03…R-11. If PA-API access is ever granted (S-14/SUG-03), revisit deliberately — never silently.</td>
+              <td class="src"><a href="https://affiliate-program.amazon.com/help/operating/policies" rel="nofollow">Program Policies (§6(t), §6(y))</a> · <a href="https://github.com/sassnarep3-star/WinA/blob/main/data/governance.json">data/governance.json (FLG-048)</a></td>
+              <td>Resolved 2026-11-20. Follow-up after the first deploy was live-checked: three residuals found and removed — "Deal −NN%" discount badges (price-derived figures) on shop/index, the CHEF iQ shop-card battery figure ("up to 50 hours" vs chefiq.com's 70+ hours claim), and "Check price on Amazon" button labels that contradicted T33's recorded "View on Amazon" resolution (FLG-037). Owner: none required; S-14 stays open as the deliberate path to change the posture.</td>
+            </tr>
+            <tr>
+              <th scope="row">FLG-049</th>
+              <td>CHEF iQ Sense Gen3 warranty: the manufacturer's own user guide states a 2-year limited warranty (activated on first connection to the CHEF iQ App), while retailer listings and third-party mirrors of an older guide state 1 year.</td>
+              <td>The register cannot show both; the buyer-facing figure follows the manufacturer's current official document. The conflict is real and unresolved, so it is flagged rather than silently harmonized.</td>
+              <td class="src"><a href="https://cdn.shopify.com/s/files/1/0267/8118/8171/files/CQ60-ALL-SET-C_UG_OTP_050126.pdf" rel="nofollow noopener" target="_blank">CHEF iQ user guide (official)</a> · <a href="https://chefiq.com/products/iq-sense" rel="nofollow">chefiq.com</a></td>
+              <td>Owner opens the CHEF iQ user guide on chefiq.com and confirms the 2-year term applies to the enrolled ASIN; record which document and date governs.</td>
+            </tr>
+            <tr>
+              <th scope="row">FLG-050 <span class="chip unverified">review</span></th>
+              <td>Gate rules R-10/R-11 were implemented twice independently (T38 and T39 in parallel) and converged on merge; the reconciliation is recorded so the next session does not re-derive it.</td>
+              <td>Duplicate enforcement is agreement, but unmerged rules drift.</td>
+              <td class="src"><a href="https://affiliate-program.amazon.com/help/operating/policies" rel="nofollow">Program Policies §2(b), §6(t), §6(y)</a> · <a href="compliance-gate.html">gate registry</a></td>
+              <td>Done: the merged R-10 covers prices and availability states, R-11 covers ratings and badges, and both sessions' removals are recorded as agreement, not duplication.</td>
+            </tr>
+            <tr id="FLG-051">
+              <th scope="row">FLG-051</th>
+              <td>[Independently recorded as FLG-048 by session arena/2739f0fb-wina; renumbered FLG-051 on merge because arena/d7bbbc5d-wina recorded the same finding as FLG-048 and the reconciliation row FLG-050 in parallel. Both records kept; see FLG-048 and FLG-050.] Price snapshots, star ratings, rating counts and availability claims were displayed on reader pages and in this data room. Associates Program Policies §2(b) allows price and availability display only through links Amazon serves with that data, or via Creators API / PA API; §6(t) bars displaying customer reviews or star ratings without an API source. Both clauses were re-read verbatim on 2026-11-20.</td>
+              <td>Marked as dated observations, the literals were still displays on the site, and the policy makes no exception for snapshots: no API-sourced link stood behind any of them. Leaving them up risked a material breach of the Participation Requirements.</td>
+              <td class="src"><a href="https://affiliate-program.amazon.com/help/operating/policies" rel="nofollow">Program Policies §2(b) &amp; §6(t) (Updated April 14, 2026)</a></td>
+              <td>Resolved for display on 2026-11-20 (session arena/2739f0fb-wina): every literal removed from served pages and replaced with a pointer to this flag; checker rule R-10 added so it cannot regress. Owner may restore price or rating display only with Creators API / PA API-sourced links — that is the open decision S-14 in the suggestions queue. Raw snapshots stay in the verification record and git history, never on a served page.</td>
             </tr>
           </tbody>
         </table>
       </div>
 
+      
       <div class="table-scroll" style="margin-top:22px;">
+        <table class="data">
+          <caption>Register B — the carried-forward register from the merged prior build (<code>data/governance.json</code>, 53 rows, rendered in full). IDs overlap Register A above with different meanings; see FLG-049.</caption>
+          <thead>
+            <tr><th scope="col">ID · status</th><th scope="col">Finding</th><th scope="col">Source</th><th scope="col">Action / resolution</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">FLG-001 <span class="chip verified">resolved</span></th>
+              <td>Short links carry no ASIN in the code — Each submitted link is a /B0.../ short code that is not the ASIN. Product identity could only be established by following the redirect. All five were resolved by observation on 2026-11-20 and the observed destination is stored in its own field, separate from i…</td>
+              <td class="src"><a href="product-intent.html" rel="nofollow">Example submitted short link — link not shipped per gate R-02; resolved listings in the intent record</a></td>
+              <td>Resolved. Observed destination recorded per product; intended ASIN left null because none was supplied.</td>
+            </tr>
+            <tr>
+              <th scope="row">FLG-002 <span class="chip unverified">action</span></th>
+              <td>Submitted links carry no Associates tag of their own — The submitted link.amazon URLs resolve to plain product pages. No tag parameter was observed on them, so they do not by themselves attribute a purchase to shopnow047c-20.</td>
+              <td class="src"><a href="https://affiliate-program.amazon.com/help/operating/policies" rel="nofollow">Associates Program Policies</a></td>
+              <td>Every outbound link on this site is constructed as amazon.com/dp/&lt;ASIN&gt;?tag=shopnow047c-20 rather than reusing the submitted short link.</td>
+            </tr>
+            <tr>
+              <th scope="row">FLG-003 <span class="chip unverified">review</span></th>
+              <td>Compliance status of link.amazon short links is unresolved — Whether link.amazon short links satisfy the requirement that a link not obscure the destination is not something we can settle from published policy text. Non-Amazon-owned shorteners are clearly addressed; this is Amazon&#x27;s own domain. We are not claiming these…</td>
+              <td class="src"><a href="https://affiliate-program.amazon.com/help/operating/policies" rel="nofollow">Participation Requirements §6(w)</a></td>
+              <td>Not depended upon. The site links directly to amazon.com product pages instead. Raised for review so the question gets a real answer from Associates support.</td>
+            </tr>
+            <tr>
+              <th scope="row">FLG-004 <span class="chip unverified">review</span></th>
+              <td>Tracking ID attribution unverified — shopnow047c-20 is applied to every outbound link, but confirming that it is an active, enrolled Associates ID requires signing in to the Associates dashboard. That sign-in cannot be performed from here, and no first-party report was available.</td>
+              <td class="src"><a href="https://affiliate-program.amazon.com/" rel="nofollow">Amazon Associates Central (sign-in required)</a></td>
+              <td>Test one link per product in the enrolled workflow and confirm the destination and the tracking report before scaling. Until then, treat attribution as unconfirmed.</td>
+            </tr>
+            <tr>
+              <th scope="row">FLG-005 <span class="chip unverified">withheld</span></th>
+              <td>No prices shown — Amazon requires price data to come from its API so it stays accurate, and prohibits price tracking on the site. No Creatives or PA-API credential exists for this project, so any price printed here would be a guess that goes stale.</td>
+              <td class="src"><a href="https://affiliate-program.amazon.com/help/operating/policies" rel="nofollow">Participation Requirements §2(b) (prices via API only) and §6(y) (no price tracking)</a></td>
+              <td>Price fields are marked unverified and left blank. No revenue forecast or conversion score is presented.</td>
+            </tr>
+            <tr>
+              <th scope="row">FLG-006 <span class="chip unverified">withheld</span></th>
+              <td>No star ratings or review quotes — Program Policies §6(t) forbids displaying customer reviews or star ratings unless they were obtained through Creatives API or PA API. Ratings were visible on the live listings but may not be reproduced here.</td>
+              <td class="src"><a href="https://affiliate-program.amazon.com/help/operating/policies" rel="nofollow">Participation Requirements §6(t)</a></td>
+              <td>Rating and review-count rows are shown as withheld, with the reason. Not left blank, so nobody fills them in by hand later.</td>
+            </tr>
+            <tr>
+              <th scope="row">FLG-007 <span class="chip unverified">review</span></th>
+              <td>No product photography — No licensed product images are available. Amazon Program Content may not be copied, stored, or hot-linked outside approved tooling, and stock photography of a different appliance would misrepresent the item.</td>
+              <td class="src"><a href="https://affiliate-program.amazon.com/help/operating/policies" rel="nofollow">Participation Requirements §6(a); IP License §1 and §2(h)</a></td>
+              <td>Pages are deliberately typographic — colour, type and layout carry the design. The real fix is Creatives API access, which would supply compliant imagery.</td>
+            </tr>
+            <tr>
+              <th scope="row">FLG-008 <span class="chip unverified">review</span></th>
+              <td>Commission rates not asserted — Category commission rates and fixed bounty amounts change and are published inside the Associates dashboard. We did not find a current public table we could verify at build time.</td>
+              <td class="src"><a href="https://affiliate-program.amazon.com/help/operating/policies" rel="nofollow">Commission Income Statement</a></td>
+              <td>No earnings estimate, effective rate, or revenue projection appears anywhere. The commission-potential column in the product register is intentionally absent.</td>
+            </tr>
+            <tr>
+              <th scope="row">FLG-009 <span class="chip unverified">action</span></th>
+              <td>Search Console not verified — The site is indexable and has a sitemap and feed, but no Search Console property has been verified because that requires account access we do not have.</td>
+              <td class="src"><a href="https://search.google.com/search-console" rel="nofollow">Google Search Console</a></td>
+              <td>A placeholder verification tag is present and clearly marked. Replace the token, then submit sitemap.xml. Until then, query data is unavailable and topic choice stays a hypothesis.</td>
+            </tr>
+            <tr>
+              <th scope="row">FLG-010 <span class="chip unverified">action</span></th>
+              <td>Reader capture has no backend — The email capture form is present for layout and measurement but no email service provider is connected, so it cannot deliver a subscription.</td>
+              <td class="src"><a href="https://affiliate-program.amazon.com/help/operating/policies" rel="nofollow">Participation Requirements §3(e) (disclosing cookies, pixels, and other tracking)</a></td>
+              <td>The form is inert and says so where a reader would hit it. No address is transmitted or stored.</td>
+            </tr>
+            <tr>
+              <th scope="row">FLG-011 <span class="chip unverified">action</span></th>
+              <td>Analytics endpoint not deployed — A self-hosted collector exists in _worker/ and the client is written to POST five defined events. No endpoint is deployed, so the client is switched off rather than sending events into a void.</td>
+              <td class="src"><a href="https://sassnarep3-star.github.io/WinA/analytics/" rel="nofollow">This site&#x27;s measurement page</a></td>
+              <td>Deploy the worker, set SITE_ANALYTICS_ENDPOINT, rebuild. Until then no analytics data exists and the dashboard says so. A zero-dependency reference collector now ships at scripts/analytics-server.mjs: same event set, sam…</td>
+            </tr>
+            <tr>
+              <th scope="row">FLG-012 <span class="chip unverified">withheld</span></th>
+              <td>Campaign ledger is empty by design — There is no authorized first-party report yet. Every ledger row requires a timestamp, source, channel, eligible sessions, clicks and reported orders taken from an Associates report.</td>
+              <td class="src"><a href="https://affiliate-program.amazon.com/" rel="nofollow">Associates reports (sign-in required)</a></td>
+              <td>The ledger starts empty with its schema defined, so the first real report can be added without redesigning it. No placeholder numbers.</td>
+            </tr>
+            <tr>
+              <th scope="row">FLG-013 <span class="chip unverified">action</span></th>
+              <td>Content volume is below the Associates review bar — Amazon&#x27;s Associates Help, &#x27;Application Review Process&#x27; (checked 2026-11-20, US help topic G8TW5AE9XL2VX9VM), says: &quot;All Sites must have robust original content (even when advertising is removed) – a good rule of thumb is at least 10 posts.&quot; It also says: &quot;Cont…</td>
+              <td class="src"><a href="https://affiliate-program.amazon.com/help/node/topic/G8TW5AE9XL2VX9VM" rel="nofollow">Associates Help: Application Review Process (checked 2026-11-20)</a></td>
+              <td>Do not submit or re-submit for review until the site has at least 10 posts and content dated within the last 60 days. The weekly cadence in the suggestions register (SUG-05) is the proposed path. Recorded as a commercial…</td>
+            </tr>
+            <tr>
+              <th scope="row">FLG-014 <span class="chip verified">resolved</span></th>
+              <td>Five analytics events were never defined in the request — The brief referred to &#x27;the five defined events&#x27; but never listed them, leaving the previous session to propose its own set. Carried forward from arena-2ca62ce9 (FLG-007).</td>
+              <td class="src"><a href="https://sassnarep3-star.github.io/WinA/analytics/" rel="nofollow">Measurement page</a></td>
+              <td>Resolved in this build. Five events are now defined explicitly — page_view, outbound_click, guide_read, compare_view, capture_intent — and documented at /analytics/. The wording differs from the earlier session&#x27;s proposa…</td>
+            </tr>
+            <tr>
+              <th scope="row">FLG-015 <span class="chip verified">resolved</span></th>
+              <td>A self-hosted analytics endpoint cannot run on GitHub Pages — GitHub Pages serves static files only, so a collector cannot be deployed there. Carried forward from arena-2ca62ce9 (FLG-008).</td>
+              <td class="src"><a href="https://docs.github.com/pages" rel="nofollow">GitHub Pages documentation</a></td>
+              <td>Resolved by design, not deployed. The collector lives in _worker/ as a dependency-free edge handler, deployable anywhere with a fetch signature. It remains undeployed — see FLG-011.</td>
+            </tr>
+            <tr>
+              <th scope="row">FLG-016 <span class="chip unverified">review</span></th>
+              <td>A prior build merged observed ASINs into the intended-ASIN field — An earlier session on this repo (arena-6bd1be15) listed the observed redirect ASIN in a column headed &#x27;Intended ASIN&#x27;. A redirect is evidence of where a link currently lands, not of what product was intended. The brief explicitly requires these be kept in sepa…</td>
+              <td class="src"><a href="https://sassnarep3-star.github.io/WinA/register/" rel="nofollow">Link resolution register</a></td>
+              <td>This build keeps intendedAsin null for all five rows and stores the observed destination in its own field. The register page shows both columns side by side so the distinction is visible rather than asserted.</td>
+            </tr>
+            <tr>
+              <th scope="row">FLG-017 <span class="chip verified">resolved</span></th>
+              <td>Conflicting reports about whether Amazon was reachable — The first session recorded Amazon.com as unreachable from the sandbox. Two later sessions, including this one, opened the live listing pages successfully with a fetch tool. Both are true: direct curl from the sandbox returns HTTP 000 for amazon.com, while the …</td>
+              <td class="src"><a href="https://www.amazon.com/dp/B08DKYBTPH" rel="nofollow">Listing confirmed reachable 2026-11-20</a></td>
+              <td>Recorded as an environment distinction rather than an error. All five listings were confirmed by page fetch on 2026-11-20. The earlier statement is superseded, not deleted.</td>
+            </tr>
+            <tr>
+              <th scope="row">FLG-018 <span class="chip verified">resolved</span></th>
+              <td>Three independent site builds existed for this repo — Two earlier sessions generated root-level sites on main (PR #1, PR #6) and a third (arena-2ca62ce9) built its own. GitHub Pages serves a single source folder, so only one site can occupy the root. This session built a fourth. Carried forward from arena-2ca62ce…</td>
+              <td class="src"><a href="https://github.com/sassnarep3-star/WinA" rel="nofollow">Repository</a></td>
+              <td>Converged to one site. The earlier builds&#x27; complete data, toolchain and generated pages are preserved unchanged under archive/. Nothing was deleted and no finding was dropped.</td>
+            </tr>
+            <tr>
+              <th scope="row">FLG-019 <span class="chip verified">resolved</span></th>
+              <td>Readers had no way to find the dashboard surfaces from the front page — The brief required every dashboard surface to stay reachable while the front page led with products. Putting them in the primary navigation would have put the audit in front of the shopper.</td>
+              <td class="src"><a href="https://sassnarep3-star.github.io/WinA/" rel="nofollow">Live front page</a></td>
+              <td>Resolved structurally. The primary navigation carries five reader destinations only; all nine record and review surfaces are grouped in the footer under &#x27;Record &amp; review&#x27;, so they remain one click from every page.</td>
+            </tr>
+            <tr>
+              <th scope="row">FLG-020 <span class="chip verified">resolved</span></th>
+              <td>Seasonal content shipped as calendar-driven, not demand-driven; a hold position is recorded alongside it — The brief asked for seasons and topic clusters, but no seasonal query data was ever obtained, so a seasonal calendar could not be invented. Carried forward from arena-2ca62ce9 (FLG-015). Updated 2026-11-20 by arena-27f76c22: a seasonal collection page (/season…</td>
+              <td class="src"><a href="https://sassnarep3-star.github.io/WinA/seasonal/" rel="nofollow">The seasonal collection (calendar-driven selection disclosed on-page)</a></td>
+              <td>Resolved as shipped with its limitation disclosed and the opposing recommendation kept live. The open half is now Q-23: whether the seasonal cluster earns impressions will be known only from Search Console query data (SG…</td>
+            </tr>
+            <tr>
+              <th scope="row">FLG-021 <span class="chip unverified">review</span></th>
+              <td>Author identity and brand name are still placeholders — No author was named in the source material, so no byline was invented. &#x27;Counter Space&#x27; is a working name chosen for this build and is not a registered brand. Carried forward from arena-2ca62ce9 (FLG-013).</td>
+              <td class="src"><a href="https://sassnarep3-star.github.io/WinA/about/" rel="nofollow">About page</a></td>
+              <td>Both need a decision from the owner. Before adopting the name publicly, check it is not an active trademark in this category. See SUG-06 and Q-20.</td>
+            </tr>
+            <tr>
+              <th scope="row">FLG-022 <span class="chip unverified">low</span></th>
+              <td>Cited register identifiers (S01, S02, S07, S24) do not exist in this repo — The brief refers to S01, S02, S07, S24 and FLG-003 as though a source register already existed. It did not. Carried forward from arena-2ca62ce9 (FLG-014).</td>
+              <td class="src"><a href="https://sassnarep3-star.github.io/WinA/register/" rel="nofollow">Source register</a></td>
+              <td>This build creates that register from scratch: numbered sources, ten policy checks with quoted clauses, and a per-row verification status. If the owner has a separate register, those identifiers still need mapping to it.</td>
+            </tr>
+            <tr>
+              <th scope="row">FLG-023 <span class="chip unverified">low</span></th>
+              <td>The word &#x27;Sponsored&#x27; appears on two Amazon destination pages — The destination pages for two products display &#x27;Sponsored&#x27; near the product summary. It is unclear whether it labels the listing itself or a carousel item. Recorded as observed, not interpreted. Carried forward from arena-2ca62ce9 (FLG-006).</td>
+              <td class="src"><a href="https://www.amazon.com/dp/B09B7SB46R" rel="nofollow">Observed listing page</a></td>
+              <td>No claim is made about sponsorship status of any listing. Re-check on the live page before publishing anything that depends on it.</td>
+            </tr>
+            <tr>
+              <th scope="row">FLG-024 <span class="chip unverified">action</span></th>
+              <td>Tagged product links are live before the one-per-product Special Link test — Product buy-boxes and the register link to amazon.com/dp/&lt;observed ASIN&gt;?tag=shopnow047c-20 for all five products. The per-product test required before scaling (FLG-003) has not been run; it needs Associates Central sign-in, which this build does not have. The…</td>
+              <td class="src"><a href="https://affiliate-program.amazon.com/help/operating/policies" rel="nofollow">Participation Requirements §2(b) (Special Links use the Associates ID)</a></td>
+              <td>Owner runs one test per product in the enrolled Associates workflow and records the destination and tracking-report line in data/special_link_tests.json. Until then no further product link is added. If a test fails, the …</td>
+            </tr>
+            <tr>
+              <th scope="row">FLG-025 <span class="chip unverified">low</span></th>
+              <td>Placeholder site-verification token in every page head — Every generated page carries &lt;meta name=&quot;google-site-verification&quot; content=&quot;REPLACE_WITH_REAL_TOKEN_FLG009&quot;&gt;. The value is a placeholder, not a verification token. It is not a credential and it does nothing, but it is a visible defect in the published HTML.</td>
+              <td class="src"><a href="https://developers.google.com/search/docs/fundamentals/creating-helpful-content" rel="nofollow">Google Search Central (verification meta tags)</a></td>
+              <td>Remove the tag from the layout in _src/build.mjs, or replace it with a real token from Search Console once the owner verifies the property (FLG-009). Not changed in this session; it belongs to the shared layout.</td>
+            </tr>
+            <tr>
+              <th scope="row">FLG-026 <span class="chip unverified">review</span></th>
+              <td>Every specification cited the Amazon listing, including values the listing does not state — The source column on /products/ and /register/ linked every row to amazon.com/dp/&lt;ASIN&gt;, whether or not that page carried the value. Nine rows that had been recorded as &#x27;unverified&#x27; are in fact published by the manufacturer, and three product pages had no manu…</td>
+              <td class="src"><a href="https://chefman.com/products/turbofry-touch-dual-window-air-fryer" rel="nofollow">Chefman product specification block</a></td>
+              <td>Fixed. Each row now resolves to its own source: Amazon listing rows still link to the listing; manufacturer rows link to the page that states them (chefman.com, emerileveryday.com, thermomaven.com, chefiq.com). The build…</td>
+            </tr>
+            <tr>
+              <th scope="row">FLG-027 <span class="chip unverified">review</span></th>
+              <td>The 8-quart Chefman&#x27;s 450°F was presented as its maximum temperature — The listing title says &#x27;450°F Hi-Fry Option&#x27;; the manufacturer states Hi-Fry &#x27;raises the heat to 450°F for the last two minutes&#x27;, against a normal range topping out at 400°F. This site had recorded &#x27;Max temperature: 450°F (Hi-Fry)&#x27; and a guide called it &#x27;the t…</td>
+              <td class="src"><a href="https://chefman.com/products/turbofry-8-qt-air-fryer-w-high-fry" rel="nofollow">Chefman product page, Hi-Fry description</a></td>
+              <td>Corrected. The row now reads &#x27;400°F standard range; 450°F Hi-Fry for the final 2 minutes of a cycle&#x27;, and the basket-vs-oven guide describes it the same way. Second correction 2026-11-20: the row no longer states a durat…</td>
+            </tr>
+            <tr>
+              <th scope="row">FLG-028 <span class="chip verified">resolved</span></th>
+              <td>The 8-quart Chefman&#x27;s SKU was unresolved; the listing names it in its own bullet points — chefman.com publishes RJ38-8T-BLACK (matte black, 1700 W/120 V, 8 qt/7.57 L) for its 8-qt Hi-Fry machine, and earlier sessions could not tell whether that was the SKU behind this ASIN, so dimensions, weight and wattage were left blank. Re-read 2026-11-20: the …</td>
+              <td class="src"><a href="https://www.amazon.com/dp/B08DKYBTPH" rel="nofollow">Amazon listing bullet points and product-information table</a></td>
+              <td>Resolved. data/products.json records modelNumber RJ38-SQSS-8T and fills wattage, dimensions and warranty from this listing. Recorded here so a later session does not &#x27;correct&#x27; the wattage to chefman.com&#x27;s 1700 W for a di…</td>
+            </tr>
+            <tr>
+              <th scope="row">FLG-029 <span class="chip verified">resolved</span></th>
+              <td>Emeril&#x27;s page contradicted the listing on preset count; the owner&#x27;s manual settles it at 24 — emerileveryday.com states &#x27;25 Cooking Pre-sets&#x27; in its specification badge, &#x27;24 one-touch cooking presets&#x27; in its own product description, and &#x27;10-in-1&#x27; as a headline feature; the Amazon listing states 24. On 2026-11-20 the owner&#x27;s manual linked from that same…</td>
+              <td class="src"><a href="https://cdn.shopify.com/s/files/1/0687/4388/8948/files/FAFO-001_VN_32451_EF_IB_T22-5004282-C_1.pdf?v=1777990358" rel="nofollow">Emeril Lagasse French Door AirFryer 360 owner&#x27;s manual, accessory-position table</a></td>
+              <td>Resolved as 24, now cited to the manual rather than to the badge, with all 24 names listed in a second row so the number can be checked instead of trusted. The &#x27;10-in-1&#x27; figure is a marketing grouping, not a preset count…</td>
+            </tr>
+            <tr>
+              <th scope="row">FLG-034 <span class="chip unverified">review</span></th>
+              <td>No design brief or brand-direction source; the site is deliberately typographic — The brief asks for a polished marketing look, not an AI-generated one, but no design brief, brand guide or visual source was supplied. Because product imagery is withheld under program policy (FLG-007), the site is deliberately typographic and carries no photo…</td>
+              <td class="src"><a href="https://developers.google.com/search/docs/fundamentals/creating-helpful-content" rel="nofollow">Google Search Central — Creating Helpful, Reliable, People-First Content</a></td>
+              <td>Owner reviews the draft design brief on /suggestions/ and confirms or edits the visual direction. Until then the design direction is a recommendation, not an adopted standard.</td>
+            </tr>
+            <tr>
+              <th scope="row">FLG-035 <span class="chip unverified">review</span></th>
+              <td>Topic roadmap titles are editorial hypotheses with no measured demand — The topic roadmap on /suggestions/ proposes question-shaped titles by cluster. Every one is an editorial hypothesis: no search-volume source, keyword tool or referral data was available for this project, so none is a claim about demand, ranking difficulty or p…</td>
+              <td class="src"><a href="https://search.google.com/search-console" rel="nofollow">Google Search Console Queries report (not yet verified)</a></td>
+              <td>Accept the roadmap as the first draft of hypotheses only. Which topics earn traffic is decided by Search Console query data after verification (FLG-009), not by instinct. Recorded so the hypotheses are not read as claims…</td>
+            </tr>
+            <tr>
+              <th scope="row">SG-27 <span class="chip unverified">review</span></th>
+              <td>Navigation labels: parallel row SG-27 has no source document in this repository — The brief names SG-27 as the navigation-labels row. Its source document was not provided, so no label set has been checked against it. The primary navigation carries five reader destinations, and the record and review surfaces are in the footer, as recorded in…</td>
+              <td class="src"><a href="https://github.com/sassnarep3-star/WinA/blob/main/COORDINATION.md" rel="nofollow">Board: cross-scope requests (SG rows not in repository)</a></td>
+              <td>Provide the SG-27 document. Until then the labels stay as built and are not claimed to match SG-27.</td>
+            </tr>
+            <tr>
+              <th scope="row">SG-28 <span class="chip unverified">review</span></th>
+              <td>RSS feed: parallel row SG-28 has no source document in this repository — The build produces an RSS 2.0 feed at /feed.xml. The RSS 2.0 specification requires the channel title, link, and description, and uses RFC 822 dates for pubDate. Checked 2026-11-20 against the RSS 2.0 specification: the channel has the required title, link and…</td>
+              <td class="src"><a href="https://www.rssboard.org/rss-specification" rel="nofollow">RSS Advisory Board, RSS 2.0 Specification (checked 2026-11-20)</a></td>
+              <td>Provide the SG-28 requirements. After deploy, check the feed in a feed reader.</td>
+            </tr>
+            <tr>
+              <th scope="row">SG-29 <span class="chip unverified">action</span></th>
+              <td>Search Console: parallel row SG-29 is not done — no verification is recorded — The brief names SG-29 as the Search Console row. No Search Console verification is recorded in this repository, and no sitemap submission is recorded. The build does generate a sitemap, which lists every page. Every page currently carries a placeholder verific…</td>
+              <td class="src"><a href="https://developers.google.com/search/docs/crawling-indexing/sitemaps/build-sitemap" rel="nofollow">Google Search Central, Build and submit a sitemap</a></td>
+              <td>Account owner: verify the site in Search Console, submit the sitemap, and replace the placeholder tag with the real token (FLG-025). This needs a Google account and is not something the build can do.</td>
+            </tr>
+            <tr>
+              <th scope="row">SG-30 <span class="chip unverified">review</span></th>
+              <td>Reader capture: parallel row SG-30 is recorded, but the form has no backend — The brief names SG-30 as the reader-capture row. The capture form records a capture_intent event (EV-05) when submitted. No email service is connected, so no subscription is delivered (see FLG-010).</td>
+              <td class="src"><a href="https://github.com/sassnarep3-star/WinA/blob/main/data/governance.json" rel="nofollow">Flag register: FLG-010 and event EV-05</a></td>
+              <td>Owner decision: whether reader capture is wanted, and if so, which email service to connect. Until then the form stays inert.</td>
+            </tr>
+            <tr>
+              <th scope="row">FLG-030 <span class="chip verified">resolved</span></th>
+              <td>Policy and FTC quotes checked word for word against the official text (2026-11-20) — Operating Agreement §5: the Associates statement and the &#x27;misrepresent or embellish&#x27; sentence matched. Program Policies, Participation Requirements: §2(b) (price display), §6(a) (Program Content), §6(f) (keyword clause), §6(t) (ratings), §6(w) (link clarity), …</td>
+              <td class="src"><a href="https://affiliate-program.amazon.com/help/operating/agreement" rel="nofollow">Associates Operating Agreement §5 (checked 2026-11-20)</a></td>
+              <td>Re-run this check when Amazon or the FTC updates a document (FLG-031).</td>
+            </tr>
+            <tr>
+              <th scope="row">FLG-031 <span class="chip unverified">review</span></th>
+              <td>Policy quotes are current only as of the document versions checked — The Operating Agreement page shows &#x27;Updated: October 15, 2025&#x27;. The Program Policies page shows &#x27;Updated: April 14, 2026&#x27;. The quotes in this build match those versions. A later version can change a clause number or wording without this build knowing.</td>
+              <td class="src"><a href="https://affiliate-program.amazon.com/help/operating/policies" rel="nofollow">Associates Program Policies (updated April 14, 2026)</a></td>
+              <td>Before each publish and before any Associates application, re-check the quotes against the current pages.</td>
+            </tr>
+            <tr>
+              <th scope="row">FLG-032 <span class="chip unverified">review</span></th>
+              <td>Five short links re-checked 2026-11-20: ASINs confirmed, but three redirect to the Amazon homepage — A later session (arena/119f4dc6-wina) re-fetched all five link.amazon URLs on the same date. All five destination ASINs were re-confirmed by fetching https://www.amazon.com/dp/&lt;ASIN&gt; directly — the product identity in data/links.json is correct. However, only …</td>
+              <td class="src"><a href="https://www.amazon.com/dp/B0CDY277D3" rel="nofollow">Amazon listing (landing page of the first link)</a></td>
+              <td>Owner: open each short link in a normal browser while signed out and record what you see. The site does not depend on these URLs — it links to /dp/&lt;ASIN&gt; directly — so nothing user-facing breaks.</td>
+            </tr>
+            <tr>
+              <th scope="row">FLG-033 <span class="chip unverified">review</span></th>
+              <td>ASIN definition confirmed on an Amazon-owned page; that page says it was AI-assisted — The brief gives &#x27;Amazon&#x27;s ASIN definition&#x27; as the reason the intended-ASIN field is checkable. Earlier searches on 2026-11-20 found only a Seller Central forum thread, which is not cited. A later search found Amazon&#x27;s own &#x27;Sell on Amazon&#x27; page, Understanding A…</td>
+              <td class="src"><a href="https://sell.amazon.com/blog/what-is-an-asin" rel="nofollow">Sell on Amazon (Amazon-owned): &#x27;Understanding ASINs&#x27;, 4 Jun 2025 — checked 2026-11-20; AI-assisted per page</a></td>
+              <td>Owner: accept this AI-assisted Amazon page as the definition source, or find an Amazon Help page for it. Whether the intended-ASIN field may be filled from a submitted link is still the owner&#x27;s decision (FLG-019), and it…</td>
+            </tr>
+            <tr>
+              <th scope="row">FLG-036 <span class="chip unverified">review</span></th>
+              <td>Re-check on 2026-11-20 did not reproduce the recorded destination for three submitted short links — On 2026-11-20 each submitted link.amazon URL was re-opened with the page tool. B02NbDxp3 (-&gt; /dp/B09B7SB46R) and B00hJ57DV (-&gt; /dp/B08DKYBTPH) matched data/links.json. B04G1MEwY and B0c8moW59 each returned the amazon.com home page on both attempts, not the rec…</td>
+              <td class="src"><a href="product-intent.html" rel="nofollow">Submitted short link (re-checked 2026-11-20 by two sessions; see detail) — link not shipped per gate R-02; resolved listings in the intent record</a></td>
+              <td>Owner: open each of the five short links in a normal browser, logged out, and record the landing URL. If any short link lands somewhere other than its recorded /dp/ page, correct data/links.json and add a dated note. Do …</td>
+            </tr>
+            <tr>
+              <th scope="row">FLG-037 <span class="chip verified">resolved</span></th>
+              <td>Buyer-action and category copy no longer imply an on-page price or an unverified low cost — Resolved in task T33 on the shared board (2026-11-20; first claimed as T27, renumbered at merge time because main already held rows for other sessions). Product buttons in all three templates — buy box, product card, front-page hero — now read ‘View on Amazon’…</td>
+              <td class="src"><a href="https://affiliate-program.amazon.com/help/operating/policies" rel="nofollow">Amazon Associates Program Policies (page states “Updated: April 14, 2026”); price/rating display and tracking rules reviewed 2026-11-20</a></td>
+              <td>No further action on wording. If API-backed price display is ever considered, re-read the Associates Program Policies first and extend scripts/check-site.mjs so the no-price rule is re-checked against whatever the new co…</td>
+            </tr>
+            <tr>
+              <th scope="row">FLG-038 <span class="chip verified">resolved</span></th>
+              <td>ThermoMaven water-resistance row said no IP number was published; the listing states IP67 — The register recorded &quot;Described as 100% waterproof; no IP number published&quot; from the manufacturer page. The Amazon listing title on 2026-11-20 reads &quot;... IP67 Waterproof for Grill BBQ ...&quot;, so an IP rating is published. The row now reads &quot;IP67, as stated in t…</td>
+              <td class="src"><a href="https://www.amazon.com/dp/B0DHZTCNR5" rel="nofollow">Amazon listing title, fetched 2026-11-20</a></td>
+              <td>None. Corrected in data/products.json and rebuilt.</td>
+            </tr>
+            <tr>
+              <th scope="row">FLG-039 <span class="chip unverified">review</span></th>
+              <td>Spec coverage is uneven, and one product still has no confirmed warranty — 50 of 70 spec rows carry a verified value (53 carry any value at all; 17 are blank with a reason). Per product, verified of total: Chefman 6-Quart Dual Basket 10/13; Emeril Lagasse 26QT French Door 9/13; Chefman 8-Quart TurboFry 12/15; ThermoMaven 1-Second The…</td>
+              <td class="src"><a href="https://www.amazon.com/dp/B09B7SB46R" rel="nofollow">Amazon listing for the Emeril 26QT (wattage and warranty not stated there)</a></td>
+              <td>Owner or next session: treat the ThermoMaven calibration record as unverifiable until a certificate number is published. The CHEF iQ warranty row is now cited to the manufacturer user guide (this session); confirm the 2-…</td>
+            </tr>
+            <tr>
+              <th scope="row">FLG-040 <span class="chip unverified">review</span></th>
+              <td>All five short links returned different redirect targets across the three checks recorded for them — data/links.json now keeps every observed landing for each submitted link in its own dated list, separate from the intended ASIN. For each of the five links the recorded checks are: the first resolution (as recorded, not reproducible from this file), the T26 re…</td>
+              <td class="src"><a href="product-intent.html" rel="nofollow">Submitted short links (fetched 2026-11-20; see data/links.json observedRedirectTargets) — link not shipped per gate R-02; resolved listings in the intent record</a></td>
+              <td>Owner: open each of the five short links in a normal browser, logged out, on at least two days, and record each landing URL in data/links.json as a new dated entry. Do not treat any single recorded landing as the link&#x27;s …</td>
+            </tr>
+            <tr>
+              <th scope="row">FLG-041 <span class="chip unverified">review</span></th>
+              <td>The CHEF iQ specification source is a family page whose default variant is not the promoted SKU — The chefiq.com page used as the specification source (chefiq.com/products/iq-sense, re-checked 2026-11-20) shows model CQ60-1C-Z1-E, which is the one-probe variant of the Sense line; the store sells one- to four-probe configurations. The promoted Amazon listin…</td>
+              <td class="src"><a href="https://chefiq.com/products/iq-sense" rel="nofollow">CHEF iQ Sense family page (variant selector observed 2026-11-20)</a></td>
+              <td>Left as observed: no value was invented to resolve it. To close it, pick the exact variant URL on chefiq.com for the three-probe model and update specSources — an owner or a later session with the variant URL can do this…</td>
+            </tr>
+            <tr>
+              <th scope="row">FLG-042 <span class="chip verified">resolved</span></th>
+              <td>The self-hosted collector did not speak the browser client&#x27;s payload, and crashed when an origin allow-list was set — scripts/analytics-server.mjs had never been executed against a request. Two defects followed from that: (1) it read the page path, ASIN and slot from the top level of the request body, while assets/js/site.js and _worker/collector.js both send them nested unde…</td>
+              <td class="src"><a href="https://github.com/sassnarep3-star/WinA/blob/main/scripts/analytics-selftest.mjs" rel="nofollow">Repository — the collector self-test that found both defects</a></td>
+              <td>Both fixed in scripts/analytics-server.mjs: the payload now matches the client and the worker (props nested under &quot;p&quot;, the same stored row fields and length limits), and ALLOWED_ORIGINS is parsed as a comma-separated str…</td>
+            </tr>
+            <tr>
+              <th scope="row">FLG-043 <span class="chip unverified">review</span></th>
+              <td>Emeril page lists six included accessories; its own description says seven — The Amazon listing for B09B7SB46R says &#x27;Six Cooking Accessories Included&#x27; in its title, and the manufacturer&#x27;s product page carries a line reading &#x27;Included are 7 premium accessories&#x27; in the same description block that also says &#x27;24 one-touch cooking presets&#x27;.…</td>
+              <td class="src"><a href="https://www.emerileveryday.com/products/emeril_lagasse_french_door_airfryer_360" rel="nofollow">Emeril Everyday product description (six in the listing title, seven here)</a></td>
+              <td>Published as a claim rather than a fact. Owner: count the accessories in the box, or take the answer from the manufacturer&#x27;s support team, then set the row to verified against that source. Not filled from the listing alo…</td>
+            </tr>
+            <tr>
+              <th scope="row">FLG-044 <span class="chip verified">resolved</span></th>
+              <td>Two ThermoMaven rows cited a product page that does not state them — The &#x27;Display&#x27; row (&#x27;Auto-rotate bright LED&#x27;) and the &#x27;Battery type&#x27; row (&#x27;1 x AAA, included&#x27;) both cited thermomaven.com/products/f1-stealth. Re-read on 2026-11-20, that page&#x27;s manufacturer copy says only &#x27;ultra-bright LED screen&#x27; and says nothing about rotati…</td>
+              <td class="src"><a href="https://cdn.shopify.com/s/files/1/0828/4726/9152/files/HT07_user_manual.pdf?v=1733992221" rel="nofollow">ThermoMaven F1 Stealth owner&#x27;s manual, Specifications table</a></td>
+              <td>Corrected. Both rows cite the owner&#x27;s manual and carry its exact figures. Found by opening the cited page for every valued row rather than trusting the citation.</td>
+            </tr>
+            <tr>
+              <th scope="row">FLG-045 <span class="chip unverified">review</span></th>
+              <td>chefman.com&#x27;s 8-quart page is a different SKU from this ASIN, and guide copy had repeated its wording — The 8-quart family spans several SKUs. chefman.com sells RJ38-8T-BLACK at 1700 W/120 V, 8 qt/7.57 L; the Amazon listing for B08DKYBTPH states RJ38-SQSS-8T at 1000 W/120 V with 12.75&quot;D x 13.5&quot;W x 10&quot;H. Everything recorded for this product now comes from the lis…</td>
+              <td class="src"><a href="https://chefman.com/products/turbofry-8-qt-air-fryer-w-high-fry" rel="nofollow">chefman.com 8 Qt Hi-Fry page (RJ38-8T-BLACK, 1700 W) versus the Amazon listing (RJ38-SQSS-8T, 1000 W)</a></td>
+              <td>Recorded so the discrepancy is not later &#x27;fixed&#x27; in the wrong direction. If manufacturer-page figures are wanted, the model number has to change first - which means a different ASIN, not a different number in this row.</td>
+            </tr>
+            <tr>
+              <th scope="row">FLG-046 <span class="chip unverified">review</span></th>
+              <td>CHEF iQ Sense model number blanked: the manufacturer page shows a different probe count — data/products.json had recorded modelNumber CQ60-1C-Z1-E for the CHEF iQ Sense. That code is real, but chefiq.com&#x27;s variant selector reads &#x27;Size: 1 Probe&#x27; when it displays it, and this ASIN (B0DZFD6R9Z) is the three-probe listing - its title says &#x27;3 Ultra-Thin…</td>
+              <td class="src"><a href="https://chefiq.com/products/iq-sense" rel="nofollow">chefiq.com iQ Sense page (variant selector: 1 Probe, model CQ60-1C-Z1)</a></td>
+              <td>Owner: read the model code off a three-probe unit or the CHEF iQ support page, then fill the row with that source. Until then the field stays empty, which is the honest state, and the product page says so in words.</td>
+            </tr>
+            <tr>
+              <th scope="row">FLG-047 <span class="chip unverified">review</span></th>
+              <td>Fourth re-check of the short links: four of five landed on the Amazon homepage, and the split differed again — A further session (arena/b37e1a98-wina) opened all five submitted link.amazon URLs on 2026-11-20 with the page tool. This time B0f3GKalj reached /dp/B0DZFD6R9Z and the other four reached https://www.amazon.com/ - the homepage. Earlier the same day two other se…</td>
+              <td class="src"><a href="product-intent.html" rel="nofollow">Submitted short link, re-checked 2026-11-20 by a fourth independent session — link not shipped per gate R-02; resolved listings in the intent record</a></td>
+              <td>Owner: open each of the five in a normal browser while signed out and record the landing URL; that is the only way to settle it. Recorded so a later session does not read a single fetch as the answer - this record now ho…</td>
+            </tr>
+            <tr>
+              <th scope="row">FLG-048 <span class="chip verified">resolved</span></th>
+              <td>Served pages displayed hand-copied prices, star ratings, review counts and merchandising badges — display content the Associates rules reserve for PA-API data — The integrated publication displayed hand-copied prices and list prices on shop, index, compare, questions, executive-summary, guide and data-room pages, plus star ratings, review counts (&#x27;the rating counts that were displayed (removed)&#x27;), &#x27;a merchant badge&#x27; b…</td>
+              <td class="src"><a href="https://affiliate-program.amazon.com/help/operating/policies" rel="nofollow">Amazon Associates Program Policies — Participation Requirements §6(t), §6(y); IP License §2(b)</a></td>
+              <td>Resolved 2026-11-20 (session arena-f515c465-wina). All price figures, star ratings, review counts and badges removed from every served page and replaced with &#x27;not shown / not reproduced&#x27; copy citing the rule. Gate rules …</td>
+            </tr>
+            <tr>
+              <th scope="row">FLG-049 <span class="chip unverified">review</span></th>
+              <td>CHEF iQ Sense warranty: manufacturer&#x27;s user guide says 2 years; retailer listings say 1 year — The CHEF iQ Sense Gen3 (B0DZFD6R9Z) Warranty row was filled from the manufacturer&#x27;s own user guide PDF (CQ60-ALL-SET-C_UG_OTP_050126, hosted on chefiq.com&#x27;s CDN), which states: &#x27;RJ Brands, LLC d/b/a CHEF iQ offers a limited 2-year Warranty ... warranted agains…</td>
+              <td class="src"><a href="https://cdn.shopify.com/s/files/1/0267/8118/8171/files/CQ60-ALL-SET-C_UG_OTP_050126.pdf" rel="nofollow">CHEF iQ iQ Sense User Guide (official, chefiq.com CDN), warranty terms</a></td>
+              <td>Owner: open the CHEF iQ user guide on chefiq.com and confirm the 2-year term applies to this ASIN; if a retailer or Amazon listing states 1 year, record which document and date governs. The site shows the manufacturer fi…</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+<div class="table-scroll" style="margin-top:22px;">
         <table class="data">
           <caption>Blank/unverified values published on the site (same policy: blank + flagged, never guessed).</caption>
           <thead>
             <tr><th scope="col">Value</th><th scope="col">Products affected</th><th scope="col">Where shown</th><th scope="col">Discovery path</th></tr>
           </thead>
           <tbody>
-            <tr><th scope="row">Weight <span class="chip unverified">unverified</span></th><td>all five</td><td><a href="../compare.html#compare-table">comparison table</a></td><td>Listing "product details" block re-extraction (Q-05)</td></tr>
+            <tr><th scope="row">Weight <span class="chip unverified">unverified</span></th><td>Four of five <span class="chip verified">resolved for the Chefman 6QT</span> — 13.3 lb, from the <a href="https://chefman.com/products/turbofry-touch-dual-window-air-fryer" rel="nofollow">manufacturer page</a></td><td><a href="../compare.html#compare-table">comparison table</a></td><td>Re-checked 2026-11-20. Only the 6QT publishes a weight; the other four listings and manuals do not state one, so the column stays blank for them</td></tr>
             <tr><th scope="row">External dimensions <span class="chip unverified">unverified</span></th><td>Both thermometers <span class="chip verified">resolved for the Chefman pair and the Emeril 26QT</span></td><td>comparison table</td><td>Re-checked 2026-11-20: the Chefman listings and the Emeril manual both state dimensions</td></tr>
             <tr><th scope="row">Dishwasher claim <span class="chip unverified">unverified</span></th><td>Emeril 26QT</td><td>comparison table; cleanup guide</td><td>Listing bullets/manual (Q-05)</td></tr>
-            <tr><th scope="row">Warranty terms <span class="chip unverified">unverified</span></th><td>CHEF iQ Sense only <span class="chip verified">resolved for the other four</span></td><td>comparison table</td><td>Re-checked 2026-11-20: chefman.com (1-year assurance) and chefman.com listing, the Emeril page's warranty seal, and the ThermoMaven manual (lifetime, register within 30 days) all state terms. No CHEF iQ warranty document was found</td></tr>
+            <tr><th scope="row">Warranty terms <span class="chip verified">resolved</span></th><td>none remaining</td><td>comparison table</td><td>Re-checked 2026-11-20: <a href="https://chefman.com/products/turbofry-touch-dual-window-air-fryer" rel="nofollow">chefman.com</a> (1-year assurance) and the <a href="https://www.amazon.com/dp/B08DKYBTPH" rel="nofollow">8-qt listing</a>, the <a href="https://www.emerileveryday.com/products/emeril_lagasse_french_door_airfryer_360" rel="nofollow">Emeril page's</a> warranty seal, the <a href="https://cdn.shopify.com/s/files/1/0828/4726/9152/files/HT07_user_manual.pdf?v=1733992221" rel="nofollow">ThermoMaven manual</a> (lifetime, register within 30 days), and the <a href="https://cdn.shopify.com/s/files/1/0267/8118/8171/files/CQ60-ALL-SET-C_UG_OTP_050126.pdf" rel="nofollow">CHEF iQ Sense Gen3 user guide</a> (2 years, activated on first app connection — FLG-049) all state terms.</td></tr>
             <tr><th scope="row">Temperature range <span class="chip verified">resolved</span></th><td>Emeril 26QT</td><td>comparison table</td><td><a href="https://cdn.shopify.com/s/files/1/0687/4388/8948/files/FAFO-001_VN_32451_EF_IB_T22-5004282-C_1.pdf?v=1777990358" rel="nofollow">Owner's manual</a>, Appliance Specifications: 75–500°F, most presets to 450°F, Grill and Steak to 500°F</td></tr>
             <tr><th scope="row">Power / wattage <span class="chip verified">resolved</span></th><td>Chefman 6QT, Chefman 8QT, Emeril 26QT</td><td>comparison table</td><td><a href="https://chefman.com/products/turbofry-touch-dual-window-air-fryer" rel="nofollow">chefman.com</a> (1700 W); the <a href="https://www.amazon.com/dp/B08DKYBTPH" rel="nofollow">8-qt listing</a>'s own bullet (1000 W, RJ38-SQSS-8T); the <a href="https://cdn.shopify.com/s/files/1/0687/4388/8948/files/FAFO-001_VN_32451_EF_IB_T22-5004282-C_1.pdf?v=1777990358" rel="nofollow">Emeril manual</a> (1700 W)</td></tr>
           </tbody>

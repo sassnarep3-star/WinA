@@ -9,7 +9,11 @@
 <meta property="og:title" content="Suggestions queue — The Crisp Counter">
 <meta property="og:description" content="Choose the best path before we implement changes.">
 <meta property="og:type" content="website">
+<meta property="og:site_name" content="The Crisp Counter">
 <meta property="og:image" content="https://sassnarep3-star.github.io/WinA/assets/img/hero.jpg">
+<meta property="og:image:width" content="1384">
+<meta property="og:image:height" content="768">
+<meta property="og:image:alt" content="The Crisp Counter — straight answers before you buy kitchen gear">
 <meta name="cc-endpoint" content="">
 <link rel="alternate" type="application/rss+xml" title="The Crisp Counter" href="feed.xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -52,6 +56,66 @@
       <div class="callout sage">
         <h3>How to use this queue</h3>
         <p class="muted"><strong>1.</strong> Skim the verdict we recommend. <strong>2.</strong> Check the evidence line — "verified" means it's backed by a linked source; "hypothesis" means it's plausible but unmeasured; "blocked" means it can't proceed until a question is answered. <strong>3.</strong> Reply e.g. "S-03 approve, S-08 revise: skip the video". Nothing is implemented without that step. Changes already mandated by the project brief are listed at the bottom as <em>shipped</em>, so this queue stays purely about decisions that are still open.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section tight" id="paths">
+    <div class="wrap">
+      <div class="section-head"><div><p class="eyebrow">E · Before you build anything</p><h2>Choose a path, then approve proposals against it</h2></div></div>
+      <p class="muted">The queue below is a list of tasks; this table is a set of directions. Each path spends the same limited effort — owner time, writing time, or design time — in a different order, and each names what it changes first, what it risks, and the decision it waits on. Pick the direction that fits what the owner can actually do this month, then approve or reject the proposals against it. Nothing is implemented without that step.</p>
+      <div class="table-scroll">
+        <table class="data">
+          <thead>
+            <tr><th scope="col">ID</th><th scope="col">Path</th><th scope="col">What it changes first</th><th scope="col">Applies to</th><th scope="col">Cost</th><th scope="col">Risk</th><th scope="col">Depends on</th><th scope="col">When it is the wrong choice</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">P1</th>
+              <td>Prove the pipe, then scale</td>
+              <td>One owner-side pass: the gate G-4 click test per product, the Search Console tag, and deployment of the already-written analytics worker. Attribution is the product here, not content.</td>
+              <td><span class="chip">S-09</span> <span class="chip">S-11</span></td>
+              <td>A few hours of owner time against three logins; no new build work.</td>
+              <td>If the owner steps never happen, the site publishes into silence — pair with P2 so content keeps moving while credentials wait.</td>
+              <td>Q-07, Q-12 · <a href="questions.html#readiness">readiness map</a></td>
+              <td>No owner access is available this month; then record the block in the flag register and run P2 alone rather than pretending the gap away.</td>
+            </tr>
+            <tr>
+              <th scope="row">P2</th>
+              <td>Publish on a measured cadence</td>
+              <td>A steady guide rhythm drawn from the topic clusters in section B, every title kept a hypothesis until the query data says otherwise.</td>
+              <td><span class="chip">S-05</span> <span class="chip">S-06</span></td>
+              <td>One reviewed guide a week; each addition passes the site gate in the same commit.</td>
+              <td>Topics chosen from instinct. The answer is a kill criterion, not patience: drop a topic with no measured demand after four weeks of data.</td>
+              <td>Q-15, Q-12 · <a href="questions.html#readiness">readiness map</a></td>
+              <td>The owner pauses publishing; hold the cadence rather than padding — substantive posts are the point, not page count.</td>
+            </tr>
+            <tr>
+              <th scope="row">P3</th>
+              <td>Reader-trust polish now</td>
+              <td>The design and trust proposals as one deliberate pass: editor's notes (S-01), the money page (S-12), the link-out gate (S-13).</td>
+              <td><span class="chip">S-01</span> <span class="chip">S-12</span> <span class="chip">S-13</span></td>
+              <td>One focused pass over page templates and copy; content work pauses for it.</td>
+              <td>Rework if the image-rights route (Q-10) or disclosure sign-off (Q-09) changes the plan afterwards — settle those two first.</td>
+              <td>Q-09, Q-10 · <a href="questions.html#readiness">readiness map</a></td>
+              <td>The owner wants proof before polish; visual polish is not a substitute for the G-4 click test, and nothing here is automated optimization.</td>
+            </tr>
+            <tr>
+              <th scope="row">P4</th>
+              <td>Deepen the comparison — or split the beat</td>
+              <td>S-08's "what we'd test" columns first; the bigger question of splitting into two category publications is recorded here so it is decided deliberately, not drift.</td>
+              <td><span class="chip">S-08</span></td>
+              <td>Table rework for S-08; a split would move navigation, sitemap and every hub page.</td>
+              <td>A split now would divide authority while the site is young and unmeasured; it is not cheaply reversible.</td>
+              <td>Q-05, Q-06 · <a href="questions.html#readiness">readiness map</a></td>
+              <td>Choosing the split before any demand data exists (Q-12) — deciding it now would be instinct dressed as strategy.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="callout sage">
+        <h3>How to choose</h3>
+        <p class="muted">Read the <a href="questions.html#readiness">readiness map</a> first: it lists what is known, what is missing, and which questions block which decision. P1 and P2 run together happily. P3 and P4 compete with them for the same attention and should replace, not stack. Record the choice here in the queue (for example "path P1 + P2") alongside the proposal verdicts, with a date.</p>
       </div>
     </div>
   </section>
@@ -222,13 +286,13 @@
       </article>
 
       <article class="proposal">
-        <header><span class="chip">S-14</span><h3>Decide the price/rating display posture</h3><span class="meta">status: awaiting owner decision</span></header>
+        <header><span class="chip">S-14</span><h3>Decide the price/rating display posture</h3><span class="meta">status: policy question settled 2026-11-20 — display withheld (FLG-048); remaining decision is PA-API pursuit</span></header>
         <dl>
-          <dt>Why</dt><dd>Two builds of this site disagree on one compliance judgment: this site shows dated, source-linked observed prices/ratings (flagged FLG-009); the parallel build cites Associates Program Policies (updated 2026-04-14) §6 and shows no prices at all.</dd>
-          <dt>Evidence</dt><dd>Verbatim policy clauses and citations in <a href="https://github.com/sassnarep3-star/WinA/blob/main/data/policy.json">data/policy.json</a> (POL-03/POL-04); the conservative posture is live in the <a href="archive/arena-ffa85037/">archived parallel build</a>.</dd>
-          <dt>Recommended</dt><dd><strong>Owner decides</strong> — buyer usefulness vs policy caution. Record the choice on the <a href="data-room/compliance-gate.html">compliance page</a> and clear FLG-009 either way.</dd>
-          <dt>Alternative</dt><dd>Hybrid: keep prices in research tables but suppress star ratings until PA-API access exists.</dd>
-          <dt>Effort / risk</dt><dd>Low effort to switch / high value of certainty.</dd>
+          <dt>Why</dt><dd>Two builds of this site disagreed on one compliance judgment: this site showed dated, source-linked observed prices/ratings; the parallel build cited Associates Program Policies (updated 2026-04-14) §6 and showed no prices at all.</dd>
+          <dt>Evidence</dt><dd>Settled by the policy text itself, re-read verbatim 2026-11-20 at <a href="https://affiliate-program.amazon.com/help/operating/policies" rel="nofollow">Program Policies (Updated April 14, 2026)</a>: §2(b) — "your Site may only show prices and availability if: (a) we serve the link in which that price and availability data are displayed, or (b) you obtain Product pricing and availability data via Creators API or PA API"; §6(t) — "You will not display or otherwise use any of our customer reviews or star ratings… unless you have obtained a link to that customer review or star rating through Creators API or PA API". There is no snapshot exception in either clause, so the cautious posture is the compliant one. Verbatim clauses also in <a href="https://github.com/sassnarep3-star/WinA/blob/main/data/policy.json">data/policy.json</a> (POL-03/POL-04); the dispute history is in <a href="data-room/flagged.html#FLG-048">FLG-048</a>.</dd>
+          <dt>Recommended</dt><dd>Prices, star ratings and availability stay off served pages (done on 2026-11-20; checker rule R-10 now enforces it). The owner decision that remains is narrower: whether to pursue PA-API / Creators API access, which is the only lawful route back to price display via served links (see S-04 and S-09).</dd>
+          <dt>Alternative</dt><dd>None lawful without API access — even research tables on the site count as display under the clauses above.</dd>
+          <dt>Effort / risk</dt><dd>Done at low effort / the remaining risk is owner-side: nothing to decide can restore display until API access exists.</dd>
         </dl>
       </article>
     </div>
@@ -239,6 +303,209 @@
       <div class="callout gold">
         <h3>Already shipped per the project brief (not open for queue decisions)</h3>
         <p class="muted">Disclosure strip above the fold + footer repeat · sponsored rel-tagged links · product-intent record with separated fields · source-linked verification tables · empty-but-defined campaign ledger · five-event privacy analytics layer + self-hosted endpoint spec · sitemap, RSS feed, robots.txt · compliance gate in CI · Flagged-for-Review page · question-shaped guides · this queue. Full status: <a href="data-room/index.html">data room dashboard</a>.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section tight" id="decision-board">
+    <div class="wrap">
+      <div class="section-head"><div><p class="eyebrow">Decision board</p><h2>Choose before anything is built</h2></div></div>
+      <div class="callout sage">
+        <h3>How this works</h3>
+        <p>Every suggestion above is a proposal, not a plan. Record your choice on each card below — adopt, modify, hold or reject. Decisions are saved in your browser only (no request is sent) and export as text to hand back to whoever runs the build. Nothing is implemented before a choice is recorded.</p>
+      </div>
+      <div class="decision__bar">
+        <p class="decision__bar-count">Decisions recorded: <strong id="decision-count">0 of 14</strong></p>
+        <button class="btn ghost" id="decision-copy" type="button">Copy my decisions</button>
+        <textarea class="decision__export" id="decision-export" readonly rows="4">No decisions recorded yet. Choose a path on any card above.</textarea>
+      </div>
+      <div class="decisions">
+      <article class="decision">
+        <header class="decision__head">
+          <p class="decision__meta">S-01 · awaiting your choice</p>
+          <h3 class="decision__title">Give each product a short "editor's note" framing who it fits</h3>
+        </header>
+        <fieldset class="decision__choose" data-decision="S-01" data-answered="false">
+          <legend>My decision on S-01</legend>
+          <label><input type="radio" name="dec-S-01" value="adopt"> adopt the recommendation</label>
+          <label><input type="radio" name="dec-S-01" value="modify"> adopt with changes</label>
+          <label><input type="radio" name="dec-S-01" value="hold"> hold</label>
+          <label><input type="radio" name="dec-S-01" value="reject"> reject</label>
+        </fieldset>
+      </article>
+      <article class="decision">
+        <header class="decision__head">
+          <p class="decision__meta">S-02 · awaiting your choice</p>
+          <h3 class="decision__title">Add "price history" sparklines per product</h3>
+        </header>
+        <fieldset class="decision__choose" data-decision="S-02" data-answered="false">
+          <legend>My decision on S-02</legend>
+          <label><input type="radio" name="dec-S-02" value="adopt"> adopt the recommendation</label>
+          <label><input type="radio" name="dec-S-02" value="modify"> adopt with changes</label>
+          <label><input type="radio" name="dec-S-02" value="hold"> hold</label>
+          <label><input type="radio" name="dec-S-02" value="reject"> reject</label>
+        </fieldset>
+      </article>
+      <article class="decision">
+        <header class="decision__head">
+          <p class="decision__meta">S-03 · awaiting your choice</p>
+          <h3 class="decision__title">Seasonal hub pages: "Holiday hosting", "Back to basics"</h3>
+        </header>
+        <fieldset class="decision__choose" data-decision="S-03" data-answered="false">
+          <legend>My decision on S-03</legend>
+          <label><input type="radio" name="dec-S-03" value="adopt"> adopt the recommendation</label>
+          <label><input type="radio" name="dec-S-03" value="modify"> adopt with changes</label>
+          <label><input type="radio" name="dec-S-03" value="hold"> hold</label>
+          <label><input type="radio" name="dec-S-03" value="reject"> reject</label>
+        </fieldset>
+      </article>
+      <article class="decision">
+        <header class="decision__head">
+          <p class="decision__meta">S-04 · awaiting your choice</p>
+          <h3 class="decision__title">Replace hot-linked product thumbnails with PA-API images</h3>
+        </header>
+        <fieldset class="decision__choose" data-decision="S-04" data-answered="false">
+          <legend>My decision on S-04</legend>
+          <label><input type="radio" name="dec-S-04" value="adopt"> adopt the recommendation</label>
+          <label><input type="radio" name="dec-S-04" value="modify"> adopt with changes</label>
+          <label><input type="radio" name="dec-S-04" value="hold"> hold</label>
+          <label><input type="radio" name="dec-S-04" value="reject"> reject</label>
+        </fieldset>
+      </article>
+      <article class="decision">
+        <header class="decision__head">
+          <p class="decision__meta">S-05 · awaiting your choice</p>
+          <h3 class="decision__title">Question-shaped topic cluster: "Air fryer mistakes"</h3>
+        </header>
+        <fieldset class="decision__choose" data-decision="S-05" data-answered="false">
+          <legend>My decision on S-05</legend>
+          <label><input type="radio" name="dec-S-05" value="adopt"> adopt the recommendation</label>
+          <label><input type="radio" name="dec-S-05" value="modify"> adopt with changes</label>
+          <label><input type="radio" name="dec-S-05" value="hold"> hold</label>
+          <label><input type="radio" name="dec-S-05" value="reject"> reject</label>
+        </fieldset>
+      </article>
+      <article class="decision">
+        <header class="decision__head">
+          <p class="decision__meta">S-06 · awaiting your choice</p>
+          <h3 class="decision__title">Buyer's glossary: quarts vs liters, presets, cETL, NIST, IP67</h3>
+        </header>
+        <fieldset class="decision__choose" data-decision="S-06" data-answered="false">
+          <legend>My decision on S-06</legend>
+          <label><input type="radio" name="dec-S-06" value="adopt"> adopt the recommendation</label>
+          <label><input type="radio" name="dec-S-06" value="modify"> adopt with changes</label>
+          <label><input type="radio" name="dec-S-06" value="hold"> hold</label>
+          <label><input type="radio" name="dec-S-06" value="reject"> reject</label>
+        </fieldset>
+      </article>
+      <article class="decision">
+        <header class="decision__head">
+          <p class="decision__meta">S-07 · awaiting your choice</p>
+          <h3 class="decision__title">Real launch list (email capture with consent + double opt-in)</h3>
+        </header>
+        <fieldset class="decision__choose" data-decision="S-07" data-answered="false">
+          <legend>My decision on S-07</legend>
+          <label><input type="radio" name="dec-S-07" value="adopt"> adopt the recommendation</label>
+          <label><input type="radio" name="dec-S-07" value="modify"> adopt with changes</label>
+          <label><input type="radio" name="dec-S-07" value="hold"> hold</label>
+          <label><input type="radio" name="dec-S-07" value="reject"> reject</label>
+        </fieldset>
+      </article>
+      <article class="decision">
+        <header class="decision__head">
+          <p class="decision__meta">S-08 · awaiting your choice</p>
+          <h3 class="decision__title">Comparison page: add "what we'd test" columns instead of scores</h3>
+        </header>
+        <fieldset class="decision__choose" data-decision="S-08" data-answered="false">
+          <legend>My decision on S-08</legend>
+          <label><input type="radio" name="dec-S-08" value="adopt"> adopt the recommendation</label>
+          <label><input type="radio" name="dec-S-08" value="modify"> adopt with changes</label>
+          <label><input type="radio" name="dec-S-08" value="hold"> hold</label>
+          <label><input type="radio" name="dec-S-08" value="reject"> reject</label>
+        </fieldset>
+      </article>
+      <article class="decision">
+        <header class="decision__head">
+          <p class="decision__meta">S-09 · awaiting your choice</p>
+          <h3 class="decision__title">Deploy the analytics endpoint (gate G-6) and start the ledger</h3>
+        </header>
+        <fieldset class="decision__choose" data-decision="S-09" data-answered="false">
+          <legend>My decision on S-09</legend>
+          <label><input type="radio" name="dec-S-09" value="adopt"> adopt the recommendation</label>
+          <label><input type="radio" name="dec-S-09" value="modify"> adopt with changes</label>
+          <label><input type="radio" name="dec-S-09" value="hold"> hold</label>
+          <label><input type="radio" name="dec-S-09" value="reject"> reject</label>
+        </fieldset>
+      </article>
+      <article class="decision">
+        <header class="decision__head">
+          <p class="decision__meta">S-10 · awaiting your choice</p>
+          <h3 class="decision__title">Weekly automated re-verification of prices and stock</h3>
+        </header>
+        <fieldset class="decision__choose" data-decision="S-10" data-answered="false">
+          <legend>My decision on S-10</legend>
+          <label><input type="radio" name="dec-S-10" value="adopt"> adopt the recommendation</label>
+          <label><input type="radio" name="dec-S-10" value="modify"> adopt with changes</label>
+          <label><input type="radio" name="dec-S-10" value="hold"> hold</label>
+          <label><input type="radio" name="dec-S-10" value="reject"> reject</label>
+        </fieldset>
+      </article>
+      <article class="decision">
+        <header class="decision__head">
+          <p class="decision__meta">S-11 · awaiting your choice</p>
+          <h3 class="decision__title">Turn the compliance checker into a required status check</h3>
+        </header>
+        <fieldset class="decision__choose" data-decision="S-11" data-answered="false">
+          <legend>My decision on S-11</legend>
+          <label><input type="radio" name="dec-S-11" value="adopt"> adopt the recommendation</label>
+          <label><input type="radio" name="dec-S-11" value="modify"> adopt with changes</label>
+          <label><input type="radio" name="dec-S-11" value="hold"> hold</label>
+          <label><input type="radio" name="dec-S-11" value="reject"> reject</label>
+        </fieldset>
+      </article>
+      <article class="decision">
+        <header class="decision__head">
+          <p class="decision__meta">S-12 · awaiting your choice</p>
+          <h3 class="decision__title">Publish a plain-language "How we make money" page</h3>
+        </header>
+        <fieldset class="decision__choose" data-decision="S-12" data-answered="false">
+          <legend>My decision on S-12</legend>
+          <label><input type="radio" name="dec-S-12" value="adopt"> adopt the recommendation</label>
+          <label><input type="radio" name="dec-S-12" value="modify"> adopt with changes</label>
+          <label><input type="radio" name="dec-S-12" value="hold"> hold</label>
+          <label><input type="radio" name="dec-S-12" value="reject"> reject</label>
+        </fieldset>
+      </article>
+      <article class="decision">
+        <header class="decision__head">
+          <p class="decision__meta">S-13 · awaiting your choice</p>
+          <h3 class="decision__title">Link-out gate modal on first sponsored click per session</h3>
+        </header>
+        <fieldset class="decision__choose" data-decision="S-13" data-answered="false">
+          <legend>My decision on S-13</legend>
+          <label><input type="radio" name="dec-S-13" value="adopt"> adopt the recommendation</label>
+          <label><input type="radio" name="dec-S-13" value="modify"> adopt with changes</label>
+          <label><input type="radio" name="dec-S-13" value="hold"> hold</label>
+          <label><input type="radio" name="dec-S-13" value="reject"> reject</label>
+        </fieldset>
+      </article>
+      <article class="decision">
+        <header class="decision__head">
+          <p class="decision__meta">S-14 · awaiting your choice</p>
+          <h3 class="decision__title">Decide the price/rating display posture</h3>
+        </header>
+        <fieldset class="decision__choose" data-decision="S-14" data-answered="false">
+          <legend>My decision on S-14</legend>
+          <label><input type="radio" name="dec-S-14" value="adopt"> adopt the recommendation</label>
+          <label><input type="radio" name="dec-S-14" value="modify"> adopt with changes</label>
+          <label><input type="radio" name="dec-S-14" value="hold"> hold</label>
+          <label><input type="radio" name="dec-S-14" value="reject"> reject</label>
+        </fieldset>
+      </article>
+      </div>
+      <div class="callout">
+        <h3>What happens after</h3>
+        <p>Hand the exported list to the build. Accepted items enter the work queue with their risk and cost notes attached; rejected items stay rejected on the record so they are not re-litigated.</p>
       </div>
     </div>
   </section>
