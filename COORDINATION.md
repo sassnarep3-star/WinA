@@ -205,7 +205,7 @@ shapes differ.
 
 ---
 
-| T36 | Integrity and completion pass on the rebuilt publication: render **every** registered flag on the Flagged for Review page (it showed 11 rows of 46 while claiming "Every irregularity"), resolve FLG-009 by removing displayed prices/ratings/availability/badges from all served pages and enforce it with a new gate rule R-10, apply the parked `handoff/` spec-correction patches (integration step), resolve FLG-025, add og:image dimensions/alt and `og:site_name` to every page that shares, board hygiene | done | arena-d7bbbc5d (branch `arena/d7bbbc5d-wina`) | `data-room/flagged.html` (flag coverage), `data/products.json` + `data/governance.json` (handoff patches), served pages with og tags, `COORDINATION.md` (T36 row + own section), `README.md` (tooling note appended) | Claimed 2026-11-20. Extends the PR-#28 architecture; no second site. Button wording (PR #36), decision log (PR #43), suggestion pills (PR #42) already done by other sessions and not duplicated  The duplicated FLG-004 row in Register A was kept verbatim (another session's record); the unified view is Register B on the same page |
+| T39 | Integrity and completion pass on the rebuilt publication: render **every** registered flag on the Flagged for Review page (it showed 11 rows of 46 while claiming "Every irregularity"), resolve FLG-009 by removing displayed prices/ratings/availability/badges from all served pages and enforce it with a new gate rule R-10, apply the parked `handoff/` spec-correction patches (integration step), resolve FLG-025, add og:image dimensions/alt and `og:site_name` to every page that shares, board hygiene | done | arena-d7bbbc5d (branch `arena/d7bbbc5d-wina`) | `data-room/flagged.html` (flag coverage), `data/products.json` + `data/governance.json` (handoff patches), served pages with og tags, `COORDINATION.md` (T39 row + own section), `README.md` (tooling note appended) | Claimed 2026-11-20. Extends the PR-#28 architecture; no second site. Button wording (PR #36), decision log (PR #43), suggestion pills (PR #42) already done by other sessions and not duplicated  The duplicated FLG-004 row in Register A was kept verbatim (another session's record); the unified view is Register B on the same page |
 
 ## Link resolution (verified by three independent sessions)
 
@@ -6597,7 +6597,7 @@ work on branch `session-<id>/<task>`, and keep to your file scope.
 
 ---
 
-## Session arena-d7bbbc5d (branch `arena/d7bbbc5d-wina`) — T36 (2026-11-20)
+## Session arena-d7bbbc5d (branch `arena/d7bbbc5d-wina`) — T39 (2026-11-20, claimed as T27)
 
 > **Renumber note.** This session claimed **T27** at `80b45a1`. While it worked, `main` advanced
 > **eight times** through eleven merges: T27 went to `arena-574fc8eb-wina` (PR #26), T28 to
@@ -6609,7 +6609,7 @@ work on branch `session-<id>/<task>`, and keep to your file scope.
 > onto that tip, kept every prior record, and did its remaining work as **T36**. The earlier
 > branch states remain in this branch's remote history.
 
-**Claimed scope (T36):** the integrity and completion pass on the rebuilt publication. Extends the
+**Claimed scope (T39; the row was first filed as T36, but `main` reassigned that ID to the verified-spec coverage pass — see the T36 row above):** the integrity and completion pass on the rebuilt publication. Extends the
 PR-#28 architecture; no second site. Work other sessions landed first was not duplicated (button
 wording — PR #36's "View on Amazon" posture, superseded here by the no-price-display posture with
 "See it on Amazon"; decision-log suggestions — PR #43; suggestion pills — PR #42).
@@ -6677,8 +6677,8 @@ domain, and the short-link destination instability (owner browser check).
 |---|---|---|
 | Price/rating/badge/stock residue | `grep -rno '\$[0-9]\|★\|bought last month\|in stock'` over served pages | 0 hits outside `archive/` |
 | Gate (R-01…R-11, merged rules) | `python3 tools/check_site.py` | PASS — G-1/G-2/G-3 satisfied |
-| Flag coverage | rendered rows on `/data-room/flagged.html` | Register A (this build's own, + FLG-049/050) + Register B 52 rows rendered in full, each source-linked or explicitly noted |
-| Handoff patches | superseded by T35's on-tree application (upstream register is the superset) | register: 52 unique ids, 0 duplicates |
+| Flag coverage | rendered rows on `/data-room/flagged.html` | Register A (this build's own, + FLG-050) + Register B 53 rows rendered in full, each source-linked or explicitly noted |
+| Handoff patches | superseded by T35's on-tree application (upstream register is the superset) | register: 53 unique ids, 0 duplicates |
 | og tags | shipped upstream by PR #54; verified present | width/height/alt/site_name on every sharing page |
 
 **Status:** done. PR and merge recorded below after the merge.
