@@ -890,3 +890,106 @@ once on `/flagged/` (1,118 checks).
 **Post-merge state:** build passes (30 pages, 29 in sitemap); `check-site` passes (1,120 internal
 links, 102 Amazon links, 82 sponsored, zero failures); compliance gate 1,118 checks, 0 failing,
 1 warning (FLG-024, owner-only).
+
+---
+
+## Session arena-47045778-wina — T27 (2026-11-20)
+
+**Claim:** T27 — the review-and-decide pass on the suggestion layer: fill the empty decision
+log with dated accept/reject/hold/defer entries, then implement only the accepted items that
+need no owner credential. Claimed and pushed as its own commit before any edit
+(`bee2dc0`, board row T27). Scope widened in the same row (before those files were touched)
+to `data/policy.json`, `data/questions.json` and `data/products.json` (`guideTopics` only)
+when re-reading the official Program Policies surfaced a register defect (FLG-040).
+
+### Decisions recorded (decision log, 25 entries, all dated 2026-11-20)
+
+| Decision | Items | Reason in one line |
+|---|---|---|
+| accept | SUG-17, SUG-18, SUG-19 | Design brief adopted; type/colour system and layout variation verified already shipped against DB-01..DB-04 (Iowan Old Style display serif, one enamel accent, warm paper, no gradients, varied section layouts) |
+| accept | SUG-20, SUG-21, SUG-22, SUG-24, SUG-05 | Voice rule re-audited across six guides; cadence started (guide 06, week 1 of 8); cluster linking begun; this log |
+| reject | SUG-02 | One publication, two hubs until measured query data says otherwise; a split would cut volume against the FLG-013 content bar. Q-03 answered |
+| reject | SUG-06 | A named-person byline cannot be fabricated (the suggestion's own risk column says so). Publication byline adopted; Q-21 answered |
+| reject | SUG-12, SUG-13 | Confirmed: no price tracker (POL-04/POL-11), no near-duplicate pages |
+| hold | SUG-14, SUG-15, SUG-23 | Confirmed: no capture without a backend (FLG-010), no paid search (POL-08), no seasonal topics without demand data (FLG-020) |
+| defer | SUG-03, SUG-07, SUG-08, SUG-09, SUG-10, SUG-11, SUG-16, SUG-04 | Each names its blocker: owner credential (API, domain, hosting), a later editorial pass, or unverified rows (FLG-028) |
+| accept (flags/questions) | FLG-037, Q-20 | Buy-button wording kept; publication name kept — both with the reasoning below |
+
+### What shipped
+
+1. **Guide 06 published** — `guides/air-fryer-vs-toaster-oven/`, topic taken from the roadmap
+   (AF cluster, status now "published … demand unmeasured"). Question-shaped title, wired into
+   sitemap, RSS (6 items), both hubs, the three air fryer product pages (`guideTopics`) and the
+   count gates in the same build. Content rules held: no prices, no ratings, no testing claims;
+   every dimension cited to the manufacturer page that published it (13.38 × 11.81 × 10.63 in
+   from chefman.com; 16.9 D × 15.8 W × 14.8 H in from emerileveryday.com); the 8-quart's
+   unverified dimensions stay blank (FLG-028); the Emeril preset count is deliberately not
+   quoted (FLG-029); arithmetic (≈158 in² vs ≈267 in²) shown as arithmetic, not measurement.
+2. **Decision log filled** — 25 entries; suggestions page intro and status caption updated to
+   match (anything not "shipped" is an owner action, a later pass, or measured data).
+   Statuses: SUG-17..21, SUG-24 → shipped; SUG-02, SUG-06 → reject. Two new pill classes
+   (`.pill--accept`, `.pill--defer`).
+3. **FLG-037 resolved, wording kept** — after re-reading the official Program Policies page
+   (updated April 14, 2026): §2(b) allows a price only when Amazon serves it in the link or it
+   comes via Creators API/PA API — the button shows no price, so the rule is not engaged;
+   §6(y) bans tracking, which does not exist here; §6(w) requires links to make clear they go
+   to Amazon, which "on Amazon" does. Decision recorded in the log.
+4. **FLG-040 (new, resolved) — register defect found and fixed.** POL-04 was titled
+   "Price display" but quoted §6(y) (tracking ban); the display rule is §2(b). POL-04
+   retitled "Price tracking and alerting"; POL-11 added with the verbatim §2(b) quote; both
+   copy spots that had drifted ("prohibited unless supplied through its API") corrected to
+   cite §2(b), §6(t) and §6(y) accurately. `POL` count in the summary is now computed.
+5. **Q-03, Q-20, Q-21 answered** with the recorded decisions; Q-08 wording made count-safe.
+6. **FLG-021 updated** — decisions recorded; trademark check attempted: the USPTO public
+   search (tmsearch.uspto.gov) is a JavaScript application that returned no verifiable
+   exact-match result from this environment, and a general search surfaced no exact-match
+   registration for "Counter Space" (adjacent Class 011 marks such as CHEF'S COUNTER do
+   exist). That is not a clearance; the flag stays open with the owner action and now links
+   USPTO as its source.
+7. **FLG-013 updated** — 6 guides now, still below the 10-post rule of thumb; cadence accepted.
+8. **Count-gate hardening by rewording** — seven phrases across governance/questions/
+   suggestions/build that stated a guide count other than the published one were made
+   count-free or dynamic (`spellNum`), and the two prose spots now spell the number out.
+
+### Sources checked this session (method, date)
+
+| Source | Method | Result |
+|---|---|---|
+| Associates Program Policies, https://affiliate-program.amazon.com/help/operating/policies | Page fetch, read in full chunks, 2026-11-20 | §2(b) price display, §6(t) ratings, §6(w) link clarity, §6(y) price tracking all read verbatim; page dated "Updated: April 14, 2026" |
+| USPTO trademark search, https://tmsearch.uspto.gov/ | Page fetch + general web search, 2026-11-20 | JS app returned no verifiable exact-match result; no exact-match "Counter Space" registration surfaced; not a clearance — recorded in FLG-021 |
+| Roadmap topic, manufacturer dimensions | Existing register rows (data/products.json, specSources) | Re-read the rows used in guide 06; no new spec claim added |
+
+### Verification performed (all on the final tree)
+
+```
+node _src/build.mjs                  → 31 pages, 30 in sitemap. PASSED: all gates clear
+node scripts/check-site.mjs          → 31 pages · 1166 internal links · 108 Amazon (88 sponsored) · passed
+node scripts/compliance-gate.mjs     → 1157 checks, 0 failing, 1 warning (FLG-024, owner-side, intentional)
+node scripts/publish-gate.mjs        → 4 checks, 0 failing, 0 warnings
+build twice + diff                   → byte-identical (deterministic)
+feed.xml                             → 6 items, guide 06 present
+sitemap.xml                          → 30 URLs, guide 06 present
+scripts/collect.mjs / next-topics.mjs → "nothing to collect" / "no query data yet" (CI empty-state checks)
+```
+
+`--refresh-sources` reports its internal fetch blocked from this sandbox (the known FLG-017
+environment limit); the four policy quotes used in this pass were therefore read directly
+with the page tool against the live official page on 2026-11-20, not from memory.
+
+### Irregularities found, and open PRs assessed
+
+- **FLG-040** (above) — published on `/flagged/`.
+- **Two sessions both hold a T26 row** on this board (arena-8e69b462 via PR #29, arena-119f4dc6
+  via PR #31). Both merged; neither was edited here. Noted, not fixed — another session's record.
+- **Open PRs #2, #26, #28 assessed, none merged.** #2 predates the current build (board already
+  says do not merge as-is). #26 and #28 are complete alternative front-page sites (5,438 and
+  7,205 added lines, each replacing `index.html`); merging either would create a second
+  competing front page — the exact failure this board's session history documents five times.
+  Left open for their own sessions; if they are abandoned, a future integration session should
+  close them with this note rather than merge them.
+- **Not attempted (owner credentials, unchanged):** FLG-004 enrolment, FLG-024 Special Link
+  tests, FLG-009/SG-29 Search Console, FLG-011 analytics hosting, FLG-010 capture backend,
+  FLG-025 verification token, FLG-013 content volume (4 more weeks of cadence), FLG-021
+  trademark clearance and real-person byline.
+
+**Status:** done (PR and deploy record below).
