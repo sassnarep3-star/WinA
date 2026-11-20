@@ -47,6 +47,85 @@
     <p class="lede">No decision on this project should outrun its information. This register lists every question that needs an answer before a reasonable choice can be made — what we already know (with sources), what is missing, and the specific discovery step that would close the gap. Unanswered questions block specific decisions; those decisions are named.</p>
   </div>
 
+  <section class="section tight" id="readiness">
+    <div class="wrap">
+      <div class="section-head"><div><p class="eyebrow">Group E · Decision readiness</p><h2>Before you decide: what we know, what we do not</h2></div></div>
+      <p class="muted">The rows below are the decisions this project actually faces, not the questions in the abstract. Each names what a source has already confirmed, what nothing here can confirm, which open questions block it, and the one discovery that would settle it. Nothing in this table is inferred. For the step-by-step decisions themselves, see the <a href="suggestions.html#paths">choose-a-path menu</a>.</p>
+      <div class="table-scroll">
+        <table class="data">
+          <thead>
+            <tr><th scope="col">ID</th><th scope="col">Decision</th><th scope="col">Already known (source-linked)</th><th scope="col">Still missing</th><th scope="col">Blocks</th><th scope="col">How to discover it</th><th scope="col">Ready?</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">D-01</th>
+              <td>Whether the site can earn at all: tracking-ID enrolment plus one proven click</td>
+              <td>All five product identities are confirmed against the live listings; the tag is applied to every product link; the disclosure strip and footer statement are automated on every page (gate G-1). Sources: <a href="data-room/product-intent.html">intent record</a>.</td>
+              <td>Associates-side confirmation that shopnow047c-20 is enrolled and that a test click registers a report line (Q-07); the owner's confirmation-date sign-off on the intent record (Q-01).</td>
+              <td>Q-07, Q-01</td>
+              <td>Gate G-4: the owner clicks one tagged link per product, signed out, then reads the Associates Earnings/Orders report the next day and signs the <a href="data-room/product-intent.html">intent record</a>.</td>
+              <td>not ready</td>
+            </tr>
+            <tr>
+              <th scope="row">D-02</th>
+              <td>Whether the submitted short links may be used in marketing at all</td>
+              <td>They resolve to real listings and every destination ASIN is separately confirmed via its /dp/ page; the site does not depend on them — all product links go to canonical listing URLs. Sources: <a href="data-room/product-intent.html">intent record</a> · <a href="data-room/flagged.html">flag register (FLG-047)</a>.</td>
+              <td>Amazon's position on this link format (Q-08); the owner's own browser re-check.</td>
+              <td>Q-08</td>
+              <td>Ask Associates support, and open each link in a normal browser signed out. Until answered, the site keeps linking canonical listing URLs only. No claim is made that the links are invalid.</td>
+              <td>partly ready</td>
+            </tr>
+            <tr>
+              <th scope="row">D-03</th>
+              <td>Which topics to publish next</td>
+              <td>Six guides are published and instrumented; further topic clusters wait in the queue. Sources: <a href="suggestions.html#content">queue section B</a>.</td>
+              <td>Query data and per-guide read counts (Q-12, Q-15).</td>
+              <td>Q-12, Q-15</td>
+              <td>Deploy the analytics endpoint (gate G-6), verify Search Console, then compare guide reads and search queries over two to four weeks before ordering the next topic.</td>
+              <td>not ready</td>
+            </tr>
+            <tr>
+              <th scope="row">D-04</th>
+              <td>Reader-trust polish: how far to push design changes now</td>
+              <td>Every proposal in the queue carries its own alternative, and disclosure placement is automated. Sources: <a href="suggestions.html#design">queue section A</a>.</td>
+              <td>Owner verdicts on S-01, S-12, S-13; the image-rights route (Q-10, S-04); the human disclosure sign-off (Q-09, gate G-5).</td>
+              <td>Q-09, Q-10</td>
+              <td>Reply in the queue with proposal ids (for example "S-01 approve, S-13 revise"); settle Q-10 through PA-API image licensing or direct manufacturer permission.</td>
+              <td>partly ready</td>
+            </tr>
+            <tr>
+              <th scope="row">D-05</th>
+              <td>Seasonal strategy: ship holiday hubs or hold</td>
+              <td>The holiday return window (purchases Nov 1–Dec 31, 2026 returnable until Jan 31, 2027) is verified from each listing, and S-03 is drafted. Sources: <a href="suggestions.html#content">S-03</a>.</td>
+              <td>Owner approval before the December 10 window closes (Q-16); measured demand (Q-12).</td>
+              <td>Q-16</td>
+              <td>A verdict on S-03 in the queue; demand evidence arrives later through Q-12 and is not assumed.</td>
+              <td>partly ready</td>
+            </tr>
+            <tr>
+              <th scope="row">D-06</th>
+              <td>Comparison posture: scored rankings versus "what we'd test" columns, and category depth</td>
+              <td>The comparison table is source-linked and leaves unverifiable cells blank; nothing here has been tested. Sources: <a href="compare.html">comparison table</a>.</td>
+              <td>Hands-on data or a licensed test source (Q-06); the remaining spec cells (Q-05); demand data before any category split (Q-12).</td>
+              <td>Q-05, Q-06</td>
+              <td>S-08 keeps scores off the page until Q-06 closes; a category split waits on Q-12 data rather than instinct.</td>
+              <td>not ready</td>
+            </tr>
+            <tr>
+              <th scope="row">D-07</th>
+              <td>Turning measurement on: endpoint, Search Console, first ledger rows</td>
+              <td>The five-event layer is live but fail-closed; the ledger schema is defined and intentionally empty; the worker code is ready. Sources: <a href="data-room/measurement.html">measurement spec</a> · <a href="data-room/campaign-ledger.html">campaign ledger</a>.</td>
+              <td>A deployed endpoint (gate G-6), the Search Console verification tag, and the first authorized first-party report rows (Q-12, Q-14).</td>
+              <td>Q-12, Q-14</td>
+              <td>Deploy analytics/worker.js on a host the site can reach, add the Search Console tag (the hook is documented), then transcribe the first report rows with their provenance — never a forecast.</td>
+              <td>not ready</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
   <section class="section tight" id="product-questions">
     <div class="wrap">
       <div class="section-head"><div><p class="eyebrow">Group A · Product &amp; listing data</p><h2>What we're selling</h2></div></div>
@@ -68,7 +147,7 @@
             <tr>
               <th scope="row">Q-02</th>
               <td>Are the listing prices current enough to publish daily?</td>
-              <td>Single snapshot: e.g. TurboFry $69.99 (list $119.99), Emeril $149.99 (list $209.99) (<a href="https://www.amazon.com/dp/B08DKYBTPH" rel="nofollow">[3]</a> <a href="https://www.amazon.com/dp/B09B7SB46R" rel="nofollow">[2]</a>).</td>
+              <td>A single dated snapshot was taken on 2026-11-20 and is withheld from display: Program Policies §2(b) allows price display only through API-served links (<a href="data-room/flagged.html#FLG-048">FLG-048</a>; listings [<a href="https://www.amazon.com/dp/B08DKYBTPH" rel="nofollow">3</a> <a href="https://www.amazon.com/dp/B09B7SB46R" rel="nofollow">2</a>]).</td>
               <td>A re-observation cadence and a policy for stale prices.</td>
               <td>Weekly manual or API-driven re-read of the five buy boxes; each page shows "observed" dates meanwhile (already shipped).</td>
               <td>Proposal S-02, S-10</td>
@@ -100,7 +179,7 @@
             <tr>
               <th scope="row">Q-06</th>
               <td>How do these products actually perform (noise, preheat, evenness)?</td>
-              <td>Nothing — we don't test. Ratings exist (e.g. 4.4★/16,892 on TurboFry, <a href="https://www.amazon.com/dp/B08DKYBTPH" rel="nofollow">[3]</a>) but are crowd opinion, not measurement.</td>
+              <td>Nothing — we don't test. Ratings and review counts exist on the listings (<a href="https://www.amazon.com/dp/B08DKYBTPH" rel="nofollow">[3]</a>) but are crowd opinion, not measurement, and are not displayed here — §6(t) bars display without an API source (<a href="data-room/flagged.html#FLG-048">FLG-048</a>).</td>
               <td>First-hand test data or a lawful licensed source of third-party tests.</td>
               <td>Owner-decided: purchase units for hands-on testing, or license test data. Until then we publish zero performance claims (methodology rule).</td>
               <td>Any "best"/scoring content (proposal S-08 keeps scores off)</td>

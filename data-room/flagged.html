@@ -152,6 +152,12 @@
               <td class="src"><a href="product-intent.html">intent record</a> · <a href="https://affiliate-program.amazon.com/help/operating/policies" rel="nofollow">Program Policies §6(v)</a></td>
               <td>Owner opens each link in a normal browser signed out and records the landing URL. Each check is stored as its own dated observation; none is merged into a single value.</td>
             </tr>
+            <tr id="FLG-048">
+              <th scope="row">FLG-048</th>
+              <td>Price snapshots, star ratings, rating counts and availability claims were displayed on reader pages and in this data room. Associates Program Policies §2(b) allows price and availability display only through links Amazon serves with that data, or via Creators API / PA API; §6(t) bars displaying customer reviews or star ratings without an API source. Both clauses were re-read verbatim on 2026-11-20.</td>
+              <td>Marked as dated observations, the literals were still displays on the site, and the policy makes no exception for snapshots: no API-sourced link stood behind any of them. Leaving them up risked a material breach of the Participation Requirements.</td>
+              <td class="src"><a href="https://affiliate-program.amazon.com/help/operating/policies" rel="nofollow">Program Policies §2(b) &amp; §6(t) (Updated April 14, 2026)</a></td>
+              <td>Resolved for display on 2026-11-20 (session arena/2739f0fb-wina): every literal removed from served pages and replaced with a pointer to this flag; checker rule R-10 added so it cannot regress. Owner may restore price or rating display only with Creators API / PA API-sourced links — that is the open decision S-14 in the suggestions queue. Raw snapshots stay in the verification record and git history, never on a served page.</td>
             </tr>
           </tbody>
         </table>

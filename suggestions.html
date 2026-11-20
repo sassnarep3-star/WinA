@@ -56,6 +56,66 @@
     </div>
   </section>
 
+  <section class="section tight" id="paths">
+    <div class="wrap">
+      <div class="section-head"><div><p class="eyebrow">E · Before you build anything</p><h2>Choose a path, then approve proposals against it</h2></div></div>
+      <p class="muted">The queue below is a list of tasks; this table is a set of directions. Each path spends the same limited effort — owner time, writing time, or design time — in a different order, and each names what it changes first, what it risks, and the decision it waits on. Pick the direction that fits what the owner can actually do this month, then approve or reject the proposals against it. Nothing is implemented without that step.</p>
+      <div class="table-scroll">
+        <table class="data">
+          <thead>
+            <tr><th scope="col">ID</th><th scope="col">Path</th><th scope="col">What it changes first</th><th scope="col">Applies to</th><th scope="col">Cost</th><th scope="col">Risk</th><th scope="col">Depends on</th><th scope="col">When it is the wrong choice</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">P1</th>
+              <td>Prove the pipe, then scale</td>
+              <td>One owner-side pass: the gate G-4 click test per product, the Search Console tag, and deployment of the already-written analytics worker. Attribution is the product here, not content.</td>
+              <td><span class="chip">S-09</span> <span class="chip">S-11</span></td>
+              <td>A few hours of owner time against three logins; no new build work.</td>
+              <td>If the owner steps never happen, the site publishes into silence — pair with P2 so content keeps moving while credentials wait.</td>
+              <td>Q-07, Q-12 · <a href="questions.html#readiness">readiness map</a></td>
+              <td>No owner access is available this month; then record the block in the flag register and run P2 alone rather than pretending the gap away.</td>
+            </tr>
+            <tr>
+              <th scope="row">P2</th>
+              <td>Publish on a measured cadence</td>
+              <td>A steady guide rhythm drawn from the topic clusters in section B, every title kept a hypothesis until the query data says otherwise.</td>
+              <td><span class="chip">S-05</span> <span class="chip">S-06</span></td>
+              <td>One reviewed guide a week; each addition passes the site gate in the same commit.</td>
+              <td>Topics chosen from instinct. The answer is a kill criterion, not patience: drop a topic with no measured demand after four weeks of data.</td>
+              <td>Q-15, Q-12 · <a href="questions.html#readiness">readiness map</a></td>
+              <td>The owner pauses publishing; hold the cadence rather than padding — substantive posts are the point, not page count.</td>
+            </tr>
+            <tr>
+              <th scope="row">P3</th>
+              <td>Reader-trust polish now</td>
+              <td>The design and trust proposals as one deliberate pass: editor's notes (S-01), the money page (S-12), the link-out gate (S-13).</td>
+              <td><span class="chip">S-01</span> <span class="chip">S-12</span> <span class="chip">S-13</span></td>
+              <td>One focused pass over page templates and copy; content work pauses for it.</td>
+              <td>Rework if the image-rights route (Q-10) or disclosure sign-off (Q-09) changes the plan afterwards — settle those two first.</td>
+              <td>Q-09, Q-10 · <a href="questions.html#readiness">readiness map</a></td>
+              <td>The owner wants proof before polish; visual polish is not a substitute for the G-4 click test, and nothing here is automated optimization.</td>
+            </tr>
+            <tr>
+              <th scope="row">P4</th>
+              <td>Deepen the comparison — or split the beat</td>
+              <td>S-08's "what we'd test" columns first; the bigger question of splitting into two category publications is recorded here so it is decided deliberately, not drift.</td>
+              <td><span class="chip">S-08</span></td>
+              <td>Table rework for S-08; a split would move navigation, sitemap and every hub page.</td>
+              <td>A split now would divide authority while the site is young and unmeasured; it is not cheaply reversible.</td>
+              <td>Q-05, Q-06 · <a href="questions.html#readiness">readiness map</a></td>
+              <td>Choosing the split before any demand data exists (Q-12) — deciding it now would be instinct dressed as strategy.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="callout sage">
+        <h3>How to choose</h3>
+        <p class="muted">Read the <a href="questions.html#readiness">readiness map</a> first: it lists what is known, what is missing, and which questions block which decision. P1 and P2 run together happily. P3 and P4 compete with them for the same attention and should replace, not stack. Record the choice here in the queue (for example "path P1 + P2") alongside the proposal verdicts, with a date.</p>
+      </div>
+    </div>
+  </section>
+
   <section class="section tight" id="design">
     <div class="wrap">
       <div class="section-head"><div><p class="eyebrow">A · Design &amp; publication feel</p><h2>Look and feel</h2></div></div>
@@ -222,13 +282,13 @@
       </article>
 
       <article class="proposal">
-        <header><span class="chip">S-14</span><h3>Decide the price/rating display posture</h3><span class="meta">status: awaiting owner decision</span></header>
+        <header><span class="chip">S-14</span><h3>Decide the price/rating display posture</h3><span class="meta">status: policy question settled 2026-11-20 — display withheld (FLG-048); remaining decision is PA-API pursuit</span></header>
         <dl>
-          <dt>Why</dt><dd>Two builds of this site disagree on one compliance judgment: this site shows dated, source-linked observed prices/ratings (flagged FLG-009); the parallel build cites Associates Program Policies (updated 2026-04-14) §6 and shows no prices at all.</dd>
-          <dt>Evidence</dt><dd>Verbatim policy clauses and citations in <a href="https://github.com/sassnarep3-star/WinA/blob/main/data/policy.json">data/policy.json</a> (POL-03/POL-04); the conservative posture is live in the <a href="archive/arena-ffa85037/">archived parallel build</a>.</dd>
-          <dt>Recommended</dt><dd><strong>Owner decides</strong> — buyer usefulness vs policy caution. Record the choice on the <a href="data-room/compliance-gate.html">compliance page</a> and clear FLG-009 either way.</dd>
-          <dt>Alternative</dt><dd>Hybrid: keep prices in research tables but suppress star ratings until PA-API access exists.</dd>
-          <dt>Effort / risk</dt><dd>Low effort to switch / high value of certainty.</dd>
+          <dt>Why</dt><dd>Two builds of this site disagreed on one compliance judgment: this site showed dated, source-linked observed prices/ratings; the parallel build cited Associates Program Policies (updated 2026-04-14) §6 and showed no prices at all.</dd>
+          <dt>Evidence</dt><dd>Settled by the policy text itself, re-read verbatim 2026-11-20 at <a href="https://affiliate-program.amazon.com/help/operating/policies" rel="nofollow">Program Policies (Updated April 14, 2026)</a>: §2(b) — "your Site may only show prices and availability if: (a) we serve the link in which that price and availability data are displayed, or (b) you obtain Product pricing and availability data via Creators API or PA API"; §6(t) — "You will not display or otherwise use any of our customer reviews or star ratings… unless you have obtained a link to that customer review or star rating through Creators API or PA API". There is no snapshot exception in either clause, so the cautious posture is the compliant one. Verbatim clauses also in <a href="https://github.com/sassnarep3-star/WinA/blob/main/data/policy.json">data/policy.json</a> (POL-03/POL-04); the dispute history is in <a href="data-room/flagged.html#FLG-048">FLG-048</a>.</dd>
+          <dt>Recommended</dt><dd>Prices, star ratings and availability stay off served pages (done on 2026-11-20; checker rule R-10 now enforces it). The owner decision that remains is narrower: whether to pursue PA-API / Creators API access, which is the only lawful route back to price display via served links (see S-04 and S-09).</dd>
+          <dt>Alternative</dt><dd>None lawful without API access — even research tables on the site count as display under the clauses above.</dd>
+          <dt>Effort / risk</dt><dd>Done at low effort / the remaining risk is owner-side: nothing to decide can restore display until API access exists.</dd>
         </dl>
       </article>
     </div>

@@ -15,6 +15,11 @@ automated (gates G-1..G-3 on data-room/compliance-gate.html):
   R-07  sitemap.xml covers exactly the indexable pages
   R-08  feed.xml parses and its item links resolve
   R-09  every page repeats the Amazon Associate statement in the footer
+  R-10  no price, star-rating, rating-count or availability literals ship —
+        Associates Program Policies §2(b) allows price/availability display only
+        through API-served links, and §6(t) bars displaying customer reviews or
+        star ratings without a Creators API / PA API source (both re-read
+        verbatim 2026-11-20: https://affiliate-program.amazon.com/help/operating/policies)
 
 Checked scope: the served site only. `archive/` holds superseded session builds
 (see COORDINATION.md) and `data/` is the machine-readable register — neither is
@@ -200,6 +205,27 @@ def check_placeholders(path, text):
         fail("R-06", path, f"placeholder text ships: {m.group(1)}")
 
 
+# ------------------------------------------------------------------------ R-10
+# Prices and availability may be displayed only through links Amazon serves with
+# that data, or via Creators API / PA API (Participation Requirements §2(b));
+# customer reviews and star ratings may not be displayed at all without an API
+# source (§6(t)). Static snapshots on the page violate both, so nothing may ship.
+PRICE_LITERAL = re.compile(r"\$\s?\d+[.,]\d{2}\b")
+RATING_LITERAL = re.compile(
+    r"(\d\.\d\s?★|\d\.\d\s?out of\s?5|★|\d[\d,]{2,}\s+ratings?\b|\d[\d,]{2,}\s+reviews?\b)",
+    re.I,
+)
+AVAIL_LITERAL = re.compile(r"\b(in stock|out of stock|currently unavailable)\b", re.I)
+
+def check_price_rating_literals(path, text):
+    for m in PRICE_LITERAL.finditer(text):
+        fail("R-10", path, f"price literal ships ({m.group(0)!r}) — Policies §2(b): prices only via API-served links")
+    for m in RATING_LITERAL.finditer(text):
+        fail("R-10", path, f"star-rating literal ships ({m.group(0)!r}) — Policies §6(t): no reviews or star ratings without API")
+    for m in AVAIL_LITERAL.finditer(text):
+        fail("R-10", path, f"availability literal ships ({m.group(0)!r}) — Policies §2(b): availability only via API-served links")
+
+
 # ------------------------------------------------------------ R-07 / R-08
 def check_sitemap_and_feed():
     sitemap = os.path.join(ROOT, "sitemap.xml")
@@ -261,6 +287,7 @@ def main():
         check_table_rows(path, text)
         check_head(path, text, collector)
         check_placeholders(path, text)
+        check_price_rating_literals(path, text)
     for path in pages:
         check_links(path, cache[path], cache)
     check_sitemap_and_feed()
