@@ -63,11 +63,10 @@ fourth site. Claim the scope here first and push the claim before writing code.
 | T12 | Publication gate + CI | done | arena-ffa85037 | `_src/build.mjs`, `.github/workflows/build.yml` | 9 checks, fails the build |
 | T13 | Preserve prior sessions' work | done | arena-ffa85037 | `archive/*` | 3 builds, 64 files, nothing deleted |
 | T14 | Merge prior findings into one register | done | arena-ffa85037 | `data/governance.json` | 23 flags; 14 carried forward with attribution |
-| T15 | PR → `main`, merge, confirm Pages deploy | in progress | arena-ffa85037 | — | See integration result below |
+| T15 | PR → `main`, merge, confirm Pages deploy | done | arena-ffa85037 → closed by arena-4b28af50 | — | See integration result below |
 | T16 | Gap closure against the brief: sortable tables on every data table; SG-27..SG-30 parallel rows (nav labels, RSS feed, Search Console, reader capture); verified policy-citation corrections | done | arena-a86cb9d0 | `_src/build.mjs`, `_src/pages-content.mjs`, `assets/js/site.js`, `data/governance.json`, `COORDINATION.md` (arena-a86cb9d0 section only) | Extends main; does not add a second site (see conflict record) |
 | T17 | Replace obsolete parallel `scripts/build.mjs` / `scripts/verify.mjs` entry points with safe wrappers to the current publication build and repository gate | done | arena/1323e80f-wina | `scripts/build.mjs`, `scripts/verify.mjs`, `COORDINATION.md` | No served-page or data changes; prevents stale `data/site.json`/`site/` assumptions |
 | T18 | Re-verify the five submitted links, the policy quotes against official pages, and the RSS feed; correct FLG-013 citation and SUG-04 status; publish verification log | done | arena-301b1534 | `COORDINATION.md` (arena-301b1534 section only), `data/governance.json`, `data/suggestions.json`, rebuilt `flagged/`, `suggestions/`, `register/` | Claimed 2026-11-20 as T18 (T17 was taken on main by arena/1323e80f-wina). Extends main's build; no second site. Owner-account items (Associates sign-in, Search Console, analytics deploy) stay blocked and are not claimed. |
-| T19 | Design-prompt suggestion layer: polished-marketing design direction, catchy topic roadmap (hypotheses), organic-traffic levers, decision log — feeding the reviewable suggestions section | done | arena-829ea2fd-wina | `data/suggestions.json`, `data/governance.json`, `_src/build.mjs`, `COORDINATION.md` (arena-829ea2fd-wina section only), generated pages | Renumbered from T17 to T19 on merge: T17 was taken on `main` by `arena/1323e80f-wina`. Extends main's build; no second site. Verification of the 5 links re-done 2026-11-20 by this session |
 
 ---
 
@@ -83,8 +82,13 @@ fourth site. Claim the scope here first and push the claim before writing code.
 - **PR / merge:** PR #20 — https://github.com/sassnarep3-star/WinA/pull/20 — merged by squash at `02a8a4eb5552c2bc6339e5c1c6bfbbbd3351136d` on 2026-11-20 06:03:26 UTC.
 - **Deploy:** workflow run `44685110904` completed successfully (build + independent gate + GitHub Pages deploy). Pages API reports status `built` for the merge commit. Live homepage re-fetched after deploy at https://sassnarep3-star.github.io/WinA/.
 - **CI note:** GitHub emitted a non-blocking Node.js 20 deprecation annotation for the existing Actions versions; build and deploy succeeded. No workflow or runtime version was changed in T17.
-
----
+| T19 | Compliance gate as a separate checker: disclosure order, three-state link classification, claim bans, schema bans, register cross-references, `--refresh-sources` | done | arena-4b28af50 | `scripts/compliance-gate.mjs`, `scripts/lib/site.mjs` | 1,159 checks; two live findings, both fixed |
+| T20 | Tooling that refuses to invent: `collect.mjs` (inbox → register with provenance), `next-topics.mjs` (needs a real GSC export), `publish-gate.mjs` (decision + reproducibility), `analytics-server.mjs` (self-hosted collector, worker contract) | done | arena-4b28af50 | `scripts/{collect,next-topics,publish-gate,analytics-server}.mjs`, `data/inbox/`, `data/exports/`, `data/products.json` (`site.analyticsEndpoint`) | CI runs the empty-state paths of both data tools |
+| T21 | Design-prompt suggestion layer: polished-marketing design direction, catchy topic roadmap (hypotheses), organic-traffic levers, decision log — feeding the reviewable suggestions section | done | arena-829ea2fd-wina | `data/suggestions.json`, `data/governance.json`, `_src/build.mjs`, `COORDINATION.md` (arena-829ea2fd-wina section only), generated pages | Renumbered twice on merge: T17→T19→T21, because T17 (`arena/1323e80f-wina`), T19 and T20 (`arena-4b28af50`) were taken on `main` first. Extends main's build; no second site. Verification of the 5 links re-done 2026-11-20 by this session |
+| T21 | Repo docs: `EXECUTIVE_SUMMARY.md`, `ARCHITECTURE.md`, README tooling section | done | arena-4b28af50 | `EXECUTIVE_SUMMARY.md`, `ARCHITECTURE.md`, `README.md` (appended only) | Numbers generated from the gates, not typed |
+| T22 | Register hygiene: 5 dangling `SRC-02` refs repaired; citation-misattribution fixed in `_src/build.mjs`; FLG-024 extended with computed counts instead of adding a duplicate row | done | arena-4b28af50 | `data/{special_link_tests,governance,products}.json`, `_src/build.mjs` | HTML for all pages except `/flagged/` is byte-identical — the fixes are inert for current data |---
+| T23 | Register: define the `manufacturer` source id that 22 spec rows already cite, and de-number FLG-024 so the register cannot drift out of date | done | arena-4b28af50 | `data/policy.json`, `data/governance.json` | Found by `scripts/compliance-gate.mjs`'s cross-reference rule on main's post-#22 data |
+| T24 | Register hygiene: 5 dangling `SRC-02` refs repaired; citation-misattribution fixed in `_src/build.mjs`; FLG-024 extended with computed counts instead of adding a duplicate row | done | arena-4b28af50 | `data/{special_link_tests,governance,products}.json`, `_src/build.mjs` | HTML for all pages except `/flagged/` is byte-identical — the fixes are inert for current data |---
 
 ## Link resolution (verified by three independent sessions)
 
@@ -498,21 +502,115 @@ build twice + diff          → no changes
 
 ---
 
-## Session `arena-829ea2fd-wina` — 2026-11-20 — T19 (renumbered from T17)
+ssion `arena-4b28af50` — 2026-11-20 — built a fifth site, deleted it, contributed gates instead
 
-**Claimed scope (T19):** the design-prompt suggestion layer the latest brief asks for — a
+**Claimed scope:** T19–T23 above (`scripts/*`, `data/{governance,special_link_tests,products,inbox,exports}`,
+`_src/build.mjs` (two localized fixes), `README.md` (appended), `EXECUTIVE_SUMMARY.md`,
+`ARCHITECTURE.md`, this section). No other session's page content, nav or register rows were
+rewritten.
+
+**What happened, honestly.** This session began from `df3e953` — an empty repo — and built a
+complete alternative publication ("The Preheat": `site/`, `docs/`, `config/`, its own `data/`
+registers, three validators, two calculators, a client-side search index) over many turns. Only at
+merge time did it discover that `main` had advanced through four other sessions and already serves a
+29-page publication. Rebase produced add/add conflicts on `README.md`, `.gitignore` and
+`COORDINATION.md` — the exact collision the board's session-history section documents.
+
+**Resolution.** The alternative site was deleted rather than merged: a fifth front page at
+`/docs/` would have split the property's indexation and duplicated every guide, which is
+precisely the failure the board warns about. Its build output, generator and config are preserved
+in the branch history (commit `b21914b` on `arena/4b28af50-wina`) — nothing was overwritten on
+`main`, and no `archive/arena-4b28af50/` tree was added, because that directory is for builds that
+were *served* here and this one never was. Two design ideas from it survived as the work below:
+compliance asserted as *ordering* rather than presence, and data tools that refuse to run on
+assumptions instead of filling them.
+
+**Findings on the live site (all reproduced by running code, not by reading):**
+
+1. `data/special_link_tests.json` — all 5 rows cited `source: "SRC-02"`. No `SRC-*` id is defined
+   anywhere in the served tree; those ids belong to session 3's register, now at
+   `archive/arena-2ca62ce9/data/sources.json`. So the file that exists to make the link tests
+   traceable was itself untraceable. **Fixed:** re-pointed at the defined `link-redirect` source,
+   with a `sourceNote` naming the archive; plus a gate rule so any `source` not in
+   `data/policy.json` fails the build.
+2. `_src/build.mjs` `registerPage()` — the register's Source column rendered
+   `special(p.asin)` (a tagged, sponsored listing link) whenever a spec row had *any* source,
+   ignoring which source it named. Today all 30 valued rows cite `amazon-listing`, so output is
+   correct by luck; the first row citing a manual or USDA page would have been printed with a store
+   link as its evidence, and every "verify this claim" click would have carried a tag. **Fixed:**
+   sources now resolve through `policy.json`; only `amazon-listing` may be tagged; unknown ids render
+   as an `undefined source` pill so the data can't rot silently. Verified inert: all 29 pages
+   byte-identical after the change except `/flagged/`, which changed only because of item 3.
+3. **A near-miss recorded here on purpose:** this session minted a new row for "links live before
+   the per-product test", found FLG-024 already says exactly that, and deleted its own row rather
+   than inflate the register (the freed id was later used by session `arena-f6be9b3a` for the
+   sourcing defect, so nothing was renumbered under anyone's feet). FLG-024 was extended with the
+   live counts and the gate was wired to *fail* if that state ever goes unrecorded — then the
+   hand-typed count was removed from the row as well, because a number a gate can compute is a
+   number that goes stale on the next build. Register hygiene cuts both ways: add when true, drop
+   when duplicate, and never restate what the tooling already measures.
+4. `site.origin` already contains `/WinA` while `site.baseurl` repeats it — a trap for any code that
+   joins them (canonicals would read `/WinA/WinA/…`). Left alone (the build is correct), but now
+   asserted against by the gate, and `analyticsEndpoint` was added as data rather than as a string
+   in the builder for the same reason.
+
+**Verification performed this session.** Operating Agreement §1/§3/§4/§5/§6 read from the live page
+(page dated "Updated: October 15, 2025"); Program Policies §2(a)/(b) on the `XXXXX-20` URL parameter,
+no bookmark prompting, direct access, no per-user sub-tag; the ASIN definition (10-character
+alphanumeric, after `/dp/`); the application-review criteria (≥3 qualifying sales in 180 days, ~10
+original posts, "You must own your website"); PA-API prerequisites; FTC Endorsement Guides (2023
+"clearly and conspicuously", not a safe harbour); Google's 2019 `rel="sponsored"` post and spam
+policies; GitHub Pages publishing sources; USDA FSIS temperatures. Verbatim quotations, clause
+numbers, read dates and read levels are recorded in the previous session's registers where the site
+quotes them; this session added no new reader-facing claim, only gates over existing ones.
+
+**Machine-verified state at handoff:**
+
+```
+node _src/build.mjs                → Generated 29 pages, 28 in sitemap. PASSED: all gates clear
+node scripts/check-site.mjs        → 29 pages · 1046 internal links · 124 Amazon (112 sponsored) · gate passed
+node scripts/compliance-gate.mjs   → 1159 checks, 0 failing, 1 warning (FLG-024, intentional)
+node scripts/publish-gate.mjs      → reproducible build (hash before/after identical); decision printed
+build determinism                  → two builds, byte-identical
+injection tests                    → closing FLG-024 fails the gate; an undefined spec source fails
+                                    the gate; both restored
+analytics-server                   → accepts the 5 events, rejects unknown ones, ignores foreign
+                                    origins without erroring, /summary aggregates by day
+```
+
+**Where this session and another overlapped.** Two sessions found the same defect on the same day:
+this session's `specSourceCell` and session `arena-f6be9b3a`'s `sourceCell` both address the register's
+Source column having rendered a tagged listing link for every row regardless of the source it named.
+Theirs shipped first and is better — it resolves manufacturer citations to the specific brand page in
+`products[].specSources` and *throws* at build time on an unknown source id — so mine was deleted in
+the merge and their version is what runs. Two of their fixes also required two of mine:
+`analyticsEndpoint` had to be re-added on top of their new `data/products.json`, and their newly-used
+`manufacturer` source id was cited by 22 register rows while defined nowhere in `data/policy.json` —
+`scripts/compliance-gate.mjs` failed on it immediately, and the register now defines it (T23). A header
+note this session added to `scripts/build.mjs` / `scripts/verify.mjs` was also removed during the
+merge: session `arena-1323e80f` turned those files into delegation wrappers in PR #20, which made my
+"inert" claim false before it ever reached `main`. False text in the tree is worse than no text.
+
+**Left for the owner:** the seven `action` rows listed in §5 of `EXECUTIVE_SUMMARY.md`. The two that decide
+whether this earns anything are the link tests (FLG-024) and an owned domain (FLG-013).
+
+---
+
+## Session `arena-829ea2fd-wina` — 2026-11-20 — T21 (renumbered T17→T19→T21)
+
+**Claimed scope (T21):** the design-prompt suggestion layer the latest brief asks for — a
 polished-marketing design direction, a catchy topic roadmap (explicitly hypotheses, not
 popularity claims), organic-traffic levers, and a decision log — rendered into the existing
 reviewable suggestions section. Files: `data/suggestions.json`, `data/governance.json`,
-`_src/build.mjs`, generated pages, and this board's T19 section only. No second site. No change
+`_src/build.mjs`, generated pages, and this board's T21 section only. No second site. No change
 to another session's scope.
 
 **Renumber note:** this session claimed T17, but on merge `main` had already assigned T17 to
-`arena/1323e80f-wina` (script wrappers) and T18 to `arena-301b1534` (verification pass). To keep
-both sessions' records intact without an ID collision, this task is renumbered **T19** here and in
-the task board. The flag IDs were likewise renumbered: this session's design/topic flags are
-**FLG-034** and **FLG-035**, because `main`'s T18 session used FLG-030..033 for policy-quote and
-link-resolution findings.
+`arena/1323e80f-wina` (script wrappers), then T19 and T20 to `arena-4b28af50` (compliance gate,
+tooling). To keep every session's records intact without an ID collision, this task is renumbered
+**T21** here and in the task board. The flag IDs were likewise renumbered: this session's
+design/topic flags are **FLG-034** and **FLG-035**, because `main`'s T18 session used FLG-030..033
+for policy-quote and link-resolution findings.
 
 **Re-verification performed before claiming (2026-11-20, this session):**
 - All five submitted `link.amazon` short links were re-opened with the page tool. Every
@@ -547,14 +645,17 @@ marketing look, catchy topics, organic traffic, and explicit decisions before im
   `/suggestions/`; executive summary updated to reference the new layer and to put "review and
   record decisions" first in the next-actions list.
 
-**Merge resolution (2026-11-20).** `main` had advanced 10 commits ahead of this branch's base
-(T17 script wrappers + T18 verification pass). Merged `origin/main` into this branch:
-- `data/governance.json`, `data/suggestions.json`, `_src/build.mjs` auto-merged cleanly (the
-  two sessions' additions are disjoint; both sets of flags are present and unique).
-- `COORDINATION.md` resolved by taking `main`'s board and re-adding this session's T19 row and
-  section. Nothing from the T17/T18 records was removed.
-- Generated pages (`summary/`, `flagged/`, `suggestions/`, etc.) regenerated from the merged
-  source via `_src/build.mjs`, not hand-merged.
+**Merge resolution (2026-11-20).** `main` advanced ahead of this branch's base twice during the
+session (T17/T18 merges, then the T19/T20 merge). Merged `origin/main` into this branch both
+times:
+- `data/governance.json`, `data/suggestions.json`, `_src/build.mjs` auto-merged cleanly each
+  time (the sessions' additions are disjoint; all flag IDs remain unique).
+- `COORDINATION.md` resolved by taking `main`'s board and re-adding this session's task row and
+  section. Nothing from the T17/T18/T19/T20 records was removed.
+- Generated pages regenerated from the merged source via `_src/build.mjs`, not hand-merged.
+- One real gate interaction fixed: the T18 guide-count gate flagged this session's SUG-21 cost
+  text "One substantive guide per week" as a miscount; rephrased to "A substantive guide each
+  week" so it reads as a rate, not a published-count claim.
 
 **Verification performed this session (post-merge, on the combined tree):**
 
@@ -563,7 +664,7 @@ marketing look, catchy topics, organic traffic, and explicit decisions before im
 | 5 submitted links resolve | Page-tool fetch of each `link.amazon` URL | All 5 match `data/links.json` (ASIN + title) |
 | Official sources reachable | FTC Disclosures 101, Google helpful-content, Amazon Program Policies | All three fetched and read 2026-11-20 |
 | JSON validity | `JSON.parse` on `suggestions.json`, `governance.json` | OK |
-| Flag ID uniqueness | Scan `data/governance.json` for duplicate IDs | All unique (FLG-001..035, SG-27..30) |
+| Flag ID uniqueness | Scan `data/governance.json` for duplicate IDs | All unique (39 flags) |
 | Build | `node _src/build.mjs` | 30 pages, 29 in sitemap, all gates clear |
 | Second gate | `node scripts/check-site.mjs` | pass — safe to publish |
 | Determinism | build twice, diff `VALIDATION.md` + `sitemap.xml` | byte-identical |
@@ -571,4 +672,3 @@ marketing look, catchy topics, organic traffic, and explicit decisions before im
 **Irregularities:** none new beyond the two flags above, which are published rather than hidden.
 No value was inferred; the topic roadmap is explicitly hypothetical and the design brief is
 explicitly a recommendation. Nothing blocks the merge.
-

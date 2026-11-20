@@ -21,6 +21,11 @@ const gov = read("data/governance.json");
 const questions = read("data/questions.json");
 const suggestions = read("data/suggestions.json");
 const specialLink = read("data/special_link_tests.json");
+
+// Analytics is enabled only when both halves agree: the governance decision and an endpoint that
+// exists. A client switched on against an empty endpoint is a silent failure, which is worse than
+// an inert one, so the build resolves the pair and the gate asserts it.
+const ANALYTICS_ON = Boolean(gov.analytics.enabled && (site.analyticsEndpoint || "").trim());
 // AI-platform concept (framed as a concept only; nothing here is implemented)
 const aiConcept = {
   title: "AI-platform concept",
@@ -139,7 +144,7 @@ function layout(opts) {
 <meta name="twitter:description" content="${esc(desc)}">
 <link rel="alternate" type="application/rss+xml" title="${esc(site.name)}" href="${url("/feed.xml")}">
 <link rel="stylesheet" href="${url("/assets/css/site.css")}">
-<script>window.CS_CONFIG={analyticsEnabled:${gov.analytics.enabled},analyticsEndpoint:""};</script>
+<script>window.CS_CONFIG={analyticsEnabled:${ANALYTICS_ON},analyticsEndpoint:${JSON.stringify(site.analyticsEndpoint || "")}};</script>
 ${ld}
 </head>
 <body data-page-type="${pageType}">
@@ -942,6 +947,11 @@ function specialLinkSection() {
 </section>
 `;
 }
+
+// A row's citation must be the source the row *names*, not always the product listing.
+// Before this, any spec with a source rendered a tagged amazon.com/dp/ link, so a row citing a
+// manual or a USDA table would have pointed at a store page instead — and every verification click
+// would have carried a tag. Only the listing source may be tagged, because only that one is a
 
 function registerPage() {
   const specRows = [];
@@ -2262,4 +2272,6 @@ console.log(`\nGenerated ${htmlFiles.length} pages, ${pages.length} in sitemap.`
 console.log(fails.length ? `FAILED: ${fails.length} issue(s)` : "PASSED: all gates clear");
 for (const f of fails.slice(0, 20)) console.log(`  FAIL ${f.m}`);
 for (const w of warns.slice(0, 10)) console.log(`  WARN ${w.m}`);
+if (gov.analytics.enabled && !(site.analyticsEndpoint || "").trim())
+  warn("governance.analytics.enabled is true but site.analyticsEndpoint is empty — the client is held inert by the build; set the endpoint or switch the decision off");
 if (fails.length) process.exitCode = 1;
