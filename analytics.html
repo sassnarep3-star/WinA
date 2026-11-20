@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Analytics — WinA</title>
+<meta name="description" content="WinA's privacy-preserving click and conversion measurement: five defined events (page_view, outbound_click, guide_read, reader_capture, disclosure_view), self-hosted endpoint /analytics/collect, local-only fallback on static hosting. As an Amazon Associate we earn from qualifying purchases.">
+<link rel="canonical" href="https://sassnarep3-star.github.io/WinA/analytics.html">
+<link rel="sitemap" href="/sitemap.xml">
+<link rel="alternate" type="application/rss+xml" title="WinA — Recent guides" href="/feed.xml">
+<link rel="stylesheet" href="/assets/css/style.css">
+</head>
+<body data-page-type="page_view">
+<a class="skip-link" href="#content">Skip to content</a>
+
+<header class="masthead">
+  <div class="container">
+    <div style="display:flex;align-items:center;gap:1rem">
+      <a class="brand" href="/">WinA<span style="font-weight:400;font-size:.75rem;color:#94a3b8;margin-left:.35rem">· analytics</span></a>
+    </div>
+    <nav class="nav-group">
+      <a href="/">Home</a>
+      <a href="/products/">Product register</a>
+      <a href="/guides/">Guides</a>
+      <a href="/campaign-ledger.html">Campaign ledger</a>
+      <a class="active" href="/analytics.html">Analytics</a>
+      <a href="/disclosures.html">Disclosures</a>
+      <a href="/suggestions.html">Suggestions</a>
+      <a href="/flagged-review.html">Flagged for review</a>
+    </nav>
+  </div>
+</header>
+
+<div class="disclosure-strip">
+  <div class="container">
+    <div style="display:flex;align-items:center;gap:1rem;flex-wrap:wrap">
+      <b>Affiliate disclosure:</b> As an Amazon Associate we earn from qualifying purchases. Links marked
+      <span class="sponsored-chip">sponsored</span> are affiliate links — clicking one may earn us a commission at no extra cost to you.
+      <a href="/disclosures.html">Read our full disclosure &amp; Associates statement &rarr;</a>
+    </div>
+  </div>
+</div>
+
+<main id="content">
+  <div class="container">
+    <nav style="margin-bottom:1.5rem;font-size:.9rem;color:var(--muted)">
+      <a href="/">&larr; Home</a>
+    </nav>
+
+    <h1 class="section-title">Click &amp; conversion measurement <span class="rule"></span></h1>
+    <div class="note">
+      <b>Turned on before publishing.</b> Outbound clicks and the five defined events are measured from the first page view. Everything is privacy-preserving: no cookies, no fingerprinting, no IP storage — only event type, timestamp, page path and a small payload.
+    </div>
+
+    <h2>The five defined events</h2>
+    <table class="register">
+      <thead>
+        <tr><th>Event</th><th>What it records</th><th>Privacy treatment</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="mono">page_view</td><td>A page is loaded (referrer recorded)</td><td>Path only; no cookies, no IP, no fingerprinting</td></tr>
+        <tr><td class="mono">outbound_click</td><td>A click on a link marked <code>rel="sponsored"</code> (destination URL + link text)</td><td>Destination and link text only; no personal data</td></tr>
+        <tr><td class="mono">guide_read</td><td>A buying-guide page is viewed</td><td>Path only</td></tr>
+        <tr><td class="mono">reader_capture</td><td>A reader submits the newsletter capture form</td><td>Intent only; the email is never stored client-side (backend pending)</td></tr>
+        <tr><td class="mono">disclosure_view</td><td>The affiliate disclosure strip is shown</td><td>None (impression count only)</td></tr>
+      </tbody>
+    </table>
+
+    <h2>Self-hosted endpoint</h2>
+    <p>Events are beaconed (POST JSON) to <span class="mono">/analytics/collect</span>. On GitHub Pages — static hosting — that endpoint cannot run server-side, so events fall back to <b>localStorage only</b> and are shown below. Nothing is sent to third parties. When the site moves to hosting that can run the endpoint, the same client code sends to it without changes.</p>
+    <p style="margin-top:1rem"><b>Events logged this session:</b> <span id="wina-event-counter" style="font-weight:700;color:var(--accent-ink)">loading…</span></p>
+    <button onclick="winA.exportEvents()" style="margin-top:.5rem">Export events (JSON)</button>
+
+    <div class="event-log" id="wina-event-log">
+      <div class="ev" style="color:#64748b">No events yet this session. Click a sponsored link on any page to log an outbound_click event.</div>
+    </div>
+
+    <h2>Reader capture (newsletter)</h2>
+    <p class="small">Capture form posts client-side only until a backend is integrated (flagged FLG-007). Submitting logs a reader_capture event and shows a confirmation — no address is stored or sent anywhere yet.</p>
+    <form id="wina-capture-form">
+      <label for="wina-capture-email">Email address</label>
+      <input type="email" id="wina-capture-email" placeholder="you@example.com" required>
+      <button type="submit">Sign up for guide updates</button>
+      <div id="wina-capture-msg" style="display:none;margin-top:.5rem;color:#166534">Thanks — signup intent logged as a reader_capture event (local only until a backend is configured).</div>
+    </form>
+
+    <h2>From measurement to topic choice</h2>
+    <p class="small">The next guide topic is chosen from measured queries and click patterns, not instinct. Connect Search Console (suggestions page) to add query data to the signal set.</p>
+  </div>
+</main>
+
+<footer>
+  <div class="container">
+    <div>
+      <h5>WinA</h5>
+      <p class="small">Buying guides and verified register. Amazon Associate tracking ID: shopnow047c-20.</p>
+    </div>
+    <nav class="nav-group" style="flex-direction:column;gap:.5rem;align-items:flex-start">
+      <h5 style="margin-bottom:0">Navigate</h5>
+      <a href="/">Home</a>
+      <a href="/products/">Product register</a>
+      <a href="/guides/">Guides</a>
+      <a href="/campaign-ledger.html">Campaign ledger</a>
+      <a href="/analytics.html">Analytics</a>
+      <a href="/disclosures.html">Disclosures</a>
+      <a href="/suggestions.html">Suggestions</a>
+      <a href="/flagged-review.html">Flagged for review</a>
+    </nav>
+    <div>
+      <div class="disclosure-repeat">
+        <b>Affiliate disclosure:</b> As an Amazon Associate we earn from qualifying purchases. Links marked sponsored are affiliate links. <a href="/disclosures.html">Full statement &rarr;</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="/assets/js/app.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  var logEl = document.getElementById('wina-event-log');
+  if (!logEl) return;
+  function render() {
+    var events = winA.getEvents();
+    if (events.length === 0) {
+      logEl.innerHTML = '<div class="ev" style="color:#64748b">No events yet this session. Click a sponsored link on any page to log an outbound_click event.</div>';
+      return;
+    }
+    logEl.innerHTML = events.map(function (ev) {
+      return '<div class="ev"><span class="type">[' + ev.type + ']</span> ' + new Date(ev.ts).toLocaleTimeString() + ' &middot; ' + ev.path + (ev.payload.link ? ' &rarr; ' + ev.payload.link : '') + '</div>';
+    }).reverse().join('');
+  }
+  render();
+  setInterval(render, 2000);
+});
+</script>
+</body>
+</html>

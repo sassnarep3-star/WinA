@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Flagged for review — WinA</title>
+<meta name="description" content="WinA's flagged-for-review page: irregularities and unverified items with source links for manual review. These do not block publication. As an Amazon Associate we earn from qualifying purchases.">
+<link rel="canonical" href="https://sassnarep3-star.github.io/WinA/flagged-review.html">
+<link rel="sitemap" href="/sitemap.xml">
+<link rel="alternate" type="application/rss+xml" title="WinA — Recent guides" href="/feed.xml">
+<link rel="stylesheet" href="/assets/css/style.css">
+</head>
+<body data-page-type="page_view">
+<a class="skip-link" href="#content">Skip to content</a>
+
+<header class="masthead">
+  <div class="container">
+    <div style="display:flex;align-items:center;gap:1rem">
+      <a class="brand" href="/">WinA<span style="font-weight:400;font-size:.75rem;color:#94a3b8;margin-left:.35rem">· flagged for review</span></a>
+    </div>
+    <nav class="nav-group">
+      <a href="/">Home</a>
+      <a href="/products/">Product register</a>
+      <a href="/guides/">Guides</a>
+      <a href="/campaign-ledger.html">Campaign ledger</a>
+      <a href="/analytics.html">Analytics</a>
+      <a href="/disclosures.html">Disclosures</a>
+      <a href="/suggestions.html">Suggestions</a>
+      <a class="active" href="/flagged-review.html">Flagged for review</a>
+    </nav>
+  </div>
+</header>
+
+<div class="disclosure-strip">
+  <div class="container">
+    <div style="display:flex;align-items:center;gap:1rem;flex-wrap:wrap">
+      <b>Affiliate disclosure:</b> As an Amazon Associate we earn from qualifying purchases. Links marked
+      <span class="sponsored-chip">sponsored</span> are affiliate links — clicking one may earn us a commission at no extra cost to you.
+      <a href="/disclosures.html">Read our full disclosure &amp; Associates statement &rarr;</a>
+    </div>
+  </div>
+</div>
+
+<main id="content">
+  <div class="container">
+    <nav style="margin-bottom:1.5rem;font-size:.9rem;color:var(--muted)">
+      <a href="/">&larr; Home</a>
+    </nav>
+
+    <h1 class="section-title">Flagged for review <span class="rule"></span></h1>
+    <div class="note">
+      These items are published here so they can be reviewed after the site is live. <b>Flagged items do not block publication or the merge.</b> Items marked “unverified” were left blank deliberately — nothing was inferred or filled in.
+    </div>
+
+    <table class="register">
+      <thead>
+        <tr><th style="width:10%">ID</th><th style="width:26%">Item</th><th style="width:40%">Detail</th><th style="width:24%">Source link for manual review</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="mono">FLG-003</td>
+          <td>Short-link compliance status unresolved</td>
+          <td>The supplied short links are <b>not claimed to be invalid</b>. Their exact compliance status under the Amazon Associates Operating Agreement is unresolved. Test one link per product in the enrolled Associates workflow (destination + tracking report) before scaling.</td>
+          <td class="url-cell"><a href="https://affiliate-program.amazon.com/">Amazon Associates Program</a></td>
+        </tr>
+        <tr>
+          <td class="mono">FLG-002</td>
+          <td>Short-link path codes are 9 characters; ASINs are 10</td>
+          <td>Observation only: each link.amazon path code (e.g. B04G1MEwY) is 9 chars, while Amazon ASINs are exactly 10 alphanumeric characters. The path codes are short-link keys, not ASINs. Not a validity claim; confirmed ASINs are listed in the product register.</td>
+          <td class="url-cell"><a href="/products/">Product register</a> &middot; <a href="https://www.amazon.com/dp/B0CDY277D3">Sample official listing</a></td>
+        </tr>
+        <tr>
+          <td class="mono">FLG-006</td>
+          <td>Analytics endpoint not server-implemented</td>
+          <td>GitHub Pages is static hosting, so <code>/analytics/collect</code> cannot run here. Events are logged client-side (privacy-preserving: no cookies, no fingerprinting, no IP) with localStorage fallback. Server-side implementation pending.</td>
+          <td class="url-cell"><a href="/analytics.html">Analytics</a></td>
+        </tr>
+        <tr>
+          <td class="mono">FLG-007</td>
+          <td>Reader-capture backend pending</td>
+          <td>The newsletter capture form posts client-side only; no third-party backend is integrated. Submissions log a reader_capture event locally and show a confirmation. Backend integration pending.</td>
+          <td class="url-cell"><a href="/analytics.html">Analytics</a></td>
+        </tr>
+        <tr>
+          <td class="mono">FLG-008</td>
+          <td>Campaign ledger intentionally empty</td>
+          <td>No conversion score or revenue forecast is presented. Entries are added only from authorized first-party Associates reports with a dated provenance trail. No report obtained yet.</td>
+          <td class="url-cell"><a href="/campaign-ledger.html">Campaign ledger</a></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2 class="section-title">Previously flagged — resolved <span class="rule"></span></h2>
+    <table class="register">
+      <thead>
+        <tr><th style="width:10%">ID</th><th style="width:26%">Item</th><th style="width:40%">Resolution</th><th style="width:24%">Source</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="mono">RES-001</td>
+          <td>Product-intent confirmation records blank at start</td>
+          <td>All 5 submitted short links fetched against official Amazon listings on 2026-11-20. Intended ASINs (B0CDY277D3, B09B7SB46R, B08DKYBTPH, B0DHZTCNR5, B0DZFD6R9Z), official listing URLs, observed redirect targets (separate column), confirmation dates and sources recorded in the product register.</td>
+          <td class="url-cell"><a href="/products/">Product register</a> &middot; official Amazon listing pages</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p class="small" style="margin-top:2rem">To request changes, open an issue on the <a href="https://github.com/sassnarep3-star/WinA">GitHub repository</a>.</p>
+  </div>
+</main>
+
+<footer>
+  <div class="container">
+    <div>
+      <h5>WinA</h5>
+      <p class="small">Buying guides and verified register. Amazon Associate tracking ID: shopnow047c-20.</p>
+    </div>
+    <nav class="nav-group" style="flex-direction:column;gap:.5rem;align-items:flex-start">
+      <h5 style="margin-bottom:0">Navigate</h5>
+      <a href="/">Home</a>
+      <a href="/products/">Product register</a>
+      <a href="/guides/">Guides</a>
+      <a href="/campaign-ledger.html">Campaign ledger</a>
+      <a href="/analytics.html">Analytics</a>
+      <a href="/disclosures.html">Disclosures</a>
+      <a href="/suggestions.html">Suggestions</a>
+      <a href="/flagged-review.html">Flagged for review</a>
+    </nav>
+    <div>
+      <div class="disclosure-repeat">
+        <b>Affiliate disclosure:</b> As an Amazon Associate we earn from qualifying purchases. Links marked sponsored are affiliate links. <a href="/disclosures.html">Full statement &rarr;</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="/assets/js/app.js"></script>
+</body>
+</html>
