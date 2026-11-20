@@ -212,6 +212,7 @@ def check_placeholders(path, text):
 # rules keep them from returning. Page copy that explains the withholding (the
 # phrases below) is the allowed way to talk about it.
 R10_ALLOWED = (
+    "out of stock",
     "not shown", "not reproduced", "not displayed", "price not shown",
     "not ship", "withheld", "no star ratings", "not obtain",
     "current price is on", "read the current price", "§2(b)", "§6(t)", "2(b))", "6(t))",
@@ -228,7 +229,7 @@ def check_figures(path, text):
     for i, chunk in enumerate(chunks):
         low = chunk.lower()
         hit = None
-        m = _re.search(r"(\$\s?\d|\b\d+\s?USD\b)", chunk)
+        m = _re.search(r"(\$\s?\d|\b\d+\s?USD\b|\bin stock\b)", chunk)
         if m:
             hit = ("R-10", m.group(0))
         else:
