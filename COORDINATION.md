@@ -7014,4 +7014,35 @@ register, no figure outside the four was rewritten, and no owner-credential item
 (Associates Central, Search Console, the analytics collector). Nothing here blocks the merge;
 items 2–4 are published for review.
 
+### The site was already broken: 29 committed conflict markers (found after the first merge)
+
+Live-verification after PR #69 deployed showed **unresolved merge conflict markers rendering to
+readers** in `executive-summary.html`. Tracing it: `d770573` (this branch) had none, `e339bad`
+(main *before* this PR) had them in four files — so the breakage was **not introduced here**, it
+was inherited. It had been live since commit **`2ba4816`**, whose own message says *"both sides
+kept"*: a merge that recorded its conflict instead of resolving it.
+
+**Ten served files carried markers** (`executive-summary.html`, `index.html`, `shop.html`,
+`questions.html`, `data-room/product-intent.html` and three guides) and **two data registers
+shipped as unparseable JSON** (`data/links.json`, `data/suggestions.json`). `archive/` was clean —
+the damage was confined to the live tree.
+
+All 29 hunks resolved without discarding either session's work:
+
+| Where | Resolution and why |
+|---|---|
+| `data/links.json` | Two independent re-verification records had been spliced into one array element. Rebuilt as **two separate entries** — `arena/2739f0fb-wina`'s fourth check (keeping its `listingTitlesChecked` and `policySourcesChecked` blocks) and `arena-266b1b8f-wina`'s fifth (keeping its `note`). Both survive; the file parses. |
+| `data/suggestions.json` | **SUG-16 took `main`'s side**: `"accepted … shipped 2026-11-20"` supersedes the older `"open"`, so taking this branch's side would have reverted a decision already shipped. The other two hunks differed only in em-dash escaping. |
+| Price/rating copy, 21 of 22 HTML hunks | Took **`main`'s** posture. It is the one the marker-free pages already use (`compare.html` reads `Not shown`), it matches T33's recorded *"View on Amazon"* button label instead of reintroducing *"See price on Amazon"*, and it carries T38's correction of the CHEF iQ battery figure to chefiq.com's **70+ hours**. |
+| `shop.html` hunk 6 | Kept **this branch's** side: `main`'s called the ThermoMaven *"the most-reviewed thermometer of the two"* — a popularity claim this publication does not make. |
+
+**And a rule so it cannot happen again:** R-06 now fails any served page containing
+`<<<<<<< `, `>>>>>>> ` or a line of `=======`, and requires every `data/**/*.json` to parse —
+neither was checked before, which is exactly why both shipped. Injection-tested: a marker appended
+to `about.html` fails with three violations; `data/questions.json` truncated in half fails with
+*Unterminated string*.
+
+**Irregularity added to the list above:** 5 — a committed conflict, not a data error, was serving
+broken pages to readers while every gate stayed green, because no gate looked for it.
+
 **Status:** done — PR, merge and deploy record appended below.
