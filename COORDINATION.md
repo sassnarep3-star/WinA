@@ -1114,3 +1114,15 @@ rebuilt from the merged data rather than hand-merged.
 | Flags | FLG-036 (extended), FLG-013 (note appended), FLG-033 (resolved). None blocked the merge. All are on `/flagged/` with source links. |
 
 Owner-side items still open (none blocks the site): Associates Central sign-in and the Special Link test per product (FLG-004, FLG-024); Search Console (FLG-009, SG-29); analytics collector deployment (FLG-011); reader-capture backend (FLG-010); browser check of the five short links (FLG-036).
+
+### arena-27f76c22 — second main advance during integration (2026-11-20)
+
+While the PR (#34) was open, `main` advanced again (PR #35, arena/f5d87e09: third link re-check, FLG-033 resolved on sell.amazon.com's ASIN definition, FLG-013 qualified-sales note, SUG-05 cadence adopted). Merged again with the same rule — main's content kept, this session's deltas re-applied by content:
+
+- **FLG-033 resolution kept** (main's, verified stronger than this session's independent finding).
+- **FLG-013**: main's qualified-sales note kept; this session's 5 → 7 guides recount re-applied on top.
+- **FLG-020 resolution re-applied** (main's merge had reverted it to "withheld"; both the resolution and the SUG-23-vs-SUG-25 disagreement record are now live again).
+- **This session's CHEF iQ variant flag renumbered FLG-038 → FLG-040** because main's sessions took FLG-038 (ThermoMaven IP67 row) and FLG-039 (spec coverage) in the meantime. Register ID uniqueness re-checked: 44 flags, no duplicates.
+- Gates re-run on the merged tree: build PASSED (33 pages, 32 sitemap entries), repository gate passed, compliance gate 1,225 checks / 0 failing / 1 owner-side warning (FLG-024).
+
+**T32 — integration:** PR #34 updated by these merges; merge + deploy record below.
