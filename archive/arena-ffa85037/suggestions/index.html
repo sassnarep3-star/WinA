@@ -3,6 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Suggestions — Counter Space</title>
+<meta name="description" content="A reviewable decision list with a choose-a-path menu: suggestions with rationale, cost, risk and a recommendation, four strategic paths with trade-offs, plus a draft design brief, a topic roadmap of hypotheses, and a decision log. Nothing is implemented without a decision.">
 <title>Suggestions — the decision board — Counter Space</title>
 <meta name="description" content="A decision board and a reviewable register: rationale, cost and risk per suggestion, plus a draft design brief, a topic roadmap of hypotheses, and a decision log — nothing is implemented without a recorded decision.">
 <link rel="canonical" href="https://sassnarep3-star.github.io/WinA/suggestions/">
@@ -10,6 +12,8 @@
 <meta name="google-site-verification" content="REPLACE_WITH_REAL_TOKEN_FLG009">
 <meta property="og:site_name" content="Counter Space">
 <meta property="og:type" content="website">
+<meta property="og:title" content="Suggestions — Counter Space">
+<meta property="og:description" content="A reviewable decision list with a choose-a-path menu: suggestions with rationale, cost, risk and a recommendation, four strategic paths with trade-offs, plus a draft design brief, a topic roadmap of hypotheses, and a decision log. Nothing is implemented without a decision.">
 <meta property="og:title" content="Suggestions — the decision board — Counter Space">
 <meta property="og:description" content="A decision board and a reviewable register: rationale, cost and risk per suggestion, plus a draft design brief, a topic roadmap of hypotheses, and a decision log — nothing is implemented without a recorded decision.">
 <meta property="og:url" content="https://sassnarep3-star.github.io/WinA/suggestions/">
@@ -17,6 +21,8 @@
 <meta property="og:image:alt" content="A kitchen counter set for holiday cooking: seasonal ingredients, herbs and prep tools on a wooden surface.">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://sassnarep3-star.github.io/WinA/assets/img/holiday-counter.jpg">
+<meta name="twitter:title" content="Suggestions — Counter Space">
+<meta name="twitter:description" content="A reviewable decision list with a choose-a-path menu: suggestions with rationale, cost, risk and a recommendation, four strategic paths with trade-offs, plus a draft design brief, a topic roadmap of hypotheses, and a decision log. Nothing is implemented without a decision.">
 <meta name="twitter:title" content="Suggestions — the decision board — Counter Space">
 <meta name="twitter:description" content="A decision board and a reviewable register: rationale, cost and risk per suggestion, plus a draft design brief, a topic roadmap of hypotheses, and a decision log — nothing is implemented without a recorded decision.">
 <link rel="alternate" type="application/rss+xml" title="Counter Space" href="/WinA/feed.xml">
@@ -902,6 +908,70 @@
     <div class="note note--stop mt1">
       <p class="note__title">Two suggestions are rejections</p>
       <p><strong>SUG-12</strong> (price tracking) and <strong>SUG-13</strong> (generated near-duplicate pages) are listed so that a future session does not build them in good faith. The first breaches Amazon's program policies outright; the second produces the exact content this publication exists to avoid.</p>
+    </div>
+  </div>
+</section>
+
+
+<section class="section" id="paths">
+  <div class="wrap">
+    <div class="section__head">
+      <h2 class="section__title">Choose a path before implementing anything</h2>
+      <p class="section__dek">The suggestions below are tasks; these are directions. Each path spends the same limited effort — owner time, writing time, or design time — in a different order, and each names what it changes first, what it risks, and the decision it waits on. Review this table, pick the path that fits what the owner can actually do this month, then record the choice in the decision log with a date and a reason. Nothing on this page is implemented until that row exists.</p>
+    </div>
+    <div class="tablewrap">
+      <table class="data sortable">
+        <caption>Four directions for the same limited effort. Read next to the readiness map on the open questions page. Path 1 and Path 2 run together happily; Path 3 and Path 4 compete with them for the same attention.</caption>
+        <thead>
+          <tr>
+            <th scope="col">ID</th><th scope="col">Path</th><th scope="col">What it changes first</th>
+            <th scope="col">Suggestions it implements</th><th scope="col">Cost</th>
+            <th scope="col">Risk</th><th scope="col">Depends on / how to discover</th>
+            <th scope="col">When it is the wrong choice</th>
+          </tr>
+        </thead>
+        <tbody><tr>
+    <td><code>P1</code></td>
+    <td><strong>Prove the pipe, then scale</strong></td>
+    <td class="small">One owner-side pass: sign in to Associates Central, build one Special Link per product, click each logged out, and record what the tracking report shows the next day; verify the site in Search Console; deploy the analytics collector that is already written and tested.</td>
+    <td class="small"><code>SUG-03</code> <code>SUG-04</code> <code>SUG-08</code></td>
+    <td class="small">A few hours of owner time against three logins. No new build work.</td>
+    <td class="small">If the owner steps never happen, the site publishes into silence — pair with Path 2 so content keeps moving while the credentials wait.</td>
+    <td class="small"><code>D-01</code> <code>D-07</code><br>The Special Link test itself is the discovery: one click per product settles both the enrolment question (Q-04) and the link-format question at once. Search Console verification settles Q-18 in minutes.</td>
+    <td class="small">No owner access is available this month. Then say so on the flagged page and run Path 2 alone, with the measurement gap recorded rather than pretended away.</td>
+  </tr><tr>
+    <td><code>P2</code></td>
+    <td><strong>Publish on the adopted cadence</strong></td>
+    <td class="small">The Monday guide cadence already adopted in the decision log, drawn from the topic roadmap, every title kept labelled as a hypothesis until a query report says otherwise.</td>
+    <td class="small"><code>SUG-05</code> <code>SUG-21</code> <code>SUG-22</code></td>
+    <td class="small">A reviewed guide every Monday for eight weeks; each one added to the sitemap and feed in the same commit.</td>
+    <td class="small">Topics chosen from instinct. The kill criteria already in the decision log answer this: a topic with no measured demand after four weeks is dropped, not padded.</td>
+    <td class="small"><code>D-03</code><br>The cadence is the discovery: which of the seven published guides earns the first impressions is exactly the question the next four weeks can answer once Search Console is verified (Q-24).</td>
+    <td class="small">If the owner pauses publishing, hold the cadence rather than generating filler — FLG-013 is about substantive posts, not page count.</td>
+  </tr><tr>
+    <td><code>P3</code></td>
+    <td><strong>Design pass now</strong></td>
+    <td class="small">Implement the design brief and the copy-ready design prompt as one deliberate visual change: the type system, the single-accent palette, the layout variation, and the imagery rules, with the disclosure strip designed around rather than bolted on.</td>
+    <td class="small"><code>SUG-17</code> <code>SUG-18</code> <code>SUG-19</code> <code>SUG-20</code></td>
+    <td class="small">One focused pass over the shared stylesheet and page templates. Content work pauses for it.</td>
+    <td class="small">Rework if the brand identity (Q-20) or the imagery decision (Q-26) changes afterwards — answer those two questions first, then paint.</td>
+    <td class="small"><code>D-04</code><br>The shipped samples are the discovery: the generated, labelled kitchen-scene illustrations and the current type system are live to look at, so the acceptability question (Q-26) can be answered by eye before any stylesheet is rewritten.</td>
+    <td class="small">If the owner wants measured proof before polish, choose Path 1 first; visual polish does not substitute for the tracking test and nothing here is automated optimization.</td>
+  </tr><tr>
+    <td><code>P4</code></td>
+    <td><strong>Narrow the beat</strong></td>
+    <td class="small">The SUG-02 decision: either split into two publications or drop one category and go deep on the other.</td>
+    <td class="small"><code>SUG-02</code></td>
+    <td class="small">Restructuring: navigation, sitemap, category hubs, and the comparison page all move.</td>
+    <td class="small">Splits authority while the domain is young and the review bar is not yet met (FLG-013). Not cheaply reversible.</td>
+    <td class="small"><code>D-06</code><br>Nothing measurable settles this yet — the commission statement (Q-05) and click data (Q-16) are both missing. That is the argument for deferring it behind Paths 1 and 2.</td>
+    <td class="small">Choosing it now, on instinct, while the two categories have produced no measured signal at all. Defer until the ledger has rows.</td>
+  </tr></tbody>
+      </table>
+    </div>
+    <div class="note mt2">
+      <p class="note__title">How to choose</p>
+      <p>Start with the readiness map on the open questions page: it lists what is already known, what is not, and which questions block which decision. The first line of the decision-log rubric — answer the blocking questions first — is what Path 1 encodes. Paths 1 and 2 run together happily; Paths 3 and 4 compete with Path 1 for the same attention and should replace it, not stack on top of it.</p>
     </div>
   </div>
 </section>

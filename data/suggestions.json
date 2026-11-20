@@ -664,7 +664,11 @@
         "date": "2026-11-20",
         "decision": "recommended",
         "item": "SUG-02",
+<<<<<<< HEAD
+        "reason": "One site, air fryers in front, thermometers as the second section — which is the structure already in place. Confirm before a third category is added."
+=======
         "reason": "One site, air fryers in front, thermometers as the second section \u2014 which is the structure already in place. Confirm before a third category is added."
+>>>>>>> origin/main
       },
       {
         "date": "2026-11-20",
@@ -746,9 +750,15 @@
       },
       {
         "date": "2026-11-20",
+<<<<<<< HEAD
+        "decision": "open",
+        "item": "SUG-16",
+        "reason": "The observation date is recorded in the register; printing a last-checked line on each page is the next edit."
+=======
         "decision": "accepted",
         "item": "SUG-16",
         "reason": "Zero-credential, compliance-positive: a dated specs-check record. Accepted and shipped 2026-11-20 by arena-f515c465-wina (T37): a per-product specsVerifiedOn field in data/products.json, refreshed by the verification pass; the register and this log now agree."
+>>>>>>> origin/main
       },
       {
         "date": "2026-11-20",
@@ -808,7 +818,11 @@
         "date": "2026-11-20",
         "decision": "recommended",
         "item": "SUG-26",
+<<<<<<< HEAD
+        "reason": "Recommended: one technique article a month — jobs, not verdicts. It starts next month if the weekly cadence (SUG-05, SUG-21) is not adopted, and slots into the same calendar if it is. Each new guide enters the sitemap and feed in the same commit, per the standing rule."
+=======
         "reason": "Recommended: one technique article a month \u2014 jobs, not verdicts. It starts next month if the weekly cadence (SUG-05, SUG-21) is not adopted, and slots into the same calendar if it is. Each new guide enters the sitemap and feed in the same commit, per the standing rule."
+>>>>>>> origin/main
       },
       {
         "date": "2026-11-20",
@@ -844,5 +858,79 @@
       "label": "Design brief DB-01 to DB-08",
       "url": "/WinA/suggestions/"
     }
+  },
+  "paths": {
+    "intro": "The suggestions below are tasks; these are directions. Each path spends the same limited effort — owner time, writing time, or design time — in a different order, and each names what it changes first, what it risks, and the decision it waits on. Review this table, pick the path that fits what the owner can actually do this month, then record the choice in the decision log with a date and a reason. Nothing on this page is implemented until that row exists.",
+    "howToChoose": "Start with the readiness map on the open questions page: it lists what is already known, what is not, and which questions block which decision. The first line of the decision-log rubric — answer the blocking questions first — is what Path 1 encodes. Paths 1 and 2 run together happily; Paths 3 and 4 compete with Path 1 for the same attention and should replace it, not stack on top of it.",
+    "items": [
+      {
+        "id": "P1",
+        "name": "Prove the pipe, then scale",
+        "first": "One owner-side pass: sign in to Associates Central, build one Special Link per product, click each logged out, and record what the tracking report shows the next day; verify the site in Search Console; deploy the analytics collector that is already written and tested.",
+        "changes": [
+          "SUG-03",
+          "SUG-04",
+          "SUG-08"
+        ],
+        "cost": "A few hours of owner time against three logins. No new build work.",
+        "risk": "If the owner steps never happen, the site publishes into silence — pair with Path 2 so content keeps moving while the credentials wait.",
+        "dependsOn": [
+          "D-01",
+          "D-07"
+        ],
+        "discover": "The Special Link test itself is the discovery: one click per product settles both the enrolment question (Q-04) and the link-format question at once. Search Console verification settles Q-18 in minutes.",
+        "whenWrong": "No owner access is available this month. Then say so on the flagged page and run Path 2 alone, with the measurement gap recorded rather than pretended away."
+      },
+      {
+        "id": "P2",
+        "name": "Publish on the adopted cadence",
+        "first": "The Monday guide cadence already adopted in the decision log, drawn from the topic roadmap, every title kept labelled as a hypothesis until a query report says otherwise.",
+        "changes": [
+          "SUG-05",
+          "SUG-21",
+          "SUG-22"
+        ],
+        "cost": "A reviewed guide every Monday for eight weeks; each one added to the sitemap and feed in the same commit.",
+        "risk": "Topics chosen from instinct. The kill criteria already in the decision log answer this: a topic with no measured demand after four weeks is dropped, not padded.",
+        "dependsOn": [
+          "D-03"
+        ],
+        "discover": "The cadence is the discovery: which of the seven published guides earns the first impressions is exactly the question the next four weeks can answer once Search Console is verified (Q-24).",
+        "whenWrong": "If the owner pauses publishing, hold the cadence rather than generating filler — FLG-013 is about substantive posts, not page count."
+      },
+      {
+        "id": "P3",
+        "name": "Design pass now",
+        "first": "Implement the design brief and the copy-ready design prompt as one deliberate visual change: the type system, the single-accent palette, the layout variation, and the imagery rules, with the disclosure strip designed around rather than bolted on.",
+        "changes": [
+          "SUG-17",
+          "SUG-18",
+          "SUG-19",
+          "SUG-20"
+        ],
+        "cost": "One focused pass over the shared stylesheet and page templates. Content work pauses for it.",
+        "risk": "Rework if the brand identity (Q-20) or the imagery decision (Q-26) changes afterwards — answer those two questions first, then paint.",
+        "dependsOn": [
+          "D-04"
+        ],
+        "discover": "The shipped samples are the discovery: the generated, labelled kitchen-scene illustrations and the current type system are live to look at, so the acceptability question (Q-26) can be answered by eye before any stylesheet is rewritten.",
+        "whenWrong": "If the owner wants measured proof before polish, choose Path 1 first; visual polish does not substitute for the tracking test and nothing here is automated optimization."
+      },
+      {
+        "id": "P4",
+        "name": "Narrow the beat",
+        "first": "The SUG-02 decision: either split into two publications or drop one category and go deep on the other.",
+        "changes": [
+          "SUG-02"
+        ],
+        "cost": "Restructuring: navigation, sitemap, category hubs, and the comparison page all move.",
+        "risk": "Splits authority while the domain is young and the review bar is not yet met (FLG-013). Not cheaply reversible.",
+        "dependsOn": [
+          "D-06"
+        ],
+        "discover": "Nothing measurable settles this yet — the commission statement (Q-05) and click data (Q-16) are both missing. That is the argument for deferring it behind Paths 1 and 2.",
+        "whenWrong": "Choosing it now, on instinct, while the two categories have produced no measured signal at all. Defer until the ledger has rows."
+      }
+    ]
   }
 }
