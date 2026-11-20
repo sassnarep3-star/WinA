@@ -389,3 +389,49 @@ wanted, port it into `data/` and rebuild.
 - **Parallel generator on `main` (logged, not changed).** `scripts/build.mjs` writes `site/` for a "Countertop Report" site. `.github/workflows/pages.yml` does not run it, so it is not served. Its owner is unclear; the next integration session should retire it or document it.
 - **Gates on the final tree.** `node _src/build.mjs`: PASSED. `node scripts/check-site.mjs`: "repository gate passed — safe to publish".
 - **Sortable coverage (final).** Every data table on every served page is sortable. Two tables added after the rebase were also marked: the concept page table (`_src/build.mjs`) and the Special Link test register table on `/register/`. Checked: no unsortable table left in the served HTML.
+
+---
+
+## Session arena-f6be9b3a (this session) — sourcing, with the merge record
+
+- **2026-11-20 — claim.** Branch `arena/f6be9b3a-wina`, base `df3e953`. Same stale-base situation as `a86cb9d0`: this session had already built a complete parallel site before reading this board. It was discarded rather than served (`git reset --hard origin/main`), and the work below extends `main`'s build instead. That is the third session this board records making this mistake, which is itself the finding: **the base commit a session is handed is not `main`, so read `origin/main` before writing anything.**
+- **Defect found and fixed — the source column was decorative.** On `/products/*` and `/register/`, every specification row linked to `amazon.com/dp/<ASIN>` whether or not that page states the value. Eleven rows marked "unverified" are published by the manufacturer. `sourceCell()` now resolves per row and **throws** if a row claims a manufacturer source without a URL.
+- **Filled from official manufacturer pages, each with its own citation.** chefman.com (6 qt: wattage, dimensions, weight, warranty, 5.67 L), emerileveryday.com (26QT: dimensions, 24.6 L), thermomaven.com (HT07: 1 × AAA, lifetime warranty with 30-day registration, ±0.5 °F wording, "100% waterproof" with no IP number), chefiq.com (4 internal + 1 ambient sensors, Wi-Fi + Bluetooth, 1,000 °F, `CQ60-1C-Z1-E`). Coverage 25/60 → **36/60 filled**; the other 24 stay blank with the reason recorded.
+- **Three overstatements corrected.**
+  1. The 8 qt Chefman's 450 °F is a **two-minute Hi-Fry finish** against a 400 °F range, not its maximum. The spec row and the basket-vs-oven guide both said otherwise. (`FLG-027`)
+  2. Chefman publishes `RJ38-8T-BLACK` (matte black) for that machine; this ASIN's listing describes stainless steel and retailer records give `RJ38-SQSS-8T`. Two different SKUs, so **no dimension, weight or wattage is borrowed from either**. (`FLG-028`)
+  3. Bio: the ThermoMaven row now states the NIST/NSF logos carry **no certificate number**, and accuracy is attributed as a claim. The prose bullet that still asserted IP67 was fixed after the merge (`c5eb0dd`).
+- **New surface: `/marketing/kit/`.** The brief asks for marketing content for the five links; the existing `/marketing/` page is a plan. The kit carries a social post, a newsletter paragraph and the mandatory disclosure per product, plus the five rules the copy obeys and a pre-publication checklist. It states no price, no rating and no testing claim.
+- **Flags added:** `FLG-026` (the sourcing defect), `FLG-027` (Hi-Fry), `FLG-028` (Chefman SKU ambiguity), `FLG-029` (Emeril publishes 24, 25 and "10-in-1" for one feature). Register now **33 rows** across the FLG and SG series, all 33 unique.
+
+### Merge record
+
+- **PR #18** — https://github.com/sassnarep3-star/WinA/pull/18 — merged into `main` 2026-11-20T05:59:32Z
+- Merge commit **`d7abb68e40d397f701b0a89ed2acc097ff564ca6`**. Merge commit, not squash.
+- `validate` and `Build and verify` both passed before merge; `Deploy to GitHub Pages` skipped on the PR as designed.
+- Pages build for `d7abb68`: **built**. Verified live with a cache-busting fetch: `/marketing/kit/` serves the kit and `/products/thermomaven-1-sec-thermometer/` shows eight `thermomaven.com` citations and no Amazon source links.
+
+### Conflicts, and how they were resolved
+
+`main` had moved to `1565baf` (PR #17) mid-session. Three conflicts, all additive:
+
+| File | Resolution |
+|---|---|
+| `assets/css/site.css` | Both sides appended independent blocks (marketing kit styles; sortable-table styles). Kept both, in order, no dedup needed. |
+| `data/governance.json` | This session added FLG-026..029, the other added SG-27..30, at the same array position. Interleaved by hand; `json.load` confirms 33 unique IDs. |
+| `flagged/index.html` | Generated. Discarded both versions and rebuilt from `data/` rather than hand-merging markup. |
+
+### What this session did not do
+
+- **No browser rendering.** Playwright's Chromium download fails in this sandbox; verified once and abandoned. All visual checks are markup and extracted text.
+- **No Associates Central login.** The Special Link test (`FLG-003`, `FLG-024`) still needs the enrolled account. **This remains the one action that needs a human:** click one tagged link from a phone on cellular, then check the click report within 48 hours.
+- **No traffic or conversion data.** Analytics client is still disabled (`FLG-008`), endpoint still undeployed (`FLG-011`).
+
+### Gates on the final tree
+
+```
+node _src/build.mjs         → Generated 30 pages, 29 in sitemap. PASSED: all gates clear
+node scripts/check-site.mjs → pages: 30 · internal links: 1046 · amazon links: 120 (108 sponsored)
+                              ✓ repository gate passed — safe to publish
+build twice + diff          → no changes
+```
