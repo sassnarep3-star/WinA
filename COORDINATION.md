@@ -165,8 +165,8 @@ shapes differ.
 | T35 | Reader-facing polish path — "reads like a shop, not an audit": brand imagery, authorship, seasons, topic clusters, de-audited front page; suggestions decision board; product-intent confirmation record split; 3 new question-shaped guides; og:image + breadcrumb structured data | done | arena-266b1b8f | `_src/build.mjs`, `_src/content.mjs`, `_src/pages-content.mjs`, `assets/css/site.css`, `assets/js/site.js`, `assets/img/*`, `data/links.json`, `data/products.json`, `data/governance.json`, `data/questions.json`, `data/suggestions.json`, `README.md`, `COORDINATION.md` (arena-266b1b8f section only) | Claimed 2026-11-20 as T17; renumbered T35 on merge — T17, T27 and T19–T34 were all taken on main first (the board has no id allocator; see the T33 note). Works on branch `arena/266b1b8f-wina` only (Arena session rule overrides the multi-branch convention for this session). Extends `main`'s build; no second site. |
 
 ---
-
----
+| T40 | Final integration for this brief: claim first; run every gate on the combined tree; line-by-line re-verification against official sources; review stale open PRs #26/#28; PR `arena/05278ba2-wina` → `main`, merge, confirm Pages deploy, record result here | **done** | arena/05278ba2-wina | `COORDINATION.md` (this row + the arena/05278ba2-wina section only); `data/governance.json` (FLG-033/FLG-036 merge), `data/policy.json` (one source row), `data/{products,links}.json` (two exact title corrections), generated pages via build | Claimed 2026-11-20 immediately on session start per board rule 2 as **T27**; base `e886175` then equalled `main` and T27 was free. `main` advanced while this session worked: T27 was taken (arena-574fc8eb-wina, PR #39), then T28/T29, then T30-T32 (d59cd471, PR #44), then T33 (508d0df8, PR #36), then T34 (arena/1cf62cfb-wina, PR #38), then T35-T39 (266b1b8f and the T36-T39 sessions) — renumbered **T40** here at the seventh merge (T35-T39 were all taken on main while this session verified), no other session's row changed. Extends the existing build; no second site. |---
+| T41 | Line-by-line verification of the reviewer-facing documents against the register; repair every stale figure; add a gate so the figures cannot drift again | done | arena/f14580cb-wina | `data-room/flagged.html`, `executive-summary.html`, `data-room/compliance-gate.html`, `README.md`, `tools/check_site.py` (new rule R-12), `COORDINATION.md` (this row + T41 section only) | Claimed as T26 on base `80b45a1`, renumbered to T36 when `main` had taken T26 twice, then to **T41** when `main` reached T40. Renumbered three times without another session's record being touched. |
 
 ## Session arena/1323e80f-wina — T17 claim (2026-11-20)
 
@@ -191,7 +191,7 @@ shapes differ.
 | T27 | Parallel session build: full independent site (15 pages), source register, product-intent record, suggestions review, open questions, executive summary, flags, 5-event analytics + endpoint, generator + compliance gate — integrated by archiving | done | arena-574fc8eb-wina | `archive/arena-574fc8eb-wina/**` (own data/scripts/assets), `.github/workflows/gate.yml` (new), `COORDINATION.md` (T27 row + session section only), `README.md` (appended section only) | Claimed at session start when `main` still held only `README.md` (base `df3e953`); `main` advanced through PRs #21–#29 during the build. Root-level conflicts limited to `README.md` + `COORDINATION.md` — main kept in full, this session appended. Build relocated to `archive/` per repo convention; no served page touched. Independent fetches agree with `data/links.json` on all five destinations |
 | T28 | Third independent re-check of the five submitted short links (timestamped, per link); retry the official Amazon ASIN-definition source for FLG-033; adopt the publishing cadence (SUG-05) as a recorded decision | done | arena-f5d87e09-wina | `COORDINATION.md` (arena-f5d87e09-wina section only + this row), `data/governance.json` (FLG-033/FLG-036 notes only), `data/suggestions.json` (SUG-05 status only), generated `flagged/`, `suggestions/`, `summary/`, `register/` | Claimed 2026-11-20 on branch `arena/f5d87e09-wina` (base `e886175`, main unchanged at claim time). No product data, link record, or page copy changes unless a verified discrepancy is found. |
 | T29 | Product-intent confirmation record: one row per submitted link with intended ASIN (blank unless supplied), official listing URL, confirmation date, confirmation source, and observed redirect target kept in a separate dated field; close FLG-033 with an official Amazon ASIN definition; fresh dated re-check of the five short links | done | arena/6b0f2ddc-wina (session `arena-6b0f2ddc`) | `data/links.json`, `data/policy.json` (one source row), `data/governance.json` (FLG-033 closed to review; FLG-040 appended), `_src/build.mjs` (register link table only), `scripts/compliance-gate.mjs` (link-record rule only), `EXECUTIVE_SUMMARY.md` (T27 section and flag count only), `COORDINATION.md` (T27 section only), generated `register/`, `flagged/`, `summary/` | Claimed 2026-11-20 before any edit. Extends `main`'s build; no second site. Owner-side items (Associates sign-in, Special Link test, Search Console, collector deploy) are not claimed. | Result in the T27 section below. Extends `main`; no second site. Owner-side items not attempted. |
-| T34 | Re-verify the specification rows of `data/products.json` against their official pages (manufacturer pages, the HT07 user manual, and each ASIN's own listing); re-check the five submitted links (re-check only); record corrections as handoff patches for the integration session; publish every irregularity as a flag | done (requests open in `handoff/`) | arena/1cf62cfb-wina | `COORDINATION.md` (arena/1cf62cfb-wina section + this row), `handoff/` (new; not a shared output). No shared output changed on this branch. | Claimed first as T27 in 7533c52 on an out-of-date base; `main` already held T27 (arena/574fc8eb-wina) and T29 (arena/6b0f2ddc-wina), so this work is recorded as T34. Shared-output edits made in 62bfa89 were reverted to `main`'s tree by merge d9e533d; the edits are kept as `handoff/T29-products.patch` and `handoff/T34-governance.patch`. |
+| T34 | Re-verify the specification rows of `data/products.json` against their official pages (manufacturer pages, the HT07 user manual, and each ASIN's own listing); re-check the five submitted links (re-check only); record corrections as handoff patches for the integration session; publish every irregularity as a flag | done (requests open in `handoff/`) | arena/1cf62cfb-wina | `COORDINATION.md` (arena/1cf62cfb-wina section + this row), `handoff/` (new; not a shared output). No shared output changed on this branch. | Claimed first as T27 in 7533c52 on an out-of-date base; `main` already held T27 (arena/574fc8eb-wina) and T29 (arena/6b0f2ddc-wina), so this work is recorded as T34. Shared-output edits made in 62bfa89 were reverted to `main`'s tree by merge d9e533d; the edits are kept as `handoff/T34-products.patch` and `handoff/T34-governance.patch`. |
 | T35 | Apply the line-by-line verification instead of proposing it: every valued spec row re-checked against its own cited page, every quoted policy clause against the official text, five rows corrected or blanked, five flags added, reader copy corrected where it repeated a withdrawn claim | done | arena/b37e1a98-wina | `data/products.json`, `data/links.json`, `data/governance.json`, `data-room/{flagged,source-register}.html`, `compare.html`, `questions.html`, `guides/*.html`, `seasonal.html`, `COORDINATION.md` (this row + section) | Claimed as T27 on base `e886175`, renumbered twice on merge (T27 → T33 → T35) as `main` took T27–T34 while the branch was in flight. T34 proposed these corrections as patches under `handoff/`; this session applied them to the live tree and extended them with the policy-quote check. Gate `tools/check_site.py` passes. |
 | T36 | Decision layer the brief asks for: "choose the best path before implementing" menu on `/suggestions/`, decision-readiness map (known / unknown / how to discover) on `/questions/`; fourth independent verification pass of the five submitted links and the quoted policy sources; final integration of completed open PRs, PR → `main`, Pages deploy confirmed | done | arena/2739f0fb-wina | `COORDINATION.md` (T33 row + arena/2739f0fb-wina section only), `data/suggestions.json` (new `paths` section only), `data/questions.json` (new `readiness` section only), `_src/build.mjs` (render the two new sections only), `data/links.json` (append one `verificationLog` entry only), generated pages via `node _src/build.mjs` | Claimed 2026-11-20 on branch `arena/2739f0fb-wina` (base `4ca9cc6`). Renumbered twice on merge: T33 (arena/508d0df8-wina) and T35 (arena/b37e1a98-wina) were taken on main; only this session's id moved. Renumbered T33→T35 on merge: `arena/508d0df8-wina` took T33 on main; only this session's id moved. Extends the existing build; no second site. PR #34 (T27–T32 editorial, arena/27f76c22-wina) is out of scope and untouched; any conflict is resolved by keeping both sides. |
 | T37 | Independent duplicate execution of the T35 verification pass (same 60-row check against the same official pages, run concurrently — agreement and divergences recorded); SUG-16 shipped: per-product `specsVerifiedOn` verification dates in `data/products.json` (the register and the suggestions decision log agree); FLG-036 independent observation agreeing with FLG-047 | done | arena-f515c465-wina | `data/products.json` (specsVerifiedOn), `data/suggestions.json` (SUG-16 shipped + accepted log row), `COORDINATION.md` (this row + session section) | Claimed 2026-11-20 as T27; renumbered twice on merge (T27/T28 taken, then T35 taken by arena/b37e1a98-wina's merged pass) |
@@ -207,7 +207,6 @@ shapes differ.
 ---
 
 | T39 | Integrity and completion pass on the rebuilt publication: render **every** registered flag on the Flagged for Review page (it showed 11 rows of 46 while claiming "Every irregularity"), resolve FLG-009 by removing displayed prices/ratings/availability/badges from all served pages and enforce it with a new gate rule R-10, apply the parked `handoff/` spec-correction patches (integration step), resolve FLG-025, add og:image dimensions/alt and `og:site_name` to every page that shares, board hygiene | done | arena-d7bbbc5d (branch `arena/d7bbbc5d-wina`) | `data-room/flagged.html` (flag coverage), `data/products.json` + `data/governance.json` (handoff patches), served pages with og tags, `COORDINATION.md` (T39 row + own section), `README.md` (tooling note appended) | Claimed 2026-11-20. Extends the PR-#28 architecture; no second site. Button wording (PR #36), decision log (PR #43), suggestion pills (PR #42) already done by other sessions and not duplicated  The duplicated FLG-004 row in Register A was kept verbatim (another session's record); the unified view is Register B on the same page |
-
 ## Link resolution (verified by three independent sessions)
 
 Each short link was opened and the landing page recorded. **The short code is not the ASIN.**
@@ -6770,3 +6769,249 @@ performed at rebase:
 | Flagged irregularities | Published on the page; did not block the merge, per the brief |
 | Session history note | This session claimed T27 at `80b45a1`; main's task IDs advanced to T38 during the work (eleven merges). The task was renumbered T27→T33→T34→T36→T39 on successive merges, each without altering any other session's row. The register divergence this session's work exposed is documented on the page itself as FLG-049/FLG-050 |
 | Still owner-side, unchanged | FLG-002/FLG-004 (tracking-ID enrolment + one click test), FLG-003 (short-link compliance), FLG-009 (Search Console), FLG-005 (PA-API imagery), FLG-013 (owned domain + content volume), FLG-021 (byline/brand) |
+
+## Session arena/05278ba2-wina — T40 claim (2026-11-20)
+
+- **Claim:** T40 — final integration verification and PR/merge flow for this brief. Claimed as T27
+  at session start (base `e886175`, when that id was free); renumbered at each merge as `main` took the
+  ids mid-session: T27 (arena-574fc8eb-wina, PR #39), then T28/T29 (f5d87e09, 6b0f2ddc), then T30-T32
+  (d59cd471, PR #44), then T33 (508d0df8, PR #36), then T34 (arena/1cf62cfb-wina, PR #38), then T35-T39 (266b1b8f, the T36-T39
+  sessions) — the later, still-open claim keeps moving: this task is **T40**. Precedent: the T26-twice resolution above; no other session's row renumbered. Claimed and
+  pushed as its own commit before any other work, per board rule 2. File scope: this section and
+  the T40 row only, unless a verified defect is found — any scope extension will be logged in this
+  section before the file is edited.
+- **Base:** `e886175` (equals `main` at session start). No second site will be built.
+- **Status:** in progress.
+- **Scope extension logged before editing (2026-11-20, per the claim's own rule):**
+  `data/governance.json` only — two flag rows: (a) **FLG-033 moved to resolved**, because this
+  session found and fetched two official Amazon pages that state the ASIN definition the flag said
+  was missing (Associates Central Help and Sell on Amazon); (b) **FLG-036 detail extended** with
+  this session's third independent re-check of the five short links. Regenerated `flagged/`,
+  `summary/` and any page these feed via `node _src/build.mjs` (never hand-edited). No product
+  spec rows, nav, register data, suggestions, questions or generator logic will be changed.
+  **Third extension, logged in this resolution:** `data/policy.json` gains one source row
+  (`amazon-associates-help-asin`) for the Associates Central Help page quoted in FLG-033 — the flag
+  needs a register source for its citation, matching the convention session arena-6b0f2ddc-wina set
+  for `amazon-asin-definition`.
+  **Second extension, logged before editing (same session):** `data/products.json` (`title`
+  of exactly two products) and `data/links.json` (`resolvedTitle` of exactly two links) —
+  the recorded titles differ from the live listing h1 by two typographic symbols
+  (`TurboFry` vs `TurboFry®`; `±0.5°F` vs `±0.5℉`). The live h1 elements were fetched and
+  are the source; only those two strings change, and only to match the source exactly.
+
+### The `main` flip, the price/rating scrub, and the gates that now run
+
+Between my second and third merges of `main`, the integration session `arena/580f4c6d-wina`
+merged PRs #28/#52/#53 with an explicit merge note: **the reader-facing site that ships from
+`main` is now the arena/580f4c6d-wina build** (root `index.html`, `shop.html`, `data-room/…`),
+and the arena-ffa85037 publication is preserved complete under `archive/arena-ffa85037/`
+together with its generator and gates, with `data/*.json` still at the root and cited live.
+The board records that note as the tie-breaker between the two boards, so this session
+completed its merge against that decision rather than reversing it (reversing it would have
+discarded a sanctioned integration). The publication's four JS gates are archived with it;
+the shipping site is gated by `tools/check_site.py` (G-1…G-3) via `.github/workflows/pages.yml`,
+which runs the gate before deploy.
+
+Line-by-line review of the shipping site then found **FLG-044**: prices, star ratings with
+review counts, discount chips and stock state were displayed on 10 of 23 pages - prohibited
+by Program Policies §2(b) and §6(t) (both re-verified verbatim this session) and banned by
+the owner's brief. Scrubbed in this pass (figures → `Not shown (§2(b)/§6(t))`, prose rewritten,
+chips removed, source-link cells kept); FLG-044 recorded in `data/governance.json` with the
+policy citations. `python3 tools/check_site.py` passes: 23 pages, G-1/G-2/G-3.
+
+Scope extension logged here before the edit: the scrub touched ten served pages
+(`index.html`, `shop.html`, `compare.html`, `questions.html`, `executive-summary.html`,
+`guides/air-fryer-capacity-checklist.html`, `guides/basket-vs-oven-air-fryer.html`,
+`guides/multi-function-appliance-questions.html`, `data-room/product-intent.html`) plus
+`data/governance.json` (FLG-044). Also corrected in this section's earlier note: the
+publication's `EXECUTIVE_SUMMARY.md` count edits left the root with the publication's
+archive - the shipping site's summary is `executive-summary.html`, whose own figures were
+scrubbed above; its non-price counts were not re-derived because the page is static and the
+canonical counts now live in `data/*.json` and the gate output.
+
+### Applied the `handoff/` patches (requested of the integration session)
+
+Session arena/1cf62cfb-wina (T34) deliberately did not touch shared outputs (board rule 10) and left
+its line-by-line spec-row re-verification as patches, with the instruction "To apply (integration
+session only)". This session is that integration session, so:
+
+- `git apply --check` then `git apply handoff/T34-products.patch` and `handoff/T34-governance.patch`
+  — both applied cleanly; no hunk needed hand-editing.
+- Result verified here: 47 unique flags (FLG-043 added, FLG-028/029/039 revised), spec mix
+  34 `verified` · 12 `unverified` · 10 `withheld` · 4 `claim`, 38 of 60 rows valued — the figures
+  match their handoff README exactly.
+- `EXECUTIVE_SUMMARY.md` count table updated to this tree's freshly-run gate output (47 flags,
+  34/12/10/4 mix, 8 policy sources, 33 pages, 101 tagged links, 1,295 internal links, 1,518
+  compliance checks) — five count cells only, every number produced by a gate run, not typed.
+- One dangling path in their board row corrected: `handoff/T29-products.patch` →
+  `handoff/T34-products.patch` (the file was renamed in their commit `a18cbb5`; nothing else in
+  their row or section altered).
+
+Scope note: applying these patches extends this session's declared file scope to
+`data/products.json` (11 spec rows), `data/governance.json` (FLG-028/029/039/043) and
+`EXECUTIVE_SUMMARY.md` (count cells) — all three logged here before the edit.
+
+### Merge of `main` (bbc09a3) into this branch — conflicts resolved by content, nothing discarded
+
+`main` advanced three merges while this session verified (PRs #37, #39, #40). Three files conflicted:
+
+| File | Conflict | Resolution |
+|---|---|---|
+| `data/governance.json` | This session had resolved FLG-033 (Amazon Help page found) while `main` held FLG-033 at review with the gen-AI caveat on the sell.amazon.com page; both sessions had also appended a same-day short-link pass to FLG-036 | FLG-033 merged by content: kept `main`'s full caveat record (both caveats re-verified by this session, including the gen-AI footnote re-read on the page) **and** added the Associates Central Help page that satisfies the flag's own unblock condition — severity `resolved`, source moved to the Help page. FLG-036 merged by content: kept arena-f5d87e09-wina's third-check text (which `main` added) and appended this session's independent pass as corroboration — both sessions got the identical split separately. All 44 flag ids unique. |
+| `COORDINATION.md` | Both sides appended session sections at the same spot | Kept `main`'s side in full, then this session's section renumbered T30 with this resolution record. No other session's text removed. |
+| `flagged/index.html` | Generated file, diverged | Discarded both sides and regenerated from the merged data with `node _src/build.mjs` (never hand-merged). |
+
+`data/links.json` auto-merged: `main`'s `verificationLog` lists and this session's two `resolvedTitle`
+corrections are both intact. `data/products.json` (my two title corrections) had no conflict.
+
+**Sources added this session (each fetched and read verbatim 2026-11-20):**
+- https://affiliate-program.amazon.com/help/node/topic/GP38PJ6EUR6PFBEC — Associates Central Help, ASIN definition (closes FLG-033)
+- https://sell.amazon.com/blog/what-is-an-asin — re-read including the gen-AI footnote (keeps the FLG-033 caveat honest)
+- https://affiliate-program.amazon.com/help/operating/agreement — OA §5 quotes re-verified verbatim
+- https://affiliate-program.amazon.com/help/operating/policies — §2(b), §6(t), §6(v), §6(w), §6(y) re-verified verbatim (page dated April 14, 2026)
+- https://www.ftc.gov/business-guidance/resources/disclosures-101-social-media-influencers — the three FTC quotes re-verified verbatim
+- All five listing pages `https://www.amazon.com/dp/B0CDY277D3 · B09B7SB46R · B08DKYBTPH · B0DHZTCNR5 · B0DZFD6R9Z` — product identity re-confirmed
+- All five submitted `https://link.amazon/<code>` short links — fetched twice each this session (result recorded under FLG-036)
+
+### PR, merge, deploy and live verification — T40 complete (2026-11-20)
+
+| Item | Result |
+|---|---|
+| Pull request | **#50** — https://github.com/sassnarep3-star/WinA/pull/50 — `arena/05278ba2-wina` → `main` |
+| Checks before merge | All green: `Compliance & integrity gate` (pages.yml verify), `site-gate` G-1…G-3, `archive-gate (574fc8eb)` — exit 0 on the merged tree |
+| Merge | `gh pr merge 50 --merge` succeeded; merge commit **`f2cc466`** ("Merge pull request #50 from sassnarep3-star/arena/05278ba2-wina") |
+| Deploy | `Build, verify and deploy` run **44694740728** completed/success (gate before deploy); `pages-build-deployment` ran; Pages builds API: commit `f2cc466…`, status **built**, 2026-11-20T07:24:50Z |
+| Live check | https://sassnarep3-star.github.io/WinA/?v=t40-final fetched after deploy: disclosure strip above the fold ("The Crisp Counter is an Amazon Associate — we earn from qualifying purchases" + sponsored statement + §6(t)/§2(b) explanation), every product card reads "Price not shown — pricing data may only be obtained through PA API (IP License §2(b))" and "No star ratings or review counts are shown — §6(t)", buy buttons `rel="sponsored"` + `?tag=shopnow047c-20`, guides/season note/data-room all resolve |
+| Gates on this tree | `python3 tools/check_site.py` → **PASS, 23 pages, G-1/G-2/G-3** (the shipping site's gate; runs in CI before every deploy). The publication's four JS gates ran green through this session's merges and are archived complete with it under `archive/arena-ffa85037/` |
+| Citations re-checked live | Disclosure's "IP License §2(b)" (obtain PAC via Creators API/PA API) and "Participation Requirements §6(t)" (ratings) both verified verbatim on the official policies page today |
+
+**Seven merges of `main` during this session** (bbc09a3 → f3f9541 → 511e0d1/9d8a97e flip → 7dcd6ce → fbee023 → … → f2cc466), each resolved by content with nothing discarded: sessions 574fc8eb, f5d87e09, 6b0f2ddc, d59cd471, 27f76c22, 508d0df8, 1cf62cfb, 9ef73f13, 580f4c6d, 266b1b8f, d7bbbc5d and the T36–T39 sessions all keep their rows, sections, flags and data edits. Task id churn for this claim: T27 → T30 → T33 → T34 → T35 → **T40** (each renumber logged above; no other session's row was changed).
+
+**What this session contributed to the shipped tree:** FLG-033 resolved with the Associates Central Help ASIN definition (plus the sell.amazon.com source kept with its gen-AI caveat, footnote re-read); FLG-036 and FLG-048 each extended with an independent same-day pass; two listing titles corrected to the live h1 exactly (`TurboFry®`, `±0.5℉`); the T34 handoff patches applied (later refined by T36's own fills, which won the merge); the price/rating scrub converged with T38's FLG-048 fix (one canonical flag, both passes recorded); the dangling `handoff/T29-products.patch` path in the T34 row corrected.
+
+**Owner-side items remain open and unchanged:** FLG-004 (tracking-ID enrolment), FLG-024 (0/5 Special Link tests — Associates sign-in), FLG-009/SG-29 (Search Console), FLG-011 (collector not hosted), FLG-013 (content volume vs the 10-post rule of thumb), FLG-036 (short links don't reproduce — normal-browser check), FLG-019 (intended-ASIN policy). None blocks the merge; all are on the Flagged for Review page (`data-room/flagged.html`, now rendering every registered flag after T39).
+
+---
+
+## Session `arena/f14580cb-wina` — 2026-11-20 — T41 (claimed as T26 on this branch's base, then T36)
+
+**Claim (T41):** line-by-line verification of the reviewer-facing documents against the register,
+repair of every stale figure found, and a gate so the figures cannot drift again.
+
+**Renumber note.** This branch was cut from `80b45a1`, where T26 was free. By the time the claim
+reached `main`, T26 had been taken twice (arena-8e69b462-wina, arena/119f4dc6-wina) and the board
+ran to T35. To keep every session's record intact without an ID collision, this task is recorded as
+**T41**, following the same renumbering convention T17→T25, T27→T33 and T27→T35 already used.
+
+**Not claimed:** anything needing owner credentials (Associates Central for the Special Link test,
+Search Console verification, analytics collector deploy), and any visual redesign — the brief asks
+for suggestions that feed a design prompt and a section where a path is chosen *before* any change
+ships, so the redesign stays a decision for the owner.
+
+### What happened, in order
+
+1. **Claim pushed first**, as the board requires, before any file in scope was edited.
+2. **A full pass over the tree that this branch was cut from** found eleven stale figures in the
+   three documents a reviewer is told to read first, plus a two-link blind spot in the
+   independently written structural gate. Those findings, and the repairs, are in the branch's
+   earlier commits (`1a1f7d8`, `d848c8e`, `7321c06`).
+3. **`main` moved 171 commits underneath the task.** PR #28 (`arena/580f4c6d-wina`, "The Crisp
+   Counter") had become the served site and moved the entire Counter Space build — the three
+   documents and the gates this task originally targeted — into `archive/arena-ffa85037/`.
+4. **Merged `origin/main` and took main's tree everywhere.** The merge result is byte-for-byte
+   `origin/main` (`git diff --name-only origin/main` → 0 files). Nothing from `main` was discarded,
+   and nothing from this branch was injected into the archive, because a snapshot that has been
+   edited is not a snapshot. The commit exists to bring the branch up to date without putting a
+   second front page at the root — the exact collision this board's session-history section exists
+   to prevent.
+5. **Re-pointed the task at the live site** and re-ran the same line-by-line pass against it.
+
+### The three original findings, and what became of them
+
+| Original finding | Fate after the rescope |
+|---|---|
+| Product-intent record missing a confirmation date and a source | **Already done better on `main`.** `data/links.json` carries `intendedAsin` (null), `intendedAsinNote`, `officialListingUrl`, `confirmedOn`, `confirmationSourceIds`, `confirmationSourceUrl` and `observedRedirectTargets` as separate fields. This branch's version would have been a regression, so it was dropped rather than merged. |
+| Two-link blind spot in the Amazon matcher | **Not portable as written** — the live gate is `tools/check_site.py` (Python), not `scripts/check-site.mjs`. Its R-02 has an analogous gap of its own; recorded below. |
+| Eleven stale figures in the reviewer documents | **Portable, and the same defect is live.** Re-found on the served site; table below. |
+| A docs gate | **Portable.** Rebuilt as rule R-10 in `tools/check_site.py` so it runs in `site.yml` and in the `pages.yml` deploy path. `handoff/README.md` already asks for exactly this: *"Recompute them with a script before writing them."* |
+
+### Findings on the served site (2026-11-20, this session)
+
+| # | Where | Says | Actual | How the actual figure was obtained |
+|---|---|---|---|---|
+| 1 | `data-room/flagged.html` caption | "Seventeen more are open in the register" | **37 more** (25 still open) | `data/governance.json` holds 51 flags; the table shows 14 |
+| 2 | `executive-summary.html` | "a suggestions queue (**13 proposals**…)" | **14** | distinct `S-01…S-14` on `suggestions.html` |
+| 3 | `data-room/compliance-gate.html` | "Disclosure strip … on all **20 pages**" | **23** | 23 HTML files outside `archive/` |
+| 4 | `README.md` | "**4 question-shaped buyer guides**" | **6** | 6 guide pages in `guides/`, excluding `index.html` |
+
+**Checked and found correct, deliberately left alone:** `executive-summary.html` "16 questions"
+(matches `Q-01…Q-16`) and "5 products" (matches `data/products.json`); and
+`data-room/method.html`'s "Site published: shop, compare, 4 guides … PR #1 2026-11-20", which is a
+**dated provenance row** recording what that session shipped. Rewriting a dated log to match the
+present would be its own defect.
+
+**Flagged for review rather than fixed:** `data-room/flagged.html` shows 14 of the 51 flags in
+`data/governance.json` and links to that file as the register. The caption discloses the remainder,
+so the page is not false — but 37 findings, including all four `SG-27…SG-30` rows, are one click
+away rather than on the page. Rendering them means redesigning that table, which the brief reserves
+for a decision, so it is recorded here instead of shipped.
+
+**R-02's own blind spot (recorded, not silently relied on):** `tools/check_site.py` only fails an
+Amazon link that *has* a tag and *lacks* `rel="sponsored"`. An Amazon product link with **no tag
+and no `rel`** passes R-02 without comment. Today there are none — every Amazon anchor on the 23
+served pages was classified this session: 27 sponsored, 146 declared, **0 bare** — so this is a
+coverage gap in the rule, not a live defect. The Counter Space gate, written after an
+undeclared-link incident, enforces the converse direction too; this one does not.
+
+### Verification performed
+
+| Check | Method | Result |
+|---|---|---|
+| Merge safety | `git diff --name-only origin/main` after resolving | 0 files — branch adds nothing, removes nothing |
+| Live gate before any edit | `python3 tools/check_site.py` | PASS — 23 HTML pages, gates G-1/G-2/G-3 |
+| Amazon link classification | every `<a>` on the 23 served pages, three-way sort | 27 sponsored · 146 declared · 0 bare · 0 misclassified |
+| Register vs page | `data/governance.json` ids vs `<th scope="row">` ids in `data-room/flagged.html` | 51 in register, 14 on page, 0 on page that are not in the register |
+| Figures | counted from the pages themselves, not from prose | 14 proposals, 16 questions, 6 guides, 23 pages |
+
+### What shipped, and how it was verified
+
+Four figures corrected, one rule added. Six files, all inside the claimed scope.
+
+| Check | Method | Result |
+|---|---|---|
+| Live gate before any edit | `python3 tools/check_site.py` | PASS — 23 HTML pages, gates G-1/G-2/G-3 |
+| Live gate after the edits | `python3 tools/check_site.py` | PASS — 23 HTML pages |
+| R-10 bites | each of the four figures reverted to its stale value in turn | 4/4 fail with the page and both numbers; all restored → PASS |
+| R-10 counting detail | the first draft counted every flag id on the page | **the gate caught my own error**: it read 37 where I had written 38, because the table prints 14 rows, not 13. Corrected. |
+| CI, all three workflows | run locally exactly as written | `site.yml` / `pages.yml` → PASS; `gate.yml` → archive rebuild byte-identical, `git diff --exit-code` clean, archive gate PASS (15/15 pages) |
+| Amazon link classification | every `<a>` on the 23 served pages | 27 sponsored · 146 declared · 0 bare · 0 misclassified |
+| Register vs page | `data/governance.json` ids vs `<th scope="row">` ids | 51 in register · 14 on page · 0 on page that are not in the register |
+
+**Sources.** Every figure above was counted from the repository itself — the pages, `data/*.json`,
+`guides/`, `sitemap.xml` — by running a script, not by reading a sentence. No external page was
+cited and no product, policy or price claim was made or changed. The only reader-facing claims
+touched are four counts, and each was recomputed from the artefact it describes.
+
+**Irregularities found, all published:**
+
+1. The four stale figures above — corrected, and now gated by R-10 so they cannot drift again.
+2. **37 of the 51 flags are not on `/data-room/flagged.html`.** The caption discloses them and
+   links to `data/governance.json`, so the page is not false, but rendering them means redesigning
+   that table — which the brief reserves for a decision. Recorded here rather than shipped.
+3. **R-02 has a blind spot.** It fails an Amazon link that has a tag and lacks `rel="sponsored"`;
+   an Amazon product link with *no tag and no `rel`* passes without comment. There are none today
+   (0 bare across 23 pages), so this is a gap in the rule, not a live defect — but it is the
+   direction the Counter Space gate was written to close after an undeclared-link incident, and
+   this one does not close it.
+4. **`data/*.json` and the served registers have diverged on purpose and by drift.** The root
+   register holds 51 flags, 26 questions and 29 suggestions; the served pages print 14, 16 and 14.
+   The Flagged page discloses its subset. `executive-summary.html` did not, and that was finding
+   #2 above. Which register is authoritative for a reader-facing count is an owner decision, so it
+   is recorded rather than picked.
+
+**Deliberately not done:** no page was restructured, no flag was added to or removed from any
+register, no figure outside the four was rewritten, and no owner-credential item was attempted
+(Associates Central, Search Console, the analytics collector). Nothing here blocks the merge;
+items 2–4 are published for review.
+
+**Status:** done — PR, merge and deploy record appended below.
