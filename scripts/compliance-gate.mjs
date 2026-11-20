@@ -172,6 +172,21 @@ for (const l of links.links) {
   ok(l.intendedAsin !== l.observedAsin || l.intendedAsin === null, "intended and observed ASINs must remain separate fields; if they are equal, say so in the note, do not merge them", l.shortCode);
   ok(!!l.flag && flagIds.has(l.flag), `link row cites ${l.flag}, which is not in the flag register`, l.shortCode);
   ok(/^[A-Za-z0-9]{10}$/.test(l.observedAsin || ""), "observed ASIN must be 10 characters", l.shortCode);
+  // Product-intent confirmation record (T29): four named fields per link, plus observations kept apart.
+  ok(l.officialListingUrl === `https://www.amazon.com/dp/${l.observedAsin}`, "officialListingUrl must be the Amazon ASIN page for the observed ASIN", l.shortCode);
+  ok(/^\d{4}-\d{2}-\d{2}$/.test(l.confirmedOn || ""), "confirmedOn must be an ISO date", l.shortCode);
+  ok(Array.isArray(l.confirmationSourceIds) && l.confirmationSourceIds.length > 0 && l.confirmationSourceIds.every((id) => sourceIds.has(id)), "confirmationSourceIds must name sources defined in data/policy.json", l.shortCode);
+  ok(l.intendedAsin === null || /^[A-Za-z0-9]{10}$/.test(l.intendedAsin), "intendedAsin must be null or a 10-character ASIN", l.shortCode);
+  ok(l.intendedAsin !== null || !!l.intendedAsinNote, "a blank intendedAsin must say why it is blank", l.shortCode);
+  const obs = Array.isArray(l.observedRedirectTargets) ? l.observedRedirectTargets : [];
+  ok(obs.length > 0, "observedRedirectTargets must be a non-empty dated list, kept apart from officialListingUrl", l.shortCode);
+  const kindOf = (u) => (/^https:\/\/www\.amazon\.com\/dp\/[A-Z0-9]{10}/.test(u || "") ? "product-page" : u === "https://www.amazon.com/" ? "homepage" : u ? "other" : "no-result");
+  for (const o of obs) {
+    ok(/^\d{4}-\d{2}-\d{2}$/.test(o.observedOn || ""), "each observed redirect needs an ISO date", l.shortCode);
+    ok(!o.finalUrl || /^https:\/\/www\.amazon\.com\//.test(o.finalUrl), "an observed final URL must be an amazon.com https URL", l.shortCode);
+    ok(o.result === kindOf(o.finalUrl), `observed result "${o.result}" does not match its URL (${kindOf(o.finalUrl)})`, l.shortCode);
+  }
+  ok(l.observationsAgree === (new Set(obs.map((o) => o.result)).size === 1), "observationsAgree must match the recorded observations", l.shortCode);
 }
 for (const f of governance.flagged) {
   ok(!!f.severity && !!f.title && !!f.detail, "every flag needs severity, title and detail", f.id);
@@ -180,6 +195,53 @@ for (const f of governance.flagged) {
 }
 const dupFlags = governance.flagged.map((f) => f.id).filter((id, i, a) => a.indexOf(id) !== i);
 ok(dupFlags.length === 0, "duplicate flag ids in the register", dupFlags.join(", "));
+
+// A flag that exists in data/ but never reaches /flagged/ is invisible to the reader — exactly
+// the failure mode a silent ID collision produces. Count occurrences of each id in the built
+// page and require one row per registered flag.
+const flaggedPage = join(ROOT, "flagged", "index.html");
+if (existsSync(flaggedPage)) {
+  const html = readFileSync(flaggedPage, "utf8");
+  const rendered = [...html.matchAll(/<code>((?:FLG|SG)-\d+)<\/code>/g)].map((m) => m[1]);
+  const counts = new Map();
+  for (const id of rendered) counts.set(id, (counts.get(id) || 0) + 1);
+  const missing = governance.flagged.map((f) => f.id).filter((id) => !counts.get(id));
+  const doubled = [...counts.entries()].filter(([, n]) => n > 1).map(([id]) => id);
+  ok(missing.length === 0, "every registered flag is rendered on /flagged/", missing.join(", "));
+  ok(doubled.length === 0, "a flag id is rendered more than once on /flagged/", doubled.join(", "));
+}
+
+/* The decision log is the reviewer-facing audit trail. It claims to mirror the suggestion register,
+   so the two must agree: one row per suggestion, a defined token, and a token the register's own
+   status allows. A log that quietly drifts from the register is worse than an empty one, because
+   it looks like a decision was taken. */
+const suggestions = cfg.suggestions;
+const sugIds = new Set(suggestions.suggestions.map((s) => s.id));
+const log = suggestions.decisionLog;
+const allowedFor = log.statusToDecision || {};
+const keyIds = new Set((log.decisionKey || []).map((k) => k.id));
+const logged = new Map();
+for (const e of log.entries || []) {
+  ok(sugIds.has(e.item), `decision-log row cites ${e.item}, which is not in the suggestion register`, e.item);
+  ok(/^\d{4}-\d{2}-\d{2}$/.test(e.date || ""), `decision-log row ${e.item} carries no ISO date`, e.item);
+  ok(!!e.reason && String(e.reason).trim().length > 10, `decision-log row ${e.item} carries no reason`, e.item);
+  ok(!logged.has(e.item), `decision-log has more than one row for ${e.item}`, e.item);
+  logged.set(e.item, e);
+  ok(keyIds.has(e.decision), `decision token "${e.decision}" is not defined in decisionKey`, e.item);
+  const sug = suggestions.suggestions.find((s) => s.id === e.item);
+  if (sug) {
+    const allowed = allowedFor[sug.status] || [];
+    ok(
+      allowed.includes(e.decision),
+      `decision-log row ${e.item} says "${e.decision}", which the register's status "${sug.status}" does not allow (allowed: ${allowed.join(", ") || "none"})`,
+      e.item
+    );
+  }
+}
+const unlogged = suggestions.suggestions.filter((s) => !logged.has(s.id)).map((s) => s.id);
+ok(unlogged.length === 0, "every suggestion needs exactly one decision-log row, with a date and a reason", unlogged.join(", "));
+for (const st of new Set(suggestions.suggestions.map((s) => s.status)))
+  ok(Array.isArray(allowedFor[st]) && allowedFor[st].length > 0, `suggestion status "${st}" has no decision-log token mapping`, st);
 
 /* ---- 7. the one question the register can answer but nobody asks */
 const passing = specialLink.tests.filter((t) => /passed/.test(t.test_status)).length;

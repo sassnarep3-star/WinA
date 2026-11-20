@@ -13,15 +13,12 @@
 <meta property="og:title" content="Suggestions — Counter Space">
 <meta property="og:description" content="A reviewable decision list: suggestions with rationale, cost, risk and a recommendation, plus a draft design brief, a topic roadmap of hypotheses, and a decision log. Nothing is implemented without a decision.">
 <meta property="og:url" content="https://sassnarep3-star.github.io/WinA/suggestions/">
+<meta property="og:image" content="https://sassnarep3-star.github.io/WinA/assets/img/holiday-counter.jpg">
+<meta property="og:image:alt" content="A kitchen counter set for holiday cooking: seasonal ingredients, herbs and prep tools on a wooden surface.">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://sassnarep3-star.github.io/WinA/assets/img/holiday-counter.jpg">
 <meta name="twitter:title" content="Suggestions — Counter Space">
 <meta name="twitter:description" content="A reviewable decision list: suggestions with rationale, cost, risk and a recommendation, plus a draft design brief, a topic roadmap of hypotheses, and a decision log. Nothing is implemented without a decision.">
-<meta name="twitter:image" content="https://sassnarep3-star.github.io/WinA/assets/img/hero-counter.jpg">
-<meta name="twitter:image:alt" content="Two-tone illustration of a kitchen counter with a sheet pan of roasted potatoes and broccoli, a wire basket of cut fries, a sliced steak on a board and a glass of water.">
-<meta property="og:image" content="https://sassnarep3-star.github.io/WinA/assets/img/hero-counter.jpg">
-<meta property="og:image:alt" content="Two-tone illustration of a kitchen counter with a sheet pan of roasted potatoes and broccoli, a wire basket of cut fries, a sliced steak on a board and a glass of water.">
-<meta name="theme-color" content="#fbf8f3">
-<link rel="icon" href="/WinA/assets/img/favicon.svg" type="image/svg+xml">
 <link rel="alternate" type="application/rss+xml" title="Counter Space" href="/WinA/feed.xml">
 <link rel="stylesheet" href="/WinA/assets/css/site.css">
 <script>window.CS_CONFIG={analyticsEnabled:false,analyticsEndpoint:""};</script>
@@ -30,15 +27,14 @@
 <body data-page-type="page">
 <a class="skip" href="#main">Skip to content</a>
 
-<header class="masthead" id="masthead">
+<header class="masthead">
   <div class="wrap masthead__inner">
     <a class="brand" href="/WinA/">
       <span class="brand__mark" aria-hidden="true">C</span>
       <span class="brand__name">Counter Space</span>
       <span class="brand__sub">Kitchen gear, judged honestly</span>
     </a>
-    <nav class="nav" aria-label="Primary"><a href="/WinA/air-fryers/">Air fryers</a><a href="/WinA/thermometers/">Thermometers</a><a href="/WinA/guides/">Guides</a><a href="/WinA/compare/">Compare</a><a href="/WinA/about/">About</a></nav>
-    <a class="nav__cta" href="/WinA/#finder">Find yours</a>
+    <nav class="nav" aria-label="Primary"><a href="/WinA/air-fryers/">Air fryers</a><a href="/WinA/thermometers/">Thermometers</a><a href="/WinA/guides/">Guides</a><a href="/WinA/compare/">Compare</a><a href="/WinA/seasonal/">Holiday</a><a href="/WinA/about/">About</a></nav>
   </div>
 </header>
 
@@ -58,7 +54,7 @@
   <div class="wrap">
     <p class="kicker">Review before implementing</p>
     <h1 class="article-head__title">Suggestions</h1>
-    <p class="article-head__dek">A decision list, not a wish list. Each suggestion states what to do, why, what it costs, and what would make it a bad idea. Nothing here has been implemented beyond what is already live; the ones marked shipped were built in this pass because the brief asked for them directly. Everything else waits for a decision.</p>
+    <p class="article-head__dek">A decision list, not a wish list. Each suggestion states what to do, why, what it costs, and what would make it a bad idea. Nothing here has been implemented beyond what is already live; the ones marked shipped were built in this pass because the brief asked for them directly. Everything else waits for a decision. The 2026-11-20 editorial pass (arena-27f76c22) added SUG-25 to SUG-29 and shipped SUG-25; SUG-25 and SUG-23 deliberately record opposite positions on seasonal content so the owner can choose with both arguments visible.</p>
   </div>
 </div>
 <section class="section">
@@ -70,11 +66,11 @@
         <tbody><tr>
           <td><span class="pill pill--shipped">shipped</span></td>
           <td>Already built on the live site in this pass.</td>
-          <td class="num">2</td>
+          <td class="num">4</td>
         </tr><tr>
           <td><span class="pill pill--recommend">recommend</span></td>
           <td>Highest confidence, do this before the others.</td>
-          <td class="num">14</td>
+          <td class="num">12</td>
         </tr><tr>
           <td><span class="pill pill--consider">consider</span></td>
           <td>Worth doing, but depends on an earlier decision.</td>
@@ -82,7 +78,7 @@
         </tr><tr>
           <td><span class="pill pill--hold">hold</span></td>
           <td>Do not do this yet. Reason given.</td>
-          <td class="num">3</td>
+          <td class="num">4</td>
         </tr><tr>
           <td><span class="pill pill--reject">reject</span></td>
           <td>Would break a rule or mislead a reader.</td>
@@ -156,14 +152,14 @@
     <td class="small">If the tag is not enrolled, every link still earns nothing. That is the one thing this cannot fix.</td>
     <td class="small">Constructed links are live. The proof step is blocked: it needs the owner's Associates Central sign-in (FLG-024). Next step: click one link per product while signed in and confirm it appears in the tracking report.<br><span class="tiny"><a href="https://affiliate-program.amazon.com/help/operating/policies" rel="noopener" target="_blank">Participation Requirements §6(w)</a></span></td>
   </tr><tr>
-    <td><code>SUG-27</code></td>
-    <td><strong>Request Product Advertising API credentials — it is the one approval that unlocks imagery, prices and ratings together</strong></td>
-    <td><span class="pill pill--recommend">recommend</span></td>
+    <td><code>SUG-28</code></td>
+    <td><strong>Buy traffic before conversion measurement exists</strong></td>
+    <td><span class="pill pill--hold">hold</span></td>
     <td class="num">9</td>
-    <td class="small">Three of this site's self-imposed absences share a single cause: there is no API access. Licensed product imagery would end the illustration trade-off (FLG-038, Q-24); current prices returned by the API would let a buyer see the number they are clicking for without the site displaying a stale one; and ratings or review counts could appear as Amazon's own figures instead of not at all. Each is prohibited without the API and permitted with it, which makes this the highest-leverage administrative act available to the project.</td>
-    <td class="small">An application under the owner's Associates account, and it requires the account to be in good standing with qualifying sales first — the usual catch is that the requirement is a closed loop that only the site's own traffic can open.</td>
-    <td class="small">Approval is not guaranteed and the terms bind what can be cached and for how long; the site would then need a refresh job, because a stored price is a wrong price within a day. Do not begin scraping around the edge of this: Program Content by any other route is the violation the clause exists to stop.</td>
-    <td class="small">Owner action. Nothing in this repository can request it; the register lists it as the first item in the executive summary's open list.<br><span class="tiny"><a href="https://affiliate-program.amazon.com/help/operating/policies" rel="noopener" target="_blank">Associates Program Policies</a> · <a href="https://webservices.amazon.com/paapi5/documentation/" rel="noopener" target="_blank">Product Advertising API terms</a></span></td>
+    <td class="small">Paid acquisition is reasonable only once two things are true: the collector is deployed (FLG-011) so clicks per source are countable, and the Associates tracking report confirms attribution (FLG-004). Neither is true today. Spending before measurement means paying for clicks nobody can trace to an order.</td>
+    <td class="small">Budget, plus the two blockers above.</td>
+    <td class="small">The failure mode is not overspend — it is confidence: unmeasured paid traffic looks identical to organic growth in every report the site currently has.</td>
+    <td class="small">Hold until FLG-011 and FLG-004 close. Re-evaluate in the week after the first Associates report arrives.</td>
   </tr><tr>
     <td><code>SUG-05</code></td>
     <td><strong>Publish on a real cadence: a new guide every week for eight weeks, then read the query data</strong></td>
@@ -172,7 +168,7 @@
     <td class="small">Question-shaped guides are the right shape, but five is not a sample. A weekly cadence for two months produces enough pages and enough query impressions to see which question people actually arrive with, which is the only way to stop guessing topics.</td>
     <td class="small">A substantive guide per week. Each needs its own verified spec pass.</td>
     <td class="small">Cadence without quality control produces the thin content the brief explicitly rejects. The build gate must stay on.</td>
-    <td class="small">Recommend a fixed day and a fixed length. A weekly cadence also keeps content inside the 60-day recency window that Amazon's Associates Help describes (FLG-013). Add each new guide to the sitemap and feed in the same commit, then measure at week eight.</td>
+    <td class="small">Adopted 2026-11-20 as the publishing cadence; see the decision log. A new guide every Monday (New York time) for eight weeks. Basis, checked on Amazon Associates Help: content should be &quot;recent (generally within the last 60 days)&quot; and &quot;a good rule of thumb is at least 10 posts&quot; (FLG-013). Each guide is added to the sitemap and feed in the same commit and must pass the build and compliance gates. Measurement at week eight needs Search Console and analytics, which are owner-blocked (FLG-009, FLG-011); it is not estimated.</td>
   </tr><tr>
     <td><code>SUG-06</code></td>
     <td><strong>Add a real author byline with a named person</strong></td>
@@ -217,7 +213,25 @@
     <td class="small">Catchy, question-shaped topics are the traffic engine. A fixed cadence plus a feed keeps search and subscribers fresh, and the build already adds each guide to the sitemap and RSS automatically — that was a requirement, not a convenience.</td>
     <td class="small">A substantive guide each week, with its own verified spec pass.</td>
     <td class="small">Volume without quality control produces the thin content the brief rejects. The build gate stays on.</td>
-    <td class="small">Accept the topic roadmap below as the first batch of hypotheses, then let measured demand reorder it. — recorded 2026-11-20: two roadmap titles were promoted to published guides, so the cadence has shipped once. Which topic comes next stays with the query report (Q-26).<br><span class="tiny"><a href="https://developers.google.com/search/docs/fundamentals/creating-helpful-content" rel="noopener" target="_blank">Google Search Central — helpful content</a></span></td>
+    <td class="small">Accept the topic roadmap below as the first batch of hypotheses, then let measured demand reorder it.<br><span class="tiny"><a href="https://developers.google.com/search/docs/fundamentals/creating-helpful-content" rel="noopener" target="_blank">Google Search Central — helpful content</a></span></td>
+  </tr><tr>
+    <td><code>SUG-25</code></td>
+    <td><strong>Ship the seasonal cluster now, and refresh it every November — the position opposite SUG-23</strong></td>
+    <td><span class="pill pill--shipped">shipped</span></td>
+    <td class="num">8</td>
+    <td class="small">Seasonal intent is the one demand pattern that does not need a query report to justify: holiday cooking questions arrive every November whether or not we can measure them yet. A shipped seasonal page compounds — it can be re-checked, re-linked, and re-published each year instead of rebuilt. This row was built and shipped under a direct publishing brief; SUG-23 (from the same parallel pass) recommends holding until demand is measured, and both rows are kept so the owner decides rather than either session silently winning.</td>
+    <td class="small">A collection page, a holiday guide, two generated brand images, and a navigation label. Built in this pass.</td>
+    <td class="small">SUG-23 is right that a calendar-driven topic may miss the queries people actually type: no Search Console data exists yet, and the limitation is disclosed on the page itself (FLG-020, Q-23). The risk of shipping was reading as speculative; the mitigation was disclosure, not silence.</td>
+    <td class="small">Shipped this pass. Owner decides at Q-25: adopt the annual November refresh (re-check every linked spec against its source each time), or retire the page in favour of SUG-23\u2019s hold position once real query data exists. Whichever loses is recorded, not deleted.<br><span class="tiny"><a href="https://sassnarep3-star.github.io/WinA/seasonal/" rel="noopener" target="_blank">Seasonal collection</a></span></td>
+  </tr><tr>
+    <td><code>SUG-26</code></td>
+    <td><strong>Grow the technique cluster by one article a month — jobs, not verdicts</strong></td>
+    <td><span class="pill pill--recommend">recommend</span></td>
+    <td class="num">8</td>
+    <td class="small">Technique questions (what to reheat, what to batch, what belongs on the counter) are evergreen, answerable from published specifications, and never require claiming a hands-on test. They are also the cheapest way to close the Associates 10-post bar (FLG-013): this pass added the technique and holiday guides, leaving roughly three additional substantive posts to reach ten on any reading.</td>
+    <td class="small">A guide per month plus its verification pass — the same cost as the weekly cadence in SUG-05 and SUG-21, at a slower, sustainable rate.</td>
+    <td class="small">Seven guides already cover form factor, capacity, cleanup, multi-function, thermometers, technique, and holidays. A new article must be a new job (reheating, defrost-and-crisp, batch-prep) or it will restate the same trade-offs and read as filler — the exact failure the brief rejects.</td>
+    <td class="small">Recommend. Start next month if the weekly cadence (SUG-05, SUG-21) is not adopted; if it is, slot technique articles into the same calendar. Each new guide enters the sitemap and feed in the same commit, per the standing rule.</td>
   </tr><tr>
     <td><code>SUG-07</code></td>
     <td><strong>Move to a custom domain before building any authority</strong></td>
@@ -248,21 +262,12 @@
   </tr><tr>
     <td><code>SUG-24</code></td>
     <td><strong>Add a decision log so suggestions are accepted or rejected with a recorded reason and date</strong></td>
-    <td><span class="pill pill--recommend">recommend</span></td>
+    <td><span class="pill pill--shipped">shipped</span></td>
     <td class="num">7</td>
     <td class="small">The brief asks for a reviewable path before implementing anything. A log makes each choice auditable, captures why something was rejected, and stops the same suggestion being re-litigated next session.</td>
     <td class="small">A small table on this page, populated by hand.</td>
     <td class="small">None. It only records decisions already being made.</td>
     <td class="small">Accept. The decision log schema below is the record; entries are added as decisions are made.</td>
-  </tr><tr>
-    <td><code>SUG-25</code></td>
-    <td><strong>Put the three questions in front of the product grid on the category hubs, not only on the front page</strong></td>
-    <td><span class="pill pill--recommend">recommend</span></td>
-    <td class="num">7</td>
-    <td class="small">The finder currently answers a reader who has already chosen to browse a hub — the moment of highest intent — but the questions only run on the front page. Moving the block above the grid on /air-fryers/ and /thermometers/ would put it at the decision point instead of the introduction. It also gives each hub a reason to be the page that ranks, rather than a list of the same three cards.</td>
-    <td class="small">One line in each hub's render order. No new data, no new claims: the same register figures.</td>
-    <td class="small">It pushes the product cards below the fold on mobile, where the chooser is a full screen of its own. If that is what the owner wants, fine; if the shop is meant to lead with products, the finder stays where it is.</td>
-    <td class="small">Owner to decide with the first click data in hand (Q-25). The block is already extracted as one component, so moving it is a one-line change.<br><span class="tiny"><a href="https://github.com/sassnarep3-star/WinA/blob/main/_src/design.mjs" rel="noopener" target="_blank">The finder component in this repository</a></span></td>
   </tr><tr>
     <td><code>SUG-09</code></td>
     <td><strong>Add a 'who should not buy this' block to every product page</strong></td>
@@ -291,23 +296,14 @@
     <td class="small">Over-linking looks manipulative. Keep links natural and reader-serving.</td>
     <td class="small">Consider. Design the cluster map before writing the second batch.</td>
   </tr><tr>
-    <td><code>SUG-26</code></td>
-    <td><strong>Add head-to-head pages (A versus B) for the three air fryers, one per pair</strong></td>
+    <td><code>SUG-29</code></td>
+    <td><strong>A dedicated head-to-head thermometer page — only when measurement justifies it</strong></td>
     <td><span class="pill pill--consider">consider</span></td>
     <td class="num">6</td>
-    <td class="small">A reader who has narrowed to two machines asks a different question from one browsing a category, and a three-page pairwise set answers it while doubling the internal links between the pages that already exist. Each page can be built entirely from the register: the two rows where the machines differ, and the blanks where neither publishes an answer. The compare table's machinery already exists, so the marginal cost is editorial, not structural.</td>
-    <td class="small">Three generated pages, each with a data pass over roughly eight specification rows, and three sitemap and feed entries the build writes on its own.</td>
-    <td class="small">Pairwise pages multiply the surface that must stay verified. Every added row is a row someone has to re-read when a brand updates its page, and the register's dated corrections (FLG-026 to FLG-029) exist because that drift already happened once.</td>
-    <td class="small">Consider after the collector is live: if finder slots out-click cards, the decision support is wanted and this is the next layer of it.<br><span class="tiny"><a href="https://sassnarep3-star.github.io/WinA/compare/" rel="noopener" target="_blank">The comparison table as built</a></span></td>
-  </tr><tr>
-    <td><code>SUG-28</code></td>
-    <td><strong>Give every guide one figure it owns — a diagram another site has a reason to cite</strong></td>
-    <td><span class="pill pill--consider">consider</span></td>
-    <td class="num">6</td>
-    <td class="small">The footprint and capacity diagrams drawn this cycle are the only visuals on the internet for that comparison, because they are built from the register rather than from a press kit. Original, specific figures are what earn a citation from a person writing elsewhere, and citations are the only link-building an affiliate site can do without paying for it or breaching a guideline.</td>
-    <td class="small">A drawn figure for every published guide, generated from values already in data/products.json, with the same cross-check that makes a mismatched number fail the build.</td>
-    <td class="small">A figure can only be drawn where the number is published. Two of the three air fryers have a footprint and one does not, so some guides would show a gap rather than a comparison — which is honest, but less shareable.</td>
-    <td class="small">Consider with the next editorial batch. It is cheap because the machinery already exists.<br><span class="tiny"><a href="https://github.com/sassnarep3-star/WinA/blob/main/_src/design.mjs" rel="noopener" target="_blank">The figure cross-check rule</a></span></td>
+    <td class="small">The instant-vs-wireless guide covers the decision narratively. A dedicated side-by-side page would target a different reader — the one who has already decided to compare — and the comparison table already carries the verified spec rows to build it from.</td>
+    <td class="small">One page from existing verified data; no new claims required.</td>
+    <td class="small">It adds another URL competing with the existing guide and compare page for the same intent. Without query data, choosing this topic is instinct — the failure mode SUG-21\u2019s cadence exists to replace.</td>
+    <td class="small">Consider, gated on measurement: build it only if the query report (Q-24) shows thermometer-comparison impressions. Until then the guide and the table cover the intent.</td>
   </tr><tr>
     <td><code>SUG-11</code></td>
     <td><strong>Add a short 'how we choose what to recommend' block to the front page</strong></td>
@@ -353,6 +349,15 @@
     <td class="small">Zero.</td>
     <td class="small">Misses timely traffic in the meantime.</td>
     <td class="small">Hold until Search Console has 2–4 weeks of query data (FLG-009, FLG-020).<br><span class="tiny"><a href="https://search.google.com/search-console" rel="noopener" target="_blank">Google Search Console</a></span></td>
+  </tr><tr>
+    <td><code>SUG-27</code></td>
+    <td><strong>Expand the brand imagery: one generated counter scene per collection</strong></td>
+    <td><span class="pill pill--consider">consider</span></td>
+    <td class="num">5</td>
+    <td class="small">The two shipped images cover the seasonal cluster and the guides imagery. A consistent illustration per category (air fryers, thermometers, compare) would make the site read as a publication from any entry page, which is SUG-17\u2019s design-brief requirement made visual.</td>
+    <td class="small">Four generated images and one CSS addition. No ongoing cost.</td>
+    <td class="small">None to compliance as long as the images never depict products, brands, or any appliance that could be mistaken for a listed unit (FLG-007), and each use is labelled on-page. The risk is aesthetic: too many scenes can read as stock.</td>
+    <td class="small">Consider after the seasonal deploy settles. Owner position on generated imagery is Q-26; decide per image, not as a batch, and keep the same warm editorial grade so the set reads as one publication.<br><span class="tiny"><a href="https://sassnarep3-star.github.io/WinA/flagged/" rel="noopener" target="_blank">Imagery constraint (FLG-007)</a></span></td>
   </tr></tbody>
       </table>
     </div>
@@ -471,6 +476,11 @@
       <td class="small">Feature decision</td>
       <td><span class="pill pill--claim">hypothesis</span></td>
     </tr><tr>
+      <td><strong>Air fryers</strong><br><span class="tiny muted">chefman-6-quart-dual-basket · chefman-8-quart-turbofry · emeril-lagasse-26qt-french-door</span></td>
+      <td>Dual basket vs single basket: the counter-space math nobody shows you</td>
+      <td class="small">Form-factor decision</td>
+      <td><span class="pill pill--claim">hypothesis</span></td>
+    </tr><tr>
       <td><strong>Thermometers</strong><br><span class="tiny muted">thermomaven-1-sec-thermometer · chef-iq-sense-gen3</span></td>
       <td>The one number that decides a roast: why your thermometer matters more than your recipe</td>
       <td class="small">Why-it-matters</td>
@@ -484,6 +494,11 @@
       <td><strong>Thermometers</strong><br><span class="tiny muted">thermomaven-1-sec-thermometer · chef-iq-sense-gen3</span></td>
       <td>Wireless meat thermometer: what to check before you rely on it for a long cook</td>
       <td class="small">Reliability decision</td>
+      <td><span class="pill pill--claim">hypothesis</span></td>
+    </tr><tr>
+      <td><strong>Thermometers</strong><br><span class="tiny muted">thermomaven-1-sec-thermometer · chef-iq-sense-gen3</span></td>
+      <td>Instant-read vs leave-in: which thermometer fits your weeknight?</td>
+      <td class="small">Tool-match decision</td>
       <td><span class="pill pill--claim">hypothesis</span></td>
     </tr><tr>
       <td><strong>Cross-category evergreen</strong><br><span class="tiny muted">no product tie-in</span></td>
@@ -500,6 +515,11 @@
       <td>How to read a spec sheet without getting sold</td>
       <td class="small">Literacy framework</td>
       <td><span class="pill pill--claim">hypothesis</span></td>
+    </tr><tr>
+      <td><strong>Cross-category evergreen</strong><br><span class="tiny muted">no product tie-in</span></td>
+      <td>Counter depth, wattage, basket size: the numbers that decide a purchase</td>
+      <td class="small">Buying framework</td>
+      <td><span class="pill pill--claim">hypothesis</span></td>
     </tr></tbody>
       </table>
     </div>
@@ -508,8 +528,23 @@
 <section class="section section--deep">
   <div class="wrap">
     <div class="section__head">
+      <h2 class="section__title" style="font-size:1.4rem">Design prompt (copy-ready)</h2>
+      <p class="section__dek">A ready-to-use design prompt for the visual redesign. The goal is a polished marketing affiliate publication — not a templated, AI-generated shop. It consolidates the design brief (DB-01 to DB-08) and the compliance constraints so a designer, or an AI design prompt, has a single source to act on. Nothing here is a verified fact; it is a recommendation awaiting a decision in the decision log.</p>
+    </div>
+    <div class="note mt2">
+      <p class="note__title">Prompt</p>
+      <p class="small" style="white-space:pre-wrap;line-height:1.6;">Design Counter Space, a polished marketing affiliate publication about kitchen gear. Visual direction: an opinionated editorial type system — serif display headlines, clean sans body, generous line height, readable measure. Restrained palette with one accent color; no blue-to-purple gradients, no neon highlights, no emoji or decorative icons. Vary section layouts — a strong editorial hero, a reading column for guides, at least one non-card treatment per page; do not repeat the identical card grid everywhere. Keep the disclosure strip above the fold on every page and the Sponsored label on every outbound product link; these are compliance requirements, not afterthoughts. Write in a concrete, human voice using specifics and named trade-offs; ban filler phrases and generic marketing boilerplate. Until compliant product imagery is available, keep the site typographic: color, type and an illustration or pattern system carry the design. Do not hot-link, store, or substitute Amazon imagery, and do not use stock photos of a different appliance. Meet WCAG contrast and stay readable on mobile, especially tables and cards. HTML/CSS only; no third-party analytics or tracking scripts.</p>
+      <p class="small mt1"><strong>Constraints to design against:</strong></p>
+      <ul style="margin:.4rem 0 0;padding-left:1.1rem"><li>FTC Disclosures 101 — disclosure hard to miss, placed with the endorsement</li><li>Associates Operating Agreement §5 — verbatim Associate statement above the fold</li><li>Program Policies §6(a) and IP License — no unlicensed or misrepresenting imagery</li><li>FTC 16 CFR 255.5 — sponsored status visible at the link</li><li>Google Search Central helpful-content — concrete human voice, no filler</li></ul>
+      <p class="small mt1"><span class="faint">Source: </span><a href="/WinA/suggestions/" rel="noopener" target="_blank">Design brief DB-01 to DB-08</a></p>
+    </div>
+  </div>
+</section>
+<section class="section section--deep">
+  <div class="wrap">
+    <div class="section__head">
       <h2 class="section__title" style="font-size:1.4rem">Decision log</h2>
-      <p class="section__dek">Review workflow. Nothing is implemented until a suggestion is accepted here. Record a decision with a date and a reason; rejected items stay recorded so they are not re-litigated.</p>
+      <p class="section__dek">Every entry below mirrors a decision already written into the register above, with the reason that was written at the time. Accepted items are already in the build; adopted items are decided but not yet built. Recommended and open items are the project's written position and still need the owner's acceptance; held and rejected items stay recorded so they are not re-litigated. A new decision is appended with its own date rather than editing an old row.</p>
     </div>
     <div class="tablewrap">
       <table class="data sortable">
@@ -518,53 +553,180 @@
         <tbody><tr>
     <td>2026-11-20</td>
     <td><span class="pill pill--accepted" >accepted</span></td>
-    <td><code>SUG-17 / DB-01..DB-08</code></td>
-    <td class="small">The brief is adopted as the single source for visual change, with two clauses amended as recorded in FLG-038: DB-07's 'stay typographic' became 'typographic plus original commissioned artwork, captioned as artwork', because a shop with no image at all is not a solution to a shop that cannot license one.</td>
+    <td><code>SUG-01</code></td>
+    <td class="small">Accepted and already live: every page writes about the decision instead of a verdict, because no product in this register has been tested.</td>
+  </tr><tr>
+    <td>2026-11-20</td>
+    <td><span class="pill pill--recommended" >recommended</span></td>
+    <td><code>SUG-02</code></td>
+    <td class="small">One site, air fryers in front, thermometers as the second section — which is the structure already in place. Confirm before a third category is added.</td>
+  </tr><tr>
+    <td>2026-11-20</td>
+    <td><span class="pill pill--recommended" >recommended</span></td>
+    <td><code>SUG-03</code></td>
+    <td class="small">Apply as soon as the account qualifies. Eligibility depends on qualifying sales first, so it stays tracked as Q-11 and Q-12.</td>
   </tr><tr>
     <td>2026-11-20</td>
     <td><span class="pill pill--accepted" >accepted</span></td>
+    <td><code>SUG-04</code></td>
+    <td class="small">Accepted and live: outbound links are built as direct product-page links carrying the tracking ID. The proof step stays blocked on the owner's Associates Central sign-in (FLG-024).</td>
+  </tr><tr>
+    <td>2026-11-20</td>
+    <td><span class="pill pill--adopted" >adopted</span></td>
+    <td><code>SUG-05</code></td>
+    <td class="small">Publishing cadence adopted: a new guide every Monday (New York time) for eight weeks, each added to the sitemap and feed in the same commit and passing the build and compliance gates. Basis: Associates Help 'Application Review Process' (FLG-013). This sets the schedule only; no new guide is published by this decision. Week-eight measurement waits on owner-connected Search Console and analytics (FLG-009, FLG-011).</td>
+  </tr><tr>
+    <td>2026-11-20</td>
+    <td><span class="pill pill--recommended" >recommended</span></td>
+    <td><code>SUG-06</code></td>
+    <td class="small">Recommended, and it needs a real, named person who is accountable for the writing. A byline cannot be fabricated, so this waits on the owner.</td>
+  </tr><tr>
+    <td>2026-11-20</td>
+    <td><span class="pill pill--recommended" >recommended</span></td>
+    <td><code>SUG-07</code></td>
+    <td class="small">Move to an owned domain: the origin is a single config value, so the change is small.</td>
+  </tr><tr>
+    <td>2026-11-20</td>
+    <td><span class="pill pill--recommended" >recommended</span></td>
+    <td><code>SUG-08</code></td>
+    <td class="small">Deploy the collector that already ships in this repository to close FLG-011, rather than adding a third-party tracker.</td>
+  </tr><tr>
+    <td>2026-11-20</td>
+    <td><span class="pill pill--open" >open</span></td>
+    <td><code>SUG-09</code></td>
+    <td class="small">The product pages already carry a trade-off line. A fuller block is the next edit, and it should be written by someone who has the product in front of them.</td>
+  </tr><tr>
+    <td>2026-11-20</td>
+    <td><span class="pill pill--open" >open</span></td>
+    <td><code>SUG-10</code></td>
+    <td class="small">The comparison table shows sourced dimensions only. Wider tables wait until manufacturer sheets are gathered: a wrong dimension is worse than a blank.</td>
+  </tr><tr>
+    <td>2026-11-20</td>
+    <td><span class="pill pill--open" >open</span></td>
+    <td><code>SUG-11</code></td>
+    <td class="small">The About page already carries this, and the front page deliberately keeps process notes off the reader's path.</td>
+  </tr><tr>
+    <td>2026-11-20</td>
+    <td><span class="pill pill--rejected" >rejected</span></td>
+    <td><code>SUG-12</code></td>
+    <td class="small">A price tracker, price alert or deal feed is ruled out by the Program Policies. Recorded so no later session builds it.</td>
+  </tr><tr>
+    <td>2026-11-20</td>
+    <td><span class="pill pill--rejected" >rejected</span></td>
+    <td><code>SUG-13</code></td>
+    <td class="small">Near-duplicate pages to chase long-tail queries are what this publication exists not to be; the build gate refuses pages without unique content.</td>
+  </tr><tr>
+    <td>2026-11-20</td>
+    <td><span class="pill pill--hold" >hold</span></td>
+    <td><code>SUG-14</code></td>
+    <td class="small">Hold until a guide cadence exists, then one email service and one welcome message.</td>
+  </tr><tr>
+    <td>2026-11-20</td>
+    <td><span class="pill pill--hold" >hold</span></td>
+    <td><code>SUG-15</code></td>
+    <td class="small">Hold until the ledger holds real click and order data from first-party reports.</td>
+  </tr><tr>
+    <td>2026-11-20</td>
+    <td><span class="pill pill--open" >open</span></td>
+    <td><code>SUG-16</code></td>
+    <td class="small">The observation date is recorded in the register; printing a last-checked line on each page is the next edit.</td>
+  </tr><tr>
+    <td>2026-11-20</td>
+    <td><span class="pill pill--recommended" >recommended</span></td>
+    <td><code>SUG-17</code></td>
+    <td class="small">The design brief published below is the draft to start from, editable before any visual change is made.</td>
+  </tr><tr>
+    <td>2026-11-20</td>
+    <td><span class="pill pill--recommended" >recommended</span></td>
     <td><code>SUG-18</code></td>
-    <td class="small">Type and palette were already editorial; this cycle added what the brief said the design needed but had not been built: an image system, a tinted decision panel, and a defined component for drawn figures, all in the shared stylesheet behind the existing tokens.</td>
+    <td class="small">An editorial type and colour system in the shared stylesheet, behind the existing design tokens, mobile-first.</td>
   </tr><tr>
     <td>2026-11-20</td>
-    <td><span class="pill pill--accepted" >accepted</span></td>
+    <td><span class="pill pill--recommended" >recommended</span></td>
     <td><code>SUG-19</code></td>
-    <td class="small">Layout variation shipped on the front page and both hubs: an art band under the hero, a drawn-figure row beside the product grid, a capability strip in place of a fourth card for thermometers, and contents / previous / cluster furniture on every guide.</td>
+    <td class="small">Vary the layout instead of repeating one card grid, starting with the front page and the two category hubs.</td>
   </tr><tr>
     <td>2026-11-20</td>
-    <td><span class="pill pill--accepted" >accepted</span></td>
+    <td><span class="pill pill--recommended" >recommended</span></td>
     <td><code>SUG-20</code></td>
-    <td class="small">The banned-phrase list is published on the About page and enforced by the build. Tested by injection: a planted 'We tested these machines for six weeks' on a guide fails the build, and the same sentence in a register quoting the policy does not, because a quotation of a rule is not a claim under it.</td>
+    <td class="small">A concrete voice plus a banned-phrase list in the editorial standards, so the build can enforce it.</td>
   </tr><tr>
     <td>2026-11-20</td>
-    <td><span class="pill pill--accepted" >accepted</span></td>
+    <td><span class="pill pill--recommended" >recommended</span></td>
     <td><code>SUG-21</code></td>
-    <td class="small">Two roadmap titles promoted to guides (06 and 07), added to the sitemap and the feed in the same commit as their source data, and the guide count is now computed everywhere it is stated so the register cannot drift from the site again.</td>
+    <td class="small">The topic roadmap below is the first batch of hypotheses; measured demand reorders it later, never the other way round.</td>
   </tr><tr>
     <td>2026-11-20</td>
-    <td><span class="pill pill--accepted" >accepted</span></td>
+    <td><span class="pill pill--open" >open</span></td>
     <td><code>SUG-22</code></td>
-    <td class="small">Clusters ship as a computed block: each guide lists the guides sharing a product with it, with the count of shared products shown, derived from guideTopics in data/products.json rather than from a hand-maintained list.</td>
+    <td class="small">Design the cluster map before the second batch, so internal links stay natural rather than forced.</td>
   </tr><tr>
     <td>2026-11-20</td>
-    <td><span class="pill pill--held" >held</span></td>
+    <td><span class="pill pill--hold" >hold</span></td>
     <td><code>SUG-23</code></td>
-    <td class="small">Confirmed on the original reasoning: no seasonal query data exists, so the Christmas wording that the retailer itself puts in its listing titles is not copied into our headings. The one seasonal phrase added anywhere on this site is inside a quotation of a listing title in the register.</td>
+    <td class="small">Hold until Search Console holds two to four weeks of query data (FLG-009, FLG-020).</td>
   </tr><tr>
     <td>2026-11-20</td>
     <td><span class="pill pill--accepted" >accepted</span></td>
     <td><code>SUG-24</code></td>
-    <td class="small">The log is this table, populated with the decisions above. Entries carry a date, an item id and a reason, which is what makes a rejection stick instead of being re-litigated next session.</td>
+    <td class="small">Accepted and live: this log is the record, and each row here mirrors a written decision with its reason and date.</td>
   </tr><tr>
     <td>2026-11-20</td>
-    <td><span class="pill pill--deferred" >deferred</span></td>
-    <td><code>SUG-25, SUG-26, SUG-27, SUG-28</code></td>
-    <td class="small">Recorded as the open set for the owner. None is implemented here: two need click data the collector does not yet supply (SUG-25, SUG-26), one needs the owner's Amazon account (SUG-27), and one waits for the next editorial batch (SUG-28).</td>
+    <td><span class="pill pill--accepted" >accepted</span></td>
+    <td><code>SUG-25</code></td>
+    <td class="small">Shipped this pass: the seasonal cluster is live and is refreshed every November, with each linked spec re-checked against its source. The owner position at Q-25 decides whether it is adopted annually or retired in favour of SUG-23's hold once real query data exists; whichever loses is recorded, not deleted.</td>
   </tr><tr>
     <td>2026-11-20</td>
-    <td><span class="pill pill--rejected" >rejected</span></td>
-    <td><code>PR #26, PR #28, PR #2</code></td>
-    <td class="small">Not merged. Each replaces the published root with a parallel build; the board's own rule is to port what is still wanted into data/ and rebuild. The one part worth keeping — generated original artwork rather than borrowed imagery — is implemented here instead of merged from them. See FLG-037.</td>
+    <td><span class="pill pill--recommended" >recommended</span></td>
+    <td><code>SUG-26</code></td>
+    <td class="small">Recommended: one technique article a month — jobs, not verdicts. It starts next month if the weekly cadence (SUG-05, SUG-21) is not adopted, and slots into the same calendar if it is. Each new guide enters the sitemap and feed in the same commit, per the standing rule.</td>
+  </tr><tr>
+    <td>2026-11-20</td>
+    <td><span class="pill pill--open" >open</span></td>
+    <td><code>SUG-27</code></td>
+    <td class="small">Consider after the seasonal deploy settles. The owner position on generated imagery is Q-26; the decision is taken per image rather than as a batch, with one warm editorial grade so the set reads as a single publication.</td>
+  </tr><tr>
+    <td>2026-11-20</td>
+    <td><span class="pill pill--hold" >hold</span></td>
+    <td><code>SUG-28</code></td>
+    <td class="small">Hold until FLG-011 and FLG-004 close, and re-evaluate in the week after the first Associates report arrives.</td>
+  </tr><tr>
+    <td>2026-11-20</td>
+    <td><span class="pill pill--open" >open</span></td>
+    <td><code>SUG-29</code></td>
+    <td class="small">Consider, gated on measurement: build it only if the query report (Q-24) shows thermometer-comparison impressions. Until then the guide and the comparison table cover the intent.</td>
+  </tr></tbody>
+      </table>
+    </div>
+
+    <div class="tablewrap mt2">
+      <table class="data sortable">
+        <caption>What each decision state means, and how many suggestions currently sit in it.</caption>
+        <thead><tr><th scope="col">Decision</th><th scope="col">Meaning</th><th scope="col">Items</th></tr></thead>
+        <tbody><tr>
+    <td><span class="pill pill--accepted">Accepted</span></td>
+    <td class="small">Written as accepted and already built into the live site.</td>
+    <td class="num">4</td>
+  </tr><tr>
+    <td><span class="pill pill--adopted">Adopted</span></td>
+    <td class="small">Decided, with the date and the basis, but not yet built. Nothing is published by the decision itself.</td>
+    <td class="num">1</td>
+  </tr><tr>
+    <td><span class="pill pill--recommended">Recommended</span></td>
+    <td class="small">The project's written recommendation, with the reasoning and the risk. Not yet accepted by the owner.</td>
+    <td class="num">11</td>
+  </tr><tr>
+    <td><span class="pill pill--open">Open</span></td>
+    <td class="small">No recommendation to build yet: it needs an earlier decision, a credential, or a person.</td>
+    <td class="num">7</td>
+  </tr><tr>
+    <td><span class="pill pill--hold">Hold</span></td>
+    <td class="small">Deliberately not now, with the condition that would unblock it.</td>
+    <td class="num">4</td>
+  </tr><tr>
+    <td><span class="pill pill--rejected">Rejected</span></td>
+    <td class="small">Will not be built. Recorded so a later session does not build it in good faith.</td>
+    <td class="num">2</td>
   </tr></tbody>
       </table>
     </div>

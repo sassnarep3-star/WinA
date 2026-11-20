@@ -46,21 +46,17 @@ data/                 the single source of truth
   products.json       products, specs, verification status, categories, site config
   policy.json         primary sources + compliance register with quoted clauses
   governance.json     flagged items, campaign ledger, event definitions
-  questions.json      27 open questions with what is missing and how to close it
-  suggestions.json    28 reviewable suggestions, a design brief, a topic roadmap and a decision log
-  special_link_tests.json  one link test per product, blocked on the owner's Associates account
-  inbox/  exports/    collector drop-points (ignored; the register keeps what is confirmed)
+  questions.json      22 open questions with what is missing and how to close it
+  suggestions.json    16 reviewable suggestions with cost, risk and recommendation
 _src/
   build.mjs           renders all pages, sitemap, feed, robots, 404, then gates
-  content.mjs         the seven guides, the finder questions and the artwork captions
-  design.mjs          the reader-facing layer: figures, to-scale diagrams, guide furniture
+  content.mjs         the five guides
   pages-content.mjs   about, disclosure, privacy, marketing, SEO prose
   serve.mjs           local preview server (mirrors the /WinA/ subpath)
 _worker/
   collector.js        first-party analytics collector, not deployed
-assets/css/site.css   design system (the T26 layer is appended, so it can be reviewed as one block)
-assets/js/site.js     five events + sponsored-link confirmation + the finder (records nothing)
-assets/img/           four original illustrations and the favicon — no Amazon or stock imagery
+assets/css/site.css   design system
+assets/js/site.js     five events + sponsored-link confirmation
 ```
 
 Generated output lives at the repo root so GitHub Pages serves it directly from `main`.
@@ -116,6 +112,23 @@ To turn it on:
    `analyticsEnabled: true` — or flip `enabled` in `data/governance.json` and pass the URL
    through the same config.
 4. Rebuild and commit.
+
+**Or host the dependency-free collector in this repository instead**, on any host that can run
+Node 20+:
+
+```bash
+HOST=0.0.0.0 PORT=8080 STATE_DIR=/var/lib/cs DATA_DAYS=30 \
+ALLOWED_ORIGINS=https://sassnarep3-star.github.io \
+SUMMARY_TOKEN=<a long random string> \
+node scripts/analytics-server.mjs
+```
+
+It speaks the same payload as the worker — props nested under `p`, exactly as
+`assets/js/site.js` sends them — and stores the same row (day, event, path, ASIN, slot, coarse
+viewport class). `scripts/analytics-selftest.mjs` starts it on an ephemeral port and asserts the
+collector contract end to end, including that a click keeps the ASIN that earned it; it runs in
+CI, so the two collectors cannot drift apart unnoticed. (`ALLOWED_ORIGINS` for the server,
+`ALLOWED_ORIGIN` for the worker — the names differ because the runtimes differ.)
 
 The five events are defined in `data/governance.json` and documented at `/analytics/`.
 The collector stores a day bucket, event name, page path, ASIN and coarse viewport class.
@@ -266,11 +279,12 @@ The repository has no dependencies; every command is Node standard library.
 | `node scripts/collect.mjs` | Folds `data/inbox/*.json` into the register with provenance; refuses unsourced values, prices and ratings |
 | `node scripts/next-topics.mjs` | Ranks candidate guides from a Search Console export in `data/exports/`; refuses to rank without one |
 | `node scripts/analytics-server.mjs` | Self-hosted collector, same contract as `_worker/collector.js` (five events, key allow-list, 30-day retention, `/summary`) |
+| `node scripts/analytics-selftest.mjs` | Starts the collector on an ephemeral port and asserts its contract end to end; also compares the worker and the server against each other and against the register. Run in CI |
 
 Reading order for a reviewer: **`EXECUTIVE_SUMMARY.md`** (state of the project, one page) →
 `ARCHITECTURE.md` (why each piece is built this way, and the two human checkpoints) →
 [`/register/`](https://sassnarep3-star.github.io/WinA/register/) (every value with its source and
-date) → [`/flagged/`](https://sassnarep3-star.github.io/WinA/flagged/) (43 open and resolved
+date) → [`/flagged/`](https://sassnarep3-star.github.io/WinA/flagged/) (29 open and resolved
 findings) → [`/suggestions/`](https://sassnarep3-star.github.io/WinA/suggestions/) (what to do next,
 by path) → [`COORDINATION.md`](COORDINATION.md) (who did what, and the four-build collision record).
 
@@ -280,49 +294,23 @@ CI runs, and Pages serves exactly what is in the tree.
 
 ---
 
-## The design layer, and why it is allowed to exist (session `arena-3818c975-wina`, T26)
+## Session arena/574fc8eb-wina — archived parallel build (T27, PR #26)
 
-The site had a written design brief and no design. This section records what closed that gap and the
-one constraint that shaped every choice in it.
+A session that started from the pre-site commit (`df3e953`, when `main` held only this file)
+completed a full independent build while other sessions were merging the publication you see above.
+Its complete site — publication front page, shelf, five question-shaped guides, analysis,
+suggestions review with a records-only path chooser, open questions, executive summary, flagged
+page, platform/source register, search — plus its data, generator and compliance gate are preserved
+at **`archive/arena-574fc8eb-wina/`**, following this repository's archive convention. The served
+root site was not modified by that session.
 
-**The constraint.** Program Content may not be stored or hot-linked outside approved tools, so there
-is no licensed route to product photography without Product Advertising API access (FLG-007). The
-brief's answer was to stay typographic. Staying typographic is what an audit looks like, so T26 took
-the other branch of the same rule instead: **four original illustrations, commissioned for the
-publication, drawn on its own palette, and captioned on the page as artwork rather than as product
-images**. Nothing on this site depicts an appliance for sale, so no picture can be mistaken for the
-item a sponsored link leads to. A build gate enforces it — every `img` must resolve to a real file
-under `/assets/img/`, carry descriptive alt text and intrinsic size, and fail if its `src` names
-`amazon`, `media-amazon`, or any stock library.
-
-**The visuals that are not decoration.** Two figures are drawn from the register's own verified
-numbers: a top-view counter footprint (`158 in²` for the 6-quart against `267 in²` for the 26QT,
-"69% more counter") and a stated-capacity comparison. Published measurements appear exactly as
-published — `13.38 in`, never `13.4` — and where a brand has not published a figure the diagram draws
-a dashed empty box and says why (FLG-028). The cross-check is mechanical: `assertFigure()` refuses to
-build if a drawn number is not present in the spec row it cites, so an image cannot survive a data
-correction by being wrong in a flattering direction.
-
-**The finder.** Three questions on the front page map to one of the five products with the reason
-attached, in the browser, and record nothing — a gate asserts that the finder's script block contains
-no `fetch`, beacon, storage or cookie call. Its five answer cards are rendered in the served HTML with
-their tagged `rel="sponsored"` anchors precisely because anchors created at run time are invisible to
-the compliance gate; with JavaScript off, all five stay visible, which is still an answer.
-
-**The voice rule.** 42 filler phrases that mark a generated marketing page are published on `/about/`
-and banned by the build. The rule is quote-aware: naming a banned phrase in order to ban it passes, and
-a register quoting somebody else's claim passes, while an unattributed hands-on sentence on a reader
-page fails the build — confirmed by injecting one and watching it go red.
-
-**Reviewing it.** Every accepted and deferred item is recorded with a date and a reason in the decision
-log on [`/suggestions/`](https://sassnarep3-star.github.io/WinA/suggestions/);
-[`/flagged/`](https://sassnarep3-star.github.io/WinA/flagged/) carries FLG-036 to FLG-039, including
-the finding that four of the five submitted short links returned Amazon's home page when re-opened on
-2026-11-20.
-
+```bash
+python3 archive/arena-574fc8eb-wina/scripts/build_site.py   # rebuild the archive
+python3 archive/arena-574fc8eb-wina/scripts/check_site.py   # its compliance gate
 ```
-node _src/build.mjs              # 32 pages, then the gates: disclosure, links, claims, voice, images, figures
-node scripts/check-site.mjs      # independent gate: links, canonicals, feed, a11y, three-state sponsored classification
-node scripts/compliance-gate.mjs # 1,220 assertions over the served tree, including "99 tagged links, 0/5 link tests recorded"
-node scripts/publish-gate.mjs    # reproducibility + the human checkpoints; --committed is what CI runs
-```
+
+CI runs both on every push (`.github/workflows/gate.yml`, scoped to the archive). The session's
+independent 2026-11-20 verification agrees with `data/links.json` on all five observed
+destinations; its session record, verification log and integration decision are appended to
+`COORDINATION.md` (T27).
+

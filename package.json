@@ -16,6 +16,7 @@
     "topics": "node scripts/next-topics.mjs",
     "serve": "node _src/serve.mjs",
     "analytics": "node scripts/analytics-server.mjs",
+    "analytics:selftest": "node scripts/analytics-selftest.mjs",
     "pages:status": "gh api repos/sassnarep3-star/WinA/pages/builds/latest --jq '{status:.status,commit:.commit,created_at:.created_at}'"
   },
   "license": "UNLICENSED"

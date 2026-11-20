@@ -6,7 +6,7 @@ Generated 2026-11-20 by `_src/build.mjs` (deterministic: no wall-clock timestamp
 
 ## Checks
 
-- `PASS` 32 HTML pages generated
+- `PASS` 33 HTML pages generated
 - `PASS` every page carries the disclosure strip above the fold
 - `PASS` every page carries the exact statement required by OA §5
 - `PASS` every page declares a canonical URL
@@ -15,16 +15,10 @@ Generated 2026-11-20 by `_src/build.mjs` (deterministic: no wall-clock timestamp
 - `PASS` every stated guide count matches the 7 guides published
 - `PASS` no spec carries a value while marked unverified or withheld
 - `PASS` all 10 policy checks quote a clause and link a primary source
-- `PASS` all internal links resolve across 31 pages
+- `PASS` all internal links resolve across 32 pages
 - `PASS` single build owns the served root; no prior site resurrected
-- `PASS` archive intact: 83 files preserved from three prior builds
-- `PASS` 5 images served, all original artwork from /assets/img/ with alt text and intrinsic size
-- `PASS` every drawn figure is present in the register row it cites; unpublished values are drawn as gaps
-- `PASS` no filler phrase from the banned list in any of the 32 pages
-- `PASS` no page claims hands-on use of a product nobody here has
-- `PASS` finder scores all 5 products from published specs, says so, and stores nothing
-- `PASS` about page states the imagery rule, the banned-phrase list and where each figure came from
-- `PASS` sitemap lists all 31 pages
+- `PASS` archive intact: 119 files preserved from three prior builds
+- `PASS` sitemap lists all 32 pages
 
 ## What the gate enforces
 

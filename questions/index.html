@@ -13,15 +13,12 @@
 <meta property="og:title" content="Open questions — Counter Space">
 <meta property="og:description" content="Every question that must be answered before further decisions: what we know, what we do not, and the specific action that would settle each one.">
 <meta property="og:url" content="https://sassnarep3-star.github.io/WinA/questions/">
+<meta property="og:image" content="https://sassnarep3-star.github.io/WinA/assets/img/holiday-counter.jpg">
+<meta property="og:image:alt" content="A kitchen counter set for holiday cooking: seasonal ingredients, herbs and prep tools on a wooden surface.">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://sassnarep3-star.github.io/WinA/assets/img/holiday-counter.jpg">
 <meta name="twitter:title" content="Open questions — Counter Space">
 <meta name="twitter:description" content="Every question that must be answered before further decisions: what we know, what we do not, and the specific action that would settle each one.">
-<meta name="twitter:image" content="https://sassnarep3-star.github.io/WinA/assets/img/hero-counter.jpg">
-<meta name="twitter:image:alt" content="Two-tone illustration of a kitchen counter with a sheet pan of roasted potatoes and broccoli, a wire basket of cut fries, a sliced steak on a board and a glass of water.">
-<meta property="og:image" content="https://sassnarep3-star.github.io/WinA/assets/img/hero-counter.jpg">
-<meta property="og:image:alt" content="Two-tone illustration of a kitchen counter with a sheet pan of roasted potatoes and broccoli, a wire basket of cut fries, a sliced steak on a board and a glass of water.">
-<meta name="theme-color" content="#fbf8f3">
-<link rel="icon" href="/WinA/assets/img/favicon.svg" type="image/svg+xml">
 <link rel="alternate" type="application/rss+xml" title="Counter Space" href="/WinA/feed.xml">
 <link rel="stylesheet" href="/WinA/assets/css/site.css">
 <script>window.CS_CONFIG={analyticsEnabled:false,analyticsEndpoint:""};</script>
@@ -30,15 +27,14 @@
 <body data-page-type="page">
 <a class="skip" href="#main">Skip to content</a>
 
-<header class="masthead" id="masthead">
+<header class="masthead">
   <div class="wrap masthead__inner">
     <a class="brand" href="/WinA/">
       <span class="brand__mark" aria-hidden="true">C</span>
       <span class="brand__name">Counter Space</span>
       <span class="brand__sub">Kitchen gear, judged honestly</span>
     </a>
-    <nav class="nav" aria-label="Primary"><a href="/WinA/air-fryers/">Air fryers</a><a href="/WinA/thermometers/">Thermometers</a><a href="/WinA/guides/">Guides</a><a href="/WinA/compare/">Compare</a><a href="/WinA/about/">About</a></nav>
-    <a class="nav__cta" href="/WinA/#finder">Find yours</a>
+    <nav class="nav" aria-label="Primary"><a href="/WinA/air-fryers/">Air fryers</a><a href="/WinA/thermometers/">Thermometers</a><a href="/WinA/guides/">Guides</a><a href="/WinA/compare/">Compare</a><a href="/WinA/seasonal/">Holiday</a><a href="/WinA/about/">About</a></nav>
   </div>
 </header>
 
@@ -58,16 +54,16 @@
   <div class="wrap">
     <p class="kicker">Before any decision</p>
     <h1 class="article-head__title">Open questions</h1>
-    <p class="article-head__dek">Every open question this build ran into, with what we can answer today, what we cannot, and how to close it. Nothing here is resolved by assumption. Where an answer exists, it cites the source. Where it does not, the row says so and names the specific thing that would settle it.</p>
+    <p class="article-head__dek">Every open question this build ran into, with what we can answer today, what we cannot, and how to close it. Nothing here is resolved by assumption. Where an answer exists, it cites the source. Where it does not, the row says so and names the specific thing that would settle it. Q-23 to Q-26 were added by the 2026-11-20 editorial pass (arena-27f76c22).</p>
   </div>
 </div>
 <section class="section">
   <div class="wrap">
     <div class="strip" style="border:1px solid var(--rule);margin-bottom:2rem">
       <div class="strip__inner">
-        <div class="strip__cell"><p class="strip__num">27</p><p class="strip__lab">Questions logged</p></div>
-        <div class="strip__cell"><p class="strip__num">7</p><p class="strip__lab">Blocking</p></div>
-        <div class="strip__cell"><p class="strip__num">5</p><p class="strip__lab">Answered</p></div>
+        <div class="strip__cell"><p class="strip__num">26</p><p class="strip__lab">Questions logged</p></div>
+        <div class="strip__cell"><p class="strip__num">6</p><p class="strip__lab">Blocking</p></div>
+        <div class="strip__cell"><p class="strip__num">4</p><p class="strip__lab">Answered</p></div>
         <div class="strip__cell"><p class="strip__num">22</p><p class="strip__lab">Still open</p></div>
       </div>
     </div>
@@ -137,15 +133,6 @@
     <td class="small">Deploy the worker and set the endpoint, then rebuild. Orders come from the Associates report, entered by hand into the ledger with a date.</td>
     <td><span class="pill pill--blocked-on-deploy">blocked-on-deploy</span></td>
     <td class="small"><a href="https://sassnarep3-star.github.io/WinA/analytics/" rel="noopener" target="_blank">Measurement page</a></td>
-  </tr><tr>
-    <td><code>Q-23</code></td>
-    <td class="small">Product identity</td>
-    <td><strong>Do the submitted short links actually reach the product pages, for a real visitor, right now?</strong><br><span class="pill pill--blocking" style="margin-top:.4rem">blocking</span></td>
-    <td class="small">Unresolved. Re-opening four of the five on 2026-11-20 returned the amazon.com home page; one returned a fetch error; an earlier attempt the same day returned the product page for the first link. The behaviour is not reproducible on command, so it cannot be recorded as either working or broken.</td>
-    <td class="small">A test from a device with a normal browser and cookies, which is the only environment that answers what a reader will see; and, for attribution, the matching entry in the Associates click report.</td>
-    <td class="small">Open each short link on a phone on cellular (not Wi-Fi, not a desktop browser), and note where it lands. Then click one tagged link from the site and check the Associates click report within 48 hours. This is Q-03, and it is the only remaining check that needs a human.</td>
-    <td><span class="pill pill--unanswered">unanswered</span></td>
-    <td class="small"><a href="https://link.amazon/B02NbDxp3" rel="nofollow noopener" target="_blank" data-nonaffiliate="true">Submitted short link, re-opened 2026-11-20</a></td>
   </tr><tr>
     <td><code>Q-03</code></td>
     <td class="small">Product identity</td>
@@ -221,32 +208,32 @@
     <td><span class="pill pill--built-unverified">built-unverified</span></td>
     <td class="small"><a href="https://sassnarep3-star.github.io/WinA/sitemap.xml" rel="noopener" target="_blank">Published sitemap</a></td>
   </tr><tr>
-    <td><code>Q-24</code></td>
-    <td class="small">Brand</td>
-    <td><strong>Is commissioned illustration the right visual language, or should the site wait for licensed product images?</strong><br><span class="pill pill--high" style="margin-top:.4rem">high</span></td>
-    <td class="small">Decided for now, and reversible. The site publishes four original illustrations, each captioned as artwork rather than a product image, because the reader-facing page needs something to look at and Program Content cannot be stored or hot-linked. The gate enforces the rule that makes this honest: no Amazon asset, no stock appliance photo, alt text on every image, and nothing loaded from another host.</td>
-    <td class="small">The owner's preference for how the brand should look, and Product Advertising API approval, which is the only route to real product imagery that the programme licenses.</td>
-    <td class="small">Owner: approve or reject on the suggestions page (SUG-27 is the API request that would end the trade-off). No research closes this one; it is a decision with a credential attached.</td>
-    <td><span class="pill pill--decision-needed">decision-needed</span></td>
-    <td class="small"><a href="https://affiliate-program.amazon.com/help/operating/policies" rel="noopener" target="_blank">Associates Program Policies — content restrictions</a></td>
-  </tr><tr>
-    <td><code>Q-25</code></td>
-    <td class="small">Measurement</td>
-    <td><strong>Does the three-question chooser get more people to click a product link than the card grid does?</strong><br><span class="pill pill--high" style="margin-top:.4rem">high</span></td>
-    <td class="small">Unknown, and not guessable from here. The finder is built so the question can be answered: every one of its anchors carries data-slot=&quot;finder&quot;, while cards carry data-slot=&quot;card&quot;, hero carries data-slot=&quot;hero&quot; and the register's citation links are declared non-affiliate. One event per outbound click separates them without any new instrumentation.</td>
-    <td class="small">A deployed endpoint on a host the owner controls, the client flag turned on, and a few hundred sessions of traffic to compare slots. Nothing else about the finder can be tuned honestly before that exists.</td>
-    <td class="small">Deploy _worker/collector.js (or scripts/analytics-server.mjs) behind the owner's domain, set site.analyticsEndpoint in data/products.json, and read the outbound_click counts grouped by slot after 500 sessions.</td>
+    <td><code>Q-23</code></td>
+    <td class="small">Demand</td>
+    <td><strong>Does anyone actually search for holiday air-fryer scheduling content?</strong><br><span class="pill pill--high" style="margin-top:.4rem">high</span></td>
+    <td class="small">Unknown. The seasonal cluster was chosen for the calendar, not from demand data, and the page says so — while SUG-23 recommends holding such topics until measurement exists. Both positions are recorded.</td>
+    <td class="small">Any impressions or query data at all. Search Console has never been verified for this property (SG-29, FLG-009).</td>
+    <td class="small">Verify the Search Console property, submit the sitemap, and read the query report after the cluster is indexed. Compare seasonal-page impressions against the evergreen guides.</td>
     <td><span class="pill pill--unanswered">unanswered</span></td>
-    <td class="small"><a href="https://github.com/sassnarep3-star/WinA/blob/main/_worker/collector.js" rel="noopener" target="_blank">The collector written for this repository</a></td>
+    <td class="small"><a href="https://search.google.com/search-console" rel="noopener" target="_blank">Google Search Console (verification pending, SG-29)</a></td>
+  </tr><tr>
+    <td><code>Q-24</code></td>
+    <td class="small">Demand</td>
+    <td><strong>Which of the seven guides earns impressions first?</strong><br><span class="pill pill--high" style="margin-top:.4rem">high</span></td>
+    <td class="small">Unknown until the property is verified and the query report populates.</td>
+    <td class="small">The first query report. Nothing else can rank the hypotheses.</td>
+    <td class="small">After SG-29 closes, read the query report at week four and week eight. Record the ranking in this register with the date read.</td>
+    <td><span class="pill pill--unanswered">unanswered</span></td>
+    <td class="small"><a href="https://sassnarep3-star.github.io/WinA/guides/" rel="noopener" target="_blank">The guides index (all seven live)</a></td>
   </tr><tr>
     <td><code>Q-08</code></td>
     <td class="small">Demand</td>
-    <td><strong>Which of the hypothesised guide topics should be written first, and in what order?</strong><br><span class="pill pill--medium" style="margin-top:.4rem">medium</span></td>
+    <td><strong>Which of the published guide topics should be written next?</strong><br><span class="pill pill--medium" style="margin-top:.4rem">medium</span></td>
     <td class="small">Hypothesis only. The capacity checklist is the best starting bet because it applies to all three air fryers and does not depend on any product outperforming another.</td>
     <td class="small">Evidence of which question people actually arrive with.</td>
     <td class="small">Ship all five, then let Search Console query data reorder them. See SUG-05.</td>
     <td><span class="pill pill--hypothesis">hypothesis</span></td>
-    <td class="small"><a href="https://sassnarep3-star.github.io/WinA/guides/" rel="noopener" target="_blank">Every guide published on this site</a></td>
+    <td class="small"><a href="https://sassnarep3-star.github.io/WinA/guides/" rel="noopener" target="_blank">The guides index as published</a></td>
   </tr><tr>
     <td><code>Q-11</code></td>
     <td class="small">Editorial</td>
@@ -302,23 +289,23 @@
     <td><span class="pill pill--unanswered">unanswered</span></td>
     <td class="small"><a href="https://sassnarep3-star.github.io/WinA/feed.xml" rel="noopener" target="_blank">Published feed, currently unconsumed</a></td>
   </tr><tr>
-    <td><code>Q-26</code></td>
-    <td class="small">Editorial</td>
-    <td><strong>Which guide earns arrivals, and which one should the next topic be modelled on?</strong><br><span class="pill pill--medium" style="margin-top:.4rem">medium</span></td>
-    <td class="small">Not answerable yet. Every guide title on this site — including the two added on 2026-11-20 — is an editorial hypothesis chosen for the decision it clarifies, not for a measured query. The sitemap, feed and canonical set are in place for a search engine to read, and nothing has come back to rank them against.</td>
-    <td class="small">Search Console verification (FLG-009), then two to four weeks of query data.</td>
-    <td class="small">Verify the domain in Search Console, submit the sitemap, and re-read the query report after two weeks. scripts/next-topics.mjs refuses to invent a ranking without an export, so it will say what it needs.</td>
-    <td><span class="pill pill--unanswered">unanswered</span></td>
-    <td class="small"><a href="https://search.google.com/search-console/about" rel="noopener" target="_blank">Google Search Console</a></td>
+    <td><code>Q-25</code></td>
+    <td class="small">Brand</td>
+    <td><strong>Will the owner adopt the seasonal cadence — refresh /seasonal/ every November — or hold seasonal topics until demand is measured (SUG-23)?</strong><br><span class="pill pill--medium" style="margin-top:.4rem">medium</span></td>
+    <td class="small">Not decided, and deliberately so: SUG-23 (hold) and SUG-25 (shipped) record opposite positions with their reasons. The page is built to be refreshed: one dated spec re-check per linked product and a re-read of the linked guides.</td>
+    <td class="small">The owner’s decision between the two recorded positions, and a calendar entry for the first refresh if shipping wins.</td>
+    <td class="small">Owner decision, ideally after Q-23’s first query report. If adopted, log the refresh date on the coordination board each year; if retired, mark the page’s season explicitly rather than implying currency.</td>
+    <td><span class="pill pill--decision-needed">decision-needed</span></td>
+    <td class="small"><a href="https://sassnarep3-star.github.io/WinA/seasonal/" rel="noopener" target="_blank">The seasonal collection page</a></td>
   </tr><tr>
-    <td><code>Q-27</code></td>
-    <td class="small">Commercial terms</td>
-    <td><strong>The Emeril brand page publishes 120 volts. Does that settle the wattage row?</strong><br><span class="pill pill--medium" style="margin-top:.4rem">medium</span></td>
-    <td class="small">No. Voltage and power draw are different numbers, and converting one to the other needs a current figure nobody publishes for this model. The Wattage row therefore stays blank and marked unverified, while a new row states exactly what the brand does publish: &quot;120 V; no wattage published on the brand page&quot;.</td>
-    <td class="small">A published wattage from the brand or the listing. The product manual is linked from the brand page and may carry it; that is a five-minute check for the next data pass and it was not performed here.</td>
-    <td class="small">Read the linked installation manual for the model, or ask the brand. Until then the row stays blank, and the comparison table shows 'unverified' rather than an estimate.</td>
-    <td><span class="pill pill--answered">answered</span></td>
-    <td class="small"><a href="https://www.emerileveryday.com/products/emeril_lagasse_french_door_airfryer_360" rel="noopener" target="_blank">emerileveryday.com — product specification block</a></td>
+    <td><code>Q-26</code></td>
+    <td class="small">Brand</td>
+    <td><strong>Are generated, labelled kitchen-scene illustrations acceptable brand imagery for this publication?</strong><br><span class="pill pill--medium" style="margin-top:.4rem">medium</span></td>
+    <td class="small">Not decided by the owner. This pass shipped two generated counter scenes, each labelled on-page as illustrations that do not depict the products.</td>
+    <td class="small">The owner’s position on AI-generated imagery in a publication whose whole premise is honesty about what is known.</td>
+    <td class="small">Owner decision. If rejected, remove the two images and revert to the typographic design — the site was fully compliant before they existed. If accepted, SUG-27 proposes one scene per collection.</td>
+    <td><span class="pill pill--decision-needed">decision-needed</span></td>
+    <td class="small"><a href="https://sassnarep3-star.github.io/WinA/flagged/" rel="noopener" target="_blank">FLG-007: the imagery constraint</a></td>
   </tr><tr>
     <td><code>Q-21</code></td>
     <td class="small">Brand</td>
