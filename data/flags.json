@@ -175,7 +175,7 @@
       "id": "FLG-018",
       "severity": "medium",
       "title": "Three independent site builds existed on main or on branches",
-      "detail": "PR #1 (arena-4a5044b0) and PR #6 (arena-6bd1be15) built root-level sites on main; this branch (arena-2ca62ce9) builds docs/. Only one site can be served by GitHub Pages from one folder. The integrated site is served from docs/; the two earlier root-level sites are archived unchanged under archive/.",
+      "detail": "PR #1 (arena-4a5044b0) and PR #6 (arena-6bd1be15) built root-level sites on main. Session arena-2ca62ce9 built a third site. GitHub Pages serves one source folder (main /), so only one site can be the root site. The integrated site is generated at the repo root; the two earlier root-level sites are archived unchanged under archive/.",
       "sources": [],
       "action": "Owner to confirm the integrated site is the one to keep (S-08)."
     }

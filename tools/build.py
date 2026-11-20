@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build the static site in docs/ from data/*.json.
+"""Build the static site at the repo root from data/*.json (GitHub Pages source: main /).
 
 Checks run before any file is written (the build fails on any error):
   * every source URL is on an allowlisted official host
@@ -9,11 +9,11 @@ Checks run before any file is written (the build fails on any error):
   * every referenced flag, source and product ID exists
 
 Checks run on the generated HTML (the build fails on any error):
-  * every internal link and asset resolves to a file in docs/
+  * every internal link and asset resolves to a generated file
   * every page carries the disclosure text
   * every outbound Amazon link carries rel="sponsored"
 
-Usage: python3 tools/build.py
+Usage: python3 tools/build.py   (writes the site to the repo root; archive/ is excluded)
 """
 import datetime
 import html
@@ -26,7 +26,7 @@ from urllib.parse import urlparse
 
 ROOT = Path(__file__).resolve().parent.parent
 DATA = ROOT / "data"
-OUT = ROOT / "docs"
+OUT = ROOT  # GitHub Pages serves the repo root (source: main /), so the site is generated at the root
 
 ALLOWED_HOSTS = {
     "www.amazon.com",
@@ -290,9 +290,15 @@ def page(rel, title, body, active, description=""):
 
 
 # ---------------------------------------------------------------- pages
-if OUT.exists():
-    shutil.rmtree(OUT)  # rebuild from scratch so no stale pages remain
-OUT.mkdir(parents=True)
+# Only generated paths are removed. The repo root, archive/, data/, tools/ and .git are never touched.
+GENERATED = ["index.html", "shop", "guides", "dashboard", "assets", "feed.xml", "sitemap.xml", "robots.txt"]
+GENERATED_DIRS = {"shop", "guides", "dashboard", "assets"}
+for name in GENERATED:
+    target = OUT / name
+    if target.is_dir():
+        shutil.rmtree(target)
+    elif target.exists():
+        target.unlink()
 
 # Front page: products first
 hero = f"""
@@ -651,7 +657,7 @@ for rel in sorted(urls):
     sitemap.append(f"  <url><loc>{esc(BASE + rel if rel != 'index.html' else BASE)}</loc><lastmod>{BUILD_DATE}</lastmod></url>")
 sitemap.append("</urlset>")
 (OUT / "sitemap.xml").write_text("\n".join(sitemap) + "\n", encoding="utf-8")
-(OUT / "robots.txt").write_text(f"User-agent: *\nAllow: /\n\nSitemap: {BASE}sitemap.xml\n", encoding="utf-8")
+(OUT / "robots.txt").write_text(f"User-agent: *\nAllow: /\nDisallow: /archive/\n\nSitemap: {BASE}sitemap.xml\n", encoding="utf-8")
 (OUT / ".nojekyll").write_text("", encoding="utf-8")
 
 # ---------------------------------------------------------------- assets
@@ -662,7 +668,7 @@ shutil.copyfile(ROOT / "tools" / "assets" / "analytics.js", OUT / "assets" / "an
 # ---------------------------------------------------------------- generated-html checks
 internal_ref = re.compile(r'(?:href|src)="([^"#?]+)')
 outbound_ref = re.compile(r'<a ([^>]*href="https://www\.amazon\.com[^"]*"[^>]*)>')
-html_files = list(OUT.rglob("*.html"))
+html_files = [q for q in OUT.rglob("*.html") if q.parent == OUT or q.relative_to(OUT).parts[0] in GENERATED_DIRS]
 for f in html_files:
     text = f.read_text(encoding="utf-8")
     rel = f.relative_to(OUT).as_posix()
@@ -706,4 +712,4 @@ if errors:
         print(" -", e)
     sys.exit(1)
 
-print(f"Built {len(html_files)} HTML pages, feed.xml, sitemap.xml ({len(urls)} URLs) into docs/")
+print(f"Built {len(html_files)} HTML pages, feed.xml, sitemap.xml ({len(urls)} URLs) at the repo root (GitHub Pages source)")
