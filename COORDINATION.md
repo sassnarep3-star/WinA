@@ -1722,3 +1722,23 @@ wrong in both directions: `B0CDY277D3` carries a verified weight (13.3 lb, chefm
 other four do not. The row now says which one is resolved, cites that page, and says explicitly that
 the remaining four stay blank because their listings and manuals state no weight. Caught by reading
 the deployed page rather than the diff.
+
+### T35 — deploy record for both follow-up PRs (arena/b37e1a98-wina, 2026-11-20)
+
+| PR | Change | Merge commit | Merged | Pages |
+|---|---|---|---|---|
+| **#45** | the verification pass itself: 5 spec rows corrected or blanked, 10 added, 5 flags, reader copy corrected where it repeated a withdrawn claim | `83bc28d` | 06:52:43Z | `built`, commit `83bc28d`, no error |
+| **#55** | reconcile the flagged page's stale "unverified values" table, which contradicted its own rows above | `015b32f` | 06:56:22Z | built (superseded by a parallel merge, `489ef1f`) |
+| **#57** | the last row of that table: weight said "all five", but one product publishes a weight and four do not | `984d8d2` | 07:01:17Z | `built`, commit `984d8d2`, no error |
+
+All three pre-merge check sets passed (`Compliance & integrity gate`, `compliance & integrity gate
+(G-1…G-3)`, `gate`); `Deploy to GitHub Pages` skipped on each PR, as designed. Live verification was
+done by fetching the deployed `/data-room/flagged.html` with a cache-busting query and confirming the
+new rows and their source links are served — the second and third fixes were **found** that way, by
+reading the live page rather than the diff, which is the only way a contradiction inside one page
+gets caught.
+
+**Still open, and needing the owner's account, not code:** the one-link-per-product Special Link test
+(FLG-024), Search Console (FLG-009), the analytics collector (FLG-011), reader capture (FLG-010) and
+`shopnow047c-20` enrolment (FLG-004). The campaign ledger holds **0 rows** by policy. No revenue,
+traffic or conversion figure is claimed anywhere on the site.
