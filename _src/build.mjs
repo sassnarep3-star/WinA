@@ -8,7 +8,23 @@
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import { guides, editorNote } from "./content.mjs";
+import { guides, editorNote, finder, artwork } from "./content.mjs";
+import {
+  figure,
+  heroFigure,
+  footprintDiagram,
+  capacityDiagram,
+  thermoStrip,
+  finderBlock,
+  guideToc,
+  anchorHeights,
+  guideNav,
+  clusterGuides,
+  verifiedLine,
+  counterBlock,
+  assertFigure,
+  wordNum
+} from "./design.mjs";
 import { about, disclosure, privacy, marketing, seo, promo } from "./pages-content.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -94,6 +110,23 @@ function writePage(p, html) {
 }
 
 /* ---------- layout ---------- */
+/* ------------------------------------------------------------
+   Voice rule (SUG-20, adopted by T26). These are the phrases that give a
+   generated marketing page away. They are banned in reader copy, listed on
+   the About page, and enforced by the build gate below — a list a site can
+   point at is a rule; a list nobody enforces is a mood.
+   ------------------------------------------------------------ */
+const FILLER = [
+  "elevate", "elevated", "game-changer", "game changer", "revolutionize", "revolutionary",
+  "seamless", "seamlessly", "curated", "unleash", "unlock the", "dive into", "delve",
+  "in today", "must-have", "top-notch", "cutting-edge", "state-of-the-art",
+  "next level", "embark", "tantalizing", "tantalising", "a testament to", "symphony of",
+  "look no further", "got you covered", "beginner or a pro", "whether you are a beginner",
+  "best in class", "best-in-class", "industry-leading", "effortlessly",
+  "transform your kitchen", "take your cooking", "ultimate guide", "miss out", "act now",
+  "limited time", "at the end of the day", "in conclusion", "synergy", "holistic approach"
+];
+
 const NAV = [
   { href: url("/air-fryers/"), label: "Air fryers" },
   { href: url("/thermometers/"), label: "Thermometers" },
@@ -142,6 +175,12 @@ function layout(opts) {
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="${esc(fullTitle)}">
 <meta name="twitter:description" content="${esc(desc)}">
+<meta name="twitter:image" content="${ORIGIN}/assets/img/hero-counter.jpg">
+<meta name="twitter:image:alt" content="${esc(artwork.figures.hero.alt)}">
+<meta property="og:image" content="${ORIGIN}/assets/img/hero-counter.jpg">
+<meta property="og:image:alt" content="${esc(artwork.figures.hero.alt)}">
+<meta name="theme-color" content="#fbf8f3">
+<link rel="icon" href="${url("/assets/img/favicon.svg")}" type="image/svg+xml">
 <link rel="alternate" type="application/rss+xml" title="${esc(site.name)}" href="${url("/feed.xml")}">
 <link rel="stylesheet" href="${url("/assets/css/site.css")}">
 <script>window.CS_CONFIG={analyticsEnabled:${ANALYTICS_ON},analyticsEndpoint:${JSON.stringify(site.analyticsEndpoint || "")}};</script>
@@ -150,7 +189,7 @@ ${ld}
 <body data-page-type="${pageType}">
 <a class="skip" href="#main">Skip to content</a>
 
-<header class="masthead">
+<header class="masthead" id="masthead">
   <div class="wrap masthead__inner">
     <a class="brand" href="${url("/")}">
       <span class="brand__mark" aria-hidden="true">C</span>
@@ -158,6 +197,7 @@ ${ld}
       <span class="brand__sub">Kitchen gear, judged honestly</span>
     </a>
     <nav class="nav" aria-label="Primary">${nav}</nav>
+    <a class="nav__cta" href="${url("/")}#finder">Find yours</a>
   </div>
 </header>
 
@@ -352,6 +392,7 @@ function frontPage() {
       <div class="hero__actions">
         <a class="btn btn--primary" href="${url("/air-fryers/")}">See the air fryers</a>
         <a class="btn btn--ghost" href="${url("/guides/basket-vs-oven/")}">Basket or oven? Start here</a>
+        <a class="btn btn--quiet" href="${url("/")}#finder">Which one is mine?</a>
       </div>
       <p class="tiny faint" style="margin-top:1.1rem">No testing claims. No invented prices. Every spec is labelled with how it was verified.</p>
     </div>
@@ -371,6 +412,8 @@ function frontPage() {
   </div>
 </section>
 
+${heroFigure("hero", artwork, { url, esc })}
+
 <div class="strip">
   <div class="wrap strip__inner">
     <div class="strip__cell"><p class="strip__num">${products.length}</p><p class="strip__lab">Products compared</p></div>
@@ -379,6 +422,8 @@ function frontPage() {
     <div class="strip__cell"><p class="strip__num">${policy.policy.length}</p><p class="strip__lab">Policy checks passed</p></div>
   </div>
 </div>
+
+${finderBlock(finder, products, { esc, url, special, site })}
 
 <section class="section">
   <div class="wrap">
@@ -391,6 +436,10 @@ function frontPage() {
     </div>
     <div class="products products--three">
       ${picks.map((p, i) => productCard(p, i + 1)).join("")}
+    </div>
+    <div class="figures-row">
+      ${footprintDiagram(products, { esc, url })}
+      ${capacityDiagram(products, { esc })}
     </div>
   </div>
 </section>
@@ -407,6 +456,7 @@ function frontPage() {
     <div class="products">
       ${products.slice(3).map((p) => productCard(p, null)).join("")}
     </div>
+    ${thermoStrip(products, { esc, url })}
   </div>
 </section>
 
@@ -473,6 +523,16 @@ ${breadcrumb([{ href: url("/"), label: "Home" }, { label: c.name }])}
     <div class="products products--three">
       ${items.map((p, i) => productCard(p, i + 1)).join("")}
     </div>
+    ${
+      c.slug === "air-fryers"
+        ? `${figure("airflow", artwork, { url, esc })}
+    <div class="figures-row">
+      ${footprintDiagram(products, { esc, url })}
+      ${capacityDiagram(products, { esc })}
+    </div>`
+        : `${figure("carving", artwork, { url, esc })}
+    ${thermoStrip(products, { esc, url })}`
+    }
   </div>
 </section>
 <section class="section section--deep">
@@ -554,6 +614,9 @@ ${breadcrumb([
       <div class="fact"><dt>ASIN</dt><dd>${esc(p.asin)}</dd></div>
       <div class="fact"><dt>Form factor</dt><dd>${esc(p.formFactor.replace(/-/g, " "))}</dd></div>
     </dl>
+
+    ${counterBlock(p, { esc })}
+    ${verifiedLine(p, { esc, url })}
 
     <div class="prose">
       <h2>Why it is on this list</h2>
@@ -674,6 +737,7 @@ ${breadcrumb([
     </div>
   </div>
 </div>
+${g.art ? figure(g.art, artwork, { url, esc }) : ""}
 
 <div class="wrap layout">
   <div>
@@ -682,8 +746,9 @@ ${breadcrumb([
       <p>${esc(g.intro.split("\n\n")[0])}</p>
     </div>
 
+    ${guideToc(g.body, { esc })}
     <div class="prose" style="margin-top:1.75rem">
-      ${body(g.body)}
+      ${body(anchorHeights(g.body))}
     </div>
 
     <div class="note note--warn mt2">
@@ -702,9 +767,8 @@ ${breadcrumb([
         : ""
     }
 
-    <p class="small muted mt2">Next: <a href="${url("/guides/")}">all guides</a> · <a href="${url(
-      "/compare/"
-    )}">compare all five products</a></p>
+    ${clusterGuides(g, guides, products, { url, esc })}
+    ${guideNav(g, guides, { url, esc })}
   </div>
 
   <aside class="layout__aside">
@@ -765,7 +829,7 @@ ${breadcrumb([{ href: url("/"), label: "Home" }, { label: "Guides" }])}
   <div class="wrap">
     <p class="kicker">Buying guides</p>
     <h1 class="article-head__title">The questions people ask before they buy</h1>
-    <p class="article-head__dek">Five guides, each built around one decision. No rankings, no "best of" list, no claim that any of this was tested.</p>
+    <p class="article-head__dek">${wordNum(guides.length)[0].toUpperCase() + wordNum(guides.length).slice(1)} guides, each built around one decision. No rankings, no "best of" list, no claim that any of this was tested.</p>
   </div>
 </div>
 <section class="section">
@@ -798,7 +862,7 @@ ${breadcrumb([{ href: url("/"), label: "Home" }, { label: "Guides" }])}
   pages.push({
     path: "/guides/",
     title: "Buying guides",
-    desc: "Five question-shaped guides to air fryers and thermometers: form factor, capacity, cleanup, and multi-function claims.",
+    desc: "${wordNum(guides.length)} question-shaped guides to air fryers and meat thermometers: form factor, capacity, cleanup, multi-function claims, and the checklist to run before any small-appliance purchase.",
     html,
     priority: "0.8",
     changefreq: "weekly"
@@ -869,9 +933,17 @@ ${breadcrumb([{ href: url("/"), label: "Home" }, { label: "Compare" }])}
 
     <div class="note note--warn mt2">
       <p class="note__title">Why the price and rating rows are empty</p>
-      <p>Not an oversight and not laziness. Amazon prohibits displaying current prices or customer ratings unless they come from its Product Advertising API, and prohibits price tracking outright. We do not have API access. Every other blank row is a value we tried and failed to confirm — wattage, dimensions and warranty for all five products. Both categories of gap are published on the <a href="${url(
+      <p>Not an oversight and not laziness. Amazon prohibits displaying current prices or customer ratings unless they come from its Product Advertising API, and prohibits price tracking outright. We do not have API access. Every other blank cell is a value we tried and could not confirm from an official source — ${products.reduce(
+    (n, p) => n + p.specs.filter((x) => !x.value && x.status !== "withheld").length,
+    0
+  )} of them across these five products, each with its reason on the product page. Both categories of gap are published on the <a href="${url(
         "/flagged/"
       )}">flagged for review</a> page.</p>
+    </div>
+
+    <div class="figures-row">
+      ${footprintDiagram(products, { esc, url })}
+      ${capacityDiagram(products, { esc })}
     </div>
 
     <h2 class="section__title" style="font-size:1.35rem;margin-top:2.5rem">Which one, in one line each</h2>
@@ -1627,7 +1699,7 @@ ${breadcrumb([{ href: url("/"), label: "Home" }, { label: "Executive summary" }]
     <h2>What exists</h2>
     <ul>
       <li><strong>A five-product publication</strong> — three air fryers, two thermometers — with individual pages, two category hubs, and a full comparison table.</li>
-      <li><strong>Five question-shaped guides</strong>, written as decisions rather than rankings.</li>
+      <li><strong>${wordNum(guides.length)[0].toUpperCase() + wordNum(guides.length).slice(1)} question-shaped guides</strong>, written as decisions rather than rankings.</li>
       <li><strong>A complete source register</strong>: ${policy.sources.length} primary sources and ${products.reduce(
         (n, p) => n + p.specs.length,
         0
@@ -1639,6 +1711,7 @@ ${breadcrumb([{ href: url("/"), label: "Home" }, { label: "Executive summary" }]
         "/marketing/kit/"
       )}">the marketing kit</a>.</li>
       <li><strong>Ten policy checks</strong> traced to the exact clause, with the text quoted verbatim so the summary can be audited.</li>
+      <li><strong>A reader-facing design layer</strong>, built from the adopted brief rather than described by it: four commissioned illustrations captioned as artwork and never as product images, two figures drawn to scale from the register's own verified numbers, a three-question chooser whose every answer card carries its tagged sponsored link in the page source, and a contents-plus-cluster furniture set on every guide.</li>
       <li><strong>A publication gate</strong> in the build: it fails if any page loses its disclosure, or if any Amazon link loses its sponsored marking.</li>
       <li><strong>SEO foundations</strong>: sitemap, RSS feed, canonical URLs, structured data, and descriptions written for humans.</li>
       <li><strong>A defined measurement plan</strong>: five events, a self-hosted collector, and a ledger schema.</li>
@@ -1660,12 +1733,13 @@ ${breadcrumb([{ href: url("/"), label: "Home" }, { label: "Executive summary" }]
     <h2>What is unresolved</h2>
     <p>${gov.flagged.length} items on the <a href="${url(
       "/flagged/"
-    )}">flagged for review</a> page. Four matter commercially:</p>
+    )}">flagged for review</a> page. Five matter commercially:</p>
     <ol>
       <li>The tracking ID <code>${esc(TAG)}</code> may not be enrolled. If it is not, nothing on this site earns anything.</li>
       <li>The compliance status of the submitted <code>link.amazon</code> short links is genuinely unknown — we did not declare them invalid, we simply do not depend on them.</li>
       <li>Search Console is unverified, so nobody knows whether the site is indexed.</li>
       <li>No analytics collector is deployed, so no learning is happening.</li>
+      <li>Re-testing the submitted links on 2026-11-20 returned Amazon's home page for four of the five, where four earlier sessions had recorded product pages (FLG-036). The site links the observed <code>/dp/</code> destinations instead, so no reader is affected — but the short links should not be circulated until one is opened on a phone.</li>
     </ol>
 
     <h2>What to do next, in order</h2>
@@ -1682,8 +1756,8 @@ ${breadcrumb([{ href: url("/"), label: "Home" }, { label: "Executive summary" }]
     </ol>
 
     <h2>The honest verdict</h2>
-    <p>What exists is a small, well-documented, compliant publication with five decent guides and five products. It is not yet a business: it has no traffic, no verified affiliate attribution, and no data. It is, however, built so that when those three things arrive, nothing has to be torn down — and so that nothing on it is a lie.</p>
-    <p>The main strategic risk is not technical. It is that five guides is not enough content to rank in a crowded category, and the plan for fixing that is a cadence, not a feature.</p>
+    <p>What exists is a small, well-documented, compliant publication with \${guides.length} guides and \${products.length} products. It is not yet a business: it has no traffic, no verified affiliate attribution, and no data. It is, however, built so that when those three things arrive, nothing has to be torn down — and so that nothing on it is a lie.</p>
+    <p>The main strategic risk is not technical. It is that \${guides.length} guides is not enough content to rank in a crowded category, and the plan for fixing that is a cadence, not a feature.</p>
   </div>
 </section>
 `;
@@ -1775,8 +1849,29 @@ ${breadcrumb([{ href: url("/"), label: "Home" }, { label: "Measurement" }])}
 /* ============================================================
    ABOUT / DISCLOSURE / PRIVACY / MARKETING / SEO
    ============================================================ */
+/* ------------------------------------------------------------
+   The About page's design record — the brief and the build, side by side.
+   ------------------------------------------------------------ */
+const designBriefData = suggestions.designBrief || { principles: [] };
+const designRecord = `
+<h2 id="design">How this page is designed, and what it will not do</h2>
+<p>${esc(artwork.policy)}</p>
+<p>A second rule is written into the build: the phrases that give a generated marketing page away are banned here, and the build fails if one appears. Not because any of them is illegal — because a reader who has seen that marketing voice forty times stops believing anything else on the page.</p>
+<p class="small muted" data-voice-list>Banned in every reader page, enforced by <code>_src/build.mjs</code>: ${FILLER.map((w) => `&ldquo;${esc(w)}&rdquo;`).join(", ")}.</p>
+<p>A third rule is arithmetic. Where a figure can be drawn honestly it is drawn to scale from the register — the counter footprint, the stated capacity — and where a manufacturer has not published the number, the diagram shows the gap rather than a shape invented to fill it.</p>
+<h3>The design brief this build works from</h3>
+<ol class="dbrief">${designBriefData.principles
+  .map(
+    (d) => `<li class="dbrief__item"><span class="dbrief__id">${esc(d.id)}</span><p class="dbrief__text">${esc(
+      d.principle
+    )}</p><p class="dbrief__c">Constraint: ${esc(d.constraint)}</p></li>`
+  )
+  .join("")}</ol>
+<p class="small">The brief is a working document on the <a href="${url("/suggestions/")}">suggestions page</a>, where each recommendation carries the decision recorded for it. Two of its points could not be implemented from here and are flagged rather than quietly dropped: <a href="${url("/flagged/")}">FLG-007</a> (no licensed route to product imagery until the Product Advertising API is approved) and <a href="${url("/flagged/")}">FLG-034</a> (no brand source for a wordmark or photography brief).</p>
+`;
+
 function prosePages() {
-  const simple = (key, pageTitle, pageDesc, kicker, priority) => {
+  const simple = (key, pageTitle, pageDesc, kicker, priority, extra = "") => {
     const c = key;
     pages.push({
       path: `/${c.slug}/`,
@@ -1792,7 +1887,7 @@ ${breadcrumb([{ href: url("/"), label: "Home" }, { label: c.title }])}
   </div>
 </div>
 <section class="section">
-  <div class="wrap narrow prose">${body(c.body)}</div>
+  <div class="wrap narrow prose">${body(c.body)}${extra}</div>
 </section>`,
       priority,
       changefreq: "monthly"
@@ -1802,7 +1897,14 @@ ${breadcrumb([{ href: url("/"), label: "Home" }, { label: c.title }])}
   promoPage();
 
   simple({ slug: "concept", ...aiConcept }, "AI-platform concept", aiConcept.dek, "Concept, not implemented", "0.4");
-  simple({ slug: "about", ...about }, "About and editorial standards", about.dek, "Editorial standards", "0.6");
+  simple(
+    { slug: "about", ...about },
+    "About and editorial standards",
+    about.dek,
+    "Editorial standards",
+    "0.6",
+    designRecord
+  );
   simple({ slug: "disclosure", ...disclosure }, "Affiliate disclosure", disclosure.dek, "Disclosure", "0.5");
   simple({ slug: "privacy", ...privacy }, "Privacy", privacy.dek, "Privacy", "0.4");
 
@@ -2228,6 +2330,122 @@ const archiveCount = (function count(dir) {
 })(path.join(ROOT, "archive"));
 if (archiveCount < 60) fail(`archive/ has only ${archiveCount} files — prior work may have been lost`);
 else ok(`archive intact: ${archiveCount} files preserved from three prior builds`);
+
+// ---------- T26 design-layer and voice gates (session arena-3818c975-wina) ----------
+
+// 1. Imagery policy: original artwork only, self-hosted, always described.
+{
+  let imgs = 0;
+  const imgProblems = [];
+  for (const f of htmlFiles) {
+    const html = fs.readFileSync(f, "utf8");
+    for (const m of html.matchAll(/<img\b[^>]*>/g)) {
+      imgs++;
+      const tag = m[0];
+      const src = (tag.match(/src="([^"]+)"/) || [])[1] || "";
+      if (!src.startsWith(BASE + "/assets/img/"))
+        imgProblems.push(`${path.relative(ROOT, f)}: image not served from this site → ${src}`);
+      if (/amazon|media-amazon|m\.media|shutterstock|getty|unsplash|pexels/i.test(src))
+        imgProblems.push(`${path.relative(ROOT, f)}: third-party or Amazon-sourced image → ${src}`);
+      if (!/alt="[^"]+"/.test(tag)) imgProblems.push(`${path.relative(ROOT, f)}: image without descriptive alt`);
+      if (!/width="\d+"/.test(tag) || !/height="\d+"/.test(tag))
+        imgProblems.push(`${path.relative(ROOT, f)}: image without width/height (layout shift)`);
+      const onDisk = path.join(ROOT, src.replace(BASE, "").split("?")[0]);
+      if (!fs.existsSync(onDisk)) imgProblems.push(`${path.relative(ROOT, f)}: image file missing → ${src}`);
+    }
+  }
+  if (imgProblems.length) fail(`image policy: ${imgProblems.slice(0, 6).join("; ")}`);
+  else ok(`${imgs} images served, all original artwork from /assets/img/ with alt text and intrinsic size`);
+}
+
+// 2. Every diagram number must exist in the register's own verified row.
+{
+  const drift = products.flatMap((p) => assertFigure(p));
+  if (drift.length) fail(`figures drifted from the register: ${drift.join("; ")}`);
+  else ok("every drawn figure is present in the register row it cites; unpublished values are drawn as gaps");
+}
+
+// 3. Voice: the filler phrases that mark a generated marketing page.
+{
+  const hits = [];
+  for (const f of htmlFiles) {
+    /* the About page quotes the list in order to publish it; quoting a ban is
+       not breaching it, so that one element is removed before the sweep */
+    let text = fs.readFileSync(f, "utf8").replace(/<p[^>]*data-voice-list[\s\S]*?<\/p>/g, " ");
+    text = text.replace(/<[^>]+>/g, " ").toLowerCase();
+    for (const w of FILLER) {
+      if (text.includes(w.toLowerCase())) hits.push(path.relative(ROOT, f) + ': "' + w + '"');
+    }
+  }
+  if (hits.length) fail(`banned filler phrase in reader copy: ${hits.slice(0, 8).join("; ")}`);
+  else ok(`no filler phrase from the banned list in any of the ${htmlFiles.length} pages`);
+}
+
+// 4. No experience we do not have (FTC), stated in the first person.
+{
+  const CLAIM =
+    /\bwe (?:tested|tried it|used it|used these|measured|ran|cooked with|compared side by side|spent (?:a week|weeks|months))\b|in our testing|our testing (?:showed|found)|after (?:weeks|months) of (?:testing|use)/i;
+  const hits = [];
+  const NEGATED = /\bnot\b|\bnever\b|\bnobody\b|\bno claim\b|\bwithout\b|\bcannot\b|\bcan not\b|\bdid not\b|\bclaim\b|\bbefore\b|\bdisclaim\w*/i;
+  for (const f of htmlFiles) {
+    const text = fs.readFileSync(f, "utf8").replace(/<[^>]+>/g, " ");
+    const isReader = /(^|\/)(index\.html|guides\/|products\/|compare\/|air-fryers\/|thermometers\/)/.test(path.relative(ROOT, f)) && !/flagged|register|questions|suggestions|summary|marketing|dashboard|analytics/.test(f);
+    for (const m of text.matchAll(new RegExp(CLAIM.source, "gi"))) {
+      /* read the whole sentence: a disclaimer that names the claim it refuses
+         is compliant writing, not a claim. Only an un-negated sentence fails. */
+      const sentence = text.slice(Math.max(0, m.index - 160), Math.min(text.length, m.index + 160));
+      /* reader pages get no exception at all. Inside the registers the same
+         words appear as quotations of the policy ("a site that says \"we tested
+         40 air fryers\""), which is policy language, not a claim by us. */
+      if (!isReader && /\bsays\b|\bsaid\b|voice|against a site/i.test(sentence)) continue;
+      if (!isReader && NEGATED.test(sentence)) continue;
+      hits.push(`${path.relative(ROOT, f)}: "${m[0]}"`);
+    }
+  }
+  if (hits.length) fail(`page claims hands-on experience: ${hits.join("; ")}`);
+  else ok("no page claims hands-on use of a product nobody here has");
+}
+
+// 5. The finder must be complete, honest about itself, and record nothing.
+{
+  const problems = [];
+  const index = pages.find((p) => p.path === "/");
+  const idxHtml = index ? fs.readFileSync(path.join(ROOT, "index.html"), "utf8") : "";
+  const blob = idxHtml.match(/<script type="application\/json" data-finder-data>([\s\S]*?)<\/script>/);
+  if (!blob) problems.push("finder data block missing from the front page");
+  else {
+    const d = JSON.parse(blob[1]);
+    if (d.products.length !== products.length)
+      problems.push(`finder covers ${d.products.length} of ${products.length} products`);
+    for (const q of d.questions)
+      for (const o of q.options)
+        for (const slug of Object.keys(o.points))
+          if (!products.some((p) => p.slug === slug)) problems.push(`finder scores an unknown product: ${slug}`);
+    for (const pr of d.products) {
+      if (!pr.buy.includes("tag=" + TAG)) problems.push(`finder link is not tagged: ${pr.slug}`);
+    }
+  }
+  if (!/Runs in your browser\. Nothing is sent/.test(idxHtml))
+    problems.push("finder does not state that it records nothing");
+  {
+    const js = fs.readFileSync(path.join(ROOT, "assets/js/site.js"), "utf8");
+    const block = js.match(/\/\* FINDER-START \*\/[\s\S]*?\/\* FINDER-END \*\//);
+    if (!block) problems.push("the finder block in site.js is missing its markers");
+    else if (/fetch\(|XMLHttpRequest|sendBeacon|localStorage|sessionStorage|document\.cookie|new Image\(/.test(block[0]))
+      problems.push("the finder block stores or transmits — it must stay in memory only");
+  }
+  if (problems.length) fail(`finder: ${problems.slice(0, 5).join("; ")}`);
+  else ok(`finder scores all ${products.length} products from published specs, says so, and stores nothing`);
+}
+
+// 6. The imagery decision has to be stated where a reviewer can find it.
+{
+  const aboutHtml = fs.readFileSync(path.join(ROOT, "about/index.html"), "utf8");
+  const need = ["no Amazon product images", "banned in every reader page", "original artwork", "how this page is designed"];
+  const miss = need.filter((n) => !new RegExp(n, "i").test(aboutHtml));
+  if (miss.length) fail(`about page does not state ${miss.join(", ")}`);
+  else ok("about page states the imagery rule, the banned-phrase list and where each figure came from");
+}
 
 // sitemap covers all pages
 const sitemap = fs.readFileSync(path.join(ROOT, "sitemap.xml"), "utf8");

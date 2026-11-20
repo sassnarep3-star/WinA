@@ -249,8 +249,179 @@ Multi-function claims are the easiest thing in kitchen retail to inflate and the
       "Published response and accuracy figures are stated by the seller, not verified by us.",
       "For connected devices, ask what happens when the app stops being supported."
     ]
+  },
+  {
+    slug: "air-fryer-vs-toaster-oven",
+    number: "06",
+    title: "Air fryer or toaster oven: which one earns its counter space?",
+    dek: "They brown food with moving hot air and they both sit on your counter like a houseguest who will not leave. The difference is what you can put in them and what you give up to have them.",
+    category: "air-fryers",
+    readingTime: "7 min",
+    topics: ["form factor", "counter space", "batching"],
+    art: "airflow",
+    intro: `If you own a working full-size oven, an air fryer is not a replacement for it. It is a second oven that is faster to get hot, smaller than a tray, and permanently parked on the counter. A toaster oven is the same argument with a different shape: it can hold a tray, it can toast bread, and it is bigger.
+
+So the honest question is not "which cooks better". It is "which one will I actually reach for, and what am I removing from the counter to make room?"`,
+    body: `
+<h2>What each machine is actually for</h2>
+<p>A drawer-style air fryer is a small, tall, sealed chamber with a fan behind it. It is excellent at one thing at a time: a batch of something that benefits from being tossed — fries, wings, roasted potatoes, chickpeas, reheated takeout. The drawer shape is the point: you shake it halfway through, hot air keeps moving, and the food comes out dry on the outside.</p>
+<p>A toaster oven — and the oven-style air fryers that borrow its shape — is a wide, flat chamber with racks. It is excellent at anything that must lie flat: bread, a sheet pan, a whole small chicken, a pizza, a fillet you do not want broken. It is worse at the toss-and-shake jobs, because there is nothing to toss in.</p>
+<p>The Emeril Lagasse French-door unit in this set is deliberately both: its own listing calls it a multi-function air fryer toaster oven, the brand page enumerates ten functions (air fry, bake, broil, defrost, dehydrate, grill, proof, reheat, roast, warm), and it states a 26-quart chamber sized for four to six portions. That is the wide-flat shape with a fan, plus accessories.</p>
+
+<h2>Then do the counter arithmetic</h2>
+<p>This is the step people skip, and it is the one that decides whether the machine is in use in March or in a cupboard. Footprints, from what the manufacturers publish:</p>
+<p>The Chefman 6-quart dual basket is 13.38 × 11.81 inches and 10.63 inches tall, weighing 13.3 lb. The Emeril 26-quart is 15.8 inches wide, 16.9 inches deep and 14.8 inches tall. Neither brand publishes a wattage in the same place, so we do not have one; the Emeril page states 120 volts and no power figure, and the Chefman page states 1700 W at 120 V.</p>
+<p>Those numbers are the argument. An oven-style unit is roughly the width of a sheet pan and taller than a stand mixer's base, and a French-door unit needs clearance in front for the doors to open — which means the counter in front of it stops being counter. A drawer unit can live beside the stove with the drawer facing you, and it only needs depth for the drawer plus a bit of exhaust clearance.</p>
+<p>If the appliance has to share the counter with a kettle, a coffee machine and a knife block, count the appliances you are willing to put away each time you use it. If the answer is none, buy the smaller footprint.</p>
+
+<h2>What "multi-function" buys you, and what it does not</h2>
+<p>A function list is a claim about buttons, not about your habits. Ask what you would use this month:</p>
+<ul>
+<li><strong>Dehydrate</strong> — real, and only useful if you make jerky or dried fruit more than once a year.</li>
+<li><strong>Proof</strong> — genuinely useful for bread, at a temperature a normal oven cannot hold reliably.</li>
+<li><strong>Rotisserie</strong> — needs the spit, the space for it, and your willingness to clean a spit.</li>
+<li><strong>Reheat</strong> — the one almost everyone uses, and the reason a drawer air fryer earns its counter spot faster than an oven does.</li>
+</ul>
+<p>For the multi-function models in this set, our register records the four functions the Chefman 8-quart listing names (air fry, bake, dehydrate, frozen) and ten the Emeril brand page enumerates. Both are stated by the seller. Neither was verified by us, and neither tells you whether the function is worth the second counter position.</p>
+
+<h2>The two questions that settle it</h2>
+<p><strong>Do you toast?</strong> If yes, a drawer cannot do the job and an oven-style unit is the only one of the two that will. Toast is the most-repeated argument in favour of the flat chamber and it has nothing to do with air frying.</p>
+<p><strong>Do you cook for more than two at once?</strong> A 6-quart dual basket is two 3-quart cooks. An 8-quart drawer is one large cook at one temperature. A 26-quart oven is volume — but volume you have to preheat and wash around.</p>
+<p>If both answers are no, the drawer wins on friction, and friction is what keeps an appliance in use.</p>
+
+<h2>A cheap test before you order</h2>
+<p>Put a sheet of paper on the counter where the machine would live and leave it for a day. Then, while you cook dinner, count how many times you reach for your full-size oven for something small. Two or three times a week is a real case for a second chamber. Once a month is not.</p>
+`,
+    takeaways: [
+      "A drawer is for things you toss. An oven is for things that lie flat, including toast.",
+      "French-door doors need clearance: the counter in front of the machine stops being counter.",
+      "A function list describes buttons, not your habits. Ask what you would use this month.",
+      "If you toast or you cook flat and large, a drawer cannot do the job."
+    ]
+  },
+  {
+    slug: "five-questions",
+    number: "07",
+    title: "Five questions to ask before buying any small kitchen appliance",
+    dek: "Not air-fryer questions. Appliance questions. Ask them of a pocket thermometer and a 26-quart countertop oven alike, and most buyer regret disappears before you click buy.",
+    category: "air-fryers",
+    readingTime: "6 min",
+    topics: ["buyer checklist", "counter space", "warranty"],
+    art: "counter",
+    crossCategory: true,
+    intro: `Every guide on this site exists because one of these five questions went unanswered. They are written as a checklist you can use on any countertop appliance — including the two thermometers and three air fryers in our register, which we use as worked examples rather than as recommendations.`,
+    body: `
+<h2>1. Where exactly will it live?</h2>
+<p>Not "on the counter". Which stretch of counter, and what does it displace. A footprint is two numbers and a height, and it is often published — the Chefman 6-quart dual basket states 13.38 × 11.81 × 10.63 in; the Emeril brand page states 16.9 × 15.8 × 14.8 in — but it is usually buried below the food photography, so search the spec block for it before you decide.</p>
+<p>If the published listing has no dimensions, that is information too. Our register leaves the Chefman 8-quart's dimensions blank and marked unverified, because the brand publishes dimensions for a matte-black 8-quart SKU (RJ38-8T-BLACK) while this listing describes stainless steel, and borrowing numbers across SKUs is exactly how a spec table becomes fiction.</p>
+
+<h2>2. What does the manufacturer claim versus what does the listing claim?</h2>
+<p>They are different documents and they disagree. The ThermoMaven brand page describes the unit as 100% waterproof and publishes no IP code; the Amazon listing title states IP67. Our register keeps both, attributed separately, and warns you not to read the listing's IP number as a manufacturer spec.</p>
+<p>Do the same check yourself in about thirty seconds: open the brand's own product page for the model number on the box, and compare. Where the two disagree, believe neither fully — and never let a retailer's bullet points teach you a spec the manufacturer will not sign.</p>
+
+<h2>3. Which SKU am I actually buying?</h2>
+<p>Small appliances come in families: same name, different contents. The CHEF iQ Sense family on Amazon includes a two-probe Gen3 and a three-probe Gen3 with the same marketing copy, plus a limited-edition colourway; the count in the title is the difference, and it is the difference that matters if you cook two things at once.</p>
+<p>Same brand, same model line: the Chefman 6-quart dual basket listing and the brand's TurboFry Touch Dual-Window page match on capacity, two 3-quart baskets, Sync Finish, Hi-Fry and dishwasher-safe baskets. The brand page names model RJ38-SQPF-3TDB-2W. The listing title does not name it. Check the model number on the box when it arrives, because the warranty follows the model, not the review count.</p>
+
+<h2>4. What does ownership cost that the price does not show?</h2>
+<p>Three things the box never mentions: parts, filters and counter friction.</p>
+<ul>
+<li><strong>Parts.</strong> Nonstick baskets wear. Before buying, check whether the brand sells replacement baskets — Chefman sells accessories on its own store, which is a real signal about how long the machine stays useful.</li>
+<li><strong>Cleaning.</strong> "Dishwasher-safe" in a listing is a seller's description of a coating, not a guarantee about your dishwasher. Our register marks those rows as claims, not verified facts.</li>
+<li><strong>Friction.</strong> An appliance that needs a preheat, a shake and a sink of washing competes with the oven. If it loses that race, it becomes a storage problem.</li>
+</ul>
+
+<h2>5. What is the warranty, and what do I have to do to keep it?</h2>
+<p>Read the warranty paragraph on the manufacturer's page, not the listing. Two of the five products in our register show why this is a question and not a formality: the Chefman brand page states a one-year assurance, while ThermoMaven's terms are written to run for the life of the unit <em>conditional on registering within 30 days of purchase</em>. A promise you have to activate in the first month is a subscription you forgot to cancel in reverse — and neither of those sentences is a claim we are making about your coverage. The exact wording is on each product's page with the source that publishes it.</p>
+<p>Set the reminder the day it arrives. Then answer the earlier questions again: if the counter does not have room, no warranty rescues the purchase.</p>
+
+<h2>What we cannot answer for you</h2>
+<p>Whether you will like cooking with it. Nobody can, and any site that claims to know either tested the product or invented the answer. This site did neither — see how these guides are written.</p>
+`,
+    takeaways: [
+      "Footprint first: which stretch of counter, and what it displaces.",
+      "Compare the manufacturer's page with the listing; where they disagree, keep both claims apart.",
+      "Identify the SKU by model number, not by marketing title.",
+      "Read the warranty on the brand page — some of them have a deadline."
+    ]
   }
 ];
+
+/* ------------------------------------------------------------
+   Decision finder — the chooser on the front page and the hubs.
+   Rules are transparent and shipped in the page; nothing is
+   recorded or sent anywhere. Scoring cites only verified rows.
+   ------------------------------------------------------------ */
+export const finder = {
+  intro: "Three questions, then a short answer with the reason attached. Nothing here is stored, sent or scored against you — the logic is on this page and you can read it.",
+  resultNote: "This is a match against published specifications, not a test result. Nobody at Counter Space has cooked with these machines.",
+  questions: [
+    {
+      id: "household",
+      ask: "How many people are you cooking for, most nights?",
+      options: [
+        { id: "one-two", label: "One or two", points: { "chefman-8-quart-turbofry": 2, "chefman-6-quart-dual-basket": 2 } },
+        { id: "three-four", label: "Three or four", points: { "chefman-6-quart-dual-basket": 3, "chefman-8-quart-turbofry": 2 } },
+        { id: "five-plus", label: "Five or more, or I cook in batches", points: { "emeril-lagasse-26qt-french-door": 4, "chefman-8-quart-turbofry": 1 } }
+      ]
+    },
+    {
+      id: "shape",
+      ask: "What usually goes in: a pile you can shake, or something that has to lie flat?",
+      options: [
+        { id: "pile", label: "A pile — fries, wings, roasted vegetables", points: { "chefman-8-quart-turbofry": 3, "chefman-6-quart-dual-basket": 2 } },
+        { id: "flat", label: "Flat — a tray, a pizza, toast, a whole bird", points: { "emeril-lagasse-26qt-french-door": 4 } },
+        { id: "both", label: "Both, and I want them at the same time", points: { "chefman-6-quart-dual-basket": 4, "emeril-lagasse-26qt-french-door": 1 } }
+      ]
+    },
+    {
+      id: "thermo",
+      ask: "Do you already own a meat thermometer you trust?",
+      options: [
+        { id: "no", label: "No — I cut into things and hope", points: { "thermomaven-1-sec-thermometer": 3, "chef-iq-sense-gen3": 1 } },
+        { id: "instant", label: "An instant-read, and I cook long roasts too", points: { "chef-iq-sense-gen3": 3 } },
+        { id: "yes", label: "Yes, and it works", points: {} }
+      ]
+    }
+  ],
+  reasons: {
+    "chefman-6-quart-dual-basket": "Two independent 3-quart baskets at two temperatures, with a Sync Finish that holds the faster one — the answer to the two-part dinner, in a 13.38 × 11.81 in footprint.",
+    "chefman-8-quart-turbofry": "One big 8-quart drawer at one temperature, with a Hi-Fry finish the listing puts at 450°F for the last two minutes. Simplest to use, easiest to forget about.",
+    "emeril-lagasse-26qt-french-door": "A 26-quart chamber that takes a tray, listed by the brand for four to six people and ten functions. It replaces a toaster oven; it does not fit beside one.",
+    "thermomaven-1-sec-thermometer": "A one-second instant-read with no app, no pairing and one AAA battery, from a brand page that states ±0.5°F accuracy and a 30-day window for registering its warranty terms.",
+    "chef-iq-sense-gen3": "Three probes, four internal and one ambient sensor, Wi-Fi plus Bluetooth and a 1,000°F rating — leave-in monitoring for the long cook you do not want to babysit."
+  }
+};
+
+/* ------------------------------------------------------------
+   Artwork notes. Every image on this site is original and was
+   commissioned for the publication; none depicts a product.
+   ------------------------------------------------------------ */
+export const artwork = {
+  policy: "No Amazon product images, no stock photography of other appliances, and no manufacturer press files are used anywhere on this site. Program Content may not be stored or hot-linked outside approved tools, so every visual here is original artwork made for Counter Space and captioned as an illustration. It shows food and counters, never the products for sale, so nothing in a picture can be mistaken for the item a link leads to.",
+  figures: {
+    hero: {
+      src: "/assets/img/hero-counter.jpg",
+      alt: "Two-tone illustration of a kitchen counter with a sheet pan of roasted potatoes and broccoli, a wire basket of cut fries, a sliced steak on a board and a glass of water.",
+      caption: "Counter Space commission. An illustration, not a product image."
+    },
+    airflow: {
+      src: "/assets/img/figure-airflow.jpg",
+      alt: "Two-tone diagram-style illustration of air currents circling a sheet pan of food, with arrows indicating circulation.",
+      caption: "Moving hot air is the only thing the two formats genuinely share."
+    },
+    counter: {
+      src: "/assets/img/figure-counter.jpg",
+      alt: "Two-tone illustration of an empty countertop with a sheet of paper, a folded tape measure, a pencil and dashed outlines marking reserved space.",
+      caption: "The footprint test costs a sheet of paper and a day."
+    },
+    carving: {
+      src: "/assets/img/figure-carving.jpg",
+      alt: "Two-tone illustration of a sliced steak resting on a board with a thin probe drawn as a straight line into its centre and heat lines rising.",
+      caption: "A probe is a decision aid, not a scoreboard."
+    }
+  }
+};
 
 export const editorNote = {
   title: "How these recommendations were made",

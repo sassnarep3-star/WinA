@@ -180,3 +180,145 @@
 
   Array.prototype.forEach.call(document.querySelectorAll("table.data.sortable"), enhance);
 })();
+
+/* ============================================================
+   THE FINDER — three questions, one match, nothing recorded.
+   The five answer cards are already in the HTML with their
+   tagged sponsored anchors, so the compliance gate can see
+   them. This script only decides which card is showing.
+   ============================================================ */
+/* FINDER-START */
+(function () {
+  "use strict";
+
+  var form = document.querySelector("[data-finder-form]");
+  var blob = document.querySelector("[data-finder-data]");
+  var wrap = document.querySelector("[data-finder-result]");
+  var label = document.querySelector("[data-finder-label]");
+  if (!form || !blob || !wrap) return;
+
+  var data;
+  try {
+    data = JSON.parse(blob.textContent);
+  } catch (err) {
+    return; /* leave all five cards listed — still an answer */
+  }
+
+  var cards = {};
+  Array.prototype.forEach.call(wrap.querySelectorAll("[data-finder-card]"), function (el) {
+    cards[el.getAttribute("data-finder-card")] = el;
+  });
+
+  function showAll() {
+    Object.keys(cards).forEach(function (k) { cards[k].removeAttribute("hidden"); });
+    if (label) label.textContent = "All five, with the reason each one is here";
+  }
+
+  function tally() {
+    var answers = {};
+    Array.prototype.forEach.call(form.querySelectorAll("input[type=radio]:checked"), function (i) {
+      answers[i.name] = i.value;
+    });
+    return answers;
+  }
+
+  function score() {
+    var answers = tally();
+    var totals = {};
+    data.products.forEach(function (p) { totals[p.slug] = 0; });
+    var answered = 0;
+    data.questions.forEach(function (q) {
+      var pick = answers[q.id];
+      if (!pick) return;
+      answered += 1;
+      q.options.forEach(function (o) {
+        if (o.id !== pick) return;
+        Object.keys(o.points).forEach(function (slug) {
+          if (slug in totals) totals[slug] += o.points[slug];
+        });
+      });
+    });
+    return { totals: totals, answered: answered };
+  }
+
+  function update() {
+    var r = score();
+    var ranked = data.products
+      .map(function (p) { return { slug: p.slug, n: r.totals[p.slug] || 0 }; })
+      .sort(function (a, b) { return b.n - a.n; });
+
+    if (r.answered < data.questions.length) {
+      showAll();
+      if (label) {
+        label.textContent = r.answered === 0
+          ? "Answer the three questions to narrow it to one"
+          : "All five for now — " + (data.questions.length - r.answered) + " question(s) left";
+      }
+      Object.keys(cards).forEach(function (k) { cards[k].classList.remove("is-pick"); });
+      return;
+    }
+
+    var top = ranked[0];
+    if (top.n === 0) {
+      showAll();
+      if (label) label.textContent = "Nothing separates these three on your answers — all five are still honest picks";
+      return;
+    }
+
+    Object.keys(cards).forEach(function (k) {
+      var on = k === top.slug;
+      cards[k].toggleAttribute("hidden", !on);
+      cards[k].classList.toggle("is-pick", on);
+    });
+    var runners = ranked.filter(function (x) { return x.n > 0 && x.slug !== top.slug; });
+    if (label) {
+      label.textContent = "Your match, and why";
+    }
+    var bySlug = {};
+    data.products.forEach(function (p) { bySlug[p.slug] = p; });
+    Object.keys(cards).forEach(function (k) {
+      var also = cards[k].querySelector(".fmatch__also");
+      if (also) also.remove();
+    });
+    if (runners.length && cards[top.slug]) {
+      var p = document.createElement("p");
+      p.className = "fmatch__also";
+      p.innerHTML = "Also close: " + runners.slice(0, 2).map(function (x) {
+        return '<a href="' + bySlug[x.slug].href + '">' + bySlug[x.slug].name + "</a>";
+      }).join(", ") + ".";
+      cards[top.slug].appendChild(p);
+    }
+  }
+
+  form.addEventListener("change", update);
+  form.addEventListener("submit", function (ev) {
+    ev.preventDefault();
+    update();
+    var first = wrap.querySelector(".is-pick");
+    if (first && first.scrollIntoView) first.scrollIntoView({ behavior: "smooth", block: "center" });
+  });
+  var reset = form.querySelector("[data-finder-reset]");
+  if (reset) reset.addEventListener("click", function () { setTimeout(update, 0); });
+
+  Array.prototype.forEach.call(document.querySelectorAll(".pnav__card"), function (a) {
+    a.setAttribute("data-slot", "guide-nav");
+  });
+})();
+/* FINDER-END */
+
+/* ============================================================
+   MASTHEAD — condense on scroll so the strip stays reachable.
+   Presentational only; nothing is read or written elsewhere.
+   ============================================================ */
+(function () {
+  "use strict";
+  var head = document.getElementById("masthead");
+  if (!head || !("IntersectionObserver" in window)) return;
+  var sentinel = document.createElement("span");
+  sentinel.setAttribute("aria-hidden", "true");
+  sentinel.style.cssText = "display:block;height:1px;margin-top:-1px";
+  head.parentNode.insertBefore(sentinel, head);
+  new IntersectionObserver(function (entries) {
+    head.classList.toggle("is-stuck", !entries[0].isIntersecting);
+  }, { threshold: [0] }).observe(sentinel);
+})();

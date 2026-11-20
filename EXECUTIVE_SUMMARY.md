@@ -9,20 +9,20 @@ deliberately not live, what the last verification pass found, and what is waitin
 
 ## 1. Where the project stands
 
-A 30-page affiliate publication is live and indexed-by-sitemap, covering three air fryers and two
-meat thermometers, with **80 tagged outbound product links**. It is not a mockup: every page is
+A 32-page affiliate publication is live and indexed-by-sitemap, covering three air fryers and two
+meat thermometers, with **99 tagged outbound product links**. It is not a mockup: every page is
 generated from a data register, and three independent gates run on every push and pull request.
 
 | Surface | State |
 | --- | --- |
-| Reader pages | 30 total: front page + 404, 5 guides, 2 category hubs, 5 product pages, compare, register, a marketing kit, and the operations set (flagged, questions, suggestions, summary, dashboard, analytics, disclosure, privacy, about, seo, marketing, concept) |
-| Data registers | 5 products · 60 spec rows · 6 policy sources · 10 policy clauses quoted · 37 flag rows · 22 questions · 16 suggestions |
-| Verification mix | 32 `verified` · 14 `unverified` · 10 `withheld` · 4 `claim`; **36 rows carry a value, 24 are blank with a reason**, and 22 of the valued rows cite a manufacturer page directly rather than the listing |
-| Compliance | OA §5 statement verbatim on all 30 pages; the disclosure precedes the first sponsored link on every page (asserted by byte offset, not by eyeball); `rel="sponsored nofollow noopener"` + `?tag=shopnow047c-20` on all 80 product links; the 8 submitted short links render as declared non-affiliate citations (`rel="nofollow"`, no tag). Counts from `scripts/compliance-gate.mjs`, cross-checked by `scripts/check-site.mjs` at 94 Amazon links / 80 sponsored |
+| Reader pages | 32 total: front page + 404, 7 guides, 2 category hubs, 5 product pages, compare, register, a marketing kit and plan, and the operations set (flagged, questions, suggestions, summary, dashboard, analytics, disclosure, privacy, about, seo, concept) |
+| Data registers | 5 products · 64 spec rows · 6 policy sources · 10 policy clauses quoted · 43 flag rows · 27 questions · 28 suggestions · 10 logged decisions |
+| Verification mix | 35 `verified` · 13 `unverified` · 10 `withheld` · 6 `claim`; **41 rows carry a value, 23 are blank with a reason**, and 27 of the valued rows cite a manufacturer page directly rather than the listing |
+| Compliance | OA §5 statement verbatim on all 32 pages; the disclosure precedes the first sponsored link on every page (asserted by byte offset, not by eyeball); `rel="sponsored nofollow noopener"` + `?tag=shopnow047c-20` on all 99 product links; the submitted short links render as declared non-affiliate citations (`rel="nofollow"`, no tag). Counts from `scripts/compliance-gate.mjs` (1,220 checks, 0 failing, 1 warning by design), cross-checked by `scripts/check-site.mjs` at 116 Amazon links / 99 sponsored, 1,316 internal links |
 | Measurement | Five events defined; collector written but **not deployed**, so the client is inert by design |
 | Money | **Zero** revenue claims; ledger holds 0 rows, by policy |
-| Gates | Three checkers, all green (~1,076 compliance assertions, 1,118 internal links verified, the builder's own 9 gates). CI fails if generated output is not committed, the build is not reproducible, or a compliance rule breaks — and Pages' deploy job now runs the compliance gate too, so a regression stops the release rather than reddening a check |
-| History | Four prior session builds preserved under `archive/` (83 files), nothing deleted |
+| Gates | Four checkers, all green (1,220 compliance assertions, 1,316 internal links verified, the builder's own gates including the voice and imagery rules added on 2026-11-20). CI fails if generated output is not committed, the build is not reproducible, or a compliance rule breaks — and Pages' deploy job now runs the compliance gate too, so a regression stops the release rather than reddening a check |
+| History | Four prior session builds preserved under `archive/` (64 served files plus the full archive), nothing deleted |
 
 ## 2. What the product question turned out to be
 
@@ -139,3 +139,49 @@ a row without dated first-party provenance is rejected by the gate.
 `node scripts/check-site.mjs` and `node _src/build.mjs` on this tree on 2026-11-20, and every claim
 on the site traces to a row in `data/policy.json` or `data/products.json`. The site's own copy of
 this summary is generated at `/summary/` from the same data, so the two cannot drift.*
+
+---
+
+## 8. Session `arena-3818c975-wina` — 2026-11-20 — the design brief, implemented (T26)
+
+**The problem this session solved.** Earlier sessions answered "make it read like a shop, not an audit"
+by *recommending* a fix: a design brief (DB-01…DB-08), eight suggestions (SUG-17…SUG-24) and a topic
+roadmap, all published on `/suggestions/` and none of them built. The register was impeccable and the
+pages still looked like a register. T26 implements the accepted parts of that brief and records every
+choice in the decision log the brief asked for, so the next reviewer sees what was accepted, what was
+deferred and why.
+
+**What shipped, and what it is for**
+
+| Change | Reader effect | What it is not |
+| --- | --- | --- |
+| Four commissioned illustrations (`assets/img/`), each captioned *original artwork — not a product image* | The site has a visual language: warm paper, one accent, an editorial band under the hero and a figure per hub and guide | Not Amazon Program Content, not stock photography of an appliance, not a depiction of any product for sale — FLG-007 and DB-07 still bind |
+| Two figures drawn to scale from the register: top-view counter footprint (158 in² vs 267 in², "69% more counter") and stated-capacity squares | The two numbers that decide a countertop purchase, comparable at a glance, each citing the brand page it came from | Not a ranking. The 8-quart's footprint is drawn as an empty dashed box, because the brand publishes dimensions for a different SKU (FLG-028) |
+| The three-question chooser (`/#finder`) | A reader who does not know what to browse gets an answer with the reason attached, in thirty seconds | Not an algorithm. Weights are editorial and unmeasured — FLG-039 says so on the page and in the register |
+| Guide furniture: contents list, previous/next, and a computed cluster block | Each guide is one page in a set instead of a page standing alone | Not hand-maintained links: the cluster is derived from `guideTopics`, so it cannot rot |
+| Two guides promoted from the roadmap (06 basket-or-oven vs toaster oven, 07 the five-question checklist) | The cadence claimed by SUG-21 has now shipped once; the pillar guide is the one that links to everything | Not popularity claims. Both titles are still hypotheses, and the roadmap says so |
+| The voice rule: 42 banned filler phrases, published on `/about/` and enforced at build | Boilerplate cannot be published by accident; a planted "we tested these machines" fails the build, and was tested by injection | Not a copy editor. It catches the tells, not bad writing |
+| Four gates instead of three, plus the finder's anchors written into the HTML rather than created at run time | The compliance gate can see every sponsored link the chooser shows | Not decoration: the same image and figure rules fail the release if an asset is missing, unattributed, or drawn from a number the register does not carry |
+
+**Verification performed here, first-hand, 2026-11-20.** The five `link.amazon` short links were
+re-opened: four returned Amazon's home page and one a fetch error, against the product-page
+destinations four earlier sessions recorded the same day — so the behaviour is not reproducible on
+command and both observations are now dated in the register (FLG-036). Product identity does not
+depend on it: `B0CDY277D3`, `B0DHZTCNR5` and `B0DZFD6R9Z` were re-read from their listing pages title
+for title. The Chefman and Emeril brand pages were re-read for every figure the new diagrams display
+(capacity, wattage, dimensions, height, weight, presets, functions, serving range, warranty, voltage),
+which filled six previously blank specification rows with citations and downgraded two rows to `claim`
+where the brand's own page contradicts itself (24 vs 25 presets; six vs seven accessories). No value
+was inferred: the Emeril wattage row stays blank because the brand page publishes 120 volts and no
+power figure, and that reasoning is now a published question (Q-27) rather than a silent gap.
+
+**New register rows.** FLG-036 (short-link resolution is not stable), FLG-037 (open PRs #26/#28 would
+replace the live site with parallel builds — logged, not merged), FLG-038 (the imagery decision and the
+PA-API route that would end it), FLG-039 (the chooser's weights are unmeasured); FLG-029 extended with
+this session's re-read; five new questions (Q-23…Q-27); four new suggestions (SUG-25…SUG-28); ten
+decision-log entries.
+
+**Gates on the final tree.** `node _src/build.mjs`: 32 pages, 31 in sitemap, all gates clear.
+`node scripts/check-site.mjs`: 1,316 internal links, 116 Amazon links (99 sponsored), safe to publish.
+`node scripts/compliance-gate.mjs`: 1,220 checks, 0 failing, 1 warning (FLG-024, by design).
+`node scripts/publish-gate.mjs`: 4 checks, 0 failing. Two builds, byte-identical output.

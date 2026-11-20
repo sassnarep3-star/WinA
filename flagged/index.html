@@ -16,6 +16,12 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Flagged for review — Counter Space">
 <meta name="twitter:description" content="Every item this build could not resolve or deliberately withheld, with a source link and the specific action that would close it.">
+<meta name="twitter:image" content="https://sassnarep3-star.github.io/WinA/assets/img/hero-counter.jpg">
+<meta name="twitter:image:alt" content="Two-tone illustration of a kitchen counter with a sheet pan of roasted potatoes and broccoli, a wire basket of cut fries, a sliced steak on a board and a glass of water.">
+<meta property="og:image" content="https://sassnarep3-star.github.io/WinA/assets/img/hero-counter.jpg">
+<meta property="og:image:alt" content="Two-tone illustration of a kitchen counter with a sheet pan of roasted potatoes and broccoli, a wire basket of cut fries, a sliced steak on a board and a glass of water.">
+<meta name="theme-color" content="#fbf8f3">
+<link rel="icon" href="/WinA/assets/img/favicon.svg" type="image/svg+xml">
 <link rel="alternate" type="application/rss+xml" title="Counter Space" href="/WinA/feed.xml">
 <link rel="stylesheet" href="/WinA/assets/css/site.css">
 <script>window.CS_CONFIG={analyticsEnabled:false,analyticsEndpoint:""};</script>
@@ -24,7 +30,7 @@
 <body data-page-type="page">
 <a class="skip" href="#main">Skip to content</a>
 
-<header class="masthead">
+<header class="masthead" id="masthead">
   <div class="wrap masthead__inner">
     <a class="brand" href="/WinA/">
       <span class="brand__mark" aria-hidden="true">C</span>
@@ -32,6 +38,7 @@
       <span class="brand__sub">Kitchen gear, judged honestly</span>
     </a>
     <nav class="nav" aria-label="Primary"><a href="/WinA/air-fryers/">Air fryers</a><a href="/WinA/thermometers/">Thermometers</a><a href="/WinA/guides/">Guides</a><a href="/WinA/compare/">Compare</a><a href="/WinA/about/">About</a></nav>
+    <a class="nav__cta" href="/WinA/#finder">Find yours</a>
   </div>
 </header>
 
@@ -146,6 +153,21 @@
           <td><span class="pill pill--review">review</span></td>
           <td><a href="https://sellercentral.amazon.com/seller-forums/discussions/t/1e22c5df-d27a-4e2b-a0c1-90938b6cdcdc" rel="noopener" target="_blank">open</a></td>
         </tr><tr>
+          <td><code>FLG-036</code></td>
+          <td>Re-tested: four of the five submitted short links landed on Amazon's home page, not the product</td>
+          <td><span class="pill pill--review">review</span></td>
+          <td><a href="https://link.amazon/B04G1MEwY" rel="nofollow noopener" target="_blank" data-nonaffiliate="true">open</a></td>
+        </tr><tr>
+          <td><code>FLG-038</code></td>
+          <td>The site now carries original artwork; a licensed product-image route is still not available</td>
+          <td><span class="pill pill--review">review</span></td>
+          <td><a href="https://affiliate-program.amazon.com/help/operating/policies" rel="noopener" target="_blank">open</a></td>
+        </tr><tr>
+          <td><code>FLG-039</code></td>
+          <td>The front-page chooser maps answers to products by hand, with no measured conversion data behind the weights</td>
+          <td><span class="pill pill--review">review</span></td>
+          <td><a href="https://support.google.com/analytics/answer/9268149" rel="noopener" target="_blank">open</a></td>
+        </tr><tr>
           <td><code>FLG-002</code></td>
           <td>Submitted links carry no Associates tag of their own</td>
           <td><span class="pill pill--action">action</span></td>
@@ -180,6 +202,11 @@
           <td>Search Console: parallel row SG-29 is not done — no verification is recorded</td>
           <td><span class="pill pill--action">action</span></td>
           <td><a href="https://developers.google.com/search/docs/crawling-indexing/sitemaps/build-sitemap" rel="noopener" target="_blank">open</a></td>
+        </tr><tr>
+          <td><code>FLG-037</code></td>
+          <td>Two open pull requests would replace the published site with parallel builds</td>
+          <td><span class="pill pill--action">action</span></td>
+          <td><a href="https://github.com/sassnarep3-star/WinA/pulls" rel="noopener" target="_blank">open</a></td>
         </tr><tr>
           <td><code>FLG-005</code></td>
           <td>No prices shown</td>
@@ -317,7 +344,7 @@
   </article><article class="note note--warn" style="margin-bottom:1.25rem">
     <p class="note__title">FLG-029 <span class="pill pill--review">review</span></p>
     <h3 style="font-family:var(--serif);font-size:1.15rem;margin:.2rem 0 .5rem;color:var(--ink)">Emeril's own page contradicts the Amazon listing on preset count</h3>
-    <p style="margin:0 0 .6rem">emerileveryday.com states '25 Cooking Pre-sets' in its specification block and '10-in-1' in the product description; the Amazon listing states 24 one-touch presets. Three different numbers for one feature.</p>
+    <p style="margin:0 0 .6rem">emerileveryday.com states '25 Cooking Pre-sets' in its specification block and '10-in-1' in the product description; the Amazon listing states 24 one-touch presets. Three different numbers for one feature. Re-read 2026-11-20: the brand page's own spec block still reads &quot;25 Cooking Pre-sets&quot; while its description says &quot;24 one-touch cooking presets&quot;, its accessory paragraph says seven where the Amazon listing names six, and it publishes &quot;120 volts&quot; with no wattage anywhere — so the Wattage row stays blank by choice, not by omission.</p>
     <p style="margin:0 0 .6rem"><strong>What we did:</strong> Recorded as 24 (the listing) with the manufacturer figure noted. Neither is published as settled. Unchanged from FLG-005's finding, now with the third number and its URL.</p>
     <p class="small" style="margin:0"><a href="https://www.emerileveryday.com/products/emeril_lagasse_french_door_airfryer_360" rel="noopener" target="_blank">Emeril Everyday specification block</a></p>
   </article><article class="note note--warn" style="margin-bottom:1.25rem">
@@ -363,6 +390,24 @@
     <p style="margin:0 0 .6rem"><strong>What we did:</strong> Owner: decide whether the intended-ASIN field should be filled from the submitted link (FLG-019). If the rationale is kept, cite an Amazon Help page for the definition before publishing it.</p>
     <p class="small" style="margin:0"><a href="https://sellercentral.amazon.com/seller-forums/discussions/t/1e22c5df-d27a-4e2b-a0c1-90938b6cdcdc" rel="noopener" target="_blank">Seller Central forum thread (not Amazon Help; definition not confirmed as Amazon's)</a></p>
   </article><article class="note note--warn" style="margin-bottom:1.25rem">
+    <p class="note__title">FLG-036 <span class="pill pill--review">review</span></p>
+    <h3 style="font-family:var(--serif);font-size:1.15rem;margin:.2rem 0 .5rem;color:var(--ink)">Re-tested: four of the five submitted short links landed on Amazon's home page, not the product</h3>
+    <p style="margin:0 0 .6rem">On 2026-11-20 this session opened the submitted links again with the same fetch tool earlier sessions used. link.amazon/B04G1MEwY, /B02NbDxp3, /B00hJ57DV and /B0c8moW59 each returned https://www.amazon.com/ with the page title &quot;Amazon.com. Spend less. Smile more.&quot; — the storefront, not a listing. /B0f3GKalj returned a fetch error. An earlier attempt of the same fetch on B04G1MEwY had returned the product page (https://www.amazon.com/dp/B0CDY277D3), so the behaviour is not stable across requests, and this register does not know why. This is not a finding that the links are invalid — that question stays unresolved exactly as FLG-003 records it, and no reader of this site is affected: every outbound product link on the site is a tagged amazon.com/dp/&lt;ASIN&gt; link built from the observed destination, never from the short link. What it does establish is that the destination recorded on 2026-11-20 by four sessions is not reproducible on command, so the register keeps each observation dated and attributed instead of asserting one canonical destination. Product identity itself does not depend on the short links: B0CDY277D3, B0DHZTCNR5 and B0DZFD6R9Z were re-read directly from their listing pages by this session and match data/products.json title for title.</p>
+    <p style="margin:0 0 .6rem"><strong>What we did:</strong> Owner: run the one live click test already listed as Q-03 — open a short link on a phone, confirm the product page, and confirm the click appears in the Associates report within 48 hours. If a short link does not reach its product on a phone either, stop circulating the short links and publish the tagged /dp/ form only. No further action is taken from here.</p>
+    <p class="small" style="margin:0"><a href="https://link.amazon/B04G1MEwY" rel="nofollow noopener" target="_blank" data-nonaffiliate="true">Submitted short link, re-opened 2026-11-20 (returned the amazon.com home page on this attempt)</a></p>
+  </article><article class="note note--warn" style="margin-bottom:1.25rem">
+    <p class="note__title">FLG-038 <span class="pill pill--review">review</span></p>
+    <h3 style="font-family:var(--serif);font-size:1.15rem;margin:.2rem 0 .5rem;color:var(--ink)">The site now carries original artwork; a licensed product-image route is still not available</h3>
+    <p style="margin:0 0 .6rem">FLG-007 recorded that no product imagery could be shown, because Program Content may not be stored or hot-linked outside approved tools and there is no Product Advertising API credential. The design brief that followed (DB-07) told the site to stay typographic until that changes. This session resolved to do better than bare typography within the same constraint: four original illustrations were commissioned for the publication, drawn on the site's own palette, captioned on the page as artwork and not product images, and checked by a build gate that fails if any image is not served from /assets/img/, lacks alt text, or carries an Amazon, stock-library or third-party host in its src. What remains unresolved is a decision, not a defect: whether commissioned illustration is the visual language the owner wants for a shop, or whether the site should hold its appearance flat until PA-API access grants real product imagery.</p>
+    <p style="margin:0 0 .6rem"><strong>What we did:</strong> Owner: approve or reject the illustration direction on /suggestions/ (SUG-27 is the PA-API request that would settle it). Do not upload Amazon product images to this repo: they cannot be licensed by storage, only by the approved tools.</p>
+    <p class="small" style="margin:0"><a href="https://affiliate-program.amazon.com/help/operating/policies" rel="noopener" target="_blank">Associates Program Policies (content and API restrictions)</a></p>
+  </article><article class="note note--warn" style="margin-bottom:1.25rem">
+    <p class="note__title">FLG-039 <span class="pill pill--review">review</span></p>
+    <h3 style="font-family:var(--serif);font-size:1.15rem;margin:.2rem 0 .5rem;color:var(--ink)">The front-page chooser maps answers to products by hand, with no measured conversion data behind the weights</h3>
+    <p style="margin:0 0 .6rem">The finder asks three questions and shows one of the five products with the reason that produced it. Its weights were assigned by an editor reading the register — two points for a household fit, four for a decisive form-factor answer — and nothing more. It is a presentation of published specifications in question form, not a recommendation engine, and the page says so under the match. No click, dwell or conversion data exists to tune it against: the analytics collector is still not deployed (FLG-011) and no first-party report has been received, so any claim that the finder improves conversion would be invented.</p>
+    <p style="margin:0 0 .6rem"><strong>What we did:</strong> Owner: after the collector is deployed, compare clicks on anchors with data-slot=&quot;finder&quot; against data-slot=&quot;card&quot; over at least 500 sessions before changing any weight; until then the weights stay editorial and labelled as such.</p>
+    <p class="small" style="margin:0"><a href="https://support.google.com/analytics/answer/9268149" rel="noopener" target="_blank">Google Analytics 4 event reporting (a measured comparison needs an event pipeline)</a></p>
+  </article><article class="note note--warn" style="margin-bottom:1.25rem">
     <p class="note__title">FLG-002 <span class="pill pill--action">action</span></p>
     <h3 style="font-family:var(--serif);font-size:1.15rem;margin:.2rem 0 .5rem;color:var(--ink)">Submitted links carry no Associates tag of their own</h3>
     <p style="margin:0 0 .6rem">The submitted link.amazon URLs resolve to plain product pages. No tag parameter was observed on them, so they do not by themselves attribute a purchase to shopnow047c-20.</p>
@@ -389,7 +434,7 @@
   </article><article class="note note--warn" style="margin-bottom:1.25rem">
     <p class="note__title">FLG-013 <span class="pill pill--action">action</span></p>
     <h3 style="font-family:var(--serif);font-size:1.15rem;margin:.2rem 0 .5rem;color:var(--ink)">Content volume is below the Associates review bar</h3>
-    <p style="margin:0 0 .6rem">Amazon's Associates Help, 'Application Review Process' (checked 2026-11-20, US help topic G8TW5AE9XL2VX9VM), says: &quot;All Sites must have robust original content (even when advertising is removed) – a good rule of thumb is at least 10 posts.&quot; It also says: &quot;Content on your website must be recent (generally within the last 60 days).&quot; This site has 5 guides and 5 product pages. Amazon does not say whether product and hub pages count as posts, but 5 guides is below the rule of thumb on any reading. The account's own status and review history are unknown from here. Carried forward from the parallel-session register (arena-2ca62ce9, FLG-010), which found this first.</p>
+    <p style="margin:0 0 .6rem">Amazon's Associates Help, 'Application Review Process' (checked 2026-11-20, US help topic G8TW5AE9XL2VX9VM), says: &quot;All Sites must have robust original content (even when advertising is removed) – a good rule of thumb is at least 10 posts.&quot; It also says: &quot;Content on your website must be recent (generally within the last 60 days).&quot; This site has 7 guides and 5 product pages. Amazon does not say whether product and hub pages count as posts, but 7 guides is below the rule of thumb on any reading of it, and the count only rises if the publishing cadence is kept going. The account's own status and review history are unknown from here. Carried forward from the parallel-session register (arena-2ca62ce9, FLG-010), which found this first.</p>
     <p style="margin:0 0 .6rem"><strong>What we did:</strong> Do not submit or re-submit for review until the site has at least 10 posts and content dated within the last 60 days. The weekly cadence in the suggestions register (SUG-05) is the proposed path. Recorded as a commercial blocker, not a content-quality one.</p>
     <p class="small" style="margin:0"><a href="https://affiliate-program.amazon.com/help/node/topic/G8TW5AE9XL2VX9VM" rel="noopener" target="_blank">Associates Help: Application Review Process (checked 2026-11-20)</a></p>
   </article><article class="note note--warn" style="margin-bottom:1.25rem">
@@ -404,6 +449,12 @@
     <p style="margin:0 0 .6rem">The brief names SG-29 as the Search Console row. No Search Console verification is recorded in this repository, and no sitemap submission is recorded. The build does generate a sitemap, which lists every page. Every page currently carries a placeholder verification meta tag, which is not a verification (see FLG-025).</p>
     <p style="margin:0 0 .6rem"><strong>What we did:</strong> Account owner: verify the site in Search Console, submit the sitemap, and replace the placeholder tag with the real token (FLG-025). This needs a Google account and is not something the build can do.</p>
     <p class="small" style="margin:0"><a href="https://developers.google.com/search/docs/crawling-indexing/sitemaps/build-sitemap" rel="noopener" target="_blank">Google Search Central, Build and submit a sitemap</a></p>
+  </article><article class="note note--warn" style="margin-bottom:1.25rem">
+    <p class="note__title">FLG-037 <span class="pill pill--action">action</span></p>
+    <h3 style="font-family:var(--serif);font-size:1.15rem;margin:.2rem 0 .5rem;color:var(--ink)">Two open pull requests would replace the published site with parallel builds</h3>
+    <p style="margin:0 0 .6rem">PR #26 (arena/574fc8eb-wina) and PR #28 (arena/580f4c6d-wina) are open against main as of 2026-11-20, both reported CONFLICTING. Each adds its own root index.html, its own data/*.json, its own assets and its own guide set — a fifth and sixth site on a repo whose board already records four collisions and tells the next session not to merge them as-is. #28 additionally stores generated .jpg artwork under assets/img/, which is the same route this site took for its own original illustration layer, and #26 adds a campaign ledger CSV and a second analytics script. Neither is merged, and this session did not touch either branch. #2 (arena/2b309a82-wina) predates the current build too.</p>
+    <p style="margin:0 0 .6rem"><strong>What we did:</strong> Owner: close #2, #26 and #28, or ask for the parts still wanted to be ported into data/ and rebuilt. Merging either PR as it stands would serve two competing index.html files and re-open every conflict the board records.</p>
+    <p class="small" style="margin:0"><a href="https://github.com/sassnarep3-star/WinA/pulls" rel="noopener" target="_blank">Open pull requests on this repository</a></p>
   </article><article class="note note--stop" style="margin-bottom:1.25rem">
     <p class="note__title">FLG-005 <span class="pill pill--withheld">withheld</span></p>
     <h3 style="font-family:var(--serif);font-size:1.15rem;margin:.2rem 0 .5rem;color:var(--ink)">No prices shown</h3>
@@ -425,7 +476,7 @@
   </article><article class="note note--stop" style="margin-bottom:1.25rem">
     <p class="note__title">FLG-020 <span class="pill pill--withheld">withheld</span></p>
     <h3 style="font-family:var(--serif);font-size:1.15rem;margin:.2rem 0 .5rem;color:var(--ink)">No seasonal content, because there is no seasonal demand data</h3>
-    <p style="margin:0 0 .6rem">The brief asked for seasons and topic clusters. No seasonal query data was obtained from any source, so no seasonal calendar was invented. The five guides are editorial working titles, not popularity claims. Carried forward from arena-2ca62ce9 (FLG-015).</p>
+    <p style="margin:0 0 .6rem">The brief asked for seasons and topic clusters. No seasonal query data was obtained from any source, so no seasonal calendar was invented. The published guides are editorial working titles, not popularity claims. Carried forward from arena-2ca62ce9 (FLG-015).</p>
     <p style="margin:0 0 .6rem"><strong>What we did:</strong> Clusters exist as two product categories. Seasons wait for Search Console query data — choosing December topics from instinct is the failure mode being avoided.</p>
     <p class="small" style="margin:0"><a href="https://search.google.com/search-console" rel="noopener" target="_blank">Search Console (not yet verified)</a></p>
   </article><article class="note note--warn" style="margin-bottom:1.25rem">

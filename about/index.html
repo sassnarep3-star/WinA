@@ -16,6 +16,12 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="About and editorial standards — Counter Space">
 <meta name="twitter:description" content="What this site is, what it is not, and the one limitation you should know before trusting anything here.">
+<meta name="twitter:image" content="https://sassnarep3-star.github.io/WinA/assets/img/hero-counter.jpg">
+<meta name="twitter:image:alt" content="Two-tone illustration of a kitchen counter with a sheet pan of roasted potatoes and broccoli, a wire basket of cut fries, a sliced steak on a board and a glass of water.">
+<meta property="og:image" content="https://sassnarep3-star.github.io/WinA/assets/img/hero-counter.jpg">
+<meta property="og:image:alt" content="Two-tone illustration of a kitchen counter with a sheet pan of roasted potatoes and broccoli, a wire basket of cut fries, a sliced steak on a board and a glass of water.">
+<meta name="theme-color" content="#fbf8f3">
+<link rel="icon" href="/WinA/assets/img/favicon.svg" type="image/svg+xml">
 <link rel="alternate" type="application/rss+xml" title="Counter Space" href="/WinA/feed.xml">
 <link rel="stylesheet" href="/WinA/assets/css/site.css">
 <script>window.CS_CONFIG={analyticsEnabled:false,analyticsEndpoint:""};</script>
@@ -24,7 +30,7 @@
 <body data-page-type="page">
 <a class="skip" href="#main">Skip to content</a>
 
-<header class="masthead">
+<header class="masthead" id="masthead">
   <div class="wrap masthead__inner">
     <a class="brand" href="/WinA/">
       <span class="brand__mark" aria-hidden="true">C</span>
@@ -32,6 +38,7 @@
       <span class="brand__sub">Kitchen gear, judged honestly</span>
     </a>
     <nav class="nav" aria-label="Primary"><a href="/WinA/air-fryers/">Air fryers</a><a href="/WinA/thermometers/">Thermometers</a><a href="/WinA/guides/">Guides</a><a href="/WinA/compare/">Compare</a><a href="/WinA/about/" aria-current="page">About</a></nav>
+    <a class="nav__cta" href="/WinA/#finder">Find yours</a>
   </div>
 </header>
 
@@ -77,6 +84,15 @@
 
 <h2>What is still unresolved</h2>
 <p>Plenty. A page listing every open question, and what would settle each one, is published at <a href="/WinA/questions/">Open questions</a>. It is not a marketing page. It is the actual list.</p>
+
+<h2 id="design">How this page is designed, and what it will not do</h2>
+<p>No Amazon product images, no stock photography of other appliances, and no manufacturer press files are used anywhere on this site. Program Content may not be stored or hot-linked outside approved tools, so every visual here is original artwork made for Counter Space and captioned as an illustration. It shows food and counters, never the products for sale, so nothing in a picture can be mistaken for the item a link leads to.</p>
+<p>A second rule is written into the build: the phrases that give a generated marketing page away are banned here, and the build fails if one appears. Not because any of them is illegal — because a reader who has seen that marketing voice forty times stops believing anything else on the page.</p>
+<p class="small muted" data-voice-list>Banned in every reader page, enforced by <code>_src/build.mjs</code>: &ldquo;elevate&rdquo;, &ldquo;elevated&rdquo;, &ldquo;game-changer&rdquo;, &ldquo;game changer&rdquo;, &ldquo;revolutionize&rdquo;, &ldquo;revolutionary&rdquo;, &ldquo;seamless&rdquo;, &ldquo;seamlessly&rdquo;, &ldquo;curated&rdquo;, &ldquo;unleash&rdquo;, &ldquo;unlock the&rdquo;, &ldquo;dive into&rdquo;, &ldquo;delve&rdquo;, &ldquo;in today&rdquo;, &ldquo;must-have&rdquo;, &ldquo;top-notch&rdquo;, &ldquo;cutting-edge&rdquo;, &ldquo;state-of-the-art&rdquo;, &ldquo;next level&rdquo;, &ldquo;embark&rdquo;, &ldquo;tantalizing&rdquo;, &ldquo;tantalising&rdquo;, &ldquo;a testament to&rdquo;, &ldquo;symphony of&rdquo;, &ldquo;look no further&rdquo;, &ldquo;got you covered&rdquo;, &ldquo;beginner or a pro&rdquo;, &ldquo;whether you are a beginner&rdquo;, &ldquo;best in class&rdquo;, &ldquo;best-in-class&rdquo;, &ldquo;industry-leading&rdquo;, &ldquo;effortlessly&rdquo;, &ldquo;transform your kitchen&rdquo;, &ldquo;take your cooking&rdquo;, &ldquo;ultimate guide&rdquo;, &ldquo;miss out&rdquo;, &ldquo;act now&rdquo;, &ldquo;limited time&rdquo;, &ldquo;at the end of the day&rdquo;, &ldquo;in conclusion&rdquo;, &ldquo;synergy&rdquo;, &ldquo;holistic approach&rdquo;.</p>
+<p>A third rule is arithmetic. Where a figure can be drawn honestly it is drawn to scale from the register — the counter footprint, the stated capacity — and where a manufacturer has not published the number, the diagram shows the gap rather than a shape invented to fill it.</p>
+<h3>The design brief this build works from</h3>
+<ol class="dbrief"><li class="dbrief__item"><span class="dbrief__id">DB-01</span><p class="dbrief__text">Use an opinionated editorial type system: a serif display face for headlines and a clean sans for body, set in a clear hierarchy with generous line height and a readable measure.</p><p class="dbrief__c">Constraint: None. Keep contrast and a readable line length, especially on mobile.</p></li><li class="dbrief__item"><span class="dbrief__id">DB-02</span><p class="dbrief__text">Use a restrained, limited palette with one accent color. Avoid generic blue-to-purple gradients and neon highlights.</p><p class="dbrief__c">Constraint: WCAG contrast.</p></li><li class="dbrief__item"><span class="dbrief__id">DB-03</span><p class="dbrief__text">Do not use emoji or icons as decoration. Use a real icon set only where it carries meaning.</p><p class="dbrief__c">Constraint: None.</p></li><li class="dbrief__item"><span class="dbrief__id">DB-04</span><p class="dbrief__text">Vary section layouts: a strong editorial hero, a reading column for guides, and at least one non-card treatment per page. Do not repeat the identical card grid in every section.</p><p class="dbrief__c">Constraint: Mobile-first; keep tables and cards readable.</p></li><li class="dbrief__item"><span class="dbrief__id">DB-05</span><p class="dbrief__text">Keep the disclosure strip and sponsored labels exactly where policy requires, and design around them rather than treating them as an afterthought.</p><p class="dbrief__c">Constraint: FTC Disclosures 101 (hard to miss); Associates Operating Agreement §5.</p></li><li class="dbrief__item"><span class="dbrief__id">DB-06</span><p class="dbrief__text">Write in a concrete, human, opinionated voice using specifics and named trade-offs. Ban filler phrases and generic marketing boilerplate.</p><p class="dbrief__c">Constraint: FTC: no experience you do not have. The Associate statement stays verbatim.</p></li><li class="dbrief__item"><span class="dbrief__id">DB-07</span><p class="dbrief__text">Until compliant product imagery is available, keep the site typographic: color, type and a defined illustration or pattern system carry the design. Do not hot-link, store, or substitute Amazon imagery, and do not use stock photos of a different appliance.</p><p class="dbrief__c">Constraint: Participation Requirements §6(a); IP License. See FLG-007.</p></li><li class="dbrief__item"><span class="dbrief__id">DB-08</span><p class="dbrief__text">Make the sponsored status of every outbound product link visible at the link, and keep the Associate statement above the fold on every page.</p><p class="dbrief__c">Constraint: FTC 16 CFR 255.5; Associates OA §5; Program Policies.</p></li></ol>
+<p class="small">The brief is a working document on the <a href="/WinA/suggestions/">suggestions page</a>, where each recommendation carries the decision recorded for it. Two of its points could not be implemented from here and are flagged rather than quietly dropped: <a href="/WinA/flagged/">FLG-007</a> (no licensed route to product imagery until the Product Advertising API is approved) and <a href="/WinA/flagged/">FLG-034</a> (no brand source for a wordmark or photography brief).</p>
 </div>
 </section>
 </main>

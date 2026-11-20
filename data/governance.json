@@ -112,7 +112,7 @@
       "id": "FLG-013",
       "severity": "action",
       "title": "Content volume is below the Associates review bar",
-      "detail": "Amazon's Associates Help, 'Application Review Process' (checked 2026-11-20, US help topic G8TW5AE9XL2VX9VM), says: \"All Sites must have robust original content (even when advertising is removed) – a good rule of thumb is at least 10 posts.\" It also says: \"Content on your website must be recent (generally within the last 60 days).\" This site has 5 guides and 5 product pages. Amazon does not say whether product and hub pages count as posts, but 5 guides is below the rule of thumb on any reading. The account's own status and review history are unknown from here. Carried forward from the parallel-session register (arena-2ca62ce9, FLG-010), which found this first.",
+      "detail": "Amazon's Associates Help, 'Application Review Process' (checked 2026-11-20, US help topic G8TW5AE9XL2VX9VM), says: \"All Sites must have robust original content (even when advertising is removed) – a good rule of thumb is at least 10 posts.\" It also says: \"Content on your website must be recent (generally within the last 60 days).\" This site has 7 guides and 5 product pages. Amazon does not say whether product and hub pages count as posts, but 7 guides is below the rule of thumb on any reading of it, and the count only rises if the publishing cadence is kept going. The account's own status and review history are unknown from here. Carried forward from the parallel-session register (arena-2ca62ce9, FLG-010), which found this first.",
       "action": "Do not submit or re-submit for review until the site has at least 10 posts and content dated within the last 60 days. The weekly cadence in the suggestions register (SUG-05) is the proposed path. Recorded as a commercial blocker, not a content-quality one.",
       "sourceUrl": "https://affiliate-program.amazon.com/help/node/topic/G8TW5AE9XL2VX9VM",
       "sourceLabel": "Associates Help: Application Review Process (checked 2026-11-20)"
@@ -175,7 +175,7 @@
       "id": "FLG-020",
       "severity": "withheld",
       "title": "No seasonal content, because there is no seasonal demand data",
-      "detail": "The brief asked for seasons and topic clusters. No seasonal query data was obtained from any source, so no seasonal calendar was invented. The five guides are editorial working titles, not popularity claims. Carried forward from arena-2ca62ce9 (FLG-015).",
+      "detail": "The brief asked for seasons and topic clusters. No seasonal query data was obtained from any source, so no seasonal calendar was invented. The published guides are editorial working titles, not popularity claims. Carried forward from arena-2ca62ce9 (FLG-015).",
       "action": "Clusters exist as two product categories. Seasons wait for Search Console query data — choosing December topics from instinct is the failure mode being avoided.",
       "sourceUrl": "https://search.google.com/search-console",
       "sourceLabel": "Search Console (not yet verified)"
@@ -256,7 +256,7 @@
       "id": "FLG-029",
       "severity": "review",
       "title": "Emeril's own page contradicts the Amazon listing on preset count",
-      "detail": "emerileveryday.com states '25 Cooking Pre-sets' in its specification block and '10-in-1' in the product description; the Amazon listing states 24 one-touch presets. Three different numbers for one feature.",
+      "detail": "emerileveryday.com states '25 Cooking Pre-sets' in its specification block and '10-in-1' in the product description; the Amazon listing states 24 one-touch presets. Three different numbers for one feature. Re-read 2026-11-20: the brand page's own spec block still reads \"25 Cooking Pre-sets\" while its description says \"24 one-touch cooking presets\", its accessory paragraph says seven where the Amazon listing names six, and it publishes \"120 volts\" with no wattage anywhere — so the Wattage row stays blank by choice, not by omission.",
       "action": "Recorded as 24 (the listing) with the manufacturer figure noted. Neither is published as settled. Unchanged from FLG-005's finding, now with the third number and its URL.",
       "sourceUrl": "https://www.emerileveryday.com/products/emeril_lagasse_french_door_airfryer_360",
       "sourceLabel": "Emeril Everyday specification block"
@@ -350,6 +350,42 @@
       "action": "Owner: decide whether the intended-ASIN field should be filled from the submitted link (FLG-019). If the rationale is kept, cite an Amazon Help page for the definition before publishing it.",
       "sourceUrl": "https://sellercentral.amazon.com/seller-forums/discussions/t/1e22c5df-d27a-4e2b-a0c1-90938b6cdcdc",
       "sourceLabel": "Seller Central forum thread (not Amazon Help; definition not confirmed as Amazon's)"
+    },
+    {
+      "id": "FLG-036",
+      "severity": "review",
+      "title": "Re-tested: four of the five submitted short links landed on Amazon's home page, not the product",
+      "detail": "On 2026-11-20 this session opened the submitted links again with the same fetch tool earlier sessions used. link.amazon/B04G1MEwY, /B02NbDxp3, /B00hJ57DV and /B0c8moW59 each returned https://www.amazon.com/ with the page title \"Amazon.com. Spend less. Smile more.\" — the storefront, not a listing. /B0f3GKalj returned a fetch error. An earlier attempt of the same fetch on B04G1MEwY had returned the product page (https://www.amazon.com/dp/B0CDY277D3), so the behaviour is not stable across requests, and this register does not know why. This is not a finding that the links are invalid — that question stays unresolved exactly as FLG-003 records it, and no reader of this site is affected: every outbound product link on the site is a tagged amazon.com/dp/<ASIN> link built from the observed destination, never from the short link. What it does establish is that the destination recorded on 2026-11-20 by four sessions is not reproducible on command, so the register keeps each observation dated and attributed instead of asserting one canonical destination. Product identity itself does not depend on the short links: B0CDY277D3, B0DHZTCNR5 and B0DZFD6R9Z were re-read directly from their listing pages by this session and match data/products.json title for title.",
+      "action": "Owner: run the one live click test already listed as Q-03 — open a short link on a phone, confirm the product page, and confirm the click appears in the Associates report within 48 hours. If a short link does not reach its product on a phone either, stop circulating the short links and publish the tagged /dp/ form only. No further action is taken from here.",
+      "sourceUrl": "https://link.amazon/B04G1MEwY",
+      "sourceLabel": "Submitted short link, re-opened 2026-11-20 (returned the amazon.com home page on this attempt)"
+    },
+    {
+      "id": "FLG-037",
+      "severity": "action",
+      "title": "Two open pull requests would replace the published site with parallel builds",
+      "detail": "PR #26 (arena/574fc8eb-wina) and PR #28 (arena/580f4c6d-wina) are open against main as of 2026-11-20, both reported CONFLICTING. Each adds its own root index.html, its own data/*.json, its own assets and its own guide set — a fifth and sixth site on a repo whose board already records four collisions and tells the next session not to merge them as-is. #28 additionally stores generated .jpg artwork under assets/img/, which is the same route this site took for its own original illustration layer, and #26 adds a campaign ledger CSV and a second analytics script. Neither is merged, and this session did not touch either branch. #2 (arena/2b309a82-wina) predates the current build too.",
+      "action": "Owner: close #2, #26 and #28, or ask for the parts still wanted to be ported into data/ and rebuilt. Merging either PR as it stands would serve two competing index.html files and re-open every conflict the board records.",
+      "sourceUrl": "https://github.com/sassnarep3-star/WinA/pulls",
+      "sourceLabel": "Open pull requests on this repository"
+    },
+    {
+      "id": "FLG-038",
+      "severity": "review",
+      "title": "The site now carries original artwork; a licensed product-image route is still not available",
+      "detail": "FLG-007 recorded that no product imagery could be shown, because Program Content may not be stored or hot-linked outside approved tools and there is no Product Advertising API credential. The design brief that followed (DB-07) told the site to stay typographic until that changes. This session resolved to do better than bare typography within the same constraint: four original illustrations were commissioned for the publication, drawn on the site's own palette, captioned on the page as artwork and not product images, and checked by a build gate that fails if any image is not served from /assets/img/, lacks alt text, or carries an Amazon, stock-library or third-party host in its src. What remains unresolved is a decision, not a defect: whether commissioned illustration is the visual language the owner wants for a shop, or whether the site should hold its appearance flat until PA-API access grants real product imagery.",
+      "action": "Owner: approve or reject the illustration direction on /suggestions/ (SUG-27 is the PA-API request that would settle it). Do not upload Amazon product images to this repo: they cannot be licensed by storage, only by the approved tools.",
+      "sourceUrl": "https://affiliate-program.amazon.com/help/operating/policies",
+      "sourceLabel": "Associates Program Policies (content and API restrictions)"
+    },
+    {
+      "id": "FLG-039",
+      "severity": "review",
+      "title": "The front-page chooser maps answers to products by hand, with no measured conversion data behind the weights",
+      "detail": "The finder asks three questions and shows one of the five products with the reason that produced it. Its weights were assigned by an editor reading the register — two points for a household fit, four for a decisive form-factor answer — and nothing more. It is a presentation of published specifications in question form, not a recommendation engine, and the page says so under the match. No click, dwell or conversion data exists to tune it against: the analytics collector is still not deployed (FLG-011) and no first-party report has been received, so any claim that the finder improves conversion would be invented.",
+      "action": "Owner: after the collector is deployed, compare clicks on anchors with data-slot=\"finder\" against data-slot=\"card\" over at least 500 sessions before changing any weight; until then the weights stay editorial and labelled as such.",
+      "sourceUrl": "https://support.google.com/analytics/answer/9268149",
+      "sourceLabel": "Google Analytics 4 event reporting (a measured comparison needs an event pipeline)"
     }
   ],
   "ledger": {
