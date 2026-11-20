@@ -332,6 +332,129 @@ This guide is about the scheduling decision — what to move off the oven, in wh
       "Dual baskets solve two temperatures at small scale; a 26-quart chamber is the second-oven answer.",
       "A written sequence the night before beats any appliance feature."
     ]
+  },
+
+  {
+    slug: "hosting-season",
+    number: "08",
+    title: "Hosting this season: when does an oven-style air fryer earn its counter space?",
+    dek: "Holiday meals are the one week a countertop appliance has to punch above its size. Here is how to decide whether the big oven-style unit is a hosting tool — or just a big purchase that arrives in December.",
+    category: "air-fryers",
+    season: "Holiday 2026 edit",
+    readingTime: "6 min",
+    topics: ["hosting", "capacity", "counter space"],
+    intro: `November and December are when countertop cooking either proves itself or gets boxed up. If you are considering an oven-style air fryer for the hosting season, the honest question is not whether it cooks a crowd — it is whether the crowd arrives often enough to justify what the machine costs you in counter space the other fifty-one weeks.\n\nThis guide works through that trade with the verified figures from our register: what the large oven-style unit holds, what it occupies, and which meals each format in this set is actually built for.`,
+    body: `
+<h2>What a hosting week actually asks of a machine</h2>
+<p>A holiday meal is not one big cook. It is a main, two sides, something that needs the oven at a different temperature, and a window in which all of it has to land. That is a scheduling problem before it is an appliance problem — and it is where the three air fryers in this set diverge sharply.</p>
+<p>The Emeril Lagasse 26QT French-door unit is the only one here that can take a whole bird or a flat tray: 26 quarts (24.6 L), a French door, and six included cooking accessories. If the meal you are picturing needs the oven to be bigger than it already is, this is the shape that does it.</p>
+<p>The Chefman 6-quart dual basket is the sides machine: two independent 3-quart drawers at two temperatures, with a Sync Finish feature that holds the faster drawer so both land together. Roast potatoes in one, glazed carrots in the other, and the main is already in the big oven. That is a genuinely good hosting setup — and it is a supporting role, not the lead.</p>
+<p>The Chefman 8-quart TurboFry is the one-batch workhorse: 8 quarts at one temperature at a time, with a 450°F Hi-Fry burst for the final two minutes of a cycle. For a crowd, one temperature at a time is a queue. For a household of two hosting their parents, it may be plenty.</p>
+
+<h2>The counter-space question, answered with numbers</h2>
+<p>Hosting purchases are made in a hurry and live with you for years. The verified dimensions in our register are worth thirty seconds of attention: the Emeril unit is 16.9 deep × 15.8 wide × 14.8 high inches — roughly the footprint of a small microwave and the height of an upper cabinet. The dual-basket body is 13.38 × 11.81 × 10.63 inches: shorter, but wider than a single-basket unit of the same class.</p>
+<p>Dimensions for the 8-quart TurboFry were not confirmed from an official source and are left blank in our register rather than estimated. If that is the unit you are considering, measure it against the listing yourself before ordering — that blank is a real gap, not a rounding.</p>
+<p>The paper test still works: put a sheet of paper on the counter where the machine would live and leave it there for a day. If the hosting season is the only time you are glad it is there, it does not live on the counter — and an appliance in a cupboard is an appliance you do not use on a Tuesday.</p>
+
+<h2>Who should buy big before the season — and who should not</h2>
+<p><strong>Buy the oven-style unit now if:</strong> you host more than three times between November and January, your regular oven is the bottleneck when you do, and the counter space is genuinely available year-round. It replaces an oven role rather than adding a gadget.</p>
+<p><strong>Buy the dual basket now if:</strong> your holiday problem is sides and timing rather than raw volume. Two drawers at two temperatures, landing together, solves the most common hosting failure: everything ready except one thing.</p>
+<p><strong>Wait if:</strong> you are buying for one meal. Nothing in this set improves a single dinner enough to outrank the counter cost if the machine goes idle in February. The better seasonal move is to decide the format now, watch for the machine that fits it, and buy when the hosting pressure is off.</p>
+
+<h2>Three questions to ask before the delivery arrives</h2>
+<ul>
+  <li>Where will it stand on a normal Wednesday, and what currently lives there?</li>
+  <li>Which dish at my biggest meal does it take over — and what takes over that dish today?</li>
+  <li>Will I still use it in February, and for what?</li>
+</ul>
+<p>If the third answer is honest and specific, the purchase is sound. If it is "fries, I guess," the season is doing the selling.</p>
+`,
+    takeaways: [
+      "A holiday meal is a timing problem; the dual basket solves timing, the oven-style unit solves volume.",
+      "Verified footprints differ a lot: the French-door unit is small-microwave-sized on the counter, permanently.",
+      "For one big meal a year, buy the format now and the machine later — the season is not a discount.",
+      "Ask what the machine does in February before you buy it in December."
+    ]
+  },
+  {
+    slug: "thermometer-gifting",
+    number: "09",
+    title: "Buying a meat thermometer as a gift: what to check before you wrap it",
+    dek: "A thermometer is one of the few kitchen gifts that actually gets used — if it matches how the person cooks. The wrong kind ends up in a drawer with the other gadgets. Here is how to match it.",
+    category: "thermometers",
+    season: "Holiday 2026 edit",
+    readingTime: "5 min",
+    topics: ["gifting", "measurement", "connected devices"],
+    intro: `Gift guides usually pick a winner. This one does the only useful thing instead: it matches the two kinds of thermometer in this set to two kinds of cook, and it lists the small logistics that decide whether the gift is appreciated in January or forgotten by then.\n\nEverything below traces to the verified specification rows in our register. Where a figure is the manufacturer's claim rather than a verified fact, it says so.`,
+    body: `
+<h2>First question: does the recipient stand at the grill, or walk away from it?</h2>
+<p>This is the entire decision. An instant-read probe and a wireless monitoring system solve different problems, and a gift that solves the wrong problem is clutter with a bow on it.</p>
+<p><strong>The stand-there cook</strong> wants an instant-read: insert, read a number, remove. The ThermoMaven in this set states a one-second read and ±0.5°F accuracy, with an auto-rotating LED screen and a body described as fully waterproof (no IP number is published — that wording is the seller's). It runs on one included AAA battery. If the person you are buying for checks burgers, steaks and pan sauces as they go, this is the tool.</p>
+<p><strong>The walk-away cook</strong> wants a leave-in monitoring system. The CHEF iQ Sense Gen 3 carries three ultra-thin probes with four internal sensors and one ambient sensor, rated to 1,000°F and connected over WiFi and Bluetooth. If the person you are buying for runs a smoker overnight or a Sunday roast with the lid shut, probes that stay in are the gift. The cost of that is dependence on an app and a network — and the support horizon for the app was not answered on the published listing. We marked it unverified rather than assume it.</p>
+
+<h2>The gift logistics nobody reads until January</h2>
+<p>Two verified details change how this gift lands:</p>
+<ul>
+  <li><strong>Warranty registration has a clock on it.</strong> The warranty the listing states is conditional: the unit must be registered within 30 days of purchase. A gift that sits wrapped until the 25th and gets registered in February may miss the window. Put a note in the box: register within 30 days.</li>
+  <li><strong>Batteries decide first impressions.</strong> The instant-read ships with its AAA battery included; the wireless probes are a system whose battery life was not confirmed from an official source (blank in our register). A gift that needs a charging ritual on day one explains itself badly.</li>
+</ul>
+
+<h2>How to wrap the uncertainty honestly</h2>
+<p>Both products make accuracy claims we could not independently verify — the ThermoMaven's stated ±0.5°F and NIST/NSF certification logos are the seller's claims; no certificate number is published. That does not make them bad gifts. It means the honest pitch is "a fast, well-specified probe," not "a laboratory instrument." Set the expectation and the gift will be liked; oversell it and the first wrong reading becomes your problem.</p>
+
+<h2>A one-line match</h2>
+<p>Cook who checks as they go → instant-read. Cook who tends a long fire → wireless leave-in. Cook who does both → the instant-read is the safer gift; the monitoring system is the bigger one. When in doubt, buy the one that works without an app.</p>
+`,
+    takeaways: [
+      "Match the thermometer to the cook: spot checks want instant-read; long unattended cooks want wireless.",
+      "Register the ThermoMaven within 30 days of purchase — the listing makes its warranty term conditional on that, so put a note in the box.",
+      "Accuracy and certification figures are the seller's claims, not verified facts; gift them as stated.",
+      "When the recipient's habits are unknown, the no-app option is the safer present."
+    ]
+  },
+  {
+    slug: "air-fryer-claims",
+    number: "10",
+    title: "What do '4-in-1', 'Hi-Fry' and 'dishwasher-safe' actually promise?",
+    dek: "Every listing is a wall of features, and most of them are true without mattering. Here is how to read the four claim types that actually change what happens at dinner — and the two that change what happens at the sink.",
+    category: "air-fryers",
+    readingTime: "6 min",
+    topics: ["claims", "presets", "cleanup"],
+    intro: `Listings speak in badges. Behind them are only a few kinds of statement: a measured quantity, a mode, a convenience shortcut, a care instruction, and a claim you cannot check from where you sit. Learning which is which takes ten minutes and removes most of the noise from the comparison.\n\nThe examples below come from the five products in our register, and every one of them is annotated with how much we could verify.`,
+    body: `
+<h2>1. Numbers with a unit: usually real, sometimes split</h2>
+<p>Capacity is the claim most likely to mislead without lying. "6 qt" on the Chefman dual basket is real and verified — and it is 6 quarts <em>across two 3-quart drawers</em>. "8 qt" on the TurboFry is one drawer. "26 qt" on the Emeril is a chamber. Same unit, three different machines.</p>
+<p>Read every volume as "quarts, N chambers." If the listing will not give you the split, treat the number as marketing and move on. The same discipline applies to temperature: the TurboFry's headline 450°F is a Hi-Fry burst for the final two minutes of a cycle, not the machine's standing range — the listing is explicit that the standard range tops out at 400°F. A number without its conditions is half a fact.</p>
+
+<h2>2. Mode counts: ask what the buttons actually do</h2>
+<p>"4-in-1" on the TurboFry names four functions: air fry, bake, dehydrate, frozen. Three of those are temperatures and a timer. That is not a criticism — presets and modes are genuinely useful — but they are conveniences, not capabilities, and they should not be counted as features when you compare two machines. The Emeril's 24 one-touch presets deserve the same discount. Twenty-four buttons are usually twenty-four time-and-temperature pairs.</p>
+<p>The check that works: name the three modes you will use weekly. If a claimed function is not one of them, it is decoration on the box.</p>
+
+<h2>3. Care claims: "listed dishwasher-safe" is doing a lot of work</h2>
+<p>Notice the wording in our register: the baskets are described as nonstick and <em>listed</em> dishwasher-safe. That status is recorded as a manufacturer claim, not a verified fact, because the durability of a nonstick surface in a dishwasher is a wear question no listing can answer. The safe reading: you <em>can</em> put it in the dishwasher and the coating may age faster for it. If cleanup is the reason you are buying (it is the reason most people keep using one), wash it by hand and treat the dishwasher as the backup.</p>
+
+<h2>4. Certifications and badges: find the number behind the logo</h2>
+<p>The sharpest example in our set is on the thermometer side. The ThermoMaven listing displays NIST and NSF logos and states ±0.5°F accuracy — meaningful claims, recorded in our register as stated claims, because no certificate number is published and no certification record was verifiable. A badge is a claim of certification. A certificate number is the certification.</p>
+<p>Apply the rule everywhere: cETL, NSF, NIST, "lab tested." If the listing carries no number you can look up, the badge is a marketing asset. It may still be true. You cannot check it, and uncheckable is the same as unverified.</p>
+
+<h2>5. The claims that quietly decide everything</h2>
+<p>Two of the most decision-relevant facts in this set are the least badge-like: the dual basket's Sync Finish (it holds the faster drawer so both land at once — the whole reason to own two drawers) and the physical dimensions of each body (13.38 × 11.81 × 10.63 inches for the dual basket; 16.9 × 15.8 × 14.8 for the Emeril). None of these will be on the front of the box. All of them change your daily life more than a mode count.</p>
+
+<h2>The ten-second version</h2>
+<ul>
+  <li>Quarts need a chamber count. Temperatures need their conditions.</li>
+  <li>Modes and presets are shortcuts — useful, but not features to count.</li>
+  <li>"Listed dishwasher-safe" means you can, not that you should.</li>
+  <li>Badges without certificate numbers are unverified, however official they look.</li>
+  <li>Read for the unglamorous facts: finish features, real dimensions, what the machine is bad at.</li>
+</ul>
+`,
+    takeaways: [
+      "Read every volume as quarts plus chamber count, and every temperature with its conditions.",
+      "Mode counts and presets are conveniences, not capabilities — compare only the ones you will use weekly.",
+      "A certification logo without a look-up number is an unverified claim.",
+      "The unglamorous facts — sync features, dimensions, care wording — decide daily satisfaction."
+    ]
   }
 ];
 
