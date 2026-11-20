@@ -3259,7 +3259,19 @@ The converged live tree displayed price snapshots, star ratings, rating counts a
 
 FLG-024/FLG-004-class Special Link test (Q-07, gate G-4), Search Console (Q-12), analytics endpoint deploy (Q-12, gate G-6), reader capture (Q-13). No revenue, traffic or conversion figure is claimed anywhere.
 
-**Status:** done. PR, merge and Pages result recorded in the next board-only commit.
+**Status:** done.
+
+### Merge and deploy record — arena/2739f0fb-wina (T36, 2026-11-20)
+
+| Item | Result |
+|---|---|
+| Pull request | **#67** — https://github.com/sassnarep3-star/WinA/pull/67 — merged into `main` (merge commit `e339bad`), all checks green (site-gate, G-1…G-3, gate) |
+| Post-merge incident | Live verification of the deployed pages found **unresolved conflict markers** in 8 served pages and 2 data JSONs — the earlier merge's conflict list had been truncated in tool output and `git add -A` committed the blocks. Recorded in full so the failure mode is recognizable: a truncated `git status`/merge output is not a clean merge. |
+| Hotfix | **#70** — https://github.com/sassnarep3-star/WinA/pull/70 — merged (merge commit `e444da0`). Every marker block resolved content-wise (main's wording at collisions, board precedent); both sessions' verificationLog entries kept; gate hardened: R-06 now bans conflict markers in served files, new **R-13** requires every `data/*.json` to parse and be marker-free (their R-12 stated-counts rule kept alongside). |
+| GitHub Pages | `pages/builds/latest` → `status: built` for `e444da0` |
+| Live checks (cache-busted) | `/suggestions.html?v=e339bad` — choose-a-path menu (P1–P4) live with readiness cross-links · `/questions.html?v=e339bad` — decision-readiness map (D-01…D-07) live · `/questions.html?v=e444da0` — markers gone, Q-02 cites Participation Requirements §2(b) correctly, disclosure above the fold |
+| Open PRs noted, not touched | #2 (stale >90 min, superseded build), #41, #46, #61, #63, #64, #68 — sessions active or record-only; several target a root shape `main` no longer serves and need re-targeting. None merged by this session; none discarded. |
+| Flagged irregularities | FLG-047/FLG-036 (short-link instability, owner browser check), FLG-048/FLG-051 (price/rating/availability display — fixed, gated), FLG-049 (CHEF iQ warranty conflict), FLG-050 (rule-reconciliation row). Owner-side blockers unchanged: Q-07/G-4 link test, Q-12 Search Console + analytics endpoint, Q-13 reader capture. |
 ### T35 — PR and deploy record (arena/b37e1a98-wina, 2026-11-20)
 
 | Item | Result |
@@ -7027,22 +7039,35 @@ kept"*: a merge that recorded its conflict instead of resolving it.
 shipped as unparseable JSON** (`data/links.json`, `data/suggestions.json`). `archive/` was clean —
 the damage was confined to the live tree.
 
-All 29 hunks resolved without discarding either session's work:
+**A parallel session reached the same finding first and hotfixed it (PR #70, `2f18d3a`,
+"content-wise, main's wording kept"; recorded on the board as "the marker incident" in
+`bcd53fa`).** This branch had independently resolved all 29 hunks and hardened R-06 before
+noticing that. Rather than force a second, competing resolution onto a file another session had
+already repaired and shipped, this branch **took `main`'s versions of all five conflicted files**
+and kept only its own board record. The two resolutions agreed on the substance:
 
-| Where | Resolution and why |
-|---|---|
-| `data/links.json` | Two independent re-verification records had been spliced into one array element. Rebuilt as **two separate entries** — `arena/2739f0fb-wina`'s fourth check (keeping its `listingTitlesChecked` and `policySourcesChecked` blocks) and `arena-266b1b8f-wina`'s fifth (keeping its `note`). Both survive; the file parses. |
-| `data/suggestions.json` | **SUG-16 took `main`'s side**: `"accepted … shipped 2026-11-20"` supersedes the older `"open"`, so taking this branch's side would have reverted a decision already shipped. The other two hunks differed only in em-dash escaping. |
-| Price/rating copy, 21 of 22 HTML hunks | Took **`main`'s** posture. It is the one the marker-free pages already use (`compare.html` reads `Not shown`), it matches T33's recorded *"View on Amazon"* button label instead of reintroducing *"See price on Amazon"*, and it carries T38's correction of the CHEF iQ battery figure to chefiq.com's **70+ hours**. |
-| `shop.html` hunk 6 | Kept **this branch's** side: `main`'s called the ThermoMaven *"the most-reviewed thermometer of the two"* — a popularity claim this publication does not make. |
+| Point | This branch | `main` (kept) |
+|---|---|---|
+| `data/links.json` | rebuilt as two separate verification entries | same — the file parses with **3** entries on both |
+| `data/suggestions.json` SUG-16 | took `main`'s `"accepted … shipped"` over the older `"open"` | identical |
+| price/rating copy | `main`'s posture, because `compare.html` already reads `Not shown` and T33 recorded *"View on Amazon"* | identical (`"See price on Amazon"` count 0, `"Price not shown"` count 5) |
+| CHEF iQ battery | `main`'s **70+ hours** (T38's correction) | identical |
+| `shop.html` hunk 6 | dropped `main`'s *"most-reviewed thermometer"* as a popularity claim | **`main` kept it** — deferred, not fought over |
+| conflict-marker rule | R-06 | R-06, plus a separate **R-13** for `data/**/*.json` parsing |
 
-**And a rule so it cannot happen again:** R-06 now fails any served page containing
-`<<<<<<< `, `>>>>>>> ` or a line of `=======`, and requires every `data/**/*.json` to parse —
-neither was checked before, which is exactly why both shipped. Injection-tested: a marker appended
+The one place they differ in substance is the *"most-reviewed thermometer of the two"* phrase on
+`shop.html`. This branch considers it a popularity claim the editorial rules exclude; `main` ships
+it. It is **recorded here rather than re-litigated in a merge**, because a second competing
+resolution of the same files would be exactly the failure mode that caused the incident.
+
+**Rule that now blocks a recurrence:** `main`'s R-06 fails any served page containing conflict
+markers, and R-13 requires every `data/**/*.json` to parse. This branch's equivalent was dropped
+as redundant. Both were injection-tested on this branch before the comparison: a marker appended
 to `about.html` fails with three violations; `data/questions.json` truncated in half fails with
 *Unterminated string*.
 
 **Irregularity added to the list above:** 5 — a committed conflict, not a data error, was serving
-broken pages to readers while every gate stayed green, because no gate looked for it.
+broken pages to readers while every gate stayed green, because no gate looked for it. Fixed on
+`main` by a parallel session; this branch records it and defers to that fix.
 
 **Status:** done — PR, merge and deploy record appended below.
