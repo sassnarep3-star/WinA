@@ -15,6 +15,11 @@ automated (gates G-1..G-3 on data-room/compliance-gate.html):
   R-07  sitemap.xml covers exactly the indexable pages
   R-08  feed.xml parses and its item links resolve
   R-09  every page repeats the Amazon Associate statement in the footer
+  R-10  no price figures ship (Associates IP License §2(b): pricing data only
+        via PA API; §6(y): no price tracking/alerting) — see FLG-044
+  R-11  no star ratings, review counts, review stars, "Amazon's Choice" badges
+        or popularity badges ship (Participation Requirements §6(t): customer
+        reviews and star ratings only via Creators API/PA API) — see FLG-044
 
 Checked scope: the served site only. `archive/` holds superseded session builds
 (see COORDINATION.md) and `data/` is the machine-readable register — neither is
@@ -200,6 +205,45 @@ def check_placeholders(path, text):
         fail("R-06", path, f"placeholder text ships: {m.group(1)}")
 
 
+# -------------------------------------------------------- R-10 / R-11
+# FLG-044 (2026-11-20): the integrated shop build displayed hand-copied prices,
+# star ratings and review counts. Associates rules reserve that display content
+# for PA API / Creators API data. The values were removed from every page; these
+# rules keep them from returning. Page copy that explains the withholding (the
+# phrases below) is the allowed way to talk about it.
+R10_ALLOWED = (
+    "not shown", "not reproduced", "not displayed", "price not shown",
+    "not ship", "withheld", "no star ratings", "not obtain",
+    "current price is on", "read the current price", "§2(b)", "§6(t)", "2(b))", "6(t))",
+)
+
+def check_figures(path, text):
+    import re as _re
+    # strip script/style so JS string literals do not trip the scanner
+    body = _re.sub(r"<(script|style)\b.*?</\1>", " ", text, flags=_re.S | _re.I)
+    # remove HTML comments
+    body = _re.sub(r"<!--.*?-->", " ", body, flags=_re.S)
+    # split into text nodes + attribute values worth scanning
+    chunks = _re.split(r"<[^>]+>", body)
+    for i, chunk in enumerate(chunks):
+        low = chunk.lower()
+        hit = None
+        m = _re.search(r"(\$\s?\d|\b\d+\s?USD\b)", chunk)
+        if m:
+            hit = ("R-10", m.group(0))
+        else:
+            m2 = _re.search(r"(★|\b[0-4]\.\d\s*/\s*5\b|\b\d+(?:\.\d+)?\s*(?:out of\s*5|stars?\b)|\b\d[\d,.]*\s*(?:ratings|reviews)\b|amazon'?s choice|bought (?:last month|in the past month|this month)|\b\d+k\+\s*bought)", chunk, _re.I)
+            if m2:
+                hit = ("R-11", m2.group(0)[:40])
+        if not hit:
+            continue
+        rule, found = hit
+        # an allowed-withholding phrase nearby on the same text chunk excuses it
+        if any(phrase in low for phrase in R10_ALLOWED):
+            continue
+        fail(rule, path, f"withheld display figure shipped in text: {found!r} — see FLG-044; use the 'not shown' phrasing instead")
+
+
 # ------------------------------------------------------------ R-07 / R-08
 def check_sitemap_and_feed():
     sitemap = os.path.join(ROOT, "sitemap.xml")
@@ -261,6 +305,7 @@ def main():
         check_table_rows(path, text)
         check_head(path, text, collector)
         check_placeholders(path, text)
+        check_figures(path, text)
     for path in pages:
         check_links(path, cache[path], cache)
     check_sitemap_and_feed()
