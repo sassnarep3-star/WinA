@@ -126,6 +126,16 @@
           <td><span class="pill pill--review">review</span></td>
           <td><a href="https://github.com/sassnarep3-star/WinA/blob/main/data/governance.json" rel="noopener" target="_blank">open</a></td>
         </tr><tr>
+          <td><code>FLG-031</code></td>
+          <td>Policy quotes are current only as of the document versions checked</td>
+          <td><span class="pill pill--review">review</span></td>
+          <td><a href="https://affiliate-program.amazon.com/help/operating/policies" rel="noopener" target="_blank">open</a></td>
+        </tr><tr>
+          <td><code>FLG-033</code></td>
+          <td>The ASIN rationale in the brief could not be tied to an official Amazon definition</td>
+          <td><span class="pill pill--review">review</span></td>
+          <td><a href="https://sellercentral.amazon.com/seller-forums/discussions/t/1e22c5df-d27a-4e2b-a0c1-90938b6cdcdc" rel="noopener" target="_blank">open</a></td>
+        </tr><tr>
           <td><code>FLG-002</code></td>
           <td>Submitted links carry no Associates tag of their own</td>
           <td><span class="pill pill--action">action</span></td>
@@ -149,7 +159,7 @@
           <td><code>FLG-013</code></td>
           <td>Content volume is below the Associates review bar</td>
           <td><span class="pill pill--action">action</span></td>
-          <td><a href="https://affiliate-program.amazon.com/" rel="noopener" target="_blank">open</a></td>
+          <td><a href="https://affiliate-program.amazon.com/help/node/topic/G8TW5AE9XL2VX9VM" rel="noopener" target="_blank">open</a></td>
         </tr><tr>
           <td><code>FLG-024</code></td>
           <td>Tagged product links are live before the one-per-product Special Link test</td>
@@ -225,6 +235,16 @@
           <td>Readers had no way to find the dashboard surfaces from the front page</td>
           <td><span class="pill pill--resolved">resolved</span></td>
           <td><a href="https://sassnarep3-star.github.io/WinA/" rel="noopener" target="_blank">open</a></td>
+        </tr><tr>
+          <td><code>FLG-030</code></td>
+          <td>Policy and FTC quotes checked word for word against the official text (2026-11-20)</td>
+          <td><span class="pill pill--resolved">resolved</span></td>
+          <td><a href="https://affiliate-program.amazon.com/help/operating/agreement" rel="noopener" target="_blank">open</a></td>
+        </tr><tr>
+          <td><code>FLG-032</code></td>
+          <td>All five submitted short links re-resolved on 2026-11-20; destinations unchanged</td>
+          <td><span class="pill pill--resolved">resolved</span></td>
+          <td><a href="https://www.amazon.com/dp/B0CDY277D3" rel="nofollow noopener" target="_blank" data-nonaffiliate="true">open</a></td>
         </tr></tbody>
       </table>
     </div>
@@ -299,15 +319,27 @@
   </article><article class="note note--warn" style="margin-bottom:1.25rem">
     <p class="note__title">SG-28 <span class="pill pill--review">review</span></p>
     <h3 style="font-family:var(--serif);font-size:1.15rem;margin:.2rem 0 .5rem;color:var(--ink)">RSS feed: parallel row SG-28 has no source document in this repository</h3>
-    <p style="margin:0 0 .6rem">The build produces an RSS 2.0 feed at /feed.xml. The RSS 2.0 specification requires the channel title, link, and description, and uses RFC 822 dates for pubDate. The brief's SG-28 requirements were not provided, so the feed has not been checked against them.</p>
+    <p style="margin:0 0 .6rem">The build produces an RSS 2.0 feed at /feed.xml. The RSS 2.0 specification requires the channel title, link, and description, and uses RFC 822 dates for pubDate. Checked 2026-11-20 against the RSS 2.0 specification: the channel has the required title, link and description; each item has a title, link and description; pubDate uses the RFC 822 form; and the file parses as well-formed XML. That check does not replace SG-28's own requirements, which were not supplied.</p>
     <p style="margin:0 0 .6rem"><strong>What we did:</strong> Provide the SG-28 requirements. After deploy, check the feed in a feed reader.</p>
-    <p class="small" style="margin:0"><a href="https://www.rssboard.org/rss-specification" rel="noopener" target="_blank">RSS Advisory Board, RSS 2.0 Specification</a></p>
+    <p class="small" style="margin:0"><a href="https://www.rssboard.org/rss-specification" rel="noopener" target="_blank">RSS Advisory Board, RSS 2.0 Specification (checked 2026-11-20)</a></p>
   </article><article class="note note--warn" style="margin-bottom:1.25rem">
     <p class="note__title">SG-30 <span class="pill pill--review">review</span></p>
     <h3 style="font-family:var(--serif);font-size:1.15rem;margin:.2rem 0 .5rem;color:var(--ink)">Reader capture: parallel row SG-30 is recorded, but the form has no backend</h3>
     <p style="margin:0 0 .6rem">The brief names SG-30 as the reader-capture row. The capture form records a capture_intent event (EV-05) when submitted. No email service is connected, so no subscription is delivered (see FLG-010).</p>
     <p style="margin:0 0 .6rem"><strong>What we did:</strong> Owner decision: whether reader capture is wanted, and if so, which email service to connect. Until then the form stays inert.</p>
     <p class="small" style="margin:0"><a href="https://github.com/sassnarep3-star/WinA/blob/main/data/governance.json" rel="noopener" target="_blank">Flag register: FLG-010 and event EV-05</a></p>
+  </article><article class="note note--warn" style="margin-bottom:1.25rem">
+    <p class="note__title">FLG-031 <span class="pill pill--review">review</span></p>
+    <h3 style="font-family:var(--serif);font-size:1.15rem;margin:.2rem 0 .5rem;color:var(--ink)">Policy quotes are current only as of the document versions checked</h3>
+    <p style="margin:0 0 .6rem">The Operating Agreement page shows 'Updated: October 15, 2025'. The Program Policies page shows 'Updated: April 14, 2026'. The quotes in this build match those versions. A later version can change a clause number or wording without this build knowing.</p>
+    <p style="margin:0 0 .6rem"><strong>What we did:</strong> Before each publish and before any Associates application, re-check the quotes against the current pages.</p>
+    <p class="small" style="margin:0"><a href="https://affiliate-program.amazon.com/help/operating/policies" rel="noopener" target="_blank">Associates Program Policies (updated April 14, 2026)</a></p>
+  </article><article class="note note--warn" style="margin-bottom:1.25rem">
+    <p class="note__title">FLG-033 <span class="pill pill--review">review</span></p>
+    <h3 style="font-family:var(--serif);font-size:1.15rem;margin:.2rem 0 .5rem;color:var(--ink)">The ASIN rationale in the brief could not be tied to an official Amazon definition</h3>
+    <p style="margin:0 0 .6rem">The brief gives 'Amazon's ASIN definition' as the reason the intended-ASIN field is checkable. On 2026-11-20 no Amazon Help page giving that definition was found. The only Amazon-domain result was a Seller Central forum thread; its definition replies were written by sellers, not Amazon staff, so they are not cited as Amazon's definition. What can be checked directly is narrower: all five observed ASINs are 10 characters, A-Z and 0-9, and each observed destination ends in /dp/&lt;ASIN&gt; (data/links.json). This checks the URL format only. It does not show that a submitted link was intended for a particular ASIN, which is why the intended field stays blank.</p>
+    <p style="margin:0 0 .6rem"><strong>What we did:</strong> Owner: decide whether the intended-ASIN field should be filled from the submitted link (FLG-019). If the rationale is kept, cite an Amazon Help page for the definition before publishing it.</p>
+    <p class="small" style="margin:0"><a href="https://sellercentral.amazon.com/seller-forums/discussions/t/1e22c5df-d27a-4e2b-a0c1-90938b6cdcdc" rel="noopener" target="_blank">Seller Central forum thread (not Amazon Help; definition not confirmed as Amazon's)</a></p>
   </article><article class="note note--warn" style="margin-bottom:1.25rem">
     <p class="note__title">FLG-002 <span class="pill pill--action">action</span></p>
     <h3 style="font-family:var(--serif);font-size:1.15rem;margin:.2rem 0 .5rem;color:var(--ink)">Submitted links carry no Associates tag of their own</h3>
@@ -335,9 +367,9 @@
   </article><article class="note note--warn" style="margin-bottom:1.25rem">
     <p class="note__title">FLG-013 <span class="pill pill--action">action</span></p>
     <h3 style="font-family:var(--serif);font-size:1.15rem;margin:.2rem 0 .5rem;color:var(--ink)">Content volume is below the Associates review bar</h3>
-    <p style="margin:0 0 .6rem">Amazon's Associates help states that applications are reviewed for robust original content, with a rule of thumb of at least 10 posts and recent activity. This site has 4 guides and 5 product pages. The account's own status and review history are unknown from here. Carried forward from the parallel-session register (arena-2ca62ce9, FLG-010), which found this first.</p>
-    <p style="margin:0 0 .6rem"><strong>What we did:</strong> Do not submit or re-submit for review on four guides. The eight-week cadence in the suggestions register exists to clear this bar. Recorded as a commercial blocker, not a content-quality one.</p>
-    <p class="small" style="margin:0"><a href="https://affiliate-program.amazon.com/" rel="noopener" target="_blank">Amazon Associates Central (sign-in required)</a></p>
+    <p style="margin:0 0 .6rem">Amazon's Associates Help, 'Application Review Process' (checked 2026-11-20, US help topic G8TW5AE9XL2VX9VM), says: &quot;All Sites must have robust original content (even when advertising is removed) – a good rule of thumb is at least 10 posts.&quot; It also says: &quot;Content on your website must be recent (generally within the last 60 days).&quot; This site has 5 guides and 5 product pages. Amazon does not say whether product and hub pages count as posts, but 5 guides is below the rule of thumb on any reading. The account's own status and review history are unknown from here. Carried forward from the parallel-session register (arena-2ca62ce9, FLG-010), which found this first.</p>
+    <p style="margin:0 0 .6rem"><strong>What we did:</strong> Do not submit or re-submit for review until the site has at least 10 posts and content dated within the last 60 days. The weekly cadence in the suggestions register (SUG-05) is the proposed path. Recorded as a commercial blocker, not a content-quality one.</p>
+    <p class="small" style="margin:0"><a href="https://affiliate-program.amazon.com/help/node/topic/G8TW5AE9XL2VX9VM" rel="noopener" target="_blank">Associates Help: Application Review Process (checked 2026-11-20)</a></p>
   </article><article class="note note--warn" style="margin-bottom:1.25rem">
     <p class="note__title">FLG-024 <span class="pill pill--action">action</span></p>
     <h3 style="font-family:var(--serif);font-size:1.15rem;margin:.2rem 0 .5rem;color:var(--ink)">Tagged product links are live before the one-per-product Special Link test</h3>
@@ -371,7 +403,7 @@
   </article><article class="note note--stop" style="margin-bottom:1.25rem">
     <p class="note__title">FLG-020 <span class="pill pill--withheld">withheld</span></p>
     <h3 style="font-family:var(--serif);font-size:1.15rem;margin:.2rem 0 .5rem;color:var(--ink)">No seasonal content, because there is no seasonal demand data</h3>
-    <p style="margin:0 0 .6rem">The brief asked for seasons and topic clusters. No seasonal query data was obtained from any source, so no seasonal calendar was invented. The four guides are editorial working titles, not popularity claims. Carried forward from arena-2ca62ce9 (FLG-015).</p>
+    <p style="margin:0 0 .6rem">The brief asked for seasons and topic clusters. No seasonal query data was obtained from any source, so no seasonal calendar was invented. The five guides are editorial working titles, not popularity claims. Carried forward from arena-2ca62ce9 (FLG-015).</p>
     <p style="margin:0 0 .6rem"><strong>What we did:</strong> Clusters exist as two product categories. Seasons wait for Search Console query data — choosing December topics from instinct is the failure mode being avoided.</p>
     <p class="small" style="margin:0"><a href="https://search.google.com/search-console" rel="noopener" target="_blank">Search Console (not yet verified)</a></p>
   </article><article class="note note--warn" style="margin-bottom:1.25rem">
@@ -428,6 +460,18 @@
     <p style="margin:0 0 .6rem">The brief required every dashboard surface to stay reachable while the front page led with products. Putting them in the primary navigation would have put the audit in front of the shopper.</p>
     <p style="margin:0 0 .6rem"><strong>What we did:</strong> Resolved structurally. The primary navigation carries five reader destinations only; all nine record and review surfaces are grouped in the footer under 'Record &amp; review', so they remain one click from every page.</p>
     <p class="small" style="margin:0"><a href="https://sassnarep3-star.github.io/WinA/" rel="noopener" target="_blank">Live front page</a></p>
+  </article><article class="note " style="margin-bottom:1.25rem">
+    <p class="note__title">FLG-030 <span class="pill pill--resolved">resolved</span></p>
+    <h3 style="font-family:var(--serif);font-size:1.15rem;margin:.2rem 0 .5rem;color:var(--ink)">Policy and FTC quotes checked word for word against the official text (2026-11-20)</h3>
+    <p style="margin:0 0 .6rem">Operating Agreement §5: the Associates statement and the 'misrepresent or embellish' sentence matched. Program Policies, Participation Requirements: §2(b) (price display), §6(a) (Program Content), §6(f) (keyword clause), §6(t) (ratings), §6(w) (link clarity), §6(y) (price tracking) and §3(e) (data disclosure) matched. FTC Disclosures 101: 'Place it so it's hard to miss', 'The disclosure should be placed with the endorsement message itself', and 'You can't talk about your experience with a product you haven't tried' matched. The policy quotes in data/policy.json are the same text. POL-09 is an internal rule, not a quote.</p>
+    <p style="margin:0 0 .6rem"><strong>What we did:</strong> Re-run this check when Amazon or the FTC updates a document (FLG-031).</p>
+    <p class="small" style="margin:0"><a href="https://affiliate-program.amazon.com/help/operating/agreement" rel="noopener" target="_blank">Associates Operating Agreement §5 (checked 2026-11-20)</a></p>
+  </article><article class="note " style="margin-bottom:1.25rem">
+    <p class="note__title">FLG-032 <span class="pill pill--resolved">resolved</span></p>
+    <h3 style="font-family:var(--serif);font-size:1.15rem;margin:.2rem 0 .5rem;color:var(--ink)">All five submitted short links re-resolved on 2026-11-20; destinations unchanged</h3>
+    <p style="margin:0 0 .6rem">Each link.amazon URL was opened again. CHEFMAN 6 Quart B04G1MEwY → B0CDY277D3; Emeril Lagasse 26QT B02NbDxp3 → B09B7SB46R; Chefman 8 Qt B00hJ57DV → B08DKYBTPH; ThermoMaven 1 Sec B0c8moW59 → B0DHZTCNR5; CHEF iQ Sense Gen3 B0f3GKalj → B0DZFD6R9Z. The product title on each landing page matches data/links.json. Prices and ratings seen on the pages were not recorded, as policy requires.</p>
+    <p style="margin:0 0 .6rem"><strong>What we did:</strong> None. Repeat if a link is changed.</p>
+    <p class="small" style="margin:0"><a href="https://www.amazon.com/dp/B0CDY277D3" rel="nofollow noopener" target="_blank" data-nonaffiliate="true">Amazon listing (landing page of the first link)</a></p>
   </article></div>
 
     <h2 class="section__title" style="font-size:1.4rem;margin-top:2.5rem">Prior audit work on this repository</h2>

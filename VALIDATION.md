@@ -12,6 +12,7 @@ Generated 2026-11-20 by `_src/build.mjs` (deterministic: no wall-clock timestamp
 - `PASS` every page declares a canonical URL
 - `PASS` every Amazon anchor is either a tagged sponsored link or a declared non-affiliate citation
 - `PASS` no star ratings or review quotes displayed anywhere
+- `PASS` every stated guide count matches the 5 guides published
 - `PASS` no spec carries a value while marked unverified or withheld
 - `PASS` all 10 policy checks quote a clause and link a primary source
 - `PASS` all internal links resolve across 29 pages
