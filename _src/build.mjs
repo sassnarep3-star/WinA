@@ -9,6 +9,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { guides, editorNote } from "./content.mjs";
+import { art } from "./art.mjs";
 import { about, disclosure, privacy, marketing, seo, promo } from "./pages-content.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -94,6 +95,13 @@ function writePage(p, html) {
 }
 
 /* ---------- layout ---------- */
+
+/** Spell a small count the way an editor would, so a number in prose can
+ *  never silently drift from the number of things actually published. */
+const word = (n) =>
+  ["no", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten"][n] ?? String(n);
+const cap = (s) => s[0].toUpperCase() + s.slice(1);
+
 const NAV = [
   { href: url("/air-fryers/"), label: "Air fryers" },
   { href: url("/thermometers/"), label: "Thermometers" },
@@ -101,6 +109,17 @@ const NAV = [
   { href: url("/compare/"), label: "Compare" },
   { href: url("/about/"), label: "About" }
 ];
+
+/**
+ * Social card. Only advertised when the file actually exists in the tree —
+ * declaring summary_large_image with no image is the slop tell it replaces.
+ */
+const SOCIAL_IMAGE = (() => {
+  const rel = site.socialImage;
+  if (!rel) return "";
+  return fs.existsSync(path.join(ROOT, rel.replace(/^\//, "").replace(BASE, ""))) ? abs(rel) : "";
+})();
+
 
 function layout(opts) {
   const {
@@ -133,16 +152,20 @@ function layout(opts) {
 <meta name="description" content="${esc(desc)}">
 <link rel="canonical" href="${abs(canonical)}">
 <meta name="robots" content="index,follow,max-image-preview:large">
-<meta name="google-site-verification" content="REPLACE_WITH_REAL_TOKEN_FLG009">
+<!-- No search-engine verification token is published until one exists.
+     A placeholder token in production claims a verification that has not
+     happened; FLG-009 tracks adding the real token after the owner verifies
+     the property in Search Console. -->
 <meta property="og:site_name" content="${esc(site.name)}">
 <meta property="og:type" content="${type}">
 <meta property="og:title" content="${esc(fullTitle)}">
 <meta property="og:description" content="${esc(desc)}">
 <meta property="og:url" content="${abs(canonical)}">
-<meta name="twitter:card" content="summary_large_image">
+${SOCIAL_IMAGE ? `<meta property="og:image" content="${SOCIAL_IMAGE}">\n<meta property="og:image:alt" content="${esc(site.name)} — line drawing of two air fryers on a kitchen counter">\n` : ""}<meta name="twitter:card" content="${SOCIAL_IMAGE ? "summary_large_image" : "summary"}">
 <meta name="twitter:title" content="${esc(fullTitle)}">
 <meta name="twitter:description" content="${esc(desc)}">
 <link rel="alternate" type="application/rss+xml" title="${esc(site.name)}" href="${url("/feed.xml")}">
+<link rel="icon" href="${url("/assets/img/favicon.svg")}" type="image/svg+xml">
 <link rel="stylesheet" href="${url("/assets/css/site.css")}">
 <script>window.CS_CONFIG={analyticsEnabled:${ANALYTICS_ON},analyticsEndpoint:${JSON.stringify(site.analyticsEndpoint || "")}};</script>
 ${ld}
@@ -153,7 +176,7 @@ ${ld}
 <header class="masthead">
   <div class="wrap masthead__inner">
     <a class="brand" href="${url("/")}">
-      <span class="brand__mark" aria-hidden="true">C</span>
+      <span class="brand__mark" aria-hidden="true">${art.brandMark()}</span>
       <span class="brand__name">${esc(site.name)}</span>
       <span class="brand__sub">Kitchen gear, judged honestly</span>
     </a>
@@ -243,7 +266,7 @@ function buybox(p, slot) {
   <a class="btn btn--amazon" href="${special(p.asin)}"
      rel="sponsored nofollow noopener" target="_blank"
      data-affiliate="${p.asin}" data-slot="${slot}">
-     Check price on Amazon →
+     See it on Amazon →
   </a>
   <p class="buybox__legal">Opens amazon.com. We earn a commission if you buy, at no extra cost to you. ${esc(
     site.associateStatement
@@ -298,9 +321,14 @@ function specTable(p) {
 
 function productCard(p, rank) {
   const top = p.specs.filter((s) => s.value).slice(0, 3);
+  const verified = p.specs.filter((s) => s.status === "verified").length;
   return `<article class="pcard">
+  <figure class="pcard__art art">
+    ${art.forProduct(p)}
+    ${art.caption()}
+  </figure>
   <div class="pcard__top">
-    ${rank ? `<span class="pcard__rank">${rank}</span>` : "<span></span>"}
+    ${rank ? `<span class="pcard__rank">${rank}</span>` : `<span class="tiny faint">${verified} of ${p.specs.length} rows verified</span>`}
     <span class="pcard__tag">${esc(
       p.formFactor.replace(/-/g, " ")
     )}</span>
@@ -309,6 +337,10 @@ function productCard(p, rank) {
     <p class="pcard__brand">${esc(p.brand)}</p>
     <h3 class="pcard__name"><a href="${url(`/products/${p.slug}/`)}">${esc(p.shortName)}</a></h3>
     <p class="pcard__verdict">${esc(p.verdict)}</p>
+    <ul class="pcard__chips">
+      <li class="chip"><b>Good for</b> ${esc(p.bestFor)}</li>
+      <li class="chip chip--no"><b>Costs you</b> ${esc(p.tradeoff)}</li>
+    </ul>
     <ul class="pcard__specs">
       ${top
         .map(
@@ -320,7 +352,7 @@ function productCard(p, rank) {
   </div>
   <div class="pcard__foot">
     <a class="btn btn--amazon" href="${special(p.asin)}" rel="sponsored nofollow noopener"
-       target="_blank" data-affiliate="${p.asin}" data-slot="card">Check price on Amazon →</a>
+       target="_blank" data-affiliate="${p.asin}" data-slot="card">See it on Amazon →</a>
     <p class="pcard__note">Sponsored. ${esc(site.associateStatement)}</p>
   </div>
 </article>`;
@@ -339,8 +371,10 @@ const breadcrumb = (trail) =>
    FRONT PAGE — a publication front page, not a dashboard
    ============================================================ */
 function frontPage() {
-  const picks = products.slice(0, 3);
+  const picks = products.filter((p) => p.category === "air-fryers");
   const lead = products[0];
+  const thermos = products.filter((p) => p.category === "thermometers");
+  const featureGuide = guides.find((g) => g.slug === "thermometer-check") || guides[guides.length - 1];
 
   const html = `
 <section class="hero">
@@ -350,12 +384,16 @@ function frontPage() {
       <h1>Buy the one that fits your <em>counter</em>, not the one with the biggest number.</h1>
       <p class="hero__dek">Three air fryers and two thermometers, compared on the things that decide whether you still use them in a year: how many things cook at once, how much counter it takes, and how much of it ends up in the sink.</p>
       <div class="hero__actions">
-        <a class="btn btn--primary" href="${url("/air-fryers/")}">See the air fryers</a>
+        <a class="btn btn--primary" href="${url("/air-fryers/")}">See the three air fryers</a>
         <a class="btn btn--ghost" href="${url("/guides/basket-vs-oven/")}">Basket or oven? Start here</a>
       </div>
-      <p class="tiny faint" style="margin-top:1.1rem">No testing claims. No invented prices. Every spec is labelled with how it was verified.</p>
+      <p class="tiny faint" style="margin-top:1.1rem">Every specification is labelled with how it was verified. Nothing here describes a test that did not happen.</p>
     </div>
     <aside class="pick">
+      <figure class="pick__art art">
+        ${art.forProduct(lead)}
+        ${art.caption()}
+      </figure>
       <p class="pick__label">Start here</p>
       <h2 class="pick__name">${esc(lead.shortName)}</h2>
       <p class="pick__verdict">${esc(lead.verdict)}</p>
@@ -365,20 +403,40 @@ function frontPage() {
         <div class="pick__stat"><dt>Best for</dt><dd style="font-size:.86rem;font-family:var(--sans)">Two-part dinners</dd></div>
       </dl>
       <a class="btn btn--amazon" href="${special(lead.asin)}" rel="sponsored nofollow noopener"
-         target="_blank" data-affiliate="${lead.asin}" data-slot="hero">Check price on Amazon →</a>
+         target="_blank" data-affiliate="${lead.asin}" data-slot="hero">See it on Amazon →</a>
       <p class="pcard__note">Sponsored. ${esc(site.associateStatement)}</p>
     </aside>
   </div>
 </section>
 
-<div class="strip">
-  <div class="wrap strip__inner">
-    <div class="strip__cell"><p class="strip__num">${products.length}</p><p class="strip__lab">Products compared</p></div>
-    <div class="strip__cell"><p class="strip__num">${guides.length}</p><p class="strip__lab">Guides</p></div>
-    <div class="strip__cell"><p class="strip__num">0</p><p class="strip__lab">Products tested</p></div>
-    <div class="strip__cell"><p class="strip__num">${policy.policy.length}</p><p class="strip__lab">Policy checks passed</p></div>
+<section class="fit" aria-labelledby="fit-title">
+  <div class="wrap">
+    <h2 id="fit-title" class="tiny fit__lead">Start from your kitchen, not from a spec sheet</h2>
   </div>
-</div>
+  <div class="wrap fit__inner">
+    <div class="fit__q">
+      <a href="${url("/guides/quarts-per-household/")}">
+        <h3>Cooking for two, and the counter is the constraint?</h3>
+        <p>A batching rule you can run with the plate you actually eat off, before you compare a single quart figure.</p>
+        <span class="go">Work out your capacity →</span>
+      </a>
+    </div>
+    <div class="fit__q">
+      <a href="${url("/products/emeril-lagasse-26qt-french-door/")}">
+        <h3>Feeding a crowd without a second oven?</h3>
+        <p>Twenty-six quarts, French doors, six accessories — what a countertop oven does that a drawer physically cannot.</p>
+        <span class="go">See the oven-style pick →</span>
+      </a>
+    </div>
+    <div class="fit__q">
+      <a href="${url("/guides/thermometer-check/")}">
+        <h3>Not sure the chicken is actually done?</h3>
+        <p>The safe minimum temperatures are published by USDA, and the chart itself names the one tool that settles it.</p>
+        <span class="go">Read the check →</span>
+      </a>
+    </div>
+  </div>
+</section>
 
 <section class="section">
   <div class="wrap">
@@ -387,11 +445,29 @@ function frontPage() {
         <h2 class="section__title">What we'd put on your counter</h2>
         <p class="section__dek">Three air fryers at three different points on the same trade-off. None of them is the "best" — one of them is right for you, and the other two are wrong in specific ways.</p>
       </div>
-      <a class="section__more" href="${url("/air-fryers/")}">All air fryers</a>
+      <a class="section__more" href="${url("/compare/")}">Compare all five</a>
     </div>
     <div class="products products--three">
       ${picks.map((p, i) => productCard(p, i + 1)).join("")}
     </div>
+  </div>
+</section>
+
+<section class="feature" aria-labelledby="feature-title">
+  <div class="wrap feature__grid">
+    <div>
+      <p class="kicker">New this week · Guide ${featureGuide.number}</p>
+      <h2 id="feature-title">${esc(featureGuide.title)}</h2>
+      <p>${esc(featureGuide.dek)}</p>
+      <div class="feature__links">
+        <a class="btn btn--amazon" href="${url(`/guides/${featureGuide.slug}/`)}" style="background:#fff;color:#191512">Read the guide</a>
+        <a href="${url("/thermometers/")}">Both thermometers</a>
+      </div>
+    </div>
+    <figure class="art art--wide">
+      ${art.feature()}
+      ${art.caption("A plate, a probe, and the number that decides both.")}
+    </figure>
   </div>
 </section>
 
@@ -405,27 +481,31 @@ function frontPage() {
       <a class="section__more" href="${url("/thermometers/")}">Both thermometers</a>
     </div>
     <div class="products">
-      ${products.slice(3).map((p) => productCard(p, null)).join("")}
+      ${thermos.map((p) => productCard(p, null)).join("")}
     </div>
   </div>
 </section>
 
 <section class="section">
   <div class="wrap">
-    <div class="section__head">
-      <h2 class="section__title">Read before you buy</h2>
-      <p class="section__dek">The questions that come up before any of these purchases, answered without a verdict at the end.</p>
+    <div class="section__head section__head--split">
+      <div>
+        <h2 class="section__title">Read before you buy</h2>
+        <p class="section__dek">${word(guides.length)} guides, each built around one decision a buyer actually has to make.</p>
+      </div>
+      <a class="section__more" href="${url("/guides/")}">All guides</a>
     </div>
-    <div class="guides guides--two">
+    <div class="guide-index">
       ${guides
         .map(
-          (g) => `<a class="guide-link" href="${url(`/guides/${g.slug}/`)}">
-        <span class="guide-link__num">${g.number}</span>
-        <span>
-          <h3 class="guide-link__title">${esc(g.title)}</h3>
-          <p class="guide-link__dek">${esc(g.dek)}</p>
-        </span>
-      </a>`
+          (g) => `<article class="guide-card">
+        <span class="art-mini">${g.spot && art.spots[g.spot] ? art.spots[g.spot]() : art.spots.buy()}</span>
+        <h3><a href="${url(`/guides/${g.slug}/`)}">${esc(g.title)}</a></h3>
+        <p>${esc(g.dek)}</p>
+        <p class="guide-link__read">${esc(g.readingTime)} · ${esc(
+          g.topics.join(" · ")
+        )}</p>
+      </article>`
         )
         .join("")}
     </div>
@@ -433,11 +513,17 @@ function frontPage() {
 </section>
 
 <section class="section" style="padding-top:0">
-  <div class="wrap narrow">
-    <div class="note note--warn">
-      <p class="note__title">${esc(editorNote.title)}</p>
-      <p>${esc(editorNote.body)}</p>
-      <p class="mt1"><a href="${url("/about/")}">Full editorial standards →</a></p>
+  <div class="wrap">
+    <div class="honesty">
+      <p><strong>${esc(editorNote.title)}.</strong> ${esc(editorNote.body.split("\n\n")[0])} <a href="${url(
+        "/about/"
+      )}">Full editorial standards →</a></p>
+      <dl class="honesty__stats">
+        <div class="honesty__stat"><dt>Products</dt><dd>${products.length}</dd></div>
+        <div class="honesty__stat"><dt>Guides</dt><dd>${guides.length}</dd></div>
+        <div class="honesty__stat"><dt>Hands-on tests</dt><dd>0</dd></div>
+        <div class="honesty__stat"><dt>Open questions</dt><dd>${questions.questions.length}</dd></div>
+      </dl>
     </div>
   </div>
 </section>
@@ -536,6 +622,10 @@ ${breadcrumb([
     <p class="kicker">${esc(p.brand)} · ${esc(p.formFactor.replace(/-/g, " "))}</p>
     <h1 class="article-head__title">${esc(p.name)}</h1>
     <p class="article-head__dek">${esc(p.verdict)}</p>
+    <figure class="art art--wide" style="margin-top:1.5rem;border:1px solid var(--rule);border-radius:var(--radius)">
+      ${art.forProduct(p)}
+      ${art.caption(`Model number ${p.modelNumber ? esc(p.modelNumber) : "not published where we could verify it"}.`)}
+    </figure>
     <div class="byline">
       <span>${esc(site.name)} editorial</span>
       <span class="byline__dot" aria-hidden="true"></span>
@@ -665,6 +755,10 @@ ${breadcrumb([
     <p class="kicker">Guide ${g.number} · ${esc(cat ? cat.name : "Buying")}</p>
     <h1 class="article-head__title">${esc(g.title)}</h1>
     <p class="article-head__dek">${esc(g.dek)}</p>
+    <figure class="art" style="margin-top:1.5rem;max-width:22rem;border:1px solid var(--rule);border-radius:var(--radius)">
+      ${g.spot && art.spots[g.spot] ? art.spots[g.spot]() : art.spots.buy()}
+      ${art.caption("Drawn from the published specification — not a photograph, and not a test result.")}
+    </figure>
     <div class="byline">
       <span>${esc(site.name)} editorial</span>
       <span class="byline__dot" aria-hidden="true"></span>
@@ -725,6 +819,22 @@ ${breadcrumb([
         .join("")}
       <p class="buybox__legal">${esc(site.associateStatement)}</p>
     </div>
+    ${
+      g.cites && g.cites.length
+        ? `<div class="srclist">
+      <p class="note__title">Sources used in this guide</p>
+      <ul>${g.cites
+          .map(
+            (c) =>
+              `<li><a href="${esc(c.url)}" rel="noopener" target="_blank">${esc(
+                c.label
+              )}</a></li>`
+          )
+          .join("")}</ul>
+      <p class="tiny faint" style="margin:.55rem 0 0">Not Amazon links: citing a source is not referring a customer, so these carry no tracking tag.</p>
+    </div>`
+        : ""
+    }
     <div class="note mt2">
       <p class="note__title">How this was written</p>
       <p class="small">From published specifications and the trade-offs they imply. Nothing here describes hands-on use, because none took place. <a href="${url(
@@ -765,24 +875,22 @@ ${breadcrumb([{ href: url("/"), label: "Home" }, { label: "Guides" }])}
   <div class="wrap">
     <p class="kicker">Buying guides</p>
     <h1 class="article-head__title">The questions people ask before they buy</h1>
-    <p class="article-head__dek">Five guides, each built around one decision. No rankings, no "best of" list, no claim that any of this was tested.</p>
+    <p class="article-head__dek">${cap(word(guides.length))} guides, each built around one decision. No rankings, no "best of" list, no claim that any of this was tested.</p>
   </div>
 </div>
 <section class="section">
   <div class="wrap">
-    <div class="guides">
+    <div class="guide-index">
       ${guides
         .map(
-          (g) => `<a class="guide-link" href="${url(`/guides/${g.slug}/`)}">
-        <span class="guide-link__num">${g.number}</span>
-        <span>
-          <h2 class="guide-link__title">${esc(g.title)}</h2>
-          <p class="guide-link__dek">${esc(g.dek)}</p>
-          <p class="tiny faint" style="margin:.4rem 0 0">${esc(g.readingTime)} · ${esc(
+          (g) => `<article class="guide-card">
+        <span class="art-mini">${g.spot && art.spots[g.spot] ? art.spots[g.spot]() : art.spots.buy()}</span>
+        <h2><a href="${url(`/guides/${g.slug}/`)}">${esc(g.title)}</a></h2>
+        <p>${esc(g.dek)}</p>
+        <p class="guide-link__read">Guide ${g.number} · ${esc(g.readingTime)} · ${esc(
             g.topics.join(" · ")
           )}</p>
-        </span>
-      </a>`
+      </article>`
         )
         .join("")}
     </div>
@@ -798,7 +906,7 @@ ${breadcrumb([{ href: url("/"), label: "Home" }, { label: "Guides" }])}
   pages.push({
     path: "/guides/",
     title: "Buying guides",
-    desc: "Five question-shaped guides to air fryers and thermometers: form factor, capacity, cleanup, and multi-function claims.",
+    desc: "Eight question-shaped guides to air fryers and thermometers: form factor, capacity, batching, cleanup, multi-function claims, doneness checks and feature-name literacy.",
     html,
     priority: "0.8",
     changefreq: "weekly"
@@ -1627,7 +1735,7 @@ ${breadcrumb([{ href: url("/"), label: "Home" }, { label: "Executive summary" }]
     <h2>What exists</h2>
     <ul>
       <li><strong>A five-product publication</strong> — three air fryers, two thermometers — with individual pages, two category hubs, and a full comparison table.</li>
-      <li><strong>Five question-shaped guides</strong>, written as decisions rather than rankings.</li>
+      <li><strong>${cap(word(guides.length))} question-shaped guides</strong>, written as decisions rather than rankings.</li>
       <li><strong>A complete source register</strong>: ${policy.sources.length} primary sources and ${products.reduce(
         (n, p) => n + p.specs.length,
         0
@@ -1682,8 +1790,8 @@ ${breadcrumb([{ href: url("/"), label: "Home" }, { label: "Executive summary" }]
     </ol>
 
     <h2>The honest verdict</h2>
-    <p>What exists is a small, well-documented, compliant publication with five decent guides and five products. It is not yet a business: it has no traffic, no verified affiliate attribution, and no data. It is, however, built so that when those three things arrive, nothing has to be torn down — and so that nothing on it is a lie.</p>
-    <p>The main strategic risk is not technical. It is that five guides is not enough content to rank in a crowded category, and the plan for fixing that is a cadence, not a feature.</p>
+    <p>What exists is a small, well-documented, compliant publication with ${word(guides.length)} guides and ${products.length} products. It is not yet a business: it has no traffic, no verified affiliate attribution, and no data. It is, however, built so that when those three things arrive, nothing has to be torn down — and so that nothing on it is a lie.</p>
+    <p>The main strategic risk is not technical. It is that ${word(guides.length)} guides is not enough content to rank in a crowded category, and the plan for fixing that is a cadence, not a feature.</p>
   </div>
 </section>
 `;

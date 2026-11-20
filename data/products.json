@@ -8,6 +8,7 @@
     "marketplace": "amazon.com",
     "built": "2026-11-20",
     "associateStatement": "As an Amazon Associate I earn from qualifying purchases.",
+    "socialImage": "/WinA/assets/img/social-card.png",
     "analyticsEndpoint": ""
   },
   "products": [
@@ -110,7 +111,9 @@
       "guideTopics": [
         "basket-vs-oven",
         "capacity",
-        "cleanup"
+        "cleanup",
+        "quarts-per-household",
+        "hi-fry"
       ],
       "submittedLink": "https://link.amazon/B04G1MEwY",
       "observedDestination": "https://www.amazon.com/dp/B0CDY277D3",
@@ -229,7 +232,8 @@
       "guideTopics": [
         "basket-vs-oven",
         "capacity",
-        "multifunction"
+        "multifunction",
+        "quarts-per-household"
       ],
       "submittedLink": "https://link.amazon/B02NbDxp3",
       "observedDestination": "https://www.amazon.com/dp/B09B7SB46R",
@@ -349,7 +353,9 @@
       "guideTopics": [
         "capacity",
         "cleanup",
-        "basket-vs-oven"
+        "basket-vs-oven",
+        "quarts-per-household",
+        "hi-fry"
       ],
       "submittedLink": "https://link.amazon/B00hJ57DV",
       "observedDestination": "https://www.amazon.com/dp/B08DKYBTPH",
@@ -456,7 +462,8 @@
       "guideTopics": [
         "multifunction",
         "capacity",
-        "instant-vs-wireless"
+        "instant-vs-wireless",
+        "thermometer-check"
       ],
       "submittedLink": "https://link.amazon/B0c8moW59",
       "observedDestination": "https://www.amazon.com/dp/B0DHZTCNR5",
@@ -604,7 +611,8 @@
       "guideTopics": [
         "multifunction",
         "basket-vs-oven",
-        "instant-vs-wireless"
+        "instant-vs-wireless",
+        "thermometer-check"
       ],
       "submittedLink": "https://link.amazon/B0f3GKalj",
       "observedDestination": "https://www.amazon.com/dp/B0DZFD6R9Z",

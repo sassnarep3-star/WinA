@@ -135,7 +135,7 @@
       "priority": "high",
       "question": "Is anyone searching for these products or these questions?",
       "answer": "Unknown. No search volume data exists for this project, and none has been assumed.",
-      "have": "Five editorial hypotheses for question-shaped guides, written as working titles: the four from the brief plus one thermometer guide.",
+      "have": "Eight guides are published: the four working titles named in the brief, one thermometer guide, and three added in the reader-polish pass of 2026-11-20 (a USDA-referenced doneness check, a capacity rule, and a feature-name literacy piece).", 
       "missing": "Any impression, click, or query data. Search Console is not verified and the analytics collector is not deployed.",
       "matters": "The brief asks for trending, high-converting topics. Trending is a measurement, not a guess.",
       "howToFind": "Verify Search Console, submit the sitemap, and read the Queries report after 2–4 weeks. That replaces instinct with measured demand.",
@@ -147,7 +147,7 @@
       "id": "Q-08",
       "area": "demand",
       "priority": "medium",
-      "question": "Which of the five guide topics should be written first?",
+      "question": "Which guide topic should be written next?",
       "answer": "Hypothesis only. The capacity checklist is the best starting bet because it applies to all three air fryers and does not depend on any product outperforming another.",
       "have": "Five working titles, deliberately not framed as popularity claims.",
       "missing": "Evidence of which question people actually arrive with.",
@@ -155,7 +155,7 @@
       "howToFind": "Ship all five, then let Search Console query data reorder them. See SUG-05.",
       "status": "hypothesis",
       "sourceUrl": "https://sassnarep3-star.github.io/WinA/guides/",
-      "sourceLabel": "The five guides as published"
+      "sourceLabel": "The eight guides as published"
     },
     {
       "id": "Q-09",

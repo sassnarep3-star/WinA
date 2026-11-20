@@ -8,6 +8,7 @@ export const guides = [
   {
     slug: "basket-vs-oven",
     number: "01",
+    spot: "formfactor",
     title: "Basket or oven-style air fryer: what should you compare?",
     dek: "They share a name and almost nothing else. The decision is not about which fries better — it is about how you cook on a normal weeknight.",
     category: "air-fryers",
@@ -57,6 +58,7 @@ If you are choosing between them, the useful question is not which one is better
   {
     slug: "capacity",
     number: "02",
+    spot: "capacity",
     title: "A no-hype checklist for comparing air fryer capacity",
     dek: "Quarts are the least honest number on the box. Here is what to check instead, and why the biggest number is often the wrong buy.",
     category: "air-fryers",
@@ -113,6 +115,7 @@ This is a short checklist. It has no opinions about brands and no numbers we did
   {
     slug: "cleanup",
     number: "03",
+    spot: "cleanup",
     title: "How to assess cleanup and counter-space trade-offs",
     dek: "The appliance you stop using is the one that is annoying to wash. This is the least glamorous part of the decision and the most predictive.",
     category: "air-fryers",
@@ -163,6 +166,7 @@ Cleanup is not a minor spec. It is the best available predictor of whether the t
   {
     slug: "multifunction",
     number: "04",
+    spot: "multifunction",
     title: "Questions to ask before buying a multi-function kitchen appliance",
     dek: "Every appliance claims ten jobs. The useful question is which two it does well, and whether those two are the jobs you have.",
     category: "thermometers",
@@ -217,6 +221,7 @@ Multi-function claims are the easiest thing in kitchen retail to inflate and the
   {
     slug: "instant-vs-wireless",
     number: "05",
+    spot: "temperature",
     title: "Instant-read or wireless: which meat thermometer fits your grill?",
     dek: "One answers \"is this done right now?\". The other answers \"tell me when it is done\" while the lid stays shut. The right one depends on how you cook.",
     category: "thermometers",
@@ -248,6 +253,141 @@ Multi-function claims are the easiest thing in kitchen retail to inflate and the
       "Spot checks want an instant-read. Long unattended cooks want wireless monitoring.",
       "Published response and accuracy figures are stated by the seller, not verified by us.",
       "For connected devices, ask what happens when the app stops being supported."
+    ]
+  },
+  {
+    slug: "thermometer-check",
+    number: "06",
+    spot: "magnify",
+    title: "Do you need a thermometer in an air fryer? The one check that settles doneness",
+    dek: "A small cavity with a fan is unforgiving in a way a big oven is not. The safe numbers are published, they are not secret, and a timer is not one of them.",
+    category: "thermometers",
+    readingTime: "5 min",
+    topics: ["food safety", "doneness", "probe technique"],
+    intro: `You cannot see, smell or taste whether a piece of chicken is safe — and the agency that publishes the safe temperatures says so in the first paragraph of its chart, and says the measurement has to be made with a food thermometer. That single sentence is the strongest argument in this whole guide, and it does not come from us or from any appliance listing.
+
+Everything below is about what to buy so that checking is something you actually do, instead of a drawer item you resent.`,
+    body: `
+<h2>The number you are aiming at is public</h2>
+<p>USDA's Food Safety and Inspection Service publishes a minimum internal temperature chart. It is not affiliate content, it does not change with promotions, and it is the reference a countertop cooker has to satisfy like any other appliance. The rows that matter for air-fryer cooking:</p>
+<ul>
+<li><strong>All poultry</strong> — breasts, whole bird, legs, thighs, wings, ground poultry, giblets and stuffing: 165 degrees F.</li>
+<li><strong>Beef, pork, veal and lamb steaks, chops and roasts</strong>: 145 degrees F, then rest at least 3 minutes.</li>
+<li><strong>Ground meats</strong>: 160 degrees F. <strong>Ground poultry</strong>: 165 degrees F.</li>
+<li><strong>Fish and shellfish</strong>: 145 degrees F.</li>
+<li><strong>Leftovers and casseroles</strong>: 165 degrees F.</li>
+</ul>
+<p>The chart's own words: <em>“Cook all food to these minimum internal temperatures, as measured with a food thermometer, before removing food from the heat source.”</em> The rest time on whole cuts is part of the standard, not a serving suggestion. That is quoted from the chart, last updated 14 April 2025, and the source link is at the foot of this page so you can read it rather than take our word for it.</p>
+
+<h2>Why a small cavity makes this matter more</h2>
+<p>Not because an air fryer is dangerous. Because of geometry. The Emeril listing states its cooking method as countertop convection, and the two Chefman units are sold as air fryers — the same family: hot air moved over food by a fan inside an enclosed chamber. In the largest case here that chamber is 26 quarts; a domestic oven cavity is many times that. Less air, more of the food's surface exposed to moving air, which is why the practical failure mode is overshooting: the outside is loud and brown and the middle has quietly passed the number you wanted.</p>
+<p>We have not measured any of these units and we are not going to publish a rate. The honest claim is much narrower: in a small cavity, the gap between "done" and "overcooked" is easier to miss, and the only instrument that closes the gap is a probe.</p>
+
+<h2>The checks that are not checks</h2>
+<p><strong>Clear juices.</strong> A useful cue for some things, not a safety test; the chart above exists because color and texture are not evidence.</p>
+<p><strong>Minutes on the dial.</strong> Time is an input, not a measurement. Two identical pieces in the same basket can start at different temperatures depending on how long they sat out, how thick they are, and whether they were crowded.</p>
+<p><strong>The unit's own "doneness" preset.</strong> Presets are program names. The Chefman 8-quart listing describes four functions — air fry, bake, dehydrate, and frozen — and the Emeril French-door listing states twenty-four one-touch presets on the manufacturer's page. Those are counts of modes, not measurements of your dinner.</p>
+
+<h2>Buying for this job: two shapes, two habits</h2>
+<p>The two thermometers in our register split the way most of them do. The <strong>ThermoMaven</strong> is an instant-read: a fold-out probe, a stated one-second read and a stated ±0.5°F tolerance, which the manufacturer's page presents as NIST-certified accuracy. Stated is the word — we could not verify a certificate number, so our register marks it as the manufacturer's claim rather than a verified figure. Its practical virtue is that it is in your hand, takes two seconds, and lives in a drawer.</p>
+<p>The <strong>CHEF iQ Sense</strong> is a leave-in system: three probes and five sensors in the manufacturer's own count, Wi-Fi and Bluetooth, and a heat rating stated at 1,000°F, which is the figure that decides whether a probe can stay in a searing, roasting or frying environment at all. Its virtue is the opposite one: you stop opening the door, and the phone tells you when the curve arrives. Its cost is that it is a system — an app, an account, a network, and a company that keeps the service running. Our register lists "app requirement" as unverified, because the listing does not answer how long support lasts.</p>
+
+<h2>One thing to do before you trust a new thermometer</h2>
+<p>Put the probe in a glass of crushed ice and water, not touching the sides or the bottom, and read it once the number settles. That is the freezing point of water, and it is the only accuracy check available in a home kitchen without equipment. If the reading is outside the tolerance the manufacturer states, that is a warranty conversation while you can still have one.</p>
+<p>Neither of the two products above was checked this way by us, and we are not reporting a result we did not obtain. We are telling you the test exists, it takes ninety seconds, and it is the one thing that turns a spec sheet number into something you know.</p>
+`,
+    takeaways: [
+      "The safe-temperature chart is published by USDA FSIS, and it says to measure with a food thermometer.",
+      "Rest time on whole cuts is part of the standard, not a preference.",
+      "A small convection cavity makes overshooting easy to miss; a probe is the only real correction.",
+      "Stated accuracy is the manufacturer's figure. An ice-water check is yours."
+    ],
+    cites: [
+      {
+        label: "USDA FSIS — Safe Minimum Internal Temperature Chart (official)",
+        url: "https://www.fsis.usda.gov/food-safety/safe-food-handling-and-preparation/food-safety-basics/safe-temperature-chart"
+      }
+    ]
+  },
+  {
+    slug: "quarts-per-household",
+    number: "07",
+    spot: "scale",
+    title: "How many quarts does your household need? A batching rule you can test with a plate",
+    dek: "Quart figures are only comparable inside one form factor, and three of the listings in this set make that awkward on purpose. Here is the arithmetic before the spec sheet.",
+    category: "air-fryers",
+    readingTime: "6 min",
+    topics: ["capacity", "batching", "counter footprint"],
+    intro: `Most capacity advice is written as if a quart were a quart. It is not. A quart of basket and a quart of oven cavity hold different dinners, and a dual-basket unit advertising six quarts is selling you two three-quart cooks. Before you compare a single number on a box, convert your actual eating into a shape.`,
+    body: `
+<h2>Step one: count components, not people</h2>
+<p>People-shop is what sells big numbers: "family size", "fits a whole chicken", "10 quarts for the household". But the constraint on Tuesday is not how many mouths, it is how many separate things have to be hot at once.</p>
+<p>Write down the last four dinners you actually cooked. For each, count the components that needed heat and whether they needed the same heat. One component at one temperature is a single-basket problem, whatever the household size. Two components at different temperatures is a chamber problem, whether you are cooking for one or for six.</p>
+<p>That is why a two-person household with a 6-quart dual basket and a four-person household with an 8-quart single basket can both be correctly sized, and both be wrong for the other.</p>
+
+<h2>Step two: read the number as geometry</h2>
+<p>Three capacities in our register, all verified from the official listing or the manufacturer's own page:</p>
+<ul>
+<li><strong>6 qt total, split</strong> — the Chefman dual basket is two 3-quart drawers, listed at 170 W across 120 V, and it is the only unit here whose capacity has to be divided before you compare it to anything.</li>
+<li><strong>8 qt undivided</strong> — the Chefman TurboFry is one XL basket. One temperature at a time, more of a single thing, and no second drawer to negotiate with.</li>
+<li><strong>26 qt</strong> — the Emeril Lagasse French door is a small oven: 24.6 litres of cavity, six cooking accessories, and twenty-four presets on the manufacturer's page.</li>
+</ul>
+<p>A 6-quart split and an 8-quart single are not six and eight. They are 3+3 and 8. And a 26-quart cavity is not "more of the same" — it is a different appliance that happens to be sold on the same shelf, with racks instead of a drawer you can shake.</p>
+
+<h2>Step three: the plate test</h2>
+<p>Take the plate you actually serve from and the pan you actually use. Put the pan in the space where the appliance would live. If the pan does not sit flat on a rack, or does not fit with an inch of clearance on the top and sides, the advertised quarts do not apply to your dinner — they apply to a manufacturer's test load.</p>
+<p>Interior dimensions are the missing number here, and it is missing for all three: no unit in this set publishes an interior width we could verify from an official page. What is published is the outside, which is what your counter has to give up. The manufacturer states the Chefman dual basket at 13.38 × 11.81 × 10.63 inches and 13.3 lb; the Emeril French door at 16.9 D × 15.8 W × 14.8 H inches. The 8-quart's dimensions are not published where we could verify them, so that row is blank on our product page rather than guessed.</p>
+
+<h2>Step four: decide how often you will wash it</h2>
+<p>Capacity has a cost that shows up on Wednesday, not on the first night. Both Chefman listings describe their nonstick baskets as dishwasher-safe; that is what the listing states, and we are repeating it, not confirming it by inspection. A 26-quart oven-style unit has racks, walls and accessories to wipe, and the more surface an appliance offers, the more of it there is to clean after dinner for two.</p>
+<p>If your realistic pattern is four weeknight meals for two, an 8-quart single basket that lives in a cabinet is a better fit than a 26-quart oven that lives on the counter and gets wiped down every night. If your pattern is a Sunday roast and a week of leftovers, the oven is the appliance that stops you cooking in shifts.</p>
+
+<h2>Where this stops being a comparison</h2>
+<p>We have not cooked in any of these. There is no batch-size test here, no timing, no browning photograph, and no claim about how much food either unit "really" holds. What we can do is show which numbers are published, which are stated but not verifiable, and which are missing. Everything on the product pages carries that label, and this guide is the arithmetic you can run before you shop.</p>
+`,
+    takeaways: [
+      "Count dinner components, not household members.",
+      "A 6-quart dual basket is two 3-quart cooks; a 6-plus-6 is not the same as an 8.",
+      "Compare the published exterior footprint to your counter; interior dimensions are unpublished for this set.",
+      "Washing is part of capacity. It decides whether a big unit stays in use."
+    ]
+  },
+  {
+    slug: "hi-fry",
+    number: "08",
+    spot: "bolt",
+    title: "What does Hi-Fry actually mean? Reading a feature name before you pay for it",
+    dek: "Two listings in this set use the same marketing name. Only one publishes a number with it. That gap is the whole skill.",
+    category: "air-fryers",
+    readingTime: "5 min",
+    topics: ["feature names", "temperature", "spec literacy"],
+    intro: `Named features are the most reliable way to tell a spec sheet from a slogan. One of these listings tells you what a button does in numbers. The other tells you the button exists. Neither of them is lying; only one of them is checkable. Here is how to read the difference in about four minutes.`,
+    body: `
+<h2>What is actually published, in this set</h2>
+<p>Take the Chefman 8-quart TurboFry. Its official listing states a standard range up to 400°F and a Hi-Fry setting of 450°F available for the final two minutes of a cycle. That is a testable sentence: it gives a temperature, a duration, and a position in the cook. If you want to know whether the machine does what you need, you can compare 450°F against what you are cooking and be done.</p>
+<p>Now the 6-quart dual basket. Its listing title names Hi-Fry, and it names Sync Finish. There is a feature called Hi-Fry on that appliance, and there is no published figure we could verify for what temperature it reaches or how long it holds. Our register carries the name as verified and the number as unverified. That is not a criticism of the product — it is a statement about the row you can rely on.</p>
+<p>The lesson transfers to every appliance page you will read this month: a feature name is a trademark. A temperature, a wattage, a duration and a dimension are specifications. Only the second kind can be checked against your cooking.</p>
+
+<h2>Four questions to ask of any named feature</h2>
+<ul>
+<li><strong>Is a number published for it, or only a name?</strong> "Up to 450°F for the final two minutes" is a spec. "Now with Hi-Fry" is a label.</li>
+<li><strong>Where is the number published?</strong> In the bullets, in a comparison chart, in the manual, or on the manufacturer's own product page? A figure that appears only in an advertising banner is the weakest kind.</li>
+<li><strong>Does it change the food, or the workflow?</strong> Sync Finish — verified on the dual-basket listing — is a workflow feature: it holds the faster drawer so both finish together. That does not make your fries crispier. It makes the two parts of dinner land at the same time, which is a different and for some kitchens a better promise.</li>
+<li><strong>What does it cost you?</strong> A wattage figure is the honest proxy. The dual-basket unit is stated by Chefman at 1700 W on 120 V; the 8-quart's wattage is not published where we could verify it, so we show it blank and say so.</li>
+</ul>
+
+<h2>Why we leave rows blank instead of filling them in</h2>
+<p>Every product page on this site marks each specification as verified, stated-by-the-manufacturer, unverified or withheld, and a blank row cannot also carry a value — the build fails if one does. That is why the table for the 8-quart shows a clean 400/450°F row and the table for the same brand's dual basket shows the feature name without a temperature. A site that fills both cells looks more complete. It is also the kind of site that eventually publishes a number nobody sourced.</p>
+<p>Two of the restrictions are ours, not Amazon's — star ratings and review counts are withheld because the program restricts them to approved creative tools, and no price appears anywhere because we do not have the API access that would keep a figure current. A page that shows you a stale price and an invented rating is not a page that respects your time.</p>
+
+<h2>The short version</h2>
+<p>If a feature name changes what you would cook, insist on a published number before paying for it. If it changes only how convenient the cook is, decide whether the convenience is worth the counter space and the extra drawer to wash. That is the entire method, and it works on any brand's page, including the ones we link to.</p>
+`,
+    takeaways: [
+      "A feature name is a trademark; a temperature, duration or wattage is a specification.",
+      "The 8-quart listing publishes 400°F standard and 450°F Hi-Fry for the final two minutes. The dual-basket listing names Hi-Fry without a figure we could verify.",
+      "Workflow features change convenience, not the food. Price them as convenience.",
+      "Blank rows with a stated reason beat filled rows with no source."
     ]
   }
 ];

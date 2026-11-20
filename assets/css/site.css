@@ -658,3 +658,285 @@ table.data.sortable th .sort-btn:hover { text-decoration: underline; }
 table.data.sortable th .sort-btn:focus-visible { outline: 2px solid currentColor; outline-offset: 2px; }
 table.data.sortable th[aria-sort="ascending"] .sort-btn::after { content: " \25B2"; font-size: .7em; }
 table.data.sortable th[aria-sort="descending"] .sort-btn::after { content: " \25BC"; font-size: .7em; }
+
+/* ============================================================
+   READER POLISH LAYER  (added 2026-11-20)
+   Implements the design brief that was previously only recorded as
+   SUG-17..SUG-21: an opinionated type scale, layout variation instead of
+   one repeated card grid, original line art in place of stock or Program
+   Content imagery, and shopper-facing bands on the front page.
+   Additive: nothing above this line is redefined except where marked.
+   ============================================================ */
+
+/* --- type scale: bigger display, tighter measure, real rhythm --- */
+.hero h1 {
+  font-size: clamp(2.1rem, 1.4rem + 3.1vw, 3.5rem);
+  line-height: 1.03;
+  letter-spacing: -.025em;
+}
+.hero__dek { font-size: clamp(1rem, .96rem + .3vw, 1.14rem); }
+.section__title { font-size: clamp(1.5rem, 1.3rem + .9vw, 2.05rem); }
+.article-head__title {
+  font-size: clamp(1.9rem, 1.5rem + 1.7vw, 2.9rem);
+  line-height: 1.06;
+  letter-spacing: -.02em;
+}
+.prose > h2 { letter-spacing: -.012em; }
+.prose > p > code {
+  font-family: var(--mono); font-size: .88em;
+  background: var(--paper-deep); padding: .06em .35em; border-radius: 2px;
+}
+
+/* --- brand mark: a drawn monogram instead of a letter in a circle --- */
+.brand__mark { background: var(--accent); color: #fff; overflow: hidden; }
+.brandmark { width: 30px; height: 30px; display: block; }
+
+/* --- the art frame ----------------------------------------------------
+   Every drawing is a schematic, not a photograph, and says so. The frame
+   is deliberately paper-coloured so it reads as a printed diagram.
+   -------------------------------------------------------------------- */
+.art {
+  position: relative;
+  background:
+    repeating-linear-gradient(135deg, transparent 0 7px, rgba(25,21,18,.022) 7px 8px),
+    var(--paper-deep);
+  border-bottom: 1px solid var(--rule);
+  color: var(--ink-soft);
+  padding: 1.15rem 1.15rem .9rem;
+  margin: 0;
+  display: grid;
+  gap: .6rem;
+  justify-items: center;
+}
+.art__svg { width: 100%; max-width: 15rem; height: auto; display: block; }
+.art--wide .art__svg { max-width: 26rem; }
+.art__cap {
+  font-size: .66rem; line-height: 1.4; letter-spacing: .02em;
+  color: var(--ink-faint); text-align: center; max-width: 30rem; margin: 0;
+}
+.art--band { padding: 1.6rem 1.25rem 1.2rem; }
+.art--band .art__svg { max-width: 20rem; }
+
+/* --- product cards: art, then verdict, then a shop row --------------- */
+.pcard { overflow: hidden; }
+.pcard__art { transition: color .18s ease; }
+.pcard:hover .pcard__art { color: var(--accent); }
+.pcard__chips {
+  display: flex; flex-wrap: wrap; gap: .35rem;
+  margin: 0 0 .85rem; padding: 0; list-style: none;
+}
+.chip {
+  font-size: .68rem; letter-spacing: .04em; line-height: 1.5;
+  border: 1px solid var(--rule); border-radius: 999px;
+  padding: .12rem .55rem; background: var(--paper);
+  color: var(--ink-soft); white-space: nowrap;
+}
+.chip--no { border-style: dashed; color: var(--ink-mute); }
+.chip b { font-weight: 650; color: var(--ink); }
+.pcard__foot .btn { width: 100%; justify-content: center; }
+
+/* --- front page: the fit router replaces the audit strip --------------
+   Shoppers arrive with a situation, not with a spec sheet. The band asks
+   one question and sends them to the page that answers it.
+   -------------------------------------------------------------------- */
+.fit { background: var(--paper-deep); border-block: 1px solid var(--rule); }
+.fit__inner {
+  display: grid; gap: 0;
+  padding-block: 0;
+  grid-template-columns: 1fr;
+}
+@media (min-width: 820px) { .fit__inner { grid-template-columns: repeat(3, 1fr); } }
+.fit__q {
+  font-family: var(--serif); font-size: .95rem; color: var(--ink-mute);
+  padding: 1.15rem 0 .3rem; margin: 0 clamp(1rem, 3vw, 2rem) 0;
+  border-top: 1px solid var(--rule);
+}
+@media (min-width: 820px) {
+  .fit__q { border-top: 0; padding-top: 1.5rem; margin: 0; border-right: 1px solid var(--rule); }
+  .fit__q:last-child { border-right: 0; }
+}
+.fit__q a {
+  display: grid; gap: .55rem; text-decoration: none; color: inherit;
+  padding-bottom: 1.5rem;
+}
+.fit__q h3 {
+  font-family: var(--serif); font-size: 1.12rem; line-height: 1.25;
+  margin: 0; color: var(--ink); letter-spacing: -.01em;
+}
+.fit__q p { font-size: .84rem; color: var(--ink-mute); margin: 0; line-height: 1.5; }
+.fit__q .go {
+  font-family: var(--sans); font-size: .72rem; letter-spacing: .1em;
+  text-transform: uppercase; font-weight: 700; color: var(--clay);
+}
+.fit__q:hover h3 { color: var(--accent); }
+.fit__q:hover .go { color: var(--accent); }
+
+/* --- feature band: one long read, set apart from the grid ------------- */
+.feature {
+  background: var(--ink); color: #efe9e1;
+  padding-block: clamp(2.25rem, 5vw, 3.75rem);
+}
+.feature__grid {
+  display: grid; gap: clamp(1.5rem, 4vw, 3rem);
+  grid-template-columns: 1fr; align-items: center;
+}
+@media (min-width: 940px) { .feature__grid { grid-template-columns: 1.05fr .95fr; } }
+.feature .kicker { color: #e0a184; }
+.feature h2 {
+  font-family: var(--serif); font-weight: 600; letter-spacing: -.02em;
+  font-size: clamp(1.6rem, 1.2rem + 1.8vw, 2.5rem); line-height: 1.1;
+  margin: 0 0 .9rem; color: #fff;
+}
+.feature p { color: #cdc4b9; margin: 0 0 1.1rem; max-width: 34rem; font-size: 1rem; }
+.feature .art {
+  background: #221e1a; border: 1px solid #3a342e; border-radius: var(--radius);
+  border-bottom: 1px solid #3a342e; color: #b9d2d7; padding: 1.75rem 1.5rem 1.25rem;
+}
+.feature .art__cap { color: #8d847a; }
+.feature__links { display: flex; flex-wrap: wrap; gap: .6rem 1.4rem; align-items: center; }
+.feature__links a {
+  color: #fff; text-decoration: none; font-size: .86rem; font-weight: 600;
+  border-bottom: 1px solid rgba(255,255,255,.35); padding-bottom: .12rem;
+}
+.feature__links a:hover { border-bottom-color: #fff; }
+.feature .btn--amazon { background: #fff; color: var(--ink); }
+.feature .btn--amazon:hover { background: #efe9e1; color: #000; }
+
+/* --- guides: real index cards, one art slot each --------------------- */
+.guide-link {
+  display: grid; gap: .25rem 1.1rem; align-items: start;
+  grid-template-columns: 2.9rem 1fr;
+}
+.guide-link__art { grid-column: 1; margin-top: .15rem; }
+.guide-link__body { grid-column: 2; }
+.spot { width: 30px; height: 30px; display: block; color: var(--clay); opacity: .9; }
+.guide-link:hover .spot { color: var(--accent); }
+.guide-link__read {
+  font-size: .68rem; letter-spacing: .1em; text-transform: uppercase;
+  color: var(--ink-faint); font-weight: 700;
+}
+.guide-index {
+  display: grid; gap: 1.25rem;
+  grid-template-columns: 1fr;
+}
+@media (min-width: 760px) { .guide-index { grid-template-columns: 1fr 1fr; } }
+.guide-card {
+  border: 1px solid var(--rule); border-radius: var(--radius);
+  background: var(--paper-card); padding: 1.15rem 1.25rem;
+  display: grid; gap: .7rem; grid-template-columns: 1fr auto; align-items: start;
+  box-shadow: var(--shadow-sm);
+  transition: transform .16s ease, box-shadow .16s ease, border-color .16s ease;
+}
+.guide-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); border-color: #d5c9b8; }
+.guide-card h2, .guide-card h3 {
+  font-family: var(--serif); font-size: 1.1rem; line-height: 1.28;
+  letter-spacing: -.01em; margin: 0; grid-column: 1;
+}
+.guide-card h2 a, .guide-card h3 a { color: var(--ink); text-decoration: none; }
+.guide-card h2 a:hover, .guide-card h3 a:hover { color: var(--accent); }
+.guide-card p { grid-column: 1 / -1; margin: 0; font-size: .87rem; color: var(--ink-mute); line-height: 1.55; }
+.guide-card .art-mini { grid-column: 2; color: var(--clay); }
+.guide-card .art-mini .spot { width: 26px; height: 26px; }
+
+/* --- category hubs: a shelf row instead of a plain grid --------------- */
+.shelf {
+  display: grid; gap: 0; border: 1px solid var(--rule);
+  border-radius: var(--radius); overflow: hidden; background: var(--paper-card);
+}
+.shelf__row {
+  display: grid; gap: 1rem; align-items: center;
+  grid-template-columns: 1fr; padding: 1.1rem 1.25rem;
+  border-top: 1px solid var(--rule-soft);
+}
+.shelf__row:first-child { border-top: 0; }
+@media (min-width: 820px) {
+  .shelf__row { grid-template-columns: 7rem minmax(0,1fr) 9.5rem; }
+}
+.shelf__art { color: var(--ink-soft); }
+.shelf__art .art__svg { max-width: 7rem; }
+.shelf__art .art { padding: .5rem; background: var(--paper-deep); border-bottom: 0; border-radius: 3px; }
+.shelf__art .art__cap { display: none; }
+.shelf__name { font-family: var(--serif); font-size: 1.15rem; margin: 0 0 .2rem; letter-spacing: -.01em; }
+.shelf__name a { color: var(--ink); text-decoration: none; }
+.shelf__name a:hover { color: var(--accent); text-decoration: underline; }
+.shelf__meta { font-size: .78rem; color: var(--ink-faint); margin: 0; }
+.shelf__buy { justify-self: start; }
+@media (min-width: 820px) { .shelf__buy { justify-self: end; } }
+
+/* --- how-we-work line: the honesty note, kept, but not leading -------- */
+.honesty {
+  display: grid; gap: 1rem; align-items: center;
+  grid-template-columns: 1fr;
+  border: 1px solid var(--rule); border-left: 3px solid var(--clay);
+  background: var(--paper-card); padding: 1rem 1.25rem; border-radius: var(--radius);
+}
+@media (min-width: 860px) { .honesty { grid-template-columns: 1fr auto; } }
+.honesty p { margin: 0; font-size: .87rem; color: var(--ink-soft); }
+.honesty strong { color: var(--ink); }
+.honesty__stats { display: flex; gap: 1.5rem; flex-wrap: wrap; margin: 0; }
+.honesty__stat { display: grid; gap: .1rem; }
+.honesty__stat dt {
+  font-size: .6rem; letter-spacing: .11em; text-transform: uppercase;
+  color: var(--ink-faint); font-weight: 700;
+}
+.honesty__stat dd { margin: 0; font-family: var(--serif); font-size: 1.05rem; font-weight: 600; }
+
+/* --- article furniture: pull quote, verified-source box -------------- */
+.pull {
+  font-family: var(--serif); font-size: clamp(1.15rem, 1rem + .7vw, 1.5rem);
+  line-height: 1.32; color: var(--ink); margin: 2rem 0; padding: 0 0 0 1.15rem;
+  border-left: 3px solid var(--clay);
+}
+.srclist {
+  border: 1px solid var(--rule); border-radius: var(--radius);
+  background: var(--paper-card); padding: .95rem 1.1rem; margin-top: 1.5rem;
+}
+.srclist p, .srclist ul { margin: 0; }
+.srclist ul { padding-left: 1.05rem; margin-top: .45rem; font-size: .85rem; }
+.srclist li { color: var(--ink-soft); }
+.srclist .note__title { margin-bottom: .25rem; }
+
+/* --- table furniture: readable when long, printable when needed ------ */
+.tablewrap { max-height: none; }
+table.data thead th { position: sticky; top: 0; background: var(--paper-deep); z-index: 2; }
+table.data tbody tr:nth-child(even) { background: rgba(226,217,204,.28); }
+table.data tbody tr:hover { background: var(--accent-wash); }
+table.data caption { text-align: left; font-size: .78rem; }
+
+/* --- ops pages get the same art treatment where they ask for it ------ */
+.path-grid {
+  display: grid; gap: 1.25rem; grid-template-columns: 1fr;
+}
+@media (min-width: 1000px) { .path-grid { grid-template-columns: repeat(3, 1fr); } }
+.path {
+  border: 1px solid var(--rule); border-top: 3px solid var(--ink-faint);
+  border-radius: var(--radius); background: var(--paper-card);
+  padding: 1.15rem 1.25rem 1.25rem; display: grid; gap: .7rem; align-content: start;
+}
+.path--pick { border-top-color: var(--accent); box-shadow: var(--shadow-md); }
+.path__badge {
+  font-size: .64rem; letter-spacing: .12em; text-transform: uppercase; font-weight: 700;
+  color: var(--accent);
+}
+.path h3 { font-family: var(--serif); font-size: 1.22rem; margin: 0; letter-spacing: -.01em; }
+.path ol { margin: 0; padding-left: 1.15rem; font-size: .87rem; color: var(--ink-soft); }
+.path li + li { margin-top: .4rem; }
+.path dl { margin: 0; display: grid; gap: .5rem; }
+.path dt {
+  font-size: .62rem; letter-spacing: .1em; text-transform: uppercase;
+  color: var(--ink-faint); font-weight: 700;
+}
+.path dd { margin: 0; font-size: .86rem; color: var(--ink-soft); }
+
+/* --- front-page bands: spacing corrections for the new furniture ------ */
+.pick { padding: 0 0 1.6rem; overflow: hidden; }
+.pick > :not(.pick__art) { padding-inline: 1.5rem; }
+.pick__art { border-bottom: 1px solid var(--rule); padding-block: 1.35rem 1.05rem; }
+.pick__label { padding-top: 1.25rem; }
+.pcard__art + .pcard__top { padding-top: .9rem; }
+.fit__lead {
+  letter-spacing: .14em; text-transform: uppercase; color: var(--ink-faint);
+  font-weight: 700; padding-top: 1.2rem; margin: 0;
+}
+.honesty__stat dd a { color: var(--ink); }
+.guide-card .guide-link__read { color: var(--ink-faint); }
