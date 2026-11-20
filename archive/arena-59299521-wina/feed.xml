@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>WinA — Buying guides</title>
+    <link>https://sassnarep3-star.github.io/WinA/</link>
+    <description>Question-shaped buying guides for kitchen appliances — air fryers, meat thermometers and more. Working titles only: not claims about popularity, search volume, or product superiority. New guides published weekly and added here on publication.</description>
+    <lastBuildDate>Fri, 20 Nov 2026 00:00:00 GMT</lastBuildDate>
+    <atom:link href="https://sassnarep3-star.github.io/WinA/feed.xml" rel="self" type="application/rss+xml"/>
+    <language>en-us</language>
+    <item>
+      <title>Basket or oven-style air fryer: what should you compare?</title>
+      <link>https://sassnarep3-star.github.io/WinA/guides/basket-or-oven-air-fryer.html</link>
+      <guid>https://sassnarep3-star.github.io/WinA/guides/basket-or-oven-air-fryer.html</guid>
+      <pubDate>Fri, 20 Nov 2026 00:00:00 GMT</pubDate>
+      <description>Working title — editorial hypothesis only. Comparison framing for basket-style and oven-style air fryers: footprint, quart claims, sync finish, cleanup and counter-space trade-offs. Not a claim about popularity or product superiority.</description>
+      <category>air fryers</category>
+    </item>
+    <item>
+      <title>A no-hype checklist for comparing air fryer capacity</title>
+      <link>https://sassnarep3-star.github.io/WinA/guides/capacity-checklist.html</link>
+      <guid>https://sassnarep3-star.github.io/WinA/guides/capacity-checklist.html</guid>
+      <pubDate>Fri, 20 Nov 2026 00:00:00 GMT</pubDate>
+      <description>Working title — editorial hypothesis only. A checklist for reading air fryer capacity claims skeptically: total vs per-basket quart, usable depth, dual-basket sync, meals per basket size. Not a claim about popularity or product superiority.</description>
+      <category>air fryers</category>
+    </item>
+    <item>
+      <title>How to assess cleanup and counter-space trade-offs</title>
+      <link>https://sassnarep3-star.github.io/WinA/guides/cleanup-counterspace.html</link>
+      <guid>https://sassnarep3-star.github.io/WinA/guides/cleanup-counterspace.html</guid>
+      <pubDate>Fri, 20 Nov 2026 00:00:00 GMT</pubDate>
+      <description>Working title — editorial hypothesis only. Cleanup and counter-space trade-offs: dishwasher-safe parts, nonstick longevity, footprint, storage. Not a claim about popularity or product superiority.</description>
+      <category>kitchen appliances</category>
+    </item>
+    <item>
+      <title>Questions to ask before buying a multi-function kitchen appliance</title>
+      <link>https://sassnarep3-star.github.io/WinA/guides/multi-function-appliance.html</link>
+      <guid>https://sassnarep3-star.github.io/WinA/guides/multi-function-appliance.html</guid>
+      <pubDate>Fri, 20 Nov 2026 00:00:00 GMT</pubDate>
+      <description>Working title — editorial hypothesis only. Questions to ask before paying for versatility: presets actually used, temperature range, included vs sold-separately accessories, single-function alternatives. Not a claim about popularity or product superiority.</description>
+      <category>multi-function appliances</category>
+    </item>
+    <item>
+      <title>Instant-read or wireless: which meat thermometer fits your grill?</title>
+      <link>https://sassnarep3-star.github.io/WinA/guides/instant-read-or-wireless.html</link>
+      <guid>https://sassnarep3-star.github.io/WinA/guides/instant-read-or-wireless.html</guid>
+      <pubDate>Fri, 20 Nov 2026 00:00:00 GMT</pubDate>
+      <description>Working title — editorial hypothesis only. One-second reads vs. leave-in probes with WiFi — pick by how you cook. Not a claim about popularity or superiority.</description>
+      <category>meat thermometers</category>
+    </item>
+  </channel>
+</rss>

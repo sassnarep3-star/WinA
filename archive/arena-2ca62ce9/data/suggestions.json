@@ -1,0 +1,176 @@
+{
+  "status": "awaiting-owner-choice",
+  "note": "Suggestions are NOT implemented. Choose one option per item before any change is made. Each option lists its cost and what it would change.",
+  "items": [
+    {
+      "id": "S-01",
+      "topic": "Validate the submitted links and Tracking ID",
+      "question": "How should the submitted links be validated?",
+      "options": [
+        {
+          "id": "a",
+          "label": "Owner runs one link per product in the Associates Product Linking tool and reports destination + tracking",
+          "recommended": true,
+          "changes": "Confirms FLG-001 to FLG-004; the site then uses validated Special Links for each row."
+        },
+        {
+          "id": "b",
+          "label": "Keep the current observed-listing links with the Tracking ID until validation",
+          "recommended": false,
+          "changes": "Already built. Links are unvalidated until option a is done."
+        },
+        {
+          "id": "c",
+          "label": "Remove all outbound Amazon links until validated",
+          "recommended": false,
+          "changes": "Lowest compliance risk; no click path to products."
+        }
+      ]
+    },
+    {
+      "id": "S-02",
+      "topic": "Publishing cadence and content volume",
+      "question": "How often should new guides be published?",
+      "options": [
+        {
+          "id": "a",
+          "label": "Two guides per month, each reviewed against sources before publication",
+          "recommended": true,
+          "changes": "Keeps content recent for Associates review; needs owner time."
+        },
+        {
+          "id": "b",
+          "label": "One guide per month",
+          "recommended": false,
+          "changes": "Lower effort; slower content build-up."
+        },
+        {
+          "id": "c",
+          "label": "Publish only after analytics shows which queries get reads",
+          "recommended": false,
+          "changes": "Requires S-03 first; delays content."
+        }
+      ]
+    },
+    {
+      "id": "S-03",
+      "topic": "Analytics and the five events",
+      "question": "Which hosting and event set should analytics use?",
+      "options": [
+        {
+          "id": "a",
+          "label": "Small serverless endpoint outside this repo, with the proposed five events",
+          "recommended": true,
+          "changes": "Enables outbound-click counting; needs an external host and an endpoint URL."
+        },
+        {
+          "id": "b",
+          "label": "Owner supplies a different five-event list",
+          "recommended": false,
+          "changes": "Replaces the proposed events in site.json and analytics.js."
+        },
+        {
+          "id": "c",
+          "label": "No analytics; use Search Console only",
+          "recommended": false,
+          "changes": "No outbound-click data."
+        }
+      ]
+    },
+    {
+      "id": "S-04",
+      "topic": "Brand name",
+      "question": "What should the site be called?",
+      "options": [
+        {
+          "id": "a",
+          "label": "Keep 'The Counter Guide' (working name)",
+          "recommended": false,
+          "changes": "No change."
+        },
+        {
+          "id": "b",
+          "label": "Owner supplies a name",
+          "recommended": false,
+          "changes": "Changes masthead, footer and feed title."
+        }
+      ]
+    },
+    {
+      "id": "S-05",
+      "topic": "Product detail data",
+      "question": "How should listing details (dimensions, warranty, returns) be captured?",
+      "options": [
+        {
+          "id": "a",
+          "label": "Owner or integration session records each field from the listing's Product information table with the date and URL",
+          "recommended": true,
+          "changes": "Adds verified fields; blank fields stay flagged until then."
+        },
+        {
+          "id": "b",
+          "label": "Leave the fields blank",
+          "recommended": false,
+          "changes": "No change."
+        }
+      ]
+    },
+    {
+      "id": "S-06",
+      "topic": "Prices and ratings",
+      "question": "Should prices and ratings appear on the site?",
+      "options": [
+        {
+          "id": "a",
+          "label": "Pursue PA-API/Creators API access, then display data per policy",
+          "recommended": false,
+          "changes": "Requires eligibility and the API license; not verified here."
+        },
+        {
+          "id": "b",
+          "label": "No prices or ratings; link to the listing",
+          "recommended": true,
+          "changes": "Matches the current build; complies with Program Policies section 2(b)."
+        }
+      ]
+    },
+    {
+      "id": "S-07",
+      "topic": "Reader capture (email)",
+      "question": "Should the site collect email?",
+      "options": [
+        {
+          "id": "a",
+          "label": "Yes, double opt-in; Special Links allowed only in messages to opted-in readers, with an easy opt-out",
+          "recommended": false,
+          "changes": "Adds a signup form and an email tool; not built."
+        },
+        {
+          "id": "b",
+          "label": "No email; RSS feed only",
+          "recommended": true,
+          "changes": "Matches the current build (feed.xml)."
+        }
+      ]
+    },
+    {
+      "id": "S-08",
+      "topic": "Which session's site goes to main",
+      "question": "How should the parallel claim on arena/2b309a82-wina be handled?",
+      "options": [
+        {
+          "id": "a",
+          "label": "Merge this branch to main as instructed; mark the other branch's claim as superseded in COORDINATION.md",
+          "recommended": true,
+          "changes": "This site goes live. The other branch's site must be reconciled or closed before its work is merged, otherwise it conflicts."
+        },
+        {
+          "id": "b",
+          "label": "Hold the merge until the owner has compared both COORDINATION.md boards",
+          "recommended": false,
+          "changes": "Delays the live site; the merge instruction was to proceed without waiting."
+        }
+      ]
+    }
+  ]
+}

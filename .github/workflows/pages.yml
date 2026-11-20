@@ -1,0 +1,57 @@
+name: Build, verify and deploy
+
+# Verification runs before deployment: if the gate fails, the deploy job never
+# starts and the previously published site stays live. A non-compliant or broken
+# build cannot reach readers through this workflow.
+#
+# History (see COORDINATION.md): sessions 1–4 each built a root-level site; the
+# superseded builds live under archive/arena-*/. The publishing gate for the
+# current site is tools/check_site.py (gates G-1…G-3 on data-room/compliance-gate.html).
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  verify:
+    name: Compliance & integrity gate
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Run tools/check_site.py
+        run: python3 tools/check_site.py
+
+      - name: Upload Pages artifact
+        if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: .
+
+  deploy:
+    name: Deploy to GitHub Pages
+    needs: verify
+    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

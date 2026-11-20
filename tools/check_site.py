@@ -16,6 +16,10 @@ automated (gates G-1..G-3 on data-room/compliance-gate.html):
   R-08  feed.xml parses and its item links resolve
   R-09  every page repeats the Amazon Associate statement in the footer
 
+Checked scope: the served site only. `archive/` holds superseded session builds
+(see COORDINATION.md) and `data/` is the machine-readable register — neither is
+part of the published surface this gate polices.
+
 Exit code 0 = pass. Any failure prints a report and exits 1.
 """
 
@@ -39,7 +43,7 @@ def fail(rule, path, msg):
 
 def html_files():
     for dirpath, dirnames, filenames in os.walk(ROOT):
-        dirnames[:] = [d for d in dirnames if d not in {".git", "node_modules", ".github", "Unselected files"}]
+        dirnames[:] = [d for d in dirnames if d not in {".git", "node_modules", ".github", "Unselected files", "archive", "data"}]
         for name in sorted(filenames):
             if name.endswith(".html"):
                 yield os.path.join(dirpath, name)

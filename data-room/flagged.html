@@ -42,6 +42,7 @@
     <p class="breadcrumb"><a href="../index.html">Home</a> / <a href="index.html">Data room</a> / Flagged for Review</p>
     <h1>Flagged for Review</h1>
     <p class="lede">Every irregularity, contradiction and unresolved item found while building this site — with its source links. Publishing these is a rule of the project: flagged items never block the site, and they never get quietly "fixed." Review any time and request changes.</p>
+    <p class="note-box"><strong>Combined register:</strong> four parallel sessions worked this repo; their full 23-item flag register is preserved in <a href="https://github.com/sassnarep3-star/WinA/blob/main/data/governance.json">data/governance.json</a> and in <a href="../archive/arena-ffa85037/flagged/">the archived build's Flagged page</a>. Their findings and this page agree on every shared item — three independent sessions observed the same five redirect targets, and the link-test blocker below is theirs as well.</p>
   </div>
 
   <section class="section tight">
@@ -101,6 +102,13 @@
               <td>Same pattern as FLG-004 — a source-internal contradiction, quoted not harmonized.</td>
               <td class="src"><a href="https://www.amazon.com/dp/B0CDY277D3" rel="nofollow">listing B0CDY277D3</a></td>
               <td>Manufacturer spec sheet or manual; the capacity guide currently explains the discrepancy to readers.</td>
+            </tr>
+            <tr>
+              <th scope="row">FLG-009</th>
+              <td>Displaying observed prices and ratings outside PA-API may conflict with Associates Program policy: the parallel build's register cites the Program Policies (updated 2026-04-14) §6 as restricting review/rating and price display without API-supplied data, and chose to show no prices at all.</td>
+              <td>This site shows dated, source-linked observed prices/ratings as part of the buyer-research tables. Whether that posture is compliant enough is an owner decision — the conservative alternative is implemented in the <a href="../archive/arena-ffa85037/">archived parallel build</a>.</td>
+              <td class="src"><a href="https://affiliate-program.amazon.com/help/operating/policies" rel="nofollow">Program Policies</a> · <a href="https://github.com/sassnarep3-star/WinA/blob/main/data/policy.json">policy.json (verbatim clauses)</a></td>
+              <td>Owner reads POL-03/POL-04 in policy.json, decides: keep dated snapshots (current site) or suppress prices/ratings (archived build's posture); log the choice as S-14.</td>
             </tr>
             <tr>
               <th scope="row">FLG-008</th>
