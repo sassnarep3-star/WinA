@@ -211,6 +211,38 @@ if (existsSync(flaggedPage)) {
   ok(doubled.length === 0, "a flag id is rendered more than once on /flagged/", doubled.join(", "));
 }
 
+/* The decision log is the reviewer-facing audit trail. It claims to mirror the suggestion register,
+   so the two must agree: one row per suggestion, a defined token, and a token the register's own
+   status allows. A log that quietly drifts from the register is worse than an empty one, because
+   it looks like a decision was taken. */
+const suggestions = cfg.suggestions;
+const sugIds = new Set(suggestions.suggestions.map((s) => s.id));
+const log = suggestions.decisionLog;
+const allowedFor = log.statusToDecision || {};
+const keyIds = new Set((log.decisionKey || []).map((k) => k.id));
+const logged = new Map();
+for (const e of log.entries || []) {
+  ok(sugIds.has(e.item), `decision-log row cites ${e.item}, which is not in the suggestion register`, e.item);
+  ok(/^\d{4}-\d{2}-\d{2}$/.test(e.date || ""), `decision-log row ${e.item} carries no ISO date`, e.item);
+  ok(!!e.reason && String(e.reason).trim().length > 10, `decision-log row ${e.item} carries no reason`, e.item);
+  ok(!logged.has(e.item), `decision-log has more than one row for ${e.item}`, e.item);
+  logged.set(e.item, e);
+  ok(keyIds.has(e.decision), `decision token "${e.decision}" is not defined in decisionKey`, e.item);
+  const sug = suggestions.suggestions.find((s) => s.id === e.item);
+  if (sug) {
+    const allowed = allowedFor[sug.status] || [];
+    ok(
+      allowed.includes(e.decision),
+      `decision-log row ${e.item} says "${e.decision}", which the register's status "${sug.status}" does not allow (allowed: ${allowed.join(", ") || "none"})`,
+      e.item
+    );
+  }
+}
+const unlogged = suggestions.suggestions.filter((s) => !logged.has(s.id)).map((s) => s.id);
+ok(unlogged.length === 0, "every suggestion needs exactly one decision-log row, with a date and a reason", unlogged.join(", "));
+for (const st of new Set(suggestions.suggestions.map((s) => s.status)))
+  ok(Array.isArray(allowedFor[st]) && allowedFor[st].length > 0, `suggestion status "${st}" has no decision-log token mapping`, st);
+
 /* ---- 7. the one question the register can answer but nobody asks */
 const passing = specialLink.tests.filter((t) => /passed/.test(t.test_status)).length;
 const linksOnSite = sponsored;
