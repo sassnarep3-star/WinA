@@ -67,6 +67,12 @@ fourth site. Claim the scope here first and push the claim before writing code.
 | T16 | Gap closure against the brief: sortable tables on every data table; SG-27..SG-30 parallel rows (nav labels, RSS feed, Search Console, reader capture); verified policy-citation corrections | done | arena-a86cb9d0 | `_src/build.mjs`, `_src/pages-content.mjs`, `assets/js/site.js`, `data/governance.json`, `COORDINATION.md` (arena-a86cb9d0 section only) | Extends main; does not add a second site (see conflict record) |
 | T17 | Replace obsolete parallel `scripts/build.mjs` / `scripts/verify.mjs` entry points with safe wrappers to the current publication build and repository gate | done | arena/1323e80f-wina | `scripts/build.mjs`, `scripts/verify.mjs`, `COORDINATION.md` | No served-page or data changes; prevents stale `data/site.json`/`site/` assumptions |
 | T18 | Re-verify the five submitted links, the policy quotes against official pages, and the RSS feed; correct FLG-013 citation and SUG-04 status; publish verification log | done | arena-301b1534 | `COORDINATION.md` (arena-301b1534 section only), `data/governance.json`, `data/suggestions.json`, rebuilt `flagged/`, `suggestions/`, `register/` | Claimed 2026-11-20 as T18 (T17 was taken on main by arena/1323e80f-wina). Extends main's build; no second site. Owner-account items (Associates sign-in, Search Console, analytics deploy) stay blocked and are not claimed. |
+| T19 | Editorial expansion: two new guides (technique + seasonal), seasonal collection page, nav + front-page integration | in progress | arena-27f76c22 | `_src/content.mjs`, `_src/build.mjs`, `data/products.json` (guideTopics only) | Claimed 2026-11-20 as T19 (T17/T18 were taken on main; my original claim rows used T17–T22 before the merge and were renumbered). |
+| T20 | Design/marketing polish: hero + seasonal imagery (generated, disclosed, non-product), og:image, CSS extensions | in progress | arena-27f76c22 | `assets/css/site.css`, `assets/img/`, `_src/build.mjs` layout | Claimed 2026-11-20 as T20. |
+| T21 | Decision registers: new suggestions (SUG-17+), new questions (Q-23+), new flags (FLG-034+), FLG-020 seasonal update | in progress | arena-27f76c22 | `data/suggestions.json`, `data/questions.json`, `data/governance.json` | Claimed 2026-11-20 as T21. |
+| T22 | Executive summary refresh for the editorial pass | in progress | arena-27f76c22 | `_src/build.mjs` (summaryPage only) | Claimed 2026-11-20 as T22. |
+| T23 | Line-by-line re-verification: 5 listings re-fetched, policy + manufacturer source URLs re-checked, results logged | in progress | arena-27f76c22 | COORDINATION.md (this session's section), flag register if needed | Claimed 2026-11-20 as T23. Complements arena-301b1534's T18 with an independent re-check on the same date. |
+| T24 | Integration: PR → main, merge, confirm Pages deploy, record PR link + deploy result | in progress | arena-27f76c22 | PR/merge only | Claimed 2026-11-20 as T24. |
 
 ---
 
@@ -487,3 +493,11 @@ build twice + diff          → no changes
   - The reader-capture email backend (FLG-010).
 - **Not re-verified in this pass:** the 60 specification rows in `data/products.json`. Earlier sessions verified them and recorded corrections (FLG-026 to FLG-029). A line-by-line pass over the specs is a separate task.
 
+
+---
+
+## Session arena-27f76c22 (this session)
+
+- **2026-11-20 — claim.** Claimed T19–T24. Branch `arena/27f76c22-wina`. The base commit given to this session (`d7abb68`, PR #18) is **not an ancestor of `main`** (merge-base returned nothing; `main` had moved to `425bfbd` with PRs #19–#22). Resolved with `git merge origin/main --allow-unrelated-histories`, main's file content kept at every add/add collision (same resolution rule as prior sessions), then the claim rows were re-applied as T19–T24 because T17/T18 had been taken on `main` in the meantime. Nothing from `main` was discarded or rewritten.
+- **Scope requested in this session's brief:** polished marketing look, catchy/trendy but honest articles, organic-traffic focus, a reviewed suggestions path, a question/information register, an executive summary, line-by-line verification with links for manual review, then PR → merge → deploy confirmation.
+- **Result sections appended below as work completes.**
