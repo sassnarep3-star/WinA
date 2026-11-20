@@ -658,3 +658,117 @@ table.data.sortable th .sort-btn:hover { text-decoration: underline; }
 table.data.sortable th .sort-btn:focus-visible { outline: 2px solid currentColor; outline-offset: 2px; }
 table.data.sortable th[aria-sort="ascending"] .sort-btn::after { content: " \25B2"; font-size: .7em; }
 table.data.sortable th[aria-sort="descending"] .sort-btn::after { content: " \25BC"; font-size: .7em; }
+
+/* ============================================================
+   Editorial pass (arena-27f76c22): seasonal banner, image
+   article heads, step lists. Same paper-and-ink register.
+   ============================================================ */
+
+/* Seasonal banner on the front page: image left, copy right */
+.banner {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, .95fr);
+  align-items: stretch;
+  background: var(--paper-card);
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+}
+.banner__media {
+  margin: 0;
+  min-height: 260px;
+  position: relative;
+}
+.banner__media img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.banner__body {
+  padding: clamp(1.4rem, 3vw, 2.4rem);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.banner__body .section__title { margin-top: .4rem; }
+
+/* Article heads that carry a full-bleed scene image */
+.article-head--image {
+  position: relative;
+  padding: 0;
+  border-bottom: 1px solid var(--rule);
+  overflow: hidden;
+}
+.article-head__img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.article-head__scrim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(25,21,18,.28) 0%, rgba(25,21,18,.62) 78%);
+}
+.article-head__inner {
+  position: relative;
+  z-index: 1;
+  padding-block: clamp(3.2rem, 7vw, 5.4rem) clamp(1.8rem, 4vw, 2.8rem);
+}
+.article-head--image .kicker {
+  color: #f4ede2;
+}
+.article-head--image .article-head__title {
+  color: #fdfaf5;
+  text-shadow: 0 2px 18px rgba(25,21,18,.45);
+}
+.article-head--image .article-head__dek {
+  color: #f1e9dd;
+  max-width: 44rem;
+  text-shadow: 0 1px 12px rgba(25,21,18,.4);
+}
+
+/* Numbered step lists (seasonal sequence) */
+.steps {
+  counter-reset: step;
+  list-style: none;
+  margin: 1.25rem 0 0;
+  padding: 0;
+  display: grid;
+  gap: .9rem;
+}
+.steps li {
+  counter-increment: step;
+  position: relative;
+  padding: 1rem 1.15rem 1rem 3.4rem;
+  background: var(--paper-card);
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+}
+.steps li::before {
+  content: counter(step);
+  position: absolute;
+  left: 1.05rem;
+  top: 1.05rem;
+  width: 1.6rem;
+  height: 1.6rem;
+  display: grid;
+  place-items: center;
+  background: var(--accent);
+  color: #fdfaf5;
+  font-family: var(--sans);
+  font-size: .82rem;
+  font-weight: 700;
+  border-radius: 50%;
+}
+
+@media (max-width: 900px) {
+  .banner { grid-template-columns: 1fr; }
+  .banner__media { min-height: 220px; }
+  .article-head__inner { padding-block: 3rem 2rem; }
+}

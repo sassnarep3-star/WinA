@@ -1,35 +1,37 @@
-# Handoff — T29 requested changes to shared outputs
+# Handoff — T30 requested changes to shared outputs
 
-These patches hold the spec-row corrections and flag changes from T29 (arena/1cf62cfb-wina, 2026-11-20).
+These patches hold the spec-row corrections and flag changes from T30 (arena/1cf62cfb-wina, 2026-11-20).
 They are **not applied**. Board rule 10 reserves `data/*.json`, nav and `index.html` for the final integration session.
 
-Both patches apply cleanly to `main` at fe6783b and later (checked with `git apply --cached --check`).
-Verified in a scratch copy: both applied, `node _src/build.mjs` passes all gates, `node scripts/check-site.mjs` passes, `node scripts/compliance-gate.mjs` reports 0 failing.
+Both patches apply cleanly to `main` at b2a9376 (checked with `git apply --cached --check` against that tree).
+Verified in a scratch copy of b2a9376: both applied; `node _src/build.mjs` passes all gates (33 pages); `node scripts/compliance-gate.mjs` reports 1,335 checks, 0 failing, 1 intentional warning (FLG-024).
 
 ## To apply (integration session only)
 
-    git apply handoff/T29-products.patch
-    git apply handoff/T29-governance.patch
+    git apply handoff/T30-products.patch
+    git apply handoff/T30-governance.patch
     node _src/build.mjs && node scripts/check-site.mjs && node scripts/compliance-gate.mjs && node scripts/publish-gate.mjs --committed
 
-Then update `EXECUTIVE_SUMMARY.md` to these figures (computed on the patched tree, not typed):
-- 45 flag rows (was 43)
+Figures on the patched tree, for `EXECUTIVE_SUMMARY.md`. Recompute them with a script before writing them:
+- 46 flag rows
 - 34 `verified` · 12 `unverified` · 10 `withheld` · 4 `claim`; 38 rows carry a value, 22 are blank
-- Emeril 26QT: 5 of 11 verified; Chefman 8-Quart: 7 of 12; CHEF iQ: 7 of 13; Chefman 6-Quart: 8 of 12; ThermoMaven: 7 of 12
+- Per product, verified of total: Chefman 6-Quart 8/12; Emeril 26QT 5/11; Chefman 8-Quart 7/12; ThermoMaven 7/12; CHEF iQ 7/13
 
 ## What the patches change
 
-`T29-products.patch` (`data/products.json`, 11 spec rows):
+`T30-products.patch` (`data/products.json`, 11 spec rows):
 - Corrected to the cited page (5): Chefman 6-qt capacity; ThermoMaven display (manual: rotates 180°); ThermoMaven battery (manual: one 1.5 V AAA); CHEF iQ type; Chefman 8-qt max temperature (listing only).
 - Blanked, sources conflict (2): Emeril presets; Emeril accessories.
-- Filled from an official page (4): Emeril warranty (manufacturer "1-Years Warranty"); CHEF iQ battery life ("70+ Hours"); Chefman 8-qt dimensions and warranty (own ASIN listing).
+- Filled from an official page (4): Emeril warranty ("1-Years Warranty" badge); CHEF iQ battery life ("70+ Hours"); Chefman 8-qt dimensions and warranty (its own ASIN listing).
 
-`T29-governance.patch` (`data/governance.json`):
-- FLG-028, FLG-029, FLG-039 revised to the current facts.
-- FLG-040 added (CHEF iQ model CQ60-1C-Z1-E vs the listing's 3-probe title).
-- FLG-041 added (ThermoMaven listing identity vs the HT07 F1 Stealth page).
+`T30-governance.patch` (`data/governance.json`):
+- FLG-028 revised (Chefman 8-qt wattage conflict).
+- FLG-029 revised (Emeril preset and accessory conflict).
+- FLG-039 revised (coverage 34 of 60 with the products patch applied).
+- FLG-042 added (ThermoMaven listing identity vs the HT07 F1 Stealth page).
 
 ## Not in these patches
 
-- `data/links.json`: no change. Main's `verificationLog` already holds the third short-link run, and it matches this session's run.
+- The CHEF iQ 1-probe variant point: already on `main` as FLG-041.
+- `data/links.json`: no change. `main` already records each dated short-link run, and FLG-040 covers the redirect pattern.
 - Chefman 8-qt wattage: left blank (FLG-028). Owner must read the product-information table of B08DKYBTPH.
