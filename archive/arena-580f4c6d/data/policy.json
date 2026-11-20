@@ -1,0 +1,184 @@
+{
+  "sources": [
+    {
+      "id": "amazon-listing",
+      "type": "Official product listing",
+      "publisher": "Amazon.com",
+      "label": "Amazon product detail page",
+      "note": "Product title, stated capacity, form factor and feature names. Used only for facts the listing states about the item itself.",
+      "urlPattern": "https://www.amazon.com/dp/{asin}",
+      "accessed": "2026-11-20",
+      "trust": "primary"
+    },
+    {
+      "id": "link-redirect",
+      "type": "Observed redirect",
+      "publisher": "Amazon.com",
+      "label": "Submitted short link destination",
+      "note": "Each link.amazon short link was followed and the landing product page recorded. The short code is not the ASIN.",
+      "accessed": "2026-11-20",
+      "trust": "primary"
+    },
+    {
+      "id": "amazon-agreement",
+      "type": "Program terms",
+      "publisher": "Amazon Associates Central",
+      "label": "Associates Program Operating Agreement, §5 Identifying Yourself as an Associate",
+      "note": "Requires the statement \"As an Amazon Associate I earn from qualifying purchases.\" Violation of §5 is a material breach.",
+      "url": "https://affiliate-program.amazon.com/help/operating/agreement",
+      "accessed": "2026-11-20",
+      "trust": "primary"
+    },
+    {
+      "id": "amazon-policies",
+      "type": "Program terms",
+      "publisher": "Amazon Associates Central",
+      "label": "Associates Program Policies (updated April 14, 2026)",
+      "note": "Participation Requirements §6 governs site content: link clarity, review/rating display, price tracking, and endorsements.",
+      "url": "https://affiliate-program.amazon.com/help/operating/policies",
+      "accessed": "2026-11-20",
+      "trust": "primary"
+    },
+    {
+      "id": "ftc-disclosures",
+      "type": "Regulatory guidance",
+      "publisher": "U.S. Federal Trade Commission",
+      "label": "Disclosures 101 for Social Media Influencers (November 2019)",
+      "note": "Disclosure must be hard to miss and placed with the endorsement itself, not only on an about page or at the end.",
+      "url": "https://www.ftc.gov/business-guidance/resources/disclosures-101-social-media-influencers",
+      "accessed": "2026-11-20",
+      "trust": "primary"
+    },
+    {
+      "id": "manufacturer",
+      "type": "Manufacturer specification",
+      "publisher": "The brand's own product page",
+      "label": "Manufacturer product page",
+      "note": "Used for the figures a listing omits — wattage, dimensions, weight, warranty. The specific URL per claim lives in products[].specSources, so each row cites its own page rather than a brand homepage. Read on the date the row says.",
+      "accessed": "2026-11-20",
+      "trust": "primary"
+    },
+    {
+      "id": "amazon-asin-definition",
+      "type": "Official Amazon guidance",
+      "publisher": "Amazon Selling on Amazon (sell.amazon.com)",
+      "label": "Understanding ASINs: Your guide to Amazon's product identification system (published 4 June 2025)",
+      "note": "Defines the ASIN as the unique 10-character alphanumeric code Amazon assigns to every product in its store, and says the ASIN appears after '/dp/' in the product URL. Used only for that definition. CAVEAT: it is seller-education guidance, not Associates policy and not an Amazon Help article, and the page states it 'was produced with the assistance of generative artificial intelligence (gen AI)'. Author: an Amazon content marketing manager (per the page).",
+      "url": "https://sell.amazon.com/blog/what-is-an-asin",
+      "accessed": "2026-11-20",
+      "trust": "primary (Amazon-owned; AI-assisted per page; see FLG-033)"
+    }
+  ],
+  "policy": [
+    {
+      "id": "POL-01",
+      "topic": "Associate identification statement",
+      "requirement": "The site must clearly and prominently state: \"As an Amazon Associate I earn from qualifying purchases.\"",
+      "quote": "You must clearly and prominently state the following, or any substantially similar statement previously allowed under this Agreement, on your Site or any other location where Amazon may authorize your display or other use of Program Content: “As an Amazon Associate I earn from qualifying purchases.”",
+      "source": "amazon-agreement",
+      "sourceUrl": "https://affiliate-program.amazon.com/help/operating/agreement",
+      "section": "Operating Agreement §5",
+      "howMet": "Printed verbatim under the masthead on every page, and repeated in the footer of every page.",
+      "status": "met"
+    },
+    {
+      "id": "POL-02",
+      "topic": "Disclosure placement",
+      "requirement": "Disclosure must be hard to miss and placed with the endorsement, not buried on an about page or at the end of the page.",
+      "quote": "Make sure people will see and understand the disclosure. Place it so it’s hard to miss. The disclosure should be placed with the endorsement message itself. Disclosures are likely to be missed if they appear only on an ABOUT ME or profile page, at the end of posts or videos, or anywhere that requires a person to click MORE.",
+      "source": "ftc-disclosures",
+      "sourceUrl": "https://www.ftc.gov/business-guidance/resources/disclosures-101-social-media-influencers",
+      "section": "How to Disclose",
+      "howMet": "Disclosure sits in a strip directly under the masthead, above all content, before any product appears.",
+      "status": "met"
+    },
+    {
+      "id": "POL-03",
+      "topic": "Star ratings and customer reviews",
+      "requirement": "Customer reviews and star ratings may not be displayed without obtaining them through the Creatives API or PA API.",
+      "quote": "You will not display or otherwise use any of our customer reviews or star ratings, in part or in whole, on your Site unless you have obtained a link to that customer review or star rating through Creators API or PA API and you comply with the requirements for Creators API and PA API described in the License",
+      "source": "amazon-policies",
+      "sourceUrl": "https://affiliate-program.amazon.com/help/operating/policies",
+      "section": "Participation Requirements §6(t)",
+      "howMet": "No star ratings or review excerpts appear anywhere on the site. Rating and review-count fields are deliberately withheld and shown as withheld, not blank-to-be-filled.",
+      "status": "met"
+    },
+    {
+      "id": "POL-04",
+      "topic": "Price display",
+      "requirement": "Prices must come from Amazon's API to remain accurate; the site must not run price tracking or alerting.",
+      "quote": "Unless otherwise agreed by Amazon, your Site must not have price tracking and/or price alerting functionality.",
+      "source": "amazon-policies",
+      "sourceUrl": "https://affiliate-program.amazon.com/help/operating/policies",
+      "section": "Participation Requirements §6(y)",
+      "howMet": "No prices are shown and no price history, drop alerts, or price comparison over time exists. Price fields are marked unverified.",
+      "status": "met"
+    },
+    {
+      "id": "POL-05",
+      "topic": "Link clarity and cloaking",
+      "requirement": "Outbound links must make it clear the visitor is going to Amazon; the destination must not be obscured.",
+      "quote": "You will not use a link shortening service, button, hyperlink or other ad placement in a manner that makes it unclear that you are linking to an Amazon Site.",
+      "source": "amazon-policies",
+      "sourceUrl": "https://affiliate-program.amazon.com/help/operating/policies",
+      "section": "Participation Requirements §6(w)",
+      "howMet": "Every buy button is a plain link to amazon.com/dp/<ASIN> with the tracking tag, labelled with the word Amazon, and marked rel=\"sponsored\". No redirector and no link shortener sits between the reader and Amazon.",
+      "status": "met"
+    },
+    {
+      "id": "POL-06",
+      "topic": "No invented endorsement",
+      "requirement": "Do not imply that Amazon or a brand sponsors, endorses, or is affiliated with the site.",
+      "quote": "You will not misrepresent or embellish our relationship with you (including by expressing or implying that we support, sponsor, or endorse you)",
+      "source": "amazon-agreement",
+      "sourceUrl": "https://affiliate-program.amazon.com/help/operating/agreement",
+      "section": "Operating Agreement §5",
+      "howMet": "No Amazon logo, badge, or trademark artwork is used. The site states plainly that it is reader-supported and independent.",
+      "status": "met"
+    },
+    {
+      "id": "POL-07",
+      "topic": "Experience claims",
+      "requirement": "You may not describe hands-on experience with a product the author has not used.",
+      "quote": "You can’t talk about your experience with a product you haven’t tried.",
+      "source": "ftc-disclosures",
+      "sourceUrl": "https://www.ftc.gov/business-guidance/resources/disclosures-101-social-media-influencers",
+      "section": "What Else to Know",
+      "howMet": "No page claims testing, owning, or using any product. Recommendations are framed as how to decide, drawn from stated specifications. The About page says this explicitly.",
+      "status": "met"
+    },
+    {
+      "id": "POL-08",
+      "topic": "Keyword bidding on Amazon marks",
+      "requirement": "Do not bid on or purchase Amazon trademarks or misspellings as search keywords.",
+      "quote": "You will not bid on or purchase keywords, search terms, or other identifiers, including the word “amazon,” Kindle,” or any other trademark of Amazon",
+      "source": "amazon-policies",
+      "sourceUrl": "https://affiliate-program.amazon.com/help/operating/policies",
+      "section": "Participation Requirements §6(f)",
+      "howMet": "No paid search is run by this site. The SEO section documents this restriction so a future session does not create an Amazon-branded ad campaign.",
+      "status": "met"
+    },
+    {
+      "id": "POL-09",
+      "topic": "Compliance gate in workflow",
+      "requirement": "Disclosure placement and endorsement context should be reviewed against the Operating Agreement and FTC guidance before publishing.",
+      "quote": "You will be solely responsible for the content on your Site",
+      "source": "amazon-policies",
+      "sourceUrl": "https://affiliate-program.amazon.com/help/operating/policies",
+      "section": "Participation Requirements §6",
+      "howMet": "The build script fails the build if any HTML page lacks the disclosure strip, the footer statement, or a sponsored-marked outbound link. Nothing publishes unchecked.",
+      "status": "met"
+    },
+    {
+      "id": "POL-10",
+      "topic": "Program Content handling",
+      "requirement": "Program Content may not be altered, stored, or hot-linked; it must come through approved tools.",
+      "quote": "You will not add to, delete from, or otherwise alter any Program Content in any way",
+      "source": "amazon-policies",
+      "sourceUrl": "https://affiliate-program.amazon.com/help/operating/policies",
+      "section": "Participation Requirements §6(a)",
+      "howMet": "No Amazon-hosted images, descriptions, or Program Content are copied onto the site. Product pages describe form factor and trade-offs in our own words.",
+      "status": "met"
+    }
+  ]
+}

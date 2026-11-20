@@ -46,11 +46,13 @@ data/                 the single source of truth
   products.json       products, specs, verification status, categories, site config
   policy.json         primary sources + compliance register with quoted clauses
   governance.json     flagged items, campaign ledger, event definitions
-  questions.json      22 open questions with what is missing and how to close it
-  suggestions.json    16 reviewable suggestions with cost, risk and recommendation
+  questions.json      28 open questions with what is missing and how to close it
+  suggestions.json    31 reviewable suggestions with cost, risk, recommendation and a dated decision
+  governance.json     48 flags, the campaign ledger, the event definitions
 _src/
   build.mjs           renders all pages, sitemap, feed, robots, 404, then gates
-  content.mjs         the five guides
+  content.mjs         the 9 guides, the finder's questions, the artwork captions
+  design.mjs          the reader-facing layer: figures, diagrams drawn from the register, guide furniture
   pages-content.mjs   about, disclosure, privacy, marketing, SEO prose
   serve.mjs           local preview server (mirrors the /WinA/ subpath)
 _worker/
@@ -314,3 +316,50 @@ independent 2026-11-20 verification agrees with `data/links.json` on all five ob
 destinations; its session record, verification log and integration decision are appended to
 `COORDINATION.md` (T27).
 
+---
+
+## The design layer, and the root it had to be restored to (session `arena-3818c975-wina`, filed T35, claimed T26 — 2026-11-20)
+
+The site had a written design brief and no design. This section is short because the reasoning is on
+the pages: the brief, the decision log and the roadmap live at
+[`/suggestions/`](https://sassnarep3-star.github.io/WinA/suggestions/), and the rules the build enforces
+are stated at [`/about/#design`](https://sassnarep3-star.github.io/WinA/about/).
+
+**Built:** four original commissioned illustrations plus a favicon, each captioned as artwork rather than
+as a product image; a top-view counter-footprint figure and a stated-capacity figure, both drawn from
+the register; a three-question chooser whose answer cards ship in the served HTML with their tagged
+sponsored anchors; contents, previous/next and a computed cluster on every guide; a counter-arithmetic
+block and a dated provenance line on every product page; and two guides promoted from the roadmap, which
+brings the set to 9 with the count computed everywhere it is stated rather than typed.
+
+**Three rules the build now enforces**, because a rule nobody checks is a preference:
+
+- *Imagery.* Every `<img>` must resolve to a real file under `assets/img/`, carry descriptive alt text
+  and an intrinsic size, and not name an Amazon, stock-library or other third-party host. There are 8
+  images on the site and all of them are owned artwork — nothing here depicts a product for sale, so no
+  picture can be mistaken for what a sponsored link leads to.
+- *Figures.* `assertFigure()` compares each drawn measurement with the specification row it cites and
+  stops the build when they disagree, so an illustration cannot survive a data correction by being wrong
+  in a flattering direction. Where a brand publishes nothing, the figure draws a dashed gap and says why.
+- *Voice.* A 42-phrase filler list is published and swept across the served text. The sweep is
+  quote-aware — the About page may name the phrases it bans, and a register may quote the claim a policy
+  forbids — and the hands-on rule beside it is strict on reader pages: a planted "we tested these
+  machines" fails the build.
+
+**Why this branch also touches the site root.** While the work ran, PR #28 merged a second, hand-authored
+site onto `main`, which is where Pages serves from: the generated publication, its four gates and its
+dated registers stopped being the live site. That root prints prices and customer-rating counts and
+hot-links product images from `m.media-amazon.com`, which the Associates Program Policies restrict to
+Product Advertising API or Creatives output — and no gate on that tree checks it. This branch restores
+the publication at the root and preserves the parallel build **verbatim** under
+`archive/arena-580f4c6d/` with a `PRESERVED.md` giving the reversal recipe; its holiday guides were
+already absorbed by `406b523`, and its own board sections are unioned into `COORDINATION.md`. The
+finding, its evidence and the way back are recorded as FLG-043, and T34's two handoff patches were
+applied at the same time (see `handoff/README.md` for the one place this build diverges, and why).
+
+```
+node _src/build.mjs              # 35 pages, then the gates: disclosure, links, claims, figures, images, voice, finder
+node scripts/check-site.mjs      # links, canonicals, feed, a11y, three-state sponsored classification
+node scripts/compliance-gate.mjs # 1676 assertions, including "every suggestion has one dated decision row"
+node scripts/publish-gate.mjs    # reproducibility and the human checkpoints; --committed is what CI runs
+```

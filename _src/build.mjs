@@ -453,7 +453,7 @@ ${finderBlock(finder, products, { esc, url, special, site })}
       ${picks.map((p, i) => productCard(p, i + 1)).join("")}
     </div>
     <div class="figures-row">
-      ${footprintDiagram(products, { esc, url })}
+      ${footprintDiagram(products, { esc, url, cite })}
       ${capacityDiagram(products, { esc })}
     </div>
   </div>
@@ -570,7 +570,7 @@ ${breadcrumb([{ href: url("/"), label: "Home" }, { label: c.name }])}
     ${
       c.slug === "air-fryers"
         ? `<div class="figures-row">
-      ${footprintDiagram(products, { esc, url })}
+      ${footprintDiagram(products, { esc, url, cite })}
       ${capacityDiagram(products, { esc })}
     </div>`
         : `${thermoStrip(products, { esc, url })}`
@@ -657,7 +657,7 @@ ${breadcrumb([
       <div class="fact"><dt>Form factor</dt><dd>${esc(p.formFactor.replace(/-/g, " "))}</dd></div>
     </dl>
 
-    ${counterBlock(p, { esc })}
+    ${counterBlock(p, { esc, cite })}
     ${verifiedLine(p, { esc, url })}
 
     <div class="prose">
@@ -984,7 +984,7 @@ ${breadcrumb([{ href: url("/"), label: "Home" }, { label: "Compare" }])}
     </div>
 
     <div class="figures-row">
-      ${footprintDiagram(products, { esc, url })}
+      ${footprintDiagram(products, { esc, url, cite })}
       ${capacityDiagram(products, { esc })}
     </div>
 

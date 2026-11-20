@@ -1,0 +1,666 @@
+{
+  "intro": "A decision list, not a wish list. Each suggestion states what to do, why, what it costs, and what would make it a bad idea. Nothing here has been implemented beyond what is already live; the ones marked shipped were built in this pass because the brief asked for them directly. Everything else waits for a decision. The 2026-11-20 editorial pass (arena-27f76c22) added SUG-25 to SUG-29 and shipped SUG-25; SUG-25 and SUG-23 deliberately record opposite positions on seasonal content so the owner can choose with both arguments visible.",
+  "statusKey": [
+    {
+      "id": "shipped",
+      "label": "Shipped",
+      "note": "Already built on the live site in this pass."
+    },
+    {
+      "id": "recommend",
+      "label": "Recommend next",
+      "note": "Highest confidence, do this before the others."
+    },
+    {
+      "id": "consider",
+      "label": "Consider",
+      "note": "Worth doing, but depends on an earlier decision."
+    },
+    {
+      "id": "hold",
+      "label": "Hold",
+      "note": "Do not do this yet. Reason given."
+    },
+    {
+      "id": "reject",
+      "label": "Rejected",
+      "note": "Would break a rule or mislead a reader."
+    }
+  ],
+  "suggestions": [
+    {
+      "id": "SUG-01",
+      "title": "Keep the site in 'how to decide' voice, permanently, until products are actually tested",
+      "status": "shipped",
+      "weight": 10,
+      "why": "The FTC forbids describing hands-on experience you do not have, and readers detect the fake version instantly. The reliable way to sound human without lying is to write about the decision instead of the verdict: what the drawers are like, what the counter cost is, who the machine is wrong for.",
+      "cost": "None. It is a writing constraint, enforced by the build.",
+      "risk": "A guide that never says 'we tested this' competes poorly against sites that can. That is a real disadvantage and it is the correct one to accept.",
+      "decide": "Accept. Every page already follows it.",
+      "links": [
+        {
+          "label": "FTC Disclosures 101",
+          "url": "https://www.ftc.gov/business-guidance/resources/disclosures-101-social-media-influencers"
+        }
+      ]
+    },
+    {
+      "id": "SUG-02",
+      "title": "Split into two publications, or pick one category and go deep",
+      "status": "recommend",
+      "weight": 9,
+      "why": "Three air fryers and two thermometers are two different buying moments. Search engines reward a site that owns one topic. A small site trying to own 'kitchen gear' owns nothing.",
+      "cost": "Splitting means two domains, two sitemaps, twice the setup. Going deep on air fryers means the thermometers get a single supporting page.",
+      "risk": "If the thermometer affiliate offers a better commission or a bounty, narrowing too early gives up real money.",
+      "decide": "Recommend: keep one site, make air fryers the front section, and treat thermometers as the accessory section — which is what the current structure already does. Confirm before adding a third category.",
+      "links": []
+    },
+    {
+      "id": "SUG-03",
+      "title": "Get PA-API or Creatives access before writing another word",
+      "status": "recommend",
+      "weight": 9,
+      "why": "It is the unlock for the three things this site most obviously lacks: prices, ratings, and product images. All three are currently blank because the rules require API-sourced data. One credential fixes all of it at once.",
+      "cost": "Eligibility requires qualifying sales first — a chicken-and-egg problem for a new account.",
+      "risk": "None to the site. The risk is waiting on access and shipping nothing meanwhile, which is why the current build ships without it.",
+      "decide": "Apply as soon as the account qualifies. Track it in the questions register as Q-11 and Q-12.",
+      "links": [
+        {
+          "label": "Associates Program Policies",
+          "url": "https://affiliate-program.amazon.com/help/operating/policies"
+        }
+      ]
+    },
+    {
+      "id": "SUG-04",
+      "title": "Replace the submitted short links with constructed Special Links (done); prove one works (blocked)",
+      "status": "shipped",
+      "weight": 9,
+      "why": "The submitted links carried no visible tag and their compliance status is unsettled. Constructing amazon.com/dp/<ASIN>?tag=shopnow047c-20 is unambiguous, keeps the destination visible in the status bar, and satisfies the link-clarity requirement.",
+      "cost": "None.",
+      "risk": "If the tag is not enrolled, every link still earns nothing. That is the one thing this cannot fix.",
+      "decide": "Constructed links are live. The proof step is blocked: it needs the owner's Associates Central sign-in (FLG-024). Next step: click one link per product while signed in and confirm it appears in the tracking report.",
+      "links": [
+        {
+          "label": "Participation Requirements §6(w)",
+          "url": "https://affiliate-program.amazon.com/help/operating/policies"
+        }
+      ]
+    },
+    {
+      "id": "SUG-05",
+      "title": "Publish on a real cadence: a new guide every week for eight weeks, then read the query data",
+      "status": "recommend",
+      "weight": 8,
+      "why": "Question-shaped guides are the right shape, but five is not a sample. A weekly cadence for two months produces enough pages and enough query impressions to see which question people actually arrive with, which is the only way to stop guessing topics.",
+      "cost": "A substantive guide per week. Each needs its own verified spec pass.",
+      "risk": "Cadence without quality control produces the thin content the brief explicitly rejects. The build gate must stay on.",
+      "decide": "Adopted 2026-11-20 as the publishing cadence; see the decision log. A new guide every Monday (New York time) for eight weeks. Basis, checked on Amazon Associates Help: content should be \"recent (generally within the last 60 days)\" and \"a good rule of thumb is at least 10 posts\" (FLG-013). Each guide is added to the sitemap and feed in the same commit and must pass the build and compliance gates. Measurement at week eight needs Search Console and analytics, which are owner-blocked (FLG-009, FLG-011); it is not estimated.",
+      "links": []
+    },
+    {
+      "id": "SUG-06",
+      "title": "Add a real author byline with a named person",
+      "status": "recommend",
+      "weight": 8,
+      "why": "Unattributed buying advice reads as generated, which is precisely the failure the brief names. A byline with a short bio and a stated method is the cheapest credibility signal available.",
+      "cost": "Requires a real person willing to be named and accountable.",
+      "risk": "A byline attached to content the person did not write is worse than no byline.",
+      "decide": "Decision needed from the requester. Cannot be fabricated.",
+      "links": []
+    },
+    {
+      "id": "SUG-07",
+      "title": "Move to a custom domain before building any authority",
+      "status": "recommend",
+      "weight": 7,
+      "why": "A /WinA/ subpath reads as a side project, and moving later discards whatever equity accumulated. Doing it now costs a domain and one setting.",
+      "cost": "Domain registration plus DNS. About an hour.",
+      "risk": "Slight setup friction with HTTPS and the CNAME file.",
+      "decide": "Recommend. The build already keeps the origin in one config value, so the change is small.",
+      "links": []
+    },
+    {
+      "id": "SUG-08",
+      "title": "Deploy the analytics collector, and accept that orders cannot be counted yet",
+      "status": "recommend",
+      "weight": 7,
+      "why": "Click data is available today and is the fastest honest feedback loop. Order data has to come from Associates reports, which arrive later. Separating the two keeps the ledger truthful.",
+      "cost": "One worker deploy and a secret.",
+      "risk": "A self-hosted collector is a privacy obligation. The current design stores no identifiers, which keeps that burden small.",
+      "decide": "Recommend deploying to close FLG-011. Do not import a third-party tracker as a shortcut.",
+      "links": [
+        {
+          "label": "Measurement page",
+          "url": "https://sassnarep3-star.github.io/WinA/analytics/"
+        }
+      ]
+    },
+    {
+      "id": "SUG-09",
+      "title": "Add a 'who should not buy this' block to every product page",
+      "status": "consider",
+      "weight": 6,
+      "why": "The single most useful thing a buying guide can say, and the thing competitors skip. It also converts better, because readers trust a page that talked them out of something.",
+      "cost": "A short block per product.",
+      "risk": "None. It requires actually understanding the trade-off, which is why most sites omit it.",
+      "decide": "Consider. The current pages carry a trade-off line; expanding it to a full block is the natural next edit.",
+      "links": []
+    },
+    {
+      "id": "SUG-10",
+      "title": "Build a real comparison table with measured dimensions",
+      "status": "consider",
+      "weight": 6,
+      "why": "The comparison page exists but is thin because dimensions are unverified. Counter footprint is the number that actually decides a purchase, and nobody publishes it clearly.",
+      "cost": "Researching dimensions from manufacturer spec sheets, with a source link per number.",
+      "risk": "A wrong dimension is worse than a blank. Only add numbers with a source.",
+      "decide": "Consider once manufacturer sheets are gathered. Until then the table shows what is verified and says what is not.",
+      "links": []
+    },
+    {
+      "id": "SUG-11",
+      "title": "Add a short 'how we choose what to recommend' block to the front page",
+      "status": "consider",
+      "weight": 5,
+      "why": "Readers arriving cold need one sentence on why these five products and not others. It also pre-empts the 'is this an ad' reflex.",
+      "cost": "Three sentences.",
+      "risk": "Can tip into self-referential process talk, which the brief explicitly wants kept off the front page. Keep it to a single block low on the page.",
+      "decide": "Consider. The About page currently carries this.",
+      "links": []
+    },
+    {
+      "id": "SUG-12",
+      "title": "Do not add a price tracker, price alerts, or a deal feed",
+      "status": "reject",
+      "weight": 10,
+      "why": "Prohibited outright by §6(y) regardless of how it is built.",
+      "cost": "Zero.",
+      "risk": "It is the most requested feature on affiliate sites and the most direct route to account termination.",
+      "decide": "Rejected. Documented so no future session builds it.",
+      "links": [
+        {
+          "label": "Participation Requirements §6(y)",
+          "url": "https://affiliate-program.amazon.com/help/operating/policies"
+        }
+      ]
+    },
+    {
+      "id": "SUG-13",
+      "title": "Do not generate volumes of near-duplicate pages to chase long-tail queries",
+      "status": "reject",
+      "weight": 10,
+      "why": "Template-spun variants of the same article are the definition of the thin, generated content the brief rejects, and they dilute the pages that could rank.",
+      "cost": "Zero.",
+      "risk": "It works briefly, then gets the whole domain discounted.",
+      "decide": "Rejected. The build gate refuses pages without unique content fields.",
+      "links": []
+    },
+    {
+      "id": "SUG-14",
+      "title": "Hold the email capture until there is something to send",
+      "status": "hold",
+      "weight": 5,
+      "why": "Collecting addresses with no ESP and no publishing cadence means collecting nothing. The form is currently inert and says so.",
+      "cost": "Saves an ESP subscription.",
+      "risk": "Capture opportunities are lost while waiting.",
+      "decide": "Hold until SUG-05 produces a cadence. Then wire one ESP and one welcome email.",
+      "links": []
+    },
+    {
+      "id": "SUG-15",
+      "title": "Hold all paid search",
+      "status": "hold",
+      "weight": 5,
+      "why": "No bid is permitted on Amazon marks, and a new site with no conversion data cannot tell whether an ad is profitable. Advertising before measurement is guessing with a budget.",
+      "cost": "Zero.",
+      "risk": "Slower initial traffic.",
+      "decide": "Hold until the ledger has real click and order data.",
+      "links": [
+        {
+          "label": "Participation Requirements §6(f)",
+          "url": "https://affiliate-program.amazon.com/help/operating/policies"
+        }
+      ]
+    },
+    {
+      "id": "SUG-16",
+      "title": "Publish a dated 'last checked' line on every product page",
+      "status": "consider",
+      "weight": 5,
+      "why": "Specifications and availability change. A visible date tells the reader how much to trust the page, and forces the site to actually re-check.",
+      "cost": "One field, refreshed on a schedule.",
+      "risk": "A stale date is a public admission of neglect. That is the point.",
+      "decide": "Consider. Pages currently record the observation date in the register rather than on the page.",
+      "links": []
+    },
+    {
+      "id": "SUG-17",
+      "title": "Adopt a written design brief and treat it as the single source for every visual change",
+      "status": "recommend",
+      "weight": 8,
+      "why": "Without one, every page drifts toward the same templated look that reads as generated. A brief that states the visual system, the layout rules and the anti-slop constraints gives every later change a consistent target instead of a mood.",
+      "cost": "One document. The draft is on this page and can be adopted as-is or edited.",
+      "risk": "A brief that is too rigid produces sameness. It is a starting point, not a cage.",
+      "decide": "Accept. The design brief below is the draft to start from; edit it before implementing.",
+      "links": [
+        {
+          "label": "Google Search Central — helpful content",
+          "url": "https://developers.google.com/search/docs/fundamentals/creating-helpful-content"
+        }
+      ]
+    },
+    {
+      "id": "SUG-18",
+      "title": "Replace generic visual defaults with an opinionated editorial type and color system",
+      "status": "recommend",
+      "weight": 8,
+      "why": "A confident serif-display / sans-body system with a restrained palette and one accent reads as a real publication. Generic system fonts, blue-to-purple gradients and neon highlights are the most common tells of an AI-generated marketing page.",
+      "cost": "CSS and type work in the shared stylesheet.",
+      "risk": "Over-design can crowd small screens. Mobile-first and readable tables must survive the change.",
+      "decide": "Accept the direction. Implement in assets/css/site.css behind the existing design tokens.",
+      "links": []
+    },
+    {
+      "id": "SUG-19",
+      "title": "Vary page layouts; stop repeating the same card grid in every section",
+      "status": "recommend",
+      "weight": 7,
+      "why": "Identical repeated card grids are a primary tell of templated generation. A strong editorial hero, a reading column for guides, and at least one non-card treatment per page read as designed rather than emitted.",
+      "cost": "Template work in the build.",
+      "risk": "More layout code to maintain; keep tables and cards accessible.",
+      "decide": "Accept. Front page and the two category hubs first.",
+      "links": []
+    },
+    {
+      "id": "SUG-20",
+      "title": "Write in a concrete, human voice and ban filler phrases",
+      "status": "recommend",
+      "weight": 8,
+      "why": "Generic marketing boilerplate is the other main slop tell. Specificity — named trade-offs, concrete numbers, a real point of view — reads human and is what helpful-content guidance rewards.",
+      "cost": "Editorial discipline. Add a banned-phrase list to the editorial standards so the gate can enforce it.",
+      "risk": "None. It is the same constraint as SUG-01, applied to wording as well as claims.",
+      "decide": "Accept. Add the banned-phrase list to the About page and a build check.",
+      "links": [
+        {
+          "label": "Google Search Central — helpful content",
+          "url": "https://developers.google.com/search/docs/fundamentals/creating-helpful-content"
+        }
+      ]
+    },
+    {
+      "id": "SUG-21",
+      "title": "Publish to a topic roadmap on a cadence, adding each new guide to the sitemap and feed in the same commit",
+      "status": "recommend",
+      "weight": 8,
+      "why": "Catchy, question-shaped topics are the traffic engine. A fixed cadence plus a feed keeps search and subscribers fresh, and the build already adds each guide to the sitemap and RSS automatically — that was a requirement, not a convenience.",
+      "cost": "A substantive guide each week, with its own verified spec pass.",
+      "risk": "Volume without quality control produces the thin content the brief rejects. The build gate stays on.",
+      "decide": "Accept the topic roadmap below as the first batch of hypotheses, then let measured demand reorder it.",
+      "links": [
+        {
+          "label": "Google Search Central — helpful content",
+          "url": "https://developers.google.com/search/docs/fundamentals/creating-helpful-content"
+        }
+      ]
+    },
+    {
+      "id": "SUG-22",
+      "title": "Use topic clusters and deliberate internal linking, not standalone pages",
+      "status": "consider",
+      "weight": 6,
+      "why": "A cluster (pillar + related guides + product pages) gives each page something to rank for and something natural to link to, and concentrates topical authority instead of spreading it across unrelated pages.",
+      "cost": "An internal-link pass on each new guide.",
+      "risk": "Over-linking looks manipulative. Keep links natural and reader-serving.",
+      "decide": "Consider. Design the cluster map before writing the second batch.",
+      "links": []
+    },
+    {
+      "id": "SUG-23",
+      "title": "Hold seasonal topics until measured demand exists",
+      "status": "hold",
+      "weight": 5,
+      "why": "Choosing December topics from instinct is exactly the failure FLG-020 warns against. Seasonality is a measurement, and there is no query data yet.",
+      "cost": "Zero.",
+      "risk": "Misses timely traffic in the meantime.",
+      "decide": "Hold until Search Console has 2–4 weeks of query data (FLG-009, FLG-020).",
+      "links": [
+        {
+          "label": "Google Search Console",
+          "url": "https://search.google.com/search-console"
+        }
+      ]
+    },
+    {
+      "id": "SUG-24",
+      "title": "Add a decision log so suggestions are accepted or rejected with a recorded reason and date",
+      "status": "shipped",
+      "weight": 7,
+      "why": "The brief asks for a reviewable path before implementing anything. A log makes each choice auditable, captures why something was rejected, and stops the same suggestion being re-litigated next session.",
+      "cost": "A small table on this page, populated by hand.",
+      "risk": "None. It only records decisions already being made.",
+      "decide": "Accept. The decision log schema below is the record; entries are added as decisions are made.",
+      "links": []
+    },
+    {
+      "id": "SUG-25",
+      "title": "Ship the seasonal cluster now, and refresh it every November — the position opposite SUG-23",
+      "status": "shipped",
+      "weight": 8,
+      "why": "Seasonal intent is the one demand pattern that does not need a query report to justify: holiday cooking questions arrive every November whether or not we can measure them yet. A shipped seasonal page compounds — it can be re-checked, re-linked, and re-published each year instead of rebuilt. This row was built and shipped under a direct publishing brief; SUG-23 (from the same parallel pass) recommends holding until demand is measured, and both rows are kept so the owner decides rather than either session silently winning.",
+      "cost": "A collection page, a holiday guide, two generated brand images, and a navigation label. Built in this pass.",
+      "risk": "SUG-23 is right that a calendar-driven topic may miss the queries people actually type: no Search Console data exists yet, and the limitation is disclosed on the page itself (FLG-020, Q-23). The risk of shipping was reading as speculative; the mitigation was disclosure, not silence.",
+      "decide": "Shipped this pass. Owner decides at Q-25: adopt the annual November refresh (re-check every linked spec against its source each time), or retire the page in favour of SUG-23\\u2019s hold position once real query data exists. Whichever loses is recorded, not deleted.",
+      "links": [
+        {
+          "label": "Seasonal collection",
+          "url": "https://sassnarep3-star.github.io/WinA/seasonal/"
+        }
+      ]
+    },
+    {
+      "id": "SUG-26",
+      "title": "Grow the technique cluster by one article a month — jobs, not verdicts",
+      "status": "recommend",
+      "weight": 8,
+      "why": "Technique questions (what to reheat, what to batch, what belongs on the counter) are evergreen, answerable from published specifications, and never require claiming a hands-on test. They are also the cheapest way to close the Associates 10-post bar (FLG-013): this pass added the technique and holiday guides, leaving roughly three additional substantive posts to reach ten on any reading.",
+      "cost": "A guide per month plus its verification pass — the same cost as the weekly cadence in SUG-05 and SUG-21, at a slower, sustainable rate.",
+      "risk": "Seven guides already cover form factor, capacity, cleanup, multi-function, thermometers, technique, and holidays. A new article must be a new job (reheating, defrost-and-crisp, batch-prep) or it will restate the same trade-offs and read as filler — the exact failure the brief rejects.",
+      "decide": "Recommend. Start next month if the weekly cadence (SUG-05, SUG-21) is not adopted; if it is, slot technique articles into the same calendar. Each new guide enters the sitemap and feed in the same commit, per the standing rule.",
+      "links": []
+    },
+    {
+      "id": "SUG-27",
+      "title": "Expand the brand imagery: one generated counter scene per collection",
+      "status": "consider",
+      "weight": 5,
+      "why": "The two shipped images cover the seasonal cluster and the guides imagery. A consistent illustration per category (air fryers, thermometers, compare) would make the site read as a publication from any entry page, which is SUG-17\\u2019s design-brief requirement made visual.",
+      "cost": "Four generated images and one CSS addition. No ongoing cost.",
+      "risk": "None to compliance as long as the images never depict products, brands, or any appliance that could be mistaken for a listed unit (FLG-007), and each use is labelled on-page. The risk is aesthetic: too many scenes can read as stock.",
+      "decide": "Consider after the seasonal deploy settles. Owner position on generated imagery is Q-26; decide per image, not as a batch, and keep the same warm editorial grade so the set reads as one publication.",
+      "links": [
+        {
+          "label": "Imagery constraint (FLG-007)",
+          "url": "https://sassnarep3-star.github.io/WinA/flagged/"
+        }
+      ]
+    },
+    {
+      "id": "SUG-28",
+      "title": "Buy traffic before conversion measurement exists",
+      "status": "hold",
+      "weight": 9,
+      "why": "Paid acquisition is reasonable only once two things are true: the collector is deployed (FLG-011) so clicks per source are countable, and the Associates tracking report confirms attribution (FLG-004). Neither is true today. Spending before measurement means paying for clicks nobody can trace to an order.",
+      "cost": "Budget, plus the two blockers above.",
+      "risk": "The failure mode is not overspend — it is confidence: unmeasured paid traffic looks identical to organic growth in every report the site currently has.",
+      "decide": "Hold until FLG-011 and FLG-004 close. Re-evaluate in the week after the first Associates report arrives.",
+      "links": []
+    },
+    {
+      "id": "SUG-29",
+      "title": "A dedicated head-to-head thermometer page — only when measurement justifies it",
+      "status": "consider",
+      "weight": 6,
+      "why": "The instant-vs-wireless guide covers the decision narratively. A dedicated side-by-side page would target a different reader — the one who has already decided to compare — and the comparison table already carries the verified spec rows to build it from.",
+      "cost": "One page from existing verified data; no new claims required.",
+      "risk": "It adds another URL competing with the existing guide and compare page for the same intent. Without query data, choosing this topic is instinct — the failure mode SUG-21\\u2019s cadence exists to replace.",
+      "decide": "Consider, gated on measurement: build it only if the query report (Q-24) shows thermometer-comparison impressions. Until then the guide and the table cover the intent.",
+      "links": []
+    }
+  ],
+  "designBrief": {
+    "intro": "A draft design brief to feed a design prompt. These are recommendations for the visual and editorial direction of the site, not verified facts. They exist so the site can read as a polished marketing publication rather than a templated generated site. Each principle names the constraint it respects, where one applies.",
+    "principles": [
+      {
+        "id": "DB-01",
+        "area": "Visual system",
+        "principle": "Use an opinionated editorial type system: a serif display face for headlines and a clean sans for body, set in a clear hierarchy with generous line height and a readable measure.",
+        "why": "A confident type system reads as a real publication. Uniform system-font stacks with flat sizing read as generated.",
+        "constraint": "None. Keep contrast and a readable line length, especially on mobile.",
+        "source": null
+      },
+      {
+        "id": "DB-02",
+        "area": "Visual system",
+        "principle": "Use a restrained, limited palette with one accent color. Avoid generic blue-to-purple gradients and neon highlights.",
+        "why": "Gradients and neon are among the most common visual tells of AI-generated marketing pages. Restraint reads as intentional.",
+        "constraint": "WCAG contrast.",
+        "source": null
+      },
+      {
+        "id": "DB-03",
+        "area": "Visual system",
+        "principle": "Do not use emoji or icons as decoration. Use a real icon set only where it carries meaning.",
+        "why": "Emoji-as-decoration is a strong tell of generated content and looks unprofessional on a buying guide.",
+        "constraint": "None.",
+        "source": null
+      },
+      {
+        "id": "DB-04",
+        "area": "Layout",
+        "principle": "Vary section layouts: a strong editorial hero, a reading column for guides, and at least one non-card treatment per page. Do not repeat the identical card grid in every section.",
+        "why": "Repeated identical cards are a primary tell of templated generation. Variation reads as designed.",
+        "constraint": "Mobile-first; keep tables and cards readable.",
+        "source": null
+      },
+      {
+        "id": "DB-05",
+        "area": "Compliance",
+        "principle": "Keep the disclosure strip and sponsored labels exactly where policy requires, and design around them rather than treating them as an afterthought.",
+        "why": "Disclosure placement is a compliance requirement, not a style choice.",
+        "constraint": "FTC Disclosures 101 (hard to miss); Associates Operating Agreement §5.",
+        "source": {
+          "label": "FTC Disclosures 101",
+          "url": "https://www.ftc.gov/business-guidance/resources/disclosures-101-social-media-influencers"
+        }
+      },
+      {
+        "id": "DB-06",
+        "area": "Voice",
+        "principle": "Write in a concrete, human, opinionated voice using specifics and named trade-offs. Ban filler phrases and generic marketing boilerplate.",
+        "why": "Specificity reads human and is what helpful-content guidance rewards; filler is the other main slop tell.",
+        "constraint": "FTC: no experience you do not have. The Associate statement stays verbatim.",
+        "source": {
+          "label": "Google Search Central — Creating Helpful Content",
+          "url": "https://developers.google.com/search/docs/fundamentals/creating-helpful-content"
+        }
+      },
+      {
+        "id": "DB-07",
+        "area": "Imagery",
+        "principle": "Until compliant product imagery is available, keep the site typographic: color, type and a defined illustration or pattern system carry the design. Do not hot-link, store, or substitute Amazon imagery, and do not use stock photos of a different appliance.",
+        "why": "Unlicensed or misrepresenting imagery would violate program policy and mislead the reader. A confident typographic system can look polished without photos.",
+        "constraint": "Participation Requirements §6(a); IP License. See FLG-007.",
+        "source": {
+          "label": "Amazon Associates Program Policies",
+          "url": "https://affiliate-program.amazon.com/help/operating/policies"
+        }
+      },
+      {
+        "id": "DB-08",
+        "area": "Trust",
+        "principle": "Make the sponsored status of every outbound product link visible at the link, and keep the Associate statement above the fold on every page.",
+        "why": "Reader trust and FTC disclosure both require the material connection to be visible where the endorsement happens.",
+        "constraint": "FTC 16 CFR 255.5; Associates OA §5; Program Policies.",
+        "source": {
+          "label": "FTC Disclosures 101",
+          "url": "https://www.ftc.gov/business-guidance/resources/disclosures-101-social-media-influencers"
+        }
+      }
+    ]
+  },
+  "topicRoadmap": {
+    "note": "Editorial hypotheses only. None of these titles is a claim about search volume, popularity, or product superiority. Selection is a draft for a publishing cadence; which topics earn traffic is decided by measured query data once Search Console is verified (FLG-009, FLG-020), not by instinct.",
+    "clusters": [
+      {
+        "id": "AF",
+        "name": "Air fryers",
+        "products": [
+          "chefman-6-quart-dual-basket",
+          "chefman-8-quart-turbofry",
+          "emeril-lagasse-26qt-french-door"
+        ],
+        "topics": [
+          {
+            "title": "The two-basket air fryer: when cooking two things at once is actually worth it",
+            "intent": "Form-factor decision",
+            "status": "hypothesis"
+          },
+          {
+            "title": "Air fryer vs. toaster oven: which one actually saves your counter?",
+            "intent": "Category decision",
+            "status": "hypothesis"
+          },
+          {
+            "title": "How many quarts do you really need? A rule of thumb for one- and two-person kitchens",
+            "intent": "Capacity decision",
+            "status": "hypothesis"
+          },
+          {
+            "title": "What 'Hi-Fry' actually means — and when the extra heat is worth it",
+            "intent": "Feature decision",
+            "status": "hypothesis"
+          },
+          {
+            "title": "Dual basket vs single basket: the counter-space math nobody shows you",
+            "intent": "Form-factor decision",
+            "status": "hypothesis"
+          }
+        ]
+      },
+      {
+        "id": "TH",
+        "name": "Thermometers",
+        "products": [
+          "thermomaven-1-sec-thermometer",
+          "chef-iq-sense-gen3"
+        ],
+        "topics": [
+          {
+            "title": "The one number that decides a roast: why your thermometer matters more than your recipe",
+            "intent": "Why-it-matters",
+            "status": "hypothesis"
+          },
+          {
+            "title": "Probe vs. instant-read: matching the tool to the cook",
+            "intent": "Tool-match decision",
+            "status": "hypothesis"
+          },
+          {
+            "title": "Wireless meat thermometer: what to check before you rely on it for a long cook",
+            "intent": "Reliability decision",
+            "status": "hypothesis"
+          },
+          {
+            "title": "Instant-read vs leave-in: which thermometer fits your weeknight?",
+            "intent": "Tool-match decision",
+            "status": "hypothesis"
+          }
+        ]
+      },
+      {
+        "id": "XC",
+        "name": "Cross-category evergreen",
+        "products": [],
+        "topics": [
+          {
+            "title": "The 5-question checklist before buying any small kitchen appliance",
+            "intent": "General buying framework",
+            "status": "hypothesis"
+          },
+          {
+            "title": "Small-appliance buying mistakes that cost you counter space",
+            "intent": "Mistake avoidance",
+            "status": "hypothesis"
+          },
+          {
+            "title": "How to read a spec sheet without getting sold",
+            "intent": "Literacy framework",
+            "status": "hypothesis"
+          },
+          {
+            "title": "Counter depth, wattage, basket size: the numbers that decide a purchase",
+            "intent": "Buying framework",
+            "status": "hypothesis"
+          }
+        ]
+      }
+    ]
+  },
+  "decisionLog": {
+    "note": "Every entry below mirrors a decision already written into the register above, with the reason that was written at the time. Accepted items are already in the build; adopted items are decided but not yet built. Recommended and open items are the project's written position and still need the owner's acceptance; held and rejected items stay recorded so they are not re-litigated. A new decision is appended with its own date rather than editing an old row.",
+    "decisionKey": [
+      { "id": "accepted", "label": "Accepted", "note": "Written as accepted and already built into the live site." },
+      { "id": "adopted", "label": "Adopted", "note": "Decided, with the date and the basis, but not yet built. Nothing is published by the decision itself." },
+      { "id": "recommended", "label": "Recommended", "note": "The project's written recommendation, with the reasoning and the risk. Not yet accepted by the owner." },
+      { "id": "open", "label": "Open", "note": "No recommendation to build yet: it needs an earlier decision, a credential, or a person." },
+      { "id": "hold", "label": "Hold", "note": "Deliberately not now, with the condition that would unblock it." },
+      { "id": "rejected", "label": "Rejected", "note": "Will not be built. Recorded so a later session does not build it in good faith." }
+    ],
+    "statusToDecision": {
+      "shipped": ["accepted"],
+      "recommend": ["recommended", "adopted"],
+      "consider": ["open", "adopted"],
+      "hold": ["hold", "adopted"],
+      "reject": ["rejected"]
+    },
+    "rubric": [
+      "Answer the blocking questions first (Q-04 enrolment, Q-09 testing, Q-16 measurement).",
+      "Score each suggestion: impact × confidence ÷ cost.",
+      "Read the risk column before accepting; a suggestion that needs a credential is gated, not blocked.",
+      "Accept or reject in writing, with a one-line reason and a date.",
+      "Re-review quarterly against measured data, not instinct."
+    ],
+    "killCriteria": [
+      "A topic with no measured demand after four weeks is dropped, not padded.",
+      "A suggestion whose risk has grown (for example it would breach policy) is moved to rejected.",
+      "No new topic is added from instinct while the query report is empty."
+    ],
+    "entries": [
+      { "date": "2026-11-20", "decision": "accepted", "item": "SUG-01", "reason": "Accepted and already live: every page writes about the decision instead of a verdict, because no product in this register has been tested." },
+      { "date": "2026-11-20", "decision": "recommended", "item": "SUG-02", "reason": "One site, air fryers in front, thermometers as the second section — which is the structure already in place. Confirm before a third category is added." },
+      { "date": "2026-11-20", "decision": "recommended", "item": "SUG-03", "reason": "Apply as soon as the account qualifies. Eligibility depends on qualifying sales first, so it stays tracked as Q-11 and Q-12." },
+      { "date": "2026-11-20", "decision": "accepted", "item": "SUG-04", "reason": "Accepted and live: outbound links are built as direct product-page links carrying the tracking ID. The proof step stays blocked on the owner's Associates Central sign-in (FLG-024)." },
+      { "date": "2026-11-20", "decision": "adopted", "item": "SUG-05", "reason": "Publishing cadence adopted: a new guide every Monday (New York time) for eight weeks, each added to the sitemap and feed in the same commit and passing the build and compliance gates. Basis: Associates Help 'Application Review Process' (FLG-013). This sets the schedule only; no new guide is published by this decision. Week-eight measurement waits on owner-connected Search Console and analytics (FLG-009, FLG-011)." },
+      { "date": "2026-11-20", "decision": "recommended", "item": "SUG-06", "reason": "Recommended, and it needs a real, named person who is accountable for the writing. A byline cannot be fabricated, so this waits on the owner." },
+      { "date": "2026-11-20", "decision": "recommended", "item": "SUG-07", "reason": "Move to an owned domain: the origin is a single config value, so the change is small." },
+      { "date": "2026-11-20", "decision": "recommended", "item": "SUG-08", "reason": "Deploy the collector that already ships in this repository to close FLG-011, rather than adding a third-party tracker." },
+      { "date": "2026-11-20", "decision": "open", "item": "SUG-09", "reason": "The product pages already carry a trade-off line. A fuller block is the next edit, and it should be written by someone who has the product in front of them." },
+      { "date": "2026-11-20", "decision": "open", "item": "SUG-10", "reason": "The comparison table shows sourced dimensions only. Wider tables wait until manufacturer sheets are gathered: a wrong dimension is worse than a blank." },
+      { "date": "2026-11-20", "decision": "open", "item": "SUG-11", "reason": "The About page already carries this, and the front page deliberately keeps process notes off the reader's path." },
+      { "date": "2026-11-20", "decision": "rejected", "item": "SUG-12", "reason": "A price tracker, price alert or deal feed is ruled out by the Program Policies. Recorded so no later session builds it." },
+      { "date": "2026-11-20", "decision": "rejected", "item": "SUG-13", "reason": "Near-duplicate pages to chase long-tail queries are what this publication exists not to be; the build gate refuses pages without unique content." },
+      { "date": "2026-11-20", "decision": "hold", "item": "SUG-14", "reason": "Hold until a guide cadence exists, then one email service and one welcome message." },
+      { "date": "2026-11-20", "decision": "hold", "item": "SUG-15", "reason": "Hold until the ledger holds real click and order data from first-party reports." },
+      { "date": "2026-11-20", "decision": "open", "item": "SUG-16", "reason": "The observation date is recorded in the register; printing a last-checked line on each page is the next edit." },
+      { "date": "2026-11-20", "decision": "recommended", "item": "SUG-17", "reason": "The design brief published below is the draft to start from, editable before any visual change is made." },
+      { "date": "2026-11-20", "decision": "recommended", "item": "SUG-18", "reason": "An editorial type and colour system in the shared stylesheet, behind the existing design tokens, mobile-first." },
+      { "date": "2026-11-20", "decision": "recommended", "item": "SUG-19", "reason": "Vary the layout instead of repeating one card grid, starting with the front page and the two category hubs." },
+      { "date": "2026-11-20", "decision": "recommended", "item": "SUG-20", "reason": "A concrete voice plus a banned-phrase list in the editorial standards, so the build can enforce it." },
+      { "date": "2026-11-20", "decision": "recommended", "item": "SUG-21", "reason": "The topic roadmap below is the first batch of hypotheses; measured demand reorders it later, never the other way round." },
+      { "date": "2026-11-20", "decision": "open", "item": "SUG-22", "reason": "Design the cluster map before the second batch, so internal links stay natural rather than forced." },
+      { "date": "2026-11-20", "decision": "hold", "item": "SUG-23", "reason": "Hold until Search Console holds two to four weeks of query data (FLG-009, FLG-020)." },
+      { "date": "2026-11-20", "decision": "accepted", "item": "SUG-24", "reason": "Accepted and live: this log is the record, and each row here mirrors a written decision with its reason and date." },
+      { "date": "2026-11-20", "decision": "accepted", "item": "SUG-25", "reason": "Shipped this pass: the seasonal cluster is live and is refreshed every November, with each linked spec re-checked against its source. The owner position at Q-25 decides whether it is adopted annually or retired in favour of SUG-23's hold once real query data exists; whichever loses is recorded, not deleted." },
+      { "date": "2026-11-20", "decision": "recommended", "item": "SUG-26", "reason": "Recommended: one technique article a month — jobs, not verdicts. It starts next month if the weekly cadence (SUG-05, SUG-21) is not adopted, and slots into the same calendar if it is. Each new guide enters the sitemap and feed in the same commit, per the standing rule." },
+      { "date": "2026-11-20", "decision": "open", "item": "SUG-27", "reason": "Consider after the seasonal deploy settles. The owner position on generated imagery is Q-26; the decision is taken per image rather than as a batch, with one warm editorial grade so the set reads as a single publication." },
+      { "date": "2026-11-20", "decision": "hold", "item": "SUG-28", "reason": "Hold until FLG-011 and FLG-004 close, and re-evaluate in the week after the first Associates report arrives." },
+      { "date": "2026-11-20", "decision": "open", "item": "SUG-29", "reason": "Consider, gated on measurement: build it only if the query report (Q-24) shows thermometer-comparison impressions. Until then the guide and the comparison table cover the intent." }
+    ]
+  },
+  "designPrompt": {
+    "intro": "A ready-to-use design prompt for the visual redesign. The goal is a polished marketing affiliate publication — not a templated, AI-generated shop. It consolidates the design brief (DB-01 to DB-08) and the compliance constraints so a designer, or an AI design prompt, has a single source to act on. Nothing here is a verified fact; it is a recommendation awaiting a decision in the decision log.",
+    "prompt": "Design Counter Space, a polished marketing affiliate publication about kitchen gear. Visual direction: an opinionated editorial type system — serif display headlines, clean sans body, generous line height, readable measure. Restrained palette with one accent color; no blue-to-purple gradients, no neon highlights, no emoji or decorative icons. Vary section layouts — a strong editorial hero, a reading column for guides, at least one non-card treatment per page; do not repeat the identical card grid everywhere. Keep the disclosure strip above the fold on every page and the Sponsored label on every outbound product link; these are compliance requirements, not afterthoughts. Write in a concrete, human voice using specifics and named trade-offs; ban filler phrases and generic marketing boilerplate. Until compliant product imagery is available, keep the site typographic: color, type and an illustration or pattern system carry the design. Do not hot-link, store, or substitute Amazon imagery, and do not use stock photos of a different appliance. Meet WCAG contrast and stay readable on mobile, especially tables and cards. HTML/CSS only; no third-party analytics or tracking scripts.",
+    "constraints": [
+      "FTC Disclosures 101 — disclosure hard to miss, placed with the endorsement",
+      "Associates Operating Agreement §5 — verbatim Associate statement above the fold",
+      "Program Policies §6(a) and IP License — no unlicensed or misrepresenting imagery",
+      "FTC 16 CFR 255.5 — sponsored status visible at the link",
+      "Google Search Central helpful-content — concrete human voice, no filler"
+    ],
+    "source": {
+      "label": "Design brief DB-01 to DB-08",
+      "url": "/WinA/suggestions/"
+    }
+  }
+}

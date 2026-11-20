@@ -1,7 +1,12 @@
 # Handoff — T34 requested changes to shared outputs
 
 These patches hold the spec-row corrections and flag changes from T34 (arena/1cf62cfb-wina, 2026-11-20).
-They are **not applied**. Board rule 10 reserves `data/*.json`, nav and `index.html` for the final integration session.
+**Applied at integration on 2026-11-20 by arena-3818c975-wina (T35), with one deliberate divergence:** T34
+blanked the Emeril preset and accessory rows because the official sources disagree; this build instead prints both
+figures on the row and marks it `claim`, so a reader sees the disagreement instead of an absence. FLG-029 records the
+choice and the reason. T34's own new flag became FLG-044, because FLG-043 was taken in between.
+
+Nothing else here is unapplied. Board rule 10 reserves `data/*.json`, nav and `index.html` for the final integration session.
 
 Both patches apply cleanly to `main` at f3f9541 (checked with `git apply --cached --check` against that tree).
 Verified in a scratch copy of f3f9541: both applied; `node _src/build.mjs` passes all gates (33 pages); `node scripts/check-site.mjs` passes; `node scripts/compliance-gate.mjs` reports 1,518 checks, 0 failing, 1 intentional warning (FLG-024).

@@ -17,7 +17,7 @@ Generated 2026-11-20 by `_src/build.mjs` (deterministic: no wall-clock timestamp
 - `PASS` all 10 policy checks quote a clause and link a primary source
 - `PASS` all internal links resolve across 34 pages
 - `PASS` single build owns the served root; no prior site resurrected
-- `PASS` archive intact: 119 files preserved from three prior builds
+- `PASS` archive intact: 177 files preserved from three prior builds
 - `PASS` 8 images served, all owned artwork from /assets/img/, each with alt text and an intrinsic size
 - `PASS` every drawn figure matches the register row it cites; unpublished values are drawn as gaps, not guesses
 - `PASS` no phrase from the 42-word banned list appears in reader copy on any of the 35 pages

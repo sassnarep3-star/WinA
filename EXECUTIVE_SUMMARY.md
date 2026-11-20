@@ -9,21 +9,22 @@ deliberately not live, what the last verification pass found, and what is waitin
 
 ## 1. Where the project stands
 
-A 33-page affiliate publication is live and listed in a sitemap, covering three air fryers and two
-meat thermometers, with **99 tagged outbound product links**. It is not a mockup: every page is
-generated from a data register, and three independent gates run on every push and pull request.
+A 35-page affiliate publication is served from the repository root and listed in a sitemap, covering
+three air fryers and two meat thermometers, with **127 tagged outbound product links**. It is not a
+mockup: every page is generated from a data register, and four independent gates run on every push and
+pull request.
 A published sitemap is not proof of indexing: whether any search engine has indexed this site is
 unverified, and Search Console has never been verified (FLG-009).
 
 | Surface | State |
 | --- | --- |
-| Reader pages | 33 total: front page + 404, 7 guides, a seasonal cluster, 2 category hubs, 5 product pages, compare, register, a marketing kit, and the operations set (flagged, questions, suggestions, summary, dashboard, analytics, disclosure, privacy, about, seo, marketing, concept) |
-| Data registers | 5 products · 60 spec rows · 6 policy sources · 10 policy clauses quoted · 46 flag rows · 26 questions · 29 suggestions |
-| Verification mix | 32 `verified` · 14 `unverified` · 10 `withheld` · 4 `claim`; **36 rows carry a value, 24 are blank with a reason**, and 22 of the valued rows cite a manufacturer page directly rather than the listing |
-| Compliance | OA §5 statement verbatim on all 30 pages; the disclosure precedes the first sponsored link on every page (asserted by byte offset, not by eyeball); `rel="sponsored nofollow noopener"` + `?tag=shopnow047c-20` on all 82 product links; the 8 submitted short links render as declared non-affiliate citations (`rel="nofollow"`, no tag). Counts from `scripts/compliance-gate.mjs`, cross-checked by `scripts/check-site.mjs` at 102 Amazon links / 82 sponsored |
+| Reader pages | 35 total: front page + 404, 9 guides, a seasonal cluster, 2 category hubs, 5 product pages, compare, register, a marketing kit, and the operations set (flagged, questions, suggestions, summary, dashboard, analytics, disclosure, privacy, about, seo, marketing, concept) |
+| Data registers | 5 products · 64 spec rows · 6 policy sources · 10 policy clauses quoted · 48 flag rows · 28 questions · 31 suggestions, each with one dated decision-log row |
+| Verification mix | 38 `verified` · 10 `unverified` · 10 `withheld` · 6 `claim`; **44 rows carry a value, 10 are blank with a published reason**, and 27 of the valued rows cite a manufacturer page directly rather than the listing |
+| Compliance | OA §5 statement verbatim on all 35 pages; the disclosure precedes the first sponsored link on every page (asserted by byte offset, not by eyeball); `rel="sponsored nofollow noopener"` + `?tag=shopnow047c-20` on all 127 product links; the submitted short links render as declared non-affiliate citations (`rel="nofollow"`, no tag); and no image on the site is served from anywhere but `/assets/img/`. Counts from `scripts/compliance-gate.mjs`, cross-checked by `scripts/check-site.mjs` at 152 Amazon links / 127 sponsored and 1504 internal links |
 | Measurement | Five events defined; collector written but **not deployed**, so the client is inert by design. Its contract is now executed rather than asserted: `scripts/analytics-selftest.mjs` starts the collector and checks it end to end, and runs in CI (FLG-042) |
 | Money | **Zero** revenue claims; ledger holds 0 rows, by policy |
-| Gates | Three checkers, all green (~1,497 compliance assertions, 1,289 internal links verified, the builder's own 9 gates), plus the collector self-test. CI fails if generated output is not committed, the build is not reproducible, or a compliance rule breaks — and Pages' deploy job now runs the compliance gate too, so a regression stops the release rather than reddening a check |
+| Gates | Four checkers, all green (1676 compliance assertions, 1504 internal links, the builder's own gates including the imagery, figure, voice and finder rules added on 2026-11-20). Two consecutive builds are byte-identical, CI fails if generated output is not committed or a rule breaks, and the Pages deploy job runs the compliance gate before deploying |
 | History | Four prior session builds preserved under `archive/` (83 files), nothing deleted |
 
 ## 2. What the product question turned out to be
@@ -260,3 +261,64 @@ real defects — the server did not read the browser client's payload shape, so 
 have lost the ASIN, page and slot it was supposed to record, and the server crashed on start when
 an origin allow-list was set — and both are fixed (FLG-042). Nothing was deployed, no endpoint was
 configured, and the client remains inert.
+
+---
+
+## 8. Session `arena-3818c975-wina` — 2026-11-20 — the design brief, built, and the root restored (filed T35, claimed T26)
+
+**Two problems, one commit.** The first was known: T25 had written a design brief, a topic roadmap and
+a reviewer-facing suggestions layer, and nothing had been built from them. The second appeared while
+this work ran: PR #28 merged a second, hand-authored site to the repository root, which is where GitHub
+Pages serves from, so the build that carries the compliance machinery — `_src/build.mjs`, the four
+gates under `scripts/`, the dated `data/*.json` registers — stopped being what readers and search
+engines see. The live front page that merge published prints six prices and three customer-rating
+counts and hot-links product imagery from `m.media-amazon.com`. Its own board records the imagery route
+as its FLG-005, so this is not a misunderstanding about whether the rules exist; it is a merge order.
+Under the clauses `data/policy.json` quotes verbatim — prices and ratings only from the Product
+Advertising API or Creatives, Program Content never stored or hot-linked outside approved tools —
+that is exposure on the account, and no gate on that tree would catch it.
+
+**What this branch does about it.** The publication's tree is restored at the root. The parallel build
+is preserved verbatim under `archive/arena-580f4c6d/` (58 files, `PRESERVED.md` explaining the why and
+how to reverse it), its guides were already absorbed by `406b523`, and its board sections are unioned
+into `COORDINATION.md` so no decision of that session's is stranded in a folder. Nothing is deleted and
+no editorial work is discarded. FLG-043 carries the finding, the evidence and the reversal recipe.
+
+**What got built, and what it is for.**
+
+| Change | Reader effect | Constraint it respects |
+| --- | --- | --- |
+| Four commissioned illustrations under `assets/img/` (plus a favicon), each captioned *original artwork — not a product image* | The site has a visual language instead of only rules and tables | Program Content cannot be licensed by storage, so nothing here depicts an appliance for sale. A build gate fails any `img` that is not served from `/assets/img/`, lacks alt text or an intrinsic size, or names an Amazon or stock-library host |
+| A top-view counter-footprint figure and a stated-capacity figure, drawn from the register's own numbers | The two comparisons that decide a countertop purchase, at a glance, each citing the page it came from | `assertFigure()` refuses to build when a drawn number is not in the spec row it cites. The 8-quart is drawn from its own listing rather than a sibling SKU; where nothing is published the figure shows the gap |
+| A three-question chooser at `/#finder` | A reader who does not know what to browse gets an answer with its reason and trade-off attached | Every answer card ships in the served HTML with its tagged sponsored anchor, because a run-time anchor is invisible to compliance. The block records nothing, and the gate checks that it records nothing |
+| Contents list, previous/next and a cluster block computed from `guideTopics` | Each guide is a page in a set rather than a page alone | Derived from the register, so it cannot rot |
+| Counter-arithmetic block and a dated provenance line on every product page | "will it fit, and how do you know" answered in the reader's path | Blank rows stay blank, with the reason beside them |
+| Two guides promoted from the roadmap: `08` air fryer vs toaster oven, `09` the five-question checklist | The cadence has shipped once instead of being proposed | Titles remain labelled hypotheses; measured demand still owns the ordering |
+| A 42-phrase voice ban, published on `/about/#design` and enforced by the build | Boilerplate cannot be published by accident | Quote-aware: publishing the ban is not breaching it, and a register quoting somebody else's claim is not our claim |
+
+**Verification, first-hand.** The five submitted short codes were re-opened: four returned Amazon's home
+page and one a fetch error, where earlier the same day one had returned the product page — not
+reproducible, so both observations are dated in FLG-040 rather than one overwriting the other, and no
+reader of this site depends on those codes. `/dp/B0CDY277D3`, `/dp/B0DHZTCNR5` and `/dp/B0DZFD6R9Z` were
+re-read directly and match the register title for title. The Chefman and Emeril brand pages were re-read
+for every figure the new diagrams display, which filled ten specification rows with citations, added a
+verified temperature range for the 6-quart, and marked the Emeril preset and accessory counts as seller
+claims because the brand page contradicts itself. Emeril wattage stays blank: the page publishes 120
+volts and no power figure, third-party claims of 1,700 W are not an official source, and voltage is not
+wattage — that reasoning is now published as Q-28. `handoff/T34-products.patch` and
+`T34-governance.patch`, left for an integration session, are applied, with the one divergence recorded
+in FLG-029 and in `handoff/README.md`.
+
+**Gates on the committed tree.**
+
+```
+node _src/build.mjs              → 35 pages, 127 in sitemap. PASSED: all gates clear
+node scripts/check-site.mjs      → 34 pages · 1504 internal links · 152 Amazon links (127 sponsored) · safe to publish
+node scripts/compliance-gate.mjs → 1676 checks, 0 failing, 1 warning (FLG-024, by design)
+node scripts/publish-gate.mjs    → 4 checks, 0 failing, 0 warnings
+two builds in sequence            → byte-identical output
+```
+
+Counts: 9 guides, 5 products, 64 specification rows (38 verified, 6 seller claims, 10 unverified and
+blank, 10 withheld by policy), 48 flags, 28 questions, 31 suggestions with 31 dated decision rows, and
+8 images on the site, every one of them owned artwork.

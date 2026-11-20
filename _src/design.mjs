@@ -45,7 +45,9 @@ function areaIn2(f) {
   return f.w * f.d;
 }
 
-export function footprintDiagram(products, { esc, url }) {
+const isAmazon = (u) => /^https?:\/\/(?:www\.)?(?:amazon\.[a-z.]+|link\.amazon|amzn\.to)\//.test(u || "");
+
+export function footprintDiagram(products, { esc, url, cite }) {
   const units = products.filter((p) => p.category === "air-fryers");
   if (!units.length) return "";
 
@@ -84,9 +86,11 @@ export function footprintDiagram(products, { esc, url }) {
     <text x="${24 + w + 10}" y="${20 + d / 2 + 4}" class="fp__lab sm">${dim(f.d)} in deep</text>
   </svg>
   <p class="fp__name">${esc(p.shortName)}</p>
-  <p class="fp__why"><span class="fp__num">${Math.round(a)} in²</span> of counter · ${dim(f.h)} in tall · <a href="${esc(
-    p.figures.sourceUrl
-  )}" rel="nofollow noopener" target="_blank" data-slot="figure">${esc(p.figures.sourceLabel)}</a></p>
+  <p class="fp__why"><span class="fp__num">${Math.round(a)} in²</span> of counter · ${dim(f.h)} in tall · ${
+    isAmazon(p.figures.sourceUrl)
+      ? cite(p.figures.sourceUrl, esc(p.figures.sourceLabel), p.asin)
+      : cite(p.figures.sourceUrl, esc(p.figures.sourceLabel))
+  }</p>
 </div>`;
     })
     .join("");
@@ -359,7 +363,7 @@ export function verifiedLine(p, { esc, url }) {
 
 /* ---------- the one-line counter arithmetic on a product page ---------- */
 
-export function counterBlock(p, { esc }) {
+export function counterBlock(p, { esc, cite }) {
   const f = p.figures;
   if (!f) return "";
   const cells = [];
@@ -392,7 +396,11 @@ export function counterBlock(p, { esc }) {
           c.s
         )}${
           c.href
-            ? ` · <a href="${c.href}" rel="nofollow noopener" target="_blank" data-slot="counter">${esc(c.label)}</a>`
+            ? ` · ${
+                isAmazon(c.href)
+                  ? cite(c.href, esc(c.label), p.asin)
+                  : cite(c.href, esc(c.label))
+              }`
             : ""
         }</dd></div>`
       )
