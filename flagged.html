@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Flagged for Review — WinA</title>
+  <meta name="description" content="Flagged for Review page: irregularities and unverified items with source links, published so they can be reviewed after the site is live. Products verified 2026-11-20; remaining flags listed here." />
+  <link rel="canonical" href="https://sassnarep3-star.github.io/WinA/flagged.html" />
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <link rel="alternate" type="application/rss+xml" href="feed.xml" title="WinA — Buying guides feed" />
+</head>
+<body>
+  <div class="site">
+    <header class="masthead">
+      <div class="navbar">
+        <a class="brand" href="index.html">Win<span class="amp">A</span><small>Kitchen, decoded</small></a>
+        <nav class="nav-links" aria-label="Main navigation"></nav>
+        <a class="btn btn-outline small" href="index.html">Home</a>
+      </div>
+    </header>
+
+    <section class="disclosure-strip" aria-label="Affiliate disclosure" style="padding:7px 16px;">
+      <div class="wrap">
+        <strong>Affiliate disclosure:</strong> As an Amazon Associate I earn from qualifying purchases.
+        Outbound product links are marked <span class="tag-sponsored" aria-hidden="true"></span>
+        (rel="sponsored"). We may earn a commission if you buy through them, at no extra cost to you.
+        <a href="flagged.html">See flagged items &amp; sources</a>.
+      </div>
+    </section>
+
+    <section class="container">
+      <div class="section-head">
+        <div class="eyebrow">Flagged for review &middot; does not block the site</div>
+        <h1>Flagged for Review</h1>
+        <p>Irregularities and unverified items are published here, clearly labeled, with source links so you can
+          review them after the site is live and request changes. <strong>Update 2026-11-20:</strong> all five products
+          are now verified against official Amazon listings (see <a href="products.html">Products</a>). The items below
+          are the remaining flags.</p>
+      </div>
+
+      <div class="callout ok">
+        <h4>Resolved in this build</h4>
+        <p>Product verification is complete: all five short links resolve to verified ASINs and official listings
+          (confirmation date 2026-11-20). The prior &ldquo;Amazon not reachable / all air fryers&rdquo; record was wrong
+          and has been corrected. See the verification log in COORDINATION.md.</p>
+      </div>
+
+      <h2 class="table-title">Remaining flags (review required)</h2>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>#</th><th>Item</th><th>Detail</th><th>Source link (for manual review)</th><th>Severity</th></tr></thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td>Tracking ID shopnow047c-20 unverified</td>
+              <td>Provided by the user; not independently verified against Amazon Associates Central (requires account login). Confirm Site(s) enrollment before scaling traffic.</td>
+              <td><a href="https://affiliate-program.amazon.com" target="_blank" rel="nofollow sponsored">Amazon Associates Central</a></td>
+              <td><span class="status open">Medium</span></td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>Short-link compliance unresolved (FLG-003 / S02)</td>
+              <td>Do not claim the supplied short links are invalid; exact compliance status is unresolved. Destination verified for all five; tracking-report confirmation pending. Test one link per product in the enrolled Associates workflow, then replace with validated Special Links (<code>amazon.com/dp/&lt;ASIN&gt;?tag=shopnow047c-20</code>).</td>
+              <td><a href="https://affiliate-program.amazon.com/help/operating/policies" target="_blank" rel="nofollow sponsored">Program Policies</a></td>
+              <td><span class="status open">Medium</span></td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td>Prices, ratings, images intentionally omitted</td>
+              <td>Not a data gap &mdash; a policy gate. Prices/ratings require an approved API with freshness disclaimer; Amazon images restricted by IP License. Site shows &ldquo;check live on Amazon&rdquo; instead of stale values. Do not add prices/ratings/images without API access.</td>
+              <td><a href="https://affiliate-program.amazon.com/help/operating/policies" target="_blank" rel="nofollow sponsored">Program Policies</a> &middot; <a href="https://www.ftc.gov/business-guidance/resources/ftcs-endorsement-guides-what-people-are-asking" target="_blank" rel="nofollow sponsored">FTC guidance</a></td>
+              <td><span class="status done">Info</span></td>
+            </tr>
+            <tr>
+              <td>4</td>
+              <td>Analytics endpoint not configured</td>
+              <td><code>winA.analyticsEndpoint</code> is null; events are local-only. Configure a self-hosted collector to enable remote click/conversion measurement (5 events already firing client-side).</td>
+              <td><a href="products.html">Products &mdash; Tracking</a></td>
+              <td><span class="status open">Low</span></td>
+            </tr>
+            <tr>
+              <td>5</td>
+              <td>Search Console not yet submitted (SG-29)</td>
+              <td>Sitemap is published at <code>/sitemap.xml</code> and linked in <code>robots.txt</code>. Submit it in Google Search Console to complete findability; then choose the next guide from measured queries.</td>
+              <td><a href="https://search.google.com/search-console" target="_blank" rel="nofollow sponsored">Google Search Console</a></td>
+              <td><span class="status open">Low</span></td>
+            </tr>
+            <tr>
+              <td>6</td>
+              <td>Reader capture is local-only (SG-30)</td>
+              <td>Newsletter form stores the address in the browser only. Connect a mailing provider with double opt-in before promoting capture. RSS feed is live at <code>/feed.xml</code>.</td>
+              <td><a href="suggest.html">Suggestions</a></td>
+              <td><span class="status open">Low</span></td>
+            </tr>
+            <tr>
+              <td>7</td>
+              <td>Listing inconsistency (Emeril preset count)</td>
+              <td>The Emeril 26QT listing title states &ldquo;24 One-Touch Preset Options&rdquo; while its bullets state &ldquo;25 COOKING PRE-SETS&rdquo;. Site does not repeat a preset count for this product; verify on the listing before citing either number.</td>
+              <td><a href="https://www.amazon.com/dp/B09B7SB46R" target="_blank" rel="nofollow sponsored">Emeril listing</a></td>
+              <td><span class="status open">Low</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2 class="table-title">Verified products (for manual review)</h2>
+      <p class="muted small">All five rows verified 2026-11-20. Click through to the official listing to confirm
+        title, specs, and live price. Observed redirect targets are recorded separately on <a href="products.html">Products</a>.</p>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>#</th><th>Submitted short link</th><th>Intended ASIN</th><th>Official listing</th><th>Manual review link</th></tr></thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td class="monospace"><a href="https://link.amazon/B04G1MEwY" target="_blank" rel="nofollow sponsored">https://link.amazon/B04G1MEwY</a></td>
+              <td class="monospace">B0CDY277D3</td>
+              <td class="monospace"><a href="https://www.amazon.com/dp/B0CDY277D3" target="_blank" rel="nofollow sponsored">amazon.com/dp/B0CDY277D3</a></td>
+              <td><a href="https://www.amazon.com/dp/B0CDY277D3" target="_blank" rel="nofollow sponsored">Open listing</a></td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td class="monospace"><a href="https://link.amazon/B02NbDxp3" target="_blank" rel="nofollow sponsored">https://link.amazon/B02NbDxp3</a></td>
+              <td class="monospace">B09B7SB46R</td>
+              <td class="monospace"><a href="https://www.amazon.com/dp/B09B7SB46R" target="_blank" rel="nofollow sponsored">amazon.com/dp/B09B7SB46R</a></td>
+              <td><a href="https://www.amazon.com/dp/B09B7SB46R" target="_blank" rel="nofollow sponsored">Open listing</a></td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td class="monospace"><a href="https://link.amazon/B00hJ57DV" target="_blank" rel="nofollow sponsored">https://link.amazon/B00hJ57DV</a></td>
+              <td class="monospace">B08DKYBTPH</td>
+              <td class="monospace"><a href="https://www.amazon.com/dp/B08DKYBTPH" target="_blank" rel="nofollow sponsored">amazon.com/dp/B08DKYBTPH</a></td>
+              <td><a href="https://www.amazon.com/dp/B08DKYBTPH" target="_blank" rel="nofollow sponsored">Open listing</a></td>
+            </tr>
+            <tr>
+              <td>4</td>
+              <td class="monospace"><a href="https://link.amazon/B0c8moW59" target="_blank" rel="nofollow sponsored">https://link.amazon/B0c8moW59</a></td>
+              <td class="monospace">B0DHZTCNR5</td>
+              <td class="monospace"><a href="https://www.amazon.com/dp/B0DHZTCNR5" target="_blank" rel="nofollow sponsored">amazon.com/dp/B0DHZTCNR5</a></td>
+              <td><a href="https://www.amazon.com/dp/B0DHZTCNR5" target="_blank" rel="nofollow sponsored">Open listing</a></td>
+            </tr>
+            <tr>
+              <td>5</td>
+              <td class="monospace"><a href="https://link.amazon/B0f3GKalj" target="_blank" rel="nofollow sponsored">https://link.amazon/B0f3GKalj</a></td>
+              <td class="monospace">B0DZFD6R9Z</td>
+              <td class="monospace"><a href="https://www.amazon.com/dp/B0DZFD6R9Z" target="_blank" rel="nofollow sponsored">amazon.com/dp/B0DZFD6R9Z</a></td>
+              <td><a href="https://www.amazon.com/dp/B0DZFD6R9Z" target="_blank" rel="nofollow sponsored">Open listing</a></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="callout info">
+        <h4>Next step for reviewer</h4>
+        <p>1. Confirm tracking ID <code>shopnow047c-20</code> in Associates Central. 2. Test one short link per product
+          in the enrolled workflow (FLG-003). 3. Configure the analytics endpoint and submit the sitemap in Search Console.
+          4. Choose the first suggestion path in <a href="suggest.html">Suggestions</a>. Flagged items do not block the merge.</p>
+      </div>
+    </section>
+
+    <footer>
+      <div class="footer-grid">
+        <div class="footer-col">
+          <h4>Shop</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="products.html">All products</a></li>
+            <li><a href="products.html#air-fryers">Air fryers (3)</a></li>
+            <li><a href="products.html#thermometers">Meat thermometers (2)</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Learn</h4>
+          <ul>
+            <li><a href="guides.html">Buying guides</a></li>
+            <li><a href="questions.html">Questions &amp; answers</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Community</h4>
+          <ul>
+            <li><a href="suggest.html">Suggestions</a></li>
+            <li><a href="flagged.html">Flagged for review</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Company</h4>
+          <ul>
+            <li><a href="executive-summary.html">Executive summary</a></li>
+            <li><a href="https://www.ftc.gov/business-guidance/resources/ftcs-endorsement-guides-what-people-are-asking" target="_blank" rel="nofollow sponsored">FTC guidance</a></li>
+            <li><a href="https://affiliate-program.amazon.com/help/operating/policies" target="_blank" rel="nofollow sponsored">Amazon policies</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div>As an Amazon Associate I earn from qualifying purchases.</div>
+        <div><a href="flagged.html">Flagged for review</a> &middot; <a href="feed.xml">RSS feed</a> &middot; <a href="sitemap.xml">Sitemap</a></div>
+      </div>
+    </footer>
+  </div>
+
+  <script src="assets/js/app.js"></script>
+  <script src="assets/js/click-tracker.js"></script>
+</body>
+</html>
