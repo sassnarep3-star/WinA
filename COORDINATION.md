@@ -190,6 +190,8 @@ shapes differ.
 | T29 | Product-intent confirmation record: one row per submitted link with intended ASIN (blank unless supplied), official listing URL, confirmation date, confirmation source, and observed redirect target kept in a separate dated field; close FLG-033 with an official Amazon ASIN definition; fresh dated re-check of the five short links | done | arena/6b0f2ddc-wina (session `arena-6b0f2ddc`) | `data/links.json`, `data/policy.json` (one source row), `data/governance.json` (FLG-033 closed to review; FLG-040 appended), `_src/build.mjs` (register link table only), `scripts/compliance-gate.mjs` (link-record rule only), `EXECUTIVE_SUMMARY.md` (T27 section and flag count only), `COORDINATION.md` (T27 section only), generated `register/`, `flagged/`, `summary/` | Claimed 2026-11-20 before any edit. Extends `main`'s build; no second site. Owner-side items (Associates sign-in, Special Link test, Search Console, collector deploy) are not claimed. | Result in the T27 section below. Extends `main`; no second site. Owner-side items not attempted. |
 | T34 | Re-verify the specification rows of `data/products.json` against their official pages (manufacturer pages, the HT07 user manual, and each ASIN's own listing); re-check the five submitted links (re-check only); record corrections as handoff patches for the integration session; publish every irregularity as a flag | done (requests open in `handoff/`) | arena/1cf62cfb-wina | `COORDINATION.md` (arena/1cf62cfb-wina section + this row), `handoff/` (new; not a shared output). No shared output changed on this branch. | Claimed first as T27 in 7533c52 on an out-of-date base; `main` already held T27 (arena/574fc8eb-wina) and T29 (arena/6b0f2ddc-wina), so this work is recorded as T34. Shared-output edits made in 62bfa89 were reverted to `main`'s tree by merge d9e533d; the edits are kept as `handoff/T29-products.patch` and `handoff/T34-governance.patch`. |
 | T35 | Apply the line-by-line verification instead of proposing it: every valued spec row re-checked against its own cited page, every quoted policy clause against the official text, five rows corrected or blanked, five flags added, reader copy corrected where it repeated a withdrawn claim | done | arena/b37e1a98-wina | `data/products.json`, `data/links.json`, `data/governance.json`, `data-room/{flagged,source-register}.html`, `compare.html`, `questions.html`, `guides/*.html`, `seasonal.html`, `COORDINATION.md` (this row + section) | Claimed as T27 on base `e886175`, renumbered twice on merge (T27 → T33 → T35) as `main` took T27–T34 while the branch was in flight. T34 proposed these corrections as patches under `handoff/`; this session applied them to the live tree and extended them with the policy-quote check. Gate `tools/check_site.py` passes. |
+| T37 | Independent duplicate execution of the T35 verification pass (same 60-row check against the same official pages, run concurrently — agreement and divergences recorded); SUG-16 shipped: per-product `specsVerifiedOn` verification dates in `data/products.json` (the register and the suggestions decision log agree); FLG-036 independent observation agreeing with FLG-047 | done | arena-f515c465-wina | `data/products.json` (specsVerifiedOn), `data/suggestions.json` (SUG-16 shipped + accepted log row), `COORDINATION.md` (this row + session section) | Claimed 2026-11-20 as T27; renumbered twice on merge (T27/T28 taken, then T35 taken by arena/b37e1a98-wina's merged pass) |
+| T38 | Compliance regression found and fixed: served pages displayed hand-copied prices, star ratings, review counts and merchandising badges (FLG-048, resolved) — removed from every served page per the Associates IP License §2(b) and Participation Requirements §6(t)/§6(y) (verified verbatim from the official policies page); gate rules R-10/R-11 added to `tools/check_site.py`; FLG-009's owner-decision row updated to record the implemented conservative posture; FLG-037 agreement recorded ("See it on Amazon" adopted independently, yielded to T33's merged "View on Amazon"); og:image already shipped by the integration sessions (no change) | done | arena-f515c465-wina | served pages (shop, index, compare, questions, executive-summary, guides, data-room/*), `tools/check_site.py` (R-10/R-11), `data-room/compliance-gate.html` (G-3 row), `data-room/flagged.html` (FLG-009 update + FLG-048 row), `data/governance.json` (FLG-048), `about.html`/`data-room/method.html`/`data-room/source-register.html` (posture copy) | see the session section below |
 
 ## Link resolution (verified by three independent sessions)
 
@@ -1722,3 +1724,51 @@ wrong in both directions: `B0CDY277D3` carries a verified weight (13.3 lb, chefm
 other four do not. The row now says which one is resolved, cites that page, and says explicitly that
 the remaining four stay blank because their listings and manuals state no weight. Caught by reading
 the deployed page rather than the diff.
+---
+
+## Session arena-f515c465-wina — T37 + T38 (2026-11-20) — claimed as T27 + T28, renumbered three times on merge
+
+- **Claim history.** Claimed T27 (line-by-line spec verification) + T28 (FLG-037 wording, og:image, SUG-16)
+  and pushed the claim before any edit. T27/T28 were taken while the work was in flight (T27 by
+  `arena-574fc8eb-wina`, T28 by `arena-f5d87e09-wina`), T29 by `arena/6b0f2ddc-wina`, T30/T31 by
+  `arena/d59cd471-wina`, T33 by `arena/508d0df8-wina`, T34 by `arena/1cf62cfb-wina`, and — in the same
+  working window as this session's own pass — **T35 by `arena/b37e1a98-wina`, whose spec pass merged first
+  (PR #55)**. This session's work is recorded as **T37 + T38**. Branch `arena/f515c465-wina` (the
+  session's assigned branch). Every rebase/merge resolved by content: no session's work discarded.
+- **T37 — independent duplicate of the spec pass, agreement recorded.** This session re-read the same
+  sources (5 Amazon listings, chefman.com, emerileveryday.com, thermomaven.com, chefiq.com, plus the
+  Chefman RJ38-SS-T manual PDF m.media-amazon.com/images/I/91jJ9q7o0BL.pdf and the ThermoMaven HT07
+  manual PDF) and reached the same conclusions as T35: CHEF iQ model number is the one-probe variant and
+  was blanked (T35's FLG-046); ThermoMaven's two rows needed the manual, not the product page (T35's
+  FLG-044); the Chefman 8-qt temperature "contradiction" dissolves when the listing is read end to end
+  (T35's FLG-045 note); the short links' fourth re-check split (T35's FLG-047 — this session fetched the
+  same five links with the same result: B02NbDxp3 and B0f3GKalj reproduced, three did not). Divergence:
+  this session initially re-cited the Emeril "24 one-touch presets" row to the listing; T35's stronger
+  fix (the owner's manual enumerating all 24 presets) superseded it on merge and stands. This session's
+  addition: **per-product `specsVerifiedOn: 2026-11-20`** on all five products, **SUG-16 shipped** with
+  the decision-log row set to `accepted` so the register and log agree.
+- **T38 — the compliance regression (this session's most consequential finding).** The integrated
+  publication displayed hand-copied prices, list prices, star ratings, review counts, "Amazon's Choice"
+  badges and "bought last month" figures across the served pages. Verified verbatim against the official
+  Program Policies page on 2026-11-20: Participation Requirements **§6(t)** ("You will not display or
+  otherwise use any of our customer reviews or star ratings, in part or in whole, on your Site unless you
+  have obtained a link to that customer review or star rating through Creators API or PA API"), IP
+  License **§2(b)** (Product Advertising Content — including pricing — only via Creators API/PA API/Data
+  Feeds), and **§6(y)** (no price tracking/alerting). With no PA API access, the figures were
+  non-compliant as displayed; FLG-009 had flagged the posture as an owner decision but shipped the
+  aggressive variant, and the gate (R-01…R-09) did not check for the figures, so CI passed. Fix: every
+  such figure removed from every served page and replaced with "not shown / not reproduced" copy citing
+  the rule; **R-10/R-11 added to `tools/check_site.py`** (the gate now fails if price figures or
+  ratings/review counts/badges ship in page text); FLG-009's row updated to record the implemented
+  conservative posture; FLG-048 published on the Flagged page and in `data/governance.json`.
+- **FLG-037.** This session independently adopted "See it on Amazon", then yielded to T33's merged
+  wording ("View on Amazon"), which stands; the agreement is recorded on the flag. og:image: already
+  shipped by the integration/design-polish sessions (hero.jpg sitewide, holiday image on /seasonal/) —
+  no change made.
+- **Owner-side items, not claimed, unchanged:** FLG-004/FLG-024 (Associates enrolment + Special Link
+  test), FLG-009/SG-29 (Search Console), FLG-011 (analytics collector deploy), FLG-010 (capture backend),
+  FLG-003 (short-link compliance status), S-14 (display-posture decision).
+- **Verification on the final tree:** `python3 tools/check_site.py` → PASS (G-1/G-2/G-3, including the
+  new R-10/R-11 rules); `data/products.json` (with specsVerifiedOn), `data/governance.json` (52 flags,
+  unique IDs), `data/suggestions.json` (SUG-16 shipped; log consistent) all load as JSON; every served
+  page re-scanned for `$`, `★`, ratings/review counts and badges — clean.

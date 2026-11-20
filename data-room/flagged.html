@@ -106,7 +106,7 @@
             <tr>
               <th scope="row">FLG-009</th>
               <td>Displaying observed prices and ratings outside PA-API may conflict with Associates Program policy: the parallel build's register cites the Program Policies (updated 2026-04-14) §6 as restricting review/rating and price display without API-supplied data, and chose to show no prices at all.</td>
-              <td>This site shows dated, source-linked observed prices/ratings as part of the buyer-research tables. Whether that posture is compliant enough is an owner decision — the conservative alternative is implemented in the <a href="../archive/arena-ffa85037/">archived parallel build</a>.</td>
+              <td><strong>Updated 2026-11-20 (session arena-f515c465-wina, T36):</strong> Participation Requirements §6(t) was verified verbatim from the official Program Policies page — it flatly prohibits displaying customer reviews or star ratings unless they were obtained through Creators API/PA API, and the IP License (§2(b)) limits pricing data to PA API. This site has no PA API access, so the conservative alternative is now implemented on this site itself: all prices, star ratings, review counts, "Amazon's Choice" and popularity badges were removed from every served page (recorded as <a href="#flg-048">FLG-048</a>), and gate rules R-10/R-11 enforce it. The owner decision (S-14) can revisit this deliberately if PA-API access is ever granted.</td>
               <td class="src"><a href="https://affiliate-program.amazon.com/help/operating/policies" rel="nofollow">Program Policies</a> · <a href="https://github.com/sassnarep3-star/WinA/blob/main/data/policy.json">policy.json (verbatim clauses)</a></td>
               <td>Owner reads POL-03/POL-04 in policy.json, decides: keep dated snapshots (current site) or suppress prices/ratings (archived build's posture); log the choice as S-14.</td>
             </tr>
@@ -153,7 +153,14 @@
               <td>Owner opens each link in a normal browser signed out and records the landing URL. Each check is stored as its own dated observation; none is merged into a single value.</td>
             </tr>
             </tr>
-          </tbody>
+          <tr id="flg-048">
+              <th scope="row">FLG-048</th>
+              <td>The integrated shop-style publication (PR #28) displayed hand-copied prices, list prices, star ratings, review counts ("18,379 ratings"), "Amazon's Choice" badges and "bought last month" figures on shop, index, compare, questions, executive-summary, guide and data-room pages — figures typed by hand from the listings, not obtained through PA API, with no source link per figure. The rewritten Python gate (R-01…R-09) did not check for them, so CI passed. Found 2026-11-20 during the line-by-line verification pass (session arena-f515c465-wina, T35/T36).</td>
+              <td><span class="chip verified">resolved</span> All such figures removed from every served page and replaced with "not shown / not reproduced" copy citing the rule (IP License §2(b); Participation Requirements §6(t)/§6(y) — verified verbatim from the official policies page). Gate rules R-10 (price figures) and R-11 (ratings, review counts, merchandising badges) added to <a href="https://github.com/sassnarep3-star/WinA/blob/main/tools/check_site.py">tools/check_site.py</a> so the regression cannot return; the G-3 row on <a href="compliance-gate.html">the gate page</a> documents R-03…R-11. If PA-API access is ever granted (S-14/SUG-03), revisit deliberately — never silently.</td>
+              <td class="src"><a href="https://affiliate-program.amazon.com/help/operating/policies" rel="nofollow">Program Policies (§6(t), §6(y))</a> · <a href="https://github.com/sassnarep3-star/WinA/blob/main/data/governance.json">data/governance.json (FLG-048)</a></td>
+              <td>Resolved 2026-11-20. Owner: none required; S-14 stays open as the deliberate path to change the posture.</td>
+            </tr>
+                      </tbody>
         </table>
       </div>
 
