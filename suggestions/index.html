@@ -95,6 +95,114 @@
           </tr>
         </thead>
         <tbody><tr>
+    <td><code>SUG-01</code></td>
+    <td><strong>Keep the site in 'how to decide' voice, permanently, until products are actually tested</strong></td>
+    <td><span class="pill pill--shipped">shipped</span></td>
+    <td class="num">10</td>
+    <td class="small">The FTC forbids describing hands-on experience you do not have, and readers detect the fake version instantly. The reliable way to sound human without lying is to write about the decision instead of the verdict: what the drawers are like, what the counter cost is, who the machine is wrong for.</td>
+    <td class="small">None. It is a writing constraint, enforced by the build.</td>
+    <td class="small">A guide that never says 'we tested this' competes poorly against sites that can. That is a real disadvantage and it is the correct one to accept.</td>
+    <td class="small">Accept. Every page already follows it.<br><span class="tiny"><a href="https://www.ftc.gov/business-guidance/resources/disclosures-101-social-media-influencers" rel="noopener" target="_blank">FTC Disclosures 101</a></span></td>
+  </tr><tr>
+    <td><code>SUG-12</code></td>
+    <td><strong>Do not add a price tracker, price alerts, or a deal feed</strong></td>
+    <td><span class="pill pill--reject">reject</span></td>
+    <td class="num">10</td>
+    <td class="small">Prohibited outright by §6(y) regardless of how it is built.</td>
+    <td class="small">Zero.</td>
+    <td class="small">It is the most requested feature on affiliate sites and the most direct route to account termination.</td>
+    <td class="small">Rejected. Documented so no future session builds it.<br><span class="tiny"><a href="https://affiliate-program.amazon.com/help/operating/policies" rel="noopener" target="_blank">Participation Requirements §6(y)</a></span></td>
+  </tr><tr>
+    <td><code>SUG-13</code></td>
+    <td><strong>Do not generate volumes of near-duplicate pages to chase long-tail queries</strong></td>
+    <td><span class="pill pill--reject">reject</span></td>
+    <td class="num">10</td>
+    <td class="small">Template-spun variants of the same article are the definition of the thin, generated content the brief rejects, and they dilute the pages that could rank.</td>
+    <td class="small">Zero.</td>
+    <td class="small">It works briefly, then gets the whole domain discounted.</td>
+    <td class="small">Rejected. The build gate refuses pages without unique content fields.</td>
+  </tr><tr>
+    <td><code>SUG-02</code></td>
+    <td><strong>Split into two publications, or pick one category and go deep</strong></td>
+    <td><span class="pill pill--recommend">recommend</span></td>
+    <td class="num">9</td>
+    <td class="small">Three air fryers and two thermometers are two different buying moments. Search engines reward a site that owns one topic. A small site trying to own 'kitchen gear' owns nothing.</td>
+    <td class="small">Splitting means two domains, two sitemaps, twice the setup. Going deep on air fryers means the thermometers get a single supporting page.</td>
+    <td class="small">If the thermometer affiliate offers a better commission or a bounty, narrowing too early gives up real money.</td>
+    <td class="small">Recommend: keep one site, make air fryers the front section, and treat thermometers as the accessory section — which is what the current structure already does. Confirm before adding a third category.</td>
+  </tr><tr>
+    <td><code>SUG-03</code></td>
+    <td><strong>Get PA-API or Creatives access before writing another word</strong></td>
+    <td><span class="pill pill--recommend">recommend</span></td>
+    <td class="num">9</td>
+    <td class="small">It is the unlock for the three things this site most obviously lacks: prices, ratings, and product images. All three are currently blank because the rules require API-sourced data. One credential fixes all of it at once.</td>
+    <td class="small">Eligibility requires qualifying sales first — a chicken-and-egg problem for a new account.</td>
+    <td class="small">None to the site. The risk is waiting on access and shipping nothing meanwhile, which is why the current build ships without it.</td>
+    <td class="small">Apply as soon as the account qualifies. Track it in the questions register as Q-11 and Q-12.<br><span class="tiny"><a href="https://affiliate-program.amazon.com/help/operating/policies" rel="noopener" target="_blank">Associates Program Policies</a></span></td>
+  </tr><tr>
+    <td><code>SUG-04</code></td>
+    <td><strong>Replace the submitted short links with constructed Special Links and prove one works</strong></td>
+    <td><span class="pill pill--shipped">shipped</span></td>
+    <td class="num">9</td>
+    <td class="small">The submitted links carried no visible tag and their compliance status is unsettled. Constructing amazon.com/dp/&lt;ASIN&gt;?tag=shopnow047c-20 is unambiguous, keeps the destination visible in the status bar, and satisfies the link-clarity requirement.</td>
+    <td class="small">None.</td>
+    <td class="small">If the tag is not enrolled, every link still earns nothing. That is the one thing this cannot fix.</td>
+    <td class="small">Already done. Next step is the proof: click one link per product while signed in, and confirm it appears in the tracking report.<br><span class="tiny"><a href="https://affiliate-program.amazon.com/help/operating/policies" rel="noopener" target="_blank">Participation Requirements §6(w)</a></span></td>
+  </tr><tr>
+    <td><code>SUG-05</code></td>
+    <td><strong>Publish on a real cadence: one guide a week for eight weeks, then read the query data</strong></td>
+    <td><span class="pill pill--recommend">recommend</span></td>
+    <td class="num">8</td>
+    <td class="small">Question-shaped guides are the right shape, but four is not a sample. A weekly cadence for two months produces enough pages and enough query impressions to see which question people actually arrive with, which is the only way to stop guessing topics.</td>
+    <td class="small">One substantive guide per week. Each needs its own verified spec pass.</td>
+    <td class="small">Cadence without quality control produces the thin content the brief explicitly rejects. The build gate must stay on.</td>
+    <td class="small">Recommend a fixed day and a fixed length. Add each new guide to the sitemap and feed in the same commit, then measure at week eight.</td>
+  </tr><tr>
+    <td><code>SUG-06</code></td>
+    <td><strong>Add a real author byline with a named person</strong></td>
+    <td><span class="pill pill--recommend">recommend</span></td>
+    <td class="num">8</td>
+    <td class="small">Unattributed buying advice reads as generated, which is precisely the failure the brief names. A byline with a short bio and a stated method is the cheapest credibility signal available.</td>
+    <td class="small">Requires a real person willing to be named and accountable.</td>
+    <td class="small">A byline attached to content the person did not write is worse than no byline.</td>
+    <td class="small">Decision needed from the requester. Cannot be fabricated.</td>
+  </tr><tr>
+    <td><code>SUG-07</code></td>
+    <td><strong>Move to a custom domain before building any authority</strong></td>
+    <td><span class="pill pill--recommend">recommend</span></td>
+    <td class="num">7</td>
+    <td class="small">A /WinA/ subpath reads as a side project, and moving later discards whatever equity accumulated. Doing it now costs a domain and one setting.</td>
+    <td class="small">Domain registration plus DNS. About an hour.</td>
+    <td class="small">Slight setup friction with HTTPS and the CNAME file.</td>
+    <td class="small">Recommend. The build already keeps the origin in one config value, so the change is small.</td>
+  </tr><tr>
+    <td><code>SUG-08</code></td>
+    <td><strong>Deploy the analytics collector, and accept that orders cannot be counted yet</strong></td>
+    <td><span class="pill pill--recommend">recommend</span></td>
+    <td class="num">7</td>
+    <td class="small">Click data is available today and is the fastest honest feedback loop. Order data has to come from Associates reports, which arrive later. Separating the two keeps the ledger truthful.</td>
+    <td class="small">One worker deploy and a secret.</td>
+    <td class="small">A self-hosted collector is a privacy obligation. The current design stores no identifiers, which keeps that burden small.</td>
+    <td class="small">Recommend deploying to close FLG-011. Do not import a third-party tracker as a shortcut.<br><span class="tiny"><a href="https://sassnarep3-star.github.io/WinA/analytics/" rel="noopener" target="_blank">Measurement page</a></span></td>
+  </tr><tr>
+    <td><code>SUG-09</code></td>
+    <td><strong>Add a 'who should not buy this' block to every product page</strong></td>
+    <td><span class="pill pill--consider">consider</span></td>
+    <td class="num">6</td>
+    <td class="small">The single most useful thing a buying guide can say, and the thing competitors skip. It also converts better, because readers trust a page that talked them out of something.</td>
+    <td class="small">A short block per product.</td>
+    <td class="small">None. It requires actually understanding the trade-off, which is why most sites omit it.</td>
+    <td class="small">Consider. The current pages carry a trade-off line; expanding it to a full block is the natural next edit.</td>
+  </tr><tr>
+    <td><code>SUG-10</code></td>
+    <td><strong>Build a real comparison table with measured dimensions</strong></td>
+    <td><span class="pill pill--consider">consider</span></td>
+    <td class="num">6</td>
+    <td class="small">The comparison page exists but is thin because dimensions are unverified. Counter footprint is the number that actually decides a purchase, and nobody publishes it clearly.</td>
+    <td class="small">Researching dimensions from manufacturer spec sheets, with a source link per number.</td>
+    <td class="small">A wrong dimension is worse than a blank. Only add numbers with a source.</td>
+    <td class="small">Consider once manufacturer sheets are gathered. Until then the table shows what is verified and says what is not.</td>
+  </tr><tr>
     <td><code>SUG-11</code></td>
     <td><strong>Add a short 'how we choose what to recommend' block to the front page</strong></td>
     <td><span class="pill pill--consider">consider</span></td>
@@ -130,114 +238,6 @@
     <td class="small">One field, refreshed on a schedule.</td>
     <td class="small">A stale date is a public admission of neglect. That is the point.</td>
     <td class="small">Consider. Pages currently record the observation date in the register rather than on the page.</td>
-  </tr><tr>
-    <td><code>SUG-09</code></td>
-    <td><strong>Add a 'who should not buy this' block to every product page</strong></td>
-    <td><span class="pill pill--consider">consider</span></td>
-    <td class="num">6</td>
-    <td class="small">The single most useful thing a buying guide can say, and the thing competitors skip. It also converts better, because readers trust a page that talked them out of something.</td>
-    <td class="small">A short block per product.</td>
-    <td class="small">None. It requires actually understanding the trade-off, which is why most sites omit it.</td>
-    <td class="small">Consider. The current pages carry a trade-off line; expanding it to a full block is the natural next edit.</td>
-  </tr><tr>
-    <td><code>SUG-10</code></td>
-    <td><strong>Build a real comparison table with measured dimensions</strong></td>
-    <td><span class="pill pill--consider">consider</span></td>
-    <td class="num">6</td>
-    <td class="small">The comparison page exists but is thin because dimensions are unverified. Counter footprint is the number that actually decides a purchase, and nobody publishes it clearly.</td>
-    <td class="small">Researching dimensions from manufacturer spec sheets, with a source link per number.</td>
-    <td class="small">A wrong dimension is worse than a blank. Only add numbers with a source.</td>
-    <td class="small">Consider once manufacturer sheets are gathered. Until then the table shows what is verified and says what is not.</td>
-  </tr><tr>
-    <td><code>SUG-07</code></td>
-    <td><strong>Move to a custom domain before building any authority</strong></td>
-    <td><span class="pill pill--recommend">recommend</span></td>
-    <td class="num">7</td>
-    <td class="small">A /WinA/ subpath reads as a side project, and moving later discards whatever equity accumulated. Doing it now costs a domain and one setting.</td>
-    <td class="small">Domain registration plus DNS. About an hour.</td>
-    <td class="small">Slight setup friction with HTTPS and the CNAME file.</td>
-    <td class="small">Recommend. The build already keeps the origin in one config value, so the change is small.</td>
-  </tr><tr>
-    <td><code>SUG-08</code></td>
-    <td><strong>Deploy the analytics collector, and accept that orders cannot be counted yet</strong></td>
-    <td><span class="pill pill--recommend">recommend</span></td>
-    <td class="num">7</td>
-    <td class="small">Click data is available today and is the fastest honest feedback loop. Order data has to come from Associates reports, which arrive later. Separating the two keeps the ledger truthful.</td>
-    <td class="small">One worker deploy and a secret.</td>
-    <td class="small">A self-hosted collector is a privacy obligation. The current design stores no identifiers, which keeps that burden small.</td>
-    <td class="small">Recommend deploying to close FLG-011. Do not import a third-party tracker as a shortcut.<br><span class="tiny"><a href="https://sassnarep3-star.github.io/WinA/analytics/" rel="noopener" target="_blank">Measurement page</a></span></td>
-  </tr><tr>
-    <td><code>SUG-05</code></td>
-    <td><strong>Publish on a real cadence: one guide a week for eight weeks, then read the query data</strong></td>
-    <td><span class="pill pill--recommend">recommend</span></td>
-    <td class="num">8</td>
-    <td class="small">Question-shaped guides are the right shape, but four is not a sample. A weekly cadence for two months produces enough pages and enough query impressions to see which question people actually arrive with, which is the only way to stop guessing topics.</td>
-    <td class="small">One substantive guide per week. Each needs its own verified spec pass.</td>
-    <td class="small">Cadence without quality control produces the thin content the brief explicitly rejects. The build gate must stay on.</td>
-    <td class="small">Recommend a fixed day and a fixed length. Add each new guide to the sitemap and feed in the same commit, then measure at week eight.</td>
-  </tr><tr>
-    <td><code>SUG-06</code></td>
-    <td><strong>Add a real author byline with a named person</strong></td>
-    <td><span class="pill pill--recommend">recommend</span></td>
-    <td class="num">8</td>
-    <td class="small">Unattributed buying advice reads as generated, which is precisely the failure the brief names. A byline with a short bio and a stated method is the cheapest credibility signal available.</td>
-    <td class="small">Requires a real person willing to be named and accountable.</td>
-    <td class="small">A byline attached to content the person did not write is worse than no byline.</td>
-    <td class="small">Decision needed from the requester. Cannot be fabricated.</td>
-  </tr><tr>
-    <td><code>SUG-02</code></td>
-    <td><strong>Split into two publications, or pick one category and go deep</strong></td>
-    <td><span class="pill pill--recommend">recommend</span></td>
-    <td class="num">9</td>
-    <td class="small">Three air fryers and two thermometers are two different buying moments. Search engines reward a site that owns one topic. A small site trying to own 'kitchen gear' owns nothing.</td>
-    <td class="small">Splitting means two domains, two sitemaps, twice the setup. Going deep on air fryers means the thermometers get a single supporting page.</td>
-    <td class="small">If the thermometer affiliate offers a better commission or a bounty, narrowing too early gives up real money.</td>
-    <td class="small">Recommend: keep one site, make air fryers the front section, and treat thermometers as the accessory section — which is what the current structure already does. Confirm before adding a third category.</td>
-  </tr><tr>
-    <td><code>SUG-03</code></td>
-    <td><strong>Get PA-API or Creatives access before writing another word</strong></td>
-    <td><span class="pill pill--recommend">recommend</span></td>
-    <td class="num">9</td>
-    <td class="small">It is the unlock for the three things this site most obviously lacks: prices, ratings, and product images. All three are currently blank because the rules require API-sourced data. One credential fixes all of it at once.</td>
-    <td class="small">Eligibility requires qualifying sales first — a chicken-and-egg problem for a new account.</td>
-    <td class="small">None to the site. The risk is waiting on access and shipping nothing meanwhile, which is why the current build ships without it.</td>
-    <td class="small">Apply as soon as the account qualifies. Track it in the questions register as Q-11 and Q-12.<br><span class="tiny"><a href="https://affiliate-program.amazon.com/help/operating/policies" rel="noopener" target="_blank">Associates Program Policies</a></span></td>
-  </tr><tr>
-    <td><code>SUG-04</code></td>
-    <td><strong>Replace the submitted short links with constructed Special Links and prove one works</strong></td>
-    <td><span class="pill pill--shipped">shipped</span></td>
-    <td class="num">9</td>
-    <td class="small">The submitted links carried no visible tag and their compliance status is unsettled. Constructing amazon.com/dp/&lt;ASIN&gt;?tag=shopnow047c-20 is unambiguous, keeps the destination visible in the status bar, and satisfies the link-clarity requirement.</td>
-    <td class="small">None.</td>
-    <td class="small">If the tag is not enrolled, every link still earns nothing. That is the one thing this cannot fix.</td>
-    <td class="small">Already done. Next step is the proof: click one link per product while signed in, and confirm it appears in the tracking report.<br><span class="tiny"><a href="https://affiliate-program.amazon.com/help/operating/policies" rel="noopener" target="_blank">Participation Requirements §6(w)</a></span></td>
-  </tr><tr>
-    <td><code>SUG-01</code></td>
-    <td><strong>Keep the site in 'how to decide' voice, permanently, until products are actually tested</strong></td>
-    <td><span class="pill pill--shipped">shipped</span></td>
-    <td class="num">10</td>
-    <td class="small">The FTC forbids describing hands-on experience you do not have, and readers detect the fake version instantly. The reliable way to sound human without lying is to write about the decision instead of the verdict: what the drawers are like, what the counter cost is, who the machine is wrong for.</td>
-    <td class="small">None. It is a writing constraint, enforced by the build.</td>
-    <td class="small">A guide that never says 'we tested this' competes poorly against sites that can. That is a real disadvantage and it is the correct one to accept.</td>
-    <td class="small">Accept. Every page already follows it.<br><span class="tiny"><a href="https://www.ftc.gov/business-guidance/resources/disclosures-101-social-media-influencers" rel="noopener" target="_blank">FTC Disclosures 101</a></span></td>
-  </tr><tr>
-    <td><code>SUG-12</code></td>
-    <td><strong>Do not add a price tracker, price alerts, or a deal feed</strong></td>
-    <td><span class="pill pill--reject">reject</span></td>
-    <td class="num">10</td>
-    <td class="small">Prohibited outright by §6(y) regardless of how it is built.</td>
-    <td class="small">Zero.</td>
-    <td class="small">It is the most requested feature on affiliate sites and the most direct route to account termination.</td>
-    <td class="small">Rejected. Documented so no future session builds it.<br><span class="tiny"><a href="https://affiliate-program.amazon.com/help/operating/policies" rel="noopener" target="_blank">Participation Requirements §6(y)</a></span></td>
-  </tr><tr>
-    <td><code>SUG-13</code></td>
-    <td><strong>Do not generate volumes of near-duplicate pages to chase long-tail queries</strong></td>
-    <td><span class="pill pill--reject">reject</span></td>
-    <td class="num">10</td>
-    <td class="small">Template-spun variants of the same article are the definition of the thin, generated content the brief rejects, and they dilute the pages that could rank.</td>
-    <td class="small">Zero.</td>
-    <td class="small">It works briefly, then gets the whole domain discounted.</td>
-    <td class="small">Rejected. The build gate refuses pages without unique content fields.</td>
   </tr></tbody>
       </table>
     </div>

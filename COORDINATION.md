@@ -156,4 +156,30 @@ artifact.
 - Pull request and merge result: recorded in the final commit message and below
 - Pages deploy: confirmed via `gh api repos/{owner}/{repo}/pages/builds/latest`
 
-_PR link and merge result are appended after the merge succeeds._
+### Merge record
+
+- **PR #10** — https://github.com/sassnarep3-star/WinA/pull/10 — merged into `main`
+- Merge commit: `22dee513`
+- Merge performed after the `validate` check turned green; an earlier attempt was blocked
+  because the build was not reproducible (see below).
+- GitHub Pages build for `22dee513`: **built**. Live site confirmed serving this build.
+- Post-merge fixes (PR #12): corrected the ordering of the suggestions register (it was
+  sorting weakest-first) and of the flag register (now opens with open items, not resolved
+  ones).
+
+### Two real defects found by the gates, and fixed
+
+1. **Build was not reproducible.** `feed.xml` and `VALIDATION.md` embedded `new Date()`, so CI's
+   "are generated files committed?" check failed on every run. Both now use the declared build
+   date; verified by building twice and diffing — byte-identical.
+2. **Merging `main` resurrected a prior site.** The merge auto-re-added `shop/`, `tools/`,
+   `dashboard/`, `guides/*.html` and `data/*.json` alongside this build, which would have
+   produced two competing pages per guide. Removed, and two permanent guards added: a
+   duplicate-content check and an archive-integrity check.
+
+### Note on caching
+
+The live site served the previous build for a short period after the merge because GitHub's
+CDN caches aggressively. Verified with a cache-busting query parameter (`?v=22dee51`), which
+returned the correct build. If a reviewer sees stale content, hard-refresh or append a query
+string.

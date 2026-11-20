@@ -1036,7 +1036,9 @@ ${breadcrumb([{ href: url("/"), label: "Home" }, { label: "Source register" }])}
    FLAGGED FOR REVIEW
    ============================================================ */
 function flaggedPage() {
-  const order = { resolved: 0, review: 1, action: 2, withheld: 3 };
+  // Needs-attention first; resolved last. A review page should open with
+  // the open questions, not with what already got answered.
+  const order = { review: 0, action: 1, withheld: 2, low: 3, resolved: 4 };
   const items = [...gov.flagged].sort((a, b) => order[a.severity] - order[b.severity]);
 
   const cards = items
@@ -1316,10 +1318,8 @@ ${breadcrumb([{ href: url("/"), label: "Home" }, { label: "Open questions" }])}
    SUGGESTIONS
    ============================================================ */
 function suggestionsPage() {
-  const weight = { 10: 0, 9: 1, 8: 2, 7: 3, 6: 4, 5: 5, 4: 6, 3: 7, 2: 8, 1: 9 };
-  const items = [...suggestions.suggestions].sort(
-    (a, b) => weight[b.weight] - weight[a.weight]
-  );
+  // Highest weight first: these are the moves we are most confident about.
+  const items = [...suggestions.suggestions].sort((a, b) => b.weight - a.weight);
   const counts = {};
   for (const s of items) counts[s.status] = (counts[s.status] || 0) + 1;
 
