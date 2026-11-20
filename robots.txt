@@ -1,4 +1,7 @@
-# Counter Space
+# robots.txt — The Crisp Counter
+# Data-room pages carry <meta name="robots" content="noindex"> and are kept out of the sitemap;
+# they stay crawlable so their noindex directives are seen.
+
 User-agent: *
 Allow: /
 

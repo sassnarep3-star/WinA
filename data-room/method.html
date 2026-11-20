@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Methodology &amp; provenance trail | The Crisp Counter — Data room</title>
+<meta name="description" content="How every fact on The Crisp Counter was obtained, what tools touched it, what was deliberately not done, and the dated provenance trail.">
+<link rel="canonical" href="https://sassnarep3-star.github.io/WinA/data-room/method.html">
+<meta name="robots" content="noindex">
+<meta name="cc-endpoint" content="">
+<link rel="alternate" type="application/rss+xml" title="The Crisp Counter" href="../feed.xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..700;1,9..144,400..700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/site.css">
+</head>
+<body>
+<header class="masthead">
+  <div class="wrap masthead-row">
+    <a class="brand" href="../index.html"><span class="brand-mark">◆</span> The Crisp Counter <small>measured kitchen buying</small></a>
+    <button class="nav-toggle" aria-expanded="false" aria-controls="site-nav">Menu</button>
+    <nav class="nav" id="site-nav" aria-label="Primary">
+      <a href="../shop.html">Shop</a>
+      <a href="../compare.html">Compare</a>
+      <a href="../guides/index.html">Guides</a>
+      <a href="../questions.html">Questions</a>
+      <a href="../suggestions.html">Suggestions</a>
+      <a href="index.html" aria-current="page">Data room</a>
+      <a class="nav-cta" href="../shop.html#the-lineup">See the lineup</a>
+    </nav>
+  </div>
+</header>
+<div class="disclosure-strip" id="disclosure">
+  <div class="wrap">
+    <span class="disclosure-badge">Disclosure</span>
+    <span><strong>The Crisp Counter is an Amazon Associate — we earn from qualifying purchases.</strong> Sponsored/affiliate links are marked. Facts were observed on official sources on November 20, 2026. <a href="compliance-gate.html">How we handle disclosure &amp; compliance</a>.</span>
+  </div>
+</div>
+
+<main>
+  <div class="wrap page-head">
+    <p class="breadcrumb"><a href="../index.html">Home</a> / <a href="index.html">Data room</a> / Methodology</p>
+    <h1>Methodology &amp; provenance trail</h1>
+    <p class="lede">How the facts were obtained, what was deliberately not done, and the dated trail behind every number.</p>
+  </div>
+
+  <article class="wrap guide-body">
+    <h2>Method</h2>
+    <ol>
+      <li><strong>Link resolution (2026-11-20).</strong> Each submitted <code>link.amazon/…</code> URL was fetched; the final canonical page was recorded in the <a href="product-intent.html">intent record</a>, in fields kept separate from the submitted identifiers.</li>
+      <li><strong>Fact extraction (2026-11-20).</strong> For each canonical listing: page title, category breadcrumbs, buy-box price/list price/stock/seller, the rating block (score + count), the product-details table, and "About this item" bullets. Values were transcribed only where they appeared verbatim.</li>
+      <li><strong>Policy sources (2026-11-20).</strong> The FTC Endorsement Guides pages, the eCFR text of 16 CFR Part 255, and the Amazon Associates Operating Agreement and Program Policies were read before their citation on the site.</li>
+      <li><strong>Blank-and-flag rule.</strong> Any cell not confirmed from an official page was left blank and marked <span class="chip unverified">unverified</span>. No value was inferred, completed, or copied from third-party roundups.</li>
+      <li><strong>Contradiction rule.</strong> Where a source contradicts itself (FLG-004, FLG-007), both readings are published with the flag — never silently harmonized.</li>
+      <li><strong>Automation &amp; gate.</strong> <code>tools/check_site.py</code> re-verifies structure (disclosures, rel tags, source rows, link integrity) on every change; human gates are listed on the <a href="compliance-gate.html">compliance page</a>.</li>
+    </ol>
+
+    <h2>What was deliberately not done</h2>
+    <ul>
+      <li>No products were purchased or physically tested — no performance claims appear anywhere.</li>
+      <li>No submitted identifier was "corrected" to a canonical ASIN; observed targets live in separate fields.</li>
+      <li>No conversion score, revenue forecast, or traffic estimate was produced.</li>
+      <li>No third-party review content was copied or paraphrased as our own.</li>
+      <li>No automated scraping of Amazon runs today (gate G-7 must approve any future automation).</li>
+    </ul>
+
+    <h2>Provenance trail</h2>
+    <div class="table-scroll">
+      <table class="data" data-exempt="internal">
+        <caption>Dated log of every fact-gathering and publishing action.</caption>
+        <thead>
+          <tr><th scope="col">Date (UTC)</th><th scope="col">Action</th><th scope="col">Actor</th><th scope="col">Artifacts</th></tr>
+        </thead>
+        <tbody>
+          <tr><th scope="row">2026-11-20</th><td>Five submitted links resolved to canonical listings; buy-box, rating, spec facts captured</td><td>session arena/580f4c6d-wina</td><td><a href="product-intent.html">intent record</a> Tables A–B</td></tr>
+          <tr><th scope="row">2026-11-20</th><td>FTC + Amazon Associates policy pages fetched and cited</td><td>session arena/580f4c6d-wina</td><td><a href="source-register.html">source register</a> SR-04…SR-06</td></tr>
+          <tr><th scope="row">2026-11-20</th><td>Site published: shop, compare, 4 guides, decision registers, data room</td><td>session arena/580f4c6d-wina</td><td>all pages; PR #1</td></tr>
+          <tr><th scope="row">2026-11-20</th><td>Compliance checker run in CI: pass (disclosures, rel tags, source rows, link integrity)</td><td>CI workflow <code>site.yml</code></td><td><code>tools/check_site.py</code></td></tr>
+          <tr><th scope="row">2026-11-20</th><td>Flags FLG-001…FLG-008 opened and published</td><td>session arena/580f4c6d-wina</td><td><a href="flagged.html">Flagged for Review</a></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2>Refresh policy</h2>
+    <p>Prices, ratings, stock states and return policies are snapshots stamped "observed 2026-11-20." The ledger stays empty until first-party reports exist. When gate G-4 closes, the intent record gets its confirmation columns; when proposal S-10 is approved and gate G-7 is cleared, re-observation becomes scheduled and every refreshed value re-stamps its date. Corrections from readers go through the repository issue tracker and are logged in the table above.</p>
+  </article>
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <p class="brand-foot">◆ The Crisp Counter</p>
+        <p>Data room — the verification machinery behind the shop.</p>
+      </div>
+      <div>
+        <h4>Registers</h4>
+        <ul>
+          <li><a href="source-register.html">Source register</a></li>
+          <li><a href="product-intent.html">Product-intent record</a></li>
+          <li><a href="campaign-ledger.html">Campaign ledger</a></li>
+          <li><a href="measurement.html">Measurement spec</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Control</h4>
+        <ul>
+          <li><a href="compliance-gate.html">Compliance gate</a></li>
+          <li><a href="flagged.html">Flagged for Review</a></li>
+          <li><a href="method.html">Methodology</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Site</h4>
+        <ul>
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="../shop.html">Shop</a></li>
+          <li><a href="../compare.html">Compare</a></li>
+          <li><a href="../guides/index.html">Guides</a></li>
+          <li><a href="../questions.html">Questions</a></li>
+          <li><a href="../suggestions.html">Suggestions</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="disclosure-block">
+      <strong>Disclosure (repeated):</strong> As an Amazon Associate, The Crisp Counter earns from qualifying purchases. Sponsored/affiliate links are marked and use rel="sponsored". Product names and images are the property of their rights holders; product thumbnails are served from Amazon's media CDN pending PA-API image licensing (FLG-005). This site does not sell products directly — purchases happen on Amazon under Amazon's terms.
+      <br>© <span data-year>2026</span> The Crisp Counter · <a href="flagged.html">Flagged for Review</a> · <a href="compliance-gate.html">Compliance</a>
+    </div>
+  </div>
+</footer>
+<script src="../assets/js/analytics.js" defer></script>
+<script src="../assets/js/site.js" defer></script>
+</body>
+</html>
