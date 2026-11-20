@@ -59,7 +59,7 @@
       "severity": "review",
       "title": "No product photography",
       "detail": "No licensed product images are available. Amazon Program Content may not be copied, stored, or hot-linked outside approved tooling, and stock photography of a different appliance would misrepresent the item.",
-      "action": "Pages carry editorial art instead: five generated illustrations, each labelled on the page as 'Illustration for the publication \u2014 not product photography', with an open provenance flag (FLG-030). The real fix for product imagery remains Creatives API access, which would supply compliant product photos. Generated art is never presented as a photograph of the product.",
+      "action": "Pages carry editorial art instead: five generated illustrations, each labelled on the page as 'Illustration for the publication \u2014 not product photography', with an open provenance flag (FLG-040). The real fix for product imagery remains Creatives API access, which would supply compliant product photos. Generated art is never presented as a photograph of the product.",
       "sourceUrl": "https://affiliate-program.amazon.com/help/operating/policies",
       "sourceLabel": "Participation Requirements \u00a76(a); IP License \u00a71 and \u00a72(h)"
     },
@@ -95,7 +95,7 @@
       "severity": "action",
       "title": "Analytics endpoint not deployed",
       "detail": "A self-hosted collector exists in _worker/ and the client is written to POST five defined events. No endpoint is deployed, so the client is switched off rather than sending events into a void.",
-      "action": "Deploy the worker, set SITE_ANALYTICS_ENDPOINT, rebuild. Until then no analytics data exists and the dashboard says so.",
+      "action": "Deploy the worker, set SITE_ANALYTICS_ENDPOINT, rebuild. Until then no analytics data exists and the dashboard says so. A zero-dependency reference collector now ships at scripts/analytics-server.mjs: same event set, same key allow-list, same scrubbing and 30-day retention as _worker/collector.js, so choosing a host no longer requires writing anything. To turn it on: run it (or the Worker), set site.analyticsEndpoint in data/products.json and governance.analytics.enabled to true, rebuild \u2014 the build holds the client inert if only one of the two is set.",
       "sourceUrl": "https://sassnarep3-star.github.io/WinA/analytics/",
       "sourceLabel": "This site's measurement page"
     },
@@ -113,9 +113,9 @@
       "severity": "action",
       "title": "Content volume is below the Associates review bar",
       "detail": "Amazon's Associates help states that applications are reviewed for robust original content, with a rule of thumb of at least 10 posts and recent activity. This site now has 8 guides and 5 product pages (13 pages of original content, up from 9). The account's own status and review history are unknown from here. Carried forward from the parallel-session register (arena-2ca62ce9, FLG-010), which found this first.",
-      "action": "Do not submit or re-submit for review on four guides. The eight-week cadence in the suggestions register exists to clear this bar. Recorded as a commercial blocker, not a content-quality one.",
-      "sourceUrl": "https://affiliate-program.amazon.com/",
-      "sourceLabel": "Amazon Associates Central (sign-in required)"
+      "action": "Do not submit or re-submit for review until the site has at least 10 posts and content dated within the last 60 days. The weekly cadence in the suggestions register (SUG-05) is the proposed path. Recorded as a commercial blocker, not a content-quality one.",
+      "sourceUrl": "https://affiliate-program.amazon.com/help/node/topic/G8TW5AE9XL2VX9VM",
+      "sourceLabel": "Associates Help: Application Review Process (checked 2026-11-20)"
     },
     {
       "id": "FLG-014",
@@ -211,8 +211,8 @@
       "id": "FLG-024",
       "severity": "action",
       "title": "Tagged product links are live before the one-per-product Special Link test",
-      "detail": "Product buy-boxes and the register link to amazon.com/dp/<observed ASIN>?tag=shopnow047c-20 for all five products. The per-product test required before scaling (FLG-003) has not been run; it needs Associates Central sign-in, which this build does not have. The site does not claim the submitted short links are invalid. The test is recorded as blocked on the Special Link test register.",
-      "action": "Owner runs one test per product in the enrolled Associates workflow and records the destination and tracking-report line in data/special_link_tests.json. Until then no further product link is added. If a test fails, the owner chooses the link method.",
+      "detail": "Product buy-boxes and the register link to amazon.com/dp/<observed ASIN>?tag=shopnow047c-20 for all five products. The per-product test required before scaling (FLG-003) has not been run; it needs Associates Central sign-in, which this build does not have. The site does not claim the submitted short links are invalid. The test is recorded as blocked on the Special Link test register. The counts are deliberately not written into this row: scripts/compliance-gate.mjs recomputes tagged links and test rows on every build and warns while the pair is unbalanced, so the register says *what is true* rather than what was true when someone last typed a number.",
+      "action": "Owner runs one test per product in the enrolled Associates workflow and records the destination and tracking-report line in data/special_link_tests.json. Until then no further product link is added. If a test fails, the owner chooses the link method. scripts/compliance-gate.mjs fails the build if links go live while no open flag records the state \u2014 close it by data, not by silence.",
       "sourceUrl": "https://affiliate-program.amazon.com/help/operating/policies",
       "sourceLabel": "Participation Requirements \u00a72(b) (Special Links use the Associates ID)"
     },
@@ -262,6 +262,24 @@
       "sourceLabel": "Emeril Everyday specification block"
     },
     {
+      "id": "FLG-034",
+      "severity": "review",
+      "title": "No design brief or brand-direction source; the site is deliberately typographic",
+      "detail": "The brief asks for a polished marketing look, not an AI-generated one, but no design brief, brand guide or visual source was supplied. Because product imagery is withheld under program policy (FLG-007), the site is deliberately typographic and carries no photos. A draft design brief (designBrief) and anti-slop direction are now proposed on the suggestions page as recommendations; they are not verified facts and need an owner decision before implementation.",
+      "action": "Owner reviews the draft design brief on /suggestions/ and confirms or edits the visual direction. Until then the design direction is a recommendation, not an adopted standard.",
+      "sourceUrl": "https://developers.google.com/search/docs/fundamentals/creating-helpful-content",
+      "sourceLabel": "Google Search Central \u2014 Creating Helpful, Reliable, People-First Content"
+    },
+    {
+      "id": "FLG-035",
+      "severity": "review",
+      "title": "Topic roadmap titles are editorial hypotheses with no measured demand",
+      "detail": "Counted from data/products.json on 2026-11-20 with a script over the published rows: 32 of 60 spec rows carry a verified value. Per product, verified of total: Chefman 6-Quart Dual Basket 8/12; Emeril 26QT French Door 6/11; Chefman 8-Quart TurboFry 5/12; ThermoMaven 1-Second 7/12; CHEF iQ Sense Gen3 6/13. (An earlier draft of this flag carried counts that did not match the file; they were recomputed and replaced before publication.) The Emeril has no confirmed wattage or warranty; the Chefman 8-Quart has no confirmed wattage, dimensions or warranty. Those are the fields a buyer most often needs \u2014 will it fit, will it trip the outlet, what happens if it fails \u2014 and they are blank because the listing did not state them and no manufacturer page was cited for them.",
+      "action": "Accept the roadmap as the first draft of hypotheses only. Which topics earn traffic is decided by Search Console query data after verification (FLG-009), not by instinct. Recorded so the hypotheses are not read as claims.",
+      "sourceUrl": "https://search.google.com/search-console",
+      "sourceLabel": "Google Search Console Queries report (not yet verified)"
+    },
+    {
       "id": "SG-27",
       "severity": "review",
       "title": "Navigation labels: parallel row SG-27 has no source document in this repository",
@@ -274,10 +292,10 @@
       "id": "SG-28",
       "severity": "review",
       "title": "RSS feed: parallel row SG-28 has no source document in this repository",
-      "detail": "The build produces an RSS 2.0 feed at /feed.xml. The RSS 2.0 specification requires the channel title, link, and description, and uses RFC 822 dates for pubDate. The brief's SG-28 requirements were not provided, so the feed has not been checked against them.",
+      "detail": "The build produces an RSS 2.0 feed at /feed.xml. The RSS 2.0 specification requires the channel title, link, and description, and uses RFC 822 dates for pubDate. Checked 2026-11-20 against the RSS 2.0 specification: the channel has the required title, link and description; each item has a title, link and description; pubDate uses the RFC 822 form; and the file parses as well-formed XML. That check does not replace SG-28's own requirements, which were not supplied.",
       "action": "Provide the SG-28 requirements. After deploy, check the feed in a feed reader.",
       "sourceUrl": "https://www.rssboard.org/rss-specification",
-      "sourceLabel": "RSS Advisory Board, RSS 2.0 Specification"
+      "sourceLabel": "RSS Advisory Board, RSS 2.0 Specification (checked 2026-11-20)"
     },
     {
       "id": "SG-29",
@@ -299,21 +317,84 @@
     },
     {
       "id": "FLG-030",
+      "severity": "resolved",
+      "title": "Policy and FTC quotes checked word for word against the official text (2026-11-20)",
+      "detail": "Operating Agreement \u00a75: the Associates statement and the 'misrepresent or embellish' sentence matched. Program Policies, Participation Requirements: \u00a72(b) (price display), \u00a76(a) (Program Content), \u00a76(f) (keyword clause), \u00a76(t) (ratings), \u00a76(w) (link clarity), \u00a76(y) (price tracking) and \u00a73(e) (data disclosure) matched. FTC Disclosures 101: 'Place it so it's hard to miss', 'The disclosure should be placed with the endorsement message itself', and 'You can't talk about your experience with a product you haven't tried' matched. The policy quotes in data/policy.json are the same text. POL-09 is an internal rule, not a quote.",
+      "action": "Re-run this check when Amazon or the FTC updates a document (FLG-031).",
+      "sourceUrl": "https://affiliate-program.amazon.com/help/operating/agreement",
+      "sourceLabel": "Associates Operating Agreement \u00a75 (checked 2026-11-20)"
+    },
+    {
+      "id": "FLG-031",
+      "severity": "review",
+      "title": "Policy quotes are current only as of the document versions checked",
+      "detail": "The Operating Agreement page shows 'Updated: October 15, 2025'. The Program Policies page shows 'Updated: April 14, 2026'. The quotes in this build match those versions. A later version can change a clause number or wording without this build knowing.",
+      "action": "Before each publish and before any Associates application, re-check the quotes against the current pages.",
+      "sourceUrl": "https://affiliate-program.amazon.com/help/operating/policies",
+      "sourceLabel": "Associates Program Policies (updated April 14, 2026)"
+    },
+    {
+      "id": "FLG-032",
+      "severity": "review",
+      "title": "Five short links re-checked 2026-11-20: ASINs confirmed, but three redirect to the Amazon homepage",
+      "detail": "A later session (arena/119f4dc6-wina) re-fetched all five link.amazon URLs on the same date. All five destination ASINs were re-confirmed by fetching https://www.amazon.com/dp/<ASIN> directly \u2014 the product identity in data/links.json is correct. However, only B02NbDxp3 and B00hJ57DV returned a product page. B04G1MEwY, B0c8moW59 and B0f3GKalj returned https://www.amazon.com/ (the homepage). B04G1MEwY was fetched twice with the same result. This record originally stated that all five \"resolved\" to product pages; that overstated what a single fetch showed and is corrected here under FLG-037.",
+      "action": "Owner: open each short link in a normal browser while signed out and record what you see. The site does not depend on these URLs \u2014 it links to /dp/<ASIN> directly \u2014 so nothing user-facing breaks.",
+      "sourceUrl": "https://www.amazon.com/dp/B0CDY277D3",
+      "sourceLabel": "Amazon listing (landing page of the first link)"
+    },
+    {
+      "id": "FLG-033",
+      "severity": "review",
+      "title": "The ASIN rationale in the brief could not be tied to an official Amazon definition",
+      "detail": "The brief gives 'Amazon's ASIN definition' as the reason the intended-ASIN field is checkable. On 2026-11-20 no Amazon Help page giving that definition was found. The only Amazon-domain result was a Seller Central forum thread; its definition replies were written by sellers, not Amazon staff, so they are not cited as Amazon's definition. What can be checked directly is narrower: all five observed ASINs are 10 characters, A-Z and 0-9, and each observed destination ends in /dp/<ASIN> (data/links.json). This checks the URL format only. It does not show that a submitted link was intended for a particular ASIN, which is why the intended field stays blank.",
+      "action": "Owner: decide whether the intended-ASIN field should be filled from the submitted link (FLG-019). If the rationale is kept, cite an Amazon Help page for the definition before publishing it.",
+      "sourceUrl": "https://sellercentral.amazon.com/seller-forums/discussions/t/1e22c5df-d27a-4e2b-a0c1-90938b6cdcdc",
+      "sourceLabel": "Seller Central forum thread (not Amazon Help; definition not confirmed as Amazon's)"
+    },
+    {
+      "id": "FLG-036",
+      "severity": "review",
+      "title": "Re-check on 2026-11-20 did not reproduce the recorded destination for three submitted short links",
+      "detail": "On 2026-11-20 each submitted link.amazon URL was re-opened with the page tool. B02NbDxp3 (-> /dp/B09B7SB46R) and B00hJ57DV (-> /dp/B08DKYBTPH) matched data/links.json. B04G1MEwY and B0c8moW59 each returned the amazon.com home page on both attempts, not the recorded /dp/B0CDY277D3 and /dp/B0DHZTCNR5 pages. B0f3GKalj returned the home page on one attempt and the recorded /dp/B0DZFD6R9Z page on the other, so it is inconsistent. A second session (arena/119f4dc6-wina) re-checked the same five links on the same date, independently, and got the same split: B04G1MEwY and B0c8moW59 to the home page on both attempts, B0f3GKalj to the home page once. All five destination ASINs were separately re-confirmed by fetching https://www.amazon.com/dp/<ASIN> directly, so the product identity in data/links.json is correct. The recorded observations are kept unchanged. The cause is not known: it could be the short link, the redirect handling of the page tool, or a session-dependent redirect. The site is not affected, because every product button links to amazon.com/dp/<observed ASIN>?tag=shopnow047c-20 directly and not through the short links. Corroboration (arena-266b1b8f, same day): a second independent re-check of all five short links again sent several to the amazon.com home page \u2014 but a different subset (B02NbDxp3 and B00hJ57DV failed this time; B0f3GKalj reproduced its /dp/ page exactly). Between two same-day re-checks the same links resolved differently, which points at session- or client-dependent redirect behaviour rather than a fixed state of the links.",
+      "action": "Owner: open each of the five short links in a normal browser, logged out, and record the landing URL. If any short link lands somewhere other than its recorded /dp/ page, correct data/links.json and add a dated note. Do not rely on the recorded values until this is done.",
+      "sourceUrl": "https://link.amazon/B04G1MEwY",
+      "sourceLabel": "Submitted short link (re-checked 2026-11-20 by two sessions; see detail)"
+    },
+    {
+      "id": "FLG-037",
+      "severity": "review",
+      "title": "Buy buttons say 'Check price on Amazon' while the site states prices are not shown",
+      "detail": "Every product card and hero button is labelled 'Check price on Amazon'. Other pages state that prices are not shown on this site, and data/products.json withholds prices (FLG-005). The label does not display a price, but it is worded as if one is on the page. It is flagged for an owner decision on wording, not changed here, because it is a visible copy decision and it appears on every product card. Amazon Associates Program Policies \u00a76(y) is cited in this register for the no-price-tracking rule; that section was not re-read in this check.",
+      "action": "Owner: choose the button wording. If changed, rebuild with node _src/build.mjs; the compliance gate checks the disclosure and link classes, not the label wording.",
+      "sourceUrl": "https://affiliate-program.amazon.com/help/operating/policies",
+      "sourceLabel": "Amazon Associates Program Policies (cited elsewhere in this register)"
+    },
+    {
+      "id": "FLG-038",
+      "severity": "resolved",
+      "title": "ThermoMaven water-resistance row said no IP number was published; the listing states IP67",
+      "detail": "The register recorded \"Described as 100% waterproof; no IP number published\" from the manufacturer page. The Amazon listing title on 2026-11-20 reads \"... IP67 Waterproof for Grill BBQ ...\", so an IP rating is published. The row now reads \"IP67, as stated in the listing title\" and cites the listing. This was a factual error in the register, found by re-reading the listing, and is corrected rather than left. (Originally drafted as FLG-036; renumbered because a parallel session claimed that id first. Both findings are kept.)",
+      "action": "None. Corrected in data/products.json and rebuilt.",
+      "sourceUrl": "https://www.amazon.com/dp/B0DHZTCNR5",
+      "sourceLabel": "Amazon listing title, fetched 2026-11-20"
+    },
+    {
+      "id": "FLG-039",
+      "severity": "review",
+      "title": "Spec coverage is uneven, and two products carry no warranty or dimensions at all",
+      "detail": "Counted from data/products.json on 2026-11-20 by script over the published rows: 32 of 60 spec rows carry a verified value. Per product, verified of total: Chefman 6-Quart Dual Basket 8/12; Emeril 26QT French Door 6/11; Chefman 8-Quart TurboFry 5/12; ThermoMaven 1-Second 7/12; CHEF iQ Sense Gen3 6/13. The Emeril has no confirmed wattage or warranty; the Chefman 8-Quart has no confirmed wattage, dimensions or warranty. Those are the fields a buyer most often needs \u2014 will it fit, will it trip the outlet, what happens if it fails \u2014 and they are blank because the listing did not state them and no manufacturer page was cited for them. (Originally drafted as FLG-038 and moved when that id was taken in a parallel claim.)",
+      "action": "Owner or next session: add the manufacturer product page URL per product to specSources and fill wattage, dimensions and warranty from it, one row at a time with its own source. Do not fill from memory or from a marketplace reseller page.",
+      "sourceUrl": "https://www.amazon.com/dp/B09B7SB46R",
+      "sourceLabel": "Amazon listing for the Emeril 26QT (wattage and warranty not stated there)"
+    },
+    {
+      "id": "FLG-040",
       "severity": "review",
       "title": "Editorial imagery is generated art, published with that provenance",
       "detail": "The five images in assets/img/ were generated for this publication as editorial atmosphere art (kitchen scenes, food, a festive table). They are not photographs of the products, they were not supplied by any brand, and every use on the site carries the caption 'Illustration for the publication \u2014 not product photography.' Nothing about a product's appearance should be inferred from them.",
       "action": "Owner decision: keep the generated art, or replace it with licensed product imagery once Creatives API access exists (FLG-007). Until then this flag documents provenance so the art can never be mistaken for product photography.",
       "sourceUrl": "https://affiliate-program.amazon.com/help/operating/policies",
       "sourceLabel": "Associates Program Policies \u2014 Program Content and IP License (image use restrictions)"
-    },
-    {
-      "id": "FLG-031",
-      "severity": "review",
-      "title": "Short-link re-resolution is inconsistent: 4 of 5 rechecks landed on the Amazon home page",
-      "detail": "On 2026-11-20 (later the same day the five submitted short links were first resolved), arena-266b1b8f re-opened all five with the page fetch tool. B0f3GKalj reproduced exactly (amazon.com/dp/B0DZFD6R9Z, title match). The other four (B04G1MEwY, B02NbDxp3, B00hJ57DV, B0c8moW59) resolved to the Amazon.com home page instead of the product pages recorded earlier. Cause unknown; the fetch path differs from a browser session, and Amazon serves different fallback redirects to non-browser clients. Both observations are kept, each dated, in data/links.json (observed* vs recheck). This does NOT assert the short links are invalid \u2014 their compliance status remains unresolved in FLG-003 \u2014 and the site continues not to depend on them.",
-      "action": "Owner: open each short link from a normal browser session and record what it resolves to; compare with the observed record on /register/. If the home-page behavior reproduces in a browser, raise it with Amazon Associates support alongside FLG-003.",
-      "sourceUrl": "https://link.amazon/B04G1MEwY",
-      "sourceLabel": "Example submitted short link (rechecked 2026-11-20)"
     }
   ],
   "ledger": {

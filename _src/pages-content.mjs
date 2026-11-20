@@ -142,7 +142,7 @@ Two constraints shape all of it. The site earns nothing until a click converts o
 <li><strong>Prove the links work.</strong> One click per product, confirmed in the Associates tracking report. Everything else is worthless if this fails.</li>
 <li><strong>Turn on measurement.</strong> Deploy the collector so clicks are counted from the first visitor, not the hundredth.</li>
 <li><strong>Get indexed.</strong> Verify Search Console, submit the sitemap, confirm pages are actually in the index.</li>
-<li><strong>Publish on a cadence.</strong> One guide a week for eight weeks. Each added to the sitemap and feed in the same commit.</li>
+<li><strong>Publish on a cadence.</strong> A new guide every week for eight weeks. Each added to the sitemap and feed in the same commit.</li>
 <li><strong>Read the query data.</strong> At week eight, replace the hypotheses with what Search Console says people searched.</li>
 <li><strong>Then</strong> consider paid acquisition, an email list, or a second category.</li>
 </ol>
@@ -208,7 +208,7 @@ export const seo = {
       title: "What is not verified",
       body: `<p>Search Console ownership has not been confirmed, because that requires account access. A placeholder verification token is in the markup and clearly marked as such.</p>
 <p><strong>Until that is replaced, this site has no idea whether it is indexed, what it ranks for, or whether anyone arrives.</strong> It is the single highest-value five-minute task remaining, and it is recorded as an open action rather than described as done.</p>
-<p>No search volume data exists for any of the four guide topics. The titles are editorial hypotheses about what people might ask, not evidence about what they do ask. Publishing four guides and reading the query report is how that changes.</p>`
+<p>No search volume data exists for any of the guide topics. The titles are editorial hypotheses about what people might ask, not evidence about what they do ask. Publishing on a cadence and reading the query report is how that changes.</p>`
     },
     {
       title: "What we will not do",

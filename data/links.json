@@ -15,6 +15,11 @@
       "resolvedTitle": "CHEFMAN 6 Quart Dual Basket Air Fryer Oven with Easy View Windows, Sync Finish, Hi-Fry, Auto Shutoff, 2 Independent 3Qt Nonstick Dishwasher Safe Frying Baskets, Digital Double Air Fryer - Black",
       "confidence": "observed",
       "flag": "FLG-001",
+      "reverifiedOn": "2026-11-20",
+      "reverifiedResult": "homepage",
+      "reverifiedFinalUrl": "https://www.amazon.com/",
+      "reverifiedTitleSeen": "Amazon.com. Spend less. Smile more.",
+      "reverifiedFlag": "FLG-036",
       "intentConfirmation": {
         "intendedAsin": null,
         "officialListingUrl": null,
@@ -23,13 +28,6 @@
         "status": "awaiting-owner-confirmation",
         "recordedBy": "arena-266b1b8f",
         "recordedOn": "2026-11-20"
-      },
-      "recheck": {
-        "recheckedOn": "2026-11-20",
-        "recheckedBy": "arena-266b1b8f (fetch tool)",
-        "resolvedTo": "https://www.amazon.com/",
-        "note": "amazon.com home page \u2014 recorded product destination NOT reproduced",
-        "flag": "FLG-031"
       }
     },
     {
@@ -41,6 +39,11 @@
       "resolvedTitle": "Emeril Lagasse 26QT French Door Multi-Function Air Fryer Toaster Oven | Countertop Convection Cooker, 24 One-Touch Preset Options, Extra Large Interior, Six Cooking Accessories Included",
       "confidence": "observed",
       "flag": "FLG-001",
+      "reverifiedOn": "2026-11-20",
+      "reverifiedResult": "product-page",
+      "reverifiedFinalUrl": "https://www.amazon.com/dp/B09B7SB46R",
+      "reverifiedTitleSeen": "Emeril Lagasse 26QT French Door Multi-Function Air Fryer Toaster Oven",
+      "reverifiedFlag": "FLG-036",
       "intentConfirmation": {
         "intendedAsin": null,
         "officialListingUrl": null,
@@ -49,13 +52,6 @@
         "status": "awaiting-owner-confirmation",
         "recordedBy": "arena-266b1b8f",
         "recordedOn": "2026-11-20"
-      },
-      "recheck": {
-        "recheckedOn": "2026-11-20",
-        "recheckedBy": "arena-266b1b8f (fetch tool)",
-        "resolvedTo": "https://www.amazon.com/",
-        "note": "amazon.com home page \u2014 recorded product destination NOT reproduced",
-        "flag": "FLG-031"
       }
     },
     {
@@ -67,6 +63,11 @@
       "resolvedTitle": "Chefman Air Fryer 8 Qt | TurboFry 4-in-1 with 450\u00b0F Hi-Fry Option for Crispier Results | Bake, Dehydrate, Frozen | XL Nonstick Dishwasher-Safe Basket | Stainless Steel",
       "confidence": "observed",
       "flag": "FLG-001",
+      "reverifiedOn": "2026-11-20",
+      "reverifiedResult": "product-page",
+      "reverifiedFinalUrl": "https://www.amazon.com/dp/B08DKYBTPH",
+      "reverifiedTitleSeen": "Chefman Air Fryer 8 Qt | TurboFry 4-in-1",
+      "reverifiedFlag": "FLG-036",
       "intentConfirmation": {
         "intendedAsin": null,
         "officialListingUrl": null,
@@ -75,13 +76,6 @@
         "status": "awaiting-owner-confirmation",
         "recordedBy": "arena-266b1b8f",
         "recordedOn": "2026-11-20"
-      },
-      "recheck": {
-        "recheckedOn": "2026-11-20",
-        "recheckedBy": "arena-266b1b8f (fetch tool)",
-        "resolvedTo": "https://www.amazon.com/",
-        "note": "amazon.com home page \u2014 recorded product destination NOT reproduced",
-        "flag": "FLG-031"
       }
     },
     {
@@ -93,6 +87,11 @@
       "resolvedTitle": "ThermoMaven 1 Sec Professional Digital Meat Thermometer, \u00b10.5\u00b0F Accuracy | NIST&NSF Certified, Auto-Rotate Bright LED Screen, IP67 Waterproof for Grill BBQ, Stocking Stuffers Gifts for Men, Black",
       "confidence": "observed",
       "flag": "FLG-001",
+      "reverifiedOn": "2026-11-20",
+      "reverifiedResult": "homepage",
+      "reverifiedFinalUrl": "https://www.amazon.com/",
+      "reverifiedTitleSeen": "Amazon.com. Spend less. Smile more.",
+      "reverifiedFlag": "FLG-036",
       "intentConfirmation": {
         "intendedAsin": null,
         "officialListingUrl": null,
@@ -101,13 +100,6 @@
         "status": "awaiting-owner-confirmation",
         "recordedBy": "arena-266b1b8f",
         "recordedOn": "2026-11-20"
-      },
-      "recheck": {
-        "recheckedOn": "2026-11-20",
-        "recheckedBy": "arena-266b1b8f (fetch tool)",
-        "resolvedTo": "https://www.amazon.com/",
-        "note": "amazon.com home page \u2014 recorded product destination NOT reproduced",
-        "flag": "FLG-031"
       }
     },
     {
@@ -119,6 +111,11 @@
       "resolvedTitle": "CHEF iQ Sense | Smart Wireless Meat Thermometer | 3 Ultra-Thin Probes | WiFi Unlimited Range | 1000\u00b0F Heat Safe | 5 Sensors | BBQ, Grill, Oven, Smoker, Air Fryer | Gen3",
       "confidence": "observed",
       "flag": "FLG-001",
+      "reverifiedOn": "2026-11-20",
+      "reverifiedResult": "homepage",
+      "reverifiedFinalUrl": "https://www.amazon.com/",
+      "reverifiedTitleSeen": "Amazon.com. Spend less. Smile more.",
+      "reverifiedFlag": "FLG-036",
       "intentConfirmation": {
         "intendedAsin": null,
         "officialListingUrl": null,
@@ -127,13 +124,6 @@
         "status": "awaiting-owner-confirmation",
         "recordedBy": "arena-266b1b8f",
         "recordedOn": "2026-11-20"
-      },
-      "recheck": {
-        "recheckedOn": "2026-11-20",
-        "recheckedBy": "arena-266b1b8f (fetch tool)",
-        "resolvedTo": "https://www.amazon.com/dp/B0DZFD6R9Z",
-        "note": "product page reproduced \u2014 title matches the recorded resolution",
-        "flag": "FLG-031"
       }
     }
   ],
@@ -157,6 +147,14 @@
       "action": "Test one link per product in the enrolled workflow and confirm the tracking report."
     }
   ],
-  "_intentNote": "Product-intent confirmation record (brief requirement). For each submitted link the intended ASIN, official listing URL, confirmation date and source are stored in the intentConfirmation block. Observed redirect targets are stored in the observed* fields. The two are never merged. All intent fields remain null because no intended ASIN, listing URL, confirmation date or source was ever supplied; the owner fills them after confirming in Associates Central. Amazon's ASIN definition provides the checkable identifier: https://sellercentral.amazon.com/gp/help/external/G200386250",
-  "_recheckNote": "Re-observation only. The recheck field records what the submitted short link resolved to when re-opened later the same day. It does not overwrite the observed* fields: both observations stand, each dated. Four of five rechecks landed on the Amazon home page instead of the product page recorded earlier the same day; one reproduced exactly. Cause unknown (possibly session- or bot-mitigation-dependent). This does not assert the short links are invalid \u2014 their compliance status remains unresolved in FLG-003. The site does not depend on them."
+  "reverification": {
+    "performedOn": "2026-11-20",
+    "performedBy": "arena/119f4dc6-wina",
+    "method": "Each submitted link.amazon URL was fetched with the page tool; the final URL reported by the fetch and the page title were recorded. The products' official listings were then fetched separately at https://www.amazon.com/dp/<ASIN> and their titles compared with data/links.json.",
+    "asinsStillCorrect": true,
+    "asinsNote": "All five destination ASINs were re-confirmed: each /dp/<ASIN> page was fetched directly and returned the product recorded in this file. The product identity is not in doubt.",
+    "shortLinkBehaviour": "3 of 5 (B04G1MEwY, B0c8moW59, B0f3GKalj) resolved to https://www.amazon.com/ rather than to a product page. B04G1MEwY was fetched twice and returned the homepage both times. The cause was not determined from here; it may be Amazon-side redirect behaviour for this client. It is recorded as an open finding, not as a claim that the links are invalid or that the products changed.",
+    "flag": "FLG-036"
+  },
+  "_intentNote": "Product-intent confirmation record (brief requirement). For each submitted link the intended ASIN, official listing URL, confirmation date and source are stored in the intentConfirmation block. Observed redirect targets are stored in the observed* fields (first observation) and reverified* fields (later same-day re-check). The intent fields are never merged with the observed fields. All intent fields remain null because no intended ASIN, listing URL, confirmation date or source was ever supplied; the owner fills them after confirming in Associates Central."
 }

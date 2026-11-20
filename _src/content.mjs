@@ -311,7 +311,7 @@ Multi-function claims are the easiest thing in kitchen retail to inflate and the
 <h2>The gift logistics nobody reads until January</h2>
 <p>Two verified details change how this gift lands:</p>
 <ul>
-  <li><strong>Warranty registration has a clock on it.</strong> The ThermoMaven's stated lifetime warranty applies only if the unit is registered within 30 days of purchase. A gift that sits wrapped until the 25th and gets registered in February may miss the window. Put a note in the box: register within 30 days.</li>
+  <li><strong>Warranty registration has a clock on it.</strong> The warranty the listing states is conditional: the unit must be registered within 30 days of purchase. A gift that sits wrapped until the 25th and gets registered in February may miss the window. Put a note in the box: register within 30 days.</li>
   <li><strong>Batteries decide first impressions.</strong> The instant-read ships with its AAA battery included; the wireless probes are a system whose battery life was not confirmed from an official source (blank in our register). A gift that needs a charging ritual on day one explains itself badly.</li>
 </ul>
 
@@ -323,7 +323,7 @@ Multi-function claims are the easiest thing in kitchen retail to inflate and the
 `,
     takeaways: [
       "Match the thermometer to the cook: spot checks want instant-read; long unattended cooks want wireless.",
-      "Register the ThermoMaven within 30 days of purchase or its stated lifetime warranty lapses — put a note in the box.",
+      "Register the ThermoMaven within 30 days of purchase — the listing makes its warranty term conditional on that, so put a note in the box.",
       "Accuracy and certification figures are the seller's claims, not verified facts; gift them as stated.",
       "When the recipient's habits are unknown, the no-app option is the safer present."
     ]

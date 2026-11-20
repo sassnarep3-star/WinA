@@ -4,3 +4,16 @@ _site/
 .DS_Store
 *.log
 .arena/
+
+# analytics state — one .jsonl per day, delete the folder to delete everything
+.analytics-state/
+
+# intake scratch: evidence files are transient; the register keeps the values and their dates
+data/inbox/*
+!data/inbox/README.md
+!data/inbox/example.format.json
+
+# query exports: large, personal to the account, and re-downloadable
+data/exports/*
+!data/exports/README.md
+

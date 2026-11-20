@@ -7,7 +7,8 @@
     "trackingId": "shopnow047c-20",
     "marketplace": "amazon.com",
     "built": "2026-11-20",
-    "associateStatement": "As an Amazon Associate I earn from qualifying purchases."
+    "associateStatement": "As an Amazon Associate I earn from qualifying purchases.",
+    "analyticsEndpoint": ""
   },
   "products": [
     {
@@ -374,7 +375,7 @@
       "why": [
         "A one-second read is the threshold where checking temperature stops feeling like a delay.",
         "The display auto-rotates, which sounds trivial until you are holding it at an angle over a hot pan.",
-        "IP67 means it survives being set down in a wet sink or dropped in a stockpot.",
+        "The manufacturer calls it 100% waterproof; the listing title adds IP67, which the manufacturer's own page does not publish.",
         "Pocket-sized and battery-simple \u2014 nothing to pair, no app, no account."
       ],
       "consider": [
@@ -397,9 +398,9 @@
         },
         {
           "label": "Water resistance",
-          "value": "Described as 100% waterproof; no IP number published",
+          "value": "IP67, as stated in the listing title",
           "status": "verified",
-          "source": "manufacturer"
+          "source": "amazon-listing"
         },
         {
           "label": "Display",
@@ -477,8 +478,8 @@
           "label": "thermomaven.com"
         },
         "Water resistance": {
-          "url": "https://www.thermomaven.com/products/f1-stealth",
-          "label": "thermomaven.com"
+          "url": "https://www.amazon.com/dp/B0DHZTCNR5",
+          "label": "Amazon listing (title states IP67)"
         },
         "Battery type": {
           "url": "https://www.thermomaven.com/products/f1-stealth",

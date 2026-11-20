@@ -24,6 +24,11 @@ const specialLink = read("data/special_link_tests.json");
 // Submission record: the product-intent confirmation record lives here.
 // Intended fields and observed redirect fields are deliberately separate.
 const linksData = read("data/links.json");
+
+// Analytics is enabled only when both halves agree: the governance decision and an endpoint that
+// exists. A client switched on against an empty endpoint is a silent failure, which is worse than
+// an inert one, so the build resolves the pair and the gate asserts it.
+const ANALYTICS_ON = Boolean(gov.analytics.enabled && (site.analyticsEndpoint || "").trim());
 // AI-platform concept (framed as a concept only; nothing here is implemented)
 const aiConcept = {
   title: "AI-platform concept",
@@ -144,7 +149,7 @@ function layout(opts) {
 <meta name="twitter:description" content="${esc(desc)}">
 <link rel="alternate" type="application/rss+xml" title="${esc(site.name)}" href="${url("/feed.xml")}">
 <link rel="stylesheet" href="${url("/assets/css/site.css")}">
-<script>window.CS_CONFIG={analyticsEnabled:${gov.analytics.enabled},analyticsEndpoint:""};</script>
+<script>window.CS_CONFIG={analyticsEnabled:${ANALYTICS_ON},analyticsEndpoint:${JSON.stringify(site.analyticsEndpoint || "")}};</script>
 ${ld}
 </head>
 <body data-page-type="${pageType}">
@@ -355,6 +360,11 @@ const art = (im, cls = "") =>
 function frontPage() {
   const picks = products.slice(0, 3);
   const lead = products[0];
+  // Counted, never typed: the number of spec rows carrying a confirmed value.
+  const verifiedSpecs = products.reduce(
+    (n, p) => n + p.specs.filter((s) => s.status === "verified" && s.value).length,
+    0
+  );
 
   const html = `
 <section class="hero">
@@ -391,10 +401,10 @@ function frontPage() {
 
 <div class="strip">
   <div class="wrap strip__inner">
-    <div class="strip__cell"><p class="strip__num">5</p><p class="strip__lab">Products compared in depth</p></div>
+    <div class="strip__cell"><p class="strip__num">${products.length}</p><p class="strip__lab">Products, spec-checked</p></div>
+    <div class="strip__cell"><p class="strip__num">${categories.length}</p><p class="strip__lab">Categories</p></div>
     <div class="strip__cell"><p class="strip__num">${guides.length}</p><p class="strip__lab">Buying guides</p></div>
-    <div class="strip__cell"><p class="strip__num">2</p><p class="strip__lab">Categories</p></div>
-    <div class="strip__cell"><p class="strip__num">Nov</p><p class="strip__lab">Edition · updated ${esc(site.built)}</p></div>
+    <div class="strip__cell"><p class="strip__num">${verifiedSpecs}</p><p class="strip__lab">Specs confirmed at source</p></div>
   </div>
 </div>
 
@@ -419,7 +429,7 @@ function frontPage() {
   <div class="wrap">
     <div class="section__head">
       <h2 class="section__title">Start with the question you have</h2>
-      <p class="section__dek">Two topic clusters, each built around one kind of decision. Read one guide or the whole path — every guide links to the next.</p>
+      <p class="section__dek">Two topic clusters, each built around one kind of decision. Read the whole path end to end, or jump straight to the question you came with.</p>
     </div>
     <div class="clusters">
       <a class="cluster" href="${url("/air-fryers/")}">
@@ -427,7 +437,7 @@ function frontPage() {
         <span class="cluster__body">
           <span class="cluster__label">Cluster</span>
           <h3 class="cluster__name">The air fryer path</h3>
-          <span class="cluster__dek">Form factor → capacity → cleanup → the claims on the box. Five guides and three machines, walked in the order the questions actually arrive.</span>
+          <span class="cluster__dek">Form factor → capacity → cleanup → the claims on the box — and three machines, walked in the order the questions actually arrive.</span>
           <span class="cluster__more">Start with basket or oven →</span>
         </span>
       </a>
@@ -436,7 +446,7 @@ function frontPage() {
         <span class="cluster__body">
           <span class="cluster__label">Cluster</span>
           <h3 class="cluster__name">The thermometer path</h3>
-          <span class="cluster__dek">Instant-read or wireless → what multi-function claims mean → gifting the right one. Three guides and two probes, one decision: stand there, or walk away.</span>
+          <span class="cluster__dek">Instant-read or wireless → what multi-function claims mean → gifting the right one. Two probes, one decision: stand there, or walk away.</span>
           <span class="cluster__more">Start with instant vs wireless →</span>
         </span>
       </a>
@@ -893,7 +903,7 @@ ${breadcrumb([{ href: url("/"), label: "Home" }, { label: "Guides" }])}
                 )}</td><td><span class="pill pill--verified">published ${esc(site.built)}</span></td></tr>`
             )
             .join("")}
-          <tr><td class="muted">One new question-shaped guide per week for eight weeks, then the query report picks the next topic</td><td class="muted">Both</td><td><span class="pill pill--review">planned</span></td></tr>
+          <tr><td class="muted">A new question-shaped guide every week for eight weeks, then the query report picks the next topic</td><td class="muted">Both</td><td><span class="pill pill--review">planned</span></td></tr>
         </tbody>
       </table>
     </div>
@@ -1060,6 +1070,11 @@ function specialLinkSection() {
 `;
 }
 
+// A row's citation must be the source the row *names*, not always the product listing.
+// Before this, any spec with a source rendered a tagged amazon.com/dp/ link, so a row citing a
+// manual or a USDA table would have pointed at a store page instead — and every verification click
+// would have carried a tag. Only the listing source may be tagged, because only that one is a
+
 function registerPage() {
   const specRows = [];
   for (const p of products) {
@@ -1082,7 +1097,13 @@ function registerPage() {
     <td>${esc(s.label)}</td>
     <td>${esc(s.note)}</td>
     <td>${esc(s.accessed)}</td>
-    <td>${s.url ? cite(s.url, "Open") : 'amazon.com/dp/<em>ASIN</em> <span class="faint">(per product)</span>'}</td>
+    <td>${
+      s.url
+        ? cite(s.url, "Open")
+        : s.id === "amazon-listing" || s.id === "link-redirect"
+        ? 'amazon.com/dp/<em>ASIN</em> <span class="faint">(per product)</span>'
+        : `<span class="faint">per row — each citation links its own page</span>`
+    }</td>
   </tr>`
     )
     .join("");
@@ -1548,6 +1569,123 @@ ${breadcrumb([{ href: url("/"), label: "Home" }, { label: "Open questions" }])}
 }
 
 /* ============================================================
+   SUGGESTIONS — design brief, topic roadmap, decision log
+   ============================================================ */
+function renderDesignBrief() {
+  const db = suggestions.designBrief;
+  const rows = db.principles
+    .map((p) => `<tr>
+    <td><code>${esc(p.id)}</code></td>
+    <td class="small">${esc(p.area)}</td>
+    <td class="small"><strong>${esc(p.principle)}</strong></td>
+    <td class="small">${esc(p.why)}</td>
+    <td class="small">${esc(p.constraint)}</td>
+    <td class="small">${
+      p.source ? cite(p.source.url, esc(p.source.label)) : '<span class="faint">recommendation — no source</span>'
+    }</td>
+  </tr>`)
+    .join("");
+  return `<section class="section section--deep">
+  <div class="wrap">
+    <div class="section__head">
+      <h2 class="section__title" style="font-size:1.4rem">Draft design brief</h2>
+      <p class="section__dek">${esc(db.intro)}</p>
+    </div>
+    <div class="tablewrap">
+      <table class="data sortable">
+        <caption>Visual and editorial direction to feed a design prompt. These are recommendations, not verified facts. Each principle names the constraint it respects.</caption>
+        <thead><tr><th scope="col">ID</th><th scope="col">Area</th><th scope="col">Principle</th><th scope="col">Why</th><th scope="col">Constraint</th><th scope="col">Source</th></tr></thead>
+        <tbody>${rows}</tbody>
+      </table>
+    </div>
+  </div>
+</section>`;
+}
+
+function renderTopicRoadmap() {
+  const tr = suggestions.topicRoadmap;
+  const rows = tr.clusters
+    .flatMap((c) =>
+      c.topics.map(
+        (t) => `<tr>
+      <td><strong>${esc(c.name)}</strong><br><span class="tiny muted">${esc(
+          c.products.length ? c.products.join(" · ") : "no product tie-in"
+        )}</span></td>
+      <td>${esc(t.title)}</td>
+      <td class="small">${esc(t.intent)}</td>
+      <td><span class="pill pill--claim">${esc(t.status)}</span></td>
+    </tr>`
+      )
+    )
+    .join("");
+  return `<section class="section">
+  <div class="wrap">
+    <div class="section__head">
+      <h2 class="section__title" style="font-size:1.4rem">Topic roadmap</h2>
+      <p class="section__dek">${esc(tr.note)}</p>
+    </div>
+    <div class="tablewrap">
+      <table class="data sortable">
+        <caption>Candidate catchy, question-shaped topics by cluster. All are hypotheses; none is a claim about search volume, popularity or product superiority.</caption>
+        <thead><tr><th scope="col">Cluster</th><th scope="col">Topic (hypothesis)</th><th scope="col">Decision it serves</th><th scope="col">Status</th></tr></thead>
+        <tbody>${rows}</tbody>
+      </table>
+    </div>
+  </div>
+</section>`;
+}
+
+function renderDecisionLog() {
+  const dl = suggestions.decisionLog;
+  const entries = dl.entries;
+  const rows = entries
+    .map(
+      (e) => `<tr>
+    <td>${esc(e.date)}</td>
+    <td><span class="pill pill--${esc(e.decision)}" >${esc(e.decision)}</span></td>
+    <td><code>${esc(e.item)}</code></td>
+    <td class="small">${esc(e.reason)}</td>
+  </tr>`
+    )
+    .join("");
+  return `<section class="section section--deep">
+  <div class="wrap">
+    <div class="section__head">
+      <h2 class="section__title" style="font-size:1.4rem">Decision log</h2>
+      <p class="section__dek">${esc(dl.note)}</p>
+    </div>
+    <div class="tablewrap">
+      <table class="data sortable">
+        <caption>Accept or reject a suggestion here before implementing it. Recorded so the choice is auditable and rejected items are not re-litigated.</caption>
+        <thead><tr><th scope="col">Date</th><th scope="col">Decision</th><th scope="col">Item</th><th scope="col">Reason</th></tr></thead>
+        <tbody>${
+          rows ||
+          `<tr><td colspan="4" style="text-align:center;padding:1.5rem;color:var(--ink-mute)"><strong style="display:block;font-family:var(--serif);font-size:1.05rem;color:var(--ink);margin-bottom:.3rem">No decisions recorded yet</strong>Each accepted or rejected suggestion is recorded here with a date and a one-line reason.</td></tr>`
+        }</tbody>
+      </table>
+    </div>
+
+    <div class="tablewrap mt2">
+      <table class="data sortable">
+        <caption>How to review and choose. Score each suggestion, read the risk, then accept or reject in writing.</caption>
+        <thead><tr><th scope="col">Step</th><th scope="col">Rule</th></tr></thead>
+        <tbody>${dl.rubric
+          .map((r, i) => `<tr><td class="num">${i + 1}</td><td class="small">${esc(r)}</td></tr>`)
+          .join("")}</tbody>
+      </table>
+    </div>
+
+    <div class="note note--warn mt2">
+      <p class="note__title">Kill criteria</p>
+      <ul style="margin:.3rem 0 0;padding-left:1.1rem">${dl.killCriteria
+        .map((k) => `<li>${esc(k)}</li>`)
+        .join("")}</ul>
+    </div>
+  </div>
+</section>`;
+}
+
+/* ============================================================
    SUGGESTIONS
    ============================================================ */
 function suggestionsPage() {
@@ -1673,11 +1811,15 @@ ${breadcrumb([{ href: url("/"), label: "Home" }, { label: "Suggestions" }])}
     </div>
   </div>
 </section>
+
+${renderDesignBrief()}
+${renderTopicRoadmap()}
+${renderDecisionLog()}
 `;
   pages.push({
     path: "/suggestions/",
     title: "Suggestions — the decision board",
-    desc: "A decision board: review each suggestion with its rationale, cost and risk, record your choice, and export the decisions — nothing is implemented before you choose.",
+    desc: "A decision board and a reviewable register: rationale, cost and risk per suggestion, plus a draft design brief, a topic roadmap of hypotheses, and a decision log — nothing is implemented without a recorded decision.",
     html,
     priority: "0.6",
     changefreq: "weekly"
@@ -1729,6 +1871,9 @@ ${breadcrumb([{ href: url("/"), label: "Home" }, { label: "Executive summary" }]
       <li><strong>A publication gate</strong> in the build: it fails if any page loses its disclosure, or if any Amazon link loses its sponsored marking.</li>
       <li><strong>SEO foundations</strong>: sitemap, RSS feed, canonical URLs, structured data, and descriptions written for humans.</li>
       <li><strong>A defined measurement plan</strong>: five events, a self-hosted collector, and a ledger schema.</li>
+      <li><strong>A design-prompt suggestion layer</strong>: a draft design brief for a polished-marketing look, a topic roadmap of catchy question-shaped hypotheses, organic-traffic levers, and a decision log — all on <a href="${url(
+        "/suggestions/"
+      )}">the suggestions page</a> for review before anything is implemented.</li>
     </ul>
 
     <h2>What does not exist, and why</h2>
@@ -1754,10 +1899,13 @@ ${breadcrumb([{ href: url("/"), label: "Home" }, { label: "Executive summary" }]
 
     <h2>What to do next, in order</h2>
     <ol>
+      <li>Review the suggestions, the draft design brief and the topic roadmap on <a href="${url(
+        "/suggestions/"
+      )}">/suggestions/</a>, and record accept / reject decisions in the decision log before implementing anything.</li>
       <li>Sign in to Associates and confirm one product link per product appears in the tracking report.</li>
       <li>Deploy the collector in <code>_worker/</code> and set the endpoint, then rebuild.</li>
       <li>Verify Search Console, replace the placeholder token, submit the sitemap.</li>
-      <li>Publish one guide a week for eight weeks.</li>
+      <li>Publish a new guide every week for eight weeks.</li>
       <li>At week eight, read the query report and replace the topic hypotheses with measured demand.</li>
       <li>Apply for Product Advertising API access once the account qualifies — it unlocks prices, ratings and images together.</li>
     </ol>
@@ -2219,6 +2367,23 @@ if (!canonicalMissing) ok("every page declares a canonical URL");
 if (!amazonUnsponsored) ok(`every Amazon anchor is either a tagged sponsored link or a declared non-affiliate citation`);
 if (!ratingShown) ok("no star ratings or review quotes displayed anywhere");
 
+// guide-count guard: any count word stated next to "guide(s)" must equal the published count
+{
+  const WORD_NUM = { one: 1, two: 2, three: 3, four: 4, five: 5, six: 6, seven: 7, eight: 8, nine: 9, ten: 10 };
+  const re = /\b(one|two|three|four|five|six|seven|eight|nine|ten|\d+)[ \t]+(?:[a-z-]+[ \t]+){0,3}guides?\b/gi;
+  const mismatch = [];
+  for (const f of htmlFiles) {
+    const text = fs.readFileSync(f, "utf8").replace(/<[^>]+>/g, "\n");
+    for (const m of text.matchAll(re)) {
+      const w = m[1].toLowerCase();
+      const n = WORD_NUM[w] ?? Number(w);
+      if (n !== guides.length) mismatch.push(`${path.relative(ROOT, f)}: "${m[0]}"`);
+    }
+  }
+  if (mismatch.length) fail(`prose states a guide count that does not match the ${guides.length} published: ${mismatch.slice(0, 5).join("; ")}`);
+  else ok(`every stated guide count matches the ${guides.length} guides published`);
+}
+
 // fabrication guard: no unverified spec may have a value
 let fabricated = 0;
 for (const p of products) {
@@ -2342,4 +2507,6 @@ console.log(`\nGenerated ${htmlFiles.length} pages, ${pages.length} in sitemap.`
 console.log(fails.length ? `FAILED: ${fails.length} issue(s)` : "PASSED: all gates clear");
 for (const f of fails.slice(0, 20)) console.log(`  FAIL ${f.m}`);
 for (const w of warns.slice(0, 10)) console.log(`  WARN ${w.m}`);
+if (gov.analytics.enabled && !(site.analyticsEndpoint || "").trim())
+  warn("governance.analytics.enabled is true but site.analyticsEndpoint is empty — the client is held inert by the build; set the endpoint or switch the decision off");
 if (fails.length) process.exitCode = 1;
