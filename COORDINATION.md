@@ -71,7 +71,7 @@ fourth site. Claim the scope here first and push the claim before writing code.
 | T31 | Populate the suggestions decision log from the decisions already written in the suggestion register, with a token legend and live counts | done | arena/d59cd471-wina | `data/suggestions.json`, `_src/build.mjs`, `assets/css/site.css`, `scripts/compliance-gate.mjs` | The reviewer surface the brief asks for. Every row mirrors a written decision; the gate now requires one dated row per suggestion and a token the register's status allows. |
 | T32 | End-to-end self-test of the collector contract, run in CI | done | arena/d59cd471-wina | `scripts/analytics-selftest.mjs`, `scripts/analytics-server.mjs`, `data/governance.json`, `.github/workflows/build.yml`, `package.json`, `README.md` | Found two real defects in the never-executed collector (FLG-041), both fixed. Nothing deployed; the client stays inert and FLG-011 stays open. |
 | T33 | Resolve FLG-037: buyer-action buttons and category copy no longer imply a price the site never shows | done | arena/508d0df8-wina | `_src/build.mjs`, `_src/pages-content.mjs`, `data/products.json`, `data/governance.json`, generated pages, `COORDINATION.md` (this row + T33 section) | Claimed as T27, renumbered at merge time. Copy-only; no product fact, price, link record, ledger, `scripts/` or `archive/` change |
-| T36 | Close the verified-spec coverage gap: fill the unverified manufacturer-sourced spec rows (warranty, app requirement, battery life) from official manufacturer pages, each with its own citation; leave price/rating/review rows withheld or unverified as policy requires | done | arena/d248d06c-wina | `data/products.json` (spec rows + `specSources`), `data/governance.json` (FLG-039 update, FLG-048), `compare.html`, `data-room/flagged.html`, `COORDINATION.md` (T36 section only) | Renumbered T27→T30→T36 across three merges (main took T27/T28/T29, then T30–T35). Claimed 2026-11-20. Extends main's build; no second site. No owner credentials needed. Filled the CHEF iQ Sense Gen 3 warranty (2 years, manufacturer user guide) that T35 left blank, plus app requirement and battery life; re-applied onto the Python-gate static structure after a parallel session replaced the Node build. |
+| T36 | Close the verified-spec coverage gap: fill the unverified manufacturer-sourced spec rows (warranty, app requirement, battery life) from official manufacturer pages, each with its own citation; leave price/rating/review rows withheld or unverified as policy requires | done | arena/d248d06c-wina | `data/products.json` (spec rows + `specSources`), `data/governance.json` (FLG-039 update, FLG-048), `compare.html`, `data-room/flagged.html`, `COORDINATION.md` (T36 section only) | Renumbered T27→T30→T35→T36 across four merges (main took T27/T28/T29, then T30–T35). Claimed 2026-11-20. Extends main's build; no second site. No owner credentials needed. Filled the CHEF iQ Sense Gen 3 warranty (2 years, manufacturer user guide) that T35 left blank, plus its app requirement and battery life; warranty terms now resolved for all five products. Register stands at 51/70 verified. Re-applied onto the Python-gate static structure after a parallel session replaced the Node build. |
 
 
 ---
@@ -1505,16 +1505,17 @@ work on branch `session-<id>/<task>`, and keep to your file scope.
 - **Reason:** the register has 60 spec rows; 24 are blank/unverified/withheld. `Price`, `Star
   rating` and `Review count` stay withheld/unverified by policy. `Warranty`, `App requirement` and
   `Battery life` were blank only because no official manufacturer page had been read (FLG-039).
-- **Result (2026-11-20).** Four rows filled from official manufacturer sources, each with its own
-  citation: Emeril 26QT `Warranty` = 1 year (emerileveryday.com); CHEF iQ Sense Gen3 `App
-  requirement` = free CHEF iQ App, required; `Battery life` = up to 70 h per full charge;
-  `Warranty` = 2 years, activated on first app connection (chefiq.com + official user guide PDF).
-  Verified-spec coverage rose 32/60 → 36/60. Left blank and unverified with reasons: Emeril
-  `Wattage` (official page publishes 120 V voltage, not watts); Chefman 8-Quart
-  `Wattage`/`Dimensions`/`Warranty` (blocked by FLG-028 SKU ambiguity); ThermoMaven `Calibration
-  record` (no certificate number published). `compare.html` "Warranty (claimed)" row updated to
-  show the verified Emeril and CHEF iQ values with their manufacturer source links; `flagged.html`
-  warranty-terms row and new FLG-048 row updated.
+- **Result (2026-11-20).** This session filled the four rows its own manufacturer-page read
+  confirmed, each with its own citation: Emeril 26QT `Warranty` = 1 year (emerileveryday.com);
+  CHEF iQ Sense Gen3 `App requirement` = free CHEF iQ App, required; `Battery life` = up to 70 h per
+  charge; `Warranty` = 2 years, activated on first app connection (chefiq.com + official user guide
+  PDF). After merging the parallel T35 line-by-line pass, the register stands at 51 of 70 spec rows
+  verified. The rows this session filled that T35 had left blank: the CHEF iQ Sense Gen3 `Warranty`
+  (T35 recorded "no CHEF iQ warranty document found"; this session found the manufacturer's own
+  user guide), plus its `App requirement` and `Battery life`. `compare.html` "Warranty (claimed)"
+  row shows the verified Emeril and CHEF iQ values with their manufacturer source links; the
+  `flagged.html` blank-values table now records warranty terms as fully resolved across all five
+  products, and FLG-048 is published on the Flagged page.
 - **Irregularities:** FLG-048 added (renumbered FLG-043→FLG-048 on this merge; `main` took FLG-043
   for the Emeril accessory count and FLG-044–047 in the same window) — CHEF iQ user guide states a
   2-year warranty, retailer listings state 1 year; register uses the manufacturer's current document,
