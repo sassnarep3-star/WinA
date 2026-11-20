@@ -70,7 +70,7 @@
         <p class="qstat__num">8</p>
         <p class="qstat__lab">Need a credential</p>
       </div><div class="qstat__cell qstat__cell--warn">
-        <p class="qstat__num">19</p>
+        <p class="qstat__num">20</p>
         <p class="qstat__lab">Not knowable here</p>
       </div><div class="qstat__cell qstat__cell--warn">
         <p class="qstat__num">4</p>
@@ -185,6 +185,11 @@
           <td>Two suggestion rationales cite a recommendation as if it were a program rule</td>
           <td><span class="pill pill--review">review</span></td>
           <td><a href="https://affiliate-program.amazon.com/help/node/topic/G8TW5AE9XL2VX9VM" rel="noopener" target="_blank">open</a></td>
+        </tr><tr>
+          <td><code>FLG-040</code></td>
+          <td>Four of the five submitted short links no longer resolve to a product page</td>
+          <td><span class="pill pill--review">review</span></td>
+          <td><a href="https://link.amazon/B04G1MEwY" rel="nofollow noopener" target="_blank" data-nonaffiliate="true">open</a></td>
         </tr><tr>
           <td><code>FLG-002</code></td>
           <td>Submitted links carry no Associates tag of their own</td>
@@ -424,6 +429,12 @@
     <p style="margin:0 0 .6rem">SUG-05 mentions the 60-day recency guidance and SUG-01 the FTC rule against describing experience you do not have. Both figures are correct against the official pages read on 2026-11-20 (Associates Help 'Application Review Process', which says content must be 'generally within the last 60 days', and FTC Disclosures 101). What is not verified is the framing in SUG-05's recommendation, which presents a weekly cadence as a way to stay inside that window. Amazon states the recency expectation for websites; it does not state a cadence that satisfies it.</p>
     <p style="margin:0 0 .6rem"><strong>What we did:</strong> Keep the recommendation, but treat it as our inference, not Amazon's instruction. No wording currently claims Amazon requires a weekly cadence, so nothing is misquoted; flagged because a future editor could tighten the sentence into a rule that does not exist.</p>
     <p class="small" style="margin:0"><a href="https://affiliate-program.amazon.com/help/node/topic/G8TW5AE9XL2VX9VM" rel="noopener" target="_blank">Associates Help: Application Review Process (read 2026-11-20)</a></p>
+  </article><article class="note note--warn" id="FLG-040" style="margin-bottom:1.25rem">
+    <p class="note__title">FLG-040 <span class="pill pill--review">review</span></p>
+    <h3 style="font-family:var(--serif);font-size:1.15rem;margin:.2rem 0 .5rem;color:var(--ink)">Four of the five submitted short links no longer resolve to a product page</h3>
+    <p style="margin:0 0 .6rem">Re-tested 2026-11-20 in one pass, each link.amazon URL was opened and the landing URL recorded. B04G1MEwY, B02NbDxp3, B00hJ57DV and B0c8moW59 all landed on the amazon.com homepage with no product in the response. B0f3GKalj still landed on its product page for B0DZFD6R9Z. The five direct product URLs (amazon.com/dp/&lt;ASIN&gt;) were fetched the same day and every one still returned the expected product title. Two explanations fit the evidence and this build cannot distinguish them: the shortener resolves differently for a logged-out automated fetch than for a signed-in human, or the links have expired or were reassigned. No prior session recorded a homepage landing, and three independent sessions had recorded product destinations.</p>
+    <p style="margin:0 0 .6rem"><strong>What we did:</strong> No page changes are needed for correctness, because every outbound link on this site is built as amazon.com/dp/&lt;ASIN&gt;?tag=shopnow047c-20 and none routes through a short link. What changes is evidentiary: the short links can no longer be cited as proof of what was submitted. Product identity rests on the direct product pages, which still match. The owner should open all five short links in a normal signed-in browser and record what they see.</p>
+    <p class="small" style="margin:0"><a href="https://link.amazon/B04G1MEwY" rel="nofollow noopener" target="_blank" data-nonaffiliate="true">Submitted short link, re-tested 2026-11-20 (returned amazon.com homepage)</a></p>
   </article><article class="note note--warn" id="FLG-002" style="margin-bottom:1.25rem">
     <p class="note__title">FLG-002 <span class="pill pill--action">action</span></p>
     <h3 style="font-family:var(--serif);font-size:1.15rem;margin:.2rem 0 .5rem;color:var(--ink)">Submitted links carry no Associates tag of their own</h3>
@@ -559,8 +570,8 @@
   </article><article class="note " id="FLG-032" style="margin-bottom:1.25rem">
     <p class="note__title">FLG-032 <span class="pill pill--resolved">resolved</span></p>
     <h3 style="font-family:var(--serif);font-size:1.15rem;margin:.2rem 0 .5rem;color:var(--ink)">All five submitted short links re-resolved on 2026-11-20; destinations unchanged</h3>
-    <p style="margin:0 0 .6rem">Each link.amazon URL was opened again. CHEFMAN 6 Quart B04G1MEwY → B0CDY277D3; Emeril Lagasse 26QT B02NbDxp3 → B09B7SB46R; Chefman 8 Qt B00hJ57DV → B08DKYBTPH; ThermoMaven 1 Sec B0c8moW59 → B0DHZTCNR5; CHEF iQ Sense Gen3 B0f3GKalj → B0DZFD6R9Z. The product title on each landing page matches data/links.json. Prices and ratings seen on the pages were not recorded, as policy requires.</p>
-    <p style="margin:0 0 .6rem"><strong>What we did:</strong> None. Repeat if a link is changed.</p>
+    <p style="margin:0 0 .6rem">Each link.amazon URL was opened again. CHEFMAN 6 Quart B04G1MEwY → B0CDY277D3; Emeril Lagasse 26QT B02NbDxp3 → B09B7SB46R; Chefman 8 Qt B00hJ57DV → B08DKYBTPH; ThermoMaven 1 Sec B0c8moW59 → B0DHZTCNR5; CHEF iQ Sense Gen3 B0f3GKalj → B0DZFD6R9Z. The product title on each landing page matches data/links.json. Prices and ratings seen on the pages were not recorded, as policy requires. SUPPLEMENT 2026-11-20 (session arena/38469152-wina): on re-test, four of the five short links (B04G1MEwY, B02NbDxp3, B00hJ57DV, B0c8moW59) returned the amazon.com homepage instead of a product page, and only B0f3GKalj still returned its product page (B0DZFD6R9Z). The five direct /dp/ URLs were fetched the same day and all five still resolved to the expected titles. The destinations recorded in data/links.json are therefore corroborated by the product pages but are no longer corroborated by the short links themselves. See FLG-040.</p>
+    <p style="margin:0 0 .6rem"><strong>What we did:</strong> Superseded in part by FLG-040. The product identities stand (direct pages verified 2026-11-20); the short links are no longer usable as evidence and the site does not depend on them.</p>
     <p class="small" style="margin:0"><a href="https://www.amazon.com/dp/B0CDY277D3" rel="nofollow noopener" target="_blank" data-nonaffiliate="true">Amazon listing (landing page of the first link)</a></p>
   </article><article class="note " id="FLG-036" style="margin-bottom:1.25rem">
     <p class="note__title">FLG-036 <span class="pill pill--resolved">resolved</span></p>

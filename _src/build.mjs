@@ -1192,6 +1192,10 @@ ${breadcrumb([{ href: url("/"), label: "Home" }, { label: "Source register" }])}
   <div class="wrap">
     <h2 class="section__title" style="font-size:1.4rem">Link resolution</h2>
     <p class="section__dek" style="margin-bottom:1.25rem">The five submitted short links, what they resolved to, and the separation between the intended ASIN (never supplied) and the observed destination (recorded by following the link).</p>
+    <div class="note note--warn" style="margin-bottom:1.25rem">
+      <p class="note__title">Re-tested 2026-11-20: four of the five short links now land on the Amazon homepage</p>
+      <p>Opened again in one pass this session, <code>B04G1MEwY</code>, <code>B02NbDxp3</code>, <code>B00hJ57DV</code> and <code>B0c8moW59</code> returned <code>amazon.com</code> with no product; only <code>B0f3GKalj</code> still returned its product page. The five direct <code>/dp/</code> URLs were fetched the same day and every one still returned the expected product title, so the product identities below stand on the product pages rather than on the short links. Both readings of the short-link result are recorded, not reconciled — see <a href="${url("/flagged/#FLG-040")}">FLG-040</a>. Nothing on this site routes through a short link: every outbound link is built as <code>amazon.com/dp/&lt;ASIN&gt;?tag=</code>.</p>
+    </div>
     <div class="tablewrap">
       <table class="data sortable">
         <caption>Submitted link → observed destination. Intended ASIN is a separate field from observed destination and is deliberately blank.</caption>

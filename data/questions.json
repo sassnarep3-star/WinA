@@ -423,6 +423,20 @@
       "howToFind": "Deploy the collector on a host with a request log, set site.analyticsEndpoint, then let it accumulate for two weeks before reading anything into it.",
       "sourceUrl": "https://sassnarep3-star.github.io/WinA/analytics/",
       "sourceLabel": "This site's own measurement page: events defined, collector undeployed"
+    },
+    {
+      "id": "Q-28",
+      "area": "identity",
+      "priority": "high",
+      "status": "needs-review",
+      "question": "Do the five submitted short links still work for a real person in a browser?",
+      "answer": "Not reliably, as tested from here on 2026-11-20. Four of the five returned the amazon.com homepage; one still returned its product page. The five direct product URLs all still resolved to the expected titles.",
+      "have": "Direct /dp/ URLs verified the same day for all five ASINs; the product identities are not in doubt.",
+      "missing": "A signed-in human opening each short link and reporting what loads. That is the only test that matches how the links were originally supplied.",
+      "matters": "If a short link is dead or reassigned, the intended product behind it is unconfirmed, even if the product page we point at is right today.",
+      "howToFind": "Open each of the five link.amazon URLs in a normal browser while signed in, note the landing product, and record the result against FLG-040.",
+      "sourceUrl": "https://link.amazon/B04G1MEwY",
+      "sourceLabel": "One of the five submitted short links (re-tested 2026-11-20)"
     }
   ]
 }

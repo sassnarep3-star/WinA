@@ -337,8 +337,8 @@
       "id": "FLG-032",
       "severity": "resolved",
       "title": "All five submitted short links re-resolved on 2026-11-20; destinations unchanged",
-      "detail": "Each link.amazon URL was opened again. CHEFMAN 6 Quart B04G1MEwY → B0CDY277D3; Emeril Lagasse 26QT B02NbDxp3 → B09B7SB46R; Chefman 8 Qt B00hJ57DV → B08DKYBTPH; ThermoMaven 1 Sec B0c8moW59 → B0DHZTCNR5; CHEF iQ Sense Gen3 B0f3GKalj → B0DZFD6R9Z. The product title on each landing page matches data/links.json. Prices and ratings seen on the pages were not recorded, as policy requires.",
-      "action": "None. Repeat if a link is changed.",
+      "detail": "Each link.amazon URL was opened again. CHEFMAN 6 Quart B04G1MEwY → B0CDY277D3; Emeril Lagasse 26QT B02NbDxp3 → B09B7SB46R; Chefman 8 Qt B00hJ57DV → B08DKYBTPH; ThermoMaven 1 Sec B0c8moW59 → B0DHZTCNR5; CHEF iQ Sense Gen3 B0f3GKalj → B0DZFD6R9Z. The product title on each landing page matches data/links.json. Prices and ratings seen on the pages were not recorded, as policy requires. SUPPLEMENT 2026-11-20 (session arena/38469152-wina): on re-test, four of the five short links (B04G1MEwY, B02NbDxp3, B00hJ57DV, B0c8moW59) returned the amazon.com homepage instead of a product page, and only B0f3GKalj still returned its product page (B0DZFD6R9Z). The five direct /dp/ URLs were fetched the same day and all five still resolved to the expected titles. The destinations recorded in data/links.json are therefore corroborated by the product pages but are no longer corroborated by the short links themselves. See FLG-040.",
+      "action": "Superseded in part by FLG-040. The product identities stand (direct pages verified 2026-11-20); the short links are no longer usable as evidence and the site does not depend on them.",
       "sourceUrl": "https://www.amazon.com/dp/B0CDY277D3",
       "sourceLabel": "Amazon listing (landing page of the first link)"
     },
@@ -386,6 +386,15 @@
       "action": "Keep the recommendation, but treat it as our inference, not Amazon's instruction. No wording currently claims Amazon requires a weekly cadence, so nothing is misquoted; flagged because a future editor could tighten the sentence into a rule that does not exist.",
       "sourceUrl": "https://affiliate-program.amazon.com/help/node/topic/G8TW5AE9XL2VX9VM",
       "sourceLabel": "Associates Help: Application Review Process (read 2026-11-20)"
+    },
+    {
+      "id": "FLG-040",
+      "severity": "review",
+      "title": "Four of the five submitted short links no longer resolve to a product page",
+      "detail": "Re-tested 2026-11-20 in one pass, each link.amazon URL was opened and the landing URL recorded. B04G1MEwY, B02NbDxp3, B00hJ57DV and B0c8moW59 all landed on the amazon.com homepage with no product in the response. B0f3GKalj still landed on its product page for B0DZFD6R9Z. The five direct product URLs (amazon.com/dp/<ASIN>) were fetched the same day and every one still returned the expected product title. Two explanations fit the evidence and this build cannot distinguish them: the shortener resolves differently for a logged-out automated fetch than for a signed-in human, or the links have expired or were reassigned. No prior session recorded a homepage landing, and three independent sessions had recorded product destinations.",
+      "action": "No page changes are needed for correctness, because every outbound link on this site is built as amazon.com/dp/<ASIN>?tag=shopnow047c-20 and none routes through a short link. What changes is evidentiary: the short links can no longer be cited as proof of what was submitted. Product identity rests on the direct product pages, which still match. The owner should open all five short links in a normal signed-in browser and record what they see.",
+      "sourceUrl": "https://link.amazon/B04G1MEwY",
+      "sourceLabel": "Submitted short link, re-tested 2026-11-20 (returned amazon.com homepage)"
     }
   ],
   "ledger": {

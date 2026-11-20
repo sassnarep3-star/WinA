@@ -67,19 +67,19 @@
 <section class="section">
   <div class="wrap">
     <div class="qstat">
-      <div class="qstat__cell"><p class="qstat__num">27</p><p class="qstat__lab">Questions logged</p></div>
+      <div class="qstat__cell"><p class="qstat__num">28</p><p class="qstat__lab">Questions logged</p></div>
       <div class="qstat__cell"><p class="qstat__num">6</p><p class="qstat__lab">Blocking</p></div>
       <div class="qstat__cell qstat__cell--ok"><p class="qstat__num">7</p><p class="qstat__lab">Closed</p></div>
-      <div class="qstat__cell qstat__cell--warn"><p class="qstat__num">20</p><p class="qstat__lab">Still open</p></div>
+      <div class="qstat__cell qstat__cell--warn"><p class="qstat__num">21</p><p class="qstat__lab">Still open</p></div>
     </div>
 
-    <p class="lede" style="margin:1.75rem 0 1.5rem">17 of the 20 open questions cannot be closed from this repository at all: they need a credential, a decision by the owner, or a deployed service. Nothing on this page is inferred, and where an answer is unknown the answer column says so instead of guessing.</p>
+    <p class="lede" style="margin:1.75rem 0 1.5rem">18 of the 21 open questions cannot be closed from this repository at all: they need a credential, a decision by the owner, or a deployed service. Nothing on this page is inferred, and where an answer is unknown the answer column says so instead of guessing.</p>
 
     <div class="qareas"><div class="qarea">
       <p class="qarea__name">Product identity</p>
       <p class="qarea__note">What exactly is being promoted.</p>
-      <p class="qarea__ratio"><span>2</span> of 3 closed</p>
-      <div class="qarea__bar" role="img" aria-label="2 of 3 questions closed"><span style="width:67%"></span></div>
+      <p class="qarea__ratio"><span>2</span> of 4 closed</p>
+      <div class="qarea__bar" role="img" aria-label="2 of 4 questions closed"><span style="width:50%"></span></div>
     </div><div class="qarea">
       <p class="qarea__name">Commercial terms</p>
       <p class="qarea__note">What the link actually pays and whether it attributes.</p>
@@ -146,7 +146,7 @@
       </li>
     </ol>
 
-    <h2 class="section__title" style="font-size:1.5rem;margin-top:2.75rem">Still open — 20</h2>
+    <h2 class="section__title" style="font-size:1.5rem;margin-top:2.75rem">Still open — 21</h2>
     <p class="section__dek" style="margin-bottom:1.25rem">Every unanswered question, ordered by how much it blocks. The "what is missing" column is the honest list of what this build does not know.</p>
     <div class="tablewrap">
       <table class="data sortable">
@@ -280,6 +280,16 @@
     <td class="small">Deploy the collector on a host with a request log, set site.analyticsEndpoint, then let it accumulate for two weeks before reading anything into it.</td>
     <td><span class="pill pill--blocked-on-deploy">blocked-on-deploy</span></td>
     <td class="small"><a href="https://sassnarep3-star.github.io/WinA/analytics/" rel="noopener" target="_blank">This site's own measurement page: events defined, collector undeployed</a></td>
+  </tr><tr>
+    <td><code>Q-28</code></td>
+    <td class="small">Product identity</td>
+    <td><strong>Do the five submitted short links still work for a real person in a browser?</strong>
+      <span class="pill pill--high" style="margin-top:.4rem">high</span></td>
+    <td class="small">Not reliably, as tested from here on 2026-11-20. Four of the five returned the amazon.com homepage; one still returned its product page. The five direct product URLs all still resolved to the expected titles.</td>
+    <td class="small">A signed-in human opening each short link and reporting what loads. That is the only test that matches how the links were originally supplied.</td>
+    <td class="small">Open each of the five link.amazon URLs in a normal browser while signed in, note the landing product, and record the result against FLG-040.</td>
+    <td><span class="pill pill--needs-review">needs-review</span></td>
+    <td class="small"><a href="https://link.amazon/B04G1MEwY" rel="nofollow noopener" target="_blank" data-nonaffiliate="true">One of the five submitted short links (re-tested 2026-11-20)</a></td>
   </tr><tr>
     <td><code>Q-08</code></td>
     <td class="small">Demand</td>
