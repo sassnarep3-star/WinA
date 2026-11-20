@@ -90,6 +90,12 @@ fourth site. Claim the scope here first and push the claim before writing code.
 | T24 | Register hygiene: 5 dangling `SRC-02` refs repaired; citation-misattribution fixed in `_src/build.mjs`; FLG-024 extended with computed counts instead of adding a duplicate row | done | arena-4b28af50 | `data/{special_link_tests,governance,products}.json`, `_src/build.mjs` | HTML for all pages except `/flagged/` is byte-identical — the fixes are inert for current data |---
 | T25 | Design-prompt suggestion layer: polished-marketing design direction, catchy topic roadmap (hypotheses), organic-traffic levers, decision log — feeding the reviewable suggestions section | done | arena-829ea2fd-wina | `data/suggestions.json`, `data/governance.json`, `_src/build.mjs`, `COORDINATION.md` (arena-829ea2fd-wina section only), generated pages | Renumbered three times on merge (T17→T19→T21→T25) because T17, T19–T24 were taken on `main` first. Extends main's build; no second site. Verification of the 5 links re-done 2026-11-20 by this session |
 | T26 | Re-verify live site vs build, the five submitted links, and the FLG-033 ASIN-definition citation; record the owner-side blockers; no page or data change unless a verified defect is found | done | arena-8e69b462-wina | `COORDINATION.md` (arena-8e69b462-wina section only), `data/governance.json` (FLG-036, FLG-037 appended), generated `flagged/` + `summary/` | Claimed 2026-11-20. Branch `arena/8e69b462-wina` (base `80b45a1`, main has not advanced) |
+| T27 | Editorial expansion: two new guides (technique + seasonal), seasonal collection page, front-page integration | done | arena-27f76c22 | `_src/content.mjs`, `_src/build.mjs` (frontPage/seasonalPage/render/summary only), `data/products.json` (guideTopics only) | Renumbered from T19 (later taken on `main` by arena-4b28af50). See session section for results |
+| T28 | Design/marketing polish: generated brand imagery (disclosed, non-product), og:image, seasonal banner + steps CSS | done | arena-27f76c22 | `assets/img/`, `assets/css/site.css`, `_src/build.mjs` layout | Renumbered from T20. Imagery respects FLG-007; owner decision recorded as Q-26 |
+| T29 | Decision registers: SUG-25..29, Q-23..26, FLG-038, FLG-020 resolved, FLG-013 recount | done | arena-27f76c22 | `data/suggestions.json`, `data/questions.json`, `data/governance.json` | Renumbered from T21. Flag renumbered FLG-034→FLG-038 on merge (main's FLG-034/035/036/037 taken); suggestions renumbered SUG-17..21→SUG-25..29 for the same reason |
+| T30 | Executive summary refresh for the editorial pass | done | arena-27f76c22 | `_src/build.mjs` (summaryPage only) | Renumbered from T22 |
+| T31 | Line-by-line re-verification: 5 listings re-fetched, 4 manufacturer pages, Amazon Policies + FTC pages re-read; FLG-038 found | done | arena-27f76c22 | COORDINATION.md (this session's section), `data/governance.json` | Renumbered from T23. Independent of arena-301b1534 (T18) and arena-8e69b462 (T26) passes on the same date |
+| T32 | Integration: PR → main, merge, confirm Pages deploy, record PR link + deploy result | in progress | arena-27f76c22 | PR/merge only | Renumbered from T24 (T24 was taken on `main` by arena-4b28af50) |
 
 ## Link resolution (verified by three independent sessions)
 
@@ -778,3 +784,61 @@ No product data, link record, or page copy was changed.
 
 **PR / merge:** pending
 **Deploy:** pending
+
+---
+
+## Session arena-27f76c22 — results (2026-11-20)
+
+Claimed 2026-11-20 as T19–T24; on merging `main` (which had advanced through PRs #19–#30 during
+this session's work) the task IDs were re-claimed as **T27–T32** because every earlier number had
+been taken by another session in the meantime. Register IDs were renumbered the same way, and the
+conflict resolution rule (main's content wins, re-apply this session's deltas) was applied twice:
+once at the start of the session (base d7abb68 vs main 425bfbd, unrelated histories), and again
+against main ee56e52 immediately before the PR.
+
+**T27 — editorial expansion (done).**
+- Two new guides in `_src/content.mjs`: **06** "Seven places an air fryer quietly beats a second oven" (`/guides/not-burn-the-rolls/`, technique cluster) and **07** "Cooking two holiday dishes at once: the two-temperature problem" (`/guides/holiday-batch/`, seasonal cluster). Both in the established voice — decisions, not verdicts; every factual statement traceable to `data/products.json`; no testing claims.
+- New collection page **/seasonal/** (seasonalPage in `_src/build.mjs`): holiday cluster hub with a 5-step sequence, the three air-fryer cards, both thermometer cards, links to both new guides, CollectionPage + ItemList JSON-LD, and an on-page disclosure that the topic is calendar-driven, not demand-driven — **naming SUG-23's opposing hold position so the owner sees both arguments** (see T29).
+- Front page: seasonal banner linking the cluster; guides grid renders all seven; strip counts data-driven (5 products / 7 guides / 0 tested / 10 policy checks).
+- Navigation: "Holiday" label between Compare and About. The T18 guide-count gate caught three stale "five guides" prose mentions during this pass (questions/seo/suggestions) — all fixed rather than bypassed.
+
+**T28 — design polish (done).**
+- Two **generated** editorial images in `assets/img/` (`holiday-counter.jpg`, `counter-plan.jpg`): kitchen-counter scenes with **no products, no brands, no people, no text** — they cannot be mistaken for product photography (FLG-007 respected), and each use is labelled on-page as an illustration. Owner position on generated brand imagery is recorded as Q-26.
+- `layout()` now emits `og:image`, `og:image:alt`, `twitter:image`.
+- CSS: `.banner`, `.article-head--image` with scrim, `.steps` — same paper-and-ink register, responsive at 900px.
+
+**T29 — decision registers (done).**
+- **FLG-038** (review; originally FLG-034 on this branch, renumbered on merge because main's FLG-034 was taken by arena-829ea2fd): the CHEF iQ specification source is a family page whose loaded default variant is the one-probe model (CQ60-1C-Z1-E) while the promoted listing is the three-probe Gen3 — found during T31; cited values are line-level and match the listing, so no spec changed and nothing was invented to close it.
+- **FLG-020** resolved (was: no seasonal content): seasonal content shipped as calendar-driven with its limitation disclosed; **SUG-23 (hold) and SUG-25 (shipped) are both kept live with their reasons**, so the seasonal disagreement between parallel sessions is a recorded owner decision (Q-25), not a silent one.
+- **FLG-013** detail updated 5 → 7 guides (still below the Associates 10-post rule of thumb).
+- **SUG-25** (shipped): seasonal cluster now, annual November refresh, position opposite SUG-23. **SUG-26** (recommend): one technique article per month toward the 10-post bar. **SUG-27** (consider): one generated scene per collection. **SUG-28** (hold): no paid traffic before FLG-011 + FLG-004 close. **SUG-29** (consider): head-to-head thermometer page gated on query data.
+- **Q-23..Q-26** added: holiday demand unknown until SG-29; which guide earns impressions first; seasonal cadence vs SUG-23 hold (owner decision); generated-imagery owner decision.
+
+**T30 — executive summary refresh (done).** Summary counts seven guides, names the seasonal collection and publisher imagery, and points next actions at SUG-26, Q-23, Q-25 and the seasonal refresh.
+
+**T31 — line-by-line re-verification (done, 2026-11-20).** Independent of the T18 (arena-301b1534) and T26 (arena-8e69b462) passes on the same date; fresh fetches by this session:
+
+| Source re-checked | Result |
+|---|---|
+| `amazon.com/dp/B0CDY277D3` | Live; title matches register exactly |
+| `amazon.com/dp/B09B7SB46R` | Live; title matches register exactly |
+| `amazon.com/dp/B08DKYBTPH` | Live; title matches register exactly (listing title now carries ® on TurboFry — cosmetic, not recorded as a data change) |
+| `amazon.com/dp/B0DHZTCNR5` | Live; title matches register exactly |
+| `amazon.com/dp/B0DZFD6R9Z` | Live; title matches register exactly |
+| Associates Program Policies page | Live; "Updated: April 14, 2026" observed; the quoted clauses this site relies on (§2(b), §6(t), §6(w), §6(y), IP License) present in current text |
+| FTC Disclosures 101 | Live; "hard to miss", "material connection", "You can't talk about your experience with a product you haven't tried" confirmed verbatim |
+| chefman.com TurboFry Touch Dual-Window | Live; model RJ38-SQPF-3TDB-2W confirmed on page; Hi-Fry 450°F, Sync, capacity as cited |
+| emerileveryday.com French Door AirFryer 360 | Live; 26-qt / 24.6 L / 16.9"D×15.8"W×14.8"H / 120 V / "25 Cooking Pre-sets" — the 24-vs-25 contradiction (FLG-029) still stands, correctly unresolved |
+| thermomaven.com F1 Stealth | Live; 1-second read, ±0.5°F, NIST/NSF logos (no certificate numbers published — still manufacturer claim), lifetime warranty w/ 30-day activation |
+| chefiq.com iQ Sense | Live; Wi-Fi+BT, 1000°F, 4 internal + 1 ambient, air-fryer compatibility confirmed — **variant discrepancy logged as FLG-038** |
+
+Result: no data change required except FLG-038 (new) and FLG-020/FLG-013 (status/count updates). Every table row still carries its own source link; unverified/withheld rows remain blank by design. Note: this pass found all five `/dp/` listing pages reachable and matching, which complements T26's finding that three of five `link.amazon` short links did not reproduce (FLG-036) — the two observations are consistent with each other and the site depends on the `/dp/` destinations, not the short links.
+
+**Gates after this session's work (2026-11-20):**
+- `node _src/build.mjs` PASSED — 33 pages, 32 sitemap entries.
+- `node scripts/check-site.mjs` — "repository gate passed — safe to publish" (33 pages, 1,284 internal links, 113 Amazon anchors, 97 sponsored).
+- `node scripts/compliance-gate.mjs` — 1,201 checks, 0 failing, 1 warning (FLG-024, owner-side, unchanged).
+- `node scripts/publish-gate.mjs --committed` — 5 checks, 0 failing.
+- Determinism: rebuild leaves the committed tree byte-identical.
+
+**T32 — integration:** record below once the PR, merge and deploy are confirmed.
