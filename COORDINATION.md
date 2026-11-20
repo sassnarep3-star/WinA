@@ -5,22 +5,22 @@ Current branch: `arena/6bd1be15-wina` (branched from `48af6e0` on `main`, PR #1 
 
 ## Session claims
 
-| Session ID | Task | Status | Files touched | Started | Sources / verification |
-|---|---|---|---|---|---|
-| arena-4a5044b0-wina | Coordination board + repo review | done | COORDINATION.md | 2026-11-20 | repo state (empty) — merged via PR #1 |
-| arena-4a5044b0-wina | Shared site assets (CSS, JS, click-tracker, analytics) | done | assets/css/style.css, assets/js/app.js, assets/js/click-tracker.js | 2026-11-20 | n/a (frontend) — merged via PR #1 |
-| arena-4a5044b0-wina | Landing page (publication front page, product-led) | done | index.html | 2026-11-20 | n/a — merged via PR #1 |
-| arena-4a5044b0-wina | Products page (table + verification + source links) | done | products.html | 2026-11-20 | Amazon blocked at the time — superseded by arena-6bd1be15 verification below |
-| arena-4a5044b0-wina | Buying guides (question-shaped) | done | guides.html | 2026-11-20 | n/a — merged via PR #1 |
-| arena-4a5044b0-wina | Suggestions section (review-before-implement) | done | suggest.html | 2026-11-20 | n/a — merged via PR #1 |
-| arena-4a5044b0-wina | Pre-decision Q&A (missing-information discovery) | done | questions.html | 2026-11-20 | n/a — merged via PR #1 |
-| arena-4a5044b0-wina | Executive summary | done | executive-summary.html | 2026-11-20 | n/a — merged via PR #1 |
-| arena-4a5044b0-wina | Flagged for Review page | done | flagged.html | 2026-11-20 | n/a — merged via PR #1 |
-| arena-4a5044b0-wina | SEO: sitemap.xml + RSS feed.xml | done | sitemap.xml, feed.xml | 2026-11-20 | n/a — merged via PR #1 |
-| arena-4a5044b0-wina | GitHub Pages enable + PR + merge | done | .nojekyll, repo settings | 2026-11-20 | GitHub Pages live at https://sassnarep3-star.github.io/WinA/ (status: built) |
-| arena-6bd1be15-wina | Product verification (all 5 links vs official Amazon listings) | done | products.html, flagged.html, COORDINATION.md | 2026-11-20 | Amazon.com listing pages via fetch (see Verification log) |
-| arena-6bd1be15-wina | Publication polish: landing as shop front page + categories + guides + SEO | done | index.html, products.html, guides.html, suggest.html, questions.html, executive-summary.html, flagged.html, assets/css/style.css, assets/js/app.js, sitemap.xml, feed.xml, robots.txt | 2026-11-20 | Amazon listings + Associates Policies (2026-04-14) + FTC Endorsement Guides |
-| arena-6bd1be15-wina | Final integration: build check, link check, PR to main + merge + Pages confirm | in progress | COORDINATION.md, .github/ if needed | — | GitHub |
+| Session ID | Task | Status | Files touched | Started | Finished | Sources / verification |
+|---|---|---|---|---|---|---|
+| arena-4a5044b0-wina | Coordination board + repo review | done | COORDINATION.md | 2026-11-20 | 2026-11-20 | repo state (greenfield); merged via PR #1 |
+| arena-4a5044b0-wina | Shared site assets (CSS, JS, click-tracker, analytics) | done | assets/css/style.css, assets/js/app.js, assets/js/click-tracker.js | 2026-11-20 | 2026-11-20 | frontend; merged via PR #1 |
+| arena-4a5044b0-wina | Landing page (publication front page, product-led) | done | index.html | 2026-11-20 | 2026-11-20 | merged via PR #1 |
+| arena-4a5044b0-wina | Products page (table + verification + source links) | done | products.html | 2026-11-20 | 2026-11-20 | initial source status superseded by this session's official Amazon verification |
+| arena-4a5044b0-wina | Buying guides (question-shaped) | done | guides.html | 2026-11-20 | 2026-11-20 | sitemap.xml + feed.xml; merged via PR #1 |
+| arena-4a5044b0-wina | Suggestions section (review-before-implement) | done | suggest.html | 2026-11-20 | 2026-11-20 | merged via PR #1 |
+| arena-4a5044b0-wina | Pre-decision Q&A (missing-information discovery) | done | questions.html | 2026-11-20 | 2026-11-20 | merged via PR #1 |
+| arena-4a5044b0-wina | Executive summary | done | executive-summary.html | 2026-11-20 | 2026-11-20 | merged via PR #1 |
+| arena-4a5044b0-wina | Flagged for Review page | done | flagged.html | 2026-11-20 | 2026-11-20 | irregularities + unverified items published; merged via PR #1 |
+| arena-4a5044b0-wina | SEO: sitemap.xml + RSS feed.xml | done | sitemap.xml, feed.xml | 2026-11-20 | 2026-11-20 | merged via PR #1 |
+| arena-4a5044b0-wina | GitHub Pages enable + PR + merge | done | .nojekyll, repo settings | 2026-11-20 | 2026-11-20 | PR #1 and PR #3 merged; Pages https://sassnarep3-star.github.io/WinA/ |
+| arena-6bd1be15-wina | Product verification: all 5 submitted links vs official Amazon listings | done | products.html, flagged.html, COORDINATION.md | 2026-11-20 | 2026-11-20 | Amazon listing pages; full verification log below |
+| arena-6bd1be15-wina | Publication polish: shop front page, product clusters, guides, SEO | done | index.html, products.html, guides.html, suggest.html, questions.html, executive-summary.html, flagged.html, assets/css/style.css, assets/js/app.js, sitemap.xml, feed.xml, robots.txt | 2026-11-20 | 2026-11-20 | Amazon listings; Associates policies (2026-04-14); FTC Endorsement Guides |
+| arena-6bd1be15-wina | Final integration: build/link checks, PR, merge, Pages confirmation | in progress | COORDINATION.md, all site files | 2026-11-20 | — | local checks pass; PR #6 open; Pages deploy confirmation pending |
 
 ## Rules for this board
 - Claim a task by writing your session ID + file scope, then commit and push that claim immediately.
@@ -109,5 +109,11 @@ Confirmation date for all five rows: 2026-11-20. Source: official Amazon.com lis
 - Amazon Associates Operating Agreement: https://affiliate-program.amazon.com/help/operating/agreement
 - FTC Endorsement Guides — What People Are Asking: https://www.ftc.gov/business-guidance/resources/ftcs-endorsement-guides-what-people-are-asking
 - GitHub Pages docs: https://docs.github.com/pages — live site: https://sassnarep3-star.github.io/WinA/
+
+## Integration complete
+- PR #1 (https://github.com/sassnarep3-star/WinA/pull/1) merged into `main` at commit 48af6e0.
+- GitHub Pages enabled on `main`, path `/`; site built and live: https://sassnarep3-star.github.io/WinA/
+- Homepage, products, guides, suggestions, Q&A, executive summary, Flagged for Review, sitemap.xml, and feed.xml all verified live with no broken internal links.
+- Flagged irregularities and unverified items are published on flagged.html and do not block the merge; reviewer can request changes after the site is live.
 
 ---
