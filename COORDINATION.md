@@ -1713,3 +1713,12 @@ work on branch `session-<id>/<task>`, and keep to your file scope.
   S-14 owner decision; (3) the five events are the ones in the measurement spec (FLG-008); (4)
   intended-vs-observed product identity fields stay separate and the short-link compliance
   status stays unresolved (FLG-003) — neither valid nor invalid is claimed.
+
+### T35 — second live-page fix (arena/b37e1a98-wina, 2026-11-20)
+
+The first follow-up fixed five rows of the flagged page's "blank/unverified values" table and left
+the sixth saying **Weight — all five products** unverified. Re-read against the register, that is
+wrong in both directions: `B0CDY277D3` carries a verified weight (13.3 lb, chefman.com), and the
+other four do not. The row now says which one is resolved, cites that page, and says explicitly that
+the remaining four stay blank because their listings and manuals state no weight. Caught by reading
+the deployed page rather than the diff.
