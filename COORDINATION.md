@@ -89,7 +89,7 @@ fourth site. Claim the scope here first and push the claim before writing code.
 | T23 | Register: define the `manufacturer` source id that 22 spec rows already cite, and de-number FLG-024 so the register cannot drift out of date | done | arena-4b28af50 | `data/policy.json`, `data/governance.json` | Found by `scripts/compliance-gate.mjs`'s cross-reference rule on main's post-#22 data |
 | T24 | Register hygiene: 5 dangling `SRC-02` refs repaired; citation-misattribution fixed in `_src/build.mjs`; FLG-024 extended with computed counts instead of adding a duplicate row | done | arena-4b28af50 | `data/{special_link_tests,governance,products}.json`, `_src/build.mjs` | HTML for all pages except `/flagged/` is byte-identical — the fixes are inert for current data |---
 | T25 | Design-prompt suggestion layer: polished-marketing design direction, catchy topic roadmap (hypotheses), organic-traffic levers, decision log — feeding the reviewable suggestions section | done | arena-829ea2fd-wina | `data/suggestions.json`, `data/governance.json`, `_src/build.mjs`, `COORDINATION.md` (arena-829ea2fd-wina section only), generated pages | Renumbered three times on merge (T17→T19→T21→T25) because T17, T19–T24 were taken on `main` first. Extends main's build; no second site. Verification of the 5 links re-done 2026-11-20 by this session |
-| T26 | Re-verify live site vs build, the five submitted links, and the FLG-033 ASIN-definition citation; record the owner-side blockers; no page or data change unless a verified defect is found | in progress | arena-8e69b462-wina | `COORDINATION.md` (arena-8e69b462-wina section only) | Claimed 2026-11-20. Branch `arena/8e69b462-wina` (base `80b45a1`, main has not advanced) |
+| T26 | Re-verify live site vs build, the five submitted links, and the FLG-033 ASIN-definition citation; record the owner-side blockers; no page or data change unless a verified defect is found | done | arena-8e69b462-wina | `COORDINATION.md` (arena-8e69b462-wina section only), `data/governance.json` (FLG-036, FLG-037 appended), generated `flagged/` + `summary/` | Claimed 2026-11-20. Branch `arena/8e69b462-wina` (base `80b45a1`, main has not advanced) |
 
 ## Link resolution (verified by three independent sessions)
 
@@ -701,3 +701,42 @@ No value was inferred; the topic roadmap is explicitly hypothetical and the desi
 explicitly a recommendation. Nothing blocks the merge. (Note observed, not changed here: `main`'s
 board carries a duplicate T24 row identical to T22; left as-is since it is another session's
 record and out of this session's scope.)
+
+---
+
+## Session arena-8e69b462-wina — T26 (2026-11-20)
+
+**Claim:** T26 — re-verify the live site against the build, re-open the five submitted links,
+re-try the FLG-033 ASIN-definition citation, and publish any verified discrepancy. Claimed and
+pushed as its own commit before any check (`e89f350`). Scope widened in the same branch to
+`data/governance.json` (two flags appended) and the generated `flagged/` and `summary/` pages.
+No product data, link record, or page copy was changed.
+
+**What was checked (2026-11-20):**
+
+| Check | Method | Result |
+|---|---|---|
+| Live homepage matches the build | Page-tool fetch of https://sassnarep3-star.github.io/WinA/ | Live, disclosure strip present, five product buttons point to `amazon.com/dp/<ASIN>?tag=shopnow047c-20` |
+| Build, repository gate, compliance gate | `node _src/build.mjs`, `scripts/check-site.mjs`, `scripts/compliance-gate.mjs` | All pass: 30 pages, 29 in sitemap, 94 Amazon links (80 sponsored), 1,094 checks, 0 failing, 1 warning (FLG-024, owner-side) |
+| Empty-state tools stay honest | `collect.mjs`, `next-topics.mjs` | "nothing to collect" and "no query data yet" printed |
+| Submitted short links | Page-tool fetch of all five `link.amazon` URLs, one retry where inconsistent | **2 match** (B02NbDxp3, B00hJ57DV). **2 do not reproduce** (B04G1MEwY, B0c8moW59: amazon.com home page on both attempts). **1 inconsistent** (B0f3GKalj: home page once, recorded `/dp/B0DZFD6R9Z` once). → **FLG-036** |
+| FLG-033: official Amazon ASIN definition | Two web searches; no Amazon Help page returned | Still not found. Results were seller-forum and third-party pages only, so none is cited. FLG-033 stays open. |
+| Button wording vs. "prices are not shown" | Read `_src/build.mjs` labels and the site's own disclosure text | Inconsistent wording. → **FLG-037**, not changed (owner decision) |
+
+**Sources:**
+- Submitted links, re-opened 2026-11-20: https://link.amazon/B04G1MEwY · https://link.amazon/B02NbDxp3 · https://link.amazon/B00hJ57DV · https://link.amazon/B0c8moW59 · https://link.amazon/B0f3GKalj
+- Recorded product pages (for comparison): https://www.amazon.com/dp/B0CDY277D3 · https://www.amazon.com/dp/B09B7SB46R · https://www.amazon.com/dp/B08DKYBTPH · https://www.amazon.com/dp/B0DHZTCNR5 · https://www.amazon.com/dp/B0DZFD6R9Z
+- Amazon Associates Program Policies (cited by the existing register): https://affiliate-program.amazon.com/help/operating/policies
+- Live site: https://sassnarep3-star.github.io/WinA/
+
+**Irregularities (published on `/flagged/`):**
+- **FLG-036** (review) — three of five short links did not reproduce their recorded destination in this check. Cause not known. The site is not affected: its buttons go straight to `/dp/` pages. Owner should open the five links in a normal browser and record the landing URLs.
+- **FLG-037** (review) — the "Check price on Amazon" label conflicts with the site's own "prices are not shown" text. Flagged for wording, not changed.
+- **Carried forward, unchanged:** FLG-033 (no official Amazon ASIN definition found), FLG-024 (0 of 5 Special Link tests recorded — needs Associates sign-in).
+- **Observed, not changed:** this board has a duplicate T24 row, already noted by session arena-829ea2fd-wina. Left as-is because it is another session's record.
+
+**Blocked, owner-side (not claimed, not attempted):** Associates sign-in and the per-product Special Link test (FLG-004, FLG-024); Search Console verification (FLG-009, SG-29); hosting the analytics endpoint (FLG-011). None can be done from this sandbox.
+
+**Flag count:** 39 → 41. Gates re-run after the change: all pass.
+
+**Status:** done. PR and merge record below.
