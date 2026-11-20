@@ -65,6 +65,7 @@ fourth site. Claim the scope here first and push the claim before writing code.
 | T14 | Merge prior findings into one register | done | arena-ffa85037 | `data/governance.json` | 23 flags; 14 carried forward with attribution |
 | T15 | PR → `main`, merge, confirm Pages deploy | in progress | arena-ffa85037 | — | See integration result below |
 | T16 | Gap closure against the brief: sortable tables on every data table; SG-27..SG-30 parallel rows (nav labels, RSS feed, Search Console, reader capture); verified policy-citation corrections | done | arena-a86cb9d0 | `_src/build.mjs`, `_src/pages-content.mjs`, `assets/js/site.js`, `data/governance.json`, `COORDINATION.md` (arena-a86cb9d0 section only) | Extends main; does not add a second site (see conflict record) |
+| T17 | Reader-facing polish path — "reads like a shop, not an audit": brand imagery, authorship, seasons, topic clusters, de-audited front page; suggestions decision board; product-intent confirmation record split; 3 new question-shaped guides; og:image + breadcrumb structured data | in progress | arena-266b1b8f | `_src/build.mjs`, `_src/content.mjs`, `_src/pages-content.mjs`, `assets/css/site.css`, `assets/js/site.js`, `assets/img/*`, `data/links.json`, `data/products.json`, `data/governance.json`, `data/questions.json`, `data/suggestions.json`, `README.md`, `COORDINATION.md` (arena-266b1b8f section only) | Claimed 2026-11-20. Works on branch `arena/266b1b8f-wina` only (Arena session rule overrides the multi-branch convention for this session). Extends `main`'s build; no second site. |
 
 ---
 
@@ -389,3 +390,18 @@ wanted, port it into `data/` and rebuild.
 - **Parallel generator on `main` (logged, not changed).** `scripts/build.mjs` writes `site/` for a "Countertop Report" site. `.github/workflows/pages.yml` does not run it, so it is not served. Its owner is unclear; the next integration session should retire it or document it.
 - **Gates on the final tree.** `node _src/build.mjs`: PASSED. `node scripts/check-site.mjs`: "repository gate passed — safe to publish".
 - **Sortable coverage (final).** Every data table on every served page is sortable. Two tables added after the rebase were also marked: the concept page table (`_src/build.mjs`) and the Special Link test register table on `/register/`. Checked: no unsortable table left in the served HTML.
+
+---
+
+## Session arena-266b1b8f (this session) — T17 reader-facing polish
+
+- **2026-11-20 — claim.** Claimed T17. Branch `arena/266b1b8f-wina` (Arena session rule: this
+  session works only on its own branch; the branch name replaces the `session-<id>/<task>`
+  convention from the brief). Base: `main` at `d7abb68` (PR #18 merged). Extends `main`'s
+  `_src/build.mjs` build; no second site. Scope listed in the T17 row above.
+- **Why this pass exists.** The brief: "Make it read like a shop, not an audit", "the
+  reader-facing polish path: authorship, navigation, brand, imagery, seasons, and clusters",
+  "it should not read like some AI slop website like it looks like now". The compliance record
+  stays where it belongs (footer + record surfaces); the reader path gets publication polish.
+- **Planned, not yet done.** Details and verification will be appended here when the work
+  finishes. Nothing is marked done until the gates pass and the results are recorded below.
