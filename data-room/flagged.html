@@ -49,7 +49,7 @@
     <div class="wrap">
       <div class="table-scroll">
         <table class="data">
-          <caption>Flags a reader can act on, as of 2026-11-20. Seventeen more are open in the register, most of them owner-side credentials and verification steps; five were resolved by the line-by-line pass on the same date and are recorded rather than deleted.</caption>
+          <caption>Flags a reader can act on, as of 2026-11-20. Twenty-six further open rows sit in Register B below, most of them owner-side credentials and verification steps; resolved rows are recorded there rather than deleted — 16 of the 56 are resolved.</caption>
           <thead>
             <tr><th scope="col">ID</th><th scope="col">What was found</th><th scope="col">Why it's flagged</th><th scope="col">Source</th><th scope="col">Suggested resolution</th></tr>
           </thead>
@@ -181,7 +181,7 @@
       
       <div class="table-scroll" style="margin-top:22px;">
         <table class="data">
-          <caption>Register B — the carried-forward register from the merged prior build (<code>data/governance.json</code>, 53 rows, rendered in full). IDs overlap Register A above with different meanings; see FLG-049.</caption>
+          <caption>Register B — the carried-forward register from the merged prior build (<code>data/governance.json</code>, 56 rows, rendered in full). IDs overlap Register A above with different meanings; see FLG-049.</caption>
           <thead>
             <tr><th scope="col">ID · status</th><th scope="col">Finding</th><th scope="col">Source</th><th scope="col">Action / resolution</th></tr>
           </thead>
@@ -258,11 +258,11 @@
               <td class="src"><a href="https://affiliate-program.amazon.com/" rel="nofollow">Associates reports (sign-in required)</a></td>
               <td>The ledger starts empty with its schema defined, so the first real report can be added without redesigning it. No placeholder numbers.</td>
             </tr>
-            <tr>
+                        <tr>
               <th scope="row">FLG-013 <span class="chip unverified">action</span></th>
-              <td>Content volume is below the Associates review bar — Amazon&#x27;s Associates Help, &#x27;Application Review Process&#x27; (checked 2026-11-20, US help topic G8TW5AE9XL2VX9VM), says: &quot;All Sites must have robust original content (even when advertising is removed) – a good rule of thumb is at least 10 posts.&quot; It also says: &quot;Cont…</td>
+              <td>Content volume is below the Associates review bar — Amazon's Associates Help, 'Application Review Process' (checked 2026-11-20, US help topic G8TW5AE9XL2VX9VM), says: "All Sites must have robust original content (even when advertising is removed) – a good rule of thumb is at least 10 posts." It also says: "Content on your website must be recent (generally within the last 60 days)." This site has 10 guide pages and 5 product…</td>
               <td class="src"><a href="https://affiliate-program.amazon.com/help/node/topic/G8TW5AE9XL2VX9VM" rel="nofollow">Associates Help: Application Review Process (checked 2026-11-20)</a></td>
-              <td>Do not submit or re-submit for review until the site has at least 10 posts and content dated within the last 60 days. The weekly cadence in the suggestions register (SUG-05) is the proposed path. Recorded as a commercial…</td>
+              <td>Do not submit or re-submit for review until the content bar and the recency rule are both comfortably met. The weekly cadence in the suggestions register (SUG-05, adopted 2026-11-20) is the path. Recorded as a commercial blocker, not a content-quality one.</td>
             </tr>
             <tr>
               <th scope="row">FLG-014 <span class="chip verified">resolved</span></th>
@@ -306,11 +306,11 @@
               <td class="src"><a href="https://sassnarep3-star.github.io/WinA/seasonal/" rel="nofollow">The seasonal collection (calendar-driven selection disclosed on-page)</a></td>
               <td>Resolved as shipped with its limitation disclosed and the opposing recommendation kept live. The open half is now Q-23: whether the seasonal cluster earns impressions will be known only from Search Console query data (SG…</td>
             </tr>
-            <tr>
+                        <tr>
               <th scope="row">FLG-021 <span class="chip unverified">review</span></th>
-              <td>Author identity and brand name are still placeholders — No author was named in the source material, so no byline was invented. &#x27;Counter Space&#x27; is a working name chosen for this build and is not a registered brand. Carried forward from arena-2ca62ce9 (FLG-013).</td>
-              <td class="src"><a href="https://sassnarep3-star.github.io/WinA/about/" rel="nofollow">About page</a></td>
-              <td>Both need a decision from the owner. Before adopting the name publicly, check it is not an active trademark in this category. See SUG-06 and Q-20.</td>
+              <td>Author identity and brand name are still placeholders — No author was named in the source material, so no byline was invented. The publication name changed with the 2026-11-20 integration: the live brand is 'The Crisp Counter'; the earlier working name 'Counter Space' is retired with the archived build (Q-20 answered). Decided 2026-11-20 (T37 review pass): Q-21 answered and SUG-06 rejected — the byline is the publication…</td>
+              <td class="src"><a href="https://tmsearch.uspto.gov/" rel="nofollow">USPTO trademark search (attempted 2026-11-20; JavaScript app returned no verifiable…</a></td>
+              <td>Owner: run a full USPTO TSDR/TESS plus common-law search for 'The Crisp Counter' in the relevant classes before any paid promotion or custom-domain purchase (SUG-07). Attach a real person to the byline when one exists (SUG-06 can be reopened then).</td>
             </tr>
             <tr>
               <th scope="row">FLG-022 <span class="chip unverified">low</span></th>
@@ -503,6 +503,24 @@
               <td>CHEF iQ Sense warranty: manufacturer&#x27;s user guide says 2 years; retailer listings say 1 year — The CHEF iQ Sense Gen3 (B0DZFD6R9Z) Warranty row was filled from the manufacturer&#x27;s own user guide PDF (CQ60-ALL-SET-C_UG_OTP_050126, hosted on chefiq.com&#x27;s CDN), which states: &#x27;RJ Brands, LLC d/b/a CHEF iQ offers a limited 2-year Warranty ... warranted agains…</td>
               <td class="src"><a href="https://cdn.shopify.com/s/files/1/0267/8118/8171/files/CQ60-ALL-SET-C_UG_OTP_050126.pdf" rel="nofollow">CHEF iQ iQ Sense User Guide (official, chefiq.com CDN), warranty terms</a></td>
               <td>Owner: open the CHEF iQ user guide on chefiq.com and confirm the 2-year term applies to this ASIN; if a retailer or Amazon listing states 1 year, record which document and date governs. The site shows the manufacturer fi…</td>
+            </tr>
+            <tr>
+              <th scope="row">FLG-050 <span class="chip unverified">review</span></th>
+              <td>Editorial imagery is generated art, published with that provenance — The editorial images in assets/img/ (including editorial-hero.jpg) were generated for this publication as atmosphere art — kitchen scenes, food, a festive table. They are not photographs of the products, they were not supplied by any brand. Nothing about a product's appearance should be inferred from them. Raised by arena-266b1b8f; renumbered three times on…</td>
+              <td class="src"><a href="https://affiliate-program.amazon.com/help/operating/policies" rel="nofollow">Associates Program Policies — Program Content and IP License (image use restrictions)</a></td>
+              <td>Owner decision: keep the generated art, or replace it with licensed product imagery once Creatives API access exists. Until then this flag documents provenance so the art can never be mistaken for product photography.</td>
+            </tr>
+            <tr>
+              <th scope="row">FLG-051 <span class="chip verified">resolved</span></th>
+              <td>The data register and the served pages name the publication differently — The served pages brand the publication 'The Crisp Counter' (page titles, mastheads), while data/products.json site.name still reads 'Counter Space' — the name earlier sessions published under. Resolved 2026-11-20 by the T40 pass answering Q-20: the publication name is 'The Crisp Counter' (the name every served page, the mastheads and the RSS title…</td>
+              <td class="src"><a href="https://sassnarep3-star.github.io/WinA/" rel="nofollow">The served front page (masthead/title) vs data/products.json (site.name)</a></td>
+              <td>Resolved 2026-11-20: site.name unified with the served mastheads. If the owner ever renames again, change mastheads, RSS title and site.name together.</td>
+            </tr>
+            <tr>
+              <th scope="row">FLG-052 <span class="chip verified">resolved</span></th>
+              <td>Policy register filed the price-display rule under §6(y), which bans tracking, not display — POL-04 was titled 'Price display' but quoted Participation Requirements §6(y) — the price tracking and alerting ban — while the actual display rule is §2(b): a price may be shown only if Amazon serves it inside the link or it is obtained via Creators API or PA API. Found 2026-11-20 by re-reading the official Program Policies page…</td>
+              <td class="src"><a href="https://affiliate-program.amazon.com/help/operating/policies" rel="nofollow">Amazon Associates Program Policies, Participation Requirements §2(b) (re-read 2026-11-20)</a></td>
+              <td>None. Resolved in data/policy.json by the T37 pass; verified against the live official page on 2026-11-20.</td>
             </tr>
           </tbody>
         </table>

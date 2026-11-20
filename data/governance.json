@@ -488,10 +488,10 @@
     },
     {
       "id": "FLG-051",
-      "severity": "review",
+      "severity": "resolved",
       "title": "The data register and the served pages name the publication differently",
-      "detail": "The served pages brand the publication 'The Crisp Counter' (page titles, mastheads), while data/products.json site.name still reads 'Counter Space' — the name earlier sessions published under. Recorded as observed by arena-266b1b8f; which name is intended is an owner decision.",
-      "action": "Owner: pick the publication name, then make data/products.json site.name, the page mastheads and the RSS title agree.",
+      "detail": "The served pages brand the publication 'The Crisp Counter' (page titles, mastheads), while data/products.json site.name still reads 'Counter Space' — the name earlier sessions published under. Resolved 2026-11-20 by the T40 pass answering Q-20: the publication name is 'The Crisp Counter' (the name every served page, the mastheads and the RSS title already use). data/products.json site.name now reads 'The Crisp Counter' as well, so the register and the served pages agree. The retired working name 'Counter Space' remains only in the archived build.",
+      "action": "Resolved 2026-11-20: site.name unified with the served mastheads. If the owner ever renames again, change mastheads, RSS title and site.name together.",
       "sourceUrl": "https://sassnarep3-star.github.io/WinA/",
       "sourceLabel": "The served front page (masthead/title) vs data/products.json (site.name)"
     },
