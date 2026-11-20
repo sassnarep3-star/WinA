@@ -7072,4 +7072,48 @@ register, no figure outside the four was rewritten, and no owner-credential item
 (Associates Central, Search Console, the analytics collector). Nothing here blocks the merge;
 items 2–4 are published for review.
 
+### The site was already broken: 29 committed conflict markers (found after the first merge)
+
+Live-verification after PR #69 deployed showed **unresolved merge conflict markers rendering to
+readers** in `executive-summary.html`. Tracing it: `d770573` (this branch) had none, `e339bad`
+(main *before* this PR) had them in four files — so the breakage was **not introduced here**, it
+was inherited. It had been live since commit **`2ba4816`**, whose own message says *"both sides
+kept"*: a merge that recorded its conflict instead of resolving it.
+
+**Ten served files carried markers** (`executive-summary.html`, `index.html`, `shop.html`,
+`questions.html`, `data-room/product-intent.html` and three guides) and **two data registers
+shipped as unparseable JSON** (`data/links.json`, `data/suggestions.json`). `archive/` was clean —
+the damage was confined to the live tree.
+
+**A parallel session reached the same finding first and hotfixed it (PR #70, `2f18d3a`,
+"content-wise, main's wording kept"; recorded on the board as "the marker incident" in
+`bcd53fa`).** This branch had independently resolved all 29 hunks and hardened R-06 before
+noticing that. Rather than force a second, competing resolution onto a file another session had
+already repaired and shipped, this branch **took `main`'s versions of all five conflicted files**
+and kept only its own board record. The two resolutions agreed on the substance:
+
+| Point | This branch | `main` (kept) |
+|---|---|---|
+| `data/links.json` | rebuilt as two separate verification entries | same — the file parses with **3** entries on both |
+| `data/suggestions.json` SUG-16 | took `main`'s `"accepted … shipped"` over the older `"open"` | identical |
+| price/rating copy | `main`'s posture, because `compare.html` already reads `Not shown` and T33 recorded *"View on Amazon"* | identical (`"See price on Amazon"` count 0, `"Price not shown"` count 5) |
+| CHEF iQ battery | `main`'s **70+ hours** (T38's correction) | identical |
+| `shop.html` hunk 6 | dropped `main`'s *"most-reviewed thermometer"* as a popularity claim | **`main` kept it** — deferred, not fought over |
+| conflict-marker rule | R-06 | R-06, plus a separate **R-13** for `data/**/*.json` parsing |
+
+The one place they differ in substance is the *"most-reviewed thermometer of the two"* phrase on
+`shop.html`. This branch considers it a popularity claim the editorial rules exclude; `main` ships
+it. It is **recorded here rather than re-litigated in a merge**, because a second competing
+resolution of the same files would be exactly the failure mode that caused the incident.
+
+**Rule that now blocks a recurrence:** `main`'s R-06 fails any served page containing conflict
+markers, and R-13 requires every `data/**/*.json` to parse. This branch's equivalent was dropped
+as redundant. Both were injection-tested on this branch before the comparison: a marker appended
+to `about.html` fails with three violations; `data/questions.json` truncated in half fails with
+*Unterminated string*.
+
+**Irregularity added to the list above:** 5 — a committed conflict, not a data error, was serving
+broken pages to readers while every gate stayed green, because no gate looked for it. Fixed on
+`main` by a parallel session; this branch records it and defers to that fix.
+
 **Status:** done — PR, merge and deploy record appended below.
