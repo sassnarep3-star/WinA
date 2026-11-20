@@ -1,0 +1,23 @@
+{
+  "name": "counter-space",
+  "private": true,
+  "version": "0.0.0",
+  "description": "Counter Space \u2014 an Amazon affiliate publication with a source register, a compliance gate and a self-hosted collector. Zero runtime dependencies.",
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "build": "node _src/build.mjs",
+    "check": "node scripts/publish-gate.mjs",
+    "compliance": "node scripts/compliance-gate.mjs",
+    "refresh": "node scripts/compliance-gate.mjs --refresh-sources",
+    "collect": "node scripts/collect.mjs",
+    "topics": "node scripts/next-topics.mjs",
+    "serve": "node _src/serve.mjs",
+    "analytics": "node scripts/analytics-server.mjs",
+    "analytics:selftest": "node scripts/analytics-selftest.mjs",
+    "pages:status": "gh api repos/sassnarep3-star/WinA/pages/builds/latest --jq '{status:.status,commit:.commit,created_at:.created_at}'"
+  },
+  "license": "UNLICENSED"
+}

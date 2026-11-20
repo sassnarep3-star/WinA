@@ -1,0 +1,238 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Flagged for Review | The Crisp Counter — Data room</title>
+<meta name="description" content="Irregularities, unresolved items and unverified values — published with source links so they can be reviewed after launch. None of these items block the site.">
+<link rel="canonical" href="https://sassnarep3-star.github.io/WinA/data-room/flagged.html">
+<meta name="robots" content="noindex">
+<meta name="cc-endpoint" content="">
+<link rel="alternate" type="application/rss+xml" title="The Crisp Counter" href="../feed.xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..700;1,9..144,400..700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/site.css">
+</head>
+<body>
+<header class="masthead">
+  <div class="wrap masthead-row">
+    <a class="brand" href="../index.html"><span class="brand-mark">◆</span> The Crisp Counter <small>measured kitchen buying</small></a>
+    <button class="nav-toggle" aria-expanded="false" aria-controls="site-nav">Menu</button>
+    <nav class="nav" id="site-nav" aria-label="Primary">
+      <a href="../shop.html">Shop</a>
+      <a href="../compare.html">Compare</a>
+      <a href="../guides/index.html">Guides</a>
+      <a href="../questions.html">Questions</a>
+      <a href="../suggestions.html">Suggestions</a>
+      <a href="index.html" aria-current="page">Data room</a>
+      <a class="nav-cta" href="../shop.html#the-lineup">See the lineup</a>
+    </nav>
+  </div>
+</header>
+<div class="disclosure-strip" id="disclosure">
+  <div class="wrap">
+    <span class="disclosure-badge">Disclosure</span>
+    <span><strong>The Crisp Counter is an Amazon Associate — we earn from qualifying purchases.</strong> Sponsored/affiliate links are marked. Facts were observed on official sources on November 20, 2026. <a href="compliance-gate.html">How we handle disclosure &amp; compliance</a>.</span>
+  </div>
+</div>
+
+<main>
+  <div class="wrap page-head">
+    <p class="breadcrumb"><a href="../index.html">Home</a> / <a href="index.html">Data room</a> / Flagged for Review</p>
+    <h1>Flagged for Review</h1>
+    <p class="lede">Every irregularity, contradiction and unresolved item found while building this site — with its source links. Publishing these is a rule of the project: flagged items never block the site, and they never get quietly "fixed." Review any time and request changes.</p>
+    <p class="note-box"><strong>Combined register:</strong> several parallel sessions worked this repo; the full 51-item register is in <a href="https://github.com/sassnarep3-star/WinA/blob/main/data/governance.json">data/governance.json</a> and an earlier 23-item view is preserved in <a href="../archive/arena-ffa85037/flagged/">the archived build's Flagged page</a>. That register and this page agree on every shared item. The page below prints the items a reader can act on; the register is the complete record, including the ones a later pass re-checked and resolved.</p>
+  </div>
+
+  <section class="section tight">
+    <div class="wrap">
+      <div class="table-scroll">
+        <table class="data">
+          <caption>Flags a reader can act on, as of 2026-11-20. Seventeen more are open in the register, most of them owner-side credentials and verification steps; five were resolved by the line-by-line pass on the same date and are recorded rather than deleted.</caption>
+          <thead>
+            <tr><th scope="col">ID</th><th scope="col">What was found</th><th scope="col">Why it's flagged</th><th scope="col">Source</th><th scope="col">Suggested resolution</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">FLG-001</th>
+              <td>The five submitted identifiers (e.g. <code>B04G1MEwY</code>) are 9-character tokens. Amazon ASINs are unique 10-character identifiers.</td>
+              <td>The intended identity of each product can't be mechanically proven from the token alone; completing or "correcting" tokens would be inference.</td>
+              <td class="src"><a href="https://sellercentral.amazon.com/help/hub/reference/external/G200386250" rel="nofollow">Amazon — What is an ASIN?</a> · <a href="product-intent.html">intent record</a></td>
+              <td>Owner confirms each intended product against the observed listing (gate G-4), then the intent record's confirmation columns are filled.</td>
+            </tr>
+            <tr>
+              <th scope="row">FLG-002</th>
+              <td>Tracking ID <code>shopnow047c-20</code> is applied to all product links, but no click has been observed in an Associates report.</td>
+              <td>Attribution is unverified until a test click registers; claims about tracking would be unearned.</td>
+              <td class="src"><a href="https://affiliate-program.amazon.com/help/operating/agreement" rel="nofollow">Operating Agreement</a> · <a href="compliance-gate.html">gate G-4</a></td>
+              <td>Run checklist G-4 (one link per product); record the report evidence in the campaign ledger provenance.</td>
+            </tr>
+            <tr>
+              <th scope="row">FLG-003</th>
+              <td>The submitted <code>link.amazon/…</code> short links resolve to real listings, but their compliance status under the Associates agreement is unresolved.</td>
+              <td>Per the brief, we neither claim these links are valid nor invalid — their status is simply open. The OA requires Amazon-provided tagged link formats.</td>
+              <td class="src"><a href="https://affiliate-program.amazon.com/help/operating/agreement" rel="nofollow">Operating Agreement §1</a> · <a href="product-intent.html">intent record Table A</a></td>
+              <td>Ask Associates support whether this format is permitted; until answered, site links use the canonical tagged format.</td>
+            </tr>
+            <tr>
+              <th scope="row">FLG-004</th>
+              <td>Chefman TurboFry 8QT listing reads as internally inconsistent on temperature. Reading it end to end on 2026-11-20 resolved it: the bullets give a <strong>200–400°F</strong> range and the title names a separate <strong>450°F Hi-Fry</strong> option, so they describe different things. The duration of Hi-Fry is the part that was never on this listing — it came from another Chefman SKU (FLG-045).</td>
+              <td>Both statements are on the same official page; silently picking one would misrepresent the source.</td>
+              <td class="src"><a href="https://www.amazon.com/dp/B08DKYBTPH" rel="nofollow">listing B08DKYBTPH</a></td>
+              <td>Consult the product manual or manufacturer; until then the comparison table shows both claims as-is.</td>
+            </tr>
+            <tr>
+              <th scope="row">FLG-005</th>
+              <td>Product thumbnails are hot-linked from Amazon's media CDN (m.media-amazon.com) rather than sourced through PA-API/SiteStripe.</td>
+              <td>The OA's IP license covers Program Content obtained through program tools; direct hot-linking's coverage is unconfirmed.</td>
+              <td class="src"><a href="https://affiliate-program.amazon.com/help/operating/agreement" rel="nofollow">Operating Agreement (IP license)</a></td>
+              <td>Proposal S-04: replace with PA-API-sourced images when Associates API access exists (gate G-4).</td>
+            </tr>
+            <tr>
+              <th scope="row">FLG-006</th>
+              <td>The Amazon "What is an ASIN?" help URL is real but the page may require Seller Central sign-in to display.</td>
+              <td>Cited for the ASIN definition; readers without a seller account may not see the page.</td>
+              <td class="src"><a href="https://sellercentral.amazon.com/help/hub/reference/external/G200386250" rel="nofollow">the URL in question</a></td>
+              <td>Add a login-free mirror citation (e.g. Amazon's public glossary) if one is confirmed.</td>
+            </tr>
+            <tr>
+              <th scope="row">FLG-007</th>
+              <td>Chefman dual-basket listing mixes units: title says <strong>6-quart</strong> (2 × 3QT) while the product-details row says capacity <strong>6 liters</strong> (6 qt ≈ 5.7 L).</td>
+              <td>Same pattern as FLG-004 — a source-internal contradiction, quoted not harmonized.</td>
+              <td class="src"><a href="https://www.amazon.com/dp/B0CDY277D3" rel="nofollow">listing B0CDY277D3</a></td>
+              <td>Manufacturer spec sheet or manual; the capacity guide currently explains the discrepancy to readers.</td>
+            </tr>
+            <tr>
+              <th scope="row">FLG-009</th>
+              <td>Displaying observed prices and ratings outside PA-API may conflict with Associates Program policy: the parallel build's register cites the Program Policies (updated 2026-04-14) §6 as restricting review/rating and price display without API-supplied data, and chose to show no prices at all.</td>
+              <td><strong>Updated 2026-11-20 (session arena-f515c465-wina, T36):</strong> Participation Requirements §6(t) was verified verbatim from the official Program Policies page — it flatly prohibits displaying customer reviews or star ratings unless they were obtained through Creators API/PA API, and the IP License (§2(b)) limits pricing data to PA API. This site has no PA API access, so the conservative alternative is now implemented on this site itself: all prices, star ratings, review counts, "Amazon's Choice" and popularity badges were removed from every served page (recorded as <a href="#flg-048">FLG-048</a>), and gate rules R-10/R-11 enforce it. The owner decision (S-14) can revisit this deliberately if PA-API access is ever granted.</td>
+              <td class="src"><a href="https://affiliate-program.amazon.com/help/operating/policies" rel="nofollow">Program Policies</a> · <a href="https://github.com/sassnarep3-star/WinA/blob/main/data/policy.json">policy.json (verbatim clauses)</a></td>
+              <td>Owner reads POL-03/POL-04 in policy.json, decides: keep dated snapshots (current site) or suppress prices/ratings (archived build's posture); log the choice as S-14.</td>
+            </tr>
+            <tr>
+              <th scope="row">FLG-008</th>
+              <td>The brief referenced "the five defined events" without supplying the canonical list; the measurement spec defines its own five.</td>
+              <td>If the owner has a different canonical list, the events and endpoint allowlist must be renamed to match.</td>
+              <td class="src"><a href="measurement.html">measurement spec</a> · <a href="https://github.com/sassnarep3-star/WinA/blob/main/assets/js/analytics.js">analytics.js</a></td>
+              <td>Owner compares the defined five with any prior spec; approve or replace via Q-15.</td>
+
+            <tr>
+              <th scope="row">FLG-043</th>
+              <td>Emeril's product page disagrees with itself and with the listing on how many accessories ship: the listing title says <strong>six</strong>, the manufacturer's own description says <strong>seven</strong>.</td>
+              <td>The manual names more accessories than the listing does but does not say which are in the box and which are sold separately, so no official page settles the count.</td>
+              <td class="src"><a href="https://www.emerileveryday.com/products/emeril_lagasse_french_door_airfryer_360" rel="nofollow">emerileveryday.com</a> · <a href="https://www.amazon.com/dp/B09B7SB46R" rel="nofollow">listing B09B7SB46R</a></td>
+              <td>Owner counts the accessories in a box, or asks the manufacturer; the row is published as a claim, not a fact, until then.</td>
+            </tr>
+            <tr>
+              <th scope="row">FLG-044</th>
+              <td>Two ThermoMaven specification rows cited a product page that states neither of them. The "auto-rotate bright LED" display and the "1 × AAA, included" battery appear only in customer-review text there, not the manufacturer's copy.</td>
+              <td>Both facts are in the F1 Stealth owner's manual the same page links, so the rows had a citable source all along — the citation was pointing at the wrong page.</td>
+              <td class="src"><a href="https://cdn.shopify.com/s/files/1/0828/4726/9152/files/HT07_user_manual.pdf?v=1733992221" rel="nofollow">ThermoMaven HT07 owner's manual</a></td>
+              <td>Resolved. Both rows now cite the manual: display 0.83 × 1.61 in LED rotating 180°, battery 1 × 1.5 V AAA.</td>
+            </tr>
+            <tr>
+              <th scope="row">FLG-045</th>
+              <td>chefman.com's 8-quart page is a different SKU from this listing, and a temperature detail had been taken from it. chefman.com sells RJ38-8T-BLACK at 1700 W; this ASIN's listing states RJ38-SQSS-8T at 1000 W.</td>
+              <td>A reader comparing the two sites will see 1000 W here and 1700 W there. Both are correct for their own SKU, but the figures cannot be mixed, and "Hi-Fry for the final two minutes" is published only on the other SKU's page.</td>
+              <td class="src"><a href="https://chefman.com/products/turbofry-8-qt-air-fryer-w-high-fry" rel="nofollow">chefman.com RJ38-8T-BLACK</a> · <a href="https://www.amazon.com/dp/B08DKYBTPH" rel="nofollow">listing B08DKYBTPH</a></td>
+              <td>Recorded so it is not later "fixed" in the wrong direction. The model number is printed beside the figure; changing the number would require a different ASIN, not a different value.</td>
+            </tr>
+            <tr>
+              <th scope="row">FLG-046</th>
+              <td>The CHEF iQ Sense model number recorded in the register, <code>CQ60-1C-Z1-E</code>, is the manufacturer's <strong>one-probe</strong> variant, while this listing is the <strong>three-probe</strong> Gen3.</td>
+              <td>Attaching a one-probe model code to a three-probe listing would misidentify the item. No page read so far states the three-probe model code.</td>
+              <td class="src"><a href="https://chefiq.com/products/iq-sense" rel="nofollow">chefiq.com iQ Sense (variant selector: 1 Probe)</a></td>
+              <td>Field blanked rather than left wrong. Owner reads the code off a three-probe unit or CHEF iQ support, then fills it with that source.</td>
+            </tr>
+            <tr>
+              <th scope="row">FLG-047</th>
+              <td>Fourth re-check of the five submitted short links: four landed on the Amazon homepage and one reached its product page — a different split from the two re-checks before it on the same day.</td>
+              <td>The behaviour is not fixed by link, so a single fetch cannot characterise it. Every destination ASIN is separately confirmed by fetching <code>/dp/&lt;ASIN&gt;</code>, so product identity in the intent record stands. No claim is made that the links are invalid.</td>
+              <td class="src"><a href="product-intent.html">intent record</a> · <a href="https://affiliate-program.amazon.com/help/operating/policies" rel="nofollow">Program Policies §6(v)</a></td>
+              <td>Owner opens each link in a normal browser signed out and records the landing URL. Each check is stored as its own dated observation; none is merged into a single value.</td>
+            </tr>
+            <tr>
+              <th scope="row">FLG-049</th>
+              <td>CHEF iQ Sense Gen3 warranty: the manufacturer's own user guide states a 2-year limited warranty (activated on first connection to the CHEF iQ App), while retailer listings and third-party mirrors of an older guide state 1 year.</td>
+              <td>The register cannot show both; the buyer-facing figure follows the manufacturer's current official document. The conflict is real and unresolved, so it is flagged rather than silently harmonized.</td>
+              <td class="src"><a href="https://cdn.shopify.com/s/files/1/0267/8118/8171/files/CQ60-ALL-SET-C_UG_OTP_050126.pdf" rel="nofollow noopener" target="_blank">CHEF iQ user guide (official)</a> · <a href="https://chefiq.com/products/iq-sense" rel="nofollow">chefiq.com</a></td>
+              <td>Owner opens the CHEF iQ user guide on chefiq.com and confirms the 2-year term applies to the enrolled ASIN; record which document and date governs.</td>
+            </tr>
+          <tr id="flg-048">
+              <th scope="row">FLG-048</th>
+              <td>The integrated shop-style publication (PR #28) displayed hand-copied prices, list prices, star ratings, review counts ("18,379 ratings"), "Amazon's Choice" badges and "bought last month" figures on shop, index, compare, questions, executive-summary, guide and data-room pages — figures typed by hand from the listings, not obtained through PA API, with no source link per figure. The rewritten Python gate (R-01…R-09) did not check for them, so CI passed. Found 2026-11-20 during the line-by-line verification pass (session arena-f515c465-wina, T35/T36).</td>
+              <td><span class="chip verified">resolved</span> All such figures removed from every served page and replaced with "not shown / not reproduced" copy citing the rule (IP License §2(b); Participation Requirements §6(t)/§6(y) — verified verbatim from the official policies page). Gate rules R-10 (price figures) and R-11 (ratings, review counts, merchandising badges) added to <a href="https://github.com/sassnarep3-star/WinA/blob/main/tools/check_site.py">tools/check_site.py</a> so the regression cannot return; the G-3 row on <a href="compliance-gate.html">the gate page</a> documents R-03…R-11. If PA-API access is ever granted (S-14/SUG-03), revisit deliberately — never silently.</td>
+              <td class="src"><a href="https://affiliate-program.amazon.com/help/operating/policies" rel="nofollow">Program Policies (§6(t), §6(y))</a> · <a href="https://github.com/sassnarep3-star/WinA/blob/main/data/governance.json">data/governance.json (FLG-048)</a></td>
+              <td>Resolved 2026-11-20. Follow-up after the first deploy was live-checked: three residuals found and removed — "Deal −NN%" discount badges (price-derived figures) on shop/index, the CHEF iQ shop-card battery figure ("up to 50 hours" vs chefiq.com's 70+ hours claim), and "Check price on Amazon" button labels that contradicted T33's recorded "View on Amazon" resolution (FLG-037). Owner: none required; S-14 stays open as the deliberate path to change the posture.</td>
+            </tr>
+                      </tbody>
+        </table>
+      </div>
+
+      <div class="table-scroll" style="margin-top:22px;">
+        <table class="data">
+          <caption>Blank/unverified values published on the site (same policy: blank + flagged, never guessed).</caption>
+          <thead>
+            <tr><th scope="col">Value</th><th scope="col">Products affected</th><th scope="col">Where shown</th><th scope="col">Discovery path</th></tr>
+          </thead>
+          <tbody>
+            <tr><th scope="row">Weight <span class="chip unverified">unverified</span></th><td>Four of five <span class="chip verified">resolved for the Chefman 6QT</span> — 13.3 lb, from the <a href="https://chefman.com/products/turbofry-touch-dual-window-air-fryer" rel="nofollow">manufacturer page</a></td><td><a href="../compare.html#compare-table">comparison table</a></td><td>Re-checked 2026-11-20. Only the 6QT publishes a weight; the other four listings and manuals do not state one, so the column stays blank for them</td></tr>
+            <tr><th scope="row">External dimensions <span class="chip unverified">unverified</span></th><td>Both thermometers <span class="chip verified">resolved for the Chefman pair and the Emeril 26QT</span></td><td>comparison table</td><td>Re-checked 2026-11-20: the Chefman listings and the Emeril manual both state dimensions</td></tr>
+            <tr><th scope="row">Dishwasher claim <span class="chip unverified">unverified</span></th><td>Emeril 26QT</td><td>comparison table; cleanup guide</td><td>Listing bullets/manual (Q-05)</td></tr>
+            <tr><th scope="row">Warranty terms <span class="chip verified">resolved</span></th><td>none remaining</td><td>comparison table</td><td>Re-checked 2026-11-20: <a href="https://chefman.com/products/turbofry-touch-dual-window-air-fryer" rel="nofollow">chefman.com</a> (1-year assurance) and the <a href="https://www.amazon.com/dp/B08DKYBTPH" rel="nofollow">8-qt listing</a>, the <a href="https://www.emerileveryday.com/products/emeril_lagasse_french_door_airfryer_360" rel="nofollow">Emeril page's</a> warranty seal, the <a href="https://cdn.shopify.com/s/files/1/0828/4726/9152/files/HT07_user_manual.pdf?v=1733992221" rel="nofollow">ThermoMaven manual</a> (lifetime, register within 30 days), and the <a href="https://cdn.shopify.com/s/files/1/0267/8118/8171/files/CQ60-ALL-SET-C_UG_OTP_050126.pdf" rel="nofollow">CHEF iQ Sense Gen3 user guide</a> (2 years, activated on first app connection — FLG-049) all state terms.</td></tr>
+            <tr><th scope="row">Temperature range <span class="chip verified">resolved</span></th><td>Emeril 26QT</td><td>comparison table</td><td><a href="https://cdn.shopify.com/s/files/1/0687/4388/8948/files/FAFO-001_VN_32451_EF_IB_T22-5004282-C_1.pdf?v=1777990358" rel="nofollow">Owner's manual</a>, Appliance Specifications: 75–500°F, most presets to 450°F, Grill and Steak to 500°F</td></tr>
+            <tr><th scope="row">Power / wattage <span class="chip verified">resolved</span></th><td>Chefman 6QT, Chefman 8QT, Emeril 26QT</td><td>comparison table</td><td><a href="https://chefman.com/products/turbofry-touch-dual-window-air-fryer" rel="nofollow">chefman.com</a> (1700 W); the <a href="https://www.amazon.com/dp/B08DKYBTPH" rel="nofollow">8-qt listing</a>'s own bullet (1000 W, RJ38-SQSS-8T); the <a href="https://cdn.shopify.com/s/files/1/0687/4388/8948/files/FAFO-001_VN_32451_EF_IB_T22-5004282-C_1.pdf?v=1777990358" rel="nofollow">Emeril manual</a> (1700 W)</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <p class="brand-foot">◆ The Crisp Counter</p>
+        <p>Data room — the verification machinery behind the shop.</p>
+      </div>
+      <div>
+        <h4>Registers</h4>
+        <ul>
+          <li><a href="source-register.html">Source register</a></li>
+          <li><a href="product-intent.html">Product-intent record</a></li>
+          <li><a href="campaign-ledger.html">Campaign ledger</a></li>
+          <li><a href="measurement.html">Measurement spec</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Control</h4>
+        <ul>
+          <li><a href="compliance-gate.html">Compliance gate</a></li>
+          <li><a href="flagged.html">Flagged for Review</a></li>
+          <li><a href="method.html">Methodology</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Site</h4>
+        <ul>
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="../shop.html">Shop</a></li>
+          <li><a href="../compare.html">Compare</a></li>
+          <li><a href="../guides/index.html">Guides</a></li>
+          <li><a href="../questions.html">Questions</a></li>
+          <li><a href="../suggestions.html">Suggestions</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="disclosure-block">
+      <strong>Disclosure (repeated):</strong> As an Amazon Associate, The Crisp Counter earns from qualifying purchases. Sponsored/affiliate links are marked and use rel="sponsored". Product names and images are the property of their rights holders; product thumbnails are served from Amazon's media CDN pending PA-API image licensing (FLG-005). This site does not sell products directly — purchases happen on Amazon under Amazon's terms.
+      <br>© <span data-year>2026</span> The Crisp Counter · <a href="flagged.html">Flagged for Review</a> · <a href="compliance-gate.html">Compliance</a>
+    </div>
+  </div>
+</footer>
+<script src="../assets/js/analytics.js" defer></script>
+<script src="../assets/js/site.js" defer></script>
+</body>
+</html>

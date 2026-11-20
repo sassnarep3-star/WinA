@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Counter Space</title>
+    <link>https://sassnarep3-star.github.io/WinA/</link>
+    <description>Kitchen gear, judged by what it does on a Tuesday night.</description>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 20 Nov 2026 00:00:00 GMT</lastBuildDate>
+    <atom:link href="https://sassnarep3-star.github.io/WinA/feed.xml" rel="self" type="application/rss+xml"/>
+    <item>
+      <title>Basket or oven-style air fryer: what should you compare?</title>
+      <link>https://sassnarep3-star.github.io/WinA/guides/basket-vs-oven/</link>
+      <guid isPermaLink="true">https://sassnarep3-star.github.io/WinA/guides/basket-vs-oven/</guid>
+      <description>They share a name and almost nothing else. The decision is not about which fries better — it is about how you cook on a normal weeknight.</description>
+      <pubDate>Fri, 20 Nov 2026 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>A no-hype checklist for comparing air fryer capacity</title>
+      <link>https://sassnarep3-star.github.io/WinA/guides/capacity/</link>
+      <guid isPermaLink="true">https://sassnarep3-star.github.io/WinA/guides/capacity/</guid>
+      <description>Quarts are the least honest number on the box. Here is what to check instead, and why the biggest number is often the wrong buy.</description>
+      <pubDate>Fri, 20 Nov 2026 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>How to assess cleanup and counter-space trade-offs</title>
+      <link>https://sassnarep3-star.github.io/WinA/guides/cleanup/</link>
+      <guid isPermaLink="true">https://sassnarep3-star.github.io/WinA/guides/cleanup/</guid>
+      <description>The appliance you stop using is the one that is annoying to wash. This is the least glamorous part of the decision and the most predictive.</description>
+      <pubDate>Fri, 20 Nov 2026 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Questions to ask before buying a multi-function kitchen appliance</title>
+      <link>https://sassnarep3-star.github.io/WinA/guides/multifunction/</link>
+      <guid isPermaLink="true">https://sassnarep3-star.github.io/WinA/guides/multifunction/</guid>
+      <description>Every appliance claims ten jobs. The useful question is which two it does well, and whether those two are the jobs you have.</description>
+      <pubDate>Fri, 20 Nov 2026 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Instant-read or wireless: which meat thermometer fits your grill?</title>
+      <link>https://sassnarep3-star.github.io/WinA/guides/instant-vs-wireless/</link>
+      <guid isPermaLink="true">https://sassnarep3-star.github.io/WinA/guides/instant-vs-wireless/</guid>
+      <description>One answers &quot;is this done right now?&quot;. The other answers &quot;tell me when it is done&quot; while the lid stays shut. The right one depends on how you cook.</description>
+      <pubDate>Fri, 20 Nov 2026 00:00:00 GMT</pubDate>
+    </item>
+  </channel>
+</rss>

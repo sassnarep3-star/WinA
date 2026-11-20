@@ -95,7 +95,7 @@
       "severity": "action",
       "title": "Analytics endpoint not deployed",
       "detail": "A self-hosted collector exists in _worker/ and the client is written to POST five defined events. No endpoint is deployed, so the client is switched off rather than sending events into a void.",
-      "action": "Deploy the worker, set SITE_ANALYTICS_ENDPOINT, rebuild. Until then no analytics data exists and the dashboard says so. A zero-dependency reference collector now ships at scripts/analytics-server.mjs: same event set, same key allow-list, same scrubbing and 30-day retention as _worker/collector.js, so choosing a host no longer requires writing anything. To turn it on: run it (or the Worker), set site.analyticsEndpoint in data/products.json and governance.analytics.enabled to true, rebuild — the build holds the client inert if only one of the two is set.",
+      "action": "Deploy the worker, set SITE_ANALYTICS_ENDPOINT, rebuild. Until then no analytics data exists and the dashboard says so. A zero-dependency reference collector now ships at scripts/analytics-server.mjs: same event set, same key allow-list, same scrubbing and 30-day retention as _worker/collector.js, so choosing a host no longer requires writing anything. That contract is now executed rather than asserted: scripts/analytics-selftest.mjs drives the collector end to end and compares it against the worker and the register — it found two real defects, both fixed (FLG-042). To turn it on: run it (or the Worker), set site.analyticsEndpoint in data/products.json and governance.analytics.enabled to true, rebuild — the build holds the client inert if only one of the two is set.",
       "sourceUrl": "https://sassnarep3-star.github.io/WinA/analytics/",
       "sourceLabel": "This site's measurement page"
     },
@@ -112,8 +112,8 @@
       "id": "FLG-013",
       "severity": "action",
       "title": "Content volume is below the Associates review bar",
-      "detail": "Amazon's Associates Help, 'Application Review Process' (checked 2026-11-20, US help topic G8TW5AE9XL2VX9VM), says: \"All Sites must have robust original content (even when advertising is removed) – a good rule of thumb is at least 10 posts.\" It also says: \"Content on your website must be recent (generally within the last 60 days).\" This site has 6 guides and 5 product pages as of 2026-11-20 (guide 06 added by the T27 pass under the accepted cadence, SUG-05/SUG-21). Amazon does not say whether product and hub pages count as posts, but 6 guides is still below the rule of thumb on any reading. The account's own status and review history are unknown from here. Carried forward from the parallel-session register (arena-2ca62ce9, FLG-010), which found this first.",
-      "action": "Do not submit or re-submit for review until the site has at least 10 posts and content dated within the last 60 days. The weekly cadence in the suggestions register (SUG-05, accepted 2026-11-20) is the path: keep publishing on that weekly cadence until the post count clears the bar. Recorded as a commercial blocker, not a content-quality one.",
+      "detail": "Amazon's Associates Help, 'Application Review Process' (checked 2026-11-20, US help topic G8TW5AE9XL2VX9VM), says: \"All Sites must have robust original content (even when advertising is removed) – a good rule of thumb is at least 10 posts.\" It also says: \"Content on your website must be recent (generally within the last 60 days).\" This site has 10 guide pages and 5 product pages as of 2026-11-20 (the count had drifted to 7 in this row while guides/*.html held 9; corrected and extended when guide 10 was added by the T37 pass). Amazon does not say whether product and hub pages count as posts, but 10 guides only just reaches the rule of thumb, and recentness still applies. The account's own status and review history are unknown from here. Carried forward from the parallel-session register (arena-2ca62ce9, FLG-010), which found this first. Re-checked 2026-11-20 by arena-f5d87e09-wina on the same help topic. The page also says the application is reviewed after sales: \"After you sign up, our Associates team will check your application once you've driven qualified sales (we require at least three within the first 180 days).\" So the review timing depends on qualified sales, not only on content; the action below is unchanged.",
+      "action": "Do not submit or re-submit for review until the content bar and the recency rule are both comfortably met. The weekly cadence in the suggestions register (SUG-05, adopted 2026-11-20) is the path. Recorded as a commercial blocker, not a content-quality one.",
       "sourceUrl": "https://affiliate-program.amazon.com/help/node/topic/G8TW5AE9XL2VX9VM",
       "sourceLabel": "Associates Help: Application Review Process (checked 2026-11-20)"
     },
@@ -173,19 +173,19 @@
     },
     {
       "id": "FLG-020",
-      "severity": "withheld",
-      "title": "No seasonal content, because there is no seasonal demand data",
-      "detail": "The brief asked for seasons and topic clusters. No seasonal query data was obtained from any source, so no seasonal calendar was invented. The guides are editorial working titles, not popularity claims. Carried forward from arena-2ca62ce9 (FLG-015).",
-      "action": "Clusters exist as two product categories. Seasons wait for Search Console query data — choosing December topics from instinct is the failure mode being avoided.",
-      "sourceUrl": "https://search.google.com/search-console",
-      "sourceLabel": "Search Console (not yet verified)"
+      "severity": "resolved",
+      "title": "Seasonal content shipped as calendar-driven, not demand-driven; a hold position is recorded alongside it",
+      "detail": "The brief asked for seasons and topic clusters, but no seasonal query data was ever obtained, so a seasonal calendar could not be invented. Carried forward from arena-2ca62ce9 (FLG-015). Updated 2026-11-20 by arena-27f76c22: a seasonal collection page (/seasonal/) and a holiday guide (/guides/holiday-batch/) now exist, chosen for the calendar and labelled on the page itself as calendar-driven. The disagreement about this choice is kept visible rather than resolved by one side: SUG-23 (arena-829ea2fd) recommends holding seasonal topics until demand is measured; SUG-25 (this session) records why the cluster shipped anyway — a direct publishing brief asked for seasonal coverage, and the limitation is disclosed on the page itself. The guides remain editorial working titles, not popularity claims.",
+      "action": "Resolved as shipped with its limitation disclosed and the opposing recommendation kept live. The open half is now Q-23: whether the seasonal cluster earns impressions will be known only from Search Console query data (SG-29, FLG-009). Owner decides at Q-25 whether the page earns its annual November refresh or is retired in favour of the hold position. If kept, re-check its linked specs on each refresh.",
+      "sourceUrl": "https://sassnarep3-star.github.io/WinA/seasonal/",
+      "sourceLabel": "The seasonal collection (calendar-driven selection disclosed on-page)"
     },
     {
       "id": "FLG-021",
       "severity": "review",
       "title": "Author identity and brand name are still placeholders",
-      "detail": "No author was named in the source material, so no byline was invented. 'Counter Space' is a working name chosen for this build and is not a registered brand. Decided 2026-11-20 (T27 review pass, decision log): Q-20 answered — the name stays as the working publication name; Q-21 answered and SUG-06 rejected — the byline is the publication byline 'Counter Space editorial', and a named-person byline is not fabricated. A trademark check was attempted from this environment on 2026-11-20: the USPTO public search (tmsearch.uspto.gov) is a JavaScript application that returned no verifiable exact-match result here, and a general search surfaced no exact-match registration for 'Counter Space' in this category (adjacent marks such as CHEF'S COUNTER, Class 011, do exist). That is not a clearance. Carried forward from arena-2ca62ce9 (FLG-013).",
-      "action": "Owner: run a full USPTO TSDR/TESS plus common-law search for 'Counter Space' in the relevant classes before any paid promotion or custom-domain purchase (SUG-07). Attach a real person to the byline when one exists (SUG-06 can be reopened then).",
+      "detail": "No author was named in the source material, so no byline was invented. The publication name changed with the 2026-11-20 integration: the live brand is 'The Crisp Counter'; the earlier working name 'Counter Space' is retired with the archived build (Q-20 answered). Decided 2026-11-20 (T37 review pass): Q-21 answered and SUG-06 rejected — the byline is the publication byline, and a named-person byline is not fabricated. A trademark check was attempted from this environment on 2026-11-20: the USPTO public search (tmsearch.uspto.gov) is a JavaScript application that returned no verifiable exact-match result here, and a general search surfaced no exact-match registration for the name in this category (adjacent Class 011 marks such as CHEF'S COUNTER do exist). That is not a clearance. Carried forward from arena-2ca62ce9 (FLG-013).",
+      "action": "Owner: run a full USPTO TSDR/TESS plus common-law search for 'The Crisp Counter' in the relevant classes before any paid promotion or custom-domain purchase (SUG-07). Attach a real person to the byline when one exists (SUG-06 can be reopened then).",
       "sourceUrl": "https://tmsearch.uspto.gov/",
       "sourceLabel": "USPTO trademark search (attempted 2026-11-20; JavaScript app returned no verifiable exact-match result from this environment)"
     },
@@ -238,28 +238,28 @@
       "id": "FLG-027",
       "severity": "review",
       "title": "The 8-quart Chefman's 450°F was presented as its maximum temperature",
-      "detail": "The listing title says '450°F Hi-Fry Option'; the manufacturer states Hi-Fry 'raises the heat to 450°F for the last two minutes', against a normal range topping out at 400°F. This site had recorded 'Max temperature: 450°F (Hi-Fry)' and a guide called it 'the top of the range in this set'. That overstates a two-minute browning finish as a continuous capability.",
-      "action": "Corrected. The row now reads '400°F standard range; 450°F Hi-Fry for the final 2 minutes of a cycle', and the basket-vs-oven guide describes it the same way.",
+      "detail": "The listing title says '450°F Hi-Fry Option'; the manufacturer states Hi-Fry 'raises the heat to 450°F for the last two minutes', against a normal range topping out at 400°F. This site had recorded 'Max temperature: 450°F (Hi-Fry)' and a guide called it 'the top of the range in this set'. That overstates a two-minute browning finish as a continuous capability. Re-read 2026-11-20 (arena/b37e1a98-wina): the 'final two minutes' duration is published only on chefman.com's page for RJ38-8T-BLACK, a 1700 W SKU whose wattage contradicts this ASIN's own listing (1000 W, RJ38-SQSS-8T), so that duration is not a fact about this ASIN.",
+      "action": "Corrected. The row now reads '400°F standard range; 450°F Hi-Fry for the final 2 minutes of a cycle', and the basket-vs-oven guide describes it the same way. Second correction 2026-11-20: the row no longer states a duration and reads '200-400 °F normal range, with a 450 °F Hi-Fry option (the listing does not say how long Hi-Fry runs)', citing this listing only. See FLG-045.",
       "sourceUrl": "https://chefman.com/products/turbofry-8-qt-air-fryer-w-high-fry",
       "sourceLabel": "Chefman product page, Hi-Fry description"
     },
     {
       "id": "FLG-028",
-      "severity": "review",
-      "title": "Chefman's 8-quart family has at least five SKUs and the listing names none of them",
-      "detail": "chefman.com publishes RJ38-8T-BLACK (matte black) for the 8-qt Hi-Fry machine; retailer records for this ASIN give RJ38-SQSS-8T and a stainless-steel body of 12.75 x 13.5 x 10 in at 12.8 lb. The two disagree on colour and model, so no dimension, weight or wattage from either page can be attached to this listing.",
-      "action": "Left blank rather than guessed, and recorded on the product page. The figures are not in dispute; which SKU this listing ships is.",
-      "sourceUrl": "https://chefman.com/products/turbofry-8-qt-air-fryer-w-high-fry",
-      "sourceLabel": "Chefman 8 Qt Hi-Fry page (RJ38-8T-BLACK) vs the Amazon listing"
+      "severity": "resolved",
+      "title": "The 8-quart Chefman's SKU was unresolved; the listing names it in its own bullet points",
+      "detail": "chefman.com publishes RJ38-8T-BLACK (matte black, 1700 W/120 V, 8 qt/7.57 L) for its 8-qt Hi-Fry machine, and earlier sessions could not tell whether that was the SKU behind this ASIN, so dimensions, weight and wattage were left blank. Re-read 2026-11-20: the closing line of this listing's own bullet points states '1000 Watts/120 Volts - RJ38-SQSS-8T', and its product-information table gives 12.75\"D x 13.5\"W x 10\"H, stainless steel, 8 quarts, 200-400°F. These are different SKUs and the listing identifies its own, so the values are now recorded from the listing and none is taken from chefman.com.",
+      "action": "Resolved. data/products.json records modelNumber RJ38-SQSS-8T and fills wattage, dimensions and warranty from this listing. Recorded here so a later session does not 'correct' the wattage to chefman.com's 1700 W for a different SKU.",
+      "sourceUrl": "https://www.amazon.com/dp/B08DKYBTPH",
+      "sourceLabel": "Amazon listing bullet points and product-information table"
     },
     {
       "id": "FLG-029",
-      "severity": "review",
-      "title": "Emeril's own page contradicts the Amazon listing on preset count",
-      "detail": "emerileveryday.com states '25 Cooking Pre-sets' in its specification block and '10-in-1' in the product description; the Amazon listing states 24 one-touch presets. Three different numbers for one feature.",
-      "action": "Recorded as 24 (the listing) with the manufacturer figure noted. Neither is published as settled. Unchanged from FLG-005's finding, now with the third number and its URL.",
-      "sourceUrl": "https://www.emerileveryday.com/products/emeril_lagasse_french_door_airfryer_360",
-      "sourceLabel": "Emeril Everyday specification block"
+      "severity": "resolved",
+      "title": "Emeril's page contradicted the listing on preset count; the owner's manual settles it at 24",
+      "detail": "emerileveryday.com states '25 Cooking Pre-sets' in its specification badge, '24 one-touch cooking presets' in its own product description, and '10-in-1' as a headline feature; the Amazon listing states 24. On 2026-11-20 the owner's manual linked from that same page (FAFO-001) was read: its 'RECOMMENDED ACCESSORY POSITIONS' table lists exactly 24 presets, one row each - Airfry, Fries, Bacon, Grill, Eggs, Fish, Ribs, Defrost, Steak, Vegetables, Wings, Bake, Rotisserie, Toast, Chicken, Pizza, Pastry, Proof, Broil, Slow Cook, Roast, Dehydrate, Reheat, Warm. Counting them row by row gives 24, agreeing with the listing and with the manufacturer's own description.",
+      "action": "Resolved as 24, now cited to the manual rather than to the badge, with all 24 names listed in a second row so the number can be checked instead of trusted. The '10-in-1' figure is a marketing grouping, not a preset count.",
+      "sourceUrl": "https://cdn.shopify.com/s/files/1/0687/4388/8948/files/FAFO-001_VN_32451_EF_IB_T22-5004282-C_1.pdf?v=1777990358",
+      "sourceLabel": "Emeril Lagasse French Door AirFryer 360 owner's manual, accessory-position table"
     },
     {
       "id": "FLG-034",
@@ -274,7 +274,7 @@
       "id": "FLG-035",
       "severity": "review",
       "title": "Topic roadmap titles are editorial hypotheses with no measured demand",
-      "detail": "Counted from data/products.json on 2026-11-20 with a script over the published rows: 32 of 60 spec rows carry a verified value. Per product, verified of total: Chefman 6-Quart Dual Basket 8/12; Emeril 26QT French Door 6/11; Chefman 8-Quart TurboFry 5/12; ThermoMaven 1-Second 7/12; CHEF iQ Sense Gen3 6/13. (An earlier draft of this flag carried counts that did not match the file; they were recomputed and replaced before publication.) The Emeril has no confirmed wattage or warranty; the Chefman 8-Quart has no confirmed wattage, dimensions or warranty. Those are the fields a buyer most often needs — will it fit, will it trip the outlet, what happens if it fails — and they are blank because the listing did not state them and no manufacturer page was cited for them.",
+      "detail": "The topic roadmap on /suggestions/ proposes question-shaped titles by cluster. Every one is an editorial hypothesis: no search-volume source, keyword tool or referral data was available for this project, so none is a claim about demand, ranking difficulty or product superiority. This row's detail previously carried, by copy error, the spec-coverage counts belonging to FLG-039; corrected 2026-11-20, and those counts now live only on FLG-039.",
       "action": "Accept the roadmap as the first draft of hypotheses only. Which topics earn traffic is decided by Search Console query data after verification (FLG-009), not by instinct. Recorded so the hypotheses are not read as claims.",
       "sourceUrl": "https://search.google.com/search-console",
       "sourceLabel": "Google Search Console Queries report (not yet verified)"
@@ -345,17 +345,17 @@
     {
       "id": "FLG-033",
       "severity": "review",
-      "title": "The ASIN rationale in the brief could not be tied to an official Amazon definition",
-      "detail": "The brief gives 'Amazon's ASIN definition' as the reason the intended-ASIN field is checkable. On 2026-11-20 no Amazon Help page giving that definition was found. The only Amazon-domain result was a Seller Central forum thread; its definition replies were written by sellers, not Amazon staff, so they are not cited as Amazon's definition. What can be checked directly is narrower: all five observed ASINs are 10 characters, A-Z and 0-9, and each observed destination ends in /dp/<ASIN> (data/links.json). This checks the URL format only. It does not show that a submitted link was intended for a particular ASIN, which is why the intended field stays blank.",
-      "action": "Owner: decide whether the intended-ASIN field should be filled from the submitted link (FLG-019). If the rationale is kept, cite an Amazon Help page for the definition before publishing it.",
-      "sourceUrl": "https://sellercentral.amazon.com/seller-forums/discussions/t/1e22c5df-d27a-4e2b-a0c1-90938b6cdcdc",
-      "sourceLabel": "Seller Central forum thread (not Amazon Help; definition not confirmed as Amazon's)"
+      "title": "ASIN definition confirmed on an Amazon-owned page; that page says it was AI-assisted",
+      "detail": "The brief gives 'Amazon's ASIN definition' as the reason the intended-ASIN field is checkable. Earlier searches on 2026-11-20 found only a Seller Central forum thread, which is not cited. A later search found Amazon's own 'Sell on Amazon' page, Understanding ASINs (sell.amazon.com, dated 4 June 2025; source id amazon-asin-definition in data/policy.json). Both chunks were read on 2026-11-20. It defines an ASIN as \"a unique 10-character alphanumeric code assigned to every product listed in the Amazon store\", says the format \"typically starts with 'B0'\", and says the ASIN appears after '/dp/' in the product URL. It supports one check only: each observed ASIN is 10 characters, A-Z and 0-9, and each observed destination ends in /dp/<ASIN> (data/links.json). It does not show which product a submitted short link was intended to reach, so the intended-ASIN field stays blank. Two caveats keep this at review: the page is seller-education material, not an Amazon Help article or Associates policy; and the page itself says it 'was produced with the assistance of generative artificial intelligence (gen AI)'. Kept at review rather than resolved for that reason, so the owner can accept it or supply a human-written Amazon Help page.",
+      "action": "Owner: accept this AI-assisted Amazon page as the definition source, or find an Amazon Help page for it. Whether the intended-ASIN field may be filled from a submitted link is still the owner's decision (FLG-019), and it must not be filled from the observed destination.",
+      "sourceUrl": "https://sell.amazon.com/blog/what-is-an-asin",
+      "sourceLabel": "Sell on Amazon (Amazon-owned): 'Understanding ASINs', 4 Jun 2025 — checked 2026-11-20; AI-assisted per page"
     },
     {
       "id": "FLG-036",
       "severity": "review",
       "title": "Re-check on 2026-11-20 did not reproduce the recorded destination for three submitted short links",
-      "detail": "On 2026-11-20 each submitted link.amazon URL was re-opened with the page tool. B02NbDxp3 (-> /dp/B09B7SB46R) and B00hJ57DV (-> /dp/B08DKYBTPH) matched data/links.json. B04G1MEwY and B0c8moW59 each returned the amazon.com home page on both attempts, not the recorded /dp/B0CDY277D3 and /dp/B0DHZTCNR5 pages. B0f3GKalj returned the home page on one attempt and the recorded /dp/B0DZFD6R9Z page on the other, so it is inconsistent. A second session (arena/119f4dc6-wina) re-checked the same five links on the same date, independently, and got the same split: B04G1MEwY and B0c8moW59 to the home page on both attempts, B0f3GKalj to the home page once. All five destination ASINs were separately re-confirmed by fetching https://www.amazon.com/dp/<ASIN> directly, so the product identity in data/links.json is correct. The recorded observations are kept unchanged. The cause is not known: it could be the short link, the redirect handling of the page tool, or a session-dependent redirect. The site is not affected, because every product button links to amazon.com/dp/<observed ASIN>?tag=shopnow047c-20 directly and not through the short links.",
+      "detail": "On 2026-11-20 each submitted link.amazon URL was re-opened with the page tool. B02NbDxp3 (-> /dp/B09B7SB46R) and B00hJ57DV (-> /dp/B08DKYBTPH) matched data/links.json. B04G1MEwY and B0c8moW59 each returned the amazon.com home page on both attempts, not the recorded /dp/B0CDY277D3 and /dp/B0DHZTCNR5 pages. B0f3GKalj returned the home page on one attempt and the recorded /dp/B0DZFD6R9Z page on the other, so it is inconsistent. A second session (arena/119f4dc6-wina) re-checked the same five links on the same date, independently, and got the same split: B04G1MEwY and B0c8moW59 to the home page on both attempts, B0f3GKalj to the home page once. All five destination ASINs were separately re-confirmed by fetching https://www.amazon.com/dp/<ASIN> directly, so the product identity in data/links.json is correct. The recorded observations are kept unchanged. The cause is not known: it could be the short link, the redirect handling of the page tool, or a session-dependent redirect. The site is not affected, because every product button links to amazon.com/dp/<observed ASIN>?tag=shopnow047c-20 directly and not through the short links. Third check, this session (arena-f5d87e09-wina, 2026-11-20): B04G1MEwY, B02NbDxp3, B00hJ57DV and B0c8moW59 returned the amazon.com homepage; B0f3GKalj returned /dp/B0DZFD6R9Z. Every submitted link has now returned the homepage at least once across the 2026-11-20 checks. Recorded in data/links.json under verificationLog.",
       "action": "Owner: open each of the five short links in a normal browser, logged out, and record the landing URL. If any short link lands somewhere other than its recorded /dp/ page, correct data/links.json and add a dated note. Do not rely on the recorded values until this is done.",
       "sourceUrl": "https://link.amazon/B04G1MEwY",
       "sourceLabel": "Submitted short link (re-checked 2026-11-20 by two sessions; see detail)"
@@ -363,11 +363,11 @@
     {
       "id": "FLG-037",
       "severity": "resolved",
-      "title": "Buy buttons say 'Check price on Amazon' while the site states prices are not shown",
-      "detail": "Every product card and hero button is labelled 'Check price on Amazon'. Other pages state that prices are not shown on this site, and data/products.json withholds prices (FLG-005). Reviewed and decided 2026-11-20 by the T27 pass after re-reading the official Program Policies page (updated April 14, 2026): the label displays no price, so Participation Requirements §2(b) — which allows a price only when Amazon serves it inside the link or it is obtained via Creators API/PA API — is not engaged; §6(y) bans price tracking, which this site has none of; and §6(w) requires that a link make clear it goes to Amazon, which the words 'on Amazon' do. The wording is consistent with the site's own disclosure and is kept.",
-      "action": "Resolved 2026-11-20: label kept as 'Check price on Amazon →'. Decision recorded in the suggestions decision log. Any future wording change must re-check §2(b) and §6(w) first.",
+      "title": "Buyer-action and category copy no longer imply an on-page price or an unverified low cost",
+      "detail": "Resolved in task T33 on the shared board (2026-11-20; first claimed as T27, renumbered at merge time because main already held rows for other sessions). Product buttons in all three templates — buy box, product card, front-page hero — now read ‘View on Amazon’ rather than ‘Check price on Amazon’, while the site itself displays no prices. Two price superlatives that no data supports were also removed: the ThermoMaven line ‘The cheap insurance that stops you guessing’ became ‘A one-second read for a quick kitchen check’, and the thermometers category dek and front-page section head lost ‘The cheapest upgrade in the kitchen’. Replacement wording states only rows already recorded as verified in the register: ‘Truly instant read in 1 second’ (thermomaven.com product page, read 2026-11-20) and ‘3 ultra-thin probes’ (chefiq.com product page). No price, commission, conversion or performance figure was added, and the Price / Star rating / Review count rows remain blank or withheld.",
+      "action": "No further action on wording. If API-backed price display is ever considered, re-read the Associates Program Policies first and extend scripts/check-site.mjs so the no-price rule is re-checked against whatever the new copy claims.",
       "sourceUrl": "https://affiliate-program.amazon.com/help/operating/policies",
-      "sourceLabel": "Amazon Associates Program Policies §2(b), §6(w), §6(y) (re-read 2026-11-20)"
+      "sourceLabel": "Amazon Associates Program Policies (page states “Updated: April 14, 2026”); price/rating display and tracking rules reviewed 2026-11-20"
     },
     {
       "id": "FLG-038",
@@ -381,18 +381,126 @@
     {
       "id": "FLG-039",
       "severity": "review",
-      "title": "Spec coverage is uneven, and two products carry no warranty or dimensions at all",
-      "detail": "Counted from data/products.json on 2026-11-20 by script over the published rows: 32 of 60 spec rows carry a verified value. Per product, verified of total: Chefman 6-Quart Dual Basket 8/12; Emeril 26QT French Door 6/11; Chefman 8-Quart TurboFry 5/12; ThermoMaven 1-Second 7/12; CHEF iQ Sense Gen3 6/13. The Emeril has no confirmed wattage or warranty; the Chefman 8-Quart has no confirmed wattage, dimensions or warranty. Those are the fields a buyer most often needs — will it fit, will it trip the outlet, what happens if it fails — and they are blank because the listing did not state them and no manufacturer page was cited for them. (Originally drafted as FLG-038 and moved when that id was taken in a parallel claim.)",
-      "action": "Owner or next session: add the manufacturer product page URL per product to specSources and fill wattage, dimensions and warranty from it, one row at a time with its own source. Do not fill from memory or from a marketplace reseller page.",
+      "title": "Spec coverage is uneven, and one product still has no confirmed warranty",
+      "detail": "50 of 70 spec rows carry a verified value (53 carry any value at all; 17 are blank with a reason). Per product, verified of total: Chefman 6-Quart Dual Basket 10/13; Emeril Lagasse 26QT French Door 9/13; Chefman 8-Quart TurboFry 12/15; ThermoMaven 1-Second Thermometer 9/14; CHEF iQ Sense Gen 3 10/15. Re-counted by script at the end of the 2026-11-20 line-by-line pass, after every valued row was re-checked against the page it cites. Coverage improved because the Chefman 8-Quart listing turned out to state its own wattage, dimensions and warranty, and because the Emeril manual supplied wattage, temperature range and the preset list. A second T35 pass (arena/d248d06c-wina) then filled the CHEF iQ Sense Gen 3 warranty (2 years, activated on first app connection) from the manufacturer's own user guide, cited in specSources — see FLG-048 for the 2-year-vs-1-year source conflict it raises. Still missing: the ThermoMaven calibration record, the CHEF iQ 3-probe model code (FLG-046) and the Emeril accessory count (FLG-043).",
+      "action": "Owner or next session: treat the ThermoMaven calibration record as unverifiable until a certificate number is published. The CHEF iQ warranty row is now cited to the manufacturer user guide (this session); confirm the 2-year term applies to the enrolled ASIN (FLG-048). Do not fill either from memory or from a marketplace reseller page.",
       "sourceUrl": "https://www.amazon.com/dp/B09B7SB46R",
       "sourceLabel": "Amazon listing for the Emeril 26QT (wattage and warranty not stated there)"
     },
     {
       "id": "FLG-040",
+      "severity": "review",
+      "title": "All five short links returned different redirect targets across the three checks recorded for them",
+      "detail": "data/links.json now keeps every observed landing for each submitted link in its own dated list, separate from the intended ASIN. For each of the five links the recorded checks are: the first resolution (as recorded, not reproducible from this file), the T26 re-check of 2026-11-20 (arena/119f4dc6-wina), and the T29 re-check of 2026-11-20 (arena/6b0f2ddc-wina). In every case the three results are not all the same. The T27 fetch returned the amazon.com homepage for B04G1MEwY, B02NbDxp3, B00hJ57DV and B0c8moW59, and a product page for B0f3GKalj. Compared with the T26 re-check, B02NbDxp3 and B00hJ57DV moved from product page to homepage, and B0f3GKalj moved from homepage to product page. The official listing pages for all five ASINs were re-fetched on the same date, and each title matches data/links.json. So the product identity is not in doubt. The short-link landing is not stable across checks, and no check so far explains why. A fourth check on the same date, by arena-f5d87e09-wina, is recorded in data/links.json under verificationLog. It returned the same pattern: four short links to the amazon.com homepage and B0f3GKalj to its product page. Two independent sessions therefore agree on the same-day split. Extends FLG-036, which records the same split for three of the five links.",
+      "action": "Owner: open each of the five short links in a normal browser, logged out, on at least two days, and record each landing URL in data/links.json as a new dated entry. Do not treat any single recorded landing as the link's destination.",
+      "sourceUrl": "https://link.amazon/B04G1MEwY",
+      "sourceLabel": "Submitted short links (fetched 2026-11-20; see data/links.json observedRedirectTargets)"
+    },
+    {
+      "id": "FLG-041",
+      "severity": "review",
+      "title": "The CHEF iQ specification source is a family page whose default variant is not the promoted SKU",
+      "detail": "The chefiq.com page used as the specification source (chefiq.com/products/iq-sense, re-checked 2026-11-20) shows model CQ60-1C-Z1-E, which is the one-probe variant of the Sense line; the store sells one- to four-probe configurations. The promoted Amazon listing (B0DZFD6R9Z) is the three-probe Gen3. The cited spec values — Wi-Fi and Bluetooth connectivity, 4 internal + 1 ambient sensors, 1,000°F heat rating, air-fryer compatibility — are stated on the manufacturer page for the Sense line and match the listing's own claims, so no specification changed. But the source page, as loaded, does not pin the three-probe variant, and the product page carries modelNumber CQ60-1C-Z1-E. Found during the 2026-11-20 re-verification pass by arena-27f76c22 (renumbered three times on merge: main took FLG-034, FLG-038 and FLG-040 while this branch was in flight). Follow-up 2026-11-20 (arena/b37e1a98-wina): the modelNumber field has been blanked rather than left pointing at the one-probe variant, since this ASIN is the three-probe listing - see FLG-046. No manufacturer page read so far states the three-probe model code.",
+      "action": "Left as observed: no value was invented to resolve it. To close it, pick the exact variant URL on chefiq.com for the three-probe model and update specSources — an owner or a later session with the variant URL can do this. No page claim depends on the variant count beyond the listing itself, which already states three probes. The product page now prints the model number, or states that it is not published, so a reader can see which variant a figure belongs to.",
+      "sourceUrl": "https://chefiq.com/products/iq-sense",
+      "sourceLabel": "CHEF iQ Sense family page (variant selector observed 2026-11-20)"
+    },
+    {
+      "id": "FLG-042",
+      "severity": "resolved",
+      "title": "The self-hosted collector did not speak the browser client's payload, and crashed when an origin allow-list was set",
+      "detail": "scripts/analytics-server.mjs had never been executed against a request. Two defects followed from that: (1) it read the page path, ASIN and slot from the top level of the request body, while assets/js/site.js and _worker/collector.js both send them nested under \"p\" — so every click would have been recorded with no product, no page and no slot, and the one number the measurement plan exists to produce would never have existed; (2) it parsed the ALLOWED_ORIGINS environment variable with Array.map, so starting the collector with an origin allow-list — the exact command its own startup message recommends — crashed it on line 25. Both were found by scripts/analytics-selftest.mjs, added in this pass and run in CI. (FLG-040 and FLG-041 were taken on main in the same window, so this finding is numbered after them.)",
+      "action": "Both fixed in scripts/analytics-server.mjs: the payload now matches the client and the worker (props nested under \"p\", the same stored row fields and length limits), and ALLOWED_ORIGINS is parsed as a comma-separated string. The self-test now asserts the collector contract end to end and compares the worker and the server against each other and against the register, so the two cannot drift apart again. Nothing was deployed and the client is still inert: FLG-011 remains open and now needs only a host.",
+      "sourceUrl": "https://github.com/sassnarep3-star/WinA/blob/main/scripts/analytics-selftest.mjs",
+      "sourceLabel": "Repository — the collector self-test that found both defects"
+    },
+    {
+      "id": "FLG-043",
+      "severity": "review",
+      "title": "Emeril page lists six included accessories; its own description says seven",
+      "detail": "The Amazon listing for B09B7SB46R says 'Six Cooking Accessories Included' in its title, and the manufacturer's product page carries a line reading 'Included are 7 premium accessories' in the same description block that also says '24 one-touch cooking presets'. The manual names more accessories than the listing does, but does not say which ship in the box and which are sold separately, so the count cannot be settled from any official page read on 2026-11-20. The row is therefore demoted from 'verified' to 'claim': the number is stated and its source is named, but the sources disagree.",
+      "action": "Published as a claim rather than a fact. Owner: count the accessories in the box, or take the answer from the manufacturer's support team, then set the row to verified against that source. Not filled from the listing alone, because the manufacturer says otherwise.",
+      "sourceUrl": "https://www.emerileveryday.com/products/emeril_lagasse_french_door_airfryer_360",
+      "sourceLabel": "Emeril Everyday product description (six in the listing title, seven here)"
+    },
+    {
+      "id": "FLG-044",
+      "severity": "resolved",
+      "title": "Two ThermoMaven rows cited a product page that does not state them",
+      "detail": "The 'Display' row ('Auto-rotate bright LED') and the 'Battery type' row ('1 x AAA, included') both cited thermomaven.com/products/f1-stealth. Re-read on 2026-11-20, that page's manufacturer copy says only 'ultra-bright LED screen' and says nothing about rotation; AAA batteries appear only in customer-review text. Both facts are in the F1 Stealth owner's manual (HT07) that the same page links: 'Display 0.83\" (H) x 1.61\" (W) LED, rotates 180 degrees' and 'Battery (1) x 1.5 volt AAA'. The rows now cite the manual and state the published figures instead of the vague wording.",
+      "action": "Corrected. Both rows cite the owner's manual and carry its exact figures. Found by opening the cited page for every valued row rather than trusting the citation.",
+      "sourceUrl": "https://cdn.shopify.com/s/files/1/0828/4726/9152/files/HT07_user_manual.pdf?v=1733992221",
+      "sourceLabel": "ThermoMaven F1 Stealth owner's manual, Specifications table"
+    },
+    {
+      "id": "FLG-045",
+      "severity": "review",
+      "title": "chefman.com's 8-quart page is a different SKU from this ASIN, and guide copy had repeated its wording",
+      "detail": "The 8-quart family spans several SKUs. chefman.com sells RJ38-8T-BLACK at 1700 W/120 V, 8 qt/7.57 L; the Amazon listing for B08DKYBTPH states RJ38-SQSS-8T at 1000 W/120 V with 12.75\"D x 13.5\"W x 10\"H. Everything recorded for this product now comes from the listing. The consequence is a wording change: the 'Hi-Fry for the final 2 minutes' phrase is published only on the black SKU's page, so it is no longer stated in the max-temperature row and has been removed from the guide passages that repeated it. A reader comparing this site with chefman.com will see 1000 W here and 1700 W there; both are correct for their own SKU, and the model number is now printed so the difference is checkable.",
+      "action": "Recorded so the discrepancy is not later 'fixed' in the wrong direction. If manufacturer-page figures are wanted, the model number has to change first - which means a different ASIN, not a different number in this row.",
+      "sourceUrl": "https://chefman.com/products/turbofry-8-qt-air-fryer-w-high-fry",
+      "sourceLabel": "chefman.com 8 Qt Hi-Fry page (RJ38-8T-BLACK, 1700 W) versus the Amazon listing (RJ38-SQSS-8T, 1000 W)"
+    },
+    {
+      "id": "FLG-046",
+      "severity": "review",
+      "title": "CHEF iQ Sense model number blanked: the manufacturer page shows a different probe count",
+      "detail": "data/products.json had recorded modelNumber CQ60-1C-Z1-E for the CHEF iQ Sense. That code is real, but chefiq.com's variant selector reads 'Size: 1 Probe' when it displays it, and this ASIN (B0DZFD6R9Z) is the three-probe listing - its title says '3 Ultra-Thin Probes'. Attaching a one-probe model code to a three-probe listing would misidentify the item, so the field is now blank rather than wrong. This is the product-data consequence of FLG-041, which records the source-page problem.",
+      "action": "Owner: read the model code off a three-probe unit or the CHEF iQ support page, then fill the row with that source. Until then the field stays empty, which is the honest state, and the product page says so in words.",
+      "sourceUrl": "https://chefiq.com/products/iq-sense",
+      "sourceLabel": "chefiq.com iQ Sense page (variant selector: 1 Probe, model CQ60-1C-Z1)"
+    },
+    {
+      "id": "FLG-047",
+      "severity": "review",
+      "title": "Fourth re-check of the short links: four of five landed on the Amazon homepage, and the split differed again",
+      "detail": "A further session (arena/b37e1a98-wina) opened all five submitted link.amazon URLs on 2026-11-20 with the page tool. This time B0f3GKalj reached /dp/B0DZFD6R9Z and the other four reached https://www.amazon.com/ - the homepage. Earlier the same day two other sessions saw B02NbDxp3 and B00hJ57DV reach their product pages. The behaviour is therefore not fixed by link: which links reach a product page changes between runs. All five destination ASINs remain confirmed by fetching /dp/<ASIN> directly, so the product identity in data/links.json is right regardless. The cause remains unknown - the short link, the fetch tool's redirect handling, or a session-dependent redirect. Nothing user-facing depends on these URLs, because every buy button links to /dp/<ASIN> tagged directly. No claim is made that the short links are invalid.",
+      "action": "Owner: open each of the five in a normal browser while signed out and record the landing URL; that is the only way to settle it. Recorded so a later session does not read a single fetch as the answer - this record now holds four observations per link, never merged into one value.",
+      "sourceUrl": "https://link.amazon/B04G1MEwY",
+      "sourceLabel": "Submitted short link, re-checked 2026-11-20 by a fourth independent session"
+    },
+    {
+      "id": "FLG-048",
+      "severity": "resolved",
+      "title": "Served pages displayed hand-copied prices, star ratings, review counts and merchandising badges — display content the Associates rules reserve for PA-API data",
+      "detail": "The integrated publication displayed hand-copied prices and list prices on shop, index, compare, questions, executive-summary, guide and data-room pages, plus star ratings, review counts ('18,379 ratings'), 'Amazon's Choice' badges and '8K+ bought last month' figures. These are display figures, not verified specs: the Associates IP License (§2(b)) limits Product Advertising Content — including pricing — to API-obtained data, §6(y) bans price tracking/alerting, and Participation Requirements §6(t) (verified verbatim from affiliate-program.amazon.com/help/operating/policies on 2026-11-20) states 'You will not display or otherwise use any of our customer reviews or star ratings, in part or in whole, on your Site unless you have obtained a link to that customer review or star rating through Creators API or PA API.' This site has no PA API access, so the figures were non-compliant as displayed. The register had withheld exactly these figures since the first builds (FLG-005/FLG-006); the FLG-009 row flagged the posture as an owner decision but shipped the aggressive variant, and the gate (R-01…R-09) did not check for the figures, so CI passed. Found 2026-11-20 by session arena-f515c465-wina during the line-by-line verification pass.",
+      "action": "Resolved 2026-11-20 (session arena-f515c465-wina). All price figures, star ratings, review counts and badges removed from every served page and replaced with 'not shown / not reproduced' copy citing the rule. Gate rules R-10 (price figures) and R-11 (ratings, review counts, merchandising badges) added to tools/check_site.py; the G-3 row on data-room/compliance-gate.html documents R-03…R-11. Owner decision S-14 (FLG-009) stays open as the deliberate path to change the posture if PA-API access is ever granted (SUG-03) — never silently. Follow-up in the same session, after the first deploy was live-checked: three residuals found and removed — 'Deal −NN%' discount badges (price-derived figures) on shop/index, the CHEF iQ shop-card battery figure ('up to 50 hours' vs chefiq.com's 70+ hours claim), and 'Check price on Amazon' button labels that contradicted T33's recorded 'View on Amazon' resolution (FLG-037).",
+      "sourceUrl": "https://affiliate-program.amazon.com/help/operating/policies",
+      "sourceLabel": "Amazon Associates Program Policies — Participation Requirements §6(t), §6(y); IP License §2(b)"
+    },
+    {
+      "id": "FLG-049",
+      "severity": "review",
+      "title": "CHEF iQ Sense warranty: manufacturer's user guide says 2 years; retailer listings say 1 year",
+      "detail": "The CHEF iQ Sense Gen3 (B0DZFD6R9Z) Warranty row was filled from the manufacturer's own user guide PDF (CQ60-ALL-SET-C_UG_OTP_050126, hosted on chefiq.com's CDN), which states: 'RJ Brands, LLC d/b/a CHEF iQ offers a limited 2-year Warranty ... warranted against defects in material and workmanship ... for a period of 2 years from the date the Warranty is activated.' The warranty is activated by connecting the product to the CHEF iQ App. Retailer listings and third-party mirrors of an older user guide state a 1-year limited warranty. The register uses the manufacturer's current document (2 years, activated on first app connection). This is a real source conflict, not a resolved question: the register cannot show both, and the buyer-facing value follows the manufacturer's newest official document. Flagged so the owner can confirm which applies to the enrolled ASIN before the figure is relied on.",
+      "action": "Owner: open the CHEF iQ user guide on chefiq.com and confirm the 2-year term applies to this ASIN; if a retailer or Amazon listing states 1 year, record which document and date governs. The site shows the manufacturer figure with its citation; it does not display both.",
+      "sourceUrl": "https://cdn.shopify.com/s/files/1/0267/8118/8171/files/CQ60-ALL-SET-C_UG_OTP_050126.pdf",
+      "sourceLabel": "CHEF iQ iQ Sense User Guide (official, chefiq.com CDN), warranty terms"
+    },
+    {
+      "id": "FLG-050",
+      "severity": "review",
+      "title": "Editorial imagery is generated art, published with that provenance",
+      "detail": "The editorial images in assets/img/ (including editorial-hero.jpg) were generated for this publication as atmosphere art — kitchen scenes, food, a festive table. They are not photographs of the products, they were not supplied by any brand. Nothing about a product's appearance should be inferred from them. Raised by arena-266b1b8f; renumbered three times on merge as lower ids were taken.",
+      "action": "Owner decision: keep the generated art, or replace it with licensed product imagery once Creatives API access exists. Until then this flag documents provenance so the art can never be mistaken for product photography.",
+      "sourceUrl": "https://affiliate-program.amazon.com/help/operating/policies",
+      "sourceLabel": "Associates Program Policies — Program Content and IP License (image use restrictions)"
+    },
+    {
+      "id": "FLG-051",
+      "severity": "review",
+      "title": "The data register and the served pages name the publication differently",
+      "detail": "The served pages brand the publication 'The Crisp Counter' (page titles, mastheads), while data/products.json site.name still reads 'Counter Space' — the name earlier sessions published under. Recorded as observed by arena-266b1b8f; which name is intended is an owner decision.",
+      "action": "Owner: pick the publication name, then make data/products.json site.name, the page mastheads and the RSS title agree.",
+      "sourceUrl": "https://sassnarep3-star.github.io/WinA/",
+      "sourceLabel": "The served front page (masthead/title) vs data/products.json (site.name)"
+    },
+    {
+      "id": "FLG-052",
       "severity": "resolved",
       "title": "Policy register filed the price-display rule under §6(y), which bans tracking, not display",
-      "detail": "POL-04 was titled 'Price display' but quoted Participation Requirements §6(y) — the price tracking and alerting ban — while the actual display rule is §2(b): a price may be shown only if Amazon serves it inside the link or it is obtained via Creators API/PA API. The site's own copy had drifted with the register, saying prices are prohibited 'unless supplied through its API', which omits the served-link case. Found 2026-11-20 by re-reading the official Program Policies page (updated April 14, 2026) during the T27 FLG-037 review. Fixed: POL-04 retitled to 'Price tracking and alerting', new POL-11 added with the verbatim §2(b) quote, and both copy spots on the product and comparison pages corrected to cite §2(b), §6(t) and §6(y) accurately.",
-      "action": "None. Resolved in data/policy.json and _src/build.mjs; rebuilt and gated 2026-11-20.",
+      "detail": "POL-04 was titled 'Price display' but quoted Participation Requirements §6(y) — the price tracking and alerting ban — while the actual display rule is §2(b): a price may be shown only if Amazon serves it inside the link or it is obtained via Creators API or PA API. Found 2026-11-20 by re-reading the official Program Policies page (updated April 14, 2026) during the T37 review pass. Fixed: POL-04 retitled to 'Price tracking and alerting', new POL-11 added with the verbatim §2(b) quote, and the howMet text now points at both clauses. The reader-facing copy that had drifted with the register was already corrected by T33 (FLG-037); this row records the register-side defect and its fix.",
+      "action": "None. Resolved in data/policy.json by the T37 pass; verified against the live official page on 2026-11-20.",
       "sourceUrl": "https://affiliate-program.amazon.com/help/operating/policies",
       "sourceLabel": "Amazon Associates Program Policies, Participation Requirements §2(b) (re-read 2026-11-20)"
     }

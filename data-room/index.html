@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Data room — dashboard | The Crisp Counter</title>
+<meta name="description" content="The verification machinery behind The Crisp Counter: source register, product-intent record, campaign ledger, measurement spec, compliance gate, and flagged items.">
+<link rel="canonical" href="https://sassnarep3-star.github.io/WinA/data-room/index.html">
+<meta name="robots" content="noindex">
+<meta name="cc-endpoint" content="">
+<link rel="alternate" type="application/rss+xml" title="The Crisp Counter" href="../feed.xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..700;1,9..144,400..700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/site.css">
+</head>
+<body>
+<header class="masthead">
+  <div class="wrap masthead-row">
+    <a class="brand" href="../index.html"><span class="brand-mark">◆</span> The Crisp Counter <small>measured kitchen buying</small></a>
+    <button class="nav-toggle" aria-expanded="false" aria-controls="site-nav">Menu</button>
+    <nav class="nav" id="site-nav" aria-label="Primary">
+      <a href="../shop.html">Shop</a>
+      <a href="../compare.html">Compare</a>
+      <a href="../guides/index.html">Guides</a>
+      <a href="../questions.html">Questions</a>
+      <a href="../suggestions.html">Suggestions</a>
+      <a href="index.html" aria-current="page">Data room</a>
+      <a class="nav-cta" href="../shop.html#the-lineup">See the lineup</a>
+    </nav>
+  </div>
+</header>
+<div class="disclosure-strip" id="disclosure">
+  <div class="wrap">
+    <span class="disclosure-badge">Disclosure</span>
+    <span><strong>The Crisp Counter is an Amazon Associate — we earn from qualifying purchases.</strong> Sponsored/affiliate links are marked. Facts were observed on official sources on November 20, 2026. <a href="compliance-gate.html">How we handle disclosure &amp; compliance</a>.</span>
+  </div>
+</div>
+
+<main>
+  <div class="wrap page-head">
+    <p class="breadcrumb"><a href="../index.html">Home</a> / Data room</p>
+    <h1>Data room</h1>
+    <p class="lede">The machinery behind the shop. This dashboard and its subpages are the single navigation group for everything auditable: sources, intent records, ledger, measurement, gates and flags.</p>
+  </div>
+
+  <section class="section tight">
+    <div class="wrap">
+      <div class="status-grid">
+        <div class="status-card"><div class="st-label">Products verified</div><div class="st-value">5 / 5</div><p>All submitted links resolved and fact-checked against official listings (2026-11-20).</p></div>
+        <div class="status-card"><div class="st-label">Open flags</div><div class="st-value">7</div><p>FLG-001…FLG-007 on the <a href="flagged.html">Flagged for Review</a> page. None block publishing.</p></div>
+        <div class="status-card"><div class="st-label">Campaign ledger rows</div><div class="st-value">0</div><p>By design — rows are added only from authorized first-party reports (<a href="campaign-ledger.html">policy</a>).</p></div>
+        <div class="status-card"><div class="st-label">Automated gates</div><div class="st-value">3 pass</div><p>G-1 disclosure · G-2 rel=sponsored · G-3 source rows &amp; link integrity — enforced by <code>tools/check_site.py</code> in CI.</p></div>
+        <div class="status-card"><div class="st-label">Human gates</div><div class="st-value">4 open</div><p>G-4 Associates link test · G-5 disclosure sign-off · G-6 analytics endpoint · G-7 automation policy — owner actions O-1…O-4.</p></div>
+        <div class="status-card"><div class="st-label">Snapshot date</div><div class="st-value">Nov 20</div><p>2026-11-20 is the observation date for every price, rating and stock state shown on the site.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section tight">
+    <div class="wrap">
+      <div class="section-head"><div><p class="eyebrow">Registers &amp; specs</p><h2>Everything auditable, one hop away</h2></div></div>
+      <div class="two-col">
+        <div class="stack-8">
+          <div class="status-card"><div class="st-label">Verification</div><div class="st-value" style="font-size:1.15rem;"><a href="source-register.html">Source register</a></div><p>Every claim class on the site → its official source URL → check date → status.</p></div>
+          <div class="status-card"><div class="st-label">Link provenance</div><div class="st-value" style="font-size:1.15rem;"><a href="product-intent.html">Product-intent confirmation record</a></div><p>Submitted identifiers vs observed redirect targets — strictly separate fields, never merged.</p></div>
+          <div class="status-card"><div class="st-label">Measurement</div><div class="st-value" style="font-size:1.15rem;"><a href="measurement.html">Measurement spec</a></div><p>Five defined events, privacy design, endpoint contract, Search Console hook.</p></div>
+          <div class="status-card"><div class="st-label">Revenue data</div><div class="st-value" style="font-size:1.15rem;"><a href="campaign-ledger.html">Campaign ledger</a></div><p>Empty-but-defined schema; provenance trail; no forecasts, by policy.</p></div>
+        </div>
+        <div class="stack-8">
+          <div class="status-card"><div class="st-label">Publishing control</div><div class="st-value" style="font-size:1.15rem;"><a href="compliance-gate.html">Compliance gate</a></div><p>What's automated, what needs a human, and the exact checklists for each gate.</p></div>
+          <div class="status-card"><div class="st-label">Exceptions</div><div class="st-value" style="font-size:1.15rem;"><a href="flagged.html">Flagged for Review</a></div><p>Irregularities and unresolved items, published with source links — reviewable any time.</p></div>
+          <div class="status-card"><div class="st-label">Provenance</div><div class="st-value" style="font-size:1.15rem;"><a href="method.html">Methodology &amp; provenance trail</a></div><p>How each fact was obtained, what tools touched it, and what was deliberately not done.</p></div>
+          <div class="status-card"><div class="st-label">Decisions</div><div class="st-value" style="font-size:1.15rem;"><a href="../questions.html">Open questions</a> · <a href="../suggestions.html">Suggestions queue</a></div><p>The reader-facing decision registers live in the main navigation.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <p class="brand-foot">◆ The Crisp Counter</p>
+        <p>Data room — the verification machinery behind the shop.</p>
+      </div>
+      <div>
+        <h4>Registers</h4>
+        <ul>
+          <li><a href="source-register.html">Source register</a></li>
+          <li><a href="product-intent.html">Product-intent record</a></li>
+          <li><a href="campaign-ledger.html">Campaign ledger</a></li>
+          <li><a href="measurement.html">Measurement spec</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Control</h4>
+        <ul>
+          <li><a href="compliance-gate.html">Compliance gate</a></li>
+          <li><a href="flagged.html">Flagged for Review</a></li>
+          <li><a href="method.html">Methodology</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Site</h4>
+        <ul>
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="../shop.html">Shop</a></li>
+          <li><a href="../compare.html">Compare</a></li>
+          <li><a href="../guides/index.html">Guides</a></li>
+          <li><a href="../questions.html">Questions</a></li>
+          <li><a href="../suggestions.html">Suggestions</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="disclosure-block">
+      <strong>Disclosure (repeated):</strong> As an Amazon Associate, The Crisp Counter earns from qualifying purchases. Sponsored/affiliate links are marked and use rel="sponsored". Product names and images are the property of their rights holders; product thumbnails are served from Amazon's media CDN pending PA-API image licensing (FLG-005). This site does not sell products directly — purchases happen on Amazon under Amazon's terms.
+      <br>© <span data-year>2026</span> The Crisp Counter · <a href="flagged.html">Flagged for Review</a> · <a href="compliance-gate.html">Compliance</a>
+    </div>
+  </div>
+</footer>
+<script src="../assets/js/analytics.js" defer></script>
+<script src="../assets/js/site.js" defer></script>
+</body>
+</html>

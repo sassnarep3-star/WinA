@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Search — WinA</title>
+  <meta name="description" content="Client-side search across the WinA shelf, guides, analysis, suggestions, questions and flags.">
+  <link rel="canonical" href="https://sassnarep3-star.github.io/WinA/search.html">
+  <meta property="og:title" content="Search — WinA">
+  <meta property="og:description" content="Client-side search across the WinA shelf, guides, analysis, suggestions, questions and flags.">
+  <meta property="og:url" content="https://sassnarep3-star.github.io/WinA/search.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="WinA — Kitchen Field Guide">
+  <link rel="alternate" type="application/rss+xml" title="WinA feed" href="feed.xml">
+  <link rel="stylesheet" href="assets/styles.css">
+  <script src="assets/analytics.js" defer></script>
+  <script src="assets/site.js" defer></script>
+</head>
+<body>
+  <header class="masthead">
+    <div class="masthead-inner">
+      <a class="brand" href="index.html">
+        <span class="brand-mark">WinA<span class="dot">.</span></span>
+        <span class="brand-sub">Kitchen Field Guide</span>
+      </a>
+      <nav class="nav-shop" aria-label="Shop">
+        <a href="index.html">Home</a><a href="products.html">Shelf</a><a href="guides/index.html">Guides</a>
+      </nav>
+      <a class="nav-search" href="search.html" aria-label="Search the site">⌕ Search</a>
+    </div>
+  </header>
+
+  <div class="disclosure-strip" role="note">
+    <div class="inner">
+      <span class="pip" aria-hidden="true"></span>
+      <span><strong>As an Amazon Associate I earn from qualifying purchases.</strong></span>
+      <span class="aside">We may earn a commission if you buy through our links — at no extra cost to you.</span>
+    </div>
+  </div>
+
+  <main>
+    <p class="eyebrow">Search</p>
+    <h1>Search the site</h1>
+    <form class="search-box" id="search-form" action="search.html" method="get">
+      <input id="q" name="q" type="search" placeholder="Try: capacity, cleanup, disclosure, thermometer…" autocomplete="off" aria-label="Search query">
+      <button class="btn" type="submit">Search</button>
+    </form>
+    <div class="search-results" id="results"></div>
+    <p class="section-note">Client-side search over <span class="mono">search-index.json</span> — no third-party search service is contacted. The query term itself is never sent anywhere; only its length is recorded as <code>search_query</code> (privacy note in <a href="platform.html">platform</a>).</p>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-disclosure">As an Amazon Associate I earn from qualifying purchases. Product prices and availability observed on official listings on 2026-11-20 and subject to change.</div>
+      <div class="footer-cols">
+        <div class="footer-brand">
+          <span class="brand-mark">WinA<span class="dot">.</span></span>
+          <p>Kitchen Field Guide — five verified kitchen products, guides written as buyer questions, and a public record of everything we could not verify.</p>
+        </div>
+        <div>
+          <h4>The shop</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="products.html">The shelf</a></li>
+            <li><a href="guides/index.html">Guides</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Dashboard</h4>
+          <ul>
+            <li><a href="platform.html">Platform &amp; sources</a></li>
+            <li><a href="analysis.html">Field Notes (analysis)</a></li>
+            <li><a href="suggestions.html">Suggestions review</a></li>
+            <li><a href="questions.html">Open questions</a></li>
+            <li><a href="executive-summary.html">Executive summary</a></li>
+            <li><a href="flagged.html">Flagged for review</a></li>
+            <li><a href="search.html">Search</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-cols" style="margin-top:22px">
+        <div></div>
+        <div>
+          <h4>Follow &amp; index</h4>
+          <ul>
+            <li><a href="feed.xml">RSS feed</a></li>
+            <li><a href="sitemap.xml">Sitemap</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Legal</h4>
+          <ul>
+            <li><a href="flagged.html">Flagged for review</a></li>
+            <li><a href="questions.html">What we don't know yet</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-legal">
+        <span>© <span data-year>2026</span> WinA. All prices are point-in-time observations from official listings.</span>
+        <span>Tracking ID <span class="mono">shopnow047c-20</span></span>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

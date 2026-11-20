@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Open questions — WinA</title>
+  <meta name="description" content="Fifteen decision-blocking questions with what is established, what is missing, the closing action, what it blocks, and the default if unanswered.">
+  <link rel="canonical" href="https://sassnarep3-star.github.io/WinA/questions.html">
+  <meta property="og:title" content="Open questions — WinA">
+  <meta property="og:description" content="Fifteen decision-blocking questions with what is established, what is missing, the closing action, what it blocks, and the default if unanswered.">
+  <meta property="og:url" content="https://sassnarep3-star.github.io/WinA/questions.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="WinA — Kitchen Field Guide">
+  <link rel="alternate" type="application/rss+xml" title="WinA feed" href="feed.xml">
+  <link rel="stylesheet" href="assets/styles.css">
+  <script src="assets/analytics.js" defer></script>
+  <script src="assets/site.js" defer></script>
+</head>
+<body>
+  <header class="masthead">
+    <div class="masthead-inner">
+      <a class="brand" href="index.html">
+        <span class="brand-mark">WinA<span class="dot">.</span></span>
+        <span class="brand-sub">Kitchen Field Guide</span>
+      </a>
+      <nav class="nav-shop" aria-label="Shop">
+        <a href="index.html">Home</a><a href="products.html">Shelf</a><a href="guides/index.html">Guides</a>
+      </nav>
+      <a class="nav-search" href="search.html" aria-label="Search the site">⌕ Search</a>
+    </div>
+  </header>
+
+  <div class="disclosure-strip" role="note">
+    <div class="inner">
+      <span class="pip" aria-hidden="true"></span>
+      <span><strong>As an Amazon Associate I earn from qualifying purchases.</strong></span>
+      <span class="aside">We may earn a commission if you buy through our links — at no extra cost to you.</span>
+    </div>
+  </div>
+
+  <main>
+    <p class="eyebrow">Open questions</p>
+    <h1>What must be answered before any decision can reasonably be made</h1>
+    <p class="lede">Fifteen questions, each with what we already have, what we do not have, the action that closes it, what it blocks, and the default that applies while it stays open. These are also the questions that <em>discover</em> the missing information — every suggestion on <a href="suggestions.html">the review page</a> maps to one of them.</p>
+    <p class="section-note">No question here is rhetorical: each one has an owner action and a safe default. Open a row to read the full record.</p>
+<details class="qa">
+          <summary><span class="sg-id">Q-01</span>Is the shop one category or two — air fryers only, or air fryers plus meat thermometers?<span class="qa-status">open</span></summary>
+          <div class="qa-body">
+            <dl>
+              <dt>What is established</dt><dd>Three submitted links resolve to Air Fryers (17659096011); two resolve to Meat thermometers (289810). All five destinations are live official listings (2026-11-20).</dd>
+              <dt>What is missing</dt><dd>The owner&#x27;s scope decision. Nothing in the repository states which categories the site should cover.</dd>
+              <dt>Action that closes it</dt><dd>Pick a path in the chooser on /suggestions/ (Path A, B, or C).</dd>
+              <dt>What it blocks</dt><dd>Information architecture, category pages, editorial calendar, internal-link clusters</dd>
+              <dt>Default if unanswered</dt><dd>Path B (both categories) — the build covers everything verified; fully reversible</dd>
+            </dl>
+            <p class="qa-links">Related: <a href="suggestions.html">SG-01</a> · <a href="suggestions.html">SG-10</a> · <a href="flagged.html">FLG-001</a></p>
+          </div>
+        </details>
+<details class="qa">
+          <summary><span class="sg-id">Q-02</span>What is the intended ASIN for each of the five submitted links?<span class="qa-status">open</span></summary>
+          <div class="qa-body">
+            <dl>
+              <dt>What is established</dt><dd>All five tokens are 9 characters; Amazon&#x27;s ASIN definition is 10 characters. Each token&#x27;s observed redirect destination is recorded in a separate field.</dd>
+              <dt>What is missing</dt><dd>intended_asin, intended_listing_url, confirmation_date, intent_source — blank on all five rows; nothing public binds a short code to a product.</dd>
+              <dt>Action that closes it</dt><dd>Owner confirms each intended ASIN (or states that the observed destination is the intended one) in data/intent-record.</dd>
+              <dt>What it blocks</dt><dd>Closing FLG-006, cross-checking redirects against intent</dd>
+              <dt>Default if unanswered</dt><dd>Fields stay blank and flagged; observed values are published as observations only</dd>
+            </dl>
+            <p class="qa-links">Related: <a href="suggestions.html">SG-06</a> · <a href="flagged.html">FLG-006</a> · <a href="flagged.html">FLG-002</a></p>
+          </div>
+        </details>
+<details class="qa">
+          <summary><span class="sg-id">Q-03</span>Is tracking ID shopnow047c-20 active, attached to this site, and showing clicks in Associates Reports?<span class="qa-status">open</span></summary>
+          <div class="qa-body">
+            <dl>
+              <dt>What is established</dt><dd>The ID was supplied by the owner and is appended to every outbound product link. Amazon requires a partnerTag on API lookups (example format xyz-20).</dd>
+              <dt>What is missing</dt><dd>Associates dashboard confirmation (account access required). No click or order data exists yet.</dd>
+              <dt>Action that closes it</dt><dd>Sign in to Associates → Account → Tracking IDs; confirm status; click one tagged link and check the report.</dd>
+              <dt>What it blocks</dt><dd>FLG-005, campaign ledger rows (SG-08), any revenue statement</dd>
+              <dt>Default if unanswered</dt><dd>Links ship with the tag, marked unconfirmed; ledger stays empty</dd>
+            </dl>
+            <p class="qa-links">Related: <a href="suggestions.html">SG-07</a> · <a href="suggestions.html">SG-08</a> · <a href="flagged.html">FLG-005</a></p>
+          </div>
+        </details>
+<details class="qa">
+          <summary><span class="sg-id">Q-04</span>Do the supplied link.amazon/* short links qualify as Special Links under Operating Agreement §1?<span class="qa-status">open</span></summary>
+          <div class="qa-body">
+            <dl>
+              <dt>What is established</dt><dd>§1 requires links to &#x27;properly use the special tagged link formats we provide&#x27;. Each supplied token redirects to a live official listing (observed 2026-11-20). The brief says their exact compliance status is unresolved (FLG-003) and forbids claiming they are invalid.</dd>
+              <dt>What is missing</dt><dd>Whether the format and domain are Amazon-provided Special Link formats; whether tracking is attributed in reports.</dd>
+              <dt>Action that closes it</dt><dd>One-link-per-product test in the enrolled Associates workflow: generate the official Special Link for each ASIN, confirm destination and tracking report, compare with the supplied short link (S02 of the brief).</dd>
+              <dt>What it blocks</dt><dd>Scaling any outbound link style (SG-07); full FLG-003 closure</dd>
+              <dt>Default if unanswered</dt><dd>Site links use official /dp/ listing URLs + tag + rel=&quot;sponsored&quot;; supplied tokens are preserved in the register only</dd>
+            </dl>
+            <p class="qa-links">Related: <a href="suggestions.html">SG-07</a> · <a href="flagged.html">FLG-003</a></p>
+          </div>
+        </details>
+<details class="qa">
+          <summary><span class="sg-id">Q-05</span>What commission rate applies to each category?<span class="qa-status">open</span></summary>
+          <div class="qa-body">
+            <dl>
+              <dt>What is established</dt><dd>Commission is a percentage of Qualifying Revenue (Program Policies). The official schedule page exists but redirects to sign-in.</dd>
+              <dt>What is missing</dt><dd>The rate table itself — not publicly readable without an Associates account (FLG-004).</dd>
+              <dt>Action that closes it</dt><dd>While signed in, read the Commission Income Statement appendix for the US rate for Kitchen/Small Appliances and for the thermometer category.</dd>
+              <dt>What it blocks</dt><dd>Any commission-potential number, prioritization by expected yield</dd>
+              <dt>Default if unanswered</dt><dd>Blank + unverified everywhere; no estimate is ever published</dd>
+            </dl>
+            <p class="qa-links">Related: <a href="suggestions.html">SG-08</a> · <a href="flagged.html">FLG-004</a></p>
+          </div>
+        </details>
+<details class="qa">
+          <summary><span class="sg-id">Q-06</span>Who is the published author behind the guides (byline identity)?<span class="qa-status">open</span></summary>
+          <div class="qa-body">
+            <dl>
+              <dt>What is established</dt><dd>Guides need authorship to read as a publication; the brief asks for authorship polish.</dd>
+              <dt>What is missing</dt><dd>Owner&#x27;s chosen byline (person or brand) and bio.</dd>
+              <dt>Action that closes it</dt><dd>Owner supplies byline name + one-paragraph bio; add /about/ page.</dd>
+              <dt>What it blocks</dt><dd>About page, E-E-A-T signals, disclosure phrasing around the byline</dd>
+              <dt>Default if unanswered</dt><dd>Byline reads &#x27;WinA Editorial&#x27;; no fake persona is invented</dd>
+            </dl>
+            <p class="qa-links">Related: <a href="suggestions.html">SG-16</a></p>
+          </div>
+        </details>
+<details class="qa">
+          <summary><span class="sg-id">Q-07</span>What is the canonical domain — the github.io project URL or a custom domain?<span class="qa-status">open</span></summary>
+          <div class="qa-body">
+            <dl>
+              <dt>What is established</dt><dd>GitHub Pages serves the repository root (S17); the project URL is https://sassnarep3-star.github.io/WinA/.</dd>
+              <dt>What is missing</dt><dd>Custom-domain decision (purchase, DNS, HTTPS cert).</dd>
+              <dt>Action that closes it</dt><dd>Owner decides; if custom, add CNAME + update canonical/OG tags in the build.</dd>
+              <dt>What it blocks</dt><dd>Search Console verification (Q-09), canonical tags, OG/Twitter cards, feed links</dd>
+              <dt>Default if unanswered</dt><dd>Canonical = github.io project URL, used consistently</dd>
+            </dl>
+            <p class="qa-links">Related: <a href="suggestions.html">SG-13</a> · <a href="flagged.html">FLG-008</a></p>
+          </div>
+        </details>
+<details class="qa">
+          <summary><span class="sg-id">Q-08</span>Where will the self-hosted analytics endpoint run?<span class="qa-status">open</span></summary>
+          <div class="qa-body">
+            <dl>
+              <dt>What is established</dt><dd>GitHub Pages is static-only (S17); endpoint code ships in tools/analytics_endpoint.py; the counter queues events in the browser until an endpoint URL is set.</dd>
+              <dt>What is missing</dt><dd>Hosting target (small VPS, container, serverless function on the owner&#x27;s infra) and the HTTPS URL.</dd>
+              <dt>Action that closes it</dt><dd>Owner deploys the endpoint, sets ANALYTICS_ENDPOINT in assets/analytics.js, confirms /healthz.</dd>
+              <dt>What it blocks</dt><dd>Real click data entering the campaign ledger (SG-03, SG-08)</dd>
+              <dt>Default if unanswered</dt><dd>Events queue locally (localStorage, cap 100) and are never sent to a third party</dd>
+            </dl>
+            <p class="qa-links">Related: <a href="suggestions.html">SG-03</a> · <a href="flagged.html">FLG-010</a></p>
+          </div>
+        </details>
+<details class="qa">
+          <summary><span class="sg-id">Q-09</span>Who adds and verifies the Search Console property, and when?<span class="qa-status">open</span></summary>
+          <div class="qa-body">
+            <dl>
+              <dt>What is established</dt><dd>sitemap.xml and robots.txt ship with the site; Search Console needs owner verification (FLG-008).</dd>
+              <dt>What is missing</dt><dd>Verification token/DNS record and the person responsible.</dd>
+              <dt>Action that closes it</dt><dd>Owner adds the property for the final domain, verifies, submits sitemap.xml, reviews the first query report.</dd>
+              <dt>What it blocks</dt><dd>Choosing the next guide from measured queries (SG-18)</dd>
+              <dt>Default if unanswered</dt><dd>Topic choice stays editorial-hypothesis-driven and labelled as such</dd>
+            </dl>
+            <p class="qa-links">Related: <a href="suggestions.html">SG-13</a> · <a href="suggestions.html">SG-18</a> · <a href="suggestions.html">SG-29</a> · <a href="flagged.html">FLG-008</a></p>
+          </div>
+        </details>
+<details class="qa">
+          <summary><span class="sg-id">Q-10</span>What publishing cadence does the owner commit to?<span class="qa-status">open</span></summary>
+          <div class="qa-body">
+            <dl>
+              <dt>What is established</dt><dd>The brief asks for a cadence; five guides ship now.</dd>
+              <dt>What is missing</dt><dd>Owner&#x27;s sustainable rate (e.g., 1 guide/week).</dd>
+              <dt>Action that closes it</dt><dd>Owner picks a number; add to the editorial calendar.</dd>
+              <dt>What it blocks</dt><dd>Editorial calendar, seasonal slots (SG-15)</dd>
+              <dt>Default if unanswered</dt><dd>1 guide per week suggested, not assumed</dd>
+            </dl>
+            <p class="qa-links">Related: <a href="suggestions.html">SG-02</a> · <a href="suggestions.html">SG-15</a></p>
+          </div>
+        </details>
+<details class="qa">
+          <summary><span class="sg-id">Q-11</span>Will product imagery come from official Program Content (link builder / PA API)?<span class="qa-status">open</span></summary>
+          <div class="qa-body">
+            <dl>
+              <dt>What is established</dt><dd>Program Content includes data, images, text and link formats Amazon provides (S12). The build ships text-forward with no hotlinked images.</dd>
+              <dt>What is missing</dt><dd>Account approval + image source decision.</dd>
+              <dt>Action that closes it</dt><dd>Owner exports images through Associates link builder (or PA API after approval); wire into build.</dd>
+              <dt>What it blocks</dt><dd>Imagery polish pass</dd>
+              <dt>Default if unanswered</dt><dd>No images; typographic design only</dd>
+            </dl>
+            <p class="qa-links">Related: <a href="suggestions.html">SG-12</a></p>
+          </div>
+        </details>
+<details class="qa">
+          <summary><span class="sg-id">Q-12</span>Is there a canonical list of &#x27;the five defined events&#x27; from the original brief?<span class="qa-status">open</span></summary>
+          <div class="qa-body">
+            <dl>
+              <dt>What is established</dt><dd>No event list exists in the repository; this build defines page_view, outbound_click, affiliate_click, search_query, article_read (FLG-009).</dd>
+              <dt>What is missing</dt><dd>The owner&#x27;s canonical names, if any.</dd>
+              <dt>Action that closes it</dt><dd>Owner supplies the list or confirms this set; update assets/analytics.js and the platform page together.</dd>
+              <dt>What it blocks</dt><dd>Closing FLG-009; event naming in the endpoint schema</dd>
+              <dt>Default if unanswered</dt><dd>Documented five-event set stands</dd>
+            </dl>
+            <p class="qa-links">Related: <a href="suggestions.html">SG-03</a> · <a href="flagged.html">FLG-009</a></p>
+          </div>
+        </details>
+<details class="qa">
+          <summary><span class="sg-id">Q-13</span>How stale may a price be before republication requires re-verification?<span class="qa-status">open</span></summary>
+          <div class="qa-body">
+            <dl>
+              <dt>What is established</dt><dd>All published prices are 2026-11-20 buy-box readings (FLG-007).</dd>
+              <dt>What is missing</dt><dd>Owner&#x27;s freshness policy.</dd>
+              <dt>Action that closes it</dt><dd>Adopt a policy (recommended: re-fetch on the day of publication; never reuse a price older than 24 h).</dd>
+              <dt>What it blocks</dt><dd>Automated price refresh in the build</dd>
+              <dt>Default if unanswered</dt><dd>Day-of-publication re-verification rule (recommended, applied manually)</dd>
+            </dl>
+            <p class="qa-links">Related: <a href="flagged.html">FLG-007</a></p>
+          </div>
+        </details>
+<details class="qa">
+          <summary><span class="sg-id">Q-14</span>Which email/reader-capture provider will be used, and what does the privacy policy say?<span class="qa-status">open</span></summary>
+          <div class="qa-body">
+            <dl>
+              <dt>What is established</dt><dd>No form ships in this build; disclosure and endorsement rules apply to any future capture (S16).</dd>
+              <dt>What is missing</dt><dd>Provider choice, data-retention terms, privacy-policy text.</dd>
+              <dt>Action that closes it</dt><dd>Owner picks a provider, reviews its terms, publishes a privacy policy line before any input field ships.</dd>
+              <dt>What it blocks</dt><dd>SG-19 / SG-30 reader capture</dd>
+              <dt>Default if unanswered</dt><dd>No capture — nothing ships without this answered</dd>
+            </dl>
+            <p class="qa-links">Related: <a href="suggestions.html">SG-19</a> · <a href="suggestions.html">SG-30</a></p>
+          </div>
+        </details>
+<details class="qa">
+          <summary><span class="sg-id">Q-15</span>Is the Associates account in good standing with this site&#x27;s URL listed as an approved site?<span class="qa-status">open</span></summary>
+          <div class="qa-body">
+            <dl>
+              <dt>What is established</dt><dd>Monetization requires a valid enrolled account; nothing in the repository proves enrollment status.</dd>
+              <dt>What is missing</dt><dd>Account status + site URL approval (account access required).</dd>
+              <dt>Action that closes it</dt><dd>Owner checks Associates account settings; add the live URL to the site list if required.</dd>
+              <dt>What it blocks</dt><dd>Any commission at all; Special Link test (Q-04)</dd>
+              <dt>Default if unanswered</dt><dd>No earnings claims anywhere on the site; ledger stays empty</dd>
+            </dl>
+            <p class="qa-links">Related: <span class="mono">Q-03</span> · <span class="mono">Q-04</span> · <a href="suggestions.html">SG-08</a></p>
+          </div>
+        </details>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-disclosure">As an Amazon Associate I earn from qualifying purchases. Product prices and availability observed on official listings on 2026-11-20 and subject to change.</div>
+      <div class="footer-cols">
+        <div class="footer-brand">
+          <span class="brand-mark">WinA<span class="dot">.</span></span>
+          <p>Kitchen Field Guide — five verified kitchen products, guides written as buyer questions, and a public record of everything we could not verify.</p>
+        </div>
+        <div>
+          <h4>The shop</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="products.html">The shelf</a></li>
+            <li><a href="guides/index.html">Guides</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Dashboard</h4>
+          <ul>
+            <li><a href="platform.html">Platform &amp; sources</a></li>
+            <li><a href="analysis.html">Field Notes (analysis)</a></li>
+            <li><a href="suggestions.html">Suggestions review</a></li>
+            <li><a href="questions.html">Open questions</a></li>
+            <li><a href="executive-summary.html">Executive summary</a></li>
+            <li><a href="flagged.html">Flagged for review</a></li>
+            <li><a href="search.html">Search</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-cols" style="margin-top:22px">
+        <div></div>
+        <div>
+          <h4>Follow &amp; index</h4>
+          <ul>
+            <li><a href="feed.xml">RSS feed</a></li>
+            <li><a href="sitemap.xml">Sitemap</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Legal</h4>
+          <ul>
+            <li><a href="flagged.html">Flagged for review</a></li>
+            <li><a href="questions.html">What we don't know yet</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-legal">
+        <span>© <span data-year>2026</span> WinA. All prices are point-in-time observations from official listings.</span>
+        <span>Tracking ID <span class="mono">shopnow047c-20</span></span>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
