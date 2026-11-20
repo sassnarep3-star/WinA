@@ -908,3 +908,8 @@ links, 102 Amazon links, 82 sponsored, zero failures); compliance gate 1,118 che
   this session's third independent re-check of the five short links. Regenerated `flagged/`,
   `summary/` and any page these feed via `node _src/build.mjs` (never hand-edited). No product
   spec rows, nav, register data, suggestions, questions or generator logic will be changed.
+  **Second extension, logged before editing (same session):** `data/products.json` (`title`
+  of exactly two products) and `data/links.json` (`resolvedTitle` of exactly two links) —
+  the recorded titles differ from the live listing h1 by two typographic symbols
+  (`TurboFry` vs `TurboFry®`; `±0.5°F` vs `±0.5℉`). The live h1 elements were fetched and
+  are the source; only those two strings change, and only to match the source exactly.
