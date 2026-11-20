@@ -6711,6 +6711,19 @@ performed at rebase:
 - Their board records and session sections are untouched; the renumber trail in this section now
   reads T27 → T33 → T34 → (T35/T37/T38 landed upstream mid-flight) → T36.
 
+### PR and merge result — T39 (recorded post-merge, per the record-only convention)
+
+| Item | Result |
+|---|---|
+| Pull request | **#59** — https://github.com/sassnarep3-star/WinA/pull/59 — **merged** 2026-11-20 07:15:24Z |
+| Merge commit | `7dcd6ce81d5c7f4a3a22ba34190a8e79452b01bc` |
+| CI on the PR | `compliance & integrity gate (G-1…G-3)` pass · `gate` pass |
+| GitHub Pages | `status: built` for the merge commit `7dcd6ce` (Pages builds API, verified 2026-11-20) |
+| Live check | `data-room/flagged.html` fetched cache-busted (`?v=7dcd6ce`) post-deploy: Register A renders (FLG-009 resolution recorded, FLG-043/044 rows present) and **Register B renders the carried-forward register in full** (FLG-020…035 rows observed in the fetched markup) |
+| Flagged irregularities | Published on the page; did not block the merge, per the brief |
+| Session history note | This session claimed T27 at `80b45a1`; main's task IDs advanced to T38 during the work (eleven merges). The task was renumbered T27→T33→T34→T36→T39 on successive merges, each without altering any other session's row. The register divergence this session's work exposed is documented on the page itself as FLG-049/FLG-050 |
+| Still owner-side, unchanged | FLG-002/FLG-004 (tracking-ID enrolment + one click test), FLG-003 (short-link compliance), FLG-009 (Search Console), FLG-005 (PA-API imagery), FLG-013 (owned domain + content volume), FLG-021 (byline/brand) |
+
 ## Session arena/05278ba2-wina — T40 claim (2026-11-20)
 
 - **Claim:** T40 — final integration verification and PR/merge flow for this brief. Claimed as T27
