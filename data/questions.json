@@ -353,6 +353,76 @@
       "status": "unanswered",
       "sourceUrl": "https://sassnarep3-star.github.io/WinA/feed.xml",
       "sourceLabel": "Published feed, currently unconsumed"
+    },
+    {
+      "id": "Q-23",
+      "area": "technical",
+      "priority": "high",
+      "status": "answered",
+      "question": "Are earlier builds still competing with this site in search?",
+      "answer": "Yes, in one place: archive/ held 48 HTML pages from three earlier builds with no noindex directive, reachable from /flagged/. That is now disallowed in robots.txt and every archive link is rel=nofollow.",
+      "have": "robots.txt rule, _headers rule, rel=nofollow links; archive HTML unmodified.",
+      "missing": "Confirmation that nothing from the archive was indexed before today. That requires the Search Console property (FLG-009).",
+      "matters": "Four copies of the same guide under one domain splits whatever authority the site earns.",
+      "howToFind": "Verify the property in Search Console, then check Index > Pages for /WinA/archive/ URLs and request removal for any that appear.",
+      "sourceUrl": "https://developers.google.com/crawling/docs/robots-txt/robots-txt-spec",
+      "sourceLabel": "Google: robots.txt blocks crawling, not indexing"
+    },
+    {
+      "id": "Q-24",
+      "area": "brand",
+      "priority": "high",
+      "status": "unanswered",
+      "question": "Who is the named author, and does the site publish under a person or a brand?",
+      "answer": "The site publishes as 'Counter Space editorial' with no named person. FLG-021 records the brand name and author identity as still unresolved.",
+      "have": "A brand name, a mark, an icon and a share card that are consistent across the site.",
+      "missing": "A real person or team willing to be named, and their consent to be named.",
+      "matters": "Search quality raters and readers both weigh who wrote a page. An anonymous editorial 'we' is the weakest possible attribution short of none.",
+      "howToFind": "The owner decides. No session can invent an author, and inventing one would be the exact fabrication the editorial standard forbids.",
+      "sourceUrl": "https://developers.google.com/search/docs/fundamentals/creating-helpful-content",
+      "sourceLabel": "Google: creating helpful, reliable, people-first content"
+    },
+    {
+      "id": "Q-25",
+      "area": "editorial",
+      "priority": "high",
+      "status": "blocked-on-access",
+      "question": "May the site show product imagery, and what would licensed imagery cost?",
+      "answer": "Not from the listing: program policies restrict program content to what the API or approved tools supply. No product photograph appears anywhere on the site today.",
+      "have": "Self-drawn form-factor diagrams, captioned as drawings (FLG-037).",
+      "missing": "PA-API or Creatives access, which is the licensed route to product images (Q-12).",
+      "matters": "A shop without product pictures converts badly. This is the single biggest visual gap and it is a credentials problem, not a design problem.",
+      "howToFind": "Qualify for and enrol in Product Advertising API access, then render images from the licensed feed only.",
+      "sourceUrl": "https://affiliate-program.amazon.com/help/operating/policies",
+      "sourceLabel": "Associates Program Policies (program content and imagery)"
+    },
+    {
+      "id": "Q-26",
+      "area": "commercial",
+      "priority": "medium",
+      "status": "unanswered",
+      "question": "What is the actual commission rate per product, and is there a bounty or fixed-rate category involved?",
+      "answer": "Unknown from public pages. Amazon publishes category rate tables, but the applicable rate depends on the enrolled account's terms and the category at the time of purchase.",
+      "have": "The public Standard Commission Income table for the US marketplace.",
+      "missing": "The account's own rate card and any product-specific fixed rates, which require sign-in.",
+      "matters": "Choosing which category to go deep on (SUG-02) cannot be an economic decision without this.",
+      "howToFind": "Commission Income Statement while signed in to the enrolled account, plus the fixed-rate list for the categories involved.",
+      "sourceUrl": "https://affiliate-program.amazon.com/help/operating/policies",
+      "sourceLabel": "Associates Program Commission Income Statement"
+    },
+    {
+      "id": "Q-27",
+      "area": "measurement",
+      "priority": "high",
+      "status": "blocked-on-deploy",
+      "question": "What would prove, in numbers, that the storefront changes worked?",
+      "answer": "Two ratios, both currently unmeasurable: outbound clicks per guide read (does writing convince anyone), and guide reads per session (does the front page route people into reading at all).",
+      "have": "Five defined events and a collector that is written but not deployed (FLG-011).",
+      "missing": "A deployed endpoint, and a lawful basis statement for the data collected.",
+      "matters": "Without these, every layout change is taste. With them, the next change is a response.",
+      "howToFind": "Deploy the collector on a host with a request log, set site.analyticsEndpoint, then let it accumulate for two weeks before reading anything into it.",
+      "sourceUrl": "https://sassnarep3-star.github.io/WinA/analytics/",
+      "sourceLabel": "This site's own measurement page: events defined, collector undeployed"
     }
   ]
 }

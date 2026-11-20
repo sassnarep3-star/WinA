@@ -1475,79 +1475,142 @@ ${breadcrumb([{ href: url("/"), label: "Home" }, { label: "Campaign ledger" }])}
    QUESTIONS
    ============================================================ */
 function questionsPage() {
-  const areas = Object.fromEntries(questions.areas.map((a) => [a.id, a.name]));
+  const areaName = Object.fromEntries(questions.areas.map((a) => [a.id, a.name]));
   const priorityOrder = { blocking: 0, high: 1, medium: 2, low: 3 };
   const items = [...questions.questions].sort(
     (a, b) => priorityOrder[a.priority] - priorityOrder[b.priority]
   );
 
-  const rows = items
-    .map(
-      (q) => `<tr>
+  const CLOSED = /^(answered|resolved|resolved-by-rule|answered-constrains-everything|answered-with-caveat)$/i;
+  const isClosed = (q) => CLOSED.test(String(q.status).trim());
+  const open = items.filter((q) => !isClosed(q));
+  const closed = items.filter(isClosed);
+  const blocking = items.filter((q) => q.priority === "blocking");
+  // Statuses that only the account holder, a credential or a deployed service can move.
+  const NEEDS_HOLDER = /unanswered|blocked-on|needs-review|decision-needed|built-unverified|defined-empty/;
+
+  const row = (q) => `<tr>
     <td><code>${esc(q.id)}</code></td>
-    <td class="small">${esc(areas[q.area] || q.area)}</td>
-    <td><strong>${esc(q.question)}</strong><br><span class="pill pill--${esc(
-        q.priority
-      )}" style="margin-top:.4rem">${esc(q.priority)}</span></td>
-    <td class="small">${esc(q.answer)}</td>
-    <td class="small">${esc(q.missing)}</td>
-    <td class="small">${esc(q.howToFind)}</td>
-    <td><span class="pill pill--${esc(q.status.replace(/[^a-z-]/g, ""))}">${esc(
-        q.status
-      )}</span></td>
+    <td class="small">${esc(areaName[q.area] || q.area)}</td>
+    <td><strong>${esc(q.question)}</strong>
+      <span class="pill pill--${esc(q.priority)}" style="margin-top:.4rem">${esc(q.priority)}</span></td>
+    <td class="small">${esc(q.answer || "—")}</td>
+    <td class="small">${q.missing ? esc(q.missing) : '<span class="faint">—</span>'}</td>
+    <td class="small">${esc(q.howToFind || "—")}</td>
+    <td><span class="pill pill--${esc(String(q.status).replace(/[^a-z-]/g, ""))}">${esc(
+      q.status
+    )}</span></td>
     <td class="small">${
       q.sourceUrl ? cite(q.sourceUrl, esc(q.sourceLabel), q.sourceAsin) : "<span class='faint'>—</span>"
     }</td>
-  </tr>`
-    )
-    .join("");
+  </tr>`;
 
-  const blocking = items.filter((q) => q.priority === "blocking").length;
+  const areaCards = questions.areas
+    .map((a) => {
+      const all = items.filter((q) => q.area === a.id);
+      const closedN = all.filter(isClosed).length;
+      return `<div class="qarea">
+      <p class="qarea__name">${esc(a.name)}</p>
+      <p class="qarea__note">${esc(a.note)}</p>
+      <p class="qarea__ratio"><span>${closedN}</span> of ${all.length} closed</p>
+      <div class="qarea__bar" role="img" aria-label="${closedN} of ${all.length} questions closed"><span style="width:${
+        all.length ? Math.round((closedN / all.length) * 100) : 0
+      }%"></span></div>
+    </div>`;
+    })
+    .join("");
 
   const html = `
 ${breadcrumb([{ href: url("/"), label: "Home" }, { label: "Open questions" }])}
 <div class="article-head">
   <div class="wrap">
     <p class="kicker">Before any decision</p>
-    <h1 class="article-head__title">Open questions</h1>
+    <h1 class="article-head__title">What we know, what we do not, and what would close it</h1>
     <p class="article-head__dek">${esc(questions.intro)}</p>
   </div>
 </div>
+
 <section class="section">
   <div class="wrap">
-    <div class="strip" style="border:1px solid var(--rule);margin-bottom:2rem">
-      <div class="strip__inner">
-        <div class="strip__cell"><p class="strip__num">${items.length}</p><p class="strip__lab">Questions logged</p></div>
-        <div class="strip__cell"><p class="strip__num">${blocking}</p><p class="strip__lab">Blocking</p></div>
-        <div class="strip__cell"><p class="strip__num">${
-          items.filter((q) => q.status === "answered").length
-        }</p><p class="strip__lab">Answered</p></div>
-        <div class="strip__cell"><p class="strip__num">${
-          items.filter((q) => q.status !== "answered").length
-        }</p><p class="strip__lab">Still open</p></div>
-      </div>
+    <div class="qstat">
+      <div class="qstat__cell"><p class="qstat__num">${items.length}</p><p class="qstat__lab">Questions logged</p></div>
+      <div class="qstat__cell"><p class="qstat__num">${blocking.length}</p><p class="qstat__lab">Blocking</p></div>
+      <div class="qstat__cell qstat__cell--ok"><p class="qstat__num">${closed.length}</p><p class="qstat__lab">Closed</p></div>
+      <div class="qstat__cell qstat__cell--warn"><p class="qstat__num">${open.length}</p><p class="qstat__lab">Still open</p></div>
     </div>
 
+    <p class="lede" style="margin:1.75rem 0 1.5rem">${open.filter((q) => NEEDS_HOLDER.test(String(q.status))).length} of the ${open.length} open questions cannot be closed from this repository at all: they need a credential, a decision by the owner, or a deployed service. Nothing on this page is inferred, and where an answer is unknown the answer column says so instead of guessing.</p>
+
+    <div class="qareas">${areaCards}</div>
+
+    <h2 class="section__title" style="font-size:1.5rem;margin-top:2.75rem">What would close the gap</h2>
+    <p class="section__dek" style="margin-bottom:1.25rem">Three actions unlock almost everything else on this page. None of them can be done by a code session: each needs the account holder.</p>
+    <ol class="unlock">
+      <li class="unlock__item">
+        <span class="unlock__num">1</span>
+        <div>
+          <h3 class="unlock__title">Confirm the Associates account is enrolled, active and earning under shopnow047c-20</h3>
+          <p>Without this, every link on the site may be earning nothing and no question about commission, rates or reporting can be answered. It closes Q-04 and unlocks Q-26.</p>
+          <p class="unlock__how"><strong>How:</strong> sign in to Associates Central, open Account Settings, and confirm the tracking ID and account status. Record the date on <a href="${url("/register/")}">the register</a>.</p>
+        </div>
+      </li>
+      <li class="unlock__item">
+        <span class="unlock__num">2</span>
+        <div>
+          <h3 class="unlock__title">Register the site in Search Console</h3>
+          <p>This is the only lawful way to see which queries actually reach the site, and the only way to find out whether any archived page was indexed before it was disallowed. It closes Q-07, Q-18 and Q-23, and it is the input the topic roadmap is waiting on.</p>
+          <p class="unlock__how"><strong>How:</strong> verify the property (the DNS or HTML-file method both work on Pages), then export Performance &gt; Queries after two weeks. Drop the export into <code>data/exports/</code> and run <code>npm run topics</code>.</p>
+        </div>
+      </li>
+      <li class="unlock__item">
+        <span class="unlock__num">3</span>
+        <div>
+          <h3 class="unlock__title">Deploy the self-hosted collector and set a lawful-basis line</h3>
+          <p>Nothing is measured today. Five events are defined and the collector is written, but no endpoint is set, so the client drops events on purpose rather than pretending. This closes Q-16 and Q-27 and makes every later layout decision testable.</p>
+          <p class="unlock__how"><strong>How:</strong> host <code>_worker/collector.js</code> on a runtime with a request log, set <code>site.analyticsEndpoint</code> in <code>data/products.json</code>, rebuild, and confirm one page_view arrives.</p>
+        </div>
+      </li>
+    </ol>
+
+    <h2 class="section__title" style="font-size:1.5rem;margin-top:2.75rem">Still open — ${open.length}</h2>
+    <p class="section__dek" style="margin-bottom:1.25rem">Every unanswered question, ordered by how much it blocks. The "what is missing" column is the honest list of what this build does not know.</p>
     <div class="tablewrap">
       <table class="data sortable">
-        <caption>Every open question, ordered by how much it blocks. "What is missing" is the honest list of what this build does not know; "how to close it" names the specific action or document.</caption>
+        <caption>Open questions. An answer of "unknown" is a recorded finding, not a gap in the writing.</caption>
         <thead>
           <tr>
             <th scope="col">ID</th><th scope="col">Area</th><th scope="col">Question</th>
-            <th scope="col">Best current answer</th><th scope="col">What is missing</th>
+            <th scope="col">What we know</th><th scope="col">What is missing</th>
             <th scope="col">How to close it</th><th scope="col">Status</th><th scope="col">Source</th>
           </tr>
         </thead>
-        <tbody>${rows}</tbody>
+        <tbody>${open.map(row).join("")}</tbody>
       </table>
     </div>
+
+    <details class="qclosed">
+      <summary><strong>${closed.length} questions already closed</strong> — open to read the answer and its source</summary>
+      <div class="tablewrap" style="margin-top:1rem">
+        <table class="data sortable">
+          <caption>Answered questions, kept on the page so a later session does not reopen them by accident.</caption>
+          <thead>
+            <tr>
+              <th scope="col">ID</th><th scope="col">Area</th><th scope="col">Question</th>
+              <th scope="col">Answer</th><th scope="col">Residual gap</th>
+              <th scope="col">How it was closed</th><th scope="col">Status</th><th scope="col">Source</th>
+            </tr>
+          </thead>
+          <tbody>${closed.map(row).join("")}</tbody>
+        </table>
+      </div>
+    </details>
   </div>
 </section>
 `;
   pages.push({
     path: "/questions/",
-    title: "Open questions",
-    desc: "Every question that must be answered before further decisions: what we know, what we do not, and the specific action that would settle each one.",
+    title: "What we know, what we do not, and what would close it",
+    desc: "Every question that must be answered before further decisions: what we know, what we do not, the specific action that would settle each one, and the three account-holder actions that unlock the rest.",
     html,
     priority: "0.6",
     changefreq: "weekly"
