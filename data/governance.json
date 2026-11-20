@@ -350,6 +350,24 @@
       "action": "Owner: decide whether the intended-ASIN field should be filled from the submitted link (FLG-019). If the rationale is kept, cite an Amazon Help page for the definition before publishing it.",
       "sourceUrl": "https://sellercentral.amazon.com/seller-forums/discussions/t/1e22c5df-d27a-4e2b-a0c1-90938b6cdcdc",
       "sourceLabel": "Seller Central forum thread (not Amazon Help; definition not confirmed as Amazon's)"
+    },
+    {
+      "id": "FLG-036",
+      "severity": "resolved",
+      "title": "The three reviewer documents stated figures the register no longer held",
+      "detail": "Line-by-line reading of README.md, ARCHITECTURE.md and EXECUTIVE_SUMMARY.md against data/ on 2026-11-20 found eleven stale figures: 37 flag rows where the register held 39, 16 suggestions where it held 24, \"5 sources\" where policy.json defined 6, a spec census of 22/8/20/10 where the real census was 32/4/14/10, \"29 pages\" where the build printed 30, \"1,159 checks\" where the gate printed 1,082, \"~1,076 assertions / 1,118 internal links / 9 gates\", a \"Current state\" block still describing a 27-page build with 946 internal links, \"all 29 pages\" in the command table, \"29 findings\" in the reading order, and \"the 8 submitted short links\" where there are five links occupying eight anchors. No gate could see this: the other three read HTML or read data/, and none of them reads a Markdown document. All eleven were corrected, run-facts were removed from prose in favour of naming the command that prints them, and scripts/docs-gate.mjs now checks every figure the documents do state against data/ on each build, in CI and in the deploy path.",
+      "action": "Resolved. Update the sentence the docs gate names whenever it fails; do not restate a run fact in prose.",
+      "sourceUrl": "https://github.com/sassnarep3-star/WinA/blob/main/EXECUTIVE_SUMMARY.md",
+      "sourceLabel": "EXECUTIVE_SUMMARY.md, the document a reviewer is told to read first"
+    },
+    {
+      "id": "FLG-037",
+      "severity": "resolved",
+      "title": "The structural gate's Amazon matcher skipped the two category browse links",
+      "detail": "scripts/check-site.mjs classified Amazon hrefs with a path pattern that required a trailing slash after /b/, but a category browse node is written /Air-Fryers/b?node=17659096011. The two category-hub browse links therefore sat outside the three-state rule that gate exists to enforce, and its total read 94 Amazon links while scripts/compliance-gate.mjs read 96 for the same tree. Both links happened to be correctly declared non-affiliate citations, so nothing was broken — but the gate that was written to catch an undeclared Amazon anchor would not have caught one of those two. The pattern now accepts /b/ and /b?, and both gates count the same 96 (80 sponsored).",
+      "action": "Resolved. The matcher and this note were added together; if the two totals ever disagree again, treat it as a coverage gap rather than a rounding difference.",
+      "sourceUrl": "https://github.com/sassnarep3-star/WinA/blob/main/scripts/check-site.mjs",
+      "sourceLabel": "scripts/check-site.mjs, the independently written structural gate"
     }
   ],
   "ledger": {

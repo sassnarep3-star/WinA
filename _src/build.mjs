@@ -21,6 +21,7 @@ const gov = read("data/governance.json");
 const questions = read("data/questions.json");
 const suggestions = read("data/suggestions.json");
 const specialLink = read("data/special_link_tests.json");
+const submission = read("data/links.json");
 
 // Analytics is enabled only when both halves agree: the governance decision and an endpoint that
 // exists. A client switched on against an empty endpoint is a silent failure, which is worse than
@@ -999,17 +1000,25 @@ function registerPage() {
     )
     .join("");
 
+  // The intent record: four fields per submitted link, as the brief asks — intended ASIN,
+  // official listing URL, confirmation date and source. Intended and observed stay apart.
+  const intentBySubmitted = new Map((submission.links || []).map((l) => [l.submitted, l]));
   const linkRows = products
-    .map(
-      (p) => `<tr>
+    .map((p) => {
+      const intent = intentBySubmitted.get(p.submittedLink) || {};
+      const sourceCell = intent.sourceUrl
+        ? `<a href="${esc(intent.sourceUrl)}" rel="nofollow noopener" target="_blank" data-nonaffiliate="true">${esc(intent.source)}</a>`
+        : `<span class="faint">not recorded</span>`;
+      return `<tr>
     <td><code>${esc(p.submittedLink.replace("https://link.amazon/", ""))}</code></td>
     <td><a href="${p.submittedLink}" rel="nofollow noopener" target="_blank" data-nonaffiliate="true">link.amazon</a></td>
     <td>${cite(p.observedDestination, `<code>${esc(p.asin)}</code>`, p.asin)}</td>
     <td class="blank">not supplied</td>
-    <td>${esc(p.observedOn)}</td>
+    <td>${esc(intent.confirmedOn || p.observedOn)}</td>
     <td>observed redirect</td>
-  </tr>`
-    )
+    <td class="small">${sourceCell}</td>
+  </tr>`;
+    })
     .join("");
 
   const html = `
@@ -1028,8 +1037,8 @@ ${breadcrumb([{ href: url("/"), label: "Home" }, { label: "Source register" }])}
     <p class="section__dek" style="margin-bottom:1.25rem">The five submitted short links, what they resolved to, and the separation between the intended ASIN (never supplied) and the observed destination (recorded by following the link).</p>
     <div class="tablewrap">
       <table class="data sortable">
-        <caption>Submitted link → observed destination. Intended ASIN is a separate field from observed destination and is deliberately blank.</caption>
-        <thead><tr><th scope="col">Submitted code</th><th scope="col">Link</th><th scope="col">Observed ASIN</th><th scope="col">Intended ASIN</th><th scope="col">Confirmed</th><th scope="col">Method</th></tr></thead>
+        <caption>The product-intent confirmation record: for each submitted link, the intended ASIN, the official listing URL, the confirmation date and the source. Intended ASIN is a separate field from the observed destination and is deliberately blank.</caption>
+        <thead><tr><th scope="col">Submitted code</th><th scope="col">Link</th><th scope="col">Observed ASIN</th><th scope="col">Intended ASIN</th><th scope="col">Confirmed</th><th scope="col">Method</th><th scope="col">Source</th></tr></thead>
         <tbody>${linkRows}</tbody>
       </table>
     </div>

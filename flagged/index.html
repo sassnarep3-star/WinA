@@ -255,6 +255,16 @@
           <td>All five submitted short links re-resolved on 2026-11-20; destinations unchanged</td>
           <td><span class="pill pill--resolved">resolved</span></td>
           <td><a href="https://www.amazon.com/dp/B0CDY277D3" rel="nofollow noopener" target="_blank" data-nonaffiliate="true">open</a></td>
+        </tr><tr>
+          <td><code>FLG-036</code></td>
+          <td>The three reviewer documents stated figures the register no longer held</td>
+          <td><span class="pill pill--resolved">resolved</span></td>
+          <td><a href="https://github.com/sassnarep3-star/WinA/blob/main/EXECUTIVE_SUMMARY.md" rel="noopener" target="_blank">open</a></td>
+        </tr><tr>
+          <td><code>FLG-037</code></td>
+          <td>The structural gate's Amazon matcher skipped the two category browse links</td>
+          <td><span class="pill pill--resolved">resolved</span></td>
+          <td><a href="https://github.com/sassnarep3-star/WinA/blob/main/scripts/check-site.mjs" rel="noopener" target="_blank">open</a></td>
         </tr></tbody>
       </table>
     </div>
@@ -494,6 +504,18 @@
     <p style="margin:0 0 .6rem">Each link.amazon URL was opened again. CHEFMAN 6 Quart B04G1MEwY → B0CDY277D3; Emeril Lagasse 26QT B02NbDxp3 → B09B7SB46R; Chefman 8 Qt B00hJ57DV → B08DKYBTPH; ThermoMaven 1 Sec B0c8moW59 → B0DHZTCNR5; CHEF iQ Sense Gen3 B0f3GKalj → B0DZFD6R9Z. The product title on each landing page matches data/links.json. Prices and ratings seen on the pages were not recorded, as policy requires.</p>
     <p style="margin:0 0 .6rem"><strong>What we did:</strong> None. Repeat if a link is changed.</p>
     <p class="small" style="margin:0"><a href="https://www.amazon.com/dp/B0CDY277D3" rel="nofollow noopener" target="_blank" data-nonaffiliate="true">Amazon listing (landing page of the first link)</a></p>
+  </article><article class="note " style="margin-bottom:1.25rem">
+    <p class="note__title">FLG-036 <span class="pill pill--resolved">resolved</span></p>
+    <h3 style="font-family:var(--serif);font-size:1.15rem;margin:.2rem 0 .5rem;color:var(--ink)">The three reviewer documents stated figures the register no longer held</h3>
+    <p style="margin:0 0 .6rem">Line-by-line reading of README.md, ARCHITECTURE.md and EXECUTIVE_SUMMARY.md against data/ on 2026-11-20 found eleven stale figures: 37 flag rows where the register held 39, 16 suggestions where it held 24, &quot;5 sources&quot; where policy.json defined 6, a spec census of 22/8/20/10 where the real census was 32/4/14/10, &quot;29 pages&quot; where the build printed 30, &quot;1,159 checks&quot; where the gate printed 1,082, &quot;~1,076 assertions / 1,118 internal links / 9 gates&quot;, a &quot;Current state&quot; block still describing a 27-page build with 946 internal links, &quot;all 29 pages&quot; in the command table, &quot;29 findings&quot; in the reading order, and &quot;the 8 submitted short links&quot; where there are five links occupying eight anchors. No gate could see this: the other three read HTML or read data/, and none of them reads a Markdown document. All eleven were corrected, run-facts were removed from prose in favour of naming the command that prints them, and scripts/docs-gate.mjs now checks every figure the documents do state against data/ on each build, in CI and in the deploy path.</p>
+    <p style="margin:0 0 .6rem"><strong>What we did:</strong> Resolved. Update the sentence the docs gate names whenever it fails; do not restate a run fact in prose.</p>
+    <p class="small" style="margin:0"><a href="https://github.com/sassnarep3-star/WinA/blob/main/EXECUTIVE_SUMMARY.md" rel="noopener" target="_blank">EXECUTIVE_SUMMARY.md, the document a reviewer is told to read first</a></p>
+  </article><article class="note " style="margin-bottom:1.25rem">
+    <p class="note__title">FLG-037 <span class="pill pill--resolved">resolved</span></p>
+    <h3 style="font-family:var(--serif);font-size:1.15rem;margin:.2rem 0 .5rem;color:var(--ink)">The structural gate's Amazon matcher skipped the two category browse links</h3>
+    <p style="margin:0 0 .6rem">scripts/check-site.mjs classified Amazon hrefs with a path pattern that required a trailing slash after /b/, but a category browse node is written /Air-Fryers/b?node=17659096011. The two category-hub browse links therefore sat outside the three-state rule that gate exists to enforce, and its total read 94 Amazon links while scripts/compliance-gate.mjs read 96 for the same tree. Both links happened to be correctly declared non-affiliate citations, so nothing was broken — but the gate that was written to catch an undeclared Amazon anchor would not have caught one of those two. The pattern now accepts /b/ and /b?, and both gates count the same 96 (80 sponsored).</p>
+    <p style="margin:0 0 .6rem"><strong>What we did:</strong> Resolved. The matcher and this note were added together; if the two totals ever disagree again, treat it as a coverage gap rather than a rounding difference.</p>
+    <p class="small" style="margin:0"><a href="https://github.com/sassnarep3-star/WinA/blob/main/scripts/check-site.mjs" rel="noopener" target="_blank">scripts/check-site.mjs, the independently written structural gate</a></p>
   </article></div>
 
     <h2 class="section__title" style="font-size:1.4rem;margin-top:2.5rem">Prior audit work on this repository</h2>
