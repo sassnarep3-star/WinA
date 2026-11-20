@@ -1,0 +1,333 @@
+{
+  "as_of": "2026-11-20",
+  "method_note": "Each entry was retrieved with the fetch tool on the date shown. 'Verified' means the stated statement was read on that page. Entries marked NOT VERIFIED were retrieved but did not yield the value sought, and nothing was taken from them. Source IDs here (SRC-nn) are local to this site. They are not the S01/S02/S07/S24 IDs used in the brief (see Flag F-09).",
+  "sources": [
+    {
+      "id": "SRC-01",
+      "org": "Amazon Associates (Amazon.com, Inc.)",
+      "title": "Associates Program Operating Agreement",
+      "url": "https://affiliate-program.amazon.com/help/operating/agreement",
+      "tier": "official (program terms)",
+      "page_updated": "October 15, 2025 (as shown on page)",
+      "verified_on": "2026-11-20",
+      "method": "fetch, chunks 0–1 of 4",
+      "verified_statements": [
+        "§1: 'The links must properly use the special \"tagged\" link formats we provide and comply with this Agreement (\"Special Links\").'",
+        "§5: 'You must clearly and prominently state the following ... on your Site ...: \"As an Amazon Associate I earn from qualifying purchases.\"'"
+      ],
+      "not_read": "Chunks 2–3 (sections 7 onward) were not read in full.",
+      "used_for": [
+        "disclosure strip text",
+        "Special Link definition",
+        "flag F-07"
+      ]
+    },
+    {
+      "id": "SRC-02",
+      "org": "Amazon Associates (Amazon.com, Inc.)",
+      "title": "Associates Program Policies (Commission Income Statement; Participation Requirements; Products Statement)",
+      "url": "https://affiliate-program.amazon.com/help/operating/policies",
+      "tier": "official (program terms)",
+      "page_updated": "April 14, 2026 (as shown on page)",
+      "verified_on": "2026-11-20",
+      "method": "fetch, chunks 0–10 of 11 (all read; chunks 0–8 re-read on 2026-11-20 to settle section numbers)",
+      "verified_statements": [
+        "Commission Income Statement §1(b): a session runs for 24 hours from the click; orders placed within 89 days of the click count, subject to the 180-day shipment rule.",
+        "Commission Income Statement §2(d)–(e): purchases referred by a link shown on a search engine, or by a redirecting link, are disqualified.",
+        "Participation Requirements §1: 'Your Site(s) must contain original content and be publicly available via the website address provided in the application.'",
+        "Participation Requirements §2(a)–(b): 'Special Links must use the Associates ID we have assigned to you.' and 'you must include your Associates ID or \"tag\" ... as a parameter in the URL of each link you place on your Site to an Amazon Site.'",
+        "Participation Requirements §2(b): prices and availability may be shown only where Amazon serves the link, or through the Creators API or PA API under the License.",
+        "Participation Requirements §3(e): the site must disclose accurately the use of cookies, pixels, and other technologies, and the visitor's opt-out choices where required.",
+        "Participation Requirements §6(b): no links formatted with your Associates tag on a site that is not your Site.",
+        "Participation Requirements §6(t): customer reviews or star ratings may not be displayed unless obtained through the Creators API or PA API.",
+        "Participation Requirements §6(u): no purchases through your own Special Links.",
+        "Participation Requirements §6(w): no link-shortening service or other device that makes it unclear that the link goes to an Amazon Site.",
+        "Commission Income Statement §1(b): session ends 24 hours after the click; an order counts if placed within 89 days of the click (§1(b)(i)); shipment must occur within 180 days (§1(b)(iii)).",
+        "Commission Income Statement §2(b): orders with a cancellation, return, or refund initiated are disqualified. §2(g): purchases not correctly tracked because links are not properly formatted are disqualified.",
+        "Commission Income Statement §3: standard commission is a percentage of Qualifying Revenue (§1: excludes shipping, gift wrap, handling, taxes, service charges, credits, rebates, card fees, bad debt).",
+        "Participation Requirements §5: no Special Links in client-side software, with an exception for Approved Mobile Applications.",
+        "Participation Requirements §6(v): no cloaking of the site URL. §6(z): no Program Content used to promote products sold on non-Amazon sites.",
+        "Products Statement §3(a): excluded products include items sold on a site linked from an Amazon Site.",
+        "Trademark Guidelines §8: no trademark, domain, subdomain, or username confusingly similar to an Amazon mark.",
+        "IP License §1: link each use of Program Content solely to the related Product detail page. §2(h): images may not be stored or cached; links to images may be stored up to 24 hours. §2(i): a date/time stamp and disclaimer are required next to any displayed price or availability obtained from data feeds or the API."
+      ],
+      "not_read": "Schedule page (sign-in required, not retrieved). Appendix commission tables (not retrieved). Influencer Program Policy and Creator Ads Boost Program (not read).",
+      "used_for": [
+        "link validation",
+        "price and rating withholding",
+        "flags F-02, F-05, F-17, F-18, F-21"
+      ]
+    },
+    {
+      "id": "SRC-03",
+      "org": "Amazon Associates (Amazon.com, Inc.)",
+      "title": "Commission rate schedule (Standard Commission Income, Appendix)",
+      "url": "https://affiliate-program.amazon.com/help/operating/schedule",
+      "tier": "official (program terms)",
+      "page_updated": "not shown",
+      "verified_on": "2026-11-20",
+      "method": "fetch",
+      "verified_statements": [],
+      "status": "NOT VERIFIED. The URL returned an Amazon sign-in page. No rate was read, so none is recorded.",
+      "used_for": [
+        "commission potential left blank (flag F-06)"
+      ]
+    },
+    {
+      "id": "SRC-04",
+      "org": "Amazon Seller Central Seller Forums (Amazon staff reply)",
+      "title": "\"Asin number\" — staff reply by Jessica_Amazon_",
+      "url": "https://sellercentral.amazon.com.mx/seller-forums/discussions/t/436b9105-db19-41cc-8f2a-7720c7ae5649",
+      "tier": "official (Amazon staff, forum post — weaker than a help page)",
+      "page_updated": "post dated 2 years before the fetch (as shown on page)",
+      "verified_on": "2026-11-20",
+      "method": "fetch",
+      "verified_statements": [
+        "'An ASIN is generated by Amazon when you create a listing. ASIN stands for Amazon Standard Identification Number. ASINs are unique blocks of 10 letters and/or numbers that identify items.'"
+      ],
+      "note": "An official Amazon help-page definition was searched for but not located in this session. This forum reply is the Amazon-staff source used. See flag F-03.",
+      "used_for": [
+        "10-character ASIN length check",
+        "intended ASIN left blank"
+      ]
+    },
+    {
+      "id": "SRC-05",
+      "org": "U.S. Federal Trade Commission",
+      "title": "Disclosures 101 for Social Media Influencers",
+      "url": "https://www.ftc.gov/business-guidance/resources/disclosures-101-social-media-influencers",
+      "tier": "official (government)",
+      "page_updated": "November 2019 (as shown on page)",
+      "verified_on": "2026-11-20",
+      "method": "fetch",
+      "verified_statements": [
+        "'Place it so it's hard to miss.'",
+        "'Disclosures are likely to be missed if they appear only on an ABOUT ME or profile page, at the end of posts or videos, or anywhere that requires a person to click MORE.'",
+        "Terms such as 'advertisement,' 'ad,' and 'sponsored' are listed as simple, clear language."
+      ],
+      "used_for": [
+        "disclosure placement (strip under masthead and in footer)",
+        "flag F-07"
+      ]
+    },
+    {
+      "id": "SRC-06",
+      "org": "U.S. Federal Trade Commission",
+      "title": "FTC's Endorsement Guides: What People Are Asking",
+      "url": "https://www.ftc.gov/business-guidance/resources/ftcs-endorsement-guides-what-people-are-asking",
+      "tier": "official (government)",
+      "page_updated": "not shown on page",
+      "verified_on": "2026-11-20",
+      "method": "fetch, chunk 0 of 12",
+      "verified_statements": [
+        "'if there's a connection between an endorser and the marketer that a significant minority of consumers wouldn't expect and it would affect how they evaluate the endorsement, that connection should be disclosed clearly and conspicuously.'",
+        "The page states the Endorsement Guides were revised in 2023 and points readers to the latest version."
+      ],
+      "not_read": "Affiliate-marketing section and later chunks were not read.",
+      "used_for": [
+        "material-connection disclosure",
+        "no-testing statement",
+        "flag F-08"
+      ]
+    },
+    {
+      "id": "SRC-07",
+      "org": "USDA Food Safety and Inspection Service (FSIS)",
+      "title": "Safe Minimum Internal Temperature Chart",
+      "url": "https://www.fsis.usda.gov/food-safety/safe-food-handling-and-preparation/food-safety-basics/safe-temperature-chart",
+      "tier": "official (government)",
+      "page_updated": "Last Updated: Apr 14, 2025 (as shown on page)",
+      "verified_on": "2026-11-20",
+      "method": "fetch",
+      "verified_statements": [
+        "Beef, pork, veal and lamb steaks, chops and roasts: 145°F, rest at least 3 minutes.",
+        "Ground meats: 160°F. Ground poultry and all poultry: 165°F. Fish & shellfish: 145°F. Leftovers: 165°F.",
+        "'Cook all food to these minimum internal temperatures, as measured with a food thermometer, before removing food from the heat source.'"
+      ],
+      "used_for": [
+        "thermometer guide temperatures"
+      ]
+    },
+    {
+      "id": "SRC-08",
+      "org": "GitHub Docs",
+      "title": "Configuring a publishing source for your GitHub Pages site",
+      "url": "https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site",
+      "tier": "official (platform docs)",
+      "page_updated": "not shown on page",
+      "verified_on": "2026-11-20",
+      "method": "fetch, chunk 0 of 2",
+      "verified_statements": [
+        "Publishing from a branch: source folder can be the repository root or a /docs folder on the source branch.",
+        "Commits pushed by a workflow using GITHUB_TOKEN do not trigger a Pages build."
+      ],
+      "used_for": [
+        "build and deploy approach (/docs on main)"
+      ]
+    },
+    {
+      "id": "SRC-09",
+      "org": "Google Search Central",
+      "title": "Qualify your outbound links to Google",
+      "url": "https://developers.google.com/search/docs/crawling-indexing/qualify-outbound-links",
+      "tier": "official (search engine documentation)",
+      "page_updated": "Last updated 2025-12-10 UTC (as shown on page)",
+      "verified_on": "2026-11-20",
+      "method": "fetch, chunk 0 of 2",
+      "verified_statements": [
+        "rel=\"sponsored\": 'Mark links that are advertisements or paid placements (commonly called paid links) with the sponsored value.'",
+        "Multiple rel values may be combined, e.g. rel=\"ugc nofollow\"."
+      ],
+      "used_for": [
+        "rel=\"sponsored nofollow\" on every outbound product link"
+      ]
+    },
+    {
+      "id": "SRC-10",
+      "org": "Google Search Central",
+      "title": "Build and submit a sitemap",
+      "url": "https://developers.google.com/search/docs/crawling-indexing/sitemaps/build-sitemap",
+      "tier": "official (search engine documentation)",
+      "page_updated": "not shown on page",
+      "verified_on": "2026-11-20",
+      "method": "fetch, chunk 0 of 4 (table of contents and intro)",
+      "verified_statements": [
+        "Google supports the XML sitemap and RSS, mRSS, and Atom 1.0 formats (section list on page)."
+      ],
+      "not_read": "Section bodies were not read. The sitemap follows the sitemaps.org protocol (not fetched in this session).",
+      "used_for": [
+        "sitemap.xml",
+        "feed.xml"
+      ]
+    },
+    {
+      "id": "SRC-11",
+      "org": "Amazon.com (retail listing)",
+      "title": "Amazon listing — CHEFMAN 6 Quart Dual Basket Air Fryer (ASIN B0CDY277D3)",
+      "url": "https://www.amazon.com/dp/B0CDY277D3",
+      "tier": "official (retailer listing)",
+      "page_updated": "live page (observed)",
+      "verified_on": "2026-11-20",
+      "method": "fetch of submitted link; redirect target read",
+      "verified_statements": [
+        "Listing title and ASIN in the URL. Breadcrumb not captured. Price and rating observed but deliberately not recorded (policy)."
+      ],
+      "used_for": [
+        "P-01 observed ASIN and title"
+      ]
+    },
+    {
+      "id": "SRC-12",
+      "org": "Amazon.com (retail listing)",
+      "title": "Amazon listing — Emeril Lagasse 26QT French Door Multi-Function Air Fryer Toaster Oven (ASIN B09B7SB46R)",
+      "url": "https://www.amazon.com/dp/B09B7SB46R",
+      "tier": "official (retailer listing)",
+      "page_updated": "live page (observed)",
+      "verified_on": "2026-11-20",
+      "method": "fetch of submitted link; redirect target read",
+      "verified_statements": [
+        "Listing title and ASIN in the URL. Breadcrumb: Home & Kitchen > Kitchen & Dining > Small Appliances > Fryers > Air Fryers. Price and rating observed but not recorded."
+      ],
+      "used_for": [
+        "P-02 observed ASIN, title, category"
+      ]
+    },
+    {
+      "id": "SRC-13",
+      "org": "Amazon.com (retail listing)",
+      "title": "Amazon listing — Chefman Air Fryer 8 Qt TurboFry 4-in-1 (ASIN B08DKYBTPH)",
+      "url": "https://www.amazon.com/dp/B08DKYBTPH",
+      "tier": "official (retailer listing)",
+      "page_updated": "live page (observed)",
+      "verified_on": "2026-11-20",
+      "method": "fetch of submitted link; redirect target read",
+      "verified_statements": [
+        "Listing title and ASIN in the URL. Breadcrumb: Home & Kitchen > Kitchen & Dining > Small Appliances > Fryers > Air Fryers. Price and rating observed but not recorded."
+      ],
+      "used_for": [
+        "P-03 observed ASIN, title, category"
+      ]
+    },
+    {
+      "id": "SRC-14",
+      "org": "Amazon.com (retail listing)",
+      "title": "Amazon listing — ThermoMaven 1 Sec Professional Digital Meat Thermometer (ASIN B0DHZTCNR5)",
+      "url": "https://www.amazon.com/dp/B0DHZTCNR5",
+      "tier": "official (retailer listing)",
+      "page_updated": "live page (observed)",
+      "verified_on": "2026-11-20",
+      "method": "fetch of submitted link; redirect target read",
+      "verified_statements": [
+        "Listing title and ASIN in the URL. Breadcrumb: Home & Kitchen > Kitchen & Dining > Kitchen Utensils & Gadgets > Thermometers & Timers > Meat. Price and rating observed but not recorded."
+      ],
+      "used_for": [
+        "P-04 observed ASIN, title, category"
+      ]
+    },
+    {
+      "id": "SRC-15",
+      "org": "Amazon.com (retail listing)",
+      "title": "Amazon listing — CHEF iQ Sense Smart Wireless Meat Thermometer Gen3 (ASIN B0DZFD6R9Z)",
+      "url": "https://www.amazon.com/dp/B0DZFD6R9Z",
+      "tier": "official (retailer listing)",
+      "page_updated": "live page (observed)",
+      "verified_on": "2026-11-20",
+      "method": "fetch of submitted link; redirect target read",
+      "verified_statements": [
+        "Listing title and ASIN in the URL. Breadcrumb: Home & Kitchen > Kitchen & Dining > Kitchen Utensils & Gadgets > Thermometers & Timers > Meat. Price and rating observed but not recorded."
+      ],
+      "used_for": [
+        "P-05 observed ASIN, title, category"
+      ]
+    },
+    {
+      "id": "SRC-16",
+      "org": "RSS Advisory Board",
+      "title": "RSS 2.0 Specification (Current)",
+      "url": "https://www.rssboard.org/rss-specification",
+      "tier": "standard body (specification)",
+      "page_updated": "version 2.0.11, published March 30, 2009 (as shown on page)",
+      "verified_on": "2026-11-20",
+      "method": "fetch, chunk 0 of 4",
+      "verified_statements": [
+        "The rss element requires version=\"2.0\"; the channel requires title, link, and description.",
+        "Date-times conform to RFC 822 (four-digit year preferred)."
+      ],
+      "used_for": [
+        "feed.xml"
+      ]
+    },
+    {
+      "id": "SRC-17",
+      "org": "GitHub Docs",
+      "title": "Licensing a repository",
+      "url": "https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/licensing-a-repository",
+      "tier": "official (platform docs)",
+      "page_updated": "not shown on page",
+      "verified_on": "2026-11-20",
+      "method": "fetch, chunk 0 of 2",
+      "verified_statements": [
+        "'without a license, the default copyright laws apply, meaning that you retain all rights to your source code and no one may reproduce, distribute, or create derivative works from your work.'"
+      ],
+      "used_for": [
+        "license suggestion S-15"
+      ]
+    },
+    {
+      "id": "SRC-18",
+      "org": "GitHub Docs",
+      "title": "About custom domains and GitHub Pages",
+      "url": "https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/about-custom-domains-and-github-pages",
+      "tier": "official (platform docs)",
+      "page_updated": "not shown on page",
+      "verified_on": "2026-11-20",
+      "method": "fetch, chunk 0 of 2",
+      "verified_statements": [
+        "GitHub Pages supports custom domains in place of the default octocat.github.io address; supported types are www, custom subdomain, and apex."
+      ],
+      "used_for": [
+        "domain suggestion S-10"
+      ]
+    }
+  ]
+}

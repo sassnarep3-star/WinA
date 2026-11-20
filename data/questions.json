@@ -1,0 +1,390 @@
+{
+  "as_of": "2026-11-20",
+  "intro": "Questions that must be answered before a sound decision can be made. Each row shows what is known, what is missing, and how to find out. Status: answered = confirmed from an official source; partial = part confirmed; unanswered = no confirmed answer yet.",
+  "questions": [
+    {
+      "id": "Q-01",
+      "area": "Product intent",
+      "question": "Which Amazon listing was each submitted short link meant to point to?",
+      "known": "Each short link resolves to a different /dp/ page. The observed ASINs are B0CDY277D3, B09B7SB46R, B08DKYBTPH, B0DHZTCNR5, and B0DZFD6R9Z (SRC-11..15).",
+      "missing": "The intended ASIN for each product. No intent was supplied.",
+      "status": "partial",
+      "discover": "S-01",
+      "sources": [
+        "SRC-04",
+        "SRC-11"
+      ],
+      "flags": [
+        "F-01",
+        "F-03"
+      ]
+    },
+    {
+      "id": "Q-02",
+      "area": "Compliance",
+      "question": "Are the submitted short links Special Links that credit the Associate tag shopnow047c-20?",
+      "known": "No observed redirect URL contains a tag parameter. Participation Requirements §2(a)–(b) require the tag on each Special Link.",
+      "missing": "Whether the links carry the tag in a form not visible in the redirect. Whether the tag is enrolled.",
+      "status": "unanswered",
+      "discover": "S-02",
+      "sources": [
+        "SRC-02"
+      ],
+      "flags": [
+        "F-02",
+        "F-22"
+      ]
+    },
+    {
+      "id": "Q-03",
+      "area": "Compliance",
+      "question": "Is tracking ID shopnow047c-20 enrolled and active in Associates Central?",
+      "known": "The ID was supplied in the brief.",
+      "missing": "Enrollment status. Requires your Associates Central login.",
+      "status": "unanswered",
+      "discover": "S-02",
+      "sources": [
+        "SRC-01"
+      ],
+      "flags": [
+        "F-22"
+      ]
+    },
+    {
+      "id": "Q-04",
+      "area": "Commission",
+      "question": "What is the standard commission rate for each product category?",
+      "known": "Commission is a percentage of qualifying revenue (SRC-02, Commission Income Statement §3). The rate table is not readable without sign-in.",
+      "missing": "The rate for Home & Kitchen and any subcategory.",
+      "status": "unanswered",
+      "discover": "S-08",
+      "sources": [
+        "SRC-02",
+        "SRC-03"
+      ],
+      "flags": [
+        "F-06"
+      ]
+    },
+    {
+      "id": "Q-05",
+      "area": "Commission",
+      "question": "How much commission could each product earn?",
+      "known": "Commission is paid on qualifying revenue after deductions for shipping, taxes, and similar items (SRC-02, Commission Income Statement §1). A session lasts 24 hours from the click, and an order counts if placed within 89 days (SRC-02, §1(b)).",
+      "missing": "Rate (Q-04). Price (Q-06). Order volume (Q-07). Without these, no revenue estimate is made.",
+      "status": "partial",
+      "discover": "S-08, S-09",
+      "sources": [
+        "SRC-02"
+      ],
+      "flags": [
+        "F-05",
+        "F-06"
+      ]
+    },
+    {
+      "id": "Q-06",
+      "area": "Pricing",
+      "question": "What are the current prices and availability?",
+      "known": "Prices appeared on the listings. Display is restricted by Participation Requirements §2(b).",
+      "missing": "A permitted source for display: Amazon-served link, PA-API, or Creators API.",
+      "status": "unanswered",
+      "discover": "S-09",
+      "sources": [
+        "SRC-02"
+      ],
+      "flags": [
+        "F-05"
+      ]
+    },
+    {
+      "id": "Q-07",
+      "area": "Performance",
+      "question": "Which products sell or convert well?",
+      "known": "No sales, click, or order data is available. The campaign ledger is empty.",
+      "missing": "Authorised first-party reports (Associates reports or site analytics).",
+      "status": "unanswered",
+      "discover": "S-03, S-08",
+      "sources": [
+        "SRC-02"
+      ],
+      "flags": [
+        "F-10"
+      ]
+    },
+    {
+      "id": "Q-08",
+      "area": "Demand",
+      "question": "Do people search for the question-shaped guide topics?",
+      "known": "The four topics are editorial hypotheses supplied in the brief. They are not claims about popularity or search volume.",
+      "missing": "Search-demand data. No keyword source has been verified.",
+      "status": "unanswered",
+      "discover": "S-11, S-12",
+      "sources": [
+        "SRC-10"
+      ],
+      "flags": [
+        "F-13"
+      ]
+    },
+    {
+      "id": "Q-09",
+      "area": "Performance",
+      "question": "Which guides bring readers who click through?",
+      "known": "The site has an outbound-click event and a guide-read event, both defined and tested in code. They are not live.",
+      "missing": "A running endpoint that receives events.",
+      "status": "unanswered",
+      "discover": "S-03",
+      "sources": [
+        "SRC-08"
+      ],
+      "flags": [
+        "F-11"
+      ]
+    },
+    {
+      "id": "Q-10",
+      "area": "Disclosure",
+      "question": "What disclosure wording and placement are required?",
+      "known": "Operating Agreement §5 requires 'As an Amazon Associate I earn from qualifying purchases.' to be stated clearly and prominently (SRC-01). FTC guidance says to place a disclosure so it is 'hard to miss', and warns that disclosures are likely to be missed on an About Me or profile page, at the end of posts, or behind a click to see more (SRC-05).",
+      "missing": "A reviewer's sign-off on placement (strip under masthead and footer).",
+      "status": "partial",
+      "discover": "S-14",
+      "sources": [
+        "SRC-01",
+        "SRC-05"
+      ],
+      "flags": [
+        "F-07"
+      ]
+    },
+    {
+      "id": "Q-11",
+      "area": "Compliance",
+      "question": "Is this site's URL the one listed in the Associates application?",
+      "known": "Participation Requirements §1 requires the site to be publicly available at the address in the application (SRC-02).",
+      "missing": "The address in the application.",
+      "status": "unanswered",
+      "discover": "S-02",
+      "sources": [
+        "SRC-02"
+      ],
+      "flags": [
+        "F-17"
+      ]
+    },
+    {
+      "id": "Q-12",
+      "area": "Privacy",
+      "question": "Who operates the site, and what privacy policy applies?",
+      "known": "The site sets no cookies and sends no data unless an endpoint is configured. Participation Requirements §3(e) requires accurate disclosure of tracking (SRC-02).",
+      "missing": "Operator's legal name, contact address, and final privacy policy.",
+      "status": "unanswered",
+      "discover": "S-03",
+      "sources": [
+        "SRC-02"
+      ],
+      "flags": [
+        "F-18"
+      ]
+    },
+    {
+      "id": "Q-13",
+      "area": "Brand",
+      "question": "What is the site's brand name?",
+      "known": "The working name is 'The Countertop Guide'.",
+      "missing": "A confirmed name and trademark check.",
+      "status": "unanswered",
+      "discover": "S-04",
+      "sources": [
+        "SRC-02"
+      ],
+      "flags": [
+        "F-15"
+      ]
+    },
+    {
+      "id": "Q-14",
+      "area": "Authorship",
+      "question": "Who is the named author of each guide?",
+      "known": "No author was supplied.",
+      "missing": "Author identity, credentials, and bio.",
+      "status": "unanswered",
+      "discover": "S-06",
+      "sources": [
+        "SRC-05"
+      ],
+      "flags": [
+        "F-14"
+      ]
+    },
+    {
+      "id": "Q-15",
+      "area": "Imagery",
+      "question": "Can product photos be used on the site?",
+      "known": "Program Content may be used only as the Associates terms allow (Participation Requirements §6(a), §6(d)) (SRC-02).",
+      "missing": "A clearance decision. No photos are used.",
+      "status": "unanswered",
+      "discover": "S-07",
+      "sources": [
+        "SRC-02"
+      ],
+      "flags": [
+        "F-16"
+      ]
+    },
+    {
+      "id": "Q-16",
+      "area": "Analytics",
+      "question": "Where should the analytics endpoint run?",
+      "known": "GitHub Pages serves static files only (SRC-08). The collector is written and tested.",
+      "missing": "A host you control, or an approved vendor.",
+      "status": "unanswered",
+      "discover": "S-03",
+      "sources": [
+        "SRC-08"
+      ],
+      "flags": [
+        "F-11"
+      ]
+    },
+    {
+      "id": "Q-17",
+      "area": "Analytics",
+      "question": "Are the five events in the brief the ones you intended?",
+      "known": "The brief refers to five defined events without listing them. A proposed set is in place.",
+      "missing": "Your event definitions.",
+      "status": "partial",
+      "discover": "S-03",
+      "sources": [],
+      "flags": [
+        "F-12"
+      ]
+    },
+    {
+      "id": "Q-18",
+      "area": "Cadence",
+      "question": "How often should new guides be published?",
+      "known": "The site proposes two guides a month. Nothing confirmed.",
+      "missing": "Your choice of cadence.",
+      "status": "unanswered",
+      "discover": "S-05",
+      "sources": [],
+      "flags": []
+    },
+    {
+      "id": "Q-19",
+      "area": "Claims",
+      "question": "Are the manufacturer claims in listing titles accurate?",
+      "known": "Titles include claims such as '±0.5℉ Accuracy', 'NIST&NSF Certified', 'IP67 Waterproof', and '450°F Hi-Fry Option'. They are labelled as manufacturer claims.",
+      "missing": "Independent confirmation from the certifying body or manufacturer documents.",
+      "status": "unanswered",
+      "discover": "S-07",
+      "sources": [
+        "SRC-11",
+        "SRC-13",
+        "SRC-14",
+        "SRC-15"
+      ],
+      "flags": [
+        "F-19"
+      ]
+    },
+    {
+      "id": "Q-20",
+      "area": "Food safety",
+      "question": "What internal temperatures does the USDA set as minimums?",
+      "known": "Answered. Beef, pork, veal, and lamb steaks, chops, and roasts: 145°F with a rest of at least 3 minutes. Ground meats: 160°F. Poultry: 165°F. Fish and shellfish: 145°F. Leftovers: 165°F (SRC-07).",
+      "missing": "None for the guide's scope.",
+      "status": "answered",
+      "discover": "",
+      "sources": [
+        "SRC-07"
+      ],
+      "flags": []
+    },
+    {
+      "id": "Q-21",
+      "area": "Promotions",
+      "question": "Do limited-time promotions affect what the site can say?",
+      "known": "Participation Requirements §2(b) requires removal of any mention of a promotion when it ends (SRC-02).",
+      "missing": "A promotion calendar. None is used.",
+      "status": "partial",
+      "discover": "S-05",
+      "sources": [
+        "SRC-02"
+      ],
+      "flags": []
+    },
+    {
+      "id": "Q-22",
+      "area": "Compliance",
+      "question": "Does the link-shortener rule apply to the supplied short links?",
+      "known": "Participation Requirements §6(w) bars a shortener used in a way that makes the Amazon destination unclear (SRC-02). The brief does not resolve the status of the supplied links (FLG-003).",
+      "missing": "A determination for the supplied links.",
+      "status": "unanswered",
+      "discover": "S-02",
+      "sources": [
+        "SRC-02"
+      ],
+      "flags": [
+        "F-02"
+      ]
+    },
+    {
+      "id": "Q-23",
+      "area": "Repository",
+      "question": "Which license should the repository carry?",
+      "known": "No license file exists.",
+      "missing": "Your choice.",
+      "status": "unanswered",
+      "discover": "S-15",
+      "sources": [],
+      "flags": [
+        "F-20"
+      ]
+    },
+    {
+      "id": "Q-24",
+      "area": "Source register",
+      "question": "Do the brief's source IDs (S01, S02, S07, S24, FLG-003, SG-27..SG-30) map to documents?",
+      "known": "None of these exist in the repository.",
+      "missing": "The register file.",
+      "status": "unanswered",
+      "discover": "",
+      "sources": [],
+      "flags": [
+        "F-09"
+      ]
+    },
+    {
+      "id": "Q-25",
+      "area": "Data access",
+      "question": "Is PA-API or Creators API access available for product research (price, availability, ratings)?",
+      "known": "Participation Requirements §2(b) and §6(t) refer to these APIs for price and rating display (SRC-02). Eligibility rules were not read.",
+      "missing": "Eligibility and application terms.",
+      "status": "partial",
+      "discover": "S-09",
+      "sources": [
+        "SRC-02"
+      ],
+      "flags": [
+        "F-05",
+        "F-21"
+      ]
+    },
+    {
+      "id": "Q-26",
+      "area": "Compliance",
+      "question": "Does the site meet the 'original content' requirement?",
+      "known": "All guide text was written for this site. It quotes official sources and labels manufacturer claims. Participation Requirements §1 requires original content, with significant commentary on any third-party material (SRC-02).",
+      "missing": "A reviewer's confirmation.",
+      "status": "partial",
+      "discover": "S-14",
+      "sources": [
+        "SRC-02"
+      ],
+      "flags": []
+    }
+  ]
+}

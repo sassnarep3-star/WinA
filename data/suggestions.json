@@ -1,0 +1,493 @@
+{
+  "as_of": "2026-11-20",
+  "intro": "Each suggestion is a decision for you. Nothing here has been implemented. Pick one option per item and reply with the IDs, for example 'S-01: A, S-02: A'. The 'Recommended' option is a suggestion for your review only.",
+  "suggestions": [
+    {
+      "id": "S-01",
+      "title": "Confirm the intended ASIN for each product",
+      "why": "The submitted codes are not 10-character ASINs, and each resolves to a different listing (F-01, F-03). Without intent, no intent field can be filled.",
+      "answers": [
+        "Q-01"
+      ],
+      "source": {
+        "label": "Amazon staff: ASIN is 10 characters",
+        "url": "https://sellercentral.amazon.com.mx/seller-forums/discussions/t/436b9105-db19-41cc-8f2a-7720c7ae5649"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "You confirm the intended ASIN from your own Associates or seller records",
+          "tradeoff": "Slowest, but the only option that records true intent."
+        },
+        {
+          "id": "B",
+          "label": "Treat the observed redirect ASIN as intended",
+          "tradeoff": "Fast, but assumes intent that has not been confirmed. Not recommended."
+        },
+        {
+          "id": "C",
+          "label": "Replace the five links with new links you choose",
+          "tradeoff": "Clean record. Requires new links."
+        }
+      ],
+      "recommended": "A",
+      "effort": "Low (one lookup per product)",
+      "status": "awaiting your choice",
+      "decision": ""
+    },
+    {
+      "id": "S-02",
+      "title": "Run the one-link-per-product test in Associates Central",
+      "why": "No observed redirect carries the tag (F-02). The test is the only way to confirm destination and tracking before scaling (F-22).",
+      "answers": [
+        "Q-02",
+        "Q-03",
+        "Q-11",
+        "Q-22"
+      ],
+      "source": {
+        "label": "Participation Requirements §2(a)–(b)",
+        "url": "https://affiliate-program.amazon.com/help/operating/policies"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "You run five click-through tests and report each result",
+          "tradeoff": "Gives a checked answer per product. Use a click-through check only, because §6(u) bars purchases through your own links."
+        },
+        {
+          "id": "B",
+          "label": "Sequence after S-01",
+          "tradeoff": "Avoids testing the wrong listing."
+        },
+        {
+          "id": "C",
+          "label": "Skip. Keep the supplied links as interim links",
+          "tradeoff": "Not recommended. The compliance status stays unresolved."
+        }
+      ],
+      "recommended": "A, after S-01",
+      "effort": "Low (five clicks and a report check)",
+      "status": "awaiting your choice",
+      "decision": ""
+    },
+    {
+      "id": "S-03",
+      "title": "Choose where the analytics endpoint runs",
+      "why": "GitHub Pages cannot run the collector, so the five events record nothing yet (F-11). The collector is written and tested.",
+      "answers": [
+        "Q-07",
+        "Q-09",
+        "Q-12",
+        "Q-16",
+        "Q-17"
+      ],
+      "source": {
+        "label": "GitHub Docs: publishing sources",
+        "url": "https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "Host analytics/collector.py on a server you control",
+          "tradeoff": "Full control. Needs a small server and a domain. Stores no IP addresses or cookies."
+        },
+        {
+          "id": "B",
+          "label": "Use a hosted analytics vendor",
+          "tradeoff": "Less setup. Vendor privacy terms were not evaluated in this session."
+        },
+        {
+          "id": "C",
+          "label": "No site analytics. Rely on Associates reports only",
+          "tradeoff": "Least data. Click-level insight is limited."
+        }
+      ],
+      "recommended": "A",
+      "effort": "Medium (one small server)",
+      "status": "awaiting your choice",
+      "decision": ""
+    },
+    {
+      "id": "S-04",
+      "title": "Confirm the site's brand name",
+      "why": "The working name 'The Countertop Guide' was not supplied by you and has no trademark check (F-15).",
+      "answers": [
+        "Q-13"
+      ],
+      "source": {
+        "label": "Participation Requirements §1(g): no Amazon marks in domain or tag",
+        "url": "https://affiliate-program.amazon.com/help/operating/policies"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "Keep 'The Countertop Guide' after a trademark search",
+          "tradeoff": "No change needed. The search is a check you run."
+        },
+        {
+          "id": "B",
+          "label": "Use a name you choose",
+          "tradeoff": "Your brand. Needs the same check."
+        },
+        {
+          "id": "C",
+          "label": "Keep the repository name 'WinA'",
+          "tradeoff": "Plain, but reads as internal."
+        }
+      ],
+      "recommended": "A, after a trademark search",
+      "effort": "Low",
+      "status": "awaiting your choice",
+      "decision": ""
+    },
+    {
+      "id": "S-05",
+      "title": "Set the publishing cadence",
+      "why": "The site proposes two guides a month. Nothing confirms that rate.",
+      "answers": [
+        "Q-18",
+        "Q-21"
+      ],
+      "source": {
+        "label": "Participation Requirements §2(b): remove promotion mentions when they end",
+        "url": "https://affiliate-program.amazon.com/help/operating/policies"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "Two guides a month",
+          "tradeoff": "Steady. Gives time to re-observe listings each cycle."
+        },
+        {
+          "id": "B",
+          "label": "One guide a week",
+          "tradeoff": "Faster. Higher upkeep and re-verification load."
+        },
+        {
+          "id": "C",
+          "label": "One guide a month",
+          "tradeoff": "Lowest upkeep."
+        }
+      ],
+      "recommended": "A",
+      "effort": "None now",
+      "status": "awaiting your choice",
+      "decision": ""
+    },
+    {
+      "id": "S-06",
+      "title": "Choose the byline approach",
+      "why": "No author was supplied. Bylines read 'Editorial team' (F-14).",
+      "answers": [
+        "Q-14"
+      ],
+      "source": {
+        "label": "FTC Disclosures 101",
+        "url": "https://www.ftc.gov/business-guidance/resources/disclosures-101-social-media-influencers"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "Keep 'Editorial team'",
+          "tradeoff": "Accurate. Less personal."
+        },
+        {
+          "id": "B",
+          "label": "A named author you supply, with their real credentials",
+          "tradeoff": "More personal. Requires your author details."
+        },
+        {
+          "id": "C",
+          "label": "Topic-based bylines",
+          "tradeoff": "Middle ground. Still needs names."
+        }
+      ],
+      "recommended": "A",
+      "effort": "Low",
+      "status": "awaiting your choice",
+      "decision": ""
+    },
+    {
+      "id": "S-07",
+      "title": "Decide on imagery",
+      "why": "No product photos are used because reuse rights were not verified (F-16). Manufacturer claims also remain unverified (F-19).",
+      "answers": [
+        "Q-15",
+        "Q-19"
+      ],
+      "source": {
+        "label": "Participation Requirements §6(a), §6(d)",
+        "url": "https://affiliate-program.amazon.com/help/operating/policies"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "Keep typographic covers",
+          "tradeoff": "No rights risk. Less visual."
+        },
+        {
+          "id": "B",
+          "label": "Commission original illustrations you own",
+          "tradeoff": "Distinctive. Cost and time."
+        },
+        {
+          "id": "C",
+          "label": "Use Amazon-served images within the Associates terms",
+          "tradeoff": "Needs a rights review first."
+        }
+      ],
+      "recommended": "A",
+      "effort": "Low (A) to medium (B)",
+      "status": "awaiting your choice",
+      "decision": ""
+    },
+    {
+      "id": "S-08",
+      "title": "Fill the commission rates from Associates Central",
+      "why": "The rate schedule requires sign-in and was not readable (F-06). Commission potential cannot be estimated without it.",
+      "answers": [
+        "Q-04",
+        "Q-05",
+        "Q-07"
+      ],
+      "source": {
+        "label": "Associates schedule (sign-in required)",
+        "url": "https://affiliate-program.amazon.com/help/operating/schedule"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "You copy the Home & Kitchen rate and date into data/products.json",
+          "tradeoff": "Verified and dated. Takes one lookup."
+        },
+        {
+          "id": "B",
+          "label": "Leave blank",
+          "tradeoff": "No commission estimate."
+        }
+      ],
+      "recommended": "A",
+      "effort": "Low",
+      "status": "awaiting your choice",
+      "decision": ""
+    },
+    {
+      "id": "S-09",
+      "title": "Decide on price and rating display",
+      "why": "Price and star ratings are withheld under Participation Requirements §2(b) and §6(t) (F-05, F-21).",
+      "answers": [
+        "Q-06",
+        "Q-25"
+      ],
+      "source": {
+        "label": "Participation Requirements §2(b), §6(t)",
+        "url": "https://affiliate-program.amazon.com/help/operating/policies"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "Apply for PA-API or Creators API access, if eligible, and display data as the License allows",
+          "tradeoff": "Enables price and rating display. Eligibility was not verified."
+        },
+        {
+          "id": "B",
+          "label": "Keep withheld",
+          "tradeoff": "Compliant by default. Less buyer information."
+        },
+        {
+          "id": "C",
+          "label": "Show 'check price on Amazon' with no figures",
+          "tradeoff": "Simple. Still sends readers to the listing."
+        }
+      ],
+      "recommended": "B until eligibility is confirmed, then A",
+      "effort": "Medium (A)",
+      "status": "awaiting your choice",
+      "decision": ""
+    },
+    {
+      "id": "S-10",
+      "title": "Choose the site domain",
+      "why": "The site runs at the GitHub Pages address. A custom domain would need registration (F-17 touches the application URL).",
+      "answers": [
+        "Q-11"
+      ],
+      "source": {
+        "label": "GitHub Docs: about custom domains",
+        "url": "https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/about-custom-domains-and-github-pages"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "Keep the GitHub Pages address",
+          "tradeoff": "Free. Must match the Associates application."
+        },
+        {
+          "id": "B",
+          "label": "Register a custom domain",
+          "tradeoff": "Brand-friendly. Needs a registrar account and an Associates URL update."
+        },
+        {
+          "id": "C",
+          "label": "Defer",
+          "tradeoff": "No change now."
+        }
+      ],
+      "recommended": "A",
+      "effort": "Low (A) to medium (B)",
+      "status": "awaiting your choice",
+      "decision": ""
+    },
+    {
+      "id": "S-11",
+      "title": "Connect Google Search Console",
+      "why": "Verification needs your Google account (F-13). Without it, the sitemap is not submitted and no search data is available.",
+      "answers": [
+        "Q-08"
+      ],
+      "source": {
+        "label": "Google: build and submit a sitemap",
+        "url": "https://developers.google.com/search/docs/crawling-indexing/sitemaps/build-sitemap"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "You verify the site and submit sitemap.xml",
+          "tradeoff": "Gives real query data. Recommended."
+        },
+        {
+          "id": "B",
+          "label": "Defer",
+          "tradeoff": "No search data."
+        }
+      ],
+      "recommended": "A",
+      "effort": "Low",
+      "status": "awaiting your choice",
+      "decision": ""
+    },
+    {
+      "id": "S-12",
+      "title": "Choose how guide topics are picked",
+      "why": "The four topics are editorial hypotheses, not measured demand (Q-08).",
+      "answers": [
+        "Q-08",
+        "Q-09"
+      ],
+      "source": {
+        "label": "Google: sitemaps",
+        "url": "https://developers.google.com/search/docs/crawling-indexing/sitemaps/build-sitemap"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "Keep the four topics as the working list",
+          "tradeoff": "Already written. Not yet tested."
+        },
+        {
+          "id": "B",
+          "label": "Replace with topics chosen from measured queries after 60 days of data",
+          "tradeoff": "Evidence-led. Slower start."
+        },
+        {
+          "id": "C",
+          "label": "Add seasonal topics on a calendar",
+          "tradeoff": "Timely. Needs a calendar."
+        }
+      ],
+      "recommended": "A now, then B",
+      "effort": "Low",
+      "status": "awaiting your choice",
+      "decision": ""
+    },
+    {
+      "id": "S-13",
+      "title": "Confirm the deployment method",
+      "why": "The site is published from /docs on main, which GitHub Docs supports (SRC-08).",
+      "answers": [],
+      "source": {
+        "label": "GitHub Docs: publishing sources",
+        "url": "https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "Publish from /docs on main",
+          "tradeoff": "Simple. The build output is committed."
+        },
+        {
+          "id": "B",
+          "label": "Publish with a GitHub Actions workflow",
+          "tradeoff": "Build on deploy. Needs the workflow permission."
+        }
+      ],
+      "recommended": "A",
+      "effort": "None",
+      "status": "awaiting your choice",
+      "decision": ""
+    },
+    {
+      "id": "S-14",
+      "title": "Confirm disclosure placement",
+      "why": "The statement is under the masthead and in the footer. A reviewer must confirm placement against FTC guidance (F-07).",
+      "answers": [
+        "Q-10",
+        "Q-26"
+      ],
+      "source": {
+        "label": "FTC Disclosures 101: how to disclose",
+        "url": "https://www.ftc.gov/business-guidance/resources/disclosures-101-social-media-influencers"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "Keep the strip under the masthead and in the footer (current)",
+          "tradeoff": "Meets the on-every-page request."
+        },
+        {
+          "id": "B",
+          "label": "Add a short disclosure beside each sponsored link",
+          "tradeoff": "Closest to the product. More repetition."
+        },
+        {
+          "id": "C",
+          "label": "Both A and B",
+          "tradeoff": "Most visible. Recommended for review."
+        }
+      ],
+      "recommended": "C",
+      "effort": "Low",
+      "status": "awaiting your choice",
+      "decision": ""
+    },
+    {
+      "id": "S-15",
+      "title": "Choose a repository license",
+      "why": "The repository has no LICENSE file (F-20).",
+      "answers": [
+        "Q-23"
+      ],
+      "source": {
+        "label": "GitHub Docs: licensing a repository",
+        "url": "https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/licensing-a-repository"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "Add an open-source license you choose",
+          "tradeoff": "Clear reuse terms."
+        },
+        {
+          "id": "B",
+          "label": "No license (all rights reserved by default)",
+          "tradeoff": "Current state."
+        }
+      ],
+      "recommended": "Your choice",
+      "effort": "Low",
+      "status": "awaiting your choice",
+      "decision": ""
+    }
+  ]
+}
