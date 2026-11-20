@@ -1,5 +1,5 @@
 {
-  "_note": "Submission record. Kept as the primary record of what was submitted and what it resolved to. Intended ASIN and observed ASIN are deliberately separate fields and must not be merged. The four fields the brief names for each submitted link are all present, per link: intended ASIN -> `intendedAsin` (null; none was ever supplied), official listing URL -> `observedDestination`, confirmation date -> `confirmedOn`, source -> `source` / `sourceUrl`. `observedDestination` is kept in its own field and is never written into `intendedAsin`. See COORDINATION.md T02/T26 and /register/ on the site.",
+  "_note": "Product-intent confirmation record. For each submitted link: intendedAsin (blank unless the owner supplies it), officialListingUrl (the Amazon ASIN page, confirmed on confirmedOn from the sources in confirmationSourceIds), and observedRedirectTargets (every observed landing, dated, kept in its own field). Intended and observed ASINs are deliberately separate and must not be merged. See COORDINATION.md T02, T29 and /register/ on the site.",
   "trackingId": "shopnow047c-20",
   "marketplace": "amazon.com",
   "submittedOn": "2026-11-20",
@@ -10,66 +10,251 @@
       "submitted": "https://link.amazon/B04G1MEwY",
       "shortCode": "B04G1MEwY",
       "intendedAsin": null,
+      "intendedAsinNote": "Not supplied by the owner, so left blank. It is not filled from the observed ASIN: that would merge the two fields (FLG-016, FLG-033).",
       "observedAsin": "B0CDY277D3",
-      "observedDestination": "https://www.amazon.com/dp/B0CDY277D3",
+      "officialListingUrl": "https://www.amazon.com/dp/B0CDY277D3",
       "confirmedOn": "2026-11-20",
-      "source": "Official Amazon listing page, read after following the submitted link",
-      "sourceUrl": "https://www.amazon.com/dp/B0CDY277D3",
+      "confirmationSourceIds": [
+        "amazon-listing",
+        "amazon-asin-definition"
+      ],
+      "confirmationSourceUrl": "https://www.amazon.com/dp/B0CDY277D3",
+      "observedDestination": "https://www.amazon.com/dp/B0CDY277D3",
       "resolvedTitle": "CHEFMAN 6 Quart Dual Basket Air Fryer Oven with Easy View Windows, Sync Finish, Hi-Fry, Auto Shutoff, 2 Independent 3Qt Nonstick Dishwasher Safe Frying Baskets, Digital Double Air Fryer - Black",
       "confidence": "observed",
-      "flag": "FLG-001"
+      "flag": "FLG-001",
+      "reverifiedOn": "2026-11-20",
+      "reverifiedResult": "homepage",
+      "reverifiedFinalUrl": "https://www.amazon.com/",
+      "reverifiedTitleSeen": "Amazon.com. Spend less. Smile more.",
+      "reverifiedFlag": "FLG-036",
+      "observedRedirectTargets": [
+        {
+          "observedOn": "2026-11-20",
+          "check": "First resolution, as recorded in this file. Not independently reproducible from this record.",
+          "finalUrl": "https://www.amazon.com/dp/B0CDY277D3",
+          "result": "product-page"
+        },
+        {
+          "observedOn": "2026-11-20",
+          "check": "Re-check by arena/119f4dc6-wina (T26): page-tool fetch of the submitted link.",
+          "finalUrl": "https://www.amazon.com/",
+          "result": "homepage"
+        },
+        {
+          "observedOn": "2026-11-20",
+          "check": "Re-check by arena/6b0f2ddc-wina (T29): one page-tool fetch of the submitted link.",
+          "finalUrl": "https://www.amazon.com/",
+          "result": "homepage"
+        },
+        {
+          "observedOn": "2026-11-20",
+          "check": "Re-check by arena/b37e1a98-wina (T33): one page-tool fetch of the submitted link.",
+          "finalUrl": "https://www.amazon.com/",
+          "result": "homepage"
+        }
+      ],
+      "observationsAgree": false
     },
     {
       "submitted": "https://link.amazon/B02NbDxp3",
       "shortCode": "B02NbDxp3",
       "intendedAsin": null,
+      "intendedAsinNote": "Not supplied by the owner, so left blank. It is not filled from the observed ASIN: that would merge the two fields (FLG-016, FLG-033).",
       "observedAsin": "B09B7SB46R",
-      "observedDestination": "https://www.amazon.com/dp/B09B7SB46R",
+      "officialListingUrl": "https://www.amazon.com/dp/B09B7SB46R",
       "confirmedOn": "2026-11-20",
-      "source": "Official Amazon listing page, read after following the submitted link",
-      "sourceUrl": "https://www.amazon.com/dp/B09B7SB46R",
+      "confirmationSourceIds": [
+        "amazon-listing",
+        "amazon-asin-definition"
+      ],
+      "confirmationSourceUrl": "https://www.amazon.com/dp/B09B7SB46R",
+      "observedDestination": "https://www.amazon.com/dp/B09B7SB46R",
       "resolvedTitle": "Emeril Lagasse 26QT French Door Multi-Function Air Fryer Toaster Oven | Countertop Convection Cooker, 24 One-Touch Preset Options, Extra Large Interior, Six Cooking Accessories Included",
       "confidence": "observed",
-      "flag": "FLG-001"
+      "flag": "FLG-001",
+      "reverifiedOn": "2026-11-20",
+      "reverifiedResult": "product-page",
+      "reverifiedFinalUrl": "https://www.amazon.com/dp/B09B7SB46R",
+      "reverifiedTitleSeen": "Emeril Lagasse 26QT French Door Multi-Function Air Fryer Toaster Oven",
+      "reverifiedFlag": "FLG-036",
+      "observedRedirectTargets": [
+        {
+          "observedOn": "2026-11-20",
+          "check": "First resolution, as recorded in this file. Not independently reproducible from this record.",
+          "finalUrl": "https://www.amazon.com/dp/B09B7SB46R",
+          "result": "product-page"
+        },
+        {
+          "observedOn": "2026-11-20",
+          "check": "Re-check by arena/119f4dc6-wina (T26): page-tool fetch of the submitted link.",
+          "finalUrl": "https://www.amazon.com/dp/B09B7SB46R",
+          "result": "product-page"
+        },
+        {
+          "observedOn": "2026-11-20",
+          "check": "Re-check by arena/6b0f2ddc-wina (T29): one page-tool fetch of the submitted link.",
+          "finalUrl": "https://www.amazon.com/",
+          "result": "homepage"
+        },
+        {
+          "observedOn": "2026-11-20",
+          "check": "Re-check by arena/b37e1a98-wina (T33): one page-tool fetch of the submitted link.",
+          "finalUrl": "https://www.amazon.com/",
+          "result": "homepage"
+        }
+      ],
+      "observationsAgree": false
     },
     {
       "submitted": "https://link.amazon/B00hJ57DV",
       "shortCode": "B00hJ57DV",
       "intendedAsin": null,
+      "intendedAsinNote": "Not supplied by the owner, so left blank. It is not filled from the observed ASIN: that would merge the two fields (FLG-016, FLG-033).",
       "observedAsin": "B08DKYBTPH",
-      "observedDestination": "https://www.amazon.com/dp/B08DKYBTPH",
+      "officialListingUrl": "https://www.amazon.com/dp/B08DKYBTPH",
       "confirmedOn": "2026-11-20",
-      "source": "Official Amazon listing page, read after following the submitted link",
-      "sourceUrl": "https://www.amazon.com/dp/B08DKYBTPH",
+      "confirmationSourceIds": [
+        "amazon-listing",
+        "amazon-asin-definition"
+      ],
+      "confirmationSourceUrl": "https://www.amazon.com/dp/B08DKYBTPH",
+      "observedDestination": "https://www.amazon.com/dp/B08DKYBTPH",
       "resolvedTitle": "Chefman Air Fryer 8 Qt | TurboFry 4-in-1 with 450°F Hi-Fry Option for Crispier Results | Bake, Dehydrate, Frozen | XL Nonstick Dishwasher-Safe Basket | Stainless Steel",
       "confidence": "observed",
-      "flag": "FLG-001"
+      "flag": "FLG-001",
+      "reverifiedOn": "2026-11-20",
+      "reverifiedResult": "product-page",
+      "reverifiedFinalUrl": "https://www.amazon.com/dp/B08DKYBTPH",
+      "reverifiedTitleSeen": "Chefman Air Fryer 8 Qt | TurboFry 4-in-1",
+      "reverifiedFlag": "FLG-036",
+      "observedRedirectTargets": [
+        {
+          "observedOn": "2026-11-20",
+          "check": "First resolution, as recorded in this file. Not independently reproducible from this record.",
+          "finalUrl": "https://www.amazon.com/dp/B08DKYBTPH",
+          "result": "product-page"
+        },
+        {
+          "observedOn": "2026-11-20",
+          "check": "Re-check by arena/119f4dc6-wina (T26): page-tool fetch of the submitted link.",
+          "finalUrl": "https://www.amazon.com/dp/B08DKYBTPH",
+          "result": "product-page"
+        },
+        {
+          "observedOn": "2026-11-20",
+          "check": "Re-check by arena/6b0f2ddc-wina (T29): one page-tool fetch of the submitted link.",
+          "finalUrl": "https://www.amazon.com/",
+          "result": "homepage"
+        },
+        {
+          "observedOn": "2026-11-20",
+          "check": "Re-check by arena/b37e1a98-wina (T33): one page-tool fetch of the submitted link.",
+          "finalUrl": "https://www.amazon.com/",
+          "result": "homepage"
+        }
+      ],
+      "observationsAgree": false
     },
     {
       "submitted": "https://link.amazon/B0c8moW59",
       "shortCode": "B0c8moW59",
       "intendedAsin": null,
+      "intendedAsinNote": "Not supplied by the owner, so left blank. It is not filled from the observed ASIN: that would merge the two fields (FLG-016, FLG-033).",
       "observedAsin": "B0DHZTCNR5",
-      "observedDestination": "https://www.amazon.com/dp/B0DHZTCNR5",
+      "officialListingUrl": "https://www.amazon.com/dp/B0DHZTCNR5",
       "confirmedOn": "2026-11-20",
-      "source": "Official Amazon listing page, read after following the submitted link",
-      "sourceUrl": "https://www.amazon.com/dp/B0DHZTCNR5",
+      "confirmationSourceIds": [
+        "amazon-listing",
+        "amazon-asin-definition"
+      ],
+      "confirmationSourceUrl": "https://www.amazon.com/dp/B0DHZTCNR5",
+      "observedDestination": "https://www.amazon.com/dp/B0DHZTCNR5",
       "resolvedTitle": "ThermoMaven 1 Sec Professional Digital Meat Thermometer, ±0.5°F Accuracy | NIST&NSF Certified, Auto-Rotate Bright LED Screen, IP67 Waterproof for Grill BBQ, Stocking Stuffers Gifts for Men, Black",
       "confidence": "observed",
-      "flag": "FLG-001"
+      "flag": "FLG-001",
+      "reverifiedOn": "2026-11-20",
+      "reverifiedResult": "homepage",
+      "reverifiedFinalUrl": "https://www.amazon.com/",
+      "reverifiedTitleSeen": "Amazon.com. Spend less. Smile more.",
+      "reverifiedFlag": "FLG-036",
+      "observedRedirectTargets": [
+        {
+          "observedOn": "2026-11-20",
+          "check": "First resolution, as recorded in this file. Not independently reproducible from this record.",
+          "finalUrl": "https://www.amazon.com/dp/B0DHZTCNR5",
+          "result": "product-page"
+        },
+        {
+          "observedOn": "2026-11-20",
+          "check": "Re-check by arena/119f4dc6-wina (T26): page-tool fetch of the submitted link.",
+          "finalUrl": "https://www.amazon.com/",
+          "result": "homepage"
+        },
+        {
+          "observedOn": "2026-11-20",
+          "check": "Re-check by arena/6b0f2ddc-wina (T29): one page-tool fetch of the submitted link.",
+          "finalUrl": "https://www.amazon.com/",
+          "result": "homepage"
+        },
+        {
+          "observedOn": "2026-11-20",
+          "check": "Re-check by arena/b37e1a98-wina (T33): one page-tool fetch of the submitted link.",
+          "finalUrl": "https://www.amazon.com/",
+          "result": "homepage"
+        }
+      ],
+      "observationsAgree": false
     },
     {
       "submitted": "https://link.amazon/B0f3GKalj",
       "shortCode": "B0f3GKalj",
       "intendedAsin": null,
+      "intendedAsinNote": "Not supplied by the owner, so left blank. It is not filled from the observed ASIN: that would merge the two fields (FLG-016, FLG-033).",
       "observedAsin": "B0DZFD6R9Z",
-      "observedDestination": "https://www.amazon.com/dp/B0DZFD6R9Z",
+      "officialListingUrl": "https://www.amazon.com/dp/B0DZFD6R9Z",
       "confirmedOn": "2026-11-20",
-      "source": "Official Amazon listing page, read after following the submitted link",
-      "sourceUrl": "https://www.amazon.com/dp/B0DZFD6R9Z",
+      "confirmationSourceIds": [
+        "amazon-listing",
+        "amazon-asin-definition"
+      ],
+      "confirmationSourceUrl": "https://www.amazon.com/dp/B0DZFD6R9Z",
+      "observedDestination": "https://www.amazon.com/dp/B0DZFD6R9Z",
       "resolvedTitle": "CHEF iQ Sense | Smart Wireless Meat Thermometer | 3 Ultra-Thin Probes | WiFi Unlimited Range | 1000°F Heat Safe | 5 Sensors | BBQ, Grill, Oven, Smoker, Air Fryer | Gen3",
       "confidence": "observed",
-      "flag": "FLG-001"
+      "flag": "FLG-001",
+      "reverifiedOn": "2026-11-20",
+      "reverifiedResult": "homepage",
+      "reverifiedFinalUrl": "https://www.amazon.com/",
+      "reverifiedTitleSeen": "Amazon.com. Spend less. Smile more.",
+      "reverifiedFlag": "FLG-036",
+      "observedRedirectTargets": [
+        {
+          "observedOn": "2026-11-20",
+          "check": "First resolution, as recorded in this file. Not independently reproducible from this record.",
+          "finalUrl": "https://www.amazon.com/dp/B0DZFD6R9Z",
+          "result": "product-page"
+        },
+        {
+          "observedOn": "2026-11-20",
+          "check": "Re-check by arena/119f4dc6-wina (T26): page-tool fetch of the submitted link.",
+          "finalUrl": "https://www.amazon.com/",
+          "result": "homepage"
+        },
+        {
+          "observedOn": "2026-11-20",
+          "check": "Re-check by arena/6b0f2ddc-wina (T29): one page-tool fetch of the submitted link.",
+          "finalUrl": "https://www.amazon.com/dp/B0DZFD6R9Z?lv=shuf&sbo=RZvfv%2F%2FHxDF%2BO5021pAnSA%3D%3D&btn_type=ss&gaOptInStatus=true&language=en_US&btn_ref=srctok-5ed90c5aacfa7a7e&channelId=500&plpRedirect=mhFallback&th=1",
+          "result": "product-page"
+        },
+        {
+          "observedOn": "2026-11-20",
+          "check": "Re-check by arena/b37e1a98-wina (T33): one page-tool fetch of the submitted link.",
+          "finalUrl": "https://www.amazon.com/dp/B0DZFD6R9Z",
+          "result": "product-page"
+        }
+      ],
+      "observationsAgree": false
     }
   ],
   "unresolved": [
@@ -90,6 +275,55 @@
       "field": "enrolment status of shopnow047c-20",
       "finding": "Requires signing in to the Associates dashboard. Not verifiable from here.",
       "action": "Test one link per product in the enrolled workflow and confirm the tracking report."
+    }
+  ],
+  "reverification": {
+    "performedOn": "2026-11-20",
+    "performedBy": "arena/119f4dc6-wina",
+    "method": "Each submitted link.amazon URL was fetched with the page tool; the final URL reported by the fetch and the page title were recorded. The products' official listings were then fetched separately at https://www.amazon.com/dp/<ASIN> and their titles compared with data/links.json.",
+    "asinsStillCorrect": true,
+    "asinsNote": "All five destination ASINs were re-confirmed: each /dp/<ASIN> page was fetched directly and returned the product recorded in this file. The product identity is not in doubt.",
+    "shortLinkBehaviour": "3 of 5 (B04G1MEwY, B0c8moW59, B0f3GKalj) resolved to https://www.amazon.com/ rather than to a product page. B04G1MEwY was fetched twice and returned the homepage both times. The cause was not determined from here; it may be Amazon-side redirect behaviour for this client. It is recorded as an open finding, not as a claim that the links are invalid or that the products changed.",
+    "flag": "FLG-036"
+  },
+  "verificationLog": [
+    {
+      "checkedOn": "2026-11-20",
+      "session": "arena-f5d87e09-wina",
+      "method": "Page-tool fetch of each link.amazon URL, one attempt each. Destination taken from the returned url field. No retry, no inference.",
+      "results": [
+        {
+          "submitted": "https://link.amazon/B04G1MEwY",
+          "returnedUrl": "https://www.amazon.com/",
+          "result": "homepage",
+          "recordedObservedAsin": "B0CDY277D3"
+        },
+        {
+          "submitted": "https://link.amazon/B02NbDxp3",
+          "returnedUrl": "https://www.amazon.com/",
+          "result": "homepage",
+          "recordedObservedAsin": "B09B7SB46R"
+        },
+        {
+          "submitted": "https://link.amazon/B00hJ57DV",
+          "returnedUrl": "https://www.amazon.com/",
+          "result": "homepage",
+          "recordedObservedAsin": "B08DKYBTPH"
+        },
+        {
+          "submitted": "https://link.amazon/B0c8moW59",
+          "returnedUrl": "https://www.amazon.com/",
+          "result": "homepage",
+          "recordedObservedAsin": "B0DHZTCNR5"
+        },
+        {
+          "submitted": "https://link.amazon/B0f3GKalj",
+          "returnedUrl": "https://www.amazon.com/dp/B0DZFD6R9Z",
+          "result": "product-page",
+          "recordedObservedAsin": "B0DZFD6R9Z"
+        }
+      ],
+      "note": "Across the three 2026-11-20 checks (arena-8e69b462-wina, arena-119f4dc6-wina, and this one) every submitted short link has returned the amazon.com homepage at least once; B02NbDxp3 and B00hJ57DV returned their product page in some checks. The short links are not giving a stable destination in the page tool. The site does not depend on them: every buy button goes to /dp/<observed ASIN>?tag=shopnow047c-20. Owner browser check still required (FLG-036)."
     }
   ]
 }

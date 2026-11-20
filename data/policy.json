@@ -57,6 +57,16 @@
       "note": "Used for the figures a listing omits — wattage, dimensions, weight, warranty. The specific URL per claim lives in products[].specSources, so each row cites its own page rather than a brand homepage. Read on the date the row says.",
       "accessed": "2026-11-20",
       "trust": "primary"
+    },
+    {
+      "id": "amazon-asin-definition",
+      "type": "Official Amazon guidance",
+      "publisher": "Amazon Selling on Amazon (sell.amazon.com)",
+      "label": "Understanding ASINs: Your guide to Amazon's product identification system (published 4 June 2025)",
+      "note": "Defines the ASIN as the unique 10-character alphanumeric code Amazon assigns to every product in its store, and says the ASIN appears after '/dp/' in the product URL. Used only for that definition. CAVEAT: it is seller-education guidance, not Associates policy and not an Amazon Help article, and the page states it 'was produced with the assistance of generative artificial intelligence (gen AI)'. Author: an Amazon content marketing manager (per the page).",
+      "url": "https://sell.amazon.com/blog/what-is-an-asin",
+      "accessed": "2026-11-20",
+      "trust": "primary (Amazon-owned; AI-assisted per page; see FLG-033)"
     }
   ],
   "policy": [

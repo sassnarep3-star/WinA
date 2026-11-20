@@ -1,0 +1,296 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Suggestions queue — review and choose before anything is built | The Crisp Counter</title>
+<meta name="description" content="A reviewable queue of proposed improvements to The Crisp Counter: design, content, SEO, measurement and compliance. Each proposal carries its evidence status, effort, risk, and recommended path — nothing here is implemented until it is approved.">
+<link rel="canonical" href="https://sassnarep3-star.github.io/WinA/suggestions.html">
+<meta property="og:title" content="Suggestions queue — The Crisp Counter">
+<meta property="og:description" content="Choose the best path before we implement changes.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://sassnarep3-star.github.io/WinA/assets/img/hero.jpg">
+<meta name="cc-endpoint" content="">
+<link rel="alternate" type="application/rss+xml" title="The Crisp Counter" href="feed.xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..700;1,9..144,400..700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/site.css">
+</head>
+<body>
+<header class="masthead">
+  <div class="wrap masthead-row">
+    <a class="brand" href="index.html"><span class="brand-mark">◆</span> The Crisp Counter <small>measured kitchen buying</small></a>
+    <button class="nav-toggle" aria-expanded="false" aria-controls="site-nav">Menu</button>
+    <nav class="nav" id="site-nav" aria-label="Primary">
+      <a href="shop.html">Shop</a>
+      <a href="compare.html">Compare</a>
+      <a href="guides/index.html">Guides</a>
+      <a href="questions.html">Questions</a>
+      <a href="suggestions.html" aria-current="page">Suggestions</a>
+      <a href="data-room/index.html">Data room</a>
+      <a class="nav-cta" href="shop.html#the-lineup">See the lineup</a>
+    </nav>
+  </div>
+</header>
+<div class="disclosure-strip" id="disclosure">
+  <div class="wrap">
+    <span class="disclosure-badge">Disclosure</span>
+    <span><strong>The Crisp Counter is an Amazon Associate — we earn from qualifying purchases.</strong> Product links on this page are <em>sponsored</em> affiliate links where present. Facts were observed on official sources on November 20, 2026. <a href="data-room/compliance-gate.html">How we handle disclosure &amp; compliance</a>.</span>
+  </div>
+</div>
+
+<main>
+  <div class="wrap page-head">
+    <p class="breadcrumb"><a href="index.html">Home</a> / Suggestions</p>
+    <h1>Suggestions queue — decide before we build</h1>
+    <p class="lede">Everything below is a <strong>proposal, not a change</strong>. Each card states its evidence basis, effort, risk, and the path we recommend — with the alternative kept visible. Reply with a proposal ID and a verdict (approve / reject / revise) and only then does it enter the build.</p>
+  </div>
+
+  <section class="section tight">
+    <div class="wrap">
+      <div class="callout sage">
+        <h3>How to use this queue</h3>
+        <p class="muted"><strong>1.</strong> Skim the verdict we recommend. <strong>2.</strong> Check the evidence line — "verified" means it's backed by a linked source; "hypothesis" means it's plausible but unmeasured; "blocked" means it can't proceed until a question is answered. <strong>3.</strong> Reply e.g. "S-03 approve, S-08 revise: skip the video". Nothing is implemented without that step. Changes already mandated by the project brief are listed at the bottom as <em>shipped</em>, so this queue stays purely about decisions that are still open.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section tight" id="design">
+    <div class="wrap">
+      <div class="section-head"><div><p class="eyebrow">A · Design &amp; publication feel</p><h2>Look and feel</h2></div></div>
+
+      <article class="proposal">
+        <header><span class="chip">S-01</span><h3>Give each product a short "editor's note" framing who it fits</h3><span class="meta">status: awaiting decision</span></header>
+        <dl>
+          <dt>Why</dt><dd>Shops that convert read like a knowledgeable friend. Short neutral framing ("best if you cook two things at once") speeds decisions without fake reviews.</dd>
+          <dt>Evidence</dt><dd>Hypothesis — conversion effect is unmeasured until the campaign ledger has data.</dd>
+          <dt>Recommended</dt><dd><strong>Approve with guardrails:</strong> framing must never assert performance we haven't verified; each note ends with a link to its facts.</dd>
+          <dt>Alternative</dt><dd>Keep cards spec-only (current state) — safest, slower to read.</dd>
+          <dt>Effort / risk</dt><dd>Low / low (editorial risk only, managed by the compliance gate G-5 review).</dd>
+        </dl>
+      </article>
+
+      <article class="proposal">
+        <header><span class="chip">S-02</span><h3>Add "price history" sparklines per product</h3><span class="meta">status: awaiting decision</span></header>
+        <dl>
+          <dt>Why</dt><dd>Deal badges are everywhere; a price-history strip would differentiate and help buyers.</dd>
+          <dt>Evidence</dt><dd><strong>Blocked</strong> — needs a lawful, first-party price observation cadence. We currently have one observation date (2026-11-20). See <a href="questions.html#q-price-cadence">Q-11</a>.</dd>
+          <dt>Recommended</dt><dd><strong>Defer</strong> until at least 30 daily observations exist, then revisit.</dd>
+          <dt>Alternative</dt><dd>Show only "last observed" + date (current state) — honest and static.</dd>
+          <dt>Effort / risk</dt><dd>Medium / medium (stale charts mislead; needs automation + review).</dd>
+        </dl>
+      </article>
+
+      <article class="proposal">
+        <header><span class="chip">S-03</span><h3>Seasonal hub pages: "Holiday hosting", "Back to basics"</h3><span class="meta">status: awaiting decision</span></header>
+        <dl>
+          <dt>Why</dt><dd>Seasonal clusters concentrate internal links and give searchers a landing point; the holiday return window (observed: purchases Nov 1–Dec 31, 2026 returnable until Jan 31, 2027) is timely now.</dd>
+          <dt>Evidence</dt><dd>Verified timing (listing return policies, 2026-11-20) + hypothesis on traffic.</dd>
+          <dt>Recommended</dt><dd><strong>Approve a pilot:</strong> one "Holiday hosting gift guide" before Dec 10, added to sitemap + feed.</dd>
+          <dt>Alternative</dt><dd>Keep seasonal advice as a banner on the home page (current state).</dd>
+          <dt>Effort / risk</dt><dd>Low / low.</dd>
+        </dl>
+      </article>
+
+      <article class="proposal">
+        <header><span class="chip">S-04</span><h3>Replace hot-linked product thumbnails with PA-API images</h3><span class="meta">status: awaiting decision</span></header>
+        <dl>
+          <dt>Why</dt><dd>Currently thumbnails are served from Amazon's media CDN (flagged as <a href="data-room/flagged.html">FLG-005</a>); the Operating Agreement's IP license covers Program Content obtained through the proper tools.</dd>
+          <dt>Evidence</dt><dd>Verified policy basis: <a href="https://affiliate-program.amazon.com/help/operating/agreement" rel="nofollow">Associates Program Operating Agreement</a> (IP license section).</dd>
+          <dt>Recommended</dt><dd><strong>Approve, tied to gate G-4</strong> (Associates account access). Replace images the same day PA-API credentials exist.</dd>
+          <dt>Alternative</dt><dd>Generate original illustrations per product (safe but less buyer-accurate).</dd>
+          <dt>Effort / risk</dt><dd>Low once API exists / risk of inaction: medium.</dd>
+        </dl>
+      </article>
+    </div>
+  </section>
+
+  <section class="section tight" id="content">
+    <div class="wrap">
+      <div class="section-head"><div><p class="eyebrow">B · Content &amp; findability</p><h2>What to publish next</h2></div></div>
+
+      <article class="proposal">
+        <header><span class="chip">S-05</span><h3>Question-shaped topic cluster: "Air fryer mistakes"</h3><span class="meta">status: awaiting decision</span></header>
+        <dl>
+          <dt>Why</dt><dd>Common-search question shapes ("why is my air fryer not crispy") match how buyers look for help; the four current guides cover pre-purchase questions, not post-purchase ones.</dd>
+          <dt>Evidence</dt><dd>Hypothesis — per the brief, the next topic should be chosen from measured queries once Search Console data exists (<a href="questions.html#q-search-console">Q-12</a>).</dd>
+          <dt>Recommended</dt><dd><strong>Hold</strong> until 2–4 weeks of query data exist, then pick from real queries. The brief's own principle: measure before optimizing.</dd>
+          <dt>Alternative</dt><dd>Publish now on instinct (against the brief's evidence-first rule).</dd>
+          <dt>Effort / risk</dt><dd>Medium / low.</dd>
+        </dl>
+      </article>
+
+      <article class="proposal">
+        <header><span class="chip">S-06</span><h3>Buyer's glossary: quarts vs liters, presets, cETL, NIST, IP67</h3><span class="meta">status: awaiting decision</span></header>
+        <dl>
+          <dt>Why</dt><dd>Our comparison table uses terms whose meanings are exactly where buyers get confused (see the <a href="guides/air-fryer-capacity-checklist.html">capacity guide</a>'s 6QT/6L flag). A glossary is evergreen, internally linkable, and honest.</dd>
+          <dt>Evidence</dt><dd>Verified confusion exists in the source data itself (FLG-004, FLG-007).</dd>
+          <dt>Recommended</dt><dd><strong>Approve.</strong> Small page, high trust value, feeds internal links.</dd>
+          <dt>Alternative</dt><dd>Inline tooltips only — less findable.</dd>
+          <dt>Effort / risk</dt><dd>Low / low.</dd>
+        </dl>
+      </article>
+
+      <article class="proposal">
+        <header><span class="chip">S-07</span><h3>Real launch list (email capture with consent + double opt-in)</h3><span class="meta">status: awaiting decision</span></header>
+        <dl>
+          <dt>Why</dt><dd>Reader capture is the one growth loop that survives search-algorithm changes. The current form is an honest no-op (see <a href="data-room/measurement.html">measurement</a>).</dd>
+          <dt>Evidence</dt><dd>Hypothesis on value; verified that a compliant design needs a real processor and consent language.</dd>
+          <dt>Recommended</dt><dd><strong>Approve in principle, pick a processor:</strong> self-hosted list (privacy-aligned, more ops) vs hosted provider (faster, adds a processor to the privacy policy). Decide via <a href="questions.html#q-reader-capture">Q-13</a>.</dd>
+          <dt>Alternative</dt><dd>RSS-only (current state) — zero compliance surface, slower growth.</dd>
+          <dt>Effort / risk</dt><dd>Medium / medium (privacy obligations once emails are stored).</dd>
+        </dl>
+      </article>
+
+      <article class="proposal">
+        <header><span class="chip">S-08</span><h3>Comparison page: add "what we'd test" columns instead of scores</h3><span class="meta">status: awaiting decision</span></header>
+        <dl>
+          <dt>Why</dt><dd>Readers want verdicts; scoring without testing is the classic affiliate-site sin. "What we'd test" columns (noise, preheat, evenness) tell the truth and set us apart.</dd>
+          <dt>Evidence</dt><dd>Verified: no test data exists for these products (<a href="data-room/method.html">methodology</a>).</dd>
+          <dt>Recommended</dt><dd><strong>Approve.</strong> Cheap to add; strengthens the trust story.</dd>
+          <dt>Alternative</dt><dd>Leave the table as-is.</dd>
+          <dt>Effort / risk</dt><dd>Low / low.</dd>
+        </dl>
+      </article>
+    </div>
+  </section>
+
+  <section class="section tight" id="machinery">
+    <div class="wrap">
+      <div class="section-head"><div><p class="eyebrow">C · Measurement &amp; automation</p><h2>Make the machinery work</h2></div></div>
+
+      <article class="proposal">
+        <header><span class="chip">S-09</span><h3>Deploy the analytics endpoint (gate G-6) and start the ledger</h3><span class="meta">status: awaiting decision</span></header>
+        <dl>
+          <dt>Why</dt><dd>The site already ships the five-event privacy layer; without an endpoint nothing is counted and the <a href="data-room/campaign-ledger.html">campaign ledger</a> stays empty by design.</dd>
+          <dt>Evidence</dt><dd>Verified: worker code is ready (<a href="https://github.com/sassnarep3-star/WinA/blob/main/analytics/worker.js">analytics/worker.js</a>); the brief requires measurement before optimization.</dd>
+          <dt>Recommended</dt><dd><strong>Approve — highest priority.</strong> ~30 minutes of owner time; unlocks every evidence-based decision later.</dd>
+          <dt>Alternative</dt><dd>Third-party analytics (rejected: breaks the privacy claim on every page).</dd>
+          <dt>Effort / risk</dt><dd>Low / low.</dd>
+        </dl>
+      </article>
+
+      <article class="proposal">
+        <header><span class="chip">S-10</span><h3>Weekly automated re-verification of prices and stock</h3><span class="meta">status: awaiting decision</span></header>
+        <dl>
+          <dt>Why</dt><dd>Observed prices age within days; stale prices damage trust (and Amazon's policies expect accuracy). A weekly check updates the "observed" stamps automatically.</dd>
+          <dt>Evidence</dt><dd>Verified risk: all prices here are a single 2026-11-20 snapshot.</dd>
+          <dt>Recommended</dt><dd><strong>Approve after G-4</strong> (tooling should use official APIs where required). Until then, manual monthly re-observation.</dd>
+          <dt>Alternative</dt><dd>Remove prices entirely and link only — less useful, always accurate.</dd>
+          <dt>Effort / risk</dt><dd>Medium / medium (rate limits, automation policy — see <a href="data-room/compliance-gate.html">gate G-7</a>).</dd>
+        </dl>
+      </article>
+
+      <article class="proposal">
+        <header><span class="chip">S-11</span><h3>Turn the compliance checker into a required status check</h3><span class="meta">status: awaiting decision</span></header>
+        <dl>
+          <dt>Why</dt><dd><code>tools/check_site.py</code> runs in CI and blocks broken or undisclosed pages. Making it required prevents accidental merges that skip it.</dd>
+          <dt>Evidence</dt><dd>Verified: the workflow exists and currently passes.</dd>
+          <dt>Recommended</dt><dd><strong>Approve</strong> (repo settings change — one click).</dd>
+          <dt>Alternative</dt><dd>Keep it advisory (current state).</dd>
+          <dt>Effort / risk</dt><dd>Minimal / low.</dd>
+        </dl>
+      </article>
+    </div>
+  </section>
+
+  <section class="section tight" id="compliance">
+    <div class="wrap">
+      <div class="section-head"><div><p class="eyebrow">D · Compliance &amp; trust</p><h2>Stay on the right side of the rules</h2></div></div>
+
+      <article class="proposal">
+        <header><span class="chip">S-12</span><h3>Publish a plain-language "How we make money" page</h3><span class="meta">status: awaiting decision</span></header>
+        <dl>
+          <dt>Why</dt><dd>FTC guidance favors disclosures people actually understand; a dedicated page linked from the disclosure strip is a recognized pattern.</dd>
+          <dt>Evidence</dt><dd>Verified basis: <a href="https://www.ftc.gov/business-guidance/resources/ftcs-endorsement-guides-what-people-are-asking" rel="nofollow">FTC Endorsement Guides FAQ</a>, <a href="https://affiliate-program.amazon.com/help/operating/policies" rel="nofollow">Associates Program Policies</a>.</dd>
+          <dt>Recommended</dt><dd><strong>Approve.</strong> Fold into the About page or standalone; either satisfies the gate.</dd>
+          <dt>Alternative</dt><dd>Keep disclosure as strip + footer only (current, compliant baseline).</dd>
+          <dt>Effort / risk</dt><dd>Low / low.</dd>
+        </dl>
+      </article>
+
+      <article class="proposal">
+        <header><span class="chip">S-13</span><h3>Link-out gate modal on first sponsored click per session</h3><span class="meta">status: awaiting decision</span></header>
+        <dl>
+          <dt>Why</dt><dd>An interstitial ("this is a sponsored link to Amazon, tracking unconfirmed — details") maximizes disclosure conspicuity while tracking is in pilot state (FLG-002).</dd>
+          <dt>Evidence</dt><dd>Hypothesis on trust benefit; verified friction cost (modals suppress clicks).</dd>
+          <dt>Recommended</dt><dd><strong>Revise-first:</strong> test the small "sponsored" chip + top strip (current) against the modal once click measurement works; decide from data.</dd>
+          <dt>Alternative</dt><dd>Do nothing (current state — already compliant per gate G-1).</dd>
+          <dt>Effort / risk</dt><dd>Low / medium (UX friction).</dd>
+        </dl>
+      </article>
+
+      <article class="proposal">
+        <header><span class="chip">S-14</span><h3>Decide the price/rating display posture</h3><span class="meta">status: awaiting owner decision</span></header>
+        <dl>
+          <dt>Why</dt><dd>Two builds of this site disagree on one compliance judgment: this site shows dated, source-linked observed prices/ratings (flagged FLG-009); the parallel build cites Associates Program Policies (updated 2026-04-14) §6 and shows no prices at all.</dd>
+          <dt>Evidence</dt><dd>Verbatim policy clauses and citations in <a href="https://github.com/sassnarep3-star/WinA/blob/main/data/policy.json">data/policy.json</a> (POL-03/POL-04); the conservative posture is live in the <a href="archive/arena-ffa85037/">archived parallel build</a>.</dd>
+          <dt>Recommended</dt><dd><strong>Owner decides</strong> — buyer usefulness vs policy caution. Record the choice on the <a href="data-room/compliance-gate.html">compliance page</a> and clear FLG-009 either way.</dd>
+          <dt>Alternative</dt><dd>Hybrid: keep prices in research tables but suppress star ratings until PA-API access exists.</dd>
+          <dt>Effort / risk</dt><dd>Low effort to switch / high value of certainty.</dd>
+        </dl>
+      </article>
+    </div>
+  </section>
+
+  <section class="section tight">
+    <div class="wrap">
+      <div class="callout gold">
+        <h3>Already shipped per the project brief (not open for queue decisions)</h3>
+        <p class="muted">Disclosure strip above the fold + footer repeat · sponsored rel-tagged links · product-intent record with separated fields · source-linked verification tables · empty-but-defined campaign ledger · five-event privacy analytics layer + self-hosted endpoint spec · sitemap, RSS feed, robots.txt · compliance gate in CI · Flagged-for-Review page · question-shaped guides · this queue. Full status: <a href="data-room/index.html">data room dashboard</a>.</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <p class="brand-foot">◆ The Crisp Counter</p>
+        <p>Straight answers before you buy. Question-shaped guides, a verified product lineup, and an open record of what we know — and what we don't.</p>
+      </div>
+      <div>
+        <h4>Shop &amp; learn</h4>
+        <ul>
+          <li><a href="shop.html">The lineup</a></li>
+          <li><a href="compare.html">Compare the five</a></li>
+          <li><a href="guides/index.html">Buyer guides</a></li>
+          <li><a href="questions.html">Open questions</a></li>
+          <li><a href="suggestions.html">Suggestions queue</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Publication</h4>
+        <ul>
+          <li><a href="executive-summary.html">Executive summary</a></li>
+          <li><a href="about.html">About &amp; method</a></li>
+          <li><a href="feed.xml">RSS feed</a></li>
+          <li><a href="sitemap.xml">Sitemap</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Data room</h4>
+        <ul>
+          <li><a href="data-room/index.html">Dashboard</a></li>
+          <li><a href="data-room/source-register.html">Source register</a></li>
+          <li><a href="data-room/product-intent.html">Product-intent record</a></li>
+          <li><a href="data-room/campaign-ledger.html">Campaign ledger</a></li>
+          <li><a href="data-room/measurement.html">Measurement spec</a></li>
+          <li><a href="data-room/compliance-gate.html">Compliance gate</a></li>
+          <li><a href="data-room/flagged.html">Flagged for Review</a></li>
+          <li><a href="data-room/method.html">Methodology</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="disclosure-block">
+      <strong>Disclosure (repeated):</strong> As an Amazon Associate, The Crisp Counter earns from qualifying purchases. Sponsored/affiliate links are marked and use rel="sponsored". Product names and images are the property of their rights holders; product thumbnails are served from Amazon's media CDN pending PA-API image licensing (FLG-005). This site does not sell products directly — purchases happen on Amazon under Amazon's terms.
+      <br>© <span data-year>2026</span> The Crisp Counter · <a href="data-room/flagged.html">Flagged for Review</a> · <a href="data-room/compliance-gate.html">Compliance</a>
+    </div>
+  </div>
+</footer>
+<script src="assets/js/analytics.js" defer></script>
+<script src="assets/js/site.js" defer></script>
+</body>
+</html>
