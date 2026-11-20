@@ -1,5 +1,5 @@
 {
-  "_note": "Submission record. Kept as the primary record of what was submitted and what it resolved to. Intended ASIN and observed ASIN are deliberately separate fields and must not be merged. See COORDINATION.md T02 and /register/ on the site.",
+  "_note": "Product-intent confirmation record. For each submitted link: intendedAsin (blank unless the owner supplies it), officialListingUrl (the Amazon ASIN page, confirmed on confirmedOn from the sources in confirmationSourceIds), and observedRedirectTargets (every observed landing, dated, kept in its own field). Intended and observed ASINs are deliberately separate and must not be merged. See COORDINATION.md T02, T27 and /register/ on the site.",
   "trackingId": "shopnow047c-20",
   "marketplace": "amazon.com",
   "submittedOn": "2026-11-20",
@@ -10,7 +10,15 @@
       "submitted": "https://link.amazon/B04G1MEwY",
       "shortCode": "B04G1MEwY",
       "intendedAsin": null,
+      "intendedAsinNote": "Not supplied by the owner, so left blank. It is not filled from the observed ASIN: that would merge the two fields (FLG-016, FLG-033).",
       "observedAsin": "B0CDY277D3",
+      "officialListingUrl": "https://www.amazon.com/dp/B0CDY277D3",
+      "confirmedOn": "2026-11-20",
+      "confirmationSourceIds": [
+        "amazon-listing",
+        "amazon-asin-definition"
+      ],
+      "confirmationSourceUrl": "https://www.amazon.com/dp/B0CDY277D3",
       "observedDestination": "https://www.amazon.com/dp/B0CDY277D3",
       "resolvedTitle": "CHEFMAN 6 Quart Dual Basket Air Fryer Oven with Easy View Windows, Sync Finish, Hi-Fry, Auto Shutoff, 2 Independent 3Qt Nonstick Dishwasher Safe Frying Baskets, Digital Double Air Fryer - Black",
       "confidence": "observed",
@@ -19,13 +27,42 @@
       "reverifiedResult": "homepage",
       "reverifiedFinalUrl": "https://www.amazon.com/",
       "reverifiedTitleSeen": "Amazon.com. Spend less. Smile more.",
-      "reverifiedFlag": "FLG-036"
+      "reverifiedFlag": "FLG-036",
+      "observedRedirectTargets": [
+        {
+          "observedOn": "2026-11-20",
+          "check": "First resolution, as recorded in this file. Not independently reproducible from this record.",
+          "finalUrl": "https://www.amazon.com/dp/B0CDY277D3",
+          "result": "product-page"
+        },
+        {
+          "observedOn": "2026-11-20",
+          "check": "Re-check by arena/119f4dc6-wina (T26): page-tool fetch of the submitted link.",
+          "finalUrl": "https://www.amazon.com/",
+          "result": "homepage"
+        },
+        {
+          "observedOn": "2026-11-20",
+          "check": "Re-check by arena/6b0f2ddc-wina (T27): one page-tool fetch of the submitted link.",
+          "finalUrl": "https://www.amazon.com/",
+          "result": "homepage"
+        }
+      ],
+      "observationsAgree": false
     },
     {
       "submitted": "https://link.amazon/B02NbDxp3",
       "shortCode": "B02NbDxp3",
       "intendedAsin": null,
+      "intendedAsinNote": "Not supplied by the owner, so left blank. It is not filled from the observed ASIN: that would merge the two fields (FLG-016, FLG-033).",
       "observedAsin": "B09B7SB46R",
+      "officialListingUrl": "https://www.amazon.com/dp/B09B7SB46R",
+      "confirmedOn": "2026-11-20",
+      "confirmationSourceIds": [
+        "amazon-listing",
+        "amazon-asin-definition"
+      ],
+      "confirmationSourceUrl": "https://www.amazon.com/dp/B09B7SB46R",
       "observedDestination": "https://www.amazon.com/dp/B09B7SB46R",
       "resolvedTitle": "Emeril Lagasse 26QT French Door Multi-Function Air Fryer Toaster Oven | Countertop Convection Cooker, 24 One-Touch Preset Options, Extra Large Interior, Six Cooking Accessories Included",
       "confidence": "observed",
@@ -34,13 +71,42 @@
       "reverifiedResult": "product-page",
       "reverifiedFinalUrl": "https://www.amazon.com/dp/B09B7SB46R",
       "reverifiedTitleSeen": "Emeril Lagasse 26QT French Door Multi-Function Air Fryer Toaster Oven",
-      "reverifiedFlag": "FLG-036"
+      "reverifiedFlag": "FLG-036",
+      "observedRedirectTargets": [
+        {
+          "observedOn": "2026-11-20",
+          "check": "First resolution, as recorded in this file. Not independently reproducible from this record.",
+          "finalUrl": "https://www.amazon.com/dp/B09B7SB46R",
+          "result": "product-page"
+        },
+        {
+          "observedOn": "2026-11-20",
+          "check": "Re-check by arena/119f4dc6-wina (T26): page-tool fetch of the submitted link.",
+          "finalUrl": "https://www.amazon.com/dp/B09B7SB46R",
+          "result": "product-page"
+        },
+        {
+          "observedOn": "2026-11-20",
+          "check": "Re-check by arena/6b0f2ddc-wina (T27): one page-tool fetch of the submitted link.",
+          "finalUrl": "https://www.amazon.com/",
+          "result": "homepage"
+        }
+      ],
+      "observationsAgree": false
     },
     {
       "submitted": "https://link.amazon/B00hJ57DV",
       "shortCode": "B00hJ57DV",
       "intendedAsin": null,
+      "intendedAsinNote": "Not supplied by the owner, so left blank. It is not filled from the observed ASIN: that would merge the two fields (FLG-016, FLG-033).",
       "observedAsin": "B08DKYBTPH",
+      "officialListingUrl": "https://www.amazon.com/dp/B08DKYBTPH",
+      "confirmedOn": "2026-11-20",
+      "confirmationSourceIds": [
+        "amazon-listing",
+        "amazon-asin-definition"
+      ],
+      "confirmationSourceUrl": "https://www.amazon.com/dp/B08DKYBTPH",
       "observedDestination": "https://www.amazon.com/dp/B08DKYBTPH",
       "resolvedTitle": "Chefman Air Fryer 8 Qt | TurboFry 4-in-1 with 450°F Hi-Fry Option for Crispier Results | Bake, Dehydrate, Frozen | XL Nonstick Dishwasher-Safe Basket | Stainless Steel",
       "confidence": "observed",
@@ -49,13 +115,42 @@
       "reverifiedResult": "product-page",
       "reverifiedFinalUrl": "https://www.amazon.com/dp/B08DKYBTPH",
       "reverifiedTitleSeen": "Chefman Air Fryer 8 Qt | TurboFry 4-in-1",
-      "reverifiedFlag": "FLG-036"
+      "reverifiedFlag": "FLG-036",
+      "observedRedirectTargets": [
+        {
+          "observedOn": "2026-11-20",
+          "check": "First resolution, as recorded in this file. Not independently reproducible from this record.",
+          "finalUrl": "https://www.amazon.com/dp/B08DKYBTPH",
+          "result": "product-page"
+        },
+        {
+          "observedOn": "2026-11-20",
+          "check": "Re-check by arena/119f4dc6-wina (T26): page-tool fetch of the submitted link.",
+          "finalUrl": "https://www.amazon.com/dp/B08DKYBTPH",
+          "result": "product-page"
+        },
+        {
+          "observedOn": "2026-11-20",
+          "check": "Re-check by arena/6b0f2ddc-wina (T27): one page-tool fetch of the submitted link.",
+          "finalUrl": "https://www.amazon.com/",
+          "result": "homepage"
+        }
+      ],
+      "observationsAgree": false
     },
     {
       "submitted": "https://link.amazon/B0c8moW59",
       "shortCode": "B0c8moW59",
       "intendedAsin": null,
+      "intendedAsinNote": "Not supplied by the owner, so left blank. It is not filled from the observed ASIN: that would merge the two fields (FLG-016, FLG-033).",
       "observedAsin": "B0DHZTCNR5",
+      "officialListingUrl": "https://www.amazon.com/dp/B0DHZTCNR5",
+      "confirmedOn": "2026-11-20",
+      "confirmationSourceIds": [
+        "amazon-listing",
+        "amazon-asin-definition"
+      ],
+      "confirmationSourceUrl": "https://www.amazon.com/dp/B0DHZTCNR5",
       "observedDestination": "https://www.amazon.com/dp/B0DHZTCNR5",
       "resolvedTitle": "ThermoMaven 1 Sec Professional Digital Meat Thermometer, ±0.5°F Accuracy | NIST&NSF Certified, Auto-Rotate Bright LED Screen, IP67 Waterproof for Grill BBQ, Stocking Stuffers Gifts for Men, Black",
       "confidence": "observed",
@@ -64,13 +159,42 @@
       "reverifiedResult": "homepage",
       "reverifiedFinalUrl": "https://www.amazon.com/",
       "reverifiedTitleSeen": "Amazon.com. Spend less. Smile more.",
-      "reverifiedFlag": "FLG-036"
+      "reverifiedFlag": "FLG-036",
+      "observedRedirectTargets": [
+        {
+          "observedOn": "2026-11-20",
+          "check": "First resolution, as recorded in this file. Not independently reproducible from this record.",
+          "finalUrl": "https://www.amazon.com/dp/B0DHZTCNR5",
+          "result": "product-page"
+        },
+        {
+          "observedOn": "2026-11-20",
+          "check": "Re-check by arena/119f4dc6-wina (T26): page-tool fetch of the submitted link.",
+          "finalUrl": "https://www.amazon.com/",
+          "result": "homepage"
+        },
+        {
+          "observedOn": "2026-11-20",
+          "check": "Re-check by arena/6b0f2ddc-wina (T27): one page-tool fetch of the submitted link.",
+          "finalUrl": "https://www.amazon.com/",
+          "result": "homepage"
+        }
+      ],
+      "observationsAgree": false
     },
     {
       "submitted": "https://link.amazon/B0f3GKalj",
       "shortCode": "B0f3GKalj",
       "intendedAsin": null,
+      "intendedAsinNote": "Not supplied by the owner, so left blank. It is not filled from the observed ASIN: that would merge the two fields (FLG-016, FLG-033).",
       "observedAsin": "B0DZFD6R9Z",
+      "officialListingUrl": "https://www.amazon.com/dp/B0DZFD6R9Z",
+      "confirmedOn": "2026-11-20",
+      "confirmationSourceIds": [
+        "amazon-listing",
+        "amazon-asin-definition"
+      ],
+      "confirmationSourceUrl": "https://www.amazon.com/dp/B0DZFD6R9Z",
       "observedDestination": "https://www.amazon.com/dp/B0DZFD6R9Z",
       "resolvedTitle": "CHEF iQ Sense | Smart Wireless Meat Thermometer | 3 Ultra-Thin Probes | WiFi Unlimited Range | 1000°F Heat Safe | 5 Sensors | BBQ, Grill, Oven, Smoker, Air Fryer | Gen3",
       "confidence": "observed",
@@ -79,7 +203,28 @@
       "reverifiedResult": "homepage",
       "reverifiedFinalUrl": "https://www.amazon.com/",
       "reverifiedTitleSeen": "Amazon.com. Spend less. Smile more.",
-      "reverifiedFlag": "FLG-036"
+      "reverifiedFlag": "FLG-036",
+      "observedRedirectTargets": [
+        {
+          "observedOn": "2026-11-20",
+          "check": "First resolution, as recorded in this file. Not independently reproducible from this record.",
+          "finalUrl": "https://www.amazon.com/dp/B0DZFD6R9Z",
+          "result": "product-page"
+        },
+        {
+          "observedOn": "2026-11-20",
+          "check": "Re-check by arena/119f4dc6-wina (T26): page-tool fetch of the submitted link.",
+          "finalUrl": "https://www.amazon.com/",
+          "result": "homepage"
+        },
+        {
+          "observedOn": "2026-11-20",
+          "check": "Re-check by arena/6b0f2ddc-wina (T27): one page-tool fetch of the submitted link.",
+          "finalUrl": "https://www.amazon.com/dp/B0DZFD6R9Z?lv=shuf&sbo=RZvfv%2F%2FHxDF%2BO5021pAnSA%3D%3D&btn_type=ss&gaOptInStatus=true&language=en_US&btn_ref=srctok-5ed90c5aacfa7a7e&channelId=500&plpRedirect=mhFallback&th=1",
+          "result": "product-page"
+        }
+      ],
+      "observationsAgree": false
     }
   ],
   "unresolved": [

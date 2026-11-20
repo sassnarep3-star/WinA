@@ -16,7 +16,7 @@ generated from a data register, and three independent gates run on every push an
 | Surface | State |
 | --- | --- |
 | Reader pages | 30 total: front page + 404, 5 guides, 2 category hubs, 5 product pages, compare, register, a marketing kit, and the operations set (flagged, questions, suggestions, summary, dashboard, analytics, disclosure, privacy, about, seo, marketing, concept) |
-| Data registers | 5 products · 60 spec rows · 6 policy sources · 10 policy clauses quoted · 43 flag rows · 22 questions · 24 suggestions |
+| Data registers | 5 products · 60 spec rows · 6 policy sources · 10 policy clauses quoted · 44 flag rows · 22 questions · 24 suggestions |
 | Verification mix | 32 `verified` · 14 `unverified` · 10 `withheld` · 4 `claim`; **36 rows carry a value, 24 are blank with a reason**, and 22 of the valued rows cite a manufacturer page directly rather than the listing |
 | Compliance | OA §5 statement verbatim on all 30 pages; the disclosure precedes the first sponsored link on every page (asserted by byte offset, not by eyeball); `rel="sponsored nofollow noopener"` + `?tag=shopnow047c-20` on all 82 product links; the 8 submitted short links render as declared non-affiliate citations (`rel="nofollow"`, no tag). Counts from `scripts/compliance-gate.mjs`, cross-checked by `scripts/check-site.mjs` at 102 Amazon links / 82 sponsored |
 | Measurement | Five events defined; collector written but **not deployed**, so the client is inert by design |
@@ -181,3 +181,35 @@ register, and each finding has its own entry on `/flagged/`.
 `node scripts/check-site.mjs` → 30 pages, 1,120 internal links, 98 Amazon links (82 sponsored), zero
 failures. `node scripts/compliance-gate.mjs` → 1,097 checks, 0 failing, 1 warning (FLG-024, the
 Associates click test, which needs the owner).
+
+---
+
+## 9. Product-intent record and FLG-033, session `arena/6b0f2ddc-wina` (2026-11-20)
+
+Task T27 on `COORDINATION.md`.
+
+- **Product-intent confirmation record.** `data/links.json` now holds, per submitted link, four named
+  fields: `intendedAsin` (blank: the owner did not supply one), `officialListingUrl` (the Amazon ASIN
+  page, `https://www.amazon.com/dp/<ASIN>`), `confirmedOn` and `confirmationSourceIds`. The observed
+  redirect targets sit in their own list, `observedRedirectTargets`, with a date and a result for each
+  check. Intended and observed ASINs are never merged. A gate rule enforces this.
+- **FLG-033 (ASIN definition).** Amazon's own seller-education page, *Understanding ASINs*
+  (`sell.amazon.com/blog/what-is-an-asin`), defines the ASIN as a unique 10-character code and says it
+  appears after `/dp/`. Read in full on 2026-11-20. Two caveats are recorded: it is not an Amazon Help
+  article, and the page says it was "produced with the assistance of generative artificial
+  intelligence". It is kept at `review`.
+- **FLG-040 (new).** All five short links returned different landing pages across the three recorded
+  checks (first resolution, T26, T27). The product identity of all five ASINs is unchanged: each
+  `/dp/` page was re-fetched and its title matches. The short-link behaviour is not stable, and nothing
+  so far explains it. The owner check is recorded as the action.
+- **Register.** The "Link resolution" table on `/register/` now shows the four fields and the observed
+  landing as separate columns. The official-listing link is a tagged, sponsored link; the observed
+  landings are shown as text, not as links.
+
+**Gates after this pass:** `node _src/build.mjs` → 30 pages, all gates clear.
+`node scripts/check-site.mjs` → 30 pages, 1,125 internal links, 104 Amazon links (82 sponsored), zero
+failures. `node scripts/compliance-gate.mjs` → 1,207 checks, 0 failing, 1 warning (FLG-024, owner-only).
+
+**Still owner-only, not attempted:** the Associates sign-in and the one-link-per-product Special Link
+test (FLG-004, FLG-024); Search Console (FLG-009); deploying the analytics collector (FLG-011).
+

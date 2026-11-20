@@ -345,11 +345,11 @@
     {
       "id": "FLG-033",
       "severity": "review",
-      "title": "The ASIN rationale in the brief could not be tied to an official Amazon definition",
-      "detail": "The brief gives 'Amazon's ASIN definition' as the reason the intended-ASIN field is checkable. On 2026-11-20 no Amazon Help page giving that definition was found. The only Amazon-domain result was a Seller Central forum thread; its definition replies were written by sellers, not Amazon staff, so they are not cited as Amazon's definition. What can be checked directly is narrower: all five observed ASINs are 10 characters, A-Z and 0-9, and each observed destination ends in /dp/<ASIN> (data/links.json). This checks the URL format only. It does not show that a submitted link was intended for a particular ASIN, which is why the intended field stays blank.",
-      "action": "Owner: decide whether the intended-ASIN field should be filled from the submitted link (FLG-019). If the rationale is kept, cite an Amazon Help page for the definition before publishing it.",
-      "sourceUrl": "https://sellercentral.amazon.com/seller-forums/discussions/t/1e22c5df-d27a-4e2b-a0c1-90938b6cdcdc",
-      "sourceLabel": "Seller Central forum thread (not Amazon Help; definition not confirmed as Amazon's)"
+      "title": "The ASIN definition is now tied to an Amazon-published page, which says it was AI-assisted",
+      "detail": "The brief gives 'Amazon's ASIN definition' as the reason the intended-ASIN field is checkable. Earlier searches on 2026-11-20 found only a Seller Central forum thread, which is not cited. A later search on the same date found Amazon's own seller-education page, Understanding ASINs (sell.amazon.com, published 4 June 2025; source id amazon-asin-definition in data/policy.json). Both chunks of the page were read on 2026-11-20. It states that the ASIN is a unique 10-character alphanumeric code assigned to every product listed in the Amazon store, and that it appears after '/dp/' in the product URL. Two caveats are recorded. First, it is seller-education material, not an Amazon Help article and not Associates policy. Second, the page itself says it 'was produced with the assistance of generative artificial intelligence (gen AI)'. The definition is consistent with what the five product URLs show directly, but a human-written Amazon Help page would be a stronger source. The intended-ASIN field stays blank: a definition shows what an ASIN is, not which product a submitted link was meant to reach, and the owner has not supplied that.",
+      "action": "Owner: find or confirm an Amazon Help page for the ASIN definition, or accept this page with its AI-assisted caveat. Decide whether the intended-ASIN field should be filled from the owner's own knowledge of each link (FLG-019). Do not fill it from the observed destination.",
+      "sourceUrl": "https://sell.amazon.com/blog/what-is-an-asin",
+      "sourceLabel": "Amazon Selling on Amazon: Understanding ASINs (sell.amazon.com, read 2026-11-20; AI-assisted per page)"
     },
     {
       "id": "FLG-036",
@@ -386,6 +386,15 @@
       "action": "Owner or next session: add the manufacturer product page URL per product to specSources and fill wattage, dimensions and warranty from it, one row at a time with its own source. Do not fill from memory or from a marketplace reseller page.",
       "sourceUrl": "https://www.amazon.com/dp/B09B7SB46R",
       "sourceLabel": "Amazon listing for the Emeril 26QT (wattage and warranty not stated there)"
+    },
+    {
+      "id": "FLG-040",
+      "severity": "review",
+      "title": "All five short links returned different redirect targets across the three checks recorded for them",
+      "detail": "data/links.json now keeps every observed landing for each submitted link in its own dated list, separate from the intended ASIN. For each of the five links the recorded checks are: the first resolution (as recorded, not reproducible from this file), the T26 re-check of 2026-11-20 (arena/119f4dc6-wina), and the T27 re-check of 2026-11-20 (arena/6b0f2ddc-wina). In every case the three results are not all the same. The T27 fetch returned the amazon.com homepage for B04G1MEwY, B02NbDxp3, B00hJ57DV and B0c8moW59, and a product page for B0f3GKalj. Compared with the T26 re-check, B02NbDxp3 and B00hJ57DV moved from product page to homepage, and B0f3GKalj moved from homepage to product page. The official listing pages for all five ASINs were re-fetched on the same date, and each title matches data/links.json. So the product identity is not in doubt. The short-link landing is not stable across checks, and no check so far explains why. Extends FLG-036, which records the same split for three of the five links.",
+      "action": "Owner: open each of the five short links in a normal browser, logged out, on at least two days, and record each landing URL in data/links.json as a new dated entry. Do not treat any single recorded landing as the link's destination.",
+      "sourceUrl": "https://link.amazon/B04G1MEwY",
+      "sourceLabel": "Submitted short links (fetched 2026-11-20; see data/links.json observedRedirectTargets)"
     }
   ],
   "ledger": {
