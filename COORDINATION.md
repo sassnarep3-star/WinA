@@ -1,7 +1,8 @@
 # WinA — Coordination Board
 
 Shared task board for parallel agent sessions working on this repo.
-Current branch: `arena/6bd1be15-wina` (branched from `48af6e0` on `main`, PR #1 merge).
+Current branch of this session: `arena/5a289bff-wina` (base `df3e953`; merged `origin/main` 9cc0b88 on 2026-11-20).
+Other active branches seen on remote (not merged by this session): arena/2b309a82, 2ca62ce9, 4b28af50, 59299521, 6f86edaa, a86cb9d0, ffa85037, 6bd1be15, 4a5044b0 (see their boards).
 
 ## Session claims
 
@@ -21,6 +22,15 @@ Current branch: `arena/6bd1be15-wina` (branched from `48af6e0` on `main`, PR #1 
 | arena-6bd1be15-wina | Product verification: all 5 submitted links vs official Amazon listings | done | products.html, flagged.html, COORDINATION.md | 2026-11-20 | 2026-11-20 | Amazon listing pages; full verification log below |
 | arena-6bd1be15-wina | Publication polish: shop front page, product clusters, guides, SEO | done | index.html, products.html, guides.html, suggest.html, questions.html, executive-summary.html, flagged.html, assets/css/style.css, assets/js/app.js, sitemap.xml, feed.xml, robots.txt | 2026-11-20 | 2026-11-20 | Amazon listings; Associates policies (2026-04-14); FTC Endorsement Guides |
 | arena-6bd1be15-wina | Final integration: build/link checks, PR, merge, Pages confirmation | in progress | COORDINATION.md, all site files | 2026-11-20 | — | local checks pass; PR #6 open; Pages deploy confirmation pending |
+| arena-5a289bff-wina | T1 Merge live main + claim board (this session) | done | COORDINATION.md, README.md | 2026-11-20 | 2026-11-20 | merged origin/main 9cc0b88 into arena/5a289bff-wina (unrelated-history merge; main not rewritten) |
+| arena-5a289bff-wina | T2 Source register (verified official sources, clause text, retrieval date) | in progress | data/sources.json | 2026-11-20 | — | Amazon Associates OA/Policies, eCFR 16 CFR 255, FTC, Google, GitHub Pages docs |
+| arena-5a289bff-wina | T3 Product-intent confirmation records (intended vs observed kept separate) | in progress | data/products.json | 2026-11-20 | — | Amazon listing pages (observed 2026-11-20) |
+| arena-5a289bff-wina | T4 Publication site rebuild from data (generator, shared CSS/JS, category subpages) | in progress | tools/build.mjs, templates in tools/, assets/css/style.css, assets/js/*, index.html, products/**, guides/**, analysis/**, sources/**, flagged-for-review/**, questions/**, suggestions/**, ledger/**, analytics/**, disclosure/**, executive-summary/**, 404.html, legacy redirects | 2026-11-20 | — | generated from data/*.json |
+| arena-5a289bff-wina | T5 Question-shaped guides + topic clusters + publishing cadence | in progress | data/guides.json, guides/** | 2026-11-20 | — | Amazon listing titles only (no performance claims) |
+| arena-5a289bff-wina | T6 Measurement: five events, privacy-preserving outbound-click counter, self-hosted endpoint (not deployed) | in progress | assets/js/track.js, tools/analytics-endpoint.mjs, data/events.json, analytics/** | 2026-11-20 | — | no third-party analytics; endpoint runs only where hosted |
+| arena-5a289bff-wina | T7 Compliance gate (disclosure on every page, sponsored rel, policy checks, link/feed/sitemap checks) | in progress | tools/check.mjs, sitemap.xml, feed.xml, robots.txt | 2026-11-20 | — | Associates OA §5; Program Policies §2; 16 CFR 255.5; Google rel=sponsored |
+| arena-5a289bff-wina | T8 Decision support: questions, suggestions (choice board), executive summary, empty campaign ledger, Flagged for Review | in progress | data/questions.json, data/suggestions.json, data/flags.json, data/ledger.csv | 2026-11-20 | — | per-item sources |
+| arena-5a289bff-wina | T9 Integration: build, check, PR to main, merge, confirm GitHub Pages deploy | unclaimed | repo-wide (final step) | — | — | — |
 
 ## Rules for this board
 - Claim a task by writing your session ID + file scope, then commit and push that claim immediately.
