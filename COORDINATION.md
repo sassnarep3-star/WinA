@@ -65,6 +65,7 @@ fourth site. Claim the scope here first and push the claim before writing code.
 | T14 | Merge prior findings into one register | done | arena-ffa85037 | `data/governance.json` | 23 flags; 14 carried forward with attribution |
 | T15 | PR → `main`, merge, confirm Pages deploy | in progress | arena-ffa85037 | — | See integration result below |
 | T16 | Gap closure against the brief: sortable tables on every data table; SG-27..SG-30 parallel rows (nav labels, RSS feed, Search Console, reader capture); verified policy-citation corrections | done | arena-a86cb9d0 | `_src/build.mjs`, `_src/pages-content.mjs`, `assets/js/site.js`, `data/governance.json`, `COORDINATION.md` (arena-a86cb9d0 section only) | Extends main; does not add a second site (see conflict record) |
+| T17 | Design-prompt suggestion layer: polished-marketing design direction, catchy topic roadmap (hypotheses), organic-traffic levers, decision log — feeding the reviewable suggestions section | in progress | arena-829ea2fd-wina | `data/suggestions.json`, `data/governance.json`, `_src/build.mjs`, `COORDINATION.md` (T17 section only), generated pages | Extends main's build; no second site. Verification of the 5 links re-done 2026-11-20 by this session |
 
 ---
 
@@ -388,4 +389,32 @@ wanted, port it into `data/` and rebuild.
 - **Tried and reverted.** Marking the supplied `link.amazon` short links `rel="sponsored"` failed `scripts/check-site.mjs`, because a sponsored link must carry the Associates tag and the supplied short links carry none. They stay as declared non-affiliate citations. **Owner decision:** whether the untagged supplied links should be used at all (see FLG-024).
 - **Parallel generator on `main` (logged, not changed).** `scripts/build.mjs` writes `site/` for a "Countertop Report" site. `.github/workflows/pages.yml` does not run it, so it is not served. Its owner is unclear; the next integration session should retire it or document it.
 - **Gates on the final tree.** `node _src/build.mjs`: PASSED. `node scripts/check-site.mjs`: "repository gate passed — safe to publish".
-- **Sortable coverage (final).** Every data table on every served page is sortable. Two tables added after the rebase were also marked: the concept page table (`_src/build.mjs`) and the Special Link test register table on `/register/`. Checked: no unsortable table left in the served HTML.
+  - **Sortable coverage (final).** Every data table on every served page is sortable. Two tables added after the rebase were also marked: the concept page table (`_src/build.mjs`) and the Special Link test register table on `/register/`. Checked: no unsortable table left in the served HTML.
+
+---
+
+## Session `arena-829ea2fd-wina` — 2026-11-20 — claim (T17)
+
+**Claimed scope (T17):** the design-prompt suggestion layer the latest brief asks for — a
+polished-marketing design direction, a catchy topic roadmap (explicitly hypotheses, not
+popularity claims), organic-traffic levers, and a decision log — rendered into the existing
+reviewable suggestions section. Files: `data/suggestions.json`, `data/governance.json`,
+`_src/build.mjs`, generated pages, and this board's T17 section only. No second site. No change
+to another session's scope.
+
+**Re-verification performed before claiming (2026-11-20, this session):**
+- All five submitted `link.amazon` short links were re-opened with the page tool. Every
+  observed destination and title matches `data/links.json` exactly:
+  B04G1MEwY → B0CDY277D3 · B02NbDxp3 → B09B7SB46R · B00hJ57DV → B08DKYBTPH ·
+  B0c8moW59 → B0DHZTCNR5 · B0f3GKalj → B0DZFD6R9Z.
+- `node _src/build.mjs` → 30 pages, 29 in sitemap, all gates clear.
+- `node scripts/check-site.mjs` → repository gate passed — safe to publish.
+- Official sources re-read and confirmed reachable: FTC *Disclosures 101* (hard-to-miss
+  placement; "you can't talk about your experience with a product you haven't tried"), Google
+  Search Central *Creating Helpful, Reliable, People-First Content*, and the Amazon
+  *Associates Program Policies* (updated 2026-04-14).
+
+**Handoff note:** `T15` is still listed `in progress` for `arena-ffa85037`, but its PR #13 is
+merged. Treated as complete here. Stale PRs #2 and #7 remain open against older branches and
+must not be merged as-is (see the `arena-59299521-wina` record). This session pushes only to
+the current branch and opens a PR from it.
