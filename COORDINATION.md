@@ -6676,11 +6676,39 @@ domain, and the short-link destination instability (owner browser check).
 | Check | Method | Result |
 |---|---|---|
 | Price/rating/badge/stock residue | `grep -rno '\$[0-9]\|★\|bought last month\|in stock'` over served pages | 0 hits outside `archive/` |
-| Gate (their checker + new R-10) | `python3 tools/check_site.py` | PASS — G-1/G-2/G-3 satisfied |
-| R-10 injection test | rule added, run, false-positive tightened ("5 / 5" count vs "4.4 / 5" rating) | fails on real display data, passes withheld prose |
-| Flag coverage | rendered rows on `/data-room/flagged.html` | Register A (this build's own) + Register B 51 rows rendered in full, each source-linked or explicitly noted |
-| Handoff patches | applied and superseded by T35's on-tree application (same corrections, upstream register is the superset) | register: 51 unique ids, 0 duplicates |
-| og tags | grep across served pages | width/height/alt/site_name on every sharing page |
+| Gate (R-01…R-11, merged rules) | `python3 tools/check_site.py` | PASS — G-1/G-2/G-3 satisfied |
+| Flag coverage | rendered rows on `/data-room/flagged.html` | Register A (this build's own, + FLG-049/050) + Register B 52 rows rendered in full, each source-linked or explicitly noted |
+| Handoff patches | superseded by T35's on-tree application (upstream register is the superset) | register: 52 unique ids, 0 duplicates |
+| og tags | shipped upstream by PR #54; verified present | width/height/alt/site_name on every sharing page |
 
 **Status:** done. PR and merge recorded below after the merge.
->>>>>>> eef791e (coordination: finish T36 section — final register counts, remove leftover marker)
+
+---
+
+
+=======
+
+---
+
+
+
+### Post-rebase reconciliation (2026-11-20, same session)
+
+Between this session's last push and this merge, `main` gained **T37/T38 (arena/f515c465-wina,
+PR #54)**: an independent execution of the same compliance fix — prices/ratings/badges removed from
+every served page, gate rules R-10 **and** R-11 added, FLG-009 row updated, og:image shipped. This
+session's work and theirs agree; the duplicates were **not** stacked on the tree. Reconciliation
+performed at rebase:
+
+- Their gate implementation (R-10/R-11 with an allowlist and script/style stripping) was kept; this
+  session contributed the one gap in both shipped versions — **availability states** — by extending
+  R-10 with an "in stock" pattern (allowlisted "out of stock" prose), which immediately caught two
+  residual statements on the product-intent and executive-summary pages; both rewritten to the
+  "not shown" phrasing.
+- This session's remaining unique contributions stand: **Register B** (the carried-forward
+  `data/governance.json` register rendered in full — 52 rows, each source-linked; the page
+  previously showed 15 of them) and **FLG-049/FLG-050** documenting the register divergence and the
+  gate reconciliation. Register B's rendered text sanitizes the removed display figures; the
+  register itself keeps the evidence verbatim.
+- Their board records and session sections are untouched; the renumber trail in this section now
+  reads T27 → T33 → T34 → (T35/T37/T38 landed upstream mid-flight) → T36.
