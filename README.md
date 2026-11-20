@@ -248,10 +248,11 @@ would be a false claim; leaving them undeclared is what the gate now forbids.
 All three failure modes were confirmed by injecting a deliberately bad anchor and watching the
 gate fail, then reverting.
 
-**Current state — all gates green (2026-11-20, after the reader-polish merge):**
+**Current state — all gates green (2026-11-20, after the reader-polish merge and the architecture
+re-integration described in `FLG-052`):**
 `node _src/build.mjs` → 36 pages, 35 in the sitemap, all gates clear;
-`node scripts/check-site.mjs` → 36 pages, 1,470 internal links, 141 Amazon links (118 sponsored,
-12 declared citations, 13 short-link anchors), zero failures;
+`node scripts/check-site.mjs` → 36 pages, 1,480 internal links, 163 Amazon links (136 sponsored,
+14 declared citations, 15 short-link anchors), zero failures;
 `node scripts/compliance-gate.mjs` → 1,652 checks, 0 failing, 1 owner-only warning (FLG-024);
 `node scripts/publish-gate.mjs` → 4 checks, 0 failing. Build verified byte-reproducible.
 

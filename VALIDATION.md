@@ -17,7 +17,7 @@ Generated 2026-11-20 by `_src/build.mjs` (deterministic: no wall-clock timestamp
 - `PASS` all 10 policy checks quote a clause and link a primary source
 - `PASS` all internal links resolve across 35 pages
 - `PASS` single build owns the served root; no prior site resurrected
-- `PASS` archive intact: 119 files preserved from three prior builds
+- `PASS` archive intact: 162 files preserved from three prior builds
 - `PASS` sitemap lists all 35 pages
 
 ## What the gate enforces

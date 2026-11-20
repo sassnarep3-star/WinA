@@ -19,13 +19,13 @@ unverified, and Search Console has never been verified (FLG-009).
 | Surface | State |
 | --- | --- |
 | Reader pages | 36 total: front page + 404, 10 guides, a seasonal cluster, 2 category hubs, 5 product pages, compare, register, a marketing kit, and the operations set (flagged, questions, suggestions, summary, dashboard, analytics, disclosure, privacy, about, seo, marketing, concept) |
-| Data registers | 5 products · 60 spec rows · 6 policy sources · 10 policy clauses quoted · 50 flag rows (12 resolved) · 30 questions · 34 suggestions · 34 decision-log rows · 3 ranked paths |
-| Verification mix | 32 `verified` · 14 `unverified` · 10 `withheld` · 4 `claim`; **36 rows carry a value, 24 are blank with a reason**, and 22 of the valued rows cite a manufacturer page directly rather than the listing |
-| Compliance | OA §5 statement verbatim on all 36 pages; the disclosure precedes the first sponsored link on every page (asserted by byte offset, not by eyeball); `rel="sponsored nofollow noopener"` + `?tag=shopnow047c-20` on all 118 product links; the 13 short-link anchors render as declared non-affiliate citations (`rel="nofollow"`, no tag), beside 12 source citations. Counts from `scripts/compliance-gate.mjs`, cross-checked by `scripts/check-site.mjs` at 141 Amazon links / 118 sponsored, with 1,470 internal links resolved |
+| Data registers | 5 products · 70 spec rows · 6 policy sources · 10 policy clauses quoted · 56 flag rows (15 resolved) · 30 questions · 34 suggestions · 34 decision-log rows · 3 ranked paths |
+| Verification mix | 50 `verified` · 7 `unverified` · 10 `withheld` · 3 `claim`; **53 rows carry a value, 17 are blank with a reason**, and 29 of the valued rows cite a manufacturer page or manual directly rather than the listing |
+| Compliance | OA §5 statement verbatim on all 36 pages; the disclosure precedes the first sponsored link on every page (asserted by byte offset, not by eyeball); `rel="sponsored nofollow noopener"` + `?tag=shopnow047c-20` on all 136 product links; the 15 short-link anchors render as declared non-affiliate citations (`rel="nofollow"`, no tag), beside 12 source citations. Counts from `scripts/compliance-gate.mjs`, cross-checked by `scripts/check-site.mjs` at 163 Amazon links / 136 sponsored, with 1,480 internal links resolved |
 | Measurement | Five events defined; collector written but **not deployed**, so the client is inert by design. Its contract is now executed rather than asserted: `scripts/analytics-selftest.mjs` starts the collector and checks it end to end, and runs in CI (FLG-042) |
 | Money | **Zero** revenue claims; ledger holds 0 rows, by policy |
-| Gates | Three checkers, all green (1,652 compliance assertions, 1,470 internal links verified, the builder's own gates), plus the collector self-test. CI fails if generated output is not committed, the build is not reproducible, or a compliance rule breaks — and Pages' deploy job now runs the compliance gate too, so a regression stops the release rather than reddening a check |
-| History | Five prior session builds preserved under `archive/` (119 files), nothing deleted |
+| Gates | Three checkers, all green (1,811 compliance assertions, 1,480 internal links verified, the builder's own gates), plus the collector self-test. CI fails if generated output is not committed, the build is not reproducible, or a compliance rule breaks — and Pages' deploy job now runs the compliance gate too, so a regression stops the release rather than reddening a check |
+| History | Six prior session builds preserved under `archive/` (162 files), nothing deleted — including the hand-written static site that briefly replaced this one on `main` (FLG-052) |
 
 ## 2. What the product question turned out to be
 
@@ -95,7 +95,7 @@ main lacked:
 
 ## 4. The one number that should worry the owner
 
-**118 tagged product links are live; 0 of 5 per-product Special Link tests are recorded.**
+**136 tagged product links are live; 0 of 5 per-product Special Link tests are recorded.**
 
 The rule this project set — one tested link per product, in the enrolled workflow, before scaling —
 was skipped, and it is recorded as an open action row (FLG-024). Nothing suggests the links are
@@ -263,6 +263,31 @@ AI-invented product photography, no new ASINs, no merge/close of the other sessi
 pull requests (FLG-043, Q-29), and no claim that the tracking ID is enrolled. Path B in the decision
 log is where all of those live, and its rows are marked blocked on the owner rather than quietly
 deferred.
+
+### 11.1 The second integration — `main` had become a different architecture (same session, T36)
+
+A later merge of `main` (PRs #45–#57) did not just add content: `_src/` and `scripts/` had been moved
+into `archive/arena-ffa85037/` and a hand-written static site was the served root. Merging that
+mechanically would have deleted the generator this whole publication is built from, so the merge was
+resolved by content:
+
+- **Absorbed, because it is verification, not layout:** their spec work (`data/products.json` 60 → 70
+  rows, valued 36 → 53 — 8-quart wattage, the Emeril temperature range and preset list, per-product
+  model numbers, two corrected ThermoMaven citations), their fourth short-link re-check
+  (`data/links.json`), and their five flags `FLG-043…047`.
+- **Preserved, not deleted:** all 43 files of the static site — pages, `data-room/`, `analytics/`,
+  `tools/check_site.py`, `handoff/`, their CSS/JS/images — under `archive/arena-580f4c6d-wina/`, plus
+  their `COORDINATION.md` records appended verbatim.
+- **Recorded rather than argued:** their pages loaded Google Fonts on every request, which their own
+  privacy promise and this repository's third-party check both forbid; `FLG-052` says so, with the
+  revert path, instead of editing an archived copy.
+- **Renumbered:** T34 and T35 were taken on `main` while this branch was in flight, so this session's
+  row is **T36**. Their `.github/workflows/site.yml` was dropped with the pages it validated, so that
+  no future PR turns red over an archived site.
+
+**Gates after the integration:** build 36 pages / 35 sitemap entries, PASSED and byte-reproducible ·
+repository gate 36 pages, 1,480 internal links, 163 Amazon links (136 sponsored), zero failures ·
+compliance gate 1,811 checks, 0 failing, 1 owner-only warning (FLG-024) · publish gate 4 / 0.
 
 ---
 

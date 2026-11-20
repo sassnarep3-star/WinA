@@ -464,7 +464,7 @@
       "have": "Parsed HTML, deterministic rebuilds, alt/aria labels on every informative drawing, and CSS written mobile-first with matched braces.",
       "missing": "A rendered screenshot on a small phone, a tablet and print preview, by a person.",
       "matters": "The point of the pass was appearance, and a link checker cannot judge appearance. Claiming it looks right would be exactly the kind of unverifiable assertion the register exists to prevent.",
-      "howToFind": "Open the live site on a phone, or run any headless browser locally and capture three viewports; report anything broken to the flag register (FLG-046).",
+      "howToFind": "Open the live site on a phone, or run any headless browser locally and capture three viewports; report anything broken to the flag register (FLG-051).",
       "status": "unanswered",
       "sourceUrl": "",
       "sourceLabel": "",

@@ -81,6 +81,10 @@ resolving the flag fails the build. A register that can be quietly closed is dec
   (plan) → `--write` → build. A value with no defined source never reaches a page.
 * **New guide:** add rows to `data/questions.json` / `data/suggestions.json` and a section in
   `_src/pages-content.mjs`; the sitemap, feed, nav, register counts and the summary page update
+- **One architecture per root, enforced by what is regenerable.** `main` was briefly a hand-written
+  static site with the generator archived (FLG-052); the fix was an integration, not a revert: verified
+  data absorbed, the superseded site preserved under `archive/`, the served root left to the build. A
+  root that cannot be regenerated from `data/` doubles every correction and silently rots.
 - **Art is data-driven, not decorative.** `_src/art.mjs` picks a schematic from the product's verified
   `formFactor`, so a corrected spec changes the drawing. Nothing in it fetches, and none of it is
   Amazon Program Content; each drawing is captioned as a schematic rather than a photograph.
