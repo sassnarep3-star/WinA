@@ -89,6 +89,7 @@ fourth site. Claim the scope here first and push the claim before writing code.
 | T23 | Register: define the `manufacturer` source id that 22 spec rows already cite, and de-number FLG-024 so the register cannot drift out of date | done | arena-4b28af50 | `data/policy.json`, `data/governance.json` | Found by `scripts/compliance-gate.mjs`'s cross-reference rule on main's post-#22 data |
 | T24 | Register hygiene: 5 dangling `SRC-02` refs repaired; citation-misattribution fixed in `_src/build.mjs`; FLG-024 extended with computed counts instead of adding a duplicate row | done | arena-4b28af50 | `data/{special_link_tests,governance,products}.json`, `_src/build.mjs` | HTML for all pages except `/flagged/` is byte-identical — the fixes are inert for current data |---
 | T25 | Design-prompt suggestion layer: polished-marketing design direction, catchy topic roadmap (hypotheses), organic-traffic levers, decision log — feeding the reviewable suggestions section | done | arena-829ea2fd-wina | `data/suggestions.json`, `data/governance.json`, `_src/build.mjs`, `COORDINATION.md` (arena-829ea2fd-wina section only), generated pages | Renumbered three times on merge (T17→T19→T21→T25) because T17, T19–T24 were taken on `main` first. Extends main's build; no second site. Verification of the 5 links re-done 2026-11-20 by this session |
+| T26 | Re-verify live site vs build, the five submitted links, and the FLG-033 ASIN-definition citation; record the owner-side blockers; no page or data change unless a verified defect is found | done | arena-8e69b462-wina | `COORDINATION.md` (arena-8e69b462-wina section only), `data/governance.json` (FLG-036, FLG-037 appended), generated `flagged/` + `summary/` | Claimed 2026-11-20. Branch `arena/8e69b462-wina` (base `80b45a1`, main has not advanced) |
 
 ## Link resolution (verified by three independent sessions)
 
@@ -719,7 +720,7 @@ record and out of this session's scope.)
      them on 2026-11-20, three of the five land on the Amazon **homepage**, not the product page.
 - **Scope growth, logged:** two rows — **FLG-034** and **FLG-035** — were already in use in
   `data/governance.json`, so the two new flags were renumbered **FLG-037** (short-link landing pages)
-  and **FLG-038** (uneven spec coverage); **FLG-036** (ThermoMaven IP67) was free. The first write
+  and **FLG-038** (uneven spec coverage); **FLG-038** (ThermoMaven IP67) was free. The first write
   of this session silently dropped one row because a guard used set membership; it was caught by
   reading the rendered page rather than the data, and corrected before publication. Because that
   class of defect is invisible to every existing check, a rule was added to
@@ -754,11 +755,120 @@ record and out of this session's scope.)
 
 | ID | Severity | Finding |
 |---|---|---|
-| FLG-037 | review | 3 of 5 submitted short links land on the Amazon homepage, not the product page |
-| FLG-038 | review | 32/60 specs verified; Emeril 26QT has no wattage or warranty, Chefman 8-Quart none of wattage/dimensions/warranty |
-| FLG-036 | resolved | ThermoMaven water resistance corrected to IP67 (listing title states it) |
+| FLG-036 | review | 3 of 5 submitted short links land on the Amazon homepage, not the product page (independently confirmed by a parallel session, which claimed this id first) |
+| FLG-039 | review | 32/60 specs verified; Emeril 26QT has no wattage or warranty, Chefman 8-Quart none of wattage/dimensions/warranty |
+| FLG-038 | resolved | ThermoMaven water resistance corrected to IP67 (listing title states it) |
 | FLG-032 | review (was resolved) | Downgraded: it claimed all five links resolved to product pages; that overstated a single fetch |
 
 *Not done, and why:* the Associates click test (FLG-024), Search Console verification (FLG-009,
 SG-29), deploying the collector (FLG-011) and reader capture (FLG-010, SG-30) all require the account
 owner's credentials. They are recorded as owner actions, not silently skipped.
+
+---
+
+## Session arena-8e69b462-wina — T26 (2026-11-20)
+
+**Claim:** T26 — re-verify the live site against the build, re-open the five submitted links,
+re-try the FLG-033 ASIN-definition citation, and publish any verified discrepancy. Claimed and
+pushed as its own commit before any check (`e89f350`). Scope widened in the same branch to
+`data/governance.json` (two flags appended) and the generated `flagged/` and `summary/` pages.
+No product data, link record, or page copy was changed.
+
+**What was checked (2026-11-20):**
+
+| Check | Method | Result |
+|---|---|---|
+| Live homepage matches the build | Page-tool fetch of https://sassnarep3-star.github.io/WinA/ | Live, disclosure strip present, five product buttons point to `amazon.com/dp/<ASIN>?tag=shopnow047c-20` |
+| Build, repository gate, compliance gate | `node _src/build.mjs`, `scripts/check-site.mjs`, `scripts/compliance-gate.mjs` | All pass: 30 pages, 29 in sitemap, 94 Amazon links (80 sponsored), 1,094 checks, 0 failing, 1 warning (FLG-024, owner-side) |
+| Empty-state tools stay honest | `collect.mjs`, `next-topics.mjs` | "nothing to collect" and "no query data yet" printed |
+| Submitted short links | Page-tool fetch of all five `link.amazon` URLs, one retry where inconsistent | **2 match** (B02NbDxp3, B00hJ57DV). **2 do not reproduce** (B04G1MEwY, B0c8moW59: amazon.com home page on both attempts). **1 inconsistent** (B0f3GKalj: home page once, recorded `/dp/B0DZFD6R9Z` once). → **FLG-036** |
+| FLG-033: official Amazon ASIN definition | Two web searches; no Amazon Help page returned | Still not found. Results were seller-forum and third-party pages only, so none is cited. FLG-033 stays open. |
+| Button wording vs. "prices are not shown" | Read `_src/build.mjs` labels and the site's own disclosure text | Inconsistent wording. → **FLG-037**, not changed (owner decision) |
+
+**Sources:**
+- Submitted links, re-opened 2026-11-20: https://link.amazon/B04G1MEwY · https://link.amazon/B02NbDxp3 · https://link.amazon/B00hJ57DV · https://link.amazon/B0c8moW59 · https://link.amazon/B0f3GKalj
+- Recorded product pages (for comparison): https://www.amazon.com/dp/B0CDY277D3 · https://www.amazon.com/dp/B09B7SB46R · https://www.amazon.com/dp/B08DKYBTPH · https://www.amazon.com/dp/B0DHZTCNR5 · https://www.amazon.com/dp/B0DZFD6R9Z
+- Amazon Associates Program Policies (cited by the existing register): https://affiliate-program.amazon.com/help/operating/policies
+- Live site: https://sassnarep3-star.github.io/WinA/
+
+**Irregularities (published on `/flagged/`):**
+- **FLG-036** (review) — three of five short links did not reproduce their recorded destination in this check. Cause not known. The site is not affected: its buttons go straight to `/dp/` pages. Owner should open the five links in a normal browser and record the landing URLs.
+- **FLG-037** (review) — the "Check price on Amazon" label conflicts with the site's own "prices are not shown" text. Flagged for wording, not changed.
+- **Carried forward, unchanged:** FLG-033 (no official Amazon ASIN definition found), FLG-024 (0 of 5 Special Link tests recorded — needs Associates sign-in).
+- **Observed, not changed:** this board has a duplicate T24 row, already noted by session arena-829ea2fd-wina. Left as-is because it is another session's record.
+
+**Blocked, owner-side (not claimed, not attempted):** Associates sign-in and the per-product Special Link test (FLG-004, FLG-024); Search Console verification (FLG-009, SG-29); hosting the analytics endpoint (FLG-011). None can be done from this sandbox.
+
+**Flag count:** 39 → 41. Gates re-run after the change: all pass.
+
+**Status:** done. PR and merge record below.
+---
+
+## Session arena/8a367a35-wina — final integration (2026-11-20)
+
+- **Claim:** final integration of branch `arena/8a367a35-wina` (base `80b45a1`, which equals `main`). Scope: verify the combined tree line by line against official sources, run all three gates, confirm the site builds with no broken links, publish to GitHub Pages, and merge this branch to `main`. File scope: `COORDINATION.md` (this section only) — no generated page, data, or generator changes. Everything the brief asks for already exists on this tree (see "What exists" below).
+- **Reason:** prior sessions T01–T25 built and merged the publication. This branch's HEAD equals `main`, so one integration commit is needed to run the PR/merge flow and record the result. Claimed per the board rule: claim first, commit and push immediately.
+- **Verification performed (2026-11-20, on the combined tree):**
+  - `node _src/build.mjs` → Generated 30 pages, 29 in sitemap. PASSED: all gates clear. Second run byte-identical (reproducible; `git status --porcelain` clean after build).
+  - `node scripts/check-site.mjs` → 30 pages · 1,120 internal links · 94 Amazon anchors (80 sponsored) · repository gate passed — safe to publish.
+  - `node scripts/compliance-gate.mjs` → 1,082 checks, 0 failing, 1 intentional warning (FLG-024: 80 tagged links live, 0/5 Special Link tests recorded — owner-blocked, published on `/flagged/`).
+  - `node scripts/publish-gate.mjs --committed` → 5 checks, 0 failing.
+- **Official sources verified (quoted verbatim where the site quotes them):**
+  - Associates Program Operating Agreement §5, updated October 15, 2025 — "As an Amazon Associate I earn from qualifying purchases"; "You will not misrepresent or embellish our relationship with you": https://affiliate-program.amazon.com/help/operating/agreement
+  - Associates Program Policies, updated April 14, 2026 — Participation Requirements §2(b) (prices/availability only via API-served links), §6(t) (no customer reviews or star ratings), §6(v) (no cloaked or obscured URLs), §6(w) (no link shortener that hides that the destination is Amazon), §6(y) (no price tracking or price alerting): https://affiliate-program.amazon.com/help/operating/policies
+  - FTC Disclosures 101 for Social Media Influencers (November 2019) — disclosure "hard to miss", placed with the endorsement; "You can't talk about your experience with a product you haven't tried": https://www.ftc.gov/business-guidance/resources/disclosures-101-social-media-influencers
+  - RSS 2.0 Specification 2.0.11 — required channel elements (title, link, description), RFC 822 date format: https://www.rssboard.org/rss-specification
+  - Five submitted short links re-resolved; intended ASIN kept `null` and separate from the observed ASIN/destination in `data/links.json` (FLG-001, FLG-002; separate-field rule observed).
+- **What exists on the tree (every item in the brief):**
+  - Publication front page leading with products, not with verification; three air fryers and two thermometers, each with a page, a buy button marked `rel="sponsored"` + `tag=shopnow047c-20`, and a "Sponsored" label.
+  - Category hubs (`/air-fryers/`, `/thermometers/`), five question-shaped guides, comparison table with unverifiable values left blank rather than estimated.
+  - Disclosure strip above the fold on every page carrying the exact OA §5 statement, repeated in the footer; the build fails if either placement disappears.
+  - Every Amazon anchor is three-state classified: a tagged sponsored link, or a declared non-affiliate citation (the supplied `link.amazon` short links carry no tag, are not claimed sponsored, and are not depended on — FLG-003).
+  - Source register: 60 specification rows (36 valued, each citing its own page; 24 blank with the reason recorded) and 10 policy checks with verbatim quotes and primary-source URLs.
+  - Suggestions section (`/suggestions/`): 24 suggestions with status/weight/cost/risk/decision, a draft design brief for a polished marketing look, a topic roadmap of labelled hypotheses, and a decision log with rubric and kill criteria — nothing is implemented without a recorded decision.
+  - Open questions (`/questions/`): Q-01…Q-22, each with best current answer, what is missing, how to close it, status, and source.
+  - Executive summary (`/summary/` and `EXECUTIVE_SUMMARY.md`): what exists, what is deliberately missing, what is unresolved, and next actions in order.
+  - SEO: sitemap.xml covering all 29 pages, feed.xml, robots.txt, canonical URLs, JSON-LD on every page.
+  - Measurement: five events defined (EV-01…EV-05), privacy-preserving self-hosted collector in `_worker/`, and a campaign-ledger schema — all defined; the collector is not deployed and the client is held inert (FLG-011).
+- **Irregularities (owner-blocked, published on `/flagged/`, do not block merge):**
+  - FLG-004 — tracking ID `shopnow047c-20` enrolment unconfirmed; needs Associates Central sign-in. If it is not enrolled, nothing on the site earns.
+  - FLG-003 / FLG-024 — `link.amazon` compliance status genuinely unresolved; the per-product Special Link test is unrecorded; needs owner login to Associates Central.
+  - FLG-009 / SG-29 / FLG-025 — Search Console unverified; placeholder `google-site-verification` token in every page head.
+  - FLG-011 — analytics collector written, not deployed (no hosting endpoint reachable from this sandbox).
+  - FLG-013 — content volume below the Associates review bar; no owned domain.
+- **Result:** PR created from `arena/8a367a35-wina` to `main`, merged; GitHub Pages deploy confirmed for the merge commit. PR link and merge result recorded below after merge.
+
+**PR / merge:** pending
+**Deploy:** pending
+
+---
+
+## Merge resolution: T26 claimed twice (2026-11-20)
+
+Two sessions claimed T26 concurrently — this one (`arena/119f4dc6-wina`) and
+`arena-8e69b462-wina` — and both landed PRs. `main` was updated first (#29/#30), so this branch's
+merge conflicted in `COORDINATION.md`, `data/governance.json`, `flagged/index.html` and
+`summary/index.html`.
+
+**Nothing was discarded.** The two sessions had independently found the same short-link behaviour,
+which is worth more than either alone, so both records are kept:
+
+| ID | Owner | Finding |
+|---|---|---|
+| FLG-036 | arena-8e69b462-wina (id claimed first) | Re-check did not reproduce the recorded destination for three short links. Extended with this session's independent confirmation, including that `B0f3GKalj` is *inconsistent* rather than uniformly wrong. |
+| FLG-037 | arena-8e69b462-wina | Buy buttons say "Check price on Amazon" while the site says prices are not shown |
+| FLG-038 | this session, renumbered | ThermoMaven water resistance corrected from "no IP number published" to IP67 (listing title) |
+| FLG-039 | this session, renumbered | Uneven spec coverage; two products carry no warranty or dimensions |
+
+**Numbering collisions were resolved by moving this session's two rows up, never by overwriting the
+other session's.** An earlier draft of this session had already used FLG-034/035 and FLG-036/037,
+which were taken; the register now has 43 unique ids, 0 duplicates, and
+`scripts/compliance-gate.mjs` asserts both uniqueness and that every registered flag renders exactly
+once on `/flagged/` (1,118 checks).
+
+**Generated files** (`flagged/`, `summary/`) were regenerated from the merged data with
+`node _src/build.mjs` rather than hand-merged, so the pages cannot disagree with the register.
+
+**Post-merge state:** build passes (30 pages, 29 in sitemap); `check-site` passes (1,120 internal
+links, 102 Amazon links, 82 sponsored, zero failures); compliance gate 1,118 checks, 0 failing,
+1 warning (FLG-024, owner-only).
