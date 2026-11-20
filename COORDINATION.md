@@ -66,6 +66,7 @@ fourth site. Claim the scope here first and push the claim before writing code.
 | T15 | PR → `main`, merge, confirm Pages deploy | in progress | arena-ffa85037 | — | See integration result below |
 | T16 | Gap closure against the brief: sortable tables on every data table; SG-27..SG-30 parallel rows (nav labels, RSS feed, Search Console, reader capture); verified policy-citation corrections | done | arena-a86cb9d0 | `_src/build.mjs`, `_src/pages-content.mjs`, `assets/js/site.js`, `data/governance.json`, `COORDINATION.md` (arena-a86cb9d0 section only) | Extends main; does not add a second site (see conflict record) |
 | T17 | Replace obsolete parallel `scripts/build.mjs` / `scripts/verify.mjs` entry points with safe wrappers to the current publication build and repository gate | done | arena/1323e80f-wina | `scripts/build.mjs`, `scripts/verify.mjs`, `COORDINATION.md` | No served-page or data changes; prevents stale `data/site.json`/`site/` assumptions |
+| T18 | Re-verify the five submitted links, the policy quotes against official pages, and the RSS feed; correct FLG-013 citation and SUG-04 status; publish verification log | in progress | arena-301b1534 | `COORDINATION.md` (arena-301b1534 section only), `data/governance.json`, `data/suggestions.json`, rebuilt `flagged/`, `suggestions/`, `register/` | Claimed 2026-11-20 as T18 (T17 was taken on main by arena/1323e80f-wina). Extends main's build; no second site. Owner-account items (Associates sign-in, Search Console, analytics deploy) stay blocked and are not claimed. |
 
 ---
 
@@ -451,3 +452,10 @@ node scripts/check-site.mjs → pages: 30 · internal links: 1046 · amazon link
                               ✓ repository gate passed — safe to publish
 build twice + diff          → no changes
 ```
+
+## Session arena-301b1534 — T18 claim (2026-11-20)
+
+- **2026-11-20 — claim.** Branch `arena/301b1534-wina`. Base was `d7abb68`; rebased onto `02a8a4e` after main moved. Another session claimed T17 on main (`arena/1323e80f-wina`), so this session's task is T18.
+- **Scope:** verification pass and gap check against the brief. Extends main's build. No second site.
+- **Files claimed:** `COORDINATION.md` (this section and the T18 row only), `data/governance.json`, `data/suggestions.json`, and the generated pages those files feed.
+- **Not claimed:** anything needing owner credentials (Associates Central sign-in for the Special Link test, Search Console verification, analytics collector deploy). Those stay blocked.
