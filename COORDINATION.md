@@ -89,6 +89,7 @@ fourth site. Claim the scope here first and push the claim before writing code.
 | T23 | Register: define the `manufacturer` source id that 22 spec rows already cite, and de-number FLG-024 so the register cannot drift out of date | done | arena-4b28af50 | `data/policy.json`, `data/governance.json` | Found by `scripts/compliance-gate.mjs`'s cross-reference rule on main's post-#22 data |
 | T24 | Register hygiene: 5 dangling `SRC-02` refs repaired; citation-misattribution fixed in `_src/build.mjs`; FLG-024 extended with computed counts instead of adding a duplicate row | done | arena-4b28af50 | `data/{special_link_tests,governance,products}.json`, `_src/build.mjs` | HTML for all pages except `/flagged/` is byte-identical — the fixes are inert for current data |---
 | T25 | Design-prompt suggestion layer: polished-marketing design direction, catchy topic roadmap (hypotheses), organic-traffic levers, decision log — feeding the reviewable suggestions section | done | arena-829ea2fd-wina | `data/suggestions.json`, `data/governance.json`, `_src/build.mjs`, `COORDINATION.md` (arena-829ea2fd-wina section only), generated pages | Renumbered three times on merge (T17→T19→T21→T25) because T17, T19–T24 were taken on `main` first. Extends main's build; no second site. Verification of the 5 links re-done 2026-11-20 by this session |
+| T26 | Line-by-line verification of the three reviewer-facing documents against `data/` and the gates; repair every stale figure; add a gate so the figures cannot drift again; complete the product-intent confirmation record with the four fields the brief names (intended ASIN, listing URL, confirmation date, source) | in progress | arena/f14580cb-wina | `README.md`, `ARCHITECTURE.md`, `EXECUTIVE_SUMMARY.md`, `data/links.json`, `scripts/docs-gate.mjs` (new), `.github/workflows/*.yml`, `_src/build.mjs` (link-intent table only), `data/governance.json` (new flag), `COORDINATION.md` (arena/f14580cb-wina section only) | Claimed 2026-11-20. Extends main's build; no second site. Owner-credential items (Associates sign-in, Search Console, analytics deploy) stay blocked and are not claimed. |
 
 ## Link resolution (verified by three independent sessions)
 
@@ -700,3 +701,59 @@ No value was inferred; the topic roadmap is explicitly hypothetical and the desi
 explicitly a recommendation. Nothing blocks the merge. (Note observed, not changed here: `main`'s
 board carries a duplicate T24 row identical to T22; left as-is since it is another session's
 record and out of this session's scope.)
+
+---
+
+## Session `arena/f14580cb-wina` — 2026-11-20 — T26 claim
+
+**Claimed scope (T26):** line-by-line verification of the three reviewer-facing documents
+(`README.md`, `ARCHITECTURE.md`, `EXECUTIVE_SUMMARY.md`) against `data/` and against the
+gates' own output; repair of every stale figure found; a gate that makes the figures
+recomputable so they cannot drift again; and completion of the product-intent confirmation
+record with the four fields the brief names. Files: the three documents, `data/links.json`,
+a new `scripts/docs-gate.mjs`, the two workflow files that would run it, `_src/build.mjs`
+(link-intent table only), `data/governance.json` (one new flag), and this section.
+
+**Not claimed:** anything needing owner credentials (Associates Central for the Special Link
+test, Search Console verification, analytics collector deploy), and any visual redesign —
+the brief asks for suggestions that feed a design prompt and a review section where a path is
+chosen *before* implementation, so the redesign stays a decision for the owner (SUG-17..24).
+
+**Why this task exists.** The brief asks for a line-by-line repo review with irregularities
+flagged. Running the gates and reading the data against the prose surfaced a class of defect
+the gates are structurally unable to see: **the generated pages are correct and the
+hand-written reviewer documents are not.** The gates check HTML, links, schema and the
+register; nothing reads `README.md`, `ARCHITECTURE.md` or `EXECUTIVE_SUMMARY.md`. So the
+three documents a human reviewer is told to read first had gone stale while every check
+stayed green.
+
+**Irregularities found (all published, none hidden):**
+
+| # | Where | Says | Actual | How actual was obtained |
+|---|---|---|---|---|
+| 1 | `EXECUTIVE_SUMMARY.md` L19 | 37 flag rows | **39** | `len(governance.flagged)`; `/flagged/` renders all 39 |
+| 2 | `EXECUTIVE_SUMMARY.md` L19 | 16 suggestions | **24** | `len(suggestions.suggestions)`; `/suggestions/` renders 24 |
+| 3 | `EXECUTIVE_SUMMARY.md` L53 | compliance gate "(1,159 checks)" | **1,082** | printed by `node scripts/compliance-gate.mjs` |
+| 4 | `ARCHITECTURE.md` L33 | "5 sources" | **6** | `len(policy.sources)` |
+| 5 | `ARCHITECTURE.md` L33 | "22 verified, 8 claims, 20 unverified, 10 withheld" | **32 / 4 / 14 / 10** | status census over all 60 spec rows |
+| 6 | `ARCHITECTURE.md` L34 | "all 29 pages" | **30** | build prints `Generated 30 pages, 29 in sitemap` (30th is `404.html`) |
+| 7 | `ARCHITECTURE.md` L46 | compliance gate "(1,159 checks)" | **1,082** | as #3 |
+| 8 | `README.md` L232–234 | "27 pages, 946 internal links, 120 Amazon links (108 sponsored, 12 declared citations)" under the heading *Current state* | **30 pages · 1,120 internal links · 94 Amazon links (80 sponsored, 14 citations)** | `node scripts/check-site.mjs` |
+| 9 | `README.md` L257 | "Regenerates all 29 pages" | **30** | as #6 |
+| 10 | `README.md` L269 | "/flagged/ (29 open and resolved findings)" | **39** | as #1 |
+| 11 | `README.md` (Layout block) | "`suggestions.json` 16 reviewable suggestions" | **24** | as #2 |
+
+**Note on `ARCHITECTURE.md` L35 ("~2,100 assertions total").** This one is *not* in the table
+above and is not asserted by the new gate, because it is not cleanly computable: the three
+gates count assertions differently (`check-site.mjs` prints no assertion count at all, and
+`build.mjs` prints gates, not assertions). Rather than replace one unverifiable number with
+another, the document now states the two counts that *are* printed by the tools that run.
+A number that cannot be reproduced by running something is a number this project should not
+print — which is the same rule the ledger already follows.
+
+**Sources used:** the repository's own tooling as the authority for counts (`_src/build.mjs`,
+`scripts/check-site.mjs`, `scripts/compliance-gate.mjs`), and `data/*.json` as the authority
+for register counts. No external claim was made or newly verified in this task; nothing here
+touches a product specification, a policy quotation or a reader-facing claim.
+
+**Status:** in progress — claim pushed before any file in scope was edited.
