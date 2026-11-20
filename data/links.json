@@ -46,6 +46,12 @@
           "check": "Re-check by arena/6b0f2ddc-wina (T29): one page-tool fetch of the submitted link.",
           "finalUrl": "https://www.amazon.com/",
           "result": "homepage"
+        },
+        {
+          "observedOn": "2026-11-20",
+          "check": "Re-check by arena/b37e1a98-wina (T33): one page-tool fetch of the submitted link.",
+          "finalUrl": "https://www.amazon.com/",
+          "result": "homepage"
         }
       ],
       "observationsAgree": false
@@ -88,6 +94,12 @@
         {
           "observedOn": "2026-11-20",
           "check": "Re-check by arena/6b0f2ddc-wina (T29): one page-tool fetch of the submitted link.",
+          "finalUrl": "https://www.amazon.com/",
+          "result": "homepage"
+        },
+        {
+          "observedOn": "2026-11-20",
+          "check": "Re-check by arena/b37e1a98-wina (T33): one page-tool fetch of the submitted link.",
           "finalUrl": "https://www.amazon.com/",
           "result": "homepage"
         }
@@ -134,6 +146,12 @@
           "check": "Re-check by arena/6b0f2ddc-wina (T29): one page-tool fetch of the submitted link.",
           "finalUrl": "https://www.amazon.com/",
           "result": "homepage"
+        },
+        {
+          "observedOn": "2026-11-20",
+          "check": "Re-check by arena/b37e1a98-wina (T33): one page-tool fetch of the submitted link.",
+          "finalUrl": "https://www.amazon.com/",
+          "result": "homepage"
         }
       ],
       "observationsAgree": false
@@ -176,6 +194,12 @@
         {
           "observedOn": "2026-11-20",
           "check": "Re-check by arena/6b0f2ddc-wina (T29): one page-tool fetch of the submitted link.",
+          "finalUrl": "https://www.amazon.com/",
+          "result": "homepage"
+        },
+        {
+          "observedOn": "2026-11-20",
+          "check": "Re-check by arena/b37e1a98-wina (T33): one page-tool fetch of the submitted link.",
           "finalUrl": "https://www.amazon.com/",
           "result": "homepage"
         }
@@ -221,6 +245,12 @@
           "observedOn": "2026-11-20",
           "check": "Re-check by arena/6b0f2ddc-wina (T29): one page-tool fetch of the submitted link.",
           "finalUrl": "https://www.amazon.com/dp/B0DZFD6R9Z?lv=shuf&sbo=RZvfv%2F%2FHxDF%2BO5021pAnSA%3D%3D&btn_type=ss&gaOptInStatus=true&language=en_US&btn_ref=srctok-5ed90c5aacfa7a7e&channelId=500&plpRedirect=mhFallback&th=1",
+          "result": "product-page"
+        },
+        {
+          "observedOn": "2026-11-20",
+          "check": "Re-check by arena/b37e1a98-wina (T33): one page-tool fetch of the submitted link.",
+          "finalUrl": "https://www.amazon.com/dp/B0DZFD6R9Z",
           "result": "product-page"
         }
       ],

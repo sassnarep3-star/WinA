@@ -1,0 +1,241 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Product-intent confirmation record | The Crisp Counter — Data room</title>
+<meta name="description" content="For each submitted product link: intended identifier, official listing URL, confirmation date and source — with observed redirect targets kept in strictly separate fields.">
+<link rel="canonical" href="https://sassnarep3-star.github.io/WinA/data-room/product-intent.html">
+<meta name="robots" content="noindex">
+<meta name="cc-endpoint" content="">
+<link rel="alternate" type="application/rss+xml" title="The Crisp Counter" href="../feed.xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..700;1,9..144,400..700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/site.css">
+</head>
+<body>
+<header class="masthead">
+  <div class="wrap masthead-row">
+    <a class="brand" href="../index.html"><span class="brand-mark">◆</span> The Crisp Counter <small>measured kitchen buying</small></a>
+    <button class="nav-toggle" aria-expanded="false" aria-controls="site-nav">Menu</button>
+    <nav class="nav" id="site-nav" aria-label="Primary">
+      <a href="../shop.html">Shop</a>
+      <a href="../compare.html">Compare</a>
+      <a href="../guides/index.html">Guides</a>
+      <a href="../questions.html">Questions</a>
+      <a href="../suggestions.html">Suggestions</a>
+      <a href="index.html" aria-current="page">Data room</a>
+      <a class="nav-cta" href="../shop.html#the-lineup">See the lineup</a>
+    </nav>
+  </div>
+</header>
+<div class="disclosure-strip" id="disclosure">
+  <div class="wrap">
+    <span class="disclosure-badge">Disclosure</span>
+    <span><strong>The Crisp Counter is an Amazon Associate — we earn from qualifying purchases.</strong> Sponsored/affiliate links are marked. Facts were observed on official sources on November 20, 2026. <a href="compliance-gate.html">How we handle disclosure &amp; compliance</a>.</span>
+  </div>
+</div>
+
+<main>
+  <div class="wrap page-head">
+    <p class="breadcrumb"><a href="../index.html">Home</a> / <a href="index.html">Data room</a> / Product-intent record</p>
+    <h1>Product-intent confirmation record</h1>
+    <p class="lede">The purpose of this record is to hold the <em>intended</em> product identity and the <em>observed</em> reality in separate fields, permanently. Amazon defines an ASIN as a unique 10-character alphanumeric identifier for a product in its catalog — a checkable identity (<a href="https://sellercentral.amazon.com/help/hub/reference/external/G200386250" rel="nofollow">Amazon ASIN help</a>; may require sign-in, FLG-006). Observed targets are evidence about redirects; they are <strong>not</strong> a substitute for the owner's confirmation of intent.</p>
+  </div>
+
+  <section class="section tight">
+    <div class="wrap">
+      <div class="callout">
+        <h3>Cross-verification</h3>
+        <p>Three independent agent sessions resolved these same five short links on the same day and recorded identical redirect targets (see the parallel build's <a href="https://github.com/sassnarep3-star/WinA/blob/main/data/links.json">data/links.json</a>). Where a table below says "observed", that observation stands on independent agreement, not a single fetch.</p>
+      </div>
+      <div class="callout gold">
+        <h3>Field-separation rules (enforced by policy)</h3>
+        <p class="muted">1. <strong>Intended identifier</strong> records the token exactly as submitted — never "corrected" or completed. 2. <strong>Observed redirect target</strong> records what the link resolved to at observation time, with date and method. 3. The two fields are never merged, reconciled, or used to overwrite each other. 4. <strong>Official listing URL</strong> and <strong>confirmation date</strong> stay blank until the owner confirms intent (gate G-4). 5. Submissions are never called invalid; where compliance is unresolved it is marked unresolved (FLG-003).</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section tight" id="intent-table">
+    <div class="wrap">
+      <div class="table-scroll">
+        <table class="data">
+          <caption>Table A — intent fields (owner-confirmed fields blank until gate G-4) and observation fields (agent-observed 2026-11-20).</caption>
+          <thead>
+            <tr>
+              <th scope="col">Row</th>
+              <th scope="col">Submitted link (verbatim)</th>
+              <th scope="col">Intended identifier (as submitted)</th>
+              <th scope="col">Official listing URL (confirmed)</th>
+              <th scope="col">Confirmation date</th>
+              <th scope="col">Source of submission</th>
+              <th scope="col">Observed redirect target</th>
+              <th scope="col">Observation date &amp; method</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">PI-01</th>
+              <td><code>https://link.amazon/B04G1MEwY</code></td>
+              <td><code>B04G1MEwY</code> <span class="chip unverified">9-char token, not a canonical ASIN (FLG-001)</span></td>
+              <td class="unverified-cell"><span class="chip unverified">unverified</span> awaiting owner confirmation</td>
+              <td class="unverified-cell"><span class="chip unverified">pending</span></td>
+              <td>Project brief (owner), 2026-11-20</td>
+              <td><a href="https://www.amazon.com/dp/B0CDY277D3" rel="nofollow">https://www.amazon.com/dp/B0CDY277D3</a> (canonical listing)</td>
+              <td>2026-11-20 · HTTP fetch of submitted URL, final canonical page recorded</td>
+            </tr>
+            <tr>
+              <th scope="row">PI-02</th>
+              <td><code>https://link.amazon/B02NbDxp3</code></td>
+              <td><code>B02NbDxp3</code> <span class="chip unverified">9-char token (FLG-001)</span></td>
+              <td class="unverified-cell"><span class="chip unverified">unverified</span> awaiting owner confirmation</td>
+              <td class="unverified-cell"><span class="chip unverified">pending</span></td>
+              <td>Project brief (owner), 2026-11-20</td>
+              <td><a href="https://www.amazon.com/dp/B09B7SB46R" rel="nofollow">https://www.amazon.com/dp/B09B7SB46R</a></td>
+              <td>2026-11-20 · HTTP fetch of submitted URL, final canonical page recorded</td>
+            </tr>
+            <tr>
+              <th scope="row">PI-03</th>
+              <td><code>https://link.amazon/B00hJ57DV</code></td>
+              <td><code>B00hJ57DV</code> <span class="chip unverified">9-char token (FLG-001)</span></td>
+              <td class="unverified-cell"><span class="chip unverified">unverified</span> awaiting owner confirmation</td>
+              <td class="unverified-cell"><span class="chip unverified">pending</span></td>
+              <td>Project brief (owner), 2026-11-20</td>
+              <td><a href="https://www.amazon.com/dp/B08DKYBTPH" rel="nofollow">https://www.amazon.com/dp/B08DKYBTPH</a></td>
+              <td>2026-11-20 · HTTP fetch of submitted URL, final canonical page recorded</td>
+            </tr>
+            <tr>
+              <th scope="row">PI-04</th>
+              <td><code>https://link.amazon/B0c8moW59</code></td>
+              <td><code>B0c8moW59</code> <span class="chip unverified">9-char token (FLG-001)</span></td>
+              <td class="unverified-cell"><span class="chip unverified">unverified</span> awaiting owner confirmation</td>
+              <td class="unverified-cell"><span class="chip unverified">pending</span></td>
+              <td>Project brief (owner), 2026-11-20</td>
+              <td><a href="https://www.amazon.com/dp/B0DHZTCNR5" rel="nofollow">https://www.amazon.com/dp/B0DHZTCNR5</a></td>
+              <td>2026-11-20 · HTTP fetch of submitted URL, final canonical page recorded</td>
+            </tr>
+            <tr>
+              <th scope="row">PI-05</th>
+              <td><code>https://link.amazon/B0f3GKalj</code></td>
+              <td><code>B0f3GKalj</code> <span class="chip unverified">9-char token (FLG-001)</span></td>
+              <td class="unverified-cell"><span class="chip unverified">unverified</span> awaiting owner confirmation</td>
+              <td class="unverified-cell"><span class="chip unverified">pending</span></td>
+              <td>Project brief (owner), 2026-11-20</td>
+              <td><a href="https://www.amazon.com/dp/B0DZFD6R9Z" rel="nofollow">https://www.amazon.com/dp/B0DZFD6R9Z</a></td>
+              <td>2026-11-20 · HTTP fetch of submitted URL, final canonical page recorded</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="fine">Short-link compliance note: the <code>link.amazon/…</code> format's status under the Associates Operating Agreement is <strong>unresolved</strong> (FLG-003) — we neither claim the links are valid nor invalid. Site-facing links use the canonical <code>amazon.com/dp/&lt;ASIN&gt;?tag=shopnow047c-20</code> format until gate G-4 confirms the Special Link workflow.</p>
+    </div>
+  </section>
+
+  <section class="section tight" id="observed-facts">
+    <div class="wrap">
+      <div class="table-scroll">
+        <table class="data">
+          <caption>Table B — facts read from each observed target's official listing (2026-11-20). These are observations about the observed target only; they say nothing about the owner's intent.</caption>
+          <thead>
+            <tr><th scope="col">Row</th><th scope="col">Observed ASIN</th><th scope="col">Listing title (abbrev.)</th><th scope="col">Category (breadcrumb)</th><th scope="col">Price observed</th><th scope="col">Rating observed</th><th scope="col">Source</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">PI-01</th><td>B0CDY277D3</td>
+              <td>CHEFMAN 6 Quart Dual Basket Air Fryer Oven with Easy View Windows…</td>
+              <td>Home &amp; Kitchen › … › Fryers › Air Fryers</td>
+              <td>$79.93 (list $99.99)</td><td>4.2★ (4,876)</td>
+              <td class="src"><a href="https://www.amazon.com/dp/B0CDY277D3" rel="nofollow">listing</a></td>
+            </tr>
+            <tr>
+              <th scope="row">PI-02</th><td>B09B7SB46R</td>
+              <td>Emeril Lagasse 26QT French Door Multi-Function Air Fryer Toaster Oven…</td>
+              <td>Home &amp; Kitchen › … › Fryers › Air Fryers</td>
+              <td>$149.99 (list $209.99)</td><td>4.3★ (18,379)</td>
+              <td class="src"><a href="https://www.amazon.com/dp/B09B7SB46R" rel="nofollow">listing</a></td>
+            </tr>
+            <tr>
+              <th scope="row">PI-03</th><td>B08DKYBTPH</td>
+              <td>Chefman Air Fryer 8 Qt | TurboFry 4-in-1 with 450°F Hi-Fry Option…</td>
+              <td>Home &amp; Kitchen › … › Fryers › Air Fryers</td>
+              <td>$69.99 (list $119.99)</td><td>4.4★ (16,892)</td>
+              <td class="src"><a href="https://www.amazon.com/dp/B08DKYBTPH" rel="nofollow">listing</a></td>
+            </tr>
+            <tr>
+              <th scope="row">PI-04</th><td>B0DHZTCNR5</td>
+              <td>ThermoMaven 1 Sec Professional Digital Meat Thermometer…</td>
+              <td>Home &amp; Kitchen › … › Thermometers &amp; Timers › Meat</td>
+              <td>$16.99 (list $22.99)</td><td>4.6★ (3,499)</td>
+              <td class="src"><a href="https://www.amazon.com/dp/B0DHZTCNR5" rel="nofollow">listing</a></td>
+            </tr>
+            <tr>
+              <th scope="row">PI-05</th><td>B0DZFD6R9Z</td>
+              <td>CHEF iQ Sense | Smart Wireless Meat Thermometer | 3 Ultra-Thin Probes…</td>
+              <td>Home &amp; Kitchen › … › Thermometers &amp; Timers › Meat</td>
+              <td>$119.99 (list $219.99)</td><td>4.2★ (2,178)</td>
+              <td class="src"><a href="https://www.amazon.com/dp/B0DZFD6R9Z" rel="nofollow">listing</a></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="fine">Seller state on all five: in stock, sold &amp; shipped by Amazon.com (observed 2026-11-20). Ratings counts are as displayed by Amazon on that date.</p>
+    </div>
+  </section>
+
+  <section class="section tight">
+    <div class="wrap">
+      <div class="callout sage">
+        <h3>How to complete this record (gate G-4)</h3>
+        <p class="muted">For each row: compare the intended product with the observed listing; if they match, copy the canonical listing URL into "Official listing URL," stamp the confirmation date, and initial the source column. If they don't match, leave both fields blank, open a flag, and request corrected submissions. Then test one tagged Special Link per product and confirm it appears in the Associates click report before any link scale-up.</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <p class="brand-foot">◆ The Crisp Counter</p>
+        <p>Data room — the verification machinery behind the shop.</p>
+      </div>
+      <div>
+        <h4>Registers</h4>
+        <ul>
+          <li><a href="source-register.html">Source register</a></li>
+          <li><a href="product-intent.html">Product-intent record</a></li>
+          <li><a href="campaign-ledger.html">Campaign ledger</a></li>
+          <li><a href="measurement.html">Measurement spec</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Control</h4>
+        <ul>
+          <li><a href="compliance-gate.html">Compliance gate</a></li>
+          <li><a href="flagged.html">Flagged for Review</a></li>
+          <li><a href="method.html">Methodology</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Site</h4>
+        <ul>
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="../shop.html">Shop</a></li>
+          <li><a href="../compare.html">Compare</a></li>
+          <li><a href="../guides/index.html">Guides</a></li>
+          <li><a href="../questions.html">Questions</a></li>
+          <li><a href="../suggestions.html">Suggestions</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="disclosure-block">
+      <strong>Disclosure (repeated):</strong> As an Amazon Associate, The Crisp Counter earns from qualifying purchases. Sponsored/affiliate links are marked and use rel="sponsored". Product names and images are the property of their rights holders; product thumbnails are served from Amazon's media CDN pending PA-API image licensing (FLG-005). This site does not sell products directly — purchases happen on Amazon under Amazon's terms.
+      <br>© <span data-year>2026</span> The Crisp Counter · <a href="flagged.html">Flagged for Review</a> · <a href="compliance-gate.html">Compliance</a>
+    </div>
+  </div>
+</footer>
+<script src="../assets/js/analytics.js" defer></script>
+<script src="../assets/js/site.js" defer></script>
+</body>
+</html>
