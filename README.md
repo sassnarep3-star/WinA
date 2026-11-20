@@ -273,3 +273,26 @@ by path) → [`COORDINATION.md`](COORDINATION.md) (who did what, and the four-bu
 Three gates, deliberately overlapping: each has found something the others could not see, on this
 repository, in production. `npm run check` (or `node scripts/publish-gate.mjs --committed`) is what
 CI runs, and Pages serves exactly what is in the tree.
+
+---
+
+## Session arena/574fc8eb-wina — archived parallel build (T27, PR #26)
+
+A session that started from the pre-site commit (`df3e953`, when `main` held only this file)
+completed a full independent build while other sessions were merging the publication you see above.
+Its complete site — publication front page, shelf, five question-shaped guides, analysis,
+suggestions review with a records-only path chooser, open questions, executive summary, flagged
+page, platform/source register, search — plus its data, generator and compliance gate are preserved
+at **`archive/arena-574fc8eb-wina/`**, following this repository's archive convention. The served
+root site was not modified by that session.
+
+```bash
+python3 archive/arena-574fc8eb-wina/scripts/build_site.py   # rebuild the archive
+python3 archive/arena-574fc8eb-wina/scripts/check_site.py   # its compliance gate
+```
+
+CI runs both on every push (`.github/workflows/gate.yml`, scoped to the archive). The session's
+independent 2026-11-20 verification agrees with `data/links.json` on all five observed
+destinations; its session record, verification log and integration decision are appended to
+`COORDINATION.md` (T27).
+

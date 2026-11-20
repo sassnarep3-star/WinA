@@ -1,0 +1,92 @@
+[
+ {
+  "url": "index.html",
+  "title": "WinA — Kitchen Field Guide: five verified kitchen picks",
+  "kicker": "Home",
+  "text": "Kitchen Field Guide · November 2026 Five kitchen picks, two honest rooms. Three air fryers and two meat thermometers — every one checked against its official Amazon listing, priced the day we looked, and linked straight to the source. The guides below answer the questions buyers actually ask, without the hype scores. Prices observed 2026-11-20 on the official listings and subject to change. Every "
+ },
+ {
+  "url": "products.html",
+  "title": "The shelf — five verified kitchen products",
+  "kicker": "Dashboard",
+  "text": "The shelf Five products, linked straight to their official listings Each row was read from the official Amazon product page on 2026-11-20. Prices are buy-box observations from that day — re-check the listing before you buy. Every product link carries our tracking ID and rel=\"sponsored\" . The shelf — verified against official listings Product Category Price observed Availability Link Source Chefman"
+ },
+ {
+  "url": "guides/index.html",
+  "title": "Guides — WinA",
+  "kicker": "Guides",
+  "text": "Guides Buyer questions, answered in the open Five guides so far — four air-fryer questions and one for the thermometer room. Each one is built from what the official listings actually say, links to its sources, and carries the disclosure inline. Cadence target: one new guide per week (pending owner confirmation, Q-10 ). New guides are added to the RSS feed and sitemap automatically by the build. A"
+ },
+ {
+  "url": "analysis.html",
+  "title": "Field notes — sourced analysis WinA",
+  "kicker": "Dashboard",
+  "text": "Field notes What we verified, what we left blank, what we flagged The analytical surface of this site. Every row links to the official source it came from; anything unconfirmable is blank and tagged unverified . No revenue, conversion, or demand numbers exist here because none have been obtained from authorized first-party reports. 5 / 5 links resolved to live official listings (2026-11-20) 3 + 2 "
+ },
+ {
+  "url": "suggestions.html",
+  "title": "Suggestions review — WinA",
+  "kicker": "Dashboard",
+  "text": "Suggestions review Review the suggestions, choose a path — nothing changes until a human applies it This is the review surface the brief asks for: every suggestion with the prerequisite that gates it, three complete paths compared on consequences, and a chooser that records a choice locally and applies nothing . Choose a path PATH-A Path A — Single-category air fryer shop Publish as a focused air-"
+ },
+ {
+  "url": "questions.html",
+  "title": "Open questions — WinA",
+  "kicker": "Dashboard",
+  "text": "Open questions What must be answered before any decision can reasonably be made Fifteen questions, each with what we already have, what we do not have, the action that closes it, what it blocks, and the default that applies while it stays open. These are also the questions that discover the missing information — every suggestion on the review page maps to one of them. No question here is rhetorica"
+ },
+ {
+  "url": "executive-summary.html",
+  "title": "Executive summary — WinA",
+  "kicker": "Dashboard",
+  "text": "Executive summary The whole project on one page WinA is a publication-grade Amazon affiliate site for five owner-supplied product links: three air fryers and two meat thermometers. This session verified every link against its official Amazon listing, built the shop-first site with disclosure and sponsored links enforced by a build gate, and published everything unverifiable on a flagged page inste"
+ },
+ {
+  "url": "flagged.html",
+  "title": "Flagged for review — WinA",
+  "kicker": "Dashboard",
+  "text": "Flagged for review Everything we could not verify, in the open Ten flags with their source links, so review happens after the site is live — flagged items do not block the merge, and none of them are hidden behind “trust us.” If a value here is wrong, the source link is how you check it. FLG-001 High Two of five submitted links resolve to a different product category than the other three Three lin"
+ },
+ {
+  "url": "platform.html",
+  "title": "Platform & sources — WinA",
+  "kicker": "Dashboard",
+  "text": "Platform & sources The machinery — automated where it can be, gated where it cannot WinA is built as a small, auditable pipeline: verified data in data/ , a generator ( scripts/build_site.py ), and a gate ( scripts/check_site.py ) that must pass before anything is pushed. Human decisions — scope, intent, paths — are never automated; they sit on the review page and the questions list . The pipeline"
+ },
+ {
+  "url": "search.html",
+  "title": "Search — WinA",
+  "kicker": "Dashboard",
+  "text": "Search Search the site Search Client-side search over search-index.json — no third-party search service is contacted. The query term itself is never sent anywhere; only its length is recorded as search_query (privacy note in platform )."
+ },
+ {
+  "url": "guides/basket-or-oven.html",
+  "title": "Basket or oven-style air fryer: what should you compare? — WinA",
+  "kicker": "Guides",
+  "text": "Air fryers · form factor Basket or oven-style air fryer: what should you compare? By WinA Editorial Published 2026-11-20 Updated 2026-11-20 ⚠ Working title — an editorial hypothesis, not a claim about popularity, search volume, or product superiority. Walk into any air-fryer listing and you are really choosing between two machines: a basket (a drawer you pull out, food in a single layer, fast and "
+ },
+ {
+  "url": "guides/capacity-checklist.html",
+  "title": "A no-hype checklist for comparing air fryer capacity — WinA",
+  "kicker": "Guides",
+  "text": "Air fryers · capacity A no-hype checklist for comparing air fryer capacity By WinA Editorial Published 2026-11-20 Updated 2026-11-20 ⚠ Working title — an editorial hypothesis, not a claim about popularity, search volume, or product superiority. Capacity is the number every air-fryer listing shouts and the number few buyers can compare honestly. “6 qt,” “8 qt,” “26 qt” — three numbers from our own "
+ },
+ {
+  "url": "guides/cleanup-and-counter-space.html",
+  "title": "How to assess cleanup and counter-space trade-offs — WinA",
+  "kicker": "Guides",
+  "text": "Air fryers · cleanup How to assess cleanup and counter-space trade-offs By WinA Editorial Published 2026-11-20 Updated 2026-11-20 ⚠ Working title — an editorial hypothesis, not a claim about popularity, search volume, or product superiority. Cleanup is the feature no one demos and every owner meets. A machine you avoid washing becomes a machine you avoid using — so read the listing like a chore ch"
+ },
+ {
+  "url": "guides/multi-function-questions.html",
+  "title": "Questions to ask before buying a multi-function kitchen appliance — WinA",
+  "kicker": "Guides",
+  "text": "Multi-function · buying process Questions to ask before buying a multi-function kitchen appliance By WinA Editorial Published 2026-11-20 Updated 2026-11-20 ⚠ Working title — an editorial hypothesis, not a claim about popularity, search volume, or product superiority. Multi-function appliances sell on the word “more.” Before you buy one, run it through questions that cannot be answered by a preset "
+ },
+ {
+  "url": "guides/picking-a-meat-thermometer.html",
+  "title": "Instant-read or wireless: what to decide before buying a meat thermometer — WinA",
+  "kicker": "Guides",
+  "text": "Thermometers · category guide Instant-read or wireless: what to decide before buying a meat thermometer By WinA Editorial Published 2026-11-20 Updated 2026-11-20 ⚠ Working title — an editorial hypothesis, not a claim about popularity, search volume, or product superiority. Our thermometer room holds two products that look like they solve different problems — because they do. One is a 1-second inst"
+ }
+]

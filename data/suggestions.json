@@ -95,7 +95,7 @@
       "why": "Question-shaped guides are the right shape, but five is not a sample. A weekly cadence for two months produces enough pages and enough query impressions to see which question people actually arrive with, which is the only way to stop guessing topics.",
       "cost": "A substantive guide per week. Each needs its own verified spec pass.",
       "risk": "Cadence without quality control produces the thin content the brief explicitly rejects. The build gate must stay on.",
-      "decide": "Recommend a fixed day and a fixed length. A weekly cadence also keeps content inside the 60-day recency window that Amazon's Associates Help describes (FLG-013). Add each new guide to the sitemap and feed in the same commit, then measure at week eight.",
+      "decide": "Adopted 2026-11-20 as the publishing cadence; see the decision log. A new guide every Monday (New York time) for eight weeks. Basis, checked on Amazon Associates Help: content should be \"recent (generally within the last 60 days)\" and \"a good rule of thumb is at least 10 posts\" (FLG-013). Each guide is added to the sitemap and feed in the same commit and must pass the build and compliance gates. Measurement at week eight needs Search Console and analytics, which are owner-blocked (FLG-009, FLG-011); it is not estimated.",
       "links": []
     },
     {
@@ -442,6 +442,13 @@
       "A suggestion whose risk has grown (for example it would breach policy) is moved to rejected.",
       "No new topic is added from instinct while the query report is empty."
     ],
-    "entries": []
+    "entries": [
+      {
+        "date": "2026-11-20",
+        "decision": "decision",
+        "item": "SUG-05",
+        "reason": "Publishing cadence adopted: a new guide every Monday (New York time) for eight weeks, each added to the sitemap and feed in the same commit and passing the build and compliance gates. Basis: Associates Help 'Application Review Process' (FLG-013). This sets the schedule only; no new guide is published by this decision. Week-eight measurement waits on owner-connected Search Console and analytics (FLG-009, FLG-011)."
+      }
+    ]
   }
 }
