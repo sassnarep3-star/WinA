@@ -1,0 +1,169 @@
+{
+  "flagged": [
+    {
+      "id": "FLG-001",
+      "severity": "resolved",
+      "title": "Short links carry no ASIN in the code",
+      "detail": "Each submitted link is a /B0.../ short code that is not the ASIN. Product identity could only be established by following the redirect. All five were resolved by observation on 2026-11-20 and the observed destination is stored in its own field, separate from intended ASIN.",
+      "action": "Resolved. Observed destination recorded per product; intended ASIN left null because none was supplied.",
+      "sourceUrl": "https://link.amazon/B04G1MEwY",
+      "sourceLabel": "Example submitted short link"
+    },
+    {
+      "id": "FLG-002",
+      "severity": "action",
+      "title": "Submitted links carry no Associates tag of their own",
+      "detail": "The submitted link.amazon URLs resolve to plain product pages. No tag parameter was observed on them, so they do not by themselves attribute a purchase to shopnow047c-20.",
+      "action": "Every outbound link on this site is constructed as amazon.com/dp/<ASIN>?tag=shopnow047c-20 rather than reusing the submitted short link.",
+      "sourceUrl": "https://affiliate-program.amazon.com/help/operating/policies",
+      "sourceLabel": "Associates Program Policies"
+    },
+    {
+      "id": "FLG-003",
+      "severity": "review",
+      "title": "Compliance status of link.amazon short links is unresolved",
+      "detail": "Whether link.amazon short links satisfy the requirement that a link not obscure the destination is not something we can settle from published policy text. Non-Amazon-owned shorteners are clearly addressed; this is Amazon's own domain. We are not claiming these links are invalid. The question is open.",
+      "action": "Not depended upon. The site links directly to amazon.com product pages instead. Raised for review so the question gets a real answer from Associates support.",
+      "sourceUrl": "https://affiliate-program.amazon.com/help/operating/policies",
+      "sourceLabel": "Participation Requirements \u00a76(w)"
+    },
+    {
+      "id": "FLG-004",
+      "severity": "review",
+      "title": "Tracking ID attribution unverified",
+      "detail": "shopnow047c-20 is applied to every outbound link, but confirming that it is an active, enrolled Associates ID requires signing in to the Associates dashboard. That sign-in cannot be performed from here, and no first-party report was available.",
+      "action": "Test one link per product in the enrolled workflow and confirm the destination and the tracking report before scaling. Until then, treat attribution as unconfirmed.",
+      "sourceUrl": "https://affiliate-program.amazon.com/",
+      "sourceLabel": "Amazon Associates Central (sign-in required)"
+    },
+    {
+      "id": "FLG-005",
+      "severity": "withheld",
+      "title": "No prices shown",
+      "detail": "Amazon requires price data to come from its API so it stays accurate, and prohibits price tracking on the site. No Creatives or PA-API credential exists for this project, so any price printed here would be a guess that goes stale.",
+      "action": "Price fields are marked unverified and left blank. No revenue forecast or conversion score is presented.",
+      "sourceUrl": "https://affiliate-program.amazon.com/help/operating/policies",
+      "sourceLabel": "Participation Requirements \u00a76(y)"
+    },
+    {
+      "id": "FLG-006",
+      "severity": "withheld",
+      "title": "No star ratings or review quotes",
+      "detail": "Program Policies \u00a76(t) forbids displaying customer reviews or star ratings unless they were obtained through Creatives API or PA API. Ratings were visible on the live listings but may not be reproduced here.",
+      "action": "Rating and review-count rows are shown as withheld, with the reason. Not left blank, so nobody fills them in by hand later.",
+      "sourceUrl": "https://affiliate-program.amazon.com/help/operating/policies",
+      "sourceLabel": "Participation Requirements \u00a76(t)"
+    },
+    {
+      "id": "FLG-007",
+      "severity": "review",
+      "title": "No product photography",
+      "detail": "No licensed product images are available. Amazon Program Content may not be copied, stored, or hot-linked outside approved tooling, and stock photography of a different appliance would misrepresent the item.",
+      "action": "Pages are deliberately typographic — colour, type and layout carry the design. The real fix is Creatives API access, which would supply compliant imagery.",
+      "sourceUrl": "https://affiliate-program.amazon.com/help/operating/policies",
+      "sourceLabel": "Participation Requirements \u00a76(a)"
+    },
+    {
+      "id": "FLG-008",
+      "severity": "review",
+      "title": "Commission rates not asserted",
+      "detail": "Category commission rates and fixed bounty amounts change and are published inside the Associates dashboard. We did not find a current public table we could verify at build time.",
+      "action": "No earnings estimate, effective rate, or revenue projection appears anywhere. The commission-potential column in the product register is intentionally absent.",
+      "sourceUrl": "https://affiliate-program.amazon.com/help/operating/policies",
+      "sourceLabel": "Commission Income Statement"
+    },
+    {
+      "id": "FLG-009",
+      "severity": "action",
+      "title": "Search Console not verified",
+      "detail": "The site is indexable and has a sitemap and feed, but no Search Console property has been verified because that requires account access we do not have.",
+      "action": "A placeholder verification tag is present and clearly marked. Replace the token, then submit sitemap.xml. Until then, query data is unavailable and topic choice stays a hypothesis.",
+      "sourceUrl": "https://search.google.com/search-console",
+      "sourceLabel": "Google Search Console"
+    },
+    {
+      "id": "FLG-010",
+      "severity": "action",
+      "title": "Reader capture has no backend",
+      "detail": "The email capture form is present for layout and measurement but no email service provider is connected, so it cannot deliver a subscription.",
+      "action": "The form is inert and says so where a reader would hit it. No address is transmitted or stored.",
+      "sourceUrl": "https://affiliate-program.amazon.com/help/operating/policies",
+      "sourceLabel": "Data disclosure requirement, Participation Requirements \u00a76(e)"
+    },
+    {
+      "id": "FLG-011",
+      "severity": "action",
+      "title": "Analytics endpoint not deployed",
+      "detail": "A self-hosted collector exists in _worker/ and the client is written to POST five defined events. No endpoint is deployed, so the client is switched off rather than sending events into a void.",
+      "action": "Deploy the worker, set SITE_ANALYTICS_ENDPOINT, rebuild. Until then no analytics data exists and the dashboard says so.",
+      "sourceUrl": "https://sassnarep3-star.github.io/WinA/analytics/",
+      "sourceLabel": "This site's measurement page"
+    },
+    {
+      "id": "FLG-012",
+      "severity": "withheld",
+      "title": "Campaign ledger is empty by design",
+      "detail": "There is no authorized first-party report yet. Every ledger row requires a timestamp, source, channel, eligible sessions, clicks and reported orders taken from an Associates report.",
+      "action": "The ledger starts empty with its schema defined, so the first real report can be added without redesigning it. No placeholder numbers.",
+      "sourceUrl": "https://affiliate-program.amazon.com/",
+      "sourceLabel": "Associates reports (sign-in required)"
+    }
+  ],
+  "ledger": {
+    "schema": ["date", "source", "channel", "eligibleSessions", "clicks", "reportedOrders", "provenance"],
+    "provenanceNote": "Each row must cite the dated first-party report it came from. Rows are added only from authorized Associates reports; nothing is estimated, modelled, or extrapolated.",
+    "rows": []
+  },
+  "events": [
+    {
+      "id": "EV-01",
+      "name": "page_view",
+      "fires": "Once per page load, after the page is visible.",
+      "payload": "path only — no query string, no referrer, no identifier",
+      "purpose": "Which guides and products are read at all.",
+      "status": "defined"
+    },
+    {
+      "id": "EV-02",
+      "name": "outbound_click",
+      "fires": "On click of any element marked data-affiliate.",
+      "payload": "asin, page path, position on page",
+      "purpose": "The one number that matters most: which product earns the click, from which page.",
+      "status": "defined"
+    },
+    {
+      "id": "EV-03",
+      "name": "guide_read",
+      "fires": "When a guide reaches 75% scroll depth, once per page load.",
+      "payload": "guide slug",
+      "purpose": "Whether a question-shaped guide is actually read or just landed on.",
+      "status": "defined"
+    },
+    {
+      "id": "EV-04",
+      "name": "compare_view",
+      "fires": "On load of the comparison table page.",
+      "payload": "page path",
+      "purpose": "Whether readers want side-by-side or narrative.",
+      "status": "defined"
+    },
+    {
+      "id": "EV-05",
+      "name": "capture_intent",
+      "fires": "On submit attempt of the reader capture form.",
+      "payload": "page path, form location",
+      "purpose": "Whether anyone wants a digest, before investing in an ESP.",
+      "status": "defined"
+    }
+  ],
+  "analytics": {
+    "enabled": false,
+    "reason": "No collector endpoint deployed. Client is inert rather than silently failing.",
+    "principles": [
+      "No cookies, no fingerprinting, no cross-site identifiers.",
+      "No personal data leaves the browser. The capture form never transmits an address.",
+      "Raw events are not retained beyond 30 days; only daily aggregates persist.",
+      "The counter is first-party and self-hosted, so no third-party processor receives reader behaviour."
+    ]
+  }
+}

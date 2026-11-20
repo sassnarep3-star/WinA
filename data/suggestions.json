@@ -1,0 +1,188 @@
+{
+  "intro": "A decision list, not a wish list. Each suggestion states what to do, why, what it costs, and what would make it a bad idea. Nothing here has been implemented beyond what is already live; the ones marked shipped were built in this pass because the brief asked for them directly. Everything else waits for a decision.",
+  "statusKey": [
+    { "id": "shipped", "label": "Shipped", "note": "Already built on the live site in this pass." },
+    { "id": "recommend", "label": "Recommend next", "note": "Highest confidence, do this before the others." },
+    { "id": "consider", "label": "Consider", "note": "Worth doing, but depends on an earlier decision." },
+    { "id": "hold", "label": "Hold", "note": "Do not do this yet. Reason given." },
+    { "id": "reject", "label": "Rejected", "note": "Would break a rule or mislead a reader." }
+  ],
+  "suggestions": [
+    {
+      "id": "SUG-01",
+      "title": "Keep the site in 'how to decide' voice, permanently, until products are actually tested",
+      "status": "shipped",
+      "weight": 10,
+      "why": "The FTC forbids describing hands-on experience you do not have, and readers detect the fake version instantly. The reliable way to sound human without lying is to write about the decision instead of the verdict: what the drawers are like, what the counter cost is, who the machine is wrong for.",
+      "cost": "None. It is a writing constraint, enforced by the build.",
+      "risk": "A guide that never says 'we tested this' competes poorly against sites that can. That is a real disadvantage and it is the correct one to accept.",
+      "decide": "Accept. Every page already follows it.",
+      "links": [{ "label": "FTC Disclosures 101", "url": "https://www.ftc.gov/business-guidance/resources/disclosures-101-social-media-influencers" }]
+    },
+    {
+      "id": "SUG-02",
+      "title": "Split into two publications, or pick one category and go deep",
+      "status": "recommend",
+      "weight": 9,
+      "why": "Three air fryers and two thermometers are two different buying moments. Search engines reward a site that owns one topic. A small site trying to own 'kitchen gear' owns nothing.",
+      "cost": "Splitting means two domains, two sitemaps, twice the setup. Going deep on air fryers means the thermometers get a single supporting page.",
+      "risk": "If the thermometer affiliate offers a better commission or a bounty, narrowing too early gives up real money.",
+      "decide": "Recommend: keep one site, make air fryers the front section, and treat thermometers as the accessory section — which is what the current structure already does. Confirm before adding a third category.",
+      "links": []
+    },
+    {
+      "id": "SUG-03",
+      "title": "Get PA-API or Creatives access before writing another word",
+      "status": "recommend",
+      "weight": 9,
+      "why": "It is the unlock for the three things this site most obviously lacks: prices, ratings, and product images. All three are currently blank because the rules require API-sourced data. One credential fixes all of it at once.",
+      "cost": "Eligibility requires qualifying sales first — a chicken-and-egg problem for a new account.",
+      "risk": "None to the site. The risk is waiting on access and shipping nothing meanwhile, which is why the current build ships without it.",
+      "decide": "Apply as soon as the account qualifies. Track it in the questions register as Q-11 and Q-12.",
+      "links": [{ "label": "Associates Program Policies", "url": "https://affiliate-program.amazon.com/help/operating/policies" }]
+    },
+    {
+      "id": "SUG-04",
+      "title": "Replace the submitted short links with constructed Special Links and prove one works",
+      "status": "shipped",
+      "weight": 9,
+      "why": "The submitted links carried no visible tag and their compliance status is unsettled. Constructing amazon.com/dp/<ASIN>?tag=shopnow047c-20 is unambiguous, keeps the destination visible in the status bar, and satisfies the link-clarity requirement.",
+      "cost": "None.",
+      "risk": "If the tag is not enrolled, every link still earns nothing. That is the one thing this cannot fix.",
+      "decide": "Already done. Next step is the proof: click one link per product while signed in, and confirm it appears in the tracking report.",
+      "links": [{ "label": "Participation Requirements §6(w)", "url": "https://affiliate-program.amazon.com/help/operating/policies" }]
+    },
+    {
+      "id": "SUG-05",
+      "title": "Publish on a real cadence: one guide a week for eight weeks, then read the query data",
+      "status": "recommend",
+      "weight": 8,
+      "why": "Question-shaped guides are the right shape, but four is not a sample. A weekly cadence for two months produces enough pages and enough query impressions to see which question people actually arrive with, which is the only way to stop guessing topics.",
+      "cost": "One substantive guide per week. Each needs its own verified spec pass.",
+      "risk": "Cadence without quality control produces the thin content the brief explicitly rejects. The build gate must stay on.",
+      "decide": "Recommend a fixed day and a fixed length. Add each new guide to the sitemap and feed in the same commit, then measure at week eight.",
+      "links": []
+    },
+    {
+      "id": "SUG-06",
+      "title": "Add a real author byline with a named person",
+      "status": "recommend",
+      "weight": 8,
+      "why": "Unattributed buying advice reads as generated, which is precisely the failure the brief names. A byline with a short bio and a stated method is the cheapest credibility signal available.",
+      "cost": "Requires a real person willing to be named and accountable.",
+      "risk": "A byline attached to content the person did not write is worse than no byline.",
+      "decide": "Decision needed from the requester. Cannot be fabricated.",
+      "links": []
+    },
+    {
+      "id": "SUG-07",
+      "title": "Move to a custom domain before building any authority",
+      "status": "recommend",
+      "weight": 7,
+      "why": "A /WinA/ subpath reads as a side project, and moving later discards whatever equity accumulated. Doing it now costs a domain and one setting.",
+      "cost": "Domain registration plus DNS. About an hour.",
+      "risk": "Slight setup friction with HTTPS and the CNAME file.",
+      "decide": "Recommend. The build already keeps the origin in one config value, so the change is small.",
+      "links": []
+    },
+    {
+      "id": "SUG-08",
+      "title": "Deploy the analytics collector, and accept that orders cannot be counted yet",
+      "status": "recommend",
+      "weight": 7,
+      "why": "Click data is available today and is the fastest honest feedback loop. Order data has to come from Associates reports, which arrive later. Separating the two keeps the ledger truthful.",
+      "cost": "One worker deploy and a secret.",
+      "risk": "A self-hosted collector is a privacy obligation. The current design stores no identifiers, which keeps that burden small.",
+      "decide": "Recommend deploying to close FLG-011. Do not import a third-party tracker as a shortcut.",
+      "links": [{ "label": "Measurement page", "url": "https://sassnarep3-star.github.io/WinA/analytics/" }]
+    },
+    {
+      "id": "SUG-09",
+      "title": "Add a 'who should not buy this' block to every product page",
+      "status": "consider",
+      "weight": 6,
+      "why": "The single most useful thing a buying guide can say, and the thing competitors skip. It also converts better, because readers trust a page that talked them out of something.",
+      "cost": "A short block per product.",
+      "risk": "None. It requires actually understanding the trade-off, which is why most sites omit it.",
+      "decide": "Consider. The current pages carry a trade-off line; expanding it to a full block is the natural next edit.",
+      "links": []
+    },
+    {
+      "id": "SUG-10",
+      "title": "Build a real comparison table with measured dimensions",
+      "status": "consider",
+      "weight": 6,
+      "why": "The comparison page exists but is thin because dimensions are unverified. Counter footprint is the number that actually decides a purchase, and nobody publishes it clearly.",
+      "cost": "Researching dimensions from manufacturer spec sheets, with a source link per number.",
+      "risk": "A wrong dimension is worse than a blank. Only add numbers with a source.",
+      "decide": "Consider once manufacturer sheets are gathered. Until then the table shows what is verified and says what is not.",
+      "links": []
+    },
+    {
+      "id": "SUG-11",
+      "title": "Add a short 'how we choose what to recommend' block to the front page",
+      "status": "consider",
+      "weight": 5,
+      "why": "Readers arriving cold need one sentence on why these five products and not others. It also pre-empts the 'is this an ad' reflex.",
+      "cost": "Three sentences.",
+      "risk": "Can tip into self-referential process talk, which the brief explicitly wants kept off the front page. Keep it to a single block low on the page.",
+      "decide": "Consider. The About page currently carries this.",
+      "links": []
+    },
+    {
+      "id": "SUG-12",
+      "title": "Do not add a price tracker, price alerts, or a deal feed",
+      "status": "reject",
+      "weight": 10,
+      "why": "Prohibited outright by §6(y) regardless of how it is built.",
+      "cost": "Zero.",
+      "risk": "It is the most requested feature on affiliate sites and the most direct route to account termination.",
+      "decide": "Rejected. Documented so no future session builds it.",
+      "links": [{ "label": "Participation Requirements §6(y)", "url": "https://affiliate-program.amazon.com/help/operating/policies" }]
+    },
+    {
+      "id": "SUG-13",
+      "title": "Do not generate volumes of near-duplicate pages to chase long-tail queries",
+      "status": "reject",
+      "weight": 10,
+      "why": "Template-spun variants of the same article are the definition of the thin, generated content the brief rejects, and they dilute the pages that could rank.",
+      "cost": "Zero.",
+      "risk": "It works briefly, then gets the whole domain discounted.",
+      "decide": "Rejected. The build gate refuses pages without unique content fields.",
+      "links": []
+    },
+    {
+      "id": "SUG-14",
+      "title": "Hold the email capture until there is something to send",
+      "status": "hold",
+      "weight": 5,
+      "why": "Collecting addresses with no ESP and no publishing cadence means collecting nothing. The form is currently inert and says so.",
+      "cost": "Saves an ESP subscription.",
+      "risk": "Capture opportunities are lost while waiting.",
+      "decide": "Hold until SUG-05 produces a cadence. Then wire one ESP and one welcome email.",
+      "links": []
+    },
+    {
+      "id": "SUG-15",
+      "title": "Hold all paid search",
+      "status": "hold",
+      "weight": 5,
+      "why": "No bid is permitted on Amazon marks, and a new site with no conversion data cannot tell whether an ad is profitable. Advertising before measurement is guessing with a budget.",
+      "cost": "Zero.",
+      "risk": "Slower initial traffic.",
+      "decide": "Hold until the ledger has real click and order data.",
+      "links": [{ "label": "Participation Requirements §6(f)", "url": "https://affiliate-program.amazon.com/help/operating/policies" }]
+    },
+    {
+      "id": "SUG-16",
+      "title": "Publish a dated 'last checked' line on every product page",
+      "status": "consider",
+      "weight": 5,
+      "why": "Specifications and availability change. A visible date tells the reader how much to trust the page, and forces the site to actually re-check.",
+      "cost": "One field, refreshed on a schedule.",
+      "risk": "A stale date is a public admission of neglect. That is the point.",
+      "decide": "Consider. Pages currently record the observation date in the register rather than on the page.",
+      "links": []
+    }
+  ]
+}
