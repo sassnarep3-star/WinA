@@ -1,0 +1,20 @@
+{
+  "$comment": "TEMPLATE — copy to data/inbox/<product-slug>.json. Files starting with 'example' are ignored by scripts/collect.mjs.",
+  "slug": "chefman-6-quart-dual-basket",
+  "asin": "B0CDY277D3",
+  "source": "amazon-listing",
+  "accessed": "2026-11-20",
+  "fields": {
+    "Capacity": "6 qt total (2 × 3 qt)",
+    "Wattage": null,
+    "Weight": null
+  },
+  "observed_destination": "https://www.amazon.com/dp/B0CDY277D3",
+  "$rules": [
+    "source must be an id defined in data/policy.json; a value with no traceable source is the failure mode this whole project exists to prevent",
+    "accessed is the date YOU read the page, and it is what the 90-day review window is measured from",
+    "null means 'not obtained'. Never write a guess, never write 0 to mean none.",
+    "price, star_rating, rating_count and availability are refused: Program Policies §6(t) and §6(y)",
+    "observed_destination updates the observation field on data/links.json and never the intended ASIN"
+  ]
+}

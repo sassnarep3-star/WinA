@@ -1,343 +1,106 @@
-# Counter Space
+# The Crisp Counter 🍳
 
-An Amazon affiliate publication covering three air fryers and two meat thermometers,
-built around five submitted `link.amazon` short links and Tracking ID `shopnow047c-20`.
+**Live site: https://sassnarep3-star.github.io/WinA/**
 
-**Live:** https://sassnarep3-star.github.io/WinA/
+A publication-style Amazon affiliate site for a five-product kitchen lineup (three air
+fryers, two cooking thermometers), promoted under Associates tracking ID
+`shopnow047c-20`. It is designed to read like a shop a buyer can act on — question-shaped
+guides, source-linked product facts, marked sponsored links — with the verification
+machinery kept reachable in a "data room" instead of in the reader's face.
 
-The site is a static build with no runtime dependencies. `node _src/build.mjs` regenerates
-every page from the JSON in `data/` and then runs a publication gate that fails on
-compliance or fabrication regressions.
+> **Disclosure:** As an Amazon Associate, The Crisp Counter earns from qualifying
+> purchases. Every product link is a marked, `rel="sponsored"` affiliate link.
 
----
+## What's on the site
 
-## Why it is built this way
-
-Before writing anything, the Amazon Associates Operating Agreement and Program Policies
-were read and the constraints applied. Three of them shaped the whole design:
-
-| Requirement | Effect on the build |
-|---|---|
-| OA §5 — must state *"As an Amazon Associate I earn from qualifying purchases."* | Printed verbatim under the masthead on every page, repeated in the footer. The build fails if either disappears. |
-| Policies §6(t) — no star ratings or customer reviews without Creatives/PA-API | Ratings and review counts are displayed as **withheld**, with the reason, not left blank. |
-| Policies §6(y) — no price tracking or alerting | No prices anywhere. Price fields are marked unverified. |
-
-Two more shaped the writing:
-
-- **FTC Disclosures 101** requires the disclosure to be hard to miss and placed with the
-  endorsement — hence the strip under the masthead rather than a footer-only notice.
-- **FTC:** *"You can't talk about your experience with a product you haven't tried."* No page
-  claims testing. Every guide is written about the decision rather than a verdict.
-
-Nothing on the site is inferred. Where a value could not be confirmed from an official
-source it is blank and marked `unverified`; where policy forbids display it is marked
-`withheld`. The gate enforces that a spec cannot carry both a value and an unverified status.
-
----
-
-## Layout
-
-```
-archive/              prior sessions' builds, preserved verbatim (not served)
-  arena-4a5044b0/     first build; recorded Amazon as unreachable (superseded, FLG-017)
-  arena-6bd1be15/     second build; verification log behind FLG-016
-  arena-2ca62ce9/     third build; 18-item flag register + source register SRC-01..11
-data/                 the single source of truth
-  products.json       products, specs, verification status, categories, site config
-  policy.json         primary sources + compliance register with quoted clauses
-  governance.json     flagged items, campaign ledger, event definitions
-  questions.json      22 open questions with what is missing and how to close it
-  suggestions.json    24 reviewable suggestions with cost, risk and recommendation, plus a design brief, topic roadmap and decision log
-_src/
-  build.mjs           renders all pages, sitemap, feed, robots, 404, then gates
-  content.mjs         the ten guides (01–10, incl. the seasonal edits)
-  pages-content.mjs   about, disclosure, privacy, marketing, SEO prose
-  serve.mjs           local preview server (mirrors the /WinA/ subpath)
-_worker/
-  collector.js        first-party analytics collector, not deployed
-assets/css/site.css   design system
-assets/js/site.js     five events + sponsored-link confirmation
-```
-
-Generated output lives at the repo root so GitHub Pages serves it directly from `main`.
-
-### Reader-facing polish (T35, 2026-11-20)
-
-The brief asked for the site to "read like a shop, not an audit". The verification record
-stays complete — it lives on `/register/`, `/flagged/` and the footer record group — but the
-reader path now leads with products, questions and seasons:
-
-- **Imagery.** Five editorial illustrations in `assets/img/`, generated for this publication
-  and labelled on every page as *"Illustration for the publication — not product photography."*
-  Product photography remains withheld pending Creatives API access (FLG-007); the generated
-  art has its own provenance flag (FLG-030) and never depicts a listed product.
-- **Seasons.** The 2026 hosting edit on the front page, backed by two dated question-shaped
-  guides (`hosting-season`, `thermometer-gifting`) framed as editorial hypotheses, not demand
-  claims (FLG-020).
-- **Clusters.** The air fryer path and the thermometer path are visible as reading routes on
-  the front page and category hubs, with the publishing cadence table on `/guides/`.
-- **Authorship.** House byline ("the Counter Space desk") and updated dates on every guide;
-  a named human author remains an owner decision (SUG-06, Q-21).
-- **Decision board.** `/suggestions/` now renders each suggestion as a card with an explicit
-  choice (adopt / modify / hold / reject), persisted in the reviewer's browser and exportable
-  as text. Nothing is implemented before a choice is handed back to the build.
-- **Product-intent confirmation record.** `/register/` splits the record into two tables that
-  are never merged: intent (intended ASIN, official listing URL, confirmation date, source —
-  blank until the owner confirms) and observation (observed redirect targets, with a dated
-  same-day re-check column, FLG-031).
-- **Findability.** `og:image` on every page, Article + BreadcrumbList JSON-LD on guides, and
-  the sitemap and RSS feed carry all ten guides.
-
----
-
-## Build
-
-```bash
-node _src/build.mjs        # regenerate + validate
-node _src/serve.mjs 8080   # preview at http://localhost:8080/WinA/
-```
-
-No `npm install` is required. There are no dependencies.
-
-`VALIDATION.md` is rewritten on every build and lists every check with its result.
-
-### The gate
-
-The build exits non-zero if any of these fail:
-
-1. Every page carries the disclosure strip above `<main>`.
-2. Every page carries the exact Associate statement required by OA §5.
-3. Every page declares a canonical URL.
-4. Every Amazon anchor is either a tagged sponsored link **or** a declared
-   non-affiliate citation (`data-nonaffiliate`). Ambiguous links fail.
-5. No star ratings or review quotes appear anywhere.
-6. No spec carries a value while marked `unverified` or `withheld`.
-7. Every policy row quotes a clause and links a primary source.
-8. All internal links resolve.
-9. The sitemap lists every page.
-
-CI runs the same command on every push (`.github/workflows/build.yml`).
-
----
-
-## Deploying the analytics collector
-
-Analytics are **off** right now. `gov.analytics.enabled` is `false` and the endpoint is
-empty, so the client returns immediately and sends nothing. This is deliberate: a client
-posting into a void would look like measurement while producing none.
-
-To turn it on:
-
-1. Deploy the worker:
-   ```bash
-   wrangler deploy _worker/collector.js --name cs-collector \
-     --compatibility-date 2026-01-01
-   wrangler secret put ALLOWED_ORIGIN   # https://sassnarep3-star.github.io
-   ```
-2. Bind a KV namespace as `EVENTS` (30-day TTL is set in code).
-3. In `_src/build.mjs`, change the `CS_CONFIG` line to emit the real endpoint and set
-   `analyticsEnabled: true` — or flip `enabled` in `data/governance.json` and pass the URL
-   through the same config.
-4. Rebuild and commit.
-
-**Or host the dependency-free collector in this repository instead**, on any host that can run
-Node 20+:
-
-```bash
-HOST=0.0.0.0 PORT=8080 STATE_DIR=/var/lib/cs DATA_DAYS=30 \
-ALLOWED_ORIGINS=https://sassnarep3-star.github.io \
-SUMMARY_TOKEN=<a long random string> \
-node scripts/analytics-server.mjs
-```
-
-It speaks the same payload as the worker — props nested under `p`, exactly as
-`assets/js/site.js` sends them — and stores the same row (day, event, path, ASIN, slot, coarse
-viewport class). `scripts/analytics-selftest.mjs` starts it on an ephemeral port and asserts the
-collector contract end to end, including that a click keeps the ASIN that earned it; it runs in
-CI, so the two collectors cannot drift apart unnoticed. (`ALLOWED_ORIGINS` for the server,
-`ALLOWED_ORIGIN` for the worker — the names differ because the runtimes differ.)
-
-The five events are defined in `data/governance.json` and documented at `/analytics/`.
-The collector stores a day bucket, event name, page path, ASIN and coarse viewport class.
-It does not store IP addresses, user agents, referrers, or any identifier.
-
----
-
-## Editing content
-
-All copy that matters lives in `data/` or `_src/content.mjs`. To add a guide, append an
-object to `guides` in `_src/content.mjs` with `slug`, `number`, `title`, `dek`, `category`,
-`readingTime`, `topics`, `intro`, `body` and `takeaways`. The build picks it up and adds it
-to the sitemap and the feed automatically — that was a requirement, not a convenience.
-
-To add a product, add it to `data/products.json` with a `specs` array where **every** entry
-declares a `status`. Use `null` for any value you cannot verify. The gate will reject a
-value without a source on a `verified` row, and a value on an `unverified` row.
-
-Guide bodies are raw HTML inside a template literal. Use `{BASE}` where an internal link
-needs the site prefix — it is substituted at build time.
-
----
-
-## Things that are deliberately missing
-
-- **Prices** — no PA-API/Creatives access; §6(y) also forbids price tracking.
-- **Ratings and reviews** — §6(t) forbids display without API access.
-- **Product photography** — Program Content may not be hot-linked or stored; a different
-  appliance's photo would misrepresent the item.
-- **Testing claims** — no testing took place.
-- **Traffic, conversion and revenue figures** — there is no data yet, so none is presented.
-
-Every gap above is published on the `/flagged/` page with a source link and the specific
-action that would close it.
-
----
-
-## Open actions, in order
-
-1. Confirm one link per product appears in the Associates tracking report
-   (**FLG-004** — if the ID is not enrolled, nothing earns).
-2. Deploy the collector (**FLG-011**).
-3. Verify Search Console and replace the placeholder token (**FLG-009**).
-4. Publish one guide a week for eight weeks, then read the query report.
-
-Full detail: `/questions/`, `/suggestions/`, `/summary/`, `/flagged/`.
-
----
-
-## Coordination
-
-`COORDINATION.md` is the shared task board. **Read it before writing anything.** Four sessions
-have already built four different sites on this repo, because each one started a fresh build
-instead of extending what was on `main`. The board records how that happened and what it cost.
-
-If `main` already builds, extend it. Claim your scope on the board and push the claim before
-you write code.
-
-### Archives
-
-`archive/` holds three complete prior builds, preserved unchanged. They are real files under
-`/archive/...` and are linked from `/flagged/`, but they are excluded from the publication
-gate on purpose: the point of an archive is that it stays exactly as it was.
-
-No prior session's finding was deleted. All 18 items from the previous register are folded
-into `data/governance.json` as FLG-013…023, each naming the ID it came from.
-
----
-
-## Second gate and one real fix (session `41096d21`)
-
-Four sessions built four sites on this repo. This one had a fifth parked at `/v2/` and, on
-discovering the current `main`, **deleted it rather than ship a fifth**. `scripts/check-site.mjs`
-was kept, because a second gate written independently is worth more than the site it was written for.
-
-It immediately found a live defect that the authoring gate could not see.
-
-### Unsponsored Amazon links on evidentiary pages
-
-`_src/build.mjs` scanned Amazon anchors with:
-
-```js
-/<a\b[^>]*href="(https:\/\/www\.amazon\.com[^"]*)"[^>]*>/g
-```
-
-That pattern only matches `www.amazon.com`. Every `link.amazon/...` anchor was invisible to it —
-so `/flagged/`, `/questions/`, `/register/` and `/suggestions/` rendered the five submitted short
-links as plain `<a rel="noopener">` and the gate reported "every Amazon anchor is either a tagged
-sponsored link or a declared non-affiliate citation" while six of them were neither.
-
-Each of those links opens a live Amazon product page. FTC 16 CFR 255.5 wants the material
-connection disclosed next to such a link, and it was not.
-
-Fixed at the source, so it survives regeneration:
-
-1. The anchor sweep now matches `amazon.*`, `link.amazon` and `amzn.to`.
-2. `cite()` routes every one of those domains, rather than only `amazon.com`.
-3. The suggestions table and governance source column, which built their own anchors, now go
-   through `cite()` too.
-
-Submitted short links carry no Associates tag, so they earn nothing and are marked
-`rel="nofollow" data-nonaffiliate="true"` — a declared evidence citation. Calling them sponsored
-would be a false claim; leaving them undeclared is what the gate now forbids.
-
-### The gate now distinguishes three states, not two
-
-| Rendered as | Meaning | Verdict |
+| Surface | Pages | Purpose |
 |---|---|---|
-| `rel="sponsored"` + `?tag=` | monetised Special Link | pass |
-| `rel="nofollow"` + `data-nonaffiliate="true"`, no tag | evidence citation | pass |
-| anything else | ambiguous | **fail** |
-| sponsored without a tag | earns nothing, misleads | **fail** |
-| both sponsored and non-affiliate | contradictory | **fail** |
+| Front | `index.html` | Publication front page: featured lineup, guides, seasonal note |
+| Shop | `shop.html`, `compare.html` | All 5 products by category + full source-linked comparison table |
+| Guides | `guides/` | 4 question-shaped buyer guides (working editorial hypotheses, labeled as such) |
+| Decisions | `suggestions.html`, `questions.html` | Review-before-build suggestion queue · open-questions register |
+| Summary | `executive-summary.html`, `about.html` | One-page project state · method & money disclosure |
+| Data room | `data-room/` | Source register, product-intent record, campaign ledger (empty by design), measurement spec, compliance gate, **Flagged for Review**, methodology |
 
-All three failure modes were confirmed by injecting a deliberately bad anchor and watching the
-gate fail, then reverting.
+## Verification rules (enforced, not aspirational)
 
-**Current state — both gates green:** `node _src/build.mjs` → 27 pages, all gates clear;
-`node scripts/check-site.mjs` → 27 pages, 946 internal links, 120 Amazon links (108 sponsored,
-12 declared citations), zero failures. Build verified byte-reproducible.
+1. Every product fact was read from the official Amazon listing on **2026-11-20** and is
+   stamped with that observation date.
+2. Every table row is source-linked or explicitly flagged `unverified` — blanks are never
+   guessed. See `data-room/source-register.html`.
+3. Submitted identifiers and observed redirect targets are kept in **separate fields** and
+   never merged (`data-room/product-intent.html`).
+4. Listing-internal contradictions are published as contradictions (FLG-004, FLG-007).
+5. `tools/check_site.py` re-checks disclosures, `rel="sponsored"` tags, source rows, and
+   link integrity on every change (CI workflow `.github/workflows/site.yml`).
 
-CI now runs both gates plus a stale-artefact check, because this merge did resurrect `shop/`,
-`tools/`, `dashboard/` and `guides/` from an older build — exactly the failure the previous
-session's note warned about, and it recurred.
-
-### Session arena-59299521-wina (2026-11-20)
-
-Integrated the `arena/59299521-wina` work into `main` (PR #7):
-- Added guide 05 "Instant-read or wireless: which meat thermometer fits your grill?" (`guides/instant-vs-wireless/`) to `_src/content.mjs`.
-- Tagged both thermometer products (B0DHZTCNR5 ThermoMaven, B0DZFD6R9Z CHEF iQ Sense) with `instant-vs-wireless` in `data/products.json` so the guide page renders tagged sponsored affiliate links.
-- Removed stale flat guide `guides/instant-read-or-wireless.html`.
-- Rebuilt with `node _src/build.mjs`: 28 pages, 27 in sitemap, publication gate PASSED (canonical + all Amazon anchors `rel="sponsored"` + `data-affiliate` + `tag=shopnow047c-20`).
-- All five affiliate links verified against official Amazon listings 2026-11-20; intended ASINs left blank and flagged (FLG-001/FLG-002).
-
----
-
-## Commands, gates and where to look
-
-The repository has no dependencies; every command is Node standard library.
-
-| Command | What it does |
-| --- | --- |
-| `node _src/build.mjs` | Regenerates all 29 pages, the sitemap, the feed and `VALIDATION.md` from `data/`, then runs the publication's own 9 gates |
-| `node scripts/check-site.mjs` | Independent structural gate: canonicals, meta, headings, alt text, asset hosts, JSON-LD, every internal link, sitemap parity, RSS |
-| `node scripts/compliance-gate.mjs` | Money-and-trust gate: disclosure **order**, three-state link classification, claim bans, register cross-references, schema bans, source staleness |
-| `node scripts/compliance-gate.mjs --refresh-sources` | Re-reads every cited policy page and diffs the text we quote; warns past 90 days |
-| `node scripts/publish-gate.mjs` | Runs all three, proves the build is reproducible, prints the publish decision and what a human still owes |
-| `node scripts/collect.mjs` | Folds `data/inbox/*.json` into the register with provenance; refuses unsourced values, prices and ratings |
-| `node scripts/next-topics.mjs` | Ranks candidate guides from a Search Console export in `data/exports/`; refuses to rank without one |
-| `node scripts/analytics-server.mjs` | Self-hosted collector, same contract as `_worker/collector.js` (five events, key allow-list, 30-day retention, `/summary`) |
-| `node scripts/analytics-selftest.mjs` | Starts the collector on an ephemeral port and asserts its contract end to end; also compares the worker and the server against each other and against the register. Run in CI |
-
-Reading order for a reviewer: **`EXECUTIVE_SUMMARY.md`** (state of the project, one page) →
-`ARCHITECTURE.md` (why each piece is built this way, and the two human checkpoints) →
-[`/register/`](https://sassnarep3-star.github.io/WinA/register/) (every value with its source and
-date) → [`/flagged/`](https://sassnarep3-star.github.io/WinA/flagged/) (29 open and resolved
-findings) → [`/suggestions/`](https://sassnarep3-star.github.io/WinA/suggestions/) (what to do next,
-by path) → [`COORDINATION.md`](COORDINATION.md) (who did what, and the four-build collision record).
-
-Three gates, deliberately overlapping: each has found something the others could not see, on this
-repository, in production. `npm run check` (or `node scripts/publish-gate.mjs --committed`) is what
-CI runs, and Pages serves exactly what is in the tree.
-
----
-
-## Session arena/574fc8eb-wina — archived parallel build (T27, PR #26)
-
-A session that started from the pre-site commit (`df3e953`, when `main` held only this file)
-completed a full independent build while other sessions were merging the publication you see above.
-Its complete site — publication front page, shelf, five question-shaped guides, analysis,
-suggestions review with a records-only path chooser, open questions, executive summary, flagged
-page, platform/source register, search — plus its data, generator and compliance gate are preserved
-at **`archive/arena-574fc8eb-wina/`**, following this repository's archive convention. The served
-root site was not modified by that session.
+Run the gate locally:
 
 ```bash
-python3 archive/arena-574fc8eb-wina/scripts/build_site.py   # rebuild the archive
-python3 archive/arena-574fc8eb-wina/scripts/check_site.py   # its compliance gate
+python3 tools/check_site.py   # exits non-zero on any violation
 ```
 
-CI runs both on every push (`.github/workflows/gate.yml`, scoped to the archive). The session's
-independent 2026-11-20 verification agrees with `data/links.json` on all five observed
-destinations; its session record, verification log and integration decision are appended to
-`COORDINATION.md` (T27).
+## Machinery
 
+- **SEO:** `sitemap.xml`, `robots.txt`, canonical tags, Open Graph, JSON-LD
+  (WebSite/Article/FAQPage — deliberately conservative, no Product offers markup until
+  G-4 confirms the links).
+- **RSS:** `feed.xml` — every new guide lands here and in the sitemap.
+- **Analytics:** privacy-preserving five-event layer (`assets/js/analytics.js`), no
+  cookies/PII/third parties, fail-closed until the self-hosted endpoint
+  (`analytics/worker.js`) is deployed — steps in `analytics/README.md`.
+- **Compliance gate:** G-1…G-3 automated in CI; G-4…G-7 human checklists on
+  `data-room/compliance-gate.html`.
+
+## Open items for the owner (nothing else blocks)
+
+1. **O-1 / G-4** — test one tagged Special Link per product in Associates; confirm the
+   destination + tracking report for `shopnow047c-20`; then fill the intent record.
+2. **O-2 / G-5** — sign off disclosure placement + endorsement context (checklist shipped).
+3. **O-3 / G-6** — deploy `analytics/worker.js` and set the `cc-endpoint` meta tag.
+4. **O-4** — Search Console verification token; approve (or decline) price-check automation.
+
+All eight flags (FLG-001…FLG-008) are published on the site's
+[Flagged for Review](https://sassnarep3-star.github.io/WinA/data-room/flagged.html) page
+with source links.
+
+## Repository layout
+
+```
+index.html … about.html      reader-facing pages
+guides/                      question-shaped buyer guides
+data-room/                   verification & compliance surfaces
+assets/                      css, js, editorial imagery
+analytics/                   self-hosted collect endpoint (worker + docs)
+tools/check_site.py          automated compliance & link gate
+.github/workflows/site.yml   CI: runs the gate on every push/PR
+COORDINATION.md              shared task board (multi-session protocol)
+```
+
+See `COORDINATION.md` for the task log, sources used, verification performed, and the PR /
+Pages-publish record.
+
+## Session arena-266b1b8f — reader-facing polish (T36, 2026-11-20)
+
+This session's brief: make the publication read like a shop, not an audit — imagery,
+authorship, seasons, clusters, a suggestions decision board, and the product-intent
+confirmation record split. Work landed across two site generations:
+
+- **On the earlier `_src/build.mjs` publication ("Counter Space")**: de-audited front page,
+  five generated editorial illustrations (provenance flag FLG-048), the 2026 hosting edit,
+  topic clusters, house byline, three question-shaped guides, and the decision board.
+  That build was retired on `main` by the parallel integration (PR #28) while this session
+  was working; its generated pages live in git history and the archives.
+- **On the current publication ("The Crisp Counter")**, delivered in this session's PR:
+  three new question-shaped guides (`guides/hosting-season.html`,
+  `guides/thermometer-gifting.html`, `guides/air-fryer-claims.html`) in the site's own
+  template, wired into the guides index, sitemap and RSS feed; the **decision board** on
+  `suggestions.html` (adopt / modify / hold / reject per suggestion, browser-local storage,
+  text export — nothing is implemented before a recorded choice); imagery provenance flag
+  **FLG-048** and brand-mismatch flag **FLG-049** in the governance register; and this
+  session's fifth independent short-link re-check recorded in `data/links.json`.
+
+Verification (2026-11-20): all five submitted short links re-opened — one reached its
+product page, four reached the Amazon home page, independently matching arena/b37e1a98's
+check (FLG-040/FLG-047); two official listings fetched directly and matched the register
+titles exactly. Gate `tools/check_site.py`: PASS.

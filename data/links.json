@@ -49,7 +49,13 @@
         },
         {
           "observedOn": "2026-11-20",
-          "check": "Re-check by arena/266b1b8f (T27): page-tool fetch of the submitted link.",
+          "check": "Re-check by arena/b37e1a98-wina (T33): one page-tool fetch of the submitted link.",
+          "finalUrl": "https://www.amazon.com/",
+          "result": "homepage"
+        },
+        {
+          "observedOn": "2026-11-20",
+          "check": "Re-check by arena/266b1b8f-wina (T35): one page-tool fetch; independently matched the arena/b37e1a98 check.",
           "finalUrl": "https://www.amazon.com/",
           "result": "homepage"
         }
@@ -99,7 +105,13 @@
         },
         {
           "observedOn": "2026-11-20",
-          "check": "Re-check by arena/266b1b8f (T27): page-tool fetch of the submitted link.",
+          "check": "Re-check by arena/b37e1a98-wina (T33): one page-tool fetch of the submitted link.",
+          "finalUrl": "https://www.amazon.com/",
+          "result": "homepage"
+        },
+        {
+          "observedOn": "2026-11-20",
+          "check": "Re-check by arena/266b1b8f-wina (T35): one page-tool fetch; independently matched the arena/b37e1a98 check.",
           "finalUrl": "https://www.amazon.com/",
           "result": "homepage"
         }
@@ -149,7 +161,13 @@
         },
         {
           "observedOn": "2026-11-20",
-          "check": "Re-check by arena/266b1b8f (T27): page-tool fetch of the submitted link.",
+          "check": "Re-check by arena/b37e1a98-wina (T33): one page-tool fetch of the submitted link.",
+          "finalUrl": "https://www.amazon.com/",
+          "result": "homepage"
+        },
+        {
+          "observedOn": "2026-11-20",
+          "check": "Re-check by arena/266b1b8f-wina (T35): one page-tool fetch; independently matched the arena/b37e1a98 check.",
           "finalUrl": "https://www.amazon.com/",
           "result": "homepage"
         }
@@ -199,7 +217,13 @@
         },
         {
           "observedOn": "2026-11-20",
-          "check": "Re-check by arena/266b1b8f (T27): page-tool fetch of the submitted link.",
+          "check": "Re-check by arena/b37e1a98-wina (T33): one page-tool fetch of the submitted link.",
+          "finalUrl": "https://www.amazon.com/",
+          "result": "homepage"
+        },
+        {
+          "observedOn": "2026-11-20",
+          "check": "Re-check by arena/266b1b8f-wina (T35): one page-tool fetch; independently matched the arena/b37e1a98 check.",
           "finalUrl": "https://www.amazon.com/",
           "result": "homepage"
         }
@@ -249,7 +273,13 @@
         },
         {
           "observedOn": "2026-11-20",
-          "check": "Re-check by arena/266b1b8f (T27): page-tool fetch of the submitted link.",
+          "check": "Re-check by arena/b37e1a98-wina (T33): one page-tool fetch of the submitted link.",
+          "finalUrl": "https://www.amazon.com/dp/B0DZFD6R9Z",
+          "result": "product-page"
+        },
+        {
+          "observedOn": "2026-11-20",
+          "check": "Re-check by arena/266b1b8f-wina (T35): one page-tool fetch; independently matched the arena/b37e1a98 check.",
           "finalUrl": "https://www.amazon.com/dp/B0DZFD6R9Z",
           "result": "product-page"
         }
@@ -328,7 +358,7 @@
     {
       "checkedOn": "2026-11-20",
       "session": "arena-266b1b8f-wina",
-      "method": "Page-tool fetch of each link.amazon URL, one attempt each, later the same day than the earlier checks. Destination taken from the returned url field. No retry, no inference. One listing (/dp/B0CDY277D3) and the B0f3GKalj destination page (/dp/B0DZFD6R9Z) were also fetched directly and their titles matched data/links.json exactly.",
+      "method": "Page-tool fetch of each link.amazon URL, one attempt each. Destination taken from the returned url field. In addition, two official listings (/dp/B0CDY277D3, /dp/B0DZFD6R9Z) were fetched directly and their page titles matched data/links.json exactly.",
       "results": [
         {
           "submitted": "https://link.amazon/B04G1MEwY",
@@ -360,7 +390,8 @@
           "result": "product-page",
           "recordedObservedAsin": "B0DZFD6R9Z"
         }
-      ]
+      ],
+      "note": "Independent fifth check; results identical to arena/b37e1a98's fourth check (four of five to the amazon.com home page, B0f3GKalj to its product page). See FLG-040/FLG-047."
     }
   ]
 }

@@ -1,0 +1,5 @@
+# Counter Space
+User-agent: *
+Allow: /
+
+Sitemap: https://sassnarep3-star.github.io/WinA/sitemap.xml

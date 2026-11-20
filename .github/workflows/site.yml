@@ -1,0 +1,20 @@
+name: site-gate
+
+on:
+  push:
+    branches: [main, "arena/**", "session/**"]
+  pull_request:
+    branches: [main]
+
+jobs:
+  compliance-gate:
+    name: compliance & integrity gate (G-1…G-3)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Run tools/check_site.py
+        run: python3 tools/check_site.py
