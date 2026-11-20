@@ -23,16 +23,15 @@
 
 ## Session history — read this before building anything
 
-**Four sessions have worked on this repo, on four separate branches. This caused the exact
-collision the rules exist to prevent.** Recording it plainly so the next session does not
-repeat it.
+**Four prior sessions worked on this repo on separate branches, causing collisions and duplicate builds.** Session `arena-2b309a82` is the current fifth session and is extending the converged `_src/build.mjs` publication rather than adding another site.
 
 | # | Session | Branch | What it built | Outcome |
 |---|---|---|---|---|
 | 1 | `arena-4a5044b0` | `arena/4a5044b0-wina` | First root-level site. Recorded Amazon.com as unreachable and left every product field blank. | Merged (PR #1). Archived. Its "unreachable" claim is superseded — see FLG-017. |
 | 2 | `arena-6bd1be15` | `arena/6bd1be15-wina` | Verified all 5 links via page fetch, corrected the product mix to 3 air fryers + 2 thermometers. | Merged (PR #6). Archived. Its verification log is the origin of FLG-016. |
 | 3 | `arena-2ca62ce9` | `arena/2ca62ce9-wina` | Third build at repo root; 18-item flag register; source register SRC-01…SRC-11. | Merged (PR #9). Archived with full data + toolchain. |
-| 4 | `arena-ffa85037` | `arena/ffa85037-wina` | **This build.** Editorial publication, compliance gate, 23-item flag register absorbing all prior findings. | Integration session — see below. |
+| 4 | `arena-ffa85037` | `arena/ffa85037-wina` | Editorial publication, compliance gate, 23-item flag register absorbing prior findings. | Merged to `main` (PR #10); see below. |
+| 5 | `arena-2b309a82` | `arena/2b309a82-wina` | Extend the converged build with six buyer guides, corrected independent redirect records, and a validation gate against intent/observed-field conflation. | In progress — PR #2 rebased onto current `main`. |
 
 **Why it happened:** each session began from a `main` that already contained a previous
 session's site, but built its own root-level site rather than extending the existing one.
@@ -41,7 +40,7 @@ existed"*). Sessions 1–3 each wrote a different `COORDINATION.md`; nothing was
 into one board, so no session could see the others' claims.
 
 **Lesson for the next session:** if `main` already builds, *extend it*; do not start a
-fourth site. Claim the scope here first and push the claim before writing code.
+fifth site. The current fifth session extends the converged build and claims only the guide, link-register, generated-feed, and related validation scope listed in T16.
 
 ---
 
@@ -55,7 +54,7 @@ fourth site. Claim the scope here first and push the claim before writing code.
 | T04 | Landing page as publication front page | done | arena-ffa85037 | `index.html` | Reader-first; dashboards in footer only |
 | T05 | Category hubs (air fryers, thermometers) | done | arena-ffa85037 | `air-fryers/`, `thermometers/` | |
 | T06 | Product pages ×5 | done | arena-ffa85037 | `products/*` | |
-| T07 | Four question-shaped guides | done | arena-ffa85037 | `guides/*` | Working titles, not popularity claims |
+| T07 | Six question-shaped guides, including two thermometer articles | in progress | arena-2b309a82 | `_src/content.mjs`, `_src/build.mjs`, `data/products.json`, generated `guides/*` | New thermometer guides are editorial questions; no demand claim |
 | T08 | Comparison table | done | arena-ffa85037 | `compare/` | Verified specs only |
 | T09 | Dashboard surfaces (register, flagged, ledger, analytics, questions, suggestions, summary) | done | arena-ffa85037 | `register/`, `flagged/`, `dashboard/`, `questions/`, `suggestions/`, `summary/`, `analytics/` | Reachable from footer on every page |
 | T10 | Analytics: 5 defined events + self-hosted collector | done | arena-ffa85037 | `assets/js/site.js`, `_worker/collector.js`, `analytics/` | Client disabled — no endpoint (FLG-011) |
@@ -63,7 +62,8 @@ fourth site. Claim the scope here first and push the claim before writing code.
 | T12 | Publication gate + CI | done | arena-ffa85037 | `_src/build.mjs`, `.github/workflows/build.yml` | 9 checks, fails the build |
 | T13 | Preserve prior sessions' work | done | arena-ffa85037 | `archive/*` | 3 builds, 64 files, nothing deleted |
 | T14 | Merge prior findings into one register | done | arena-ffa85037 | `data/governance.json` | 23 flags; 14 carried forward with attribution |
-| T15 | PR → `main`, merge, confirm Pages deploy | in progress | arena-ffa85037 | — | See integration result below |
+| T15 | PR → `main`, merge, confirm Pages deploy | done | arena-ffa85037 | — | PR #10 merged and Pages build confirmed; see integration result below |
+| T16 | Correct submitted-link observed targets, preserve blank intent fields, and add two thermometer buyer guides | in progress | arena-2b309a82 | `_src/content.mjs`, `_src/build.mjs`, `data/products.json`, `data/governance.json`, `data/questions.json`, generated guide/register/feed/sitemap, `COORDINATION.md` | Observed redirects for links 1 and 3 differ from their adjacent catalog records; exact intended association remains unconfirmed |
 
 ---
 
@@ -76,9 +76,9 @@ separate from the observed value, as the brief requires. An earlier session merg
 
 | Submitted link | Observed destination | ASIN | Product (from official title) |
 |---|---|---|---|
-| `link.amazon/B04G1MEwY` | `amazon.com/dp/B0CDY277D3` | B0CDY277D3 | CHEFMAN 6 Quart Dual Basket Air Fryer Oven |
+| `link.amazon/B04G1MEwY` | `amazon.com/dp/B08DKYBTPH` | B08DKYBTPH | Chefman Air Fryer 8 Qt TurboFry 4-in-1 |
 | `link.amazon/B02NbDxp3` | `amazon.com/dp/B09B7SB46R` | B09B7SB46R | Emeril Lagasse 26QT French Door Air Fryer Toaster Oven |
-| `link.amazon/B00hJ57DV` | `amazon.com/dp/B08DKYBTPH` | B08DKYBTPH | Chefman Air Fryer 8 Qt TurboFry 4-in-1 |
+| `link.amazon/B00hJ57DV` | `amazon.com/dp/B0CDY277D3` | B0CDY277D3 | CHEFMAN 6 Quart Dual Basket Air Fryer Oven |
 | `link.amazon/B0c8moW59` | `amazon.com/dp/B0DHZTCNR5` | B0DHZTCNR5 | ThermoMaven 1 Sec Professional Meat Thermometer |
 | `link.amazon/B0f3GKalj` | `amazon.com/dp/B0DZFD6R9Z` | B0DZFD6R9Z | CHEF iQ Sense Smart Wireless Meat Thermometer Gen3 |
 
