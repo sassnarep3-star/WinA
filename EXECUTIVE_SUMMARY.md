@@ -10,18 +10,18 @@ deliberately not live, what the last verification pass found, and what is waitin
 ## 1. Where the project stands
 
 A 30-page affiliate publication is live and indexed-by-sitemap, covering three air fryers and two
-meat thermometers, with **80 tagged outbound product links**. It is not a mockup: every page is
+meat thermometers, with **82 tagged outbound product links**. It is not a mockup: every page is
 generated from a data register, and three independent gates run on every push and pull request.
 
 | Surface | State |
 | --- | --- |
 | Reader pages | 30 total: front page + 404, 5 guides, 2 category hubs, 5 product pages, compare, register, a marketing kit, and the operations set (flagged, questions, suggestions, summary, dashboard, analytics, disclosure, privacy, about, seo, marketing, concept) |
-| Data registers | 5 products · 60 spec rows · 6 policy sources · 10 policy clauses quoted · 37 flag rows · 22 questions · 16 suggestions |
+| Data registers | 5 products · 60 spec rows · 6 policy sources · 10 policy clauses quoted · 40 flag rows · 22 questions · 24 suggestions |
 | Verification mix | 32 `verified` · 14 `unverified` · 10 `withheld` · 4 `claim`; **36 rows carry a value, 24 are blank with a reason**, and 22 of the valued rows cite a manufacturer page directly rather than the listing |
-| Compliance | OA §5 statement verbatim on all 30 pages; the disclosure precedes the first sponsored link on every page (asserted by byte offset, not by eyeball); `rel="sponsored nofollow noopener"` + `?tag=shopnow047c-20` on all 80 product links; the 8 submitted short links render as declared non-affiliate citations (`rel="nofollow"`, no tag). Counts from `scripts/compliance-gate.mjs`, cross-checked by `scripts/check-site.mjs` at 94 Amazon links / 80 sponsored |
+| Compliance | OA §5 statement verbatim on all 30 pages; the disclosure precedes the first sponsored link on every page (asserted by byte offset, not by eyeball); `rel="sponsored nofollow noopener"` + `?tag=shopnow047c-20` on all 82 product links; the 8 submitted short links render as declared non-affiliate citations (`rel="nofollow"`, no tag). Counts from `scripts/compliance-gate.mjs`, cross-checked by `scripts/check-site.mjs` at 98 Amazon links / 82 sponsored |
 | Measurement | Five events defined; collector written but **not deployed**, so the client is inert by design |
 | Money | **Zero** revenue claims; ledger holds 0 rows, by policy |
-| Gates | Three checkers, all green (~1,076 compliance assertions, 1,118 internal links verified, the builder's own 9 gates). CI fails if generated output is not committed, the build is not reproducible, or a compliance rule breaks — and Pages' deploy job now runs the compliance gate too, so a regression stops the release rather than reddening a check |
+| Gates | Three checkers, all green (~1,097 compliance assertions, 1,118 internal links verified, the builder's own 9 gates). CI fails if generated output is not committed, the build is not reproducible, or a compliance rule breaks — and Pages' deploy job now runs the compliance gate too, so a regression stops the release rather than reddening a check |
 | History | Four prior session builds preserved under `archive/` (83 files), nothing deleted |
 
 ## 2. What the product question turned out to be
@@ -139,3 +139,45 @@ a row without dated first-party provenance is rejected by the gate.
 `node scripts/check-site.mjs` and `node _src/build.mjs` on this tree on 2026-11-20, and every claim
 on the site traces to a row in `data/policy.json` or `data/products.json`. The site's own copy of
 this summary is generated at `/summary/` from the same data, so the two cannot drift.*
+
+---
+
+## 8. Re-verification pass, session `arena/119f4dc6-wina` (2026-11-20)
+
+Task T26 on `COORDINATION.md`. Everything below was checked against the live pages, not against the
+register, and each finding has its own entry on `/flagged/`.
+
+**What was checked and what came back**
+
+| Check | Method | Result |
+| --- | --- | --- |
+| Five destination ASINs | Fetched `https://www.amazon.com/dp/<ASIN>` directly for all five | **All five confirmed.** Title on each page matches `data/links.json`. Product identity is not in doubt. |
+| Five submitted short links | Fetched each `link.amazon/B0…` URL | **2 of 5** returned a product page (`B02NbDxp3`, `B00hJ57DV`). **3 of 5** returned `https://www.amazon.com/` (`B04G1MEwY`, `B0c8moW59`, `B0f3GKalj`). `B04G1MEwY` fetched twice, same result. → **FLG-034** |
+| ThermoMaven water resistance | Read the listing title | Earlier register said "no IP number published". The listing title states **IP67**. Corrected. → **FLG-036** |
+| Spec coverage per product | Script over `data/products.json` | 32 of 60 rows verified. Emeril 26QT has no wattage or warranty; Chefman 8-Quart has no wattage, dimensions or warranty. → **FLG-035** |
+| FLG-032 accuracy | Compared its text with the fetch results above | It claimed all five "resolved" to product pages. Corrected to `review` and rewritten. |
+
+**Three things corrected in this pass**
+
+1. The front-page strip read "0 Products tested" and "10 Policy checks passed". The first is honest
+   but reads as a disclaimer on a shopping page; the second is a *gate* count shown to a shopper as
+   if it were product evidence. Both are replaced with shop-facing facts computed from the register:
+   products spec-checked, categories, buying guides, and specs confirmed at source (32). The
+   no-testing statement still appears — once, in plain language, at the end of the page.
+2. `data/links.json` now carries a `reverified*` field per link, kept **separate** from
+   `observedDestination` and from `intendedAsin`, which stays `null`. Three fields, never merged.
+3. `FLG-032` was downgraded from `resolved` to `review` with its overstatement stated in the record.
+
+**What this pass did not do, and why**
+
+- It did not claim the three short links are broken or non-compliant. The destination ASINs are
+  correct; the redirect behaviour was observed from an automated client and may be an artefact of
+  that. Recorded as an observation with the action that closes it.
+- It did not fill wattage, dimensions or warranty from memory. Those rows stay blank and are flagged.
+- It did not deploy the collector, verify Search Console, or confirm the tracking ID — all three
+  need the account owner's credentials (FLG-004, FLG-009, FLG-011).
+
+**Gates after this pass:** `node _src/build.mjs` → 30 pages, all gates clear.
+`node scripts/check-site.mjs` → 30 pages, 1,120 internal links, 98 Amazon links (82 sponsored), zero
+failures. `node scripts/compliance-gate.mjs` → 1,097 checks, 0 failing, 1 warning (FLG-024, the
+Associates click test, which needs the owner).
