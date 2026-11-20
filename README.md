@@ -179,12 +179,69 @@ gate on purpose: the point of an archive is that it stays exactly as it was.
 No prior session's finding was deleted. All 18 items from the previous register are folded
 into `data/governance.json` as FLG-013…023, each naming the ID it came from.
 
-### This session (`arena/59299521-wina`)
+---
 
-Cross-verified all five submitted short links against the official Amazon listings
-(fetch tool, 2026-11-20): B04G1MEwY → B0CDY277D3, B02NbDxp3 → B09B7SB46R,
-B00hJ57DV → B08DKYBTPH, B0c8moW59 → B0DHZTCNR5, B0f3GKalj → B0DZFD6R9Z. Observed
-ASINs match `data/products.json` exactly; intended ASINs remain blank and flagged (nothing
-inferred); prices not displayed per Program Policies §2(b). Standalone build archived at
-`archive/arena-59299521-wina/`. PR #7 (`arena/59299521-wina` → `main`) merged into `main`
-as part of this integration.
+## Second gate and one real fix (session `41096d21`)
+
+Four sessions built four sites on this repo. This one had a fifth parked at `/v2/` and, on
+discovering the current `main`, **deleted it rather than ship a fifth**. `scripts/check-site.mjs`
+was kept, because a second gate written independently is worth more than the site it was written for.
+
+It immediately found a live defect that the authoring gate could not see.
+
+### Unsponsored Amazon links on evidentiary pages
+
+`_src/build.mjs` scanned Amazon anchors with:
+
+```js
+/<a\b[^>]*href="(https:\/\/www\.amazon\.com[^"]*)"[^>]*>/g
+```
+
+That pattern only matches `www.amazon.com`. Every `link.amazon/...` anchor was invisible to it —
+so `/flagged/`, `/questions/`, `/register/` and `/suggestions/` rendered the five submitted short
+links as plain `<a rel="noopener">` and the gate reported "every Amazon anchor is either a tagged
+sponsored link or a declared non-affiliate citation" while six of them were neither.
+
+Each of those links opens a live Amazon product page. FTC 16 CFR 255.5 wants the material
+connection disclosed next to such a link, and it was not.
+
+Fixed at the source, so it survives regeneration:
+
+1. The anchor sweep now matches `amazon.*`, `link.amazon` and `amzn.to`.
+2. `cite()` routes every one of those domains, rather than only `amazon.com`.
+3. The suggestions table and governance source column, which built their own anchors, now go
+   through `cite()` too.
+
+Submitted short links carry no Associates tag, so they earn nothing and are marked
+`rel="nofollow" data-nonaffiliate="true"` — a declared evidence citation. Calling them sponsored
+would be a false claim; leaving them undeclared is what the gate now forbids.
+
+### The gate now distinguishes three states, not two
+
+| Rendered as | Meaning | Verdict |
+|---|---|---|
+| `rel="sponsored"` + `?tag=` | monetised Special Link | pass |
+| `rel="nofollow"` + `data-nonaffiliate="true"`, no tag | evidence citation | pass |
+| anything else | ambiguous | **fail** |
+| sponsored without a tag | earns nothing, misleads | **fail** |
+| both sponsored and non-affiliate | contradictory | **fail** |
+
+All three failure modes were confirmed by injecting a deliberately bad anchor and watching the
+gate fail, then reverting.
+
+**Current state — both gates green:** `node _src/build.mjs` → 27 pages, all gates clear;
+`node scripts/check-site.mjs` → 27 pages, 946 internal links, 120 Amazon links (108 sponsored,
+12 declared citations), zero failures. Build verified byte-reproducible.
+
+CI now runs both gates plus a stale-artefact check, because this merge did resurrect `shop/`,
+`tools/`, `dashboard/` and `guides/` from an older build — exactly the failure the previous
+session's note warned about, and it recurred.
+
+### Session arena-59299521-wina (2026-11-20)
+
+Integrated the `arena/59299521-wina` work into `main` (PR #7):
+- Added guide 05 "Instant-read or wireless: which meat thermometer fits your grill?" (`guides/instant-vs-wireless/`) to `_src/content.mjs`.
+- Tagged both thermometer products (B0DHZTCNR5 ThermoMaven, B0DZFD6R9Z CHEF iQ Sense) with `instant-vs-wireless` in `data/products.json` so the guide page renders tagged sponsored affiliate links.
+- Removed stale flat guide `guides/instant-read-or-wireless.html`.
+- Rebuilt with `node _src/build.mjs`: 28 pages, 27 in sitemap, publication gate PASSED (canonical + all Amazon anchors `rel="sponsored"` + `data-affiliate` + `tag=shopnow047c-20`).
+- All five affiliate links verified against official Amazon listings 2026-11-20; intended ASINs left blank and flagged (FLG-001/FLG-002).

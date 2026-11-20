@@ -1,0 +1,12 @@
+{
+  "rule": "One Special Link test per product in the enrolled Associates workflow, before scaling (FLG-003, FLG-019). Each test records what was seen. Nothing here is marked passed until the owner records the result.",
+  "status_as_of": "2026-11-20",
+  "blocker": "Associates Central sign-in is required. This session has no owner login, so no test has been run.",
+  "tests": [
+    {"product_id": "P01", "submitted_url": "https://link.amazon/B04G1MEwY", "observed_destination_url": "https://www.amazon.com/dp/B0CDY277D3", "test_status": "blocked: owner login required", "tested_on": null, "destination_seen": null, "tracking_report_line_seen": null, "tested_by": null, "source": "SRC-02"},
+    {"product_id": "P02", "submitted_url": "https://link.amazon/B02NbDxp3", "observed_destination_url": "https://www.amazon.com/dp/B09B7SB46R", "test_status": "blocked: owner login required", "tested_on": null, "destination_seen": null, "tracking_report_line_seen": null, "tested_by": null, "source": "SRC-02"},
+    {"product_id": "P03", "submitted_url": "https://link.amazon/B00hJ57DV", "observed_destination_url": "https://www.amazon.com/dp/B08DKYBTPH", "test_status": "blocked: owner login required", "tested_on": null, "destination_seen": null, "tracking_report_line_seen": null, "tested_by": null, "source": "SRC-02"},
+    {"product_id": "P04", "submitted_url": "https://link.amazon/B0c8moW59", "observed_destination_url": "https://www.amazon.com/dp/B0DHZTCNR5", "test_status": "blocked: owner login required", "tested_on": null, "destination_seen": null, "tracking_report_line_seen": null, "tested_by": null, "source": "SRC-02"},
+    {"product_id": "P05", "submitted_url": "https://link.amazon/B0f3GKalj", "observed_destination_url": "https://www.amazon.com/dp/B0DZFD6R9Z", "test_status": "blocked: owner login required", "tested_on": null, "destination_seen": null, "tracking_report_line_seen": null, "tested_by": null, "source": "SRC-02"}
+  ]
+}
