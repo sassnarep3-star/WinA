@@ -34,9 +34,14 @@
       "specs": [
         {
           "label": "Capacity",
-          "value": "6 qt · 5.67 L (two baskets)",
-          "status": "verified",
+          "value": "6 qt / 5.67 L",          "status": "verified",
           "source": "manufacturer"
+        },
+        {
+          "label": "Basket size",
+          "value": "2 \u00d7 3 qt, independently controlled",
+          "status": "verified",
+          "source": "amazon-listing"
         },
         {
           "label": "Form factor",
@@ -58,8 +63,8 @@
         },
         {
           "label": "Basket care",
-          "value": "Nonstick, listed dishwasher-safe",
-          "status": "claim",
+          "value": "Nonstick; both baskets listed dishwasher-safe",
+          "status": "verified",
           "source": "amazon-listing"
         },
         {
@@ -76,7 +81,7 @@
         },
         {
           "label": "Dimensions",
-          "value": "13.38 × 11.81 × 10.63 in, 13.3 lb",
+          "value": "13.38 \u00d7 11.81 \u00d7 10.63 in, 13.3 lb",
           "status": "verified",
           "source": "manufacturer"
         },
@@ -135,7 +140,8 @@
           "label": "chefman.com specification"
         }
       },
-      "modelNumber": "RJ38-SQPF-3TDB-2W"
+      "modelNumber": "RJ38-SQPF-3TDB-2W",
+      "specsVerifiedOn": "2026-11-20"
     },
     {
       "slug": "emeril-lagasse-26qt-french-door",
@@ -148,20 +154,20 @@
       "title": "Emeril Lagasse 26QT French Door Multi-Function Air Fryer Toaster Oven | Countertop Convection Cooker, 24 One-Touch Preset Options, Extra Large Interior, Six Cooking Accessories Included",
       "verdict": "The one that replaces an oven rather than sitting beside it. French doors and a genuinely large interior, at the cost of most of a counter.",
       "why": [
-        "26 quarts is the largest capacity in this set by a wide margin — it takes a whole chicken or a full sheet of vegetables in one pass.",
+        "26 quarts is the largest capacity in this set by a wide margin \u2014 it takes a whole chicken or a full sheet of vegetables in one pass.",
         "French doors open outward instead of dropping down, so you can reach in with both hands without clearing the counter in front.",
         "24 one-touch presets cover the modes people actually use nightly, which shortens the learning curve for a big appliance.",
         "Six cooking accessories are included, so the accessories line item is already in the box."
       ],
       "consider": [
         "This is a countertop oven that also air-fries. If you want crisp fries in small batches fast, a basket model heats up quicker.",
-        "Footprint and height are the real constraint. Confirm them against your space before ordering — we could not verify dimensions from an official source.",
+        "Footprint and height are the real constraint. Confirm them against your space before ordering \u2014 we could not verify dimensions from an official source.",
         "More surface area and more accessories means more washing per meal than a single drawer."
       ],
       "specs": [
         {
           "label": "Capacity",
-          "value": "26 qt · 24.6 L",
+          "value": "26 qt \u00b7 24.6 L",
           "status": "verified",
           "source": "manufacturer"
         },
@@ -173,16 +179,21 @@
         },
         {
           "label": "Presets",
-          "value": null,
-          "status": "unverified",
-          "source": null
+          "value": "24 cooking presets, enumerated one by one in the owner's manual",
+          "status": "verified",
+          "source": "manufacturer"
+        },
+        {
+          "label": "Cooking presets named in the manual",
+          "value": "Airfry, Fries, Bacon, Grill, Eggs, Fish, Ribs, Defrost, Steak, Vegetables, Wings, Bake, Rotisserie, Toast, Chicken, Pizza, Pastry, Proof, Broil, Slow Cook, Roast, Dehydrate, Reheat, Warm",
+          "status": "verified",
+          "source": "manufacturer"
         },
         {
           "label": "Included accessories",
-          "value": null,
-          "status": "unverified",
-          "source": null
-        },
+          "value": "Six cooking accessories",
+          "status": "claim",
+          "source": "amazon-listing"        },
         {
           "label": "Cooking method",
           "value": "Countertop convection",
@@ -191,20 +202,25 @@
         },
         {
           "label": "Wattage",
-          "value": null,
-          "status": "unverified",
-          "source": null
+          "value": "1700 W, 120 V, 60 Hz",
+          "status": "verified",
+          "source": "manufacturer"
         },
         {
           "label": "Dimensions",
-          "value": "16.9 D × 15.8 W × 14.8 H in",
+          "value": "16.9 D \u00d7 15.8 W \u00d7 14.8 H in",
+          "status": "verified",
+          "source": "manufacturer"
+        },
+        {
+          "label": "Temperature range",
+          "value": "75\u2013500 \u00b0F / 25\u2013260 \u00b0C; most presets cap at 450 \u00b0F, Grill and Steak reach 500 \u00b0F",
           "status": "verified",
           "source": "manufacturer"
         },
         {
           "label": "Warranty",
-          "value": "1 year (manufacturer page: \"1-Years Warranty\")",
-          "status": "verified",
+          "value": "1 year, stated on the manufacturer's product page",          "status": "verified",
           "source": "manufacturer"
         },
         {
@@ -243,15 +259,24 @@
           "url": "https://www.emerileveryday.com/products/emeril_lagasse_french_door_airfryer_360",
           "label": "emerileveryday.com specification"
         },
-        "Capacity": {
-          "url": "https://www.emerileveryday.com/products/emeril_lagasse_french_door_airfryer_360",
-          "label": "emerileveryday.com specification"
+        "Wattage": {
+          "url": "https://cdn.shopify.com/s/files/1/0687/4388/8948/files/FAFO-001_VN_32451_EF_IB_T22-5004282-C_1.pdf?v=1777990358",
+          "label": "emerileveryday.com owner's manual (FAFO-001)"
         },
         "Warranty": {
           "url": "https://www.emerileveryday.com/products/emeril_lagasse_french_door_airfryer_360",
-          "label": "emerileveryday.com (1-Years Warranty badge)"
-        }
-      }
+          "label": "emerileveryday.com specification"
+        },
+        "Temperature range": {
+          "url": "https://cdn.shopify.com/s/files/1/0687/4388/8948/files/FAFO-001_VN_32451_EF_IB_T22-5004282-C_1.pdf?v=1777990358",
+          "label": "emerileveryday.com owner's manual (FAFO-001)"
+        },
+        "Cooking presets named in the manual": {
+          "url": "https://cdn.shopify.com/s/files/1/0687/4388/8948/files/FAFO-001_VN_32451_EF_IB_T22-5004282-C_1.pdf?v=1777990358",
+          "label": "emerileveryday.com owner's manual (FAFO-001)"        }
+      },
+      "modelNumber": "FAFO-001",
+      "specsVerifiedOn": "2026-11-20"
     },
     {
       "slug": "chefman-8-quart-turbofry",
@@ -261,11 +286,10 @@
       "brand": "Chefman",
       "category": "air-fryers",
       "formFactor": "single-basket",
-      "title": "Chefman Air Fryer 8 Qt | TurboFry® 4-in-1 with 450°F Hi-Fry Option for Crispier Results | Bake, Dehydrate, Frozen | XL Nonstick Dishwasher-Safe Basket | Stainless Steel",
-      "verdict": "One big drawer, four jobs, and the highest temperature in this set. The straightforward choice if you cook in single batches.",
+      "title": "Chefman Air Fryer 8 Qt | TurboFry® 4-in-1 with 450°F Hi-Fry Option for Crispier Results | Bake, Dehydrate, Frozen | XL Nonstick Dishwasher-Safe Basket | Stainless Steel",      "verdict": "One big drawer, four jobs, and the highest temperature in this set. The straightforward choice if you cook in single batches.",
       "why": [
         "A single 8-quart drawer is easier to fill, toss, and wash than two smaller ones when you are cooking one thing for everyone.",
-        "Hi-Fry adds a 450°F burst for the final two minutes of a cook, which is a browning finish rather than a full 450°F cycle.",
+        "Hi-Fry adds a 450\u00b0F burst for the final two minutes of a cook, which is a browning finish rather than a full 450\u00b0F cycle.",
         "Bake, dehydrate and frozen modes stretch a single appliance across more of the week.",
         "Nonstick basket is listed as dishwasher-safe and the body is stainless steel."
       ],
@@ -289,8 +313,7 @@
         },
         {
           "label": "Max temperature",
-          "value": "200–400°F range; 450°F Hi-Fry option",
-          "status": "verified",
+          "value": "200\u2013400 \u00b0F normal range, with a 450 \u00b0F Hi-Fry option (the listing does not say how long Hi-Fry runs)",          "status": "verified",
           "source": "amazon-listing"
         },
         {
@@ -300,33 +323,49 @@
           "source": "amazon-listing"
         },
         {
+          "label": "Cooking presets",
+          "value": "Four presets \u2014 French fries, chicken, meat, fish",
+          "status": "verified",
+          "source": "amazon-listing"
+        },
+        {
           "label": "Body material",
-          "value": "Stainless steel",
+          "value": "Plastic, stainless steel",
+          "status": "verified",
+          "source": "amazon-listing"
+        },
+        {
+          "label": "Controls",
+          "value": "Digital touch control with LED display",
+          "status": "verified",
+          "source": "amazon-listing"
+        },
+        {
+          "label": "Shake reminder",
+          "value": "LED shake reminder",
           "status": "verified",
           "source": "amazon-listing"
         },
         {
           "label": "Basket care",
-          "value": "Nonstick, listed dishwasher-safe",
-          "status": "claim",
+          "value": "Nonstick; basket and flat frying tray listed top-rack dishwasher safe",
+          "status": "verified",
           "source": "amazon-listing"
         },
         {
           "label": "Wattage",
-          "value": null,
-          "status": "unverified",
-          "source": null
-        },
-        {
-          "label": "Dimensions",
-          "value": "12.75 D × 13.5 W × 10 H in",
+          "value": "1000 W, 120 V",
           "status": "verified",
           "source": "amazon-listing"
         },
         {
+          "label": "Dimensions",
+          "value": "12.75 D \u00d7 13.5 W \u00d7 10 H in",          "status": "verified",
+          "source": "amazon-listing"
+        },
+        {
           "label": "Warranty",
-          "value": "1 year (Chefman)",
-          "status": "verified",
+          "value": "1 year, provided by Chefman; cETL approved",          "status": "verified",
           "source": "amazon-listing"
         },
         {
@@ -360,7 +399,9 @@
       "submittedLink": "https://link.amazon/B00hJ57DV",
       "observedDestination": "https://www.amazon.com/dp/B08DKYBTPH",
       "observedOn": "2026-11-20",
-      "modelAmbiguity": "The 8-qt family spans at least five SKUs. chefman.com publishes RJ38-8T-BLACK (matte black, 8 qt/7.57 L, Hi-Fry 450 F, 1700 W/120 V); the listing re-fetched for this ASIN (12.8 lb, RJ38-SQSS-8T per retailer records) describes a stainless-steel body. Because the colour and model strings disagree, no dimension, weight or wattage is taken from the black SKU's page."
+      "modelNumber": "RJ38-SQSS-8T",
+      "modelNote": "Resolved 2026-11-20. This listing names its own model in the bullet points (\"1000 Watts/120 Volts - RJ38-SQSS-8T\"), and its product-information table gives 12.75\"D x 13.5\"W x 10\"H, stainless steel, 8 quarts, 200-400\u00b0F. chefman.com publishes a different SKU in the same 8-quart family (RJ38-8T-BLACK, matte black, 1700 W/120 V, 8 qt/7.57 L), so no dimension, weight, wattage or litre figure is taken from that page, and the Hi-Fry \"final two minutes\" wording that appears only there is not carried over. See FLG-028 and FLG-042.",
+      "specsVerifiedOn": "2026-11-20"
     },
     {
       "slug": "thermomaven-1-sec-thermometer",
@@ -371,16 +412,15 @@
       "category": "thermometers",
       "formFactor": "instant-read",
       "title": "ThermoMaven 1 Sec Professional Digital Meat Thermometer, ±0.5℉ Accuracy | NIST&NSF Certified, Auto-Rotate Bright LED Screen, IP67 Waterproof for Grill BBQ, Stocking Stuffers Gifts for Men, Black",
-      "verdict": "A one-second read for a quick kitchen check.",      "why": [
-        "A one-second read is the threshold where checking temperature stops feeling like a delay.",
+      "verdict": "A one-second read for a quick kitchen check.",      "why": [        "A one-second read is the threshold where checking temperature stops feeling like a delay.",
         "The display auto-rotates, which sounds trivial until you are holding it at an angle over a hot pan.",
         "The manufacturer calls it 100% waterproof; the listing title adds IP67, which the manufacturer's own page does not publish.",
-        "Pocket-sized and battery-simple — nothing to pair, no app, no account."
+        "Pocket-sized and battery-simple \u2014 nothing to pair, no app, no account."
       ],
       "consider": [
         "This is an instant-read probe thermometer, not a leave-in. It cannot monitor a roast in a closed oven or a brisket on a long cook.",
         "The listing states NIST and NSF certification. We could not independently verify those certificates against a published certification record, so treat it as the manufacturer's claim.",
-        "±0.5°F is the stated accuracy. We could not verify it against a calibration report."
+        "\u00b10.5\u00b0F is the stated accuracy. We could not verify it against a calibration report."
       ],
       "specs": [
         {
@@ -391,7 +431,13 @@
         },
         {
           "label": "Stated accuracy",
-          "value": "±0.5°F / ±0.3°C, stated as NIST certified",
+          "value": "\u00b10.5\u00b0F / \u00b10.3\u00b0C, stated as NIST certified",
+          "status": "verified",
+          "source": "manufacturer"
+        },
+        {
+          "label": "Temperature range",
+          "value": "-58 to 572 \u00b0F (-49.9 to 299.9 \u00b0C)",
           "status": "verified",
           "source": "manufacturer"
         },
@@ -403,8 +449,7 @@
         },
         {
           "label": "Display",
-          "value": "Bright LED, rotates 180°",
-          "status": "verified",
+          "value": "0.83 in \u00d7 1.61 in LED, rotates 180\u00b0",          "status": "verified",
           "source": "manufacturer"
         },
         {
@@ -420,6 +465,12 @@
           "source": "manufacturer"
         },
         {
+          "label": "Probe",
+          "value": "4.3 in long \u00d7 0.14 in diameter, tapering to 0.06 in",
+          "status": "verified",
+          "source": "manufacturer"
+        },
+        {
           "label": "Calibration record",
           "value": null,
           "status": "unverified",
@@ -427,8 +478,7 @@
         },
         {
           "label": "Battery type",
-          "value": "1 × 1.5 V AAA (included)",
-          "status": "verified",
+          "value": "1 \u00d7 AAA (included)",          "status": "verified",
           "source": "manufacturer"
         },
         {
@@ -481,8 +531,7 @@
         },
         "Battery type": {
           "url": "https://cdn.shopify.com/s/files/1/0828/4726/9152/files/HT07_user_manual.pdf?v=1733992221",
-          "label": "ThermoMaven F1 Stealth user manual (HT07), Specifications"
-        },
+          "label": "thermomaven.com owner's manual (HT07)"        },
         "Warranty": {
           "url": "https://www.thermomaven.com/products/f1-stealth",
           "label": "thermomaven.com"
@@ -497,10 +546,18 @@
         },
         "Display": {
           "url": "https://cdn.shopify.com/s/files/1/0828/4726/9152/files/HT07_user_manual.pdf?v=1733992221",
-          "label": "ThermoMaven F1 Stealth user manual (HT07), Specifications"
-        }
+          "label": "thermomaven.com owner's manual (HT07)"
+        },
+        "Temperature range": {
+          "url": "https://cdn.shopify.com/s/files/1/0828/4726/9152/files/HT07_user_manual.pdf?v=1733992221",
+          "label": "thermomaven.com owner's manual (HT07)"
+        },
+        "Probe": {
+          "url": "https://cdn.shopify.com/s/files/1/0828/4726/9152/files/HT07_user_manual.pdf?v=1733992221",
+          "label": "thermomaven.com owner's manual (HT07)"        }
       },
-      "modelNumber": "HT07"
+      "modelNumber": "HT07",
+      "specsVerifiedOn": "2026-11-20"
     },
     {
       "slug": "chef-iq-sense-gen3",
@@ -510,17 +567,17 @@
       "brand": "CHEF iQ",
       "category": "thermometers",
       "formFactor": "wireless-leave-in",
-      "title": "CHEF iQ Sense | Smart Wireless Meat Thermometer | 3 Ultra-Thin Probes | WiFi Unlimited Range | 1000°F Heat Safe | 5 Sensors | BBQ, Grill, Oven, Smoker, Air Fryer | Gen3",
-      "verdict": "The hands-off option. Three wireless probes that keep reporting while the lid stays shut — the right tool for long cooks and the wrong one for a quick sear.",
+      "title": "CHEF iQ Sense | Smart Wireless Meat Thermometer | 3 Ultra-Thin Probes | WiFi Unlimited Range | 1000\u00b0F Heat Safe | 5 Sensors | BBQ, Grill, Oven, Smoker, Air Fryer | Gen3",
+      "verdict": "The hands-off option. Three wireless probes that keep reporting while the lid stays shut \u2014 the right tool for long cooks and the wrong one for a quick sear.",
       "why": [
         "Three probes means you can track a roast and two other cuts at once, or run a smoker with redundancy.",
         "Wireless probes with no cable into a hot oven or grill lid is the difference between monitoring and not monitoring.",
-        "1000°F heat rating covers oven, grill and smoker use rather than just one of them.",
+        "1000\u00b0F heat rating covers oven, grill and smoker use rather than just one of them.",
         "The listing names air fryer as a supported use, which matters if you are pairing it with a basket unit."
       ],
       "consider": [
         "It is app-dependent by design. A wireless probe thermometer is only as good as its connection and its software updates.",
-        "\"Unlimited range\" over WiFi is a marketing framing — real range depends on your network and walls. We could not verify it.",
+        "\"Unlimited range\" over WiFi is a marketing framing \u2014 real range depends on your network and walls. We could not verify it.",
         "For a single chicken breast on a Tuesday, this is more machine than the job needs. The instant-read is faster to grab.",
         "No calibration or certification record was verifiable from an official source."
       ],
@@ -528,6 +585,12 @@
         {
           "label": "Probes",
           "value": "3 ultra-thin probes",
+          "status": "verified",
+          "source": "amazon-listing"
+        },
+        {
+          "label": "Probe size",
+          "value": "0.19 in thick, 4.75 in long",
           "status": "verified",
           "source": "manufacturer"
         },
@@ -545,7 +608,13 @@
         },
         {
           "label": "Heat rating",
-          "value": "1,000°F / 537°C",
+          "value": "1,000\u00b0F / 537\u00b0C",
+          "status": "verified",
+          "source": "manufacturer"
+        },
+        {
+          "label": "Temperature range",
+          "value": "Internal 32\u2013212 \u00b0F; ambient 32\u20131,000 \u00b0F",
           "status": "verified",
           "source": "manufacturer"
         },
@@ -565,25 +634,24 @@
           "label": "Generation",
           "value": "Gen3",
           "status": "verified",
-          "source": "manufacturer"
+          "source": "amazon-listing"
         },
         {
           "label": "App requirement",
-          "value": null,
-          "status": "unverified",
-          "source": null
-        },
-        {
-          "label": "Battery life",
-          "value": "70+ hours (component not named on the page)",
+          "value": "Free CHEF iQ App; required for use",
           "status": "verified",
           "source": "manufacturer"
         },
         {
+          "label": "Battery life",
+          "value": "70+ hours per charge (probe)",          "status": "verified",
+          "source": "manufacturer"
+        },
+        {
           "label": "Warranty",
-          "value": null,
-          "status": "unverified",
-          "source": null
+          "value": "2 years, activated on first connection to the CHEF iQ App",
+          "status": "verified",
+          "source": "manufacturer"
         },
         {
           "label": "Price",
@@ -643,12 +711,29 @@
           "url": "https://chefiq.com/products/iq-sense",
           "label": "chefiq.com"
         },
+        "Probe size": {
+          "url": "https://chefiq.com/products/iq-sense",
+          "label": "chefiq.com specification"
+        },
+        "App requirement": {
+          "url": "https://chefiq.com/products/iq-sense",
+          "label": "chefiq.com"
+        },
         "Battery life": {
           "url": "https://chefiq.com/products/iq-sense",
           "label": "chefiq.com"
-        }
+        },
+        "Warranty": {
+          "url": "https://cdn.shopify.com/s/files/1/0267/8118/8171/files/CQ60-ALL-SET-C_UG_OTP_050126.pdf",
+          "label": "CHEF iQ user guide (chefiq.com)"
+        },
+        "Temperature range": {
+          "url": "https://chefiq.com/products/iq-sense",
+          "label": "chefiq.com specification"        }
       },
-      "modelNumber": "CQ60-1C-Z1-E"
+      "modelNumber": null,
+      "modelNote": "Blank on purpose. chefiq.com sells iQ Sense in 1-, 2-, 3- and 4-probe variants and the page read on 2026-11-20 shows the 1-probe variant, model CQ60-1C-Z1-E. This ASIN is the 3-probe listing, so that model code cannot be attached to it, and no official page states the 3-probe model code. No value is recorded rather than a wrong one. See FLG-041 and FLG-046",
+      "specsVerifiedOn": "2026-11-20"
     }
   ],
   "categories": [
@@ -658,7 +743,7 @@
       "kicker": "The shortlist",
       "dek": "Three machines, three different jobs: two drawers, one big drawer, or a whole second oven.",
       "intro": "Almost every air fryer question comes down to the same trade: how much counter you give up, and how many things you want cooking at different temperatures at the same time. The three units below sit at different points on that line.",
-      "browseNode": "Home & Kitchen › Kitchen & Dining › Small Appliances › Fryers › Air Fryers",
+      "browseNode": "Home & Kitchen \u203a Kitchen & Dining \u203a Small Appliances \u203a Fryers \u203a Air Fryers",
       "browseNodeUrl": "https://www.amazon.com/Air-Fryers/b?node=17659096011"
     },
     {
@@ -667,7 +752,7 @@
       "kicker": "Precision",
       "dek": "One reads in a second; the other watches three cuts while the lid stays shut.",
       "intro": "An air fryer you can hear and smell your way through. A roast you cannot. These two cover the two ways people actually measure doneness: a quick poke, and a long unattended cook.",
-      "browseNode": "Home & Kitchen › Kitchen & Dining › Kitchen Utensils & Gadgets › Thermometers & Timers › Meat",
+      "browseNode": "Home & Kitchen \u203a Kitchen & Dining \u203a Kitchen Utensils & Gadgets \u203a Thermometers & Timers \u203a Meat",
       "browseNodeUrl": "https://www.amazon.com/Meat-Thermometers-Timers/b?node=289810"
     }
   ]
