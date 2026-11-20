@@ -19,6 +19,8 @@
 <meta name="twitter:image" content="https://sassnarep3-star.github.io/WinA/assets/img/holiday-counter.jpg">
 <meta name="twitter:title" content="Open questions — Counter Space">
 <meta name="twitter:description" content="Every question that must be answered before further decisions: what we know, what we do not, and the specific action that would settle each one.">
+<meta name="theme-color" content="#fbf8f3">
+<link rel="icon" href="/WinA/assets/img/favicon.svg" type="image/svg+xml">
 <link rel="alternate" type="application/rss+xml" title="Counter Space" href="/WinA/feed.xml">
 <link rel="stylesheet" href="/WinA/assets/css/site.css">
 <script>window.CS_CONFIG={analyticsEnabled:false,analyticsEndpoint:""};</script>
@@ -27,7 +29,7 @@
 <body data-page-type="page">
 <a class="skip" href="#main">Skip to content</a>
 
-<header class="masthead">
+<header class="masthead" id="masthead">
   <div class="wrap masthead__inner">
     <a class="brand" href="/WinA/">
       <span class="brand__mark" aria-hidden="true">C</span>
@@ -35,6 +37,7 @@
       <span class="brand__sub">Kitchen gear, judged honestly</span>
     </a>
     <nav class="nav" aria-label="Primary"><a href="/WinA/air-fryers/">Air fryers</a><a href="/WinA/thermometers/">Thermometers</a><a href="/WinA/guides/">Guides</a><a href="/WinA/compare/">Compare</a><a href="/WinA/seasonal/">Holiday</a><a href="/WinA/about/">About</a></nav>
+    <a class="nav__cta" href="/WinA/#finder">Find yours</a>
   </div>
 </header>
 
@@ -61,10 +64,10 @@
   <div class="wrap">
     <div class="strip" style="border:1px solid var(--rule);margin-bottom:2rem">
       <div class="strip__inner">
-        <div class="strip__cell"><p class="strip__num">26</p><p class="strip__lab">Questions logged</p></div>
+        <div class="strip__cell"><p class="strip__num">28</p><p class="strip__lab">Questions logged</p></div>
         <div class="strip__cell"><p class="strip__num">6</p><p class="strip__lab">Blocking</p></div>
-        <div class="strip__cell"><p class="strip__num">4</p><p class="strip__lab">Answered</p></div>
-        <div class="strip__cell"><p class="strip__num">22</p><p class="strip__lab">Still open</p></div>
+        <div class="strip__cell"><p class="strip__num">5</p><p class="strip__lab">Answered</p></div>
+        <div class="strip__cell"><p class="strip__num">23</p><p class="strip__lab">Still open</p></div>
       </div>
     </div>
 
@@ -219,12 +222,21 @@
   </tr><tr>
     <td><code>Q-24</code></td>
     <td class="small">Demand</td>
-    <td><strong>Which of the seven guides earns impressions first?</strong><br><span class="pill pill--high" style="margin-top:.4rem">high</span></td>
+    <td><strong>Which of the published guides earns impressions first?</strong><br><span class="pill pill--high" style="margin-top:.4rem">high</span></td>
     <td class="small">Unknown until the property is verified and the query report populates.</td>
     <td class="small">The first query report. Nothing else can rank the hypotheses.</td>
     <td class="small">After SG-29 closes, read the query report at week four and week eight. Record the ranking in this register with the date read.</td>
     <td><span class="pill pill--unanswered">unanswered</span></td>
     <td class="small"><a href="https://sassnarep3-star.github.io/WinA/guides/" rel="noopener" target="_blank">The guides index (all seven live)</a></td>
+  </tr><tr>
+    <td><code>Q-27</code></td>
+    <td class="small">Measurement</td>
+    <td><strong>Does the three-question chooser get more people to a product link than the card grid does?</strong><br><span class="pill pill--high" style="margin-top:.4rem">high</span></td>
+    <td class="small">Not answerable from here, and not guessable. The chooser is built so the question can be answered later: every anchor it shows carries data-slot=&quot;finder&quot;, while cards carry data-slot=&quot;card&quot; and the hero carries data-slot=&quot;hero&quot;. One already-defined event — outbound_click — separates them with no new instrumentation.</td>
+    <td class="small">A deployed endpoint on a host the owner controls, the client flag turned on, and a few hundred sessions to compare slots.</td>
+    <td class="small">Deploy _worker/collector.js or scripts/analytics-server.mjs behind the owner's domain, set site.analyticsEndpoint in data/products.json, rebuild, and read outbound_click grouped by slot after 500 sessions.</td>
+    <td><span class="pill pill--unanswered">unanswered</span></td>
+    <td class="small"><a href="https://github.com/sassnarep3-star/WinA/blob/main/_worker/collector.js" rel="noopener" target="_blank">The collector written for this repository</a></td>
   </tr><tr>
     <td><code>Q-08</code></td>
     <td class="small">Demand</td>
@@ -306,6 +318,15 @@
     <td class="small">Owner decision. If rejected, remove the two images and revert to the typographic design — the site was fully compliant before they existed. If accepted, SUG-27 proposes one scene per collection.</td>
     <td><span class="pill pill--decision-needed">decision-needed</span></td>
     <td class="small"><a href="https://sassnarep3-star.github.io/WinA/flagged/" rel="noopener" target="_blank">FLG-007: the imagery constraint</a></td>
+  </tr><tr>
+    <td><code>Q-28</code></td>
+    <td class="small">specification</td>
+    <td><strong>The Emeril brand page publishes 120 volts. Does that settle the wattage row?</strong><br><span class="pill pill--medium" style="margin-top:.4rem">medium</span></td>
+    <td class="small">No. Voltage and power draw are different quantities, and converting between them needs a current figure nobody publishes for this model. The row therefore states exactly what the brand does publish — 120 V, with no wattage — and the Wattage row stays blank and unverified rather than quoting a third-party review.</td>
+    <td class="small">A published wattage from the brand or the listing. The installation manual is linked from the brand page and may carry it; that is a five-minute check for the next data pass and was not done here.</td>
+    <td class="small">Read the linked manual for the model, or ask the brand. Until then the row stays blank and the comparison table prints 'unverified' instead of an estimate.</td>
+    <td><span class="pill pill--answered">answered</span></td>
+    <td class="small"><a href="https://www.emerileveryday.com/products/emeril_lagasse_french_door_airfryer_360" rel="noopener" target="_blank">emerileveryday.com — specification block, read 2026-11-20</a></td>
   </tr><tr>
     <td><code>Q-21</code></td>
     <td class="small">Brand</td>

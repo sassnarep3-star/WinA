@@ -372,7 +372,7 @@
       "id": "Q-24",
       "area": "demand",
       "priority": "high",
-      "question": "Which of the seven guides earns impressions first?",
+      "question": "Which of the published guides earns impressions first?",
       "answer": "Unknown until the property is verified and the query report populates.",
       "have": "Seven live guides in the sitemap and feed, each with a defined topic cluster and an event definition (guide_read) waiting for the collector.",
       "missing": "The first query report. Nothing else can rank the hypotheses.",
@@ -409,6 +409,34 @@
       "status": "decision-needed",
       "sourceUrl": "https://sassnarep3-star.github.io/WinA/flagged/",
       "sourceLabel": "FLG-007: the imagery constraint"
+    },
+    {
+      "id": "Q-27",
+      "area": "measurement",
+      "priority": "high",
+      "question": "Does the three-question chooser get more people to a product link than the card grid does?",
+      "answer": "Not answerable from here, and not guessable. The chooser is built so the question can be answered later: every anchor it shows carries data-slot=\"finder\", while cards carry data-slot=\"card\" and the hero carries data-slot=\"hero\". One already-defined event — outbound_click — separates them with no new instrumentation.",
+      "have": "The defined click event, a slot attribute on every anchor in the site, and the collector written but not deployed.",
+      "missing": "A deployed endpoint on a host the owner controls, the client flag turned on, and a few hundred sessions to compare slots.",
+      "matters": "It decides whether the chooser keeps the position above the product grid or is demoted to the category hubs, and whether the next cycle buys interactive decision support or buys articles. Without data that choice is taste.",
+      "howToFind": "Deploy _worker/collector.js or scripts/analytics-server.mjs behind the owner's domain, set site.analyticsEndpoint in data/products.json, rebuild, and read outbound_click grouped by slot after 500 sessions.",
+      "status": "unanswered",
+      "sourceUrl": "https://github.com/sassnarep3-star/WinA/blob/main/_worker/collector.js",
+      "sourceLabel": "The collector written for this repository"
+    },
+    {
+      "id": "Q-28",
+      "area": "specification",
+      "priority": "medium",
+      "question": "The Emeril brand page publishes 120 volts. Does that settle the wattage row?",
+      "answer": "No. Voltage and power draw are different quantities, and converting between them needs a current figure nobody publishes for this model. The row therefore states exactly what the brand does publish — 120 V, with no wattage — and the Wattage row stays blank and unverified rather than quoting a third-party review.",
+      "have": "The brand page's specification block as re-read on 2026-11-20 by session arena-3818c975-wina, which lists 120 volts and no wattage.",
+      "missing": "A published wattage from the brand or the listing. The installation manual is linked from the brand page and may carry it; that is a five-minute check for the next data pass and was not done here.",
+      "matters": "Wattage is the number people compare when they worry about running a second oven on the same circuit. A guessed one would be the most consequential wrong figure on the site, in the row readers are likeliest to screenshot.",
+      "howToFind": "Read the linked manual for the model, or ask the brand. Until then the row stays blank and the comparison table prints 'unverified' instead of an estimate.",
+      "status": "answered",
+      "sourceUrl": "https://www.emerileveryday.com/products/emeril_lagasse_french_door_airfryer_360",
+      "sourceLabel": "emerileveryday.com — specification block, read 2026-11-20"
     }
   ]
 }

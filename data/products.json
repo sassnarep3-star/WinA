@@ -39,6 +39,12 @@
           "source": "manufacturer"
         },
         {
+          "label": "Temperature range",
+          "value": "200–450°F (95–235°C)",
+          "status": "verified",
+          "source": "manufacturer"
+        },
+        {
           "label": "Form factor",
           "value": "Dual basket, two independent drawers",
           "status": "verified",
@@ -112,7 +118,9 @@
         "capacity",
         "cleanup",
         "not-burn-the-rolls",
-        "holiday-batch"
+        "holiday-batch",
+        "air-fryer-vs-toaster-oven",
+        "five-questions"
       ],
       "submittedLink": "https://link.amazon/B04G1MEwY",
       "observedDestination": "https://www.amazon.com/dp/B0CDY277D3",
@@ -133,9 +141,30 @@
         "Capacity": {
           "url": "https://chefman.com/products/turbofry-touch-dual-window-air-fryer",
           "label": "chefman.com specification"
+        },
+        "Temperature range": {
+          "url": "https://chefman.com/products/turbofry-touch-dual-window-air-fryer",
+          "label": "chefman.com specification"
         }
       },
-      "modelNumber": "RJ38-SQPF-3TDB-2W"
+      "modelNumber": "RJ38-SQPF-3TDB-2W",
+      "verifiedOn": "2026-11-20",
+      "figures": {
+        "capacityQt": 6,
+        "chambers": 2,
+        "chamberQt": [
+          3,
+          3
+        ],
+        "footprintIn": {
+          "w": 13.38,
+          "d": 11.81,
+          "h": 10.63
+        },
+        "weightLb": 13.3,
+        "sourceLabel": "chefman.com",
+        "sourceUrl": "https://chefman.com/products/turbofry-touch-dual-window-air-fryer"
+      }
     },
     {
       "slug": "emeril-lagasse-26qt-french-door",
@@ -155,7 +184,7 @@
       ],
       "consider": [
         "This is a countertop oven that also air-fries. If you want crisp fries in small batches fast, a basket model heats up quicker.",
-        "Footprint and height are the real constraint. Confirm them against your space before ordering — we could not verify dimensions from an official source.",
+        "French doors need clearance to swing, so the counter in front of the unit stops being counter while they do. The brand page publishes 16.9 × 15.8 × 14.8 in — check it against your space, and the door swing, before ordering.",
         "More surface area and more accessories means more washing per meal than a single drawer."
       ],
       "specs": [
@@ -173,14 +202,14 @@
         },
         {
           "label": "Presets",
-          "value": "24 one-touch presets",
-          "status": "verified",
+          "value": "24 one-touch presets in the brand page's description; the same page's own spec block reads 25 Cooking Pre-sets",
+          "status": "claim",
           "source": "manufacturer"
         },
         {
           "label": "Included accessories",
-          "value": "Six cooking accessories",
-          "status": "verified",
+          "value": "Six accessories named in the listing; the brand page says seven",
+          "status": "claim",
           "source": "amazon-listing"
         },
         {
@@ -203,9 +232,9 @@
         },
         {
           "label": "Warranty",
-          "value": null,
-          "status": "unverified",
-          "source": null
+          "value": "1 year, stated on the brand store",
+          "status": "verified",
+          "source": "manufacturer"
         },
         {
           "label": "Price",
@@ -224,6 +253,24 @@
           "value": null,
           "status": "withheld",
           "source": null
+        },
+        {
+          "label": "Functions",
+          "value": "10-in-1, enumerated by the brand: air fry, bake, broil, defrost, dehydrate, grill, proof, reheat, roast, warm",
+          "status": "verified",
+          "source": "manufacturer"
+        },
+        {
+          "label": "Serving capacity",
+          "value": "Stated for 4–6 people",
+          "status": "verified",
+          "source": "manufacturer"
+        },
+        {
+          "label": "Voltage",
+          "value": "120 V; the brand page publishes no wattage figure",
+          "status": "verified",
+          "source": "manufacturer"
         }
       ],
       "bestFor": "Cooking for a crowd, or replacing a wall oven",
@@ -233,7 +280,9 @@
         "capacity",
         "multifunction",
         "not-burn-the-rolls",
-        "holiday-batch"
+        "holiday-batch",
+        "air-fryer-vs-toaster-oven",
+        "five-questions"
       ],
       "submittedLink": "https://link.amazon/B02NbDxp3",
       "observedDestination": "https://www.amazon.com/dp/B09B7SB46R",
@@ -250,7 +299,35 @@
         "Capacity": {
           "url": "https://www.emerileveryday.com/products/emeril_lagasse_french_door_airfryer_360",
           "label": "emerileveryday.com specification"
+        },
+        "Functions": {
+          "url": "https://www.emerileveryday.com/products/emeril_lagasse_french_door_airfryer_360",
+          "label": "emerileveryday.com specification"
+        },
+        "Serving capacity": {
+          "url": "https://www.emerileveryday.com/products/emeril_lagasse_french_door_airfryer_360",
+          "label": "emerileveryday.com specification"
+        },
+        "Voltage": {
+          "url": "https://www.emerileveryday.com/products/emeril_lagasse_french_door_airfryer_360",
+          "label": "emerileveryday.com specification"
+        },
+        "Warranty": {
+          "url": "https://www.emerileveryday.com/products/emeril_lagasse_french_door_airfryer_360",
+          "label": "emerileveryday.com specification"
         }
+      },
+      "verifiedOn": "2026-11-20",
+      "figures": {
+        "capacityQt": 26,
+        "chambers": 1,
+        "footprintIn": {
+          "w": 15.8,
+          "d": 16.9,
+          "h": 14.8
+        },
+        "sourceLabel": "emerileveryday.com",
+        "sourceUrl": "https://www.emerileveryday.com/products/emeril_lagasse_french_door_airfryer_360"
       }
     },
     {
@@ -355,12 +432,22 @@
         "cleanup",
         "basket-vs-oven",
         "not-burn-the-rolls",
-        "holiday-batch"
+        "holiday-batch",
+        "air-fryer-vs-toaster-oven",
+        "five-questions"
       ],
       "submittedLink": "https://link.amazon/B00hJ57DV",
       "observedDestination": "https://www.amazon.com/dp/B08DKYBTPH",
       "observedOn": "2026-11-20",
-      "modelAmbiguity": "The 8-qt family spans at least five SKUs. chefman.com publishes RJ38-8T-BLACK (matte black, 8 qt/7.57 L, Hi-Fry 450 F, 1700 W/120 V); the listing re-fetched for this ASIN (12.8 lb, RJ38-SQSS-8T per retailer records) describes a stainless-steel body. Because the colour and model strings disagree, no dimension, weight or wattage is taken from the black SKU's page."
+      "modelAmbiguity": "The 8-qt family spans at least five SKUs. chefman.com publishes RJ38-8T-BLACK (matte black, 8 qt/7.57 L, Hi-Fry 450 F, 1700 W/120 V); the listing re-fetched for this ASIN (12.8 lb, RJ38-SQSS-8T per retailer records) describes a stainless-steel body. Because the colour and model strings disagree, no dimension, weight or wattage is taken from the black SKU's page.",
+      "figures": {
+        "capacityQt": 8,
+        "chambers": 1,
+        "footprintIn": null,
+        "missingFootprintReason": "The brand publishes dimensions for model RJ38-8T-BLACK (matte black); this listing describes stainless steel. Numbers are not borrowed across SKUs (FLG-028).",
+        "sourceLabel": "amazon.com listing",
+        "sourceUrl": "https://www.amazon.com/dp/B08DKYBTPH"
+      }
     },
     {
       "slug": "thermomaven-1-sec-thermometer",
@@ -462,7 +549,8 @@
       "guideTopics": [
         "multifunction",
         "capacity",
-        "instant-vs-wireless"
+        "instant-vs-wireless",
+        "five-questions"
       ],
       "submittedLink": "https://link.amazon/B0c8moW59",
       "observedDestination": "https://www.amazon.com/dp/B0DHZTCNR5",
@@ -501,7 +589,14 @@
           "label": "thermomaven.com"
         }
       },
-      "modelNumber": "HT07"
+      "modelNumber": "HT07",
+      "verifiedOn": "2026-11-20",
+      "figures": {
+        "staysIn": false,
+        "needsApp": false,
+        "readTimeStated": "1 second (brand page)",
+        "probes": null
+      }
     },
     {
       "slug": "chef-iq-sense-gen3",
@@ -610,7 +705,8 @@
       "guideTopics": [
         "multifunction",
         "basket-vs-oven",
-        "instant-vs-wireless"
+        "instant-vs-wireless",
+        "five-questions"
       ],
       "submittedLink": "https://link.amazon/B0f3GKalj",
       "observedDestination": "https://www.amazon.com/dp/B0DZFD6R9Z",
@@ -645,7 +741,14 @@
           "label": "chefiq.com"
         }
       },
-      "modelNumber": "CQ60-1C-Z1-E"
+      "modelNumber": "CQ60-1C-Z1-E",
+      "verifiedOn": "2026-11-20",
+      "figures": {
+        "staysIn": true,
+        "needsApp": true,
+        "readTimeStated": null,
+        "probes": 3
+      }
     }
   ],
   "categories": [
