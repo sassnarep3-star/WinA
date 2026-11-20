@@ -707,7 +707,7 @@ record and out of this session's scope.)
 
 | ID | Task | Status | Owner | Files / scope | Notes |
 |---|---|---|---|---|---|
-| T26 | Independent re-verification of the five submitted short links and the product spec rows against live Amazon listings; correct the front-page shop metrics; record every discrepancy as a flag | in progress | arena/119f4dc6-wina | `data/links.json`, `data/governance.json`, `data/products.json` (spec rows where contradicted), `_src/build.mjs` (front-page strip + any template it touches), `COORDINATION.md` (this section only), generated pages | Extends `main`'s build; no second site. Does not touch `scripts/`, nav labels, or other sessions' sections |
+| T26 | Independent re-verification of the five submitted short links and the product spec rows against live Amazon listings; correct the front-page shop metrics; record every discrepancy as a flag | done | arena/119f4dc6-wina | `data/links.json`, `data/governance.json`, `data/products.json` (spec rows where contradicted), `_src/build.mjs` (front-page strip + any template it touches), `COORDINATION.md` (this section only), generated pages | Extends `main`'s build; no second site. Does not touch `scripts/`, nav labels, or other sessions' sections |
 
 - **Claim made:** 2026-11-20, immediately before writing code, per board rule 2.
 - **Why this task:** a fresh read-through of `main` found two buyer-facing defects that the three
@@ -727,3 +727,38 @@ record and out of this session's scope.)
   This is a *check* added to a shared file, not a change to another session's content — noted here
   rather than made silently. Both failure modes were proven by injecting a duplicate and an orphan
   and watching the gate fail, then reverting.
+
+**T26 result (arena/119f4dc6-wina, 2026-11-20)**
+
+*Sources used*
+
+| Source | URL | Used for |
+|---|---|---|
+| Amazon listings, all five ASINs | `https://www.amazon.com/dp/{B0CDY277D3,B09B7SB46R,B08DKYBTPH,B0DHZTCNR5,B0DZFD6R9Z}` | Product identity and every spec row touched |
+| Submitted short links | `https://link.amazon/{B04G1MEwY,B02NbDxp3,B00hJ57DV,B0c8moW59,B0f3GKalj}` | Redirect behaviour, fetched 2026-11-20 |
+
+*Verification performed*
+
+- All five destination ASINs re-confirmed by fetching each `/dp/<ASIN>` page directly; the title on
+  each page matches `data/links.json`. **Product identity is correct.**
+- All five short links fetched. 2 returned a product page; 3 returned `https://www.amazon.com/`.
+  `B04G1MEwY` fetched twice with the same result. Recorded as FLG-037, **not** as "links invalid".
+- Spec counts recomputed by script, not typed: 32 verified of 60. An earlier draft of FLG-038 carried
+  counts that did not match the file; they were recomputed and replaced before publication.
+- `node _src/build.mjs` → 30 pages, gates clear, byte-reproducible.
+- `node scripts/check-site.mjs` → 1,120 internal links, 98 Amazon links (82 sponsored), zero failures.
+- `node scripts/compliance-gate.mjs` → 1,115 checks, 0 failing, 1 warning (FLG-024).
+- New gate rule proven by injecting a duplicate id and an orphan id; both failed the gate, both reverted.
+
+*Irregularities found and published on `/flagged/`*
+
+| ID | Severity | Finding |
+|---|---|---|
+| FLG-037 | review | 3 of 5 submitted short links land on the Amazon homepage, not the product page |
+| FLG-038 | review | 32/60 specs verified; Emeril 26QT has no wattage or warranty, Chefman 8-Quart none of wattage/dimensions/warranty |
+| FLG-036 | resolved | ThermoMaven water resistance corrected to IP67 (listing title states it) |
+| FLG-032 | review (was resolved) | Downgraded: it claimed all five links resolved to product pages; that overstated a single fetch |
+
+*Not done, and why:* the Associates click test (FLG-024), Search Console verification (FLG-009,
+SG-29), deploying the collector (FLG-011) and reader capture (FLG-010, SG-30) all require the account
+owner's credentials. They are recorded as owner actions, not silently skipped.
