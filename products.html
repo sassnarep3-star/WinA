@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Products &mdash; WinA</title>
+  <meta name="description" content="Product-intent confirmation register and outbound-link table. All Amazon values blank and unverified&mdash;Amazon not reachable from this build environment. See Flagged for Review." />
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <link rel="alternate" type="application/rss+xml" href="feed.xml" title="WinA &mdash; Buying guides feed" />
+</head>
+<body>
+  <div class="site">
+    <header class="masthead">
+      <div class="navbar">
+        <a class="brand" href="index.html">Win<span class="amp">A</span></a>
+        <nav class="nav-links" aria-label="Main navigation"></nav>
+        <a class="btn btn-outline small" href="index.html">Home</a>
+      </div>
+    </header>
+
+    <section class="disclosure-strip" aria-label="Affiliate disclosure">
+      <div class="wrap">
+        <strong>Affiliate disclosure:</strong> As an Amazon Associate we earn from qualifying purchases.
+        Outbound product links on this page are marked <span class="tag-sponsored" aria-hidden="true">sponsored</span>
+        (rel="sponsored"). We may earn a commission if you buy through them, at no extra cost to you.
+        <a href="flagged.html">See flagged items &amp; sources</a>.
+      </div>
+    </section>
+
+    <section class="container">
+      <div class="section-head">
+        <h1>Product register</h1>
+        <p>Product-intent confirmation records: intended ASIN, official listing URL, confirmation date,
+          and source&mdash;kept separate from observed redirect targets. Every outbound product link is marked
+          <strong>sponsored</strong>.</p>
+      </div>
+
+      <div class="callout warn">
+        <h4>Verification status: blocked</h4>
+        <p>Amazon.com is not reachable from this build environment, and no Amazon Associates API credentials are on file.
+          ASINs, listing URLs, prices, commissions, and images are therefore <strong>left blank and unverified</strong>.
+          Nothing has been inferred or filled in. Review and complete against the official Amazon listing once access is available.
+          <a href="flagged.html">View all flagged items &rarr;</a></p>
+      </div>
+
+      <h2>Product-intent confirmation records</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Submitted short link</th>
+            <th>Intended ASIN</th>
+            <th>Official listing URL</th>
+            <th>Confirmation date</th>
+            <th>Source</th>
+            <th>Observed redirect target (separate field)</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td class="monospace"><a href="https://link.amazon/B04G1MEwY" target="_blank" rel="nofollow sponsored">https://link.amazon/B04G1MEwY</a></td>
+            <td class="unverified">blank &mdash; unverified</td>
+            <td class="unverified">blank &mdash; unverified</td>
+            <td class="unverified">blank &mdash; unverified</td>
+            <td class="unverified">blank &mdash; unverified</td>
+            <td class="unverified">blank &mdash; not yet observed</td>
+            <td><span class="flag">Unverified</span></td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td class="monospace"><a href="https://link.amazon/B02NbDxp3" target="_blank" rel="nofollow sponsored">https://link.amazon/B02NbDxp3</a></td>
+            <td class="unverified">blank &mdash; unverified</td>
+            <td class="unverified">blank &mdash; unverified</td>
+            <td class="unverified">blank &mdash; unverified</td>
+            <td class="unverified">blank &mdash; unverified</td>
+            <td class="unverified">blank &mdash; not yet observed</td>
+            <td><span class="flag">Unverified</span></td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td class="monospace"><a href="https://link.amazon/B00hJ57DV" target="_blank" rel="nofollow sponsored">https://link.amazon/B00hJ57DV</a></td>
+            <td class="unverified">blank &mdash; unverified</td>
+            <td class="unverified">blank &mdash; unverified</td>
+            <td class="unverified">blank &mdash; unverified</td>
+            <td class="unverified">blank &mdash; unverified</td>
+            <td class="unverified">blank &mdash; not yet observed</td>
+            <td><span class="flag">Unverified</span></td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td class="monospace"><a href="https://link.amazon/B0c8moW59" target="_blank" rel="nofollow sponsored">https://link.amazon/B0c8moW59</a></td>
+            <td class="unverified">blank &mdash; unverified</td>
+            <td class="unverified">blank &mdash; unverified</td>
+            <td class="unverified">blank &mdash; unverified</td>
+            <td class="unverified">blank &mdash; unverified</td>
+            <td class="unverified">blank &mdash; not yet observed</td>
+            <td><span class="flag">Unverified</span></td>
+          </tr>
+          <tr>
+            <td>5</td>
+            <td class="monospace"><a href="https://link.amazon/B0f3GKalj" target="_blank" rel="nofollow sponsored">https://link.amazon/B0f3GKalj</a></td>
+            <td class="unverified">blank &mdash; unverified</td>
+            <td class="unverified">blank &mdash; unverified</td>
+            <td class="unverified">blank &mdash; unverified</td>
+            <td class="unverified">blank &mdash; unverified</td>
+            <td class="unverified">blank &mdash; not yet observed</td>
+            <td><span class="flag">Unverified</span></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="callout info">
+        <h4>Field separation note</h4>
+        <p>The <strong>intended ASIN</strong> and <strong>official listing URL</strong> are stored in the confirmation record.
+          The <strong>observed redirect target</strong> is kept in a separate field. The two are never merged, per Amazon's ASIN
+          definition as a checkable identifier.</p>
+      </div>
+
+      <h2>Tracking &amp; measurement</h2>
+      <p class="muted">Outbound clicks are counted by a privacy-preserving, self-hosted analytics endpoint (client-side; no cookies,
+      no PII). Events recorded: page_view, outbound_click, product_click, guide_view, suggestion_review. Configure
+      <code>winA.analyticsEndpoint</code> to post to your own collector; otherwise data remains local only.</p>
+
+      <div class="center" style="margin-top: 30px;">
+        <a class="btn btn-primary" href="guides.html">Read buying guides &rarr;</a>
+      </div>
+    </section>
+
+    <footer>
+      <div class="footer-grid">
+        <div class="footer-col">
+          <h4>Shop</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="products.html">All products</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Learn</h4>
+          <ul>
+            <li><a href="guides.html">Buying guides</a></li>
+            <li><a href="questions.html">Questions &amp; answers</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Community</h4>
+          <ul>
+            <li><a href="suggest.html">Suggestions</a></li>
+            <li><a href="flagged.html">Flagged for review</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Company</h4>
+          <ul>
+            <li><a href="executive-summary.html">Executive summary</a></li>
+            <li><a href="https://www.ftc.gov" target="_blank" rel="nofollow sponsored">FTC guidance</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div>As an Amazon Associate we earn from qualifying purchases.</div>
+        <div><a href="flagged.html">Flagged for review</a> &middot; <a href="https://www.ftc.gov">FTC guidance</a> &middot; <a href="https://docs.github.com/pages">GitHub Pages</a></div>
+      </div>
+    </footer>
+  </div>
+
+  <script src="assets/js/app.js"></script>
+  <script src="assets/js/click-tracker.js"></script>
+</body>
+</html>
