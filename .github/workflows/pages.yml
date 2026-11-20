@@ -1,0 +1,95 @@
+name: Build, verify and deploy
+
+# Order matters. If any gate fails, the deploy job never starts and the
+# previously published site stays live. A non-compliant or broken build
+# cannot reach readers through this workflow.
+#
+# Two independent gates run, deliberately written by different sessions:
+#   _src/build.mjs        — the authoring gate, which also builds the site
+#   scripts/check-site.mjs — an adversarial gate that reads the repo as served
+# Neither is required to trust the other. A defect that one gate cannot see
+# is the other's job to catch; that is how the unsponsored-link hole below
+# was found.
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  verify:
+    name: Build and verify
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      # Builds every page from data/ and runs the authoring gate.
+      - name: Build and gate the site
+        run: node _src/build.mjs
+
+      # Independent, adversarial gate over the repository as it will be served.
+      - name: Verify repository
+        run: node scripts/check-site.mjs
+
+      # The third gate, in the deploy path as well as the PR path: disclosure placement, link
+      # classification, claim bans and register cross-references. A compliance regression should
+      # stop the deployment, not just colour a check red.
+      - name: Compliance gate
+        run: node scripts/compliance-gate.mjs
+
+      # Nothing from an earlier site build may survive at the root.
+      - name: No stale build artefacts
+        run: |
+          stale=""
+          # `site` is the output dir of the archived Countertop Report generator (scripts/build.mjs,
+          # now inert). If it ever appears at the root, someone ran a dead script.
+          for f in shop tools site dashboard/analysis.html data/flags.json assets/analytics.js; do
+            [ -e "$f" ] && stale="$stale $f"
+          done
+          if [ -n "$stale" ]; then
+            echo "::error::Files from a prior site build are present:$stale"
+            exit 1
+          fi
+
+      # The committed output must equal the built output, or reviewers are
+      # reading something different from what ships.
+      - name: Check the build is reproducible
+        run: |
+          if ! git diff --quiet; then
+            echo "::error::Committed files differ from a fresh build. Run node _src/build.mjs, then commit the result."
+            git --no-pager diff --stat
+            exit 1
+          fi
+
+      - name: Upload Pages artifact
+        if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: .
+
+  deploy:
+    name: Deploy to GitHub Pages
+    needs: verify
+    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
