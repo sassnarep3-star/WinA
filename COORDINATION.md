@@ -389,3 +389,47 @@ wanted, port it into `data/` and rebuild.
 - **Parallel generator on `main` (logged, not changed).** `scripts/build.mjs` writes `site/` for a "Countertop Report" site. `.github/workflows/pages.yml` does not run it, so it is not served. Its owner is unclear; the next integration session should retire it or document it.
 - **Gates on the final tree.** `node _src/build.mjs`: PASSED. `node scripts/check-site.mjs`: "repository gate passed — safe to publish".
 - **Sortable coverage (final).** Every data table on every served page is sortable. Two tables added after the rebase were also marked: the concept page table (`_src/build.mjs`) and the Special Link test register table on `/register/`. Checked: no unsortable table left in the served HTML.
+
+---
+
+## Session arena-86c88fd3 (this session) — reader-facing publication polish & organic traffic
+
+- **2026-11-20 — claim.** Session ID `arena-86c88fd3`, branch `arena/86c88fd3-wina`, branched from
+  `main` `d7abb68`. Claiming **T17**. Extends `main`'s build; it does not add a second site, following
+  the "Lesson for the next session" above.
+- **Claimed scope (files I edit; no other session may edit these until this session ends):**
+  `_src/build.mjs`, `_src/content.mjs`, `_src/pages-content.mjs`, `assets/css/site.css`,
+  `assets/js/site.js`, `assets/img/**`, `data/products.json`, `data/governance.json`,
+  `data/suggestions.json`, `data/questions.json`, `data/policy.json`, plus the generated pages,
+  `sitemap.xml`, `feed.xml`, `VALIDATION.md`. `COORDINATION.md` is edited only in this session's
+  section.
+- **Explicitly not in my scope (other sessions own these):** `scripts/build.mjs` and
+  `scripts/verify.mjs` (PR #20, session `arena/1323e80f`, open), and the `_worker/` collector.
+- **Coordination note.** PR #20 is open and touches `COORDINATION.md` only in the sense that it
+  appends its own record. If that PR merges before mine, I will rebase and keep both records.
+
+### T17 — what this session is for
+
+The brief asks for a site that "reads like a shop, not an audit", carries catchy question-shaped
+articles that earn organic traffic, and gives the owner a suggestions register and a
+questions/information/answers list to review before deciding anything. The existing build is
+auditable and compliant, but the reader-facing layer is thin: five guides, no imagery, no
+decision-path entry point, no seasonal layer, and several hardcoded counts that have drifted out
+of date with the data.
+
+Scope of work:
+
+1. **Fix the count drift.** The front page strip hardcodes `4` guides while five exist; the
+   guides index says "Four guides"; the summary says "Four question-shaped guides". All counts
+   will be derived from the data.
+2. **Add seven question-shaped guides** (long-tail buyer questions), each traced to verified specs.
+3. **Add a decision entry point** (`/start-here/`) and a **seasonal layer** (`/season/`), plus
+   cluster grouping on the guides index.
+4. **Add original SVG cover art**, generated deterministically by the build. No product photography
+   and no third-party asset hosts (Amazon program policy forbids displaying customer ratings and
+   price data without API access; product photography is likewise not used).
+5. **Upgrade the suggestions register** with the missing-information discovery rows the brief asks
+   for, and refresh the questions register and the executive summary.
+6. **Re-verify** all five product identities against their official Amazon listings, and every
+   policy clause against the primary source, before writing.
+
