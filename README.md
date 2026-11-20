@@ -17,7 +17,7 @@ machinery kept reachable in a "data room" instead of in the reader's face.
 |---|---|---|
 | Front | `index.html` | Publication front page: featured lineup, guides, seasonal note |
 | Shop | `shop.html`, `compare.html` | All 5 products by category + full source-linked comparison table |
-| Guides | `guides/` | 9 question-shaped buyer guides (working editorial hypotheses, labeled as such) |
+| Guides | `guides/` | 10 question-shaped buyer guides (working editorial hypotheses, labeled as such) |
 | Decisions | `suggestions.html`, `questions.html` | Review-before-build suggestion queue · open-questions register |
 | Summary | `executive-summary.html`, `about.html` | One-page project state · method & money disclosure |
 | Data room | `data-room/` | Source register, product-intent record, campaign ledger (empty by design), measurement spec, compliance gate, **Flagged for Review**, methodology |

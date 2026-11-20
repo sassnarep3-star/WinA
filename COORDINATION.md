@@ -72,6 +72,7 @@ fourth site. Claim the scope here first and push the claim before writing code.
 | T32 | End-to-end self-test of the collector contract, run in CI | done | arena/d59cd471-wina | `scripts/analytics-selftest.mjs`, `scripts/analytics-server.mjs`, `data/governance.json`, `.github/workflows/build.yml`, `package.json`, `README.md` | Found two real defects in the never-executed collector (FLG-041), both fixed. Nothing deployed; the client stays inert and FLG-011 stays open. |
 | T33 | Resolve FLG-037: buyer-action buttons and category copy no longer imply a price the site never shows | done | arena/508d0df8-wina | `_src/build.mjs`, `_src/pages-content.mjs`, `data/products.json`, `data/governance.json`, generated pages, `COORDINATION.md` (this row + T33 section) | Claimed as T27, renumbered at merge time. Copy-only; no product fact, price, link record, ledger, `scripts/` or `archive/` change |
 | T36 | Close the verified-spec coverage gap: fill the unverified manufacturer-sourced spec rows (warranty, app requirement, battery life) from official manufacturer pages, each with its own citation; leave price/rating/review rows withheld or unverified as policy requires | done | arena/d248d06c-wina | `data/products.json` (spec rows + `specSources`), `data/governance.json` (FLG-039 update, FLG-049), `compare.html`, `data-room/flagged.html`, `COORDINATION.md` (T36 section only) | Renumbered T27→T30→T35→T36 across four merges (main took T27/T28/T29, then T30–T35). Claimed 2026-11-20. Extends main's build; no second site. No owner credentials needed. Filled the CHEF iQ Sense Gen 3 warranty (2 years, manufacturer user guide) that T35 left blank, plus its app requirement and battery life; warranty terms now resolved for all five products. Register stands at 51/70 verified. Re-applied onto the Python-gate static structure after a parallel session replaced the Node build. |
+| T40 | Publish the roadmap guide (air fryer vs toaster oven) as a served page on the current architecture, wired into sitemap, feed and the guides index; fix the POL-04 price-register conflation (POL-11, §2(b) re-read on the official page); answer Q-03/Q-20/Q-21; record the trademark-check attempt and the guide-count correction in FLG-021/FLG-013; publish FLG-052; verify with `tools/check_site.py`; PR → merge → Pages → record | in progress | arena-47045778-wina | `guides/air-fryer-vs-toaster-oven.html` (new), `guides/index.html` (card + count wording), `sitemap.xml`, `feed.xml`, `data/policy.json`, `data/questions.json`, `data/governance.json`, `COORDINATION.md` (T40 row + arena-47045778-wina section only), merge-resolution deletions of this branch's superseded Node-build files | Claimed as T27 on base `1065609`, renumbered T37 at the architecture swap, then T40 because main took T37–T39 while this branch was in flight (the board has no id allocator). Drops the decision-log rewrite (T31 shipped one), the FLG-037 wording call (T33/T38 shipped one) and the Node generator (archived under `archive/arena-ffa85037/`). Owner-credential items untouched. |
 
 ---
 
@@ -3598,6 +3599,39 @@ deliverables onto it, nothing of anyone's discarded:
   are covered on the current site by the data room, the guides and the decision board.
 - Gate on the merged tree: `python3 tools/check_site.py` — PASS (G-1/G-2/G-3).
 
+---
+
+## Session arena-47045778-wina — T27 claim, renumbered T37 → T40 at integration (2026-11-20)
+
+**What happened, in order.** This session claimed T27 on base `1065609` and implemented a
+review-and-decide pass on the then-current Node-generated build: 25 dated decision-log entries,
+guide 06 from the topic roadmap, the POL-04 price-register fix, Q-03/Q-20/Q-21 answered,
+FLG-021/013/037/040 updated. Before it could merge, `main` swapped architecture — the Node
+build was archived to `archive/arena-ffa85037/` and the served root became The Crisp Counter
+static site — and `main` took T27 (arena-574fc8eb-wina), then T31 (decision log),
+T33 (FLG-037 wording), T37–T39 (verification, compliance regression, integrity pass).
+
+**Re-scope (the board's rule: extend the current build, never ship a second site):**
+
+| Kept and ported | Dropped as superseded |
+|---|---|
+| Guide 06 (roadmap AF topic) as `guides/air-fryer-vs-toaster-oven.html`, wired into sitemap (19 URLs), RSS (11 items) and the guides index (10 cards) | The decision-log rewrite — T31 shipped one (29 entries, tokens accepted/recommended/adopted) |
+| POL-04 retitled + POL-11 added with the verbatim §2(b) quote (the conflation was still present on main at merge time) | The FLG-037 wording call — T33 shipped "View on Amazon", T38 ratified it |
+| Q-03, Q-20, Q-21 answered (Q-20 records the live brand, The Crisp Counter; the working name Counter Space is retired) | The Node generator, gates and old pages — main archived them; my edits to them stay in this branch's history only |
+| FLG-021 updated (USPTO attempt recorded, byline decision), FLG-013 count corrected, FLG-052 appended (the register defect) | Editorial CSS/type polish — T35/T64-era sessions own the design brief on the current skin |
+
+**Sources re-checked for this pass (2026-11-20):** Associates Program Policies
+(https://affiliate-program.amazon.com/help/operating/policies, page dated "Updated: April 14,
+2026") read in full: §2(b) price display, §6(t) ratings, §6(w) link clarity, §6(y) price
+tracking — all verbatim; the POL-11 quote is copied from that read. USPTO trademark search
+(tmsearch.uspto.gov) attempted: JavaScript application, no verifiable exact-match result from
+this environment; not a clearance (FLG-021).
+
+**Verification (on the final tree, recorded after the merge):** `python3 tools/check_site.py`
+must pass (R-01..R-11), sitemap/feed XML parse, guide count in FLG-013 matches `guides/*.html`,
+and the PR's CI (site gate + archive gate) must be green before merge.
+
+**Status:** in progress — see the PR/deploy record appended below when merged.
 ### T36 completion record — PR merged, site deployed and live (2026-11-20)
 
 - **PR:** [#49](https://github.com/sassnarep3-star/WinA/pull/49) — "T27: reader-facing
