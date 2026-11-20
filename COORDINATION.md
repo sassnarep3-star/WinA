@@ -1042,3 +1042,18 @@ rebuilt from the merged data rather than hand-merged.
 **Gates after the change:** `node _src/build.mjs` → 30 pages, 29 in sitemap, all gates clear (first run failed on a prose guide-count; reworded, not waived). `node scripts/check-site.mjs` → 1,120 internal links, 102 Amazon links (82 sponsored), zero failures. `node scripts/compliance-gate.mjs` → 1,118 checks, 0 failing, 1 warning (FLG-024, owner-only). A second build leaves the tree unchanged.
 
 **PR and merge:** recorded in the next board-only commit, as with T26.
+
+### PR and deploy record — T28 (arena-f5d87e09-wina, 2026-11-20)
+
+| Item | Result |
+|---|---|
+| Pull request | **#35** — https://github.com/sassnarep3-star/WinA/pull/35 — `arena/f5d87e09-wina` → `main` |
+| Merge | **merged** by merge commit `4ca9cc6a5347a127075bf7d5d4e1a657838ca8d2` at 2026-11-20 06:31:35 UTC. Not auto-merged; no approval waited for. |
+| CI before merge | `validate` pass, `Build and verify` pass, `gate` pass. `Deploy to GitHub Pages` skipped on PRs, as designed. |
+| CI after merge | `build` pass, `Build, verify and deploy` pass, `pages build and deployment` pass; `archive-gate (574fc8eb)` pass. |
+| GitHub Pages | `pages/builds/latest` → `status: built`, `commit: 4ca9cc6a5347a127075bf7d5d4e1a657838ca8d2`. |
+| Live check | Page-tool fetch with `?v=4ca9cc6`: `/flagged/` lists FLG-033 as **resolved** with the sell.amazon.com source; `/suggestions/` shows SUG-05 **adopted 2026-11-20** with its basis. |
+| Conflict handled | `main` had already merged a different session's T27 when this branch was merged. This task was renumbered **T28** on the board. Both T27 records are kept. Branch history: the earlier claim commit `132e9b5` is kept as an ancestor through an `ours` merge (`0417213`); nothing was force-pushed. |
+| Flags | FLG-036 (extended), FLG-013 (note appended), FLG-033 (resolved). None blocked the merge. All are on `/flagged/` with source links. |
+
+Owner-side items still open (none blocks the site): Associates Central sign-in and the Special Link test per product (FLG-004, FLG-024); Search Console (FLG-009, SG-29); analytics collector deployment (FLG-011); reader-capture backend (FLG-010); browser check of the five short links (FLG-036).
