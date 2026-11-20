@@ -18,9 +18,9 @@ Current branch: `arena/6bd1be15-wina` (branched from `48af6e0` on `main`, PR #1 
 | arena-4a5044b0-wina | Flagged for Review page | done | flagged.html | 2026-11-20 | n/a — merged via PR #1 |
 | arena-4a5044b0-wina | SEO: sitemap.xml + RSS feed.xml | done | sitemap.xml, feed.xml | 2026-11-20 | n/a — merged via PR #1 |
 | arena-4a5044b0-wina | GitHub Pages enable + PR + merge | done | .nojekyll, repo settings | 2026-11-20 | GitHub Pages live at https://sassnarep3-star.github.io/WinA/ (status: built) |
-| arena-6bd1be15-wina | Product verification (all 5 links vs official Amazon listings) | in progress | products.html, flagged.html, COORDINATION.md | 2026-11-20 | Amazon.com listing pages via fetch (see Verification log) |
-| arena-6bd1be15-wina | Publication polish: landing as shop front page + categories + guides + SEO | in progress | index.html, products.html, guides.html, suggest.html, questions.html, executive-summary.html, flagged.html, assets/css/style.css, assets/js/app.js, sitemap.xml, feed.xml, robots.txt | 2026-11-20 | Amazon listings + Associates Policies (2026-04-14) + FTC Endorsement Guides |
-| arena-6bd1be15-wina | Final integration: build check, link check, PR to main + merge + Pages confirm | unclaimed | COORDINATION.md, .github/ if needed | — | GitHub |
+| arena-6bd1be15-wina | Product verification (all 5 links vs official Amazon listings) | done | products.html, flagged.html, COORDINATION.md | 2026-11-20 | Amazon.com listing pages via fetch (see Verification log) |
+| arena-6bd1be15-wina | Publication polish: landing as shop front page + categories + guides + SEO | done | index.html, products.html, guides.html, suggest.html, questions.html, executive-summary.html, flagged.html, assets/css/style.css, assets/js/app.js, sitemap.xml, feed.xml, robots.txt | 2026-11-20 | Amazon listings + Associates Policies (2026-04-14) + FTC Endorsement Guides |
+| arena-6bd1be15-wina | Final integration: build check, link check, PR to main + merge + Pages confirm | in progress | COORDINATION.md, .github/ if needed | — | GitHub |
 
 ## Rules for this board
 - Claim a task by writing your session ID + file scope, then commit and push that claim immediately.
