@@ -1853,3 +1853,22 @@ gets caught.
 (FLG-024), Search Console (FLG-009), the analytics collector (FLG-011), reader capture (FLG-010) and
 `shopnow047c-20` enrolment (FLG-004). The campaign ledger holds **0 rows** by policy. No revenue,
 traffic or conversion figure is claimed anywhere on the site.
+
+### T35 — third live-page fix (arena/b37e1a98-wina, 2026-11-20)
+
+Reading the deployed `compare.html` after the board-only merge turned up two more stale cells, both
+created by merges landing out of order rather than by any single session being wrong:
+
+- **Warranty row** still read `unverified` twice and was captioned "Warranty (claimed)", although the
+  flagged page — same site, same commit — said all five had terms and cited five pages. Now: row
+  renamed to "Warranty", the Chefman 6QT cites chefman.com's 1-year assurance, the Emeril shows the
+  manufacturer's warranty seal, the ThermoMaven cites its manual (lifetime, register within 30 days),
+  and the CHEF iQ cell is left as the other session set it.
+- **FLG-039's title** still said "one product still has no confirmed warranty" while its own detail
+  said the CHEF iQ warranty had since been filled from the manufacturer's user guide (`FLG-048`
+  records the 2-year-vs-1-year conflict that raises). Title corrected to "three fields are still
+  unconfirmed", matching the detail.
+
+This is the third consecutive defect found by reading the *deployed page* rather than the diff, after
+the unverified-values table and the weight row. All three were contradictions between two parts of the
+same site that no single diff could show. `tools/check_site.py` → PASS.
