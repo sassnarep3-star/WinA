@@ -1,0 +1,67 @@
+diff --git a/data/governance.json b/data/governance.json
+index 3943c7b..73c90e6 100644
+--- a/data/governance.json
++++ b/data/governance.json
+@@ -246,20 +246,20 @@
+     {
+       "id": "FLG-028",
+       "severity": "review",
+-      "title": "Chefman's 8-quart family has at least five SKUs and the listing names none of them",
+-      "detail": "chefman.com publishes RJ38-8T-BLACK (matte black) for the 8-qt Hi-Fry machine; retailer records for this ASIN give RJ38-SQSS-8T and a stainless-steel body of 12.75 x 13.5 x 10 in at 12.8 lb. The two disagree on colour and model, so no dimension, weight or wattage from either page can be attached to this listing.",
+-      "action": "Left blank rather than guessed, and recorded on the product page. The figures are not in dispute; which SKU this listing ships is.",
+-      "sourceUrl": "https://chefman.com/products/turbofry-8-qt-air-fryer-w-high-fry",
+-      "sourceLabel": "Chefman 8 Qt Hi-Fry page (RJ38-8T-BLACK) vs the Amazon listing"
++      "title": "Chefman 8-quart: the listing names RJ38-SQSS-8T, but its own wattage line (1000 W) conflicts with 1700 W on Chefman's black-SKU page",
++      "detail": "On 2026-11-20 the ASIN's own listing (amazon.com/dp/B08DKYBTPH) was fetched. Its purchase-options table gives Product Dimensions 12.75\"D x 13.5\"W x 10\"H and colour Stainless steel; its About-this-item text says '1-year warranty provided by Chefman' and '1000 Watts/120 Volts – RJ38-SQSS-8T'. Chefman's page for the matte-black SKU RJ38-8T-BLACK (chefman.com/products/turbofry-8-qt-air-fryer-w-high-fry) gives Power 1700W/120V. The listing's wattage line and the black-SKU page disagree, and the listing's product-information table was not reached in the fetched pages. Wattage therefore stays blank. Dimensions and warranty are taken from this ASIN's own listing; no figure is borrowed from the black SKU. Dimensions and warranty are proposed in handoff/T29-products.patch and are not yet applied.",
++      "action": "Owner or next session: open amazon.com/dp/B08DKYBTPH in a browser and read the wattage in its product-information table. If it reads 1700 W, fill the wattage row from the listing. If it reads 1000 W, leave the row blank and record that.",
++      "sourceUrl": "https://www.amazon.com/dp/B08DKYBTPH",
++      "sourceLabel": "Amazon listing B08DKYBTPH (fetched 2026-11-20)"
+     },
+     {
+       "id": "FLG-029",
+       "severity": "review",
+-      "title": "Emeril's own page contradicts the Amazon listing on preset count",
+-      "detail": "emerileveryday.com states '25 Cooking Pre-sets' in its specification block and '10-in-1' in the product description; the Amazon listing states 24 one-touch presets. Three different numbers for one feature.",
+-      "action": "Recorded as 24 (the listing) with the manufacturer figure noted. Neither is published as settled. Unchanged from FLG-005's finding, now with the third number and its URL.",
++      "title": "Emeril's own pages disagree on preset count and accessory count; both rows are proposed blank",
++      "detail": "emerileveryday.com gives '25 Cooking Pre-sets' in its specification block and '24 one-touch cooking presets' in its product description. The Amazon listing title gives 24 one-touch preset options. The same manufacturer page gives '7 premium accessories' in its description; the Amazon listing title says 'Six Cooking Accessories Included'. The official sources disagree with each other on both features, so neither figure is published as settled. Checked against the pages on 2026-11-20. The proposed blanking is in handoff/T29-products.patch and is not yet applied.",
++      "action": "Owner: confirm the preset and accessory counts with Emeril, or from the product in hand. Until then both rows stay blank.",
+       "sourceUrl": "https://www.emerileveryday.com/products/emeril_lagasse_french_door_airfryer_360",
+-      "sourceLabel": "Emeril Everyday specification block"
++      "sourceLabel": "Emeril Everyday product page (specification block and description)"
+     },
+     {
+       "id": "FLG-034",
+@@ -381,11 +381,29 @@
+     {
+       "id": "FLG-039",
+       "severity": "review",
+-      "title": "Spec coverage is uneven, and two products carry no warranty or dimensions at all",
+-      "detail": "Counted from data/products.json on 2026-11-20 by script over the published rows: 32 of 60 spec rows carry a verified value. Per product, verified of total: Chefman 6-Quart Dual Basket 8/12; Emeril 26QT French Door 6/11; Chefman 8-Quart TurboFry 5/12; ThermoMaven 1-Second 7/12; CHEF iQ Sense Gen3 6/13. The Emeril has no confirmed wattage or warranty; the Chefman 8-Quart has no confirmed wattage, dimensions or warranty. Those are the fields a buyer most often needs — will it fit, will it trip the outlet, what happens if it fails — and they are blank because the listing did not state them and no manufacturer page was cited for them. (Originally drafted as FLG-038 and moved when that id was taken in a parallel claim.)",
+-      "action": "Owner or next session: add the manufacturer product page URL per product to specSources and fill wattage, dimensions and warranty from it, one row at a time with its own source. Do not fill from memory or from a marketplace reseller page.",
++      "title": "Spec coverage is uneven: 26 of 60 rows carry no verified value, and wattage is blank for two products",
++      "detail": "Counted by script over data/products.json, with the proposed handoff/T29-products.patch applied: 34 of 60 spec rows carry a verified value. Per product, verified of total: Chefman 6-Quart Dual Basket 8/12; Emeril 26QT French Door 5/11; Chefman 8-Quart TurboFry 7/12; ThermoMaven 1-Second 7/12; CHEF iQ Sense Gen3 7/13. Without that patch the count is 32 of 60. The Emeril and the Chefman 8-Quart have no confirmed wattage. The Emeril's preset and accessory counts are blank because its own pages conflict (FLG-029). These are the fields a buyer most often needs, and they are blank because no official page states them and the sources that exist disagree. (Originally drafted as FLG-038 and moved when that id was taken in a parallel claim.)",
++      "action": "Owner or next session: for each blank row, add the official product page to specSources and fill the value from that page only, one row at a time, with its own citation. Do not fill from memory or from a marketplace reseller page.",
+       "sourceUrl": "https://www.amazon.com/dp/B09B7SB46R",
+       "sourceLabel": "Amazon listing for the Emeril 26QT (wattage and warranty not stated there)"
++    },
++    {
++      "id": "FLG-040",
++      "severity": "review",
++      "title": "CHEF iQ: the model on file is the manufacturer's 1-probe variant, while the ASIN's title says 3 probes",
++      "detail": "data/products.json records model CQ60-1C-Z1-E for the CHEF iQ Sense Gen3, ASIN B0DZFD6R9Z. On chefiq.com/products/iq-sense that SKU is the variant selected by default (1 Probe), and its size selector lists 1, 2, 3 and 4 probes. The Amazon title for B0DZFD6R9Z says '3 Ultra-Thin Probes' (fetched 2026-11-20). The probe count in the spec row is taken from the listing title and from one manufacturer variant option. Neither source says which SKU this ASIN ships, so the model and the probe count may describe different SKUs.",
++      "action": "Owner: read the 'Item model number' and variation details on amazon.com/dp/B0DZFD6R9Z in a logged-out browser and record them. If the model is not CQ60-1C-Z1-E, correct it in data/products.json. If it is, the probe count needs the same check.",
++      "sourceUrl": "https://www.amazon.com/dp/B0DZFD6R9Z",
++      "sourceLabel": "Amazon listing B0DZFD6R9Z and CHEF iQ product page (fetched 2026-11-20)"
++    },
++    {
++      "id": "FLG-041",
++      "severity": "review",
++      "title": "ThermoMaven: the listing title and the manufacturer's F1 Stealth page describe the product differently",
++      "detail": "The Amazon listing for B0DHZTCNR5 is titled 'ThermoMaven 1 Sec Professional Digital Meat Thermometer ... Auto-Rotate Bright LED Screen, IP67 Waterproof'. The manufacturer's product page and user manual are for the 'ThermoMaven F1 Stealth', model HT07. The manual gives model HT07, one 1.5 V AAA battery and a display that rotates 180°. It gives no IP rating; the page says '100% waterproof'. The IP67 figure comes from the listing title only. The listing text read does not say whether this ASIN is the F1 Stealth SKU. The display and battery rows are proposed to be cited to the manual in handoff/T29-products.patch and are not yet applied.",
++      "action": "Owner: confirm the model and product name on amazon.com/dp/B0DHZTCNR5. If the ASIN is not the HT07 product, correct the model field and move the affected rows to the listing's own citation.",
++      "sourceUrl": "https://www.amazon.com/dp/B0DHZTCNR5",
++      "sourceLabel": "Amazon listing B0DHZTCNR5; ThermoMaven F1 Stealth manual (HT07), fetched 2026-11-20"
+     }
+   ],
+   "ledger": {
