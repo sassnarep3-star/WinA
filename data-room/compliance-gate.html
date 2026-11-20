@@ -1,0 +1,245 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Compliance gate | The Crisp Counter — Data room</title>
+<meta name="description" content="The publishing workflow gate: what is automated in CI, what requires human sign-off, and the disclosure/endorsement checklists against the Associates Operating Agreement and FTC guidance.">
+<link rel="canonical" href="https://sassnarep3-star.github.io/WinA/data-room/compliance-gate.html">
+<meta name="robots" content="noindex">
+<meta name="cc-endpoint" content="">
+<link rel="alternate" type="application/rss+xml" title="The Crisp Counter" href="../feed.xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..700;1,9..144,400..700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/site.css">
+</head>
+<body>
+<header class="masthead">
+  <div class="wrap masthead-row">
+    <a class="brand" href="../index.html"><span class="brand-mark">◆</span> The Crisp Counter <small>measured kitchen buying</small></a>
+    <button class="nav-toggle" aria-expanded="false" aria-controls="site-nav">Menu</button>
+    <nav class="nav" id="site-nav" aria-label="Primary">
+      <a href="../shop.html">Shop</a>
+      <a href="../compare.html">Compare</a>
+      <a href="../guides/index.html">Guides</a>
+      <a href="../questions.html">Questions</a>
+      <a href="../suggestions.html">Suggestions</a>
+      <a href="index.html" aria-current="page">Data room</a>
+      <a class="nav-cta" href="../shop.html#the-lineup">See the lineup</a>
+    </nav>
+  </div>
+</header>
+<div class="disclosure-strip" id="disclosure">
+  <div class="wrap">
+    <span class="disclosure-badge">Disclosure</span>
+    <span><strong>The Crisp Counter is an Amazon Associate — we earn from qualifying purchases.</strong> Sponsored/affiliate links are marked. This page documents the gate that keeps those statements true. <a href="compliance-gate.html">Below: the full gate table</a>.</span>
+  </div>
+</div>
+
+<main>
+  <div class="wrap page-head">
+    <p class="breadcrumb"><a href="../index.html">Home</a> / <a href="index.html">Data room</a> / Compliance gate</p>
+    <h1>Compliance gate</h1>
+    <p class="lede">Automate what can be automated; gate what cannot. Every publishing change passes the three automated gates below (they run in CI and block broken or undisclosed pages). The four human gates carry named checklists and explicit owner actions.</p>
+  </div>
+
+  <section class="section tight">
+    <div class="wrap">
+      <div class="table-scroll">
+        <table class="data" data-exempt="internal">
+          <caption>Gate table — current state 2026-11-20.</caption>
+          <thead>
+            <tr><th scope="col">Gate</th><th scope="col">What it enforces</th><th scope="col">Type</th><th scope="col">How</th><th scope="col">State</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">G-1</th>
+              <td>Disclosure strip present under the masthead + footer disclosure on <strong>every</strong> HTML page</td>
+              <td>automated</td>
+              <td><code>tools/check_site.py</code> rule R-01, runs in CI</td>
+              <td><span class="chip verified">pass</span></td>
+            </tr>
+            <tr>
+              <th scope="row">G-2</th>
+              <td>Every Amazon link carrying <code>tag=</code> must have <code>rel="sponsored"</code> and a visible "sponsored" label nearby</td>
+              <td>automated</td>
+              <td>checker rule R-02</td>
+              <td><span class="chip verified">pass</span></td>
+            </tr>
+            <tr>
+              <th scope="row">G-3</th>
+              <td>Every data-table row source-linked or flagged unverified; no broken internal links; no leftover placeholders</td>
+              <td>automated</td>
+              <td>checker rules R-03…R-08</td>
+              <td><span class="chip verified">pass</span></td>
+            </tr>
+            <tr>
+              <th scope="row">G-4</th>
+              <td>One tagged Special Link per product tested in the enrolled Associates workflow; destination + tracking report confirmed before scaling links</td>
+              <td>human</td>
+              <td>Owner action O-1, checklist below</td>
+              <td><span class="chip unverified">open</span></td>
+            </tr>
+            <tr>
+              <th scope="row">G-5</th>
+              <td>Disclosure placement &amp; endorsement context reviewed against the Operating Agreement and FTC guidance</td>
+              <td>human</td>
+              <td>Owner action O-2, checklist below</td>
+              <td><span class="chip unverified">open</span></td>
+            </tr>
+            <tr>
+              <th scope="row">G-6</th>
+              <td>Self-hosted analytics endpoint deployed and receiving the five events</td>
+              <td>human</td>
+              <td>Owner action O-3 (deploy steps shipped in <code>analytics/</code>)</td>
+              <td><span class="chip unverified">open</span></td>
+            </tr>
+            <tr>
+              <th scope="row">G-7</th>
+              <td>Any data-collection automation (price re-checks, API use) approved against the Associates API/automation policies before it runs</td>
+              <td>human</td>
+              <td>Owner action O-4-a; applies to proposals S-10, S-02</td>
+              <td><span class="chip unverified">open (nothing automated runs today)</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="section tight">
+    <div class="wrap">
+      <div class="two-col">
+        <div class="callout sage">
+          <h3>Checklist G-4 · Associates link test (owner action O-1)</h3>
+          <ol>
+            <li>Sign in to Associates Central for the account owning <code>shopnow047c-20</code>; confirm the tracking ID is active.</li>
+            <li>For <strong>one product first</strong>: generate a SiteStripe/API Special Link, click it in a logged-out browser, and confirm it lands on the intended listing (compare with the <a href="product-intent.html">intent record</a> row).</li>
+            <li>Check the Associates Reports "clicks" for the test; screenshot and file it as provenance.</li>
+            <li>Repeat for the other four; then fill the intent record's "Official listing URL" + "Confirmation date" columns.</li>
+            <li>Only then scale link placements (per the brief: test one per product before scaling).</li>
+          </ol>
+        </div>
+        <div class="callout sage">
+          <h3>Checklist G-5 · disclosure &amp; endorsement review (owner action O-2)</h3>
+          <ol>
+            <li>Open home, shop, and one guide on <strong>mobile and desktop</strong>. Confirm the disclosure strip is visible before the first product link without scrolling past it (FTC "clear and conspicuous", <a href="https://www.ftc.gov/business-guidance/resources/ftcs-endorsement-guides-what-people-are-asking" rel="nofollow">FAQ</a>).</li>
+            <li>Confirm every sponsored link is labeled in words ("sponsored"/"commission") next to the link, not just in the header.</li>
+            <li>Confirm nothing on the site implies we tested products we haven't, or states opinions we don't hold (16 CFR 255.1 honesty principles, <a href="https://www.ecfr.gov/current/title-16/chapter-I/subchapter-B/part-255" rel="nofollow">eCFR</a>).</li>
+            <li>Re-read the Associates <a href="https://affiliate-program.amazon.com/help/operating/policies" rel="nofollow">Participation Requirements</a> (identification as an associate, prohibited content) and confirm the site text matches.</li>
+            <li>Date and sign the review here; repeat after any disclosure-text change.</li>
+          </ol>
+        </div>
+      </div>
+      <div class="two-col">
+        <div class="callout">
+          <h3>Checklist G-6 · analytics endpoint (owner action O-3)</h3>
+          <p class="muted">Follow <a href="https://github.com/sassnarep3-star/WinA/blob/main/analytics/README.md">analytics/README.md</a>: deploy <code>worker.js</code> with the KV binding, POST a test event, verify the KV day bucket, then set the <code>cc-endpoint</code> meta value. Expect the first ledger rows within a week (provenance: "cc-collect").</p>
+        </div>
+        <div class="callout">
+          <h3>Checklist G-7 · automation approval (owner action O-4-a)</h3>
+          <p class="muted">Before any scheduled price/stock checker or API client runs: confirm the tooling route complies with the Associates <a href="https://affiliate-program.amazon.com/help/operating/agreement" rel="nofollow">Operating Agreement</a> and the Product Advertising API policies where applicable. Record the decision and date here. Until then, re-observation is manual and prices remain dated snapshots.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section tight">
+    <div class="wrap">
+      <div class="table-scroll">
+        <table class="data">
+          <caption>Disclosure placement map — the FTC/OA requirements this site implements and where.</caption>
+          <thead>
+            <tr><th scope="col">Requirement</th><th scope="col">Source</th><th scope="col">Implementation</th><th scope="col">Source link</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">Material connection disclosed clearly &amp; conspicuously before the first affiliate link</th>
+              <td>FTC Endorsement Guides (16 CFR 255.5)</td>
+              <td>Disclosure strip directly under the masthead on all 20 pages, above fold</td>
+              <td class="src"><a href="https://www.ecfr.gov/current/title-16/chapter-I/subchapter-B/part-255" rel="nofollow">eCFR 255</a></td>
+            </tr>
+            <tr>
+              <th scope="row">Repeat disclosure where readers act</th>
+              <td>FTC placement guidance</td>
+              <td>Per-card "sponsored" labels + per-link rel tag + footer repeat on every page</td>
+              <td class="src"><a href="https://www.ftc.gov/business-guidance/resources/disclosures-101-social-media-influencers" rel="nofollow">Disclosures 101</a></td>
+            </tr>
+            <tr>
+              <th scope="row">Site identification as an Amazon Associate</th>
+              <td>Associates Program Participation Requirements</td>
+              <td>Exact statement "The Crisp Counter is an Amazon Associate — we earn from qualifying purchases" in strip + About page</td>
+              <td class="src"><a href="https://affiliate-program.amazon.com/help/operating/policies" rel="nofollow">Program Policies</a></td>
+            </tr>
+            <tr>
+              <th scope="row">Special Links must use Amazon-provided tagged formats</th>
+              <td>Operating Agreement §1</td>
+              <td>Canonical <code>amazon.com/dp/&lt;ASIN&gt;?tag=shopnow047c-20</code> format; short links quarantined to the intent record (FLG-003)</td>
+              <td class="src"><a href="https://affiliate-program.amazon.com/help/operating/agreement" rel="nofollow">Operating Agreement</a></td>
+            </tr>
+            <tr>
+              <th scope="row">Identification as an Associate ("As an Amazon Associate I earn from qualifying purchases", OA §5)</th>
+              <td>Operating Agreement §5 (verbatim clause quoted in policy.json POL-01)</td>
+              <td>Strip + footer wording is substantially similar to the required statement; sign-off row in checklist G-5</td>
+              <td class="src"><a href="https://affiliate-program.amazon.com/help/operating/agreement" rel="nofollow">Operating Agreement</a></td>
+            </tr>
+            <tr>
+              <th scope="row">Endorsements must reflect honest opinions/experience</th>
+              <td>16 CFR 255.1</td>
+              <td>No test claims; seller claims framed as claims; contradictions published as contradictions</td>
+              <td class="src"><a href="https://www.ecfr.gov/current/title-16/chapter-I/subchapter-B/part-255" rel="nofollow">eCFR 255.1</a></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <p class="brand-foot">◆ The Crisp Counter</p>
+        <p>Data room — the verification machinery behind the shop.</p>
+      </div>
+      <div>
+        <h4>Registers</h4>
+        <ul>
+          <li><a href="source-register.html">Source register</a></li>
+          <li><a href="product-intent.html">Product-intent record</a></li>
+          <li><a href="campaign-ledger.html">Campaign ledger</a></li>
+          <li><a href="measurement.html">Measurement spec</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Control</h4>
+        <ul>
+          <li><a href="compliance-gate.html">Compliance gate</a></li>
+          <li><a href="flagged.html">Flagged for Review</a></li>
+          <li><a href="method.html">Methodology</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Site</h4>
+        <ul>
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="../shop.html">Shop</a></li>
+          <li><a href="../compare.html">Compare</a></li>
+          <li><a href="../guides/index.html">Guides</a></li>
+          <li><a href="../questions.html">Questions</a></li>
+          <li><a href="../suggestions.html">Suggestions</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="disclosure-block">
+      <strong>Disclosure (repeated):</strong> As an Amazon Associate, The Crisp Counter earns from qualifying purchases. Sponsored/affiliate links are marked and use rel="sponsored". Product names and images are the property of their rights holders; product thumbnails are served from Amazon's media CDN pending PA-API image licensing (FLG-005). This site does not sell products directly — purchases happen on Amazon under Amazon's terms.
+      <br>© <span data-year>2026</span> The Crisp Counter · <a href="flagged.html">Flagged for Review</a> · <a href="compliance-gate.html">Compliance</a>
+    </div>
+  </div>
+</footer>
+<script src="../assets/js/analytics.js" defer></script>
+<script src="../assets/js/site.js" defer></script>
+</body>
+</html>

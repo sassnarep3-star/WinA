@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Measurement spec | The Crisp Counter — Data room</title>
+<meta name="description" content="The five defined events, the privacy-preserving outbound-click counter, the self-hosted analytics endpoint contract, and the Search Console hook.">
+<link rel="canonical" href="https://sassnarep3-star.github.io/WinA/data-room/measurement.html">
+<meta name="robots" content="noindex">
+<meta name="cc-endpoint" content="">
+<link rel="alternate" type="application/rss+xml" title="The Crisp Counter" href="../feed.xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..700;1,9..144,400..700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/site.css">
+</head>
+<body>
+<header class="masthead">
+  <div class="wrap masthead-row">
+    <a class="brand" href="../index.html"><span class="brand-mark">◆</span> The Crisp Counter <small>measured kitchen buying</small></a>
+    <button class="nav-toggle" aria-expanded="false" aria-controls="site-nav">Menu</button>
+    <nav class="nav" id="site-nav" aria-label="Primary">
+      <a href="../shop.html">Shop</a>
+      <a href="../compare.html">Compare</a>
+      <a href="../guides/index.html">Guides</a>
+      <a href="../questions.html">Questions</a>
+      <a href="../suggestions.html">Suggestions</a>
+      <a href="index.html" aria-current="page">Data room</a>
+      <a class="nav-cta" href="../shop.html#the-lineup">See the lineup</a>
+    </nav>
+  </div>
+</header>
+<div class="disclosure-strip" id="disclosure">
+  <div class="wrap">
+    <span class="disclosure-badge">Disclosure</span>
+    <span><strong>The Crisp Counter is an Amazon Associate — we earn from qualifying purchases.</strong> Sponsored/affiliate links are marked. Facts were observed on official sources on November 20, 2026. <a href="compliance-gate.html">How we handle disclosure &amp; compliance</a>.</span>
+  </div>
+</div>
+
+<main>
+  <div class="wrap page-head">
+    <p class="breadcrumb"><a href="../index.html">Home</a> / <a href="index.html">Data room</a> / Measurement spec</p>
+    <h1>Measurement spec</h1>
+    <p class="lede">Click and conversion measurement is designed in and shipped with the site — privacy-preserving, first-party, and fail-closed. Turning it <em>on</em> needs one owner action (gate G-6): deploy the endpoint.</p>
+  </div>
+
+  <section class="section tight">
+    <div class="wrap">
+      <div class="callout">
+        <h3>Status</h3>
+        <p><strong>Client layer: shipped</strong> (<a href="https://github.com/sassnarep3-star/WinA/blob/main/assets/js/analytics.js">assets/js/analytics.js</a>) · <strong>Endpoint: ready to deploy</strong> (<a href="https://github.com/sassnarep3-star/WinA/blob/main/analytics/worker.js">analytics/worker.js</a>, steps in <a href="https://github.com/sassnarep3-star/WinA/blob/main/analytics/README.md">analytics/README.md</a>) · <strong>Current behavior: fail-closed</strong> — with no endpoint configured, events queue in the browser (max 50) and nothing is transmitted. Do Not Track / Global Privacy Control disables sending entirely.</p>
+        <p class="muted">Note on the brief: "the five defined events" was referenced without a supplied canonical list, so the five events below were defined here and frozen into code — an owner override is tracked as Q-15/FLG-008 in the registers.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section tight">
+    <div class="wrap">
+      <div class="table-scroll">
+        <table class="data" data-exempt="internal">
+          <caption>The five defined events. Everything else is dropped by the endpoint allowlist.</caption>
+          <thead>
+            <tr><th scope="col">Event</th><th scope="col">Fires when</th><th scope="col">Payload fields</th><th scope="col">Answers</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">1. page_view</th>
+              <td>Every page load</td>
+              <td>ts, sid, path, title</td>
+              <td>Does anyone arrive? Which pages hold them?</td>
+            </tr>
+            <tr>
+              <th scope="row">2. outbound_click</th>
+              <td>A sponsored/affiliate link is clicked (privacy-preserving outbound-click counter)</td>
+              <td>ts, sid, path, target_host, asin, placement</td>
+              <td>Which products and placements earn real clicks?</td>
+            </tr>
+            <tr>
+              <th scope="row">3. disclosure_view</th>
+              <td>The top disclosure strip first enters the viewport</td>
+              <td>ts, sid, path</td>
+              <td>Do readers actually see the disclosure (FTC conspicuity evidence)?</td>
+            </tr>
+            <tr>
+              <th scope="row">4. guide_read</th>
+              <td>A reader reaches 50% scroll depth on a guide</td>
+              <td>ts, sid, path, guide</td>
+              <td>Which questions engage real readers?</td>
+            </tr>
+            <tr>
+              <th scope="row">5. signup_intent</th>
+              <td>The launch-list form is submitted</td>
+              <td>ts, sid, path, email_domain (never the address)</td>
+              <td>Is reader capture worth building out (S-07)?</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="section tight">
+    <div class="wrap">
+      <div class="two-col">
+        <div class="callout sage">
+          <h3>Privacy design (enforced in code)</h3>
+          <ul>
+            <li>No cookies; session id is random, sessionStorage-only.</li>
+            <li>No IP addresses or user agents stored server-side; country code only.</li>
+            <li>No query strings, no form values (email domain only on signup_intent).</li>
+            <li>All requests go to our own endpoint — no third parties.</li>
+            <li>DNT/GPC honored; endpoint unset = nothing leaves the browser.</li>
+          </ul>
+          <p class="fine">Because this claim appears on every footer, changing the analytics design requires updating the disclosure text too — the compliance checker enforces the pairing.</p>
+        </div>
+        <div class="callout">
+          <h3>Endpoint contract</h3>
+          <p><code>POST /api/collect</code> with the event JSON; allowlist of five events; 400 on anything else. CORS limited to the site origin. Records append to daily JSONL buckets in Workers KV. Full deploy steps: <a href="https://github.com/sassnarep3-star/WinA/blob/main/analytics/README.md">analytics/README.md</a>.</p>
+          <p class="muted"><strong>Owner action O-3:</strong> deploy, then set <code>&lt;meta name="cc-endpoint" content="…"&gt;</code> in each page head (currently present but empty). Until then the site works normally and counts nothing.</p>
+        </div>
+      </div>
+      <div class="callout gold">
+        <h3>Search Console hook (SG-28)</h3>
+        <p>The site is a single indexable origin (<code>https://sassnarep3-star.github.io/WinA/</code>) with sitemap.xml, robots.txt, canonical tags and RSS shipped. To learn which queries bring real visitors (the brief's "choose topics from measured queries"), verify the property in Google Search Console and add the HTML-tag verification token to the page heads — that token is the one thing this project cannot generate for you. Once verified, submit sitemap.xml and review the Performance report weekly; feed findings into the <a href="../questions.html#q-search-console">Q-12</a> row.</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <p class="brand-foot">◆ The Crisp Counter</p>
+        <p>Data room — the verification machinery behind the shop.</p>
+      </div>
+      <div>
+        <h4>Registers</h4>
+        <ul>
+          <li><a href="source-register.html">Source register</a></li>
+          <li><a href="product-intent.html">Product-intent record</a></li>
+          <li><a href="campaign-ledger.html">Campaign ledger</a></li>
+          <li><a href="measurement.html">Measurement spec</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Control</h4>
+        <ul>
+          <li><a href="compliance-gate.html">Compliance gate</a></li>
+          <li><a href="flagged.html">Flagged for Review</a></li>
+          <li><a href="method.html">Methodology</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Site</h4>
+        <ul>
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="../shop.html">Shop</a></li>
+          <li><a href="../compare.html">Compare</a></li>
+          <li><a href="../guides/index.html">Guides</a></li>
+          <li><a href="../questions.html">Questions</a></li>
+          <li><a href="../suggestions.html">Suggestions</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="disclosure-block">
+      <strong>Disclosure (repeated):</strong> As an Amazon Associate, The Crisp Counter earns from qualifying purchases. Sponsored/affiliate links are marked and use rel="sponsored". Product names and images are the property of their rights holders; product thumbnails are served from Amazon's media CDN pending PA-API image licensing (FLG-005). This site does not sell products directly — purchases happen on Amazon under Amazon's terms.
+      <br>© <span data-year>2026</span> The Crisp Counter · <a href="flagged.html">Flagged for Review</a> · <a href="compliance-gate.html">Compliance</a>
+    </div>
+  </div>
+</footer>
+<script src="../assets/js/analytics.js" defer></script>
+<script src="../assets/js/site.js" defer></script>
+</body>
+</html>
