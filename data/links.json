@@ -1,5 +1,5 @@
 {
-  "_note": "Product-intent confirmation record. For each submitted link: intendedAsin (blank unless the owner supplies it), officialListingUrl (the Amazon ASIN page, confirmed on confirmedOn from the sources in confirmationSourceIds), and observedRedirectTargets (every observed landing, dated, kept in its own field). Intended and observed ASINs are deliberately separate and must not be merged. See COORDINATION.md T02, T27 and /register/ on the site.",
+  "_note": "Product-intent confirmation record. For each submitted link: intendedAsin (blank unless the owner supplies it), officialListingUrl (the Amazon ASIN page, confirmed on confirmedOn from the sources in confirmationSourceIds), and observedRedirectTargets (every observed landing, dated, kept in its own field). Intended and observed ASINs are deliberately separate and must not be merged. See COORDINATION.md T02, T28 and /register/ on the site.",
   "trackingId": "shopnow047c-20",
   "marketplace": "amazon.com",
   "submittedOn": "2026-11-20",
@@ -43,7 +43,7 @@
         },
         {
           "observedOn": "2026-11-20",
-          "check": "Re-check by arena/6b0f2ddc-wina (T27): one page-tool fetch of the submitted link.",
+          "check": "Re-check by arena/6b0f2ddc-wina (T28): one page-tool fetch of the submitted link.",
           "finalUrl": "https://www.amazon.com/",
           "result": "homepage"
         }
@@ -87,7 +87,7 @@
         },
         {
           "observedOn": "2026-11-20",
-          "check": "Re-check by arena/6b0f2ddc-wina (T27): one page-tool fetch of the submitted link.",
+          "check": "Re-check by arena/6b0f2ddc-wina (T28): one page-tool fetch of the submitted link.",
           "finalUrl": "https://www.amazon.com/",
           "result": "homepage"
         }
@@ -131,7 +131,7 @@
         },
         {
           "observedOn": "2026-11-20",
-          "check": "Re-check by arena/6b0f2ddc-wina (T27): one page-tool fetch of the submitted link.",
+          "check": "Re-check by arena/6b0f2ddc-wina (T28): one page-tool fetch of the submitted link.",
           "finalUrl": "https://www.amazon.com/",
           "result": "homepage"
         }
@@ -175,7 +175,7 @@
         },
         {
           "observedOn": "2026-11-20",
-          "check": "Re-check by arena/6b0f2ddc-wina (T27): one page-tool fetch of the submitted link.",
+          "check": "Re-check by arena/6b0f2ddc-wina (T28): one page-tool fetch of the submitted link.",
           "finalUrl": "https://www.amazon.com/",
           "result": "homepage"
         }
@@ -219,7 +219,7 @@
         },
         {
           "observedOn": "2026-11-20",
-          "check": "Re-check by arena/6b0f2ddc-wina (T27): one page-tool fetch of the submitted link.",
+          "check": "Re-check by arena/6b0f2ddc-wina (T28): one page-tool fetch of the submitted link.",
           "finalUrl": "https://www.amazon.com/dp/B0DZFD6R9Z?lv=shuf&sbo=RZvfv%2F%2FHxDF%2BO5021pAnSA%3D%3D&btn_type=ss&gaOptInStatus=true&language=en_US&btn_ref=srctok-5ed90c5aacfa7a7e&channelId=500&plpRedirect=mhFallback&th=1",
           "result": "product-page"
         }

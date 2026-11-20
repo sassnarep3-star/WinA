@@ -21,7 +21,7 @@ const gov = read("data/governance.json");
 const questions = read("data/questions.json");
 const suggestions = read("data/suggestions.json");
 const specialLink = read("data/special_link_tests.json");
-const linkRecord = read("data/links.json"); // product-intent confirmation record (T27)
+const linkRecord = read("data/links.json"); // product-intent confirmation record (T28)
 
 // Analytics is enabled only when both halves agree: the governance decision and an endpoint that
 // exists. A client switched on against an empty endpoint is a silent failure, which is worse than
@@ -1005,7 +1005,7 @@ function registerPage() {
     )
     .join("");
 
-  // Product-intent confirmation record (T27). The intended ASIN is shown as "not supplied" and never
+  // Product-intent confirmation record (T28). The intended ASIN is shown as "not supplied" and never
   // filled from the observed one. The official listing and every observed landing are separate,
   // a sponsored, tagged link (it is a product link). The observed landing is shown as text, not as a
   // link, so the register does not send readers to a page that was never the product's own listing.

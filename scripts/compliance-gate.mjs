@@ -172,7 +172,7 @@ for (const l of links.links) {
   ok(l.intendedAsin !== l.observedAsin || l.intendedAsin === null, "intended and observed ASINs must remain separate fields; if they are equal, say so in the note, do not merge them", l.shortCode);
   ok(!!l.flag && flagIds.has(l.flag), `link row cites ${l.flag}, which is not in the flag register`, l.shortCode);
   ok(/^[A-Za-z0-9]{10}$/.test(l.observedAsin || ""), "observed ASIN must be 10 characters", l.shortCode);
-  // Product-intent confirmation record (T27): four named fields per link, plus observations kept apart.
+  // Product-intent confirmation record (T28): four named fields per link, plus observations kept apart.
   ok(l.officialListingUrl === `https://www.amazon.com/dp/${l.observedAsin}`, "officialListingUrl must be the Amazon ASIN page for the observed ASIN", l.shortCode);
   ok(/^\d{4}-\d{2}-\d{2}$/.test(l.confirmedOn || ""), "confirmedOn must be an ISO date", l.shortCode);
   ok(Array.isArray(l.confirmationSourceIds) && l.confirmationSourceIds.length > 0 && l.confirmationSourceIds.every((id) => sourceIds.has(id)), "confirmationSourceIds must name sources defined in data/policy.json", l.shortCode);
