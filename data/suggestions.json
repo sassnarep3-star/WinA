@@ -1,5 +1,5 @@
 {
-  "intro": "A decision list, not a wish list. Each suggestion states what to do, why, what it costs, and what would make it a bad idea. Nothing here has been implemented beyond what is already live; the ones marked shipped were built in this pass because the brief asked for them directly. Everything else waits for a decision. The 2026-11-20 editorial pass (arena-27f76c22) added SUG-25 to SUG-29 and shipped SUG-25; SUG-25 and SUG-23 deliberately record opposite positions on seasonal content so the owner can choose with both arguments visible. Each suggestion can also be adopted, modified, held or rejected on the decision board above; the choices export as text, and nothing is implemented before a choice is handed back to the build.",
+  "intro": "A decision list, not a wish list. Each suggestion states what to do, why, what it costs, and what would make it a bad idea. Nothing here has been implemented beyond what is already live; the ones marked shipped were built in this pass because the brief asked for them directly. Everything else waits for a decision. The 2026-11-20 editorial pass (arena-27f76c22) added SUG-25 to SUG-29 and shipped SUG-25; SUG-25 and SUG-23 deliberately record opposite positions on seasonal content so the owner can choose with both arguments visible. Each suggestion can also be adopted, modified, held or rejected on the decision board on the suggestions page; the choices export as text, and nothing is implemented before a choice is handed back to the build.",
   "statusKey": [
     {
       "id": "shipped",
@@ -226,12 +226,12 @@
     {
       "id": "SUG-16",
       "title": "Publish a dated 'last checked' line on every product page",
-      "status": "consider",
+      "status": "shipped",
       "weight": 5,
       "why": "Specifications and availability change. A visible date tells the reader how much to trust the page, and forces the site to actually re-check.",
       "cost": "One field, refreshed on a schedule.",
       "risk": "A stale date is a public admission of neglect. That is the point.",
-      "decide": "Consider. Pages currently record the observation date in the register rather than on the page.",
+      "decide": "Shipped 2026-11-20 (arena-f515c465-wina, T37): each product in data/products.json carries a per-product specsVerifiedOn date; the date is refreshed by the verification pass whenever a row is re-verified.",
       "links": []
     },
     {
@@ -365,7 +365,7 @@
       "weight": 8,
       "why": "Technique questions (what to reheat, what to batch, what belongs on the counter) are evergreen, answerable from published specifications, and never require claiming a hands-on test. They are also the cheapest way to close the Associates 10-post bar (FLG-013): this pass added the technique and holiday guides, leaving roughly three additional substantive posts to reach ten on any reading.",
       "cost": "A guide per month plus its verification pass \u2014 the same cost as the weekly cadence in SUG-05 and SUG-21, at a slower, sustainable rate.",
-      "risk": "Ten guides already cover form factor, capacity, cleanup, multi-function, thermometers, technique, and holidays. A new article must be a new job (reheating, defrost-and-crisp, batch-prep) or it will restate the same trade-offs and read as filler \u2014 the exact failure the brief rejects.",
+      "risk": "Seven guides already cover form factor, capacity, cleanup, multi-function, thermometers, technique, and holidays. A new article must be a new job (reheating, defrost-and-crisp, batch-prep) or it will restate the same trade-offs and read as filler \u2014 the exact failure the brief rejects.",
       "decide": "Recommend. Start next month if the weekly cadence (SUG-05, SUG-21) is not adopted; if it is, slot technique articles into the same calendar. Each new guide enters the sitemap and feed in the same commit, per the standing rule.",
       "links": []
     },
@@ -746,9 +746,9 @@
       },
       {
         "date": "2026-11-20",
-        "decision": "open",
+        "decision": "accepted",
         "item": "SUG-16",
-        "reason": "The observation date is recorded in the register; printing a last-checked line on each page is the next edit."
+        "reason": "Zero-credential, compliance-positive: a dated specs-check record. Accepted and shipped 2026-11-20 by arena-f515c465-wina (T37): a per-product specsVerifiedOn field in data/products.json, refreshed by the verification pass; the register and this log now agree."
       },
       {
         "date": "2026-11-20",

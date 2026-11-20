@@ -141,7 +141,8 @@
           "label": "chefman.com specification"
         }
       },
-      "modelNumber": "RJ38-SQPF-3TDB-2W"
+      "modelNumber": "RJ38-SQPF-3TDB-2W",
+      "specsVerifiedOn": "2026-11-20"
     },
     {
       "slug": "emeril-lagasse-26qt-french-door",
@@ -286,7 +287,8 @@
           "label": "emerileveryday.com owner's manual (FAFO-001)"
         }
       },
-      "modelNumber": "FAFO-001"
+      "modelNumber": "FAFO-001",
+      "specsVerifiedOn": "2026-11-20"
     },
     {
       "slug": "chefman-8-quart-turbofry",
@@ -414,7 +416,8 @@
       "observedDestination": "https://www.amazon.com/dp/B08DKYBTPH",
       "observedOn": "2026-11-20",
       "modelNumber": "RJ38-SQSS-8T",
-      "modelNote": "Resolved 2026-11-20. This listing names its own model in the bullet points (\"1000 Watts/120 Volts - RJ38-SQSS-8T\"), and its product-information table gives 12.75\"D x 13.5\"W x 10\"H, stainless steel, 8 quarts, 200-400\u00b0F. chefman.com publishes a different SKU in the same 8-quart family (RJ38-8T-BLACK, matte black, 1700 W/120 V, 8 qt/7.57 L), so no dimension, weight, wattage or litre figure is taken from that page, and the Hi-Fry \"final two minutes\" wording that appears only there is not carried over. See FLG-028 and FLG-042."
+      "modelNote": "Resolved 2026-11-20. This listing names its own model in the bullet points (\"1000 Watts/120 Volts - RJ38-SQSS-8T\"), and its product-information table gives 12.75\"D x 13.5\"W x 10\"H, stainless steel, 8 quarts, 200-400\u00b0F. chefman.com publishes a different SKU in the same 8-quart family (RJ38-8T-BLACK, matte black, 1700 W/120 V, 8 qt/7.57 L), so no dimension, weight, wattage or litre figure is taken from that page, and the Hi-Fry \"final two minutes\" wording that appears only there is not carried over. See FLG-028 and FLG-042.",
+      "specsVerifiedOn": "2026-11-20"
     },
     {
       "slug": "thermomaven-1-sec-thermometer",
@@ -575,7 +578,8 @@
           "label": "thermomaven.com owner's manual (HT07)"
         }
       },
-      "modelNumber": "HT07"
+      "modelNumber": "HT07",
+      "specsVerifiedOn": "2026-11-20"
     },
     {
       "slug": "chef-iq-sense-gen3",
@@ -656,21 +660,21 @@
         },
         {
           "label": "App requirement",
-          "value": "Free CHEF iQ App",
+          "value": "Free CHEF iQ App; required for use",
           "status": "verified",
           "source": "manufacturer"
         },
         {
           "label": "Battery life",
-          "value": "70+ hours per charge",
+          "value": "70+ hours per charge (probe)",
           "status": "verified",
           "source": "manufacturer"
         },
         {
           "label": "Warranty",
-          "value": null,
-          "status": "unverified",
-          "source": null
+          "value": "2 years, activated on first connection to the CHEF iQ App",
+          "status": "verified",
+          "source": "manufacturer"
         },
         {
           "label": "Price",
@@ -742,13 +746,18 @@
           "url": "https://chefiq.com/products/iq-sense",
           "label": "chefiq.com"
         },
+        "Warranty": {
+          "url": "https://cdn.shopify.com/s/files/1/0267/8118/8171/files/CQ60-ALL-SET-C_UG_OTP_050126.pdf",
+          "label": "CHEF iQ user guide (chefiq.com)"
+        },
         "Temperature range": {
           "url": "https://chefiq.com/products/iq-sense",
           "label": "chefiq.com specification"
         }
       },
       "modelNumber": null,
-      "modelNote": "Blank on purpose. chefiq.com sells iQ Sense in 1-, 2-, 3- and 4-probe variants and the page read on 2026-11-20 shows the 1-probe variant, model CQ60-1C-Z1-E. This ASIN is the 3-probe listing, so that model code cannot be attached to it, and no official page states the 3-probe model code. No value is recorded rather than a wrong one. See FLG-043."
+      "modelNote": "Blank on purpose. chefiq.com sells iQ Sense in 1-, 2-, 3- and 4-probe variants and the page read on 2026-11-20 shows the 1-probe variant, model CQ60-1C-Z1-E. This ASIN is the 3-probe listing, so that model code cannot be attached to it, and no official page states the 3-probe model code. No value is recorded rather than a wrong one. See FLG-041 and FLG-046",
+      "specsVerifiedOn": "2026-11-20"
     }
   ],
   "categories": [
