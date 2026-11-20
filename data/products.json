@@ -110,7 +110,9 @@
       "guideTopics": [
         "basket-vs-oven",
         "capacity",
-        "cleanup"
+        "cleanup",
+        "not-burn-the-rolls",
+        "holiday-batch"
       ],
       "submittedLink": "https://link.amazon/B04G1MEwY",
       "observedDestination": "https://www.amazon.com/dp/B0CDY277D3",
@@ -229,7 +231,9 @@
       "guideTopics": [
         "basket-vs-oven",
         "capacity",
-        "multifunction"
+        "multifunction",
+        "not-burn-the-rolls",
+        "holiday-batch"
       ],
       "submittedLink": "https://link.amazon/B02NbDxp3",
       "observedDestination": "https://www.amazon.com/dp/B09B7SB46R",
@@ -349,7 +353,9 @@
       "guideTopics": [
         "capacity",
         "cleanup",
-        "basket-vs-oven"
+        "basket-vs-oven",
+        "not-burn-the-rolls",
+        "holiday-batch"
       ],
       "submittedLink": "https://link.amazon/B00hJ57DV",
       "observedDestination": "https://www.amazon.com/dp/B08DKYBTPH",
@@ -365,7 +371,7 @@
       "category": "thermometers",
       "formFactor": "instant-read",
       "title": "ThermoMaven 1 Sec Professional Digital Meat Thermometer, ±0.5°F Accuracy | NIST&NSF Certified, Auto-Rotate Bright LED Screen, IP67 Waterproof for Grill BBQ, Stocking Stuffers Gifts for Men, Black",
-      "verdict": "The cheap insurance. One second to a reading is fast enough that you actually use it instead of guessing.",
+      "verdict": "A one-second read for a quick kitchen check.",
       "why": [
         "A one-second read is the threshold where checking temperature stops feeling like a delay.",
         "The display auto-rotates, which sounds trivial until you are holding it at an angle over a hot pan.",
@@ -656,7 +662,7 @@
       "slug": "thermometers",
       "name": "Thermometers",
       "kicker": "Precision",
-      "dek": "The cheapest upgrade in the kitchen. One reads in a second; the other watches three cuts while the lid stays shut.",
+      "dek": "One reads in a second; the other watches three cuts while the lid stays shut.",
       "intro": "An air fryer you can hear and smell your way through. A roast you cannot. These two cover the two ways people actually measure doneness: a quick poke, and a long unattended cook.",
       "browseNode": "Home & Kitchen › Kitchen & Dining › Kitchen Utensils & Gadgets › Thermometers & Timers › Meat",
       "browseNodeUrl": "https://www.amazon.com/Meat-Thermometers-Timers/b?node=289810"
