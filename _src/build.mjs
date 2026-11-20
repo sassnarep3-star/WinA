@@ -1896,6 +1896,31 @@ for (const f of htmlFiles) {
 }
 if (!broken) ok(`all internal links resolve across ${internal.size} pages`);
 
+// Duplicate-content guard: exactly one build may own the served root.
+// A merge that resurrects a prior session's site would create two competing
+// pages per guide, which is the SEO failure this whole integration avoids.
+const FORBIDDEN = ["shop", "tools", "dashboard/register.html", "dashboard/ledger.html",
+  "products.html", "guides.html", "suggest.html", "questions.html",
+  "executive-summary.html", "flagged.html", "data/flags.json", "assets/site.css"];
+const resurrected = FORBIDDEN.filter((f) => fs.existsSync(path.join(ROOT, f)));
+if (resurrected.length) {
+  fail(`prior build resurrected at the root: ${resurrected.join(", ")} — these belong in archive/ only`);
+} else {
+  ok("single build owns the served root; no prior site resurrected");
+}
+
+// Archived builds must remain present and untouched in count.
+const archiveCount = (function count(dir) {
+  let n = 0;
+  for (const e of fs.readdirSync(dir, { withFileTypes: true })) {
+    if (e.isDirectory()) n += count(path.join(dir, e.name));
+    else n += 1;
+  }
+  return n;
+})(path.join(ROOT, "archive"));
+if (archiveCount < 60) fail(`archive/ has only ${archiveCount} files — prior work may have been lost`);
+else ok(`archive intact: ${archiveCount} files preserved from three prior builds`);
+
 // sitemap covers all pages
 const sitemap = fs.readFileSync(path.join(ROOT, "sitemap.xml"), "utf8");
 const uncited = pages.filter((p) => !sitemap.includes(abs(p.path)));

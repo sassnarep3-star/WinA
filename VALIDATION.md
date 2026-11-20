@@ -1,6 +1,6 @@
 # Build validation report
 
-Generated 2026-11-20T05:39:25.842Z by `_src/build.mjs`.
+Generated 2026-11-20T05:39:59.188Z by `_src/build.mjs`.
 
 **Result: PASSED** — 0 failure(s), 0 warning(s).
 
@@ -15,6 +15,8 @@ Generated 2026-11-20T05:39:25.842Z by `_src/build.mjs`.
 - `PASS` no spec carries a value while marked unverified or withheld
 - `PASS` all 10 policy checks quote a clause and link a primary source
 - `PASS` all internal links resolve across 26 pages
+- `PASS` single build owns the served root; no prior site resurrected
+- `PASS` archive intact: 64 files preserved from three prior builds
 - `PASS` sitemap lists all 26 pages
 
 ## What the gate enforces
