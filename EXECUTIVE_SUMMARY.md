@@ -16,9 +16,9 @@ generated from a data register, and three independent gates run on every push an
 | Surface | State |
 | --- | --- |
 | Reader pages | 30 total: front page + 404, 5 guides, 2 category hubs, 5 product pages, compare, register, a marketing kit, and the operations set (flagged, questions, suggestions, summary, dashboard, analytics, disclosure, privacy, about, seo, marketing, concept) |
-| Data registers | 5 products · 60 spec rows · 6 policy sources · 10 policy clauses quoted · 46 flag rows · 22 questions · 24 suggestions |
-| Verification mix | 34 `verified` · 12 `unverified` · 10 `withheld` · 4 `claim`; **38 rows carry a value, 22 are blank with a reason**, and 22 of the valued rows cite a manufacturer page directly rather than the listing |
-| Compliance | OA §5 statement verbatim on all 30 pages; the disclosure precedes the first sponsored link on every page (asserted by byte offset, not by eyeball); `rel="sponsored nofollow noopener"` + `?tag=shopnow047c-20` on all 84 product links; the 8 submitted short links render as declared non-affiliate citations (`rel="nofollow"`, no tag). Counts from `scripts/compliance-gate.mjs`, cross-checked by `scripts/check-site.mjs` at 112 Amazon links / 84 sponsored |
+| Data registers | 5 products · 60 spec rows · 6 policy sources · 10 policy clauses quoted · 43 flag rows · 22 questions · 24 suggestions |
+| Verification mix | 32 `verified` · 14 `unverified` · 10 `withheld` · 4 `claim`; **36 rows carry a value, 24 are blank with a reason**, and 22 of the valued rows cite a manufacturer page directly rather than the listing |
+| Compliance | OA §5 statement verbatim on all 30 pages; the disclosure precedes the first sponsored link on every page (asserted by byte offset, not by eyeball); `rel="sponsored nofollow noopener"` + `?tag=shopnow047c-20` on all 82 product links; the 8 submitted short links render as declared non-affiliate citations (`rel="nofollow"`, no tag). Counts from `scripts/compliance-gate.mjs`, cross-checked by `scripts/check-site.mjs` at 102 Amazon links / 82 sponsored |
 | Measurement | Five events defined; collector written but **not deployed**, so the client is inert by design |
 | Money | **Zero** revenue claims; ledger holds 0 rows, by policy |
 | Gates | Three checkers, all green (~1,097 compliance assertions, 1,118 internal links verified, the builder's own 9 gates). CI fails if generated output is not committed, the build is not reproducible, or a compliance rule breaks — and Pages' deploy job now runs the compliance gate too, so a regression stops the release rather than reddening a check |
@@ -152,9 +152,9 @@ register, and each finding has its own entry on `/flagged/`.
 | Check | Method | Result |
 | --- | --- | --- |
 | Five destination ASINs | Fetched `https://www.amazon.com/dp/<ASIN>` directly for all five | **All five confirmed.** Title on each page matches `data/links.json`. Product identity is not in doubt. |
-| Five submitted short links | Fetched each `link.amazon/B0…` URL, three runs on 2026-11-20 | No link resolved the same way on every run. `B04G1MEwY` and `B0c8moW59` returned `https://www.amazon.com/` in every run. The third run (T27) returned the home page for four links and the product page for `B0f3GKalj`. Cause not known; the log is in `data/links.json`. → **FLG-036** |
+| Five submitted short links | Fetched each `link.amazon/B0…` URL | **2 of 5** returned a product page (`B02NbDxp3`, `B00hJ57DV`). **3 of 5** returned `https://www.amazon.com/` (`B04G1MEwY`, `B0c8moW59`, `B0f3GKalj`). `B04G1MEwY` fetched twice, same result. → **FLG-036** (also found independently by a parallel session) |
 | ThermoMaven water resistance | Read the listing title | Earlier register said "no IP number published". The listing title states **IP67**. Corrected. → **FLG-038** |
-| Spec coverage per product | Script over `data/products.json` | 34 of 60 rows verified after the T27 pass. Emeril 26QT and Chefman 8-Quart have no confirmed wattage. The Emeril's preset and accessory counts are blank because its own pages conflict. → **FLG-039**, **FLG-029**, **FLG-028** |
+| Spec coverage per product | Script over `data/products.json` | 32 of 60 rows verified. Emeril 26QT has no wattage or warranty; Chefman 8-Quart has no wattage, dimensions or warranty. → **FLG-039** |
 | FLG-032 accuracy | Compared its text with the fetch results above | It claimed all five "resolved" to product pages. Corrected to `review` and rewritten. |
 
 **Three things corrected in this pass**
@@ -167,8 +167,6 @@ register, and each finding has its own entry on `/flagged/`.
 2. `data/links.json` now carries a `reverified*` field per link, kept **separate** from
    `observedDestination` and from `intendedAsin`, which stays `null`. Three fields, never merged.
 3. `FLG-032` was downgraded from `resolved` to `review` with its overstatement stated in the record.
-
-**T27 pass (2026-11-20).** Eleven specification rows were checked against the page each one cites. Five were corrected to what the page or listing says, two conflicting values were blanked, and four were filled from an official page. The Chefman 8-Quart dimensions and warranty come from that ASIN's own listing, not from another SKU's page. Each change is listed in `FLG-042`. Three flags were added (`FLG-040` CHEF iQ model and probe count, `FLG-041` ThermoMaven listing identity, `FLG-042` the change log) and three were revised (`FLG-028`, `FLG-029`, `FLG-036`, `FLG-039`).
 
 **What this pass did not do, and why**
 

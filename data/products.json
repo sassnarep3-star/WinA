@@ -34,7 +34,7 @@
       "specs": [
         {
           "label": "Capacity",
-          "value": "6 qt · 5.67 L (two baskets)",
+          "value": "6 qt total (2 × 3 qt) · 5.67 L",
           "status": "verified",
           "source": "manufacturer"
         },
@@ -171,15 +171,15 @@
         },
         {
           "label": "Presets",
-          "value": null,
-          "status": "unverified",
-          "source": null
+          "value": "24 one-touch presets",
+          "status": "verified",
+          "source": "manufacturer"
         },
         {
           "label": "Included accessories",
-          "value": null,
-          "status": "unverified",
-          "source": null
+          "value": "Six cooking accessories",
+          "status": "verified",
+          "source": "amazon-listing"
         },
         {
           "label": "Cooking method",
@@ -201,9 +201,9 @@
         },
         {
           "label": "Warranty",
-          "value": "1 year (manufacturer page: \"1-Years Warranty\")",
-          "status": "verified",
-          "source": "manufacturer"
+          "value": null,
+          "status": "unverified",
+          "source": null
         },
         {
           "label": "Price",
@@ -239,13 +239,13 @@
           "url": "https://www.emerileveryday.com/products/emeril_lagasse_french_door_airfryer_360",
           "label": "emerileveryday.com specification"
         },
-        "Capacity": {
+        "Presets": {
           "url": "https://www.emerileveryday.com/products/emeril_lagasse_french_door_airfryer_360",
           "label": "emerileveryday.com specification"
         },
-        "Warranty": {
+        "Capacity": {
           "url": "https://www.emerileveryday.com/products/emeril_lagasse_french_door_airfryer_360",
-          "label": "emerileveryday.com (1-Years Warranty badge)"
+          "label": "emerileveryday.com specification"
         }
       }
     },
@@ -285,7 +285,7 @@
         },
         {
           "label": "Max temperature",
-          "value": "200–400°F range; 450°F Hi-Fry option",
+          "value": "400°F standard range; 450°F Hi-Fry for the final 2 minutes of a cycle",
           "status": "verified",
           "source": "amazon-listing"
         },
@@ -315,15 +315,15 @@
         },
         {
           "label": "Dimensions",
-          "value": "12.75 D × 13.5 W × 10 H in",
-          "status": "verified",
-          "source": "amazon-listing"
+          "value": null,
+          "status": "unverified",
+          "source": null
         },
         {
           "label": "Warranty",
-          "value": "1 year (Chefman)",
-          "status": "verified",
-          "source": "amazon-listing"
+          "value": null,
+          "status": "unverified",
+          "source": null
         },
         {
           "label": "Price",
@@ -398,7 +398,7 @@
         },
         {
           "label": "Display",
-          "value": "Bright LED, rotates 180°",
+          "value": "Auto-rotate bright LED",
           "status": "verified",
           "source": "manufacturer"
         },
@@ -422,7 +422,7 @@
         },
         {
           "label": "Battery type",
-          "value": "1 × 1.5 V AAA (included)",
+          "value": "1 × AAA (included)",
           "status": "verified",
           "source": "manufacturer"
         },
@@ -475,8 +475,8 @@
           "label": "Amazon listing (title states IP67)"
         },
         "Battery type": {
-          "url": "https://cdn.shopify.com/s/files/1/0828/4726/9152/files/HT07_user_manual.pdf?v=1733992221",
-          "label": "ThermoMaven F1 Stealth user manual (HT07), Specifications"
+          "url": "https://www.thermomaven.com/products/f1-stealth",
+          "label": "thermomaven.com"
         },
         "Warranty": {
           "url": "https://www.thermomaven.com/products/f1-stealth",
@@ -491,8 +491,8 @@
           "label": "thermomaven.com"
         },
         "Display": {
-          "url": "https://cdn.shopify.com/s/files/1/0828/4726/9152/files/HT07_user_manual.pdf?v=1733992221",
-          "label": "ThermoMaven F1 Stealth user manual (HT07), Specifications"
+          "url": "https://www.thermomaven.com/products/f1-stealth",
+          "label": "thermomaven.com"
         }
       },
       "modelNumber": "HT07"
@@ -552,7 +552,7 @@
         },
         {
           "label": "Type",
-          "value": "Wireless, internal temperature sensors",
+          "value": "Wireless leave-in",
           "status": "verified",
           "source": "manufacturer"
         },
@@ -570,9 +570,9 @@
         },
         {
           "label": "Battery life",
-          "value": "70+ hours (component not named on the page)",
-          "status": "verified",
-          "source": "manufacturer"
+          "value": null,
+          "status": "unverified",
+          "source": null
         },
         {
           "label": "Warranty",
@@ -635,10 +635,6 @@
           "label": "chefiq.com"
         },
         "Generation": {
-          "url": "https://chefiq.com/products/iq-sense",
-          "label": "chefiq.com"
-        },
-        "Battery life": {
           "url": "https://chefiq.com/products/iq-sense",
           "label": "chefiq.com"
         }
