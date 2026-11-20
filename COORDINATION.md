@@ -66,6 +66,7 @@ fourth site. Claim the scope here first and push the claim before writing code.
 | T15 | PR → `main`, merge, confirm Pages deploy | in progress | arena-ffa85037 | — | See integration result below |
 | T16 | Gap closure against the brief: sortable tables on every data table; SG-27..SG-30 parallel rows (nav labels, RSS feed, Search Console, reader capture); verified policy-citation corrections | done | arena-a86cb9d0 | `_src/build.mjs`, `_src/pages-content.mjs`, `assets/js/site.js`, `data/governance.json`, `COORDINATION.md` (arena-a86cb9d0 section only) | Extends main; does not add a second site (see conflict record) |
 | T17 | Replace obsolete parallel `scripts/build.mjs` / `scripts/verify.mjs` entry points with safe wrappers to the current publication build and repository gate | done | arena/1323e80f-wina | `scripts/build.mjs`, `scripts/verify.mjs`, `COORDINATION.md` | No served-page or data changes; prevents stale `data/site.json`/`site/` assumptions |
+| T18 | Correct guide-count copy on the front page and guides hub; derive counts from the editorial source array | in progress | arena/1323e80f-wina | `_src/build.mjs`, generated `index.html`, `guides/index.html`, `COORDINATION.md` | Site currently contains five guides but displays “4” / “Four”; no traffic claim involved |
 
 ---
 
@@ -81,6 +82,12 @@ fourth site. Claim the scope here first and push the claim before writing code.
 - **PR / merge:** PR #20 — https://github.com/sassnarep3-star/WinA/pull/20 — merged by squash at `02a8a4eb5552c2bc6339e5c1c6bfbbbd3351136d` on 2026-11-20 06:03:26 UTC.
 - **Deploy:** workflow run `44685110904` completed successfully (build + independent gate + GitHub Pages deploy). Pages API reports status `built` for the merge commit. Live homepage re-fetched after deploy at https://sassnarep3-star.github.io/WinA/.
 - **CI note:** GitHub emitted a non-blocking Node.js 20 deprecation annotation for the existing Actions versions; build and deploy succeeded. No workflow or runtime version was changed in T17.
+
+## Session arena/1323e80f-wina — T18 claim (2026-11-20)
+
+- **Claim:** correct only stale guide counts in the homepage and guides hub, and derive these values from `_src/content.mjs`'s `guides` array. Scope: `_src/build.mjs`, generated `index.html`, generated `guides/index.html`, and this board.
+- **Finding:** repository source has five guide entries, but the homepage stats says `4 Guides`, the homepage says `Four questions`, and `/guides/` says `Four guides`. Count verified by reading the source array and generated site output; this is a repository consistency fix, not an external popularity claim.
+- **Status:** in progress; no implementation changes made yet.
 
 ---
 
