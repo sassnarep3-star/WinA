@@ -89,6 +89,7 @@ fourth site. Claim the scope here first and push the claim before writing code.
 | T23 | Register: define the `manufacturer` source id that 22 spec rows already cite, and de-number FLG-024 so the register cannot drift out of date | done | arena-4b28af50 | `data/policy.json`, `data/governance.json` | Found by `scripts/compliance-gate.mjs`'s cross-reference rule on main's post-#22 data |
 | T24 | Register hygiene: 5 dangling `SRC-02` refs repaired; citation-misattribution fixed in `_src/build.mjs`; FLG-024 extended with computed counts instead of adding a duplicate row | done | arena-4b28af50 | `data/{special_link_tests,governance,products}.json`, `_src/build.mjs` | HTML for all pages except `/flagged/` is byte-identical — the fixes are inert for current data |---
 | T25 | Design-prompt suggestion layer: polished-marketing design direction, catchy topic roadmap (hypotheses), organic-traffic levers, decision log — feeding the reviewable suggestions section | done | arena-829ea2fd-wina | `data/suggestions.json`, `data/governance.json`, `_src/build.mjs`, `COORDINATION.md` (arena-829ea2fd-wina section only), generated pages | Renumbered three times on merge (T17→T19→T21→T25) because T17, T19–T24 were taken on `main` first. Extends main's build; no second site. Verification of the 5 links re-done 2026-11-20 by this session |
+| T26 | Publication polish: make the site read like a shop, not an audit — shelf table, department rail, diagram figures, brand assets, decision-card suggestions, known/unknown questions page, archive indexation fix | done | arena/38469152-wina | `assets/css/site.css`, `assets/js/site.js`, `assets/brand/*`, `_src/build.mjs`, `_src/pages-content.mjs`, `data/{products,governance,suggestions,questions}.json`, `COORDINATION.md` (this session's section only), generated pages | Extends main's build; no second site. All three gates pass. 5 new flags (036-040), 6 new suggestions (025-030), 6 new questions (023-028) |
 
 ## Link resolution (verified by three independent sessions)
 
@@ -734,3 +735,70 @@ record and out of this session's scope.)
   `node scripts/compliance-gate.mjs`, `node scripts/publish-gate.mjs`, plus a link crawl and a
   manual headless screenshot review of the front page at desktop and mobile widths.
 - **Status:** in progress.
+
+---
+
+## Session `arena/38469152-wina` — T26 result (2026-11-20)
+
+**Branch:** `arena/38469152-wina`, branched from `main` @ `80b45a1`. Extended `main`'s build;
+no second site, no page deleted, nothing renumbered in another session's records.
+
+### What changed
+
+| Area | Change | Why |
+|---|---|---|
+| `/` front page | Rebuilt as a storefront: hero with a pick card, a **shop-by department rail**, a **filterable shelf table** of all five products, two department sections with diagram-led tiles, a feature-guides block, a capture block | The page previously opened with a stat strip reading "0 products tested · 10 policy checks passed" above the products. That is an audit, not a shop |
+| Product cards | Form-factor **diagram figure**, caption, badge, price button, "read the full trade-offs" link | A listing tile needs an image field; product photography is withheld (FLG-007) |
+| `/air-fryers/`, `/thermometers/` | Department header with counts, then tiles | Was an article head with a bare paragraph |
+| Product pages | Figure with a caption, sticky **jump bar** with an in-page buy control, anchored sections | Long pages had no way to reach specs or the buy control without scrolling |
+| `/suggestions/` | One 8-column table → **decision cards** grouped by status, each with why / cost / risk / recommendation / sources and a Reviewer–Choice–Date form; ranked "if you accept three" summary kept | A decision cannot be taken from a table cell |
+| `/questions/` | Rebuilt around **closed vs open**, per-area progress, the **three account-holder actions that unlock the rest**, then open questions and a collapsed closed table. Counts computed, not typed | The brief asks for known / unknown / what would close it |
+| `/flagged/` | Severity counts, a "what actually needs you" block naming the five account-holder items, per-flag anchors | 43 flags in ID order was unreadable |
+| `/summary/` | Policy-check count derived from data (was "Ten", conflating 10 policy rows with 60 spec rows); "four matter commercially" → five; storefront + diagram caveat added | Stale numbers |
+| Brand | Favicon 32/512, apple-touch icon, 1200×630 share card, masthead mark, `og:image`, `twitter:image`, `theme-color` on every page | No favicon and no social image anywhere |
+| Discoverability | `robots.txt` disallows `/WinA/archive/`; archive links `rel="nofollow"`; `_headers` carries `X-Robots-Tag` | 48 archived duplicate pages were crawlable with no noindex |
+| CSS | Append-only storefront layer + responsive pass (360/480/620/720/780/900/1040) + print sheet | — |
+| JS | Shelf category filter (progressive enhancement, `aria-pressed`, live count), jump-bar section state | — |
+| Privacy | Capture form: `method=post` + inert action + `<noscript>` message | With JS off it would have submitted a GET and put the email in the URL, contradicting `/privacy/` |
+
+### Verification performed
+
+| Check | Method | Result |
+|---|---|---|
+| Authoring gate | `node _src/build.mjs` | 30 pages, 29 in sitemap, all gates clear |
+| Independent gate | `node scripts/check-site.mjs` | pass — 30 pages, 1,292 internal links, 107 Amazon links (90 sponsored) |
+| Compliance gate | `node scripts/compliance-gate.mjs` | 1,150 checks, 0 failing, 1 warning (FLG-024, pre-existing and owner-blocked) |
+| Publish gate | `node scripts/publish-gate.mjs` | 4/4, reproducible output |
+| Every served page reachable | `curl` against `_src/serve.mjs` for 21 routes + 11 assets | all 200 |
+| Image integrity | programme: every `<img>` on every served page | 31 images, 0 missing `alt`, 0 missing `width`/`height` |
+| Class coverage | programme: every class emitted by every served page resolves to a CSS rule | 0 unstyled (10 question-status pills were unstyled before; fixed) |
+| Guide TOC anchors | programme: every TOC `href` resolves to an `h2 id` | 0 broken, all five guides |
+| Head completeness | programme: `og:image`, `rel=icon`, `theme-color`, `apple-touch-icon` on every page | present on all 30 |
+| Re-tested the five links | `link.amazon/<code>` fetched one pass | **4 of 5 returned the amazon.com homepage** — recorded as FLG-040 |
+| Re-tested the five products | `amazon.com/dp/<ASIN>` fetched the same day | all 5 returned the expected titles |
+| Amazon policies | `affiliate-program.amazon.com/help/operating/policies` read 2026-11-20 | "Updated: April 14, 2026" — matches the register's POL rows |
+| Associates Help | `help/node/topic/G8TW5AE9XL2VX9VM` read 2026-11-20 | confirms verbatim "a good rule of thumb is at least 10 posts" and "generally within the last 60 days" |
+| FTC Disclosures 101 | `ftc.gov/business-guidance/resources/disclosures-101-social-media-influencers` read 2026-11-20 | confirms verbatim "Place it so it's hard to miss" and "You can't talk about your experience with a product you haven't tried" |
+| Google robots.txt spec | `developers.google.com/crawling/docs/robots-txt/robots-txt-spec` read 2026-11-20 | robots.txt governs crawling; it is not an index-removal mechanism — quoted nowhere as more than that |
+
+### Irregularities found and recorded (not hidden)
+
+- **FLG-036 (resolved)** — 48 archived pages were crawlable and indexable duplicates of the live site, linked from `/flagged/` without `nofollow`. Fixed here by rule, not by editing the archive (it must stay verbatim).
+- **FLG-037 (review)** — the new product figures are our own diagrams, not photographs. Every one is captioned. A diagram can still be mistaken for a photo; FLG-007 stays open.
+- **FLG-038 (action)** — the suggestion decision form cannot store anything. Stated on the page.
+- **FLG-039 (review)** — SUG-05's weekly cadence is our inference from the recency guidance, not an Amazon requirement. The page now says so.
+- **FLG-040 (review)** — **four of the five submitted short links now land on the Amazon homepage.** Only `B0f3GKalj` still resolves to its product. Two explanations fit (logged-out bot resolution vs. expired/reassigned links); both are recorded and neither is asserted. Product identity stands on the five direct `/dp/` pages, which all still matched. FLG-032 marked superseded in part.
+- Also corrected: `/seo/` claimed there was "no second copy of the same guide in a different folder", which was false before FLG-036 was fixed. The claim now carries the qualification and a link to the flag.
+
+### What this session did NOT do, and why
+
+Everything below needs the account holder, a credential, or a deployment — no code change can close them.
+
+- Associates enrolment and one Special Link test per product (FLG-004, FLG-024) — requires signing in.
+- Search Console verification (FLG-009) — the placeholder token is still a placeholder.
+- Analytics endpoint (FLG-011) — the collector exists and is undeployed; the client stays inert by design.
+- Product photography, prices, ratings (FLG-005, 006, 007) — requires PA-API or Creatives access.
+- A named author (FLG-021, Q-24) — inventing one would be the fabrication the editorial standard forbids.
+- Content volume to the ~10-post review bar (FLG-013) — needs new writing, not new layout.
+
+**Merge:** see the PR record appended below after the merge.
