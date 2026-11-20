@@ -664,11 +664,7 @@
         "date": "2026-11-20",
         "decision": "recommended",
         "item": "SUG-02",
-<<<<<<< HEAD
         "reason": "One site, air fryers in front, thermometers as the second section — which is the structure already in place. Confirm before a third category is added."
-=======
-        "reason": "One site, air fryers in front, thermometers as the second section \u2014 which is the structure already in place. Confirm before a third category is added."
->>>>>>> origin/main
       },
       {
         "date": "2026-11-20",
@@ -750,15 +746,9 @@
       },
       {
         "date": "2026-11-20",
-<<<<<<< HEAD
-        "decision": "open",
-        "item": "SUG-16",
-        "reason": "The observation date is recorded in the register; printing a last-checked line on each page is the next edit."
-=======
         "decision": "accepted",
         "item": "SUG-16",
         "reason": "Zero-credential, compliance-positive: a dated specs-check record. Accepted and shipped 2026-11-20 by arena-f515c465-wina (T37): a per-product specsVerifiedOn field in data/products.json, refreshed by the verification pass; the register and this log now agree."
->>>>>>> origin/main
       },
       {
         "date": "2026-11-20",
@@ -818,11 +808,7 @@
         "date": "2026-11-20",
         "decision": "recommended",
         "item": "SUG-26",
-<<<<<<< HEAD
         "reason": "Recommended: one technique article a month — jobs, not verdicts. It starts next month if the weekly cadence (SUG-05, SUG-21) is not adopted, and slots into the same calendar if it is. Each new guide enters the sitemap and feed in the same commit, per the standing rule."
-=======
-        "reason": "Recommended: one technique article a month \u2014 jobs, not verdicts. It starts next month if the weekly cadence (SUG-05, SUG-21) is not adopted, and slots into the same calendar if it is. Each new guide enters the sitemap and feed in the same commit, per the standing rule."
->>>>>>> origin/main
       },
       {
         "date": "2026-11-20",
