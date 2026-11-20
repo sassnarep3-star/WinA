@@ -1261,3 +1261,47 @@ While the PR (#34) was open, `main` advanced again (PR #35, arena/f5d87e09: thir
 - **Gates on the merged tree:** `node _src/build.mjs` → 33 pages, 32 in sitemap, "PASSED: all gates clear", and a second build leaves the tree unchanged. `node scripts/check-site.mjs` → 33 pages, 1,289 internal links, 121 Amazon links (99 sponsored), zero failures across all 13 checks. `node scripts/compliance-gate.mjs` → 1,314 checks, 0 failing, 1 warning (FLG-024, owner-only). `node scripts/publish-gate.mjs --committed` → 5 checks, 0 failing, 0 warning(s). Register: 45 flags, 0 duplicate ids.
 - **Post-merge re-run (after merging `main` f3f9541, PRs #42/#43/#44 — their shop-like design polish, decision log, and analytics self-test):** merged with one conflict, in `COORDINATION.md` only, resolved by keeping their T32 integration record in full and appending this section under it. `data/governance.json`, `_src/build.mjs`, `index.html` and `flagged/index.html` auto-merged; their new pages and copy were re-checked for the superseded wording — none remains, and no "cheapest/cheap" product claim survived in any served page. Gates on the merged tree: build 33 pages / 32 sitemap entries, "PASSED: all gates clear"; repository gate 33 pages, 1,295 internal links, 121 Amazon links (99 sponsored), zero failures; compliance 1,497 checks, 0 failing, 1 owner-only warning (FLG-024). Register: 46 flags, 0 duplicate ids, FLG-037 `resolved`.
 - **PR:** #36 — https://github.com/sassnarep3-star/WinA/pull/36 — merge and Pages deploy result recorded in the next commit.
+
+---
+
+## Merge record — PR #44 (`arena/d59cd471-wina`) — 2026-11-20 06:38:58Z
+
+**Merged.** Merge commit `f3f954193153936f543618ac1705c1df6766beba`, merge type: merge commit, not
+auto-merged. PR: https://github.com/sassnarep3-star/WinA/pull/44
+
+CI before merge — `Build and verify` **pass**, `gate` **pass**, `validate` **pass**; the Pages
+deploy job is skipped on pull requests and ran on `main` after the merge.
+
+**Deploy:** Pages reported `built` for `927abfc` (the next `main` commit, which contains this
+merge), and every workflow on `main` completed successfully — `Build, verify and deploy`,
+`build`, `archive-gate (574fc8eb)` and `pages build and deployment`.
+
+**Live verification after deploy** (cache-busted `?v=f3f9541`):
+
+- `/suggestions/` — the decision log is live: 29 dated rows, one per suggestion, with the legend
+  (accepted 4, adopted 1, recommended 11, open 7, hold 4, rejected 2) and the review rubric and
+  kill criteria below it. `main`'s own SUG-05 row (publishing cadence adopted 2026-11-20) is
+  present with its original reason text.
+- `/flagged/` — **FLG-042** is published with its source link, in the resolved section, and
+  FLG-011's action now points at the self-test.
+- `/` — unchanged: disclosure strip above the fold, tagged sponsored links.
+
+**What went in:** the decision log with a token legend and live counts plus the compliance rule
+that keeps it in step with the register (T31); the collector contract executed end to end by a
+new CI self-test, which found and fixed two real defects in a collector that had never been run
+(T32, FLG-042); and the executive summary reconciled and given a decision path (T30).
+
+**Still open for the owner, none of it blocking:** the five Special Link tests (FLG-024), the
+tracking-ID and registered-site confirmation (FLG-002, FLG-004), Search Console verification
+(FLG-009), a host for the collector — now a hosting choice, since the code is tested (FLG-011),
+an owned domain and a real byline (FLG-013, FLG-021), and the reader-capture backend (FLG-010).
+No revenue, traffic, conversion or ranking claim was added by this session, and the campaign
+ledger still holds 0 rows.
+
+**Concurrency note:** `main` advanced three times while this branch was in flight (PRs #26,
+#31–#39) and once more immediately after this merge (PR #47). Nothing was discarded: the
+executive summary reconciliation was re-applied on top of another session's sections rather than
+over them, `main`'s existing decision row was kept and folded into the new vocabulary, the five
+suggestions `main` added afterwards were given rows from their own written decisions, and the flag
+id moved to FLG-042 because `main` took FLG-040 and FLG-041 in the same window. The task ids are
+T30–T32 for the same reason.
