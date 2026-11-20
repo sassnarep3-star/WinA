@@ -1532,7 +1532,12 @@ work on branch `session-<id>/<task>`, and keep to your file scope.
   left the CHEF iQ Sense Gen 3 warranty blank; this T36 pass filled it from the manufacturer's own
   user guide, plus the app-requirement and battery-life rows, each cited.
 - **Status:** done.
-- **PR / merge:** recorded below.
+- **PR / merge / deploy:** PR #51 opened from `arena/d248d06c-wina` → `main`, merged
+  2026-11-20T07:07:17Z (merge commit `06ab5a1`, via PR #60's line). GitHub Pages rebuilt from
+  `06ab5a1` and reached `built`. Live check of `/compare.html` shows the Warranty row with the
+  verified Emeril (1 year) and CHEF iQ Sense Gen3 (2 years, activated on first app connection)
+  values and their manufacturer source links; `/data-room/flagged.html` shows FLG-049 and the
+  warranty-terms row resolved for all five products. PR: https://github.com/sassnarep3-star/WinA/pull/51 (merged 2026-11-20).
 
 ## Session arena/b37e1a98-wina — T35 (2026-11-20)
 
