@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build the static site in docs/ from data/*.json.
+"""Build the static site at the repo root from data/*.json (GitHub Pages source: main /).
 
 Checks run before any file is written (the build fails on any error):
   * every source URL is on an allowlisted official host
@@ -9,7 +9,7 @@ Checks run before any file is written (the build fails on any error):
   * every referenced flag, source and product ID exists
 
 Checks run on the generated HTML (the build fails on any error):
-  * every internal link and asset resolves to a file in docs/
+  * every internal link and asset resolves to a generated file
   * every page carries the disclosure text
   * every outbound Amazon link carries rel="sponsored"
 

@@ -2,9 +2,9 @@
 
 Publication site for five submitted Amazon listings (air fryers & ovens, meat thermometers), with buyer-question guides and a dashboard of sources, findings, questions, suggestions and flags.
 
-- Live site: https://sassnarep3-star.github.io/WinA/ (GitHub Pages, served from `docs/` on `main`)
+- Live site: https://sassnarep3-star.github.io/WinA/ (GitHub Pages, source `main` `/`; the site is generated at the repo root)
 - Data: `data/*.json` (single source of truth; every row cites an official source; blanks are unverified and flagged)
-- Build: `python3 tools/build.py` regenerates `docs/` and fails on any broken link, missing source, displayed price, or missing disclosure
+- Build: `python3 tools/build.py` regenerates the site at the root (generated paths only; `archive/`, `data/`, `tools/` are never touched) and fails on any broken link, missing source, displayed price, or missing disclosure
 - Coordination: see `COORDINATION.md` before starting work
 - Archive: `archive/arena-4a5044b0/` and `archive/arena-6bd1be15/` hold earlier root-level sites, preserved unchanged and no longer served
 
