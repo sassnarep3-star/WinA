@@ -186,7 +186,7 @@ Associates click test, which needs the owner).
 
 ## 9. Product-intent record and FLG-033, session `arena/6b0f2ddc-wina` (2026-11-20)
 
-Task T28 on `COORDINATION.md`.
+Task T29 on `COORDINATION.md`.
 
 - **Product-intent confirmation record.** `data/links.json` now holds, per submitted link, four named
   fields: `intendedAsin` (blank: the owner did not supply one), `officialListingUrl` (the Amazon ASIN
@@ -199,7 +199,7 @@ Task T28 on `COORDINATION.md`.
   article, and the page says it was "produced with the assistance of generative artificial
   intelligence". It is kept at `review`.
 - **FLG-040 (new).** All five short links returned different landing pages across the three recorded
-  checks (first resolution, T26, T28). The product identity of all five ASINs is unchanged: each
+  checks (first resolution, T26, T29). The product identity of all five ASINs is unchanged: each
   `/dp/` page was re-fetched and its title matches. The short-link behaviour is not stable, and nothing
   so far explains it. The owner check is recorded as the action.
 - **Register.** The "Link resolution" table on `/register/` now shows the four fields and the observed

@@ -1,5 +1,5 @@
 {
-  "_note": "Product-intent confirmation record. For each submitted link: intendedAsin (blank unless the owner supplies it), officialListingUrl (the Amazon ASIN page, confirmed on confirmedOn from the sources in confirmationSourceIds), and observedRedirectTargets (every observed landing, dated, kept in its own field). Intended and observed ASINs are deliberately separate and must not be merged. See COORDINATION.md T02, T28 and /register/ on the site.",
+  "_note": "Product-intent confirmation record. For each submitted link: intendedAsin (blank unless the owner supplies it), officialListingUrl (the Amazon ASIN page, confirmed on confirmedOn from the sources in confirmationSourceIds), and observedRedirectTargets (every observed landing, dated, kept in its own field). Intended and observed ASINs are deliberately separate and must not be merged. See COORDINATION.md T02, T29 and /register/ on the site.",
   "trackingId": "shopnow047c-20",
   "marketplace": "amazon.com",
   "submittedOn": "2026-11-20",
@@ -43,7 +43,7 @@
         },
         {
           "observedOn": "2026-11-20",
-          "check": "Re-check by arena/6b0f2ddc-wina (T28): one page-tool fetch of the submitted link.",
+          "check": "Re-check by arena/6b0f2ddc-wina (T29): one page-tool fetch of the submitted link.",
           "finalUrl": "https://www.amazon.com/",
           "result": "homepage"
         }
@@ -87,7 +87,7 @@
         },
         {
           "observedOn": "2026-11-20",
-          "check": "Re-check by arena/6b0f2ddc-wina (T28): one page-tool fetch of the submitted link.",
+          "check": "Re-check by arena/6b0f2ddc-wina (T29): one page-tool fetch of the submitted link.",
           "finalUrl": "https://www.amazon.com/",
           "result": "homepage"
         }
@@ -131,7 +131,7 @@
         },
         {
           "observedOn": "2026-11-20",
-          "check": "Re-check by arena/6b0f2ddc-wina (T28): one page-tool fetch of the submitted link.",
+          "check": "Re-check by arena/6b0f2ddc-wina (T29): one page-tool fetch of the submitted link.",
           "finalUrl": "https://www.amazon.com/",
           "result": "homepage"
         }
@@ -175,7 +175,7 @@
         },
         {
           "observedOn": "2026-11-20",
-          "check": "Re-check by arena/6b0f2ddc-wina (T28): one page-tool fetch of the submitted link.",
+          "check": "Re-check by arena/6b0f2ddc-wina (T29): one page-tool fetch of the submitted link.",
           "finalUrl": "https://www.amazon.com/",
           "result": "homepage"
         }
@@ -219,7 +219,7 @@
         },
         {
           "observedOn": "2026-11-20",
-          "check": "Re-check by arena/6b0f2ddc-wina (T28): one page-tool fetch of the submitted link.",
+          "check": "Re-check by arena/6b0f2ddc-wina (T29): one page-tool fetch of the submitted link.",
           "finalUrl": "https://www.amazon.com/dp/B0DZFD6R9Z?lv=shuf&sbo=RZvfv%2F%2FHxDF%2BO5021pAnSA%3D%3D&btn_type=ss&gaOptInStatus=true&language=en_US&btn_ref=srctok-5ed90c5aacfa7a7e&channelId=500&plpRedirect=mhFallback&th=1",
           "result": "product-page"
         }
@@ -255,5 +255,45 @@
     "asinsNote": "All five destination ASINs were re-confirmed: each /dp/<ASIN> page was fetched directly and returned the product recorded in this file. The product identity is not in doubt.",
     "shortLinkBehaviour": "3 of 5 (B04G1MEwY, B0c8moW59, B0f3GKalj) resolved to https://www.amazon.com/ rather than to a product page. B04G1MEwY was fetched twice and returned the homepage both times. The cause was not determined from here; it may be Amazon-side redirect behaviour for this client. It is recorded as an open finding, not as a claim that the links are invalid or that the products changed.",
     "flag": "FLG-036"
-  }
+  },
+  "verificationLog": [
+    {
+      "checkedOn": "2026-11-20",
+      "session": "arena-f5d87e09-wina",
+      "method": "Page-tool fetch of each link.amazon URL, one attempt each. Destination taken from the returned url field. No retry, no inference.",
+      "results": [
+        {
+          "submitted": "https://link.amazon/B04G1MEwY",
+          "returnedUrl": "https://www.amazon.com/",
+          "result": "homepage",
+          "recordedObservedAsin": "B0CDY277D3"
+        },
+        {
+          "submitted": "https://link.amazon/B02NbDxp3",
+          "returnedUrl": "https://www.amazon.com/",
+          "result": "homepage",
+          "recordedObservedAsin": "B09B7SB46R"
+        },
+        {
+          "submitted": "https://link.amazon/B00hJ57DV",
+          "returnedUrl": "https://www.amazon.com/",
+          "result": "homepage",
+          "recordedObservedAsin": "B08DKYBTPH"
+        },
+        {
+          "submitted": "https://link.amazon/B0c8moW59",
+          "returnedUrl": "https://www.amazon.com/",
+          "result": "homepage",
+          "recordedObservedAsin": "B0DHZTCNR5"
+        },
+        {
+          "submitted": "https://link.amazon/B0f3GKalj",
+          "returnedUrl": "https://www.amazon.com/dp/B0DZFD6R9Z",
+          "result": "product-page",
+          "recordedObservedAsin": "B0DZFD6R9Z"
+        }
+      ],
+      "note": "Across the three 2026-11-20 checks (arena-8e69b462-wina, arena-119f4dc6-wina, and this one) every submitted short link has returned the amazon.com homepage at least once; B02NbDxp3 and B00hJ57DV returned their product page in some checks. The short links are not giving a stable destination in the page tool. The site does not depend on them: every buy button goes to /dp/<observed ASIN>?tag=shopnow047c-20. Owner browser check still required (FLG-036)."
+    }
+  ]
 }
