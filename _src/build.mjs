@@ -9,7 +9,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { guides, editorNote } from "./content.mjs";
-import { about, disclosure, privacy, marketing, seo } from "./pages-content.mjs";
+import { about, disclosure, privacy, marketing, seo, promo } from "./pages-content.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(__dirname, "..");
@@ -212,6 +212,7 @@ ${children}
           <li><a href="${url("/suggestions/")}">Suggestions</a></li>
           <li><a href="${url("/summary/")}">Executive summary</a></li>
           <li><a href="${url("/marketing/")}">Marketing plan</a></li>
+          <li><a href="${url("/marketing/kit/")}">Marketing kit</a></li>
           <li><a href="${url("/seo/")}">Search &amp; findability</a></li>
         </ul>
       </div>
@@ -245,6 +246,22 @@ function buybox(p, slot) {
 </div>`;
 }
 
+function sourceCell(s, p) {
+  if (!s.source) return '<span class="faint">none</span>';
+  if (s.source === "amazon-listing")
+    return `<a href="${special(p.asin)}" rel="sponsored nofollow noopener" target="_blank" data-affiliate="${
+      p.asin
+    }" data-slot="spec-source">Amazon listing</a>`;
+  if (s.source === "manufacturer") {
+    const src = (p.specSources || {})[s.label];
+    if (!src || !src.url) throw new Error(`spec "${s.label}" cites a manufacturer but has no URL`);
+    return `<a href="${esc(src.url)}" rel="nofollow noopener" target="_blank" data-slot="spec-source">${esc(
+      src.label
+    )}</a>`;
+  }
+  throw new Error(`unknown spec source "${s.source}" on ${p.slug}`);
+}
+
 function specTable(p) {
   const rows = p.specs
     .map((s) => {
@@ -260,13 +277,7 @@ function specTable(p) {
       <td>${esc(s.label)}</td>
       <td>${val}</td>
       <td><span class="pill pill--${s.status}">${label || s.status}</span></td>
-      <td>${
-        s.source
-          ? `<a href="${special(p.asin)}" rel="sponsored nofollow noopener" target="_blank" data-affiliate="${
-              p.asin
-            }" data-slot="spec-source">Amazon listing</a>`
-          : '<span class="faint">none</span>'
-      }</td>
+      <td>${sourceCell(s, p)}</td>
     </tr>`;
     })
     .join("");
@@ -941,11 +952,7 @@ function registerPage() {
         <td>${esc(s.label)}</td>
         <td>${s.value ? esc(s.value) : '<span class="faint">—</span>'}</td>
         <td><span class="pill pill--${s.status}">${s.status}</span></td>
-        <td>${
-          s.source
-            ? `<a href="${special(p.asin)}" rel="sponsored nofollow noopener" target="_blank" data-affiliate="${p.asin}" data-slot="register">amazon.com/dp/${esc(p.asin)}</a>`
-            : "<span class='faint'>no source</span>"
-        }</td>
+        <td>${sourceCell(s, p)}</td>
       </tr>`);
     }
   }
@@ -1487,7 +1494,13 @@ ${breadcrumb([{ href: url("/"), label: "Home" }, { label: "Executive summary" }]
       <li><strong>A complete source register</strong>: ${policy.sources.length} primary sources and ${products.reduce(
         (n, p) => n + p.specs.length,
         0
-      )} specification rows, each with a verification status.</li>
+      )} specification rows, ${products.reduce(
+        (n, p) => n + p.specs.filter((s) => s.value).length,
+        0
+      )} of them filled and each with a verification status; the rest are blank on purpose, with the reason recorded.</li>
+      <li><strong>Marketing copy for all five links</strong> — a social post, a newsletter paragraph and its mandatory disclosure per product, on <a href="${url(
+        "/marketing/kit/"
+      )}">the marketing kit</a>.</li>
       <li><strong>Ten policy checks</strong> traced to the exact clause, with the text quoted verbatim so the summary can be audited.</li>
       <li><strong>A publication gate</strong> in the build: it fails if any page loses its disclosure, or if any Amazon link loses its sponsored marking.</li>
       <li><strong>SEO foundations</strong>: sitemap, RSS feed, canonical URLs, structured data, and descriptions written for humans.</li>
@@ -1643,6 +1656,8 @@ ${breadcrumb([{ href: url("/"), label: "Home" }, { label: c.title }])}
     });
   };
 
+  promoPage();
+
   simple({ slug: "concept", ...aiConcept }, "AI-platform concept", aiConcept.dek, "Concept, not implemented", "0.4");
   simple({ slug: "about", ...about }, "About and editorial standards", about.dek, "Editorial standards", "0.6");
   simple({ slug: "disclosure", ...disclosure }, "Affiliate disclosure", disclosure.dek, "Disclosure", "0.5");
@@ -1705,6 +1720,83 @@ ${breadcrumb([{ href: url("/"), label: "Home" }, { label: "Search & findability"
 /* ============================================================
    SITEMAP, FEED, ROBOTS, 404
    ============================================================ */
+
+function promoPage() {
+  const bySlug = Object.fromEntries(products.map((p) => [p.slug, p]));
+  const cards = promo.entries
+    .map((e) => {
+      const p = bySlug[e.slug];
+      if (!p) throw new Error(`promo entry ${e.slug} matches no product`);
+      const href = url(`/products/${p.slug}/`);
+      const fill = (t) => esc(t).replace(/\[review\]/g, `<a href="${href}">the full record</a>`);
+      return `<article class="promo">
+  <header class="promo__head">
+    <p class="kicker">${esc(p.brand)}</p>
+    <h2 class="promo__title">${esc(p.shortName)}</h2>
+    <p class="promo__hook">${esc(e.hook)}</p>
+  </header>
+  <div class="promo__block">
+    <p class="promo__label">Social post</p>
+    <p class="promo__copy">${fill(e.social)}</p>
+  </div>
+  <div class="promo__block">
+    <p class="promo__label">Newsletter paragraph</p>
+    <p class="promo__copy">${fill(e.newsletter)}</p>
+  </div>
+  <div class="promo__block promo__block--rule">
+    <p class="promo__label">Travels with every post</p>
+    <p class="promo__copy"><strong>${esc(e.disclosureNote)}</strong></p>
+  </div>
+  <p class="promo__caution"><strong>Watch the claim:</strong> ${esc(e.caution)}</p>
+</article>`;
+    })
+    .join("");
+
+  pages.push({
+    path: "/marketing/kit/",
+    title: "Marketing kit — copy for the five products",
+    desc: promo.dek,
+    html: `
+${breadcrumb([
+  { href: url("/"), label: "Home" },
+  { href: url("/marketing/"), label: "Marketing plan" },
+  { label: "Marketing kit" }
+])}
+<div class="article-head">
+  <div class="wrap">
+    <p class="kicker">Go-to-market</p>
+    <h1 class="article-head__title">${esc(promo.title)}</h1>
+    <p class="article-head__dek">${esc(promo.dek)}</p>
+  </div>
+</div>
+<section class="section">
+  <div class="wrap narrow prose">
+    <p class="lede">${esc(promo.intro)}</p>
+    <h2>The five rules this copy obeys</h2>
+    <ol>${promo.rules.map((r) => `<li>${esc(r)}</li>`).join("")}</ol>
+  </div>
+</section>
+<section class="section">
+  <div class="wrap">
+    <div class="section__head">
+      <h2 class="section__title">Copy for the five links</h2>
+      <p class="section__dek">Each block is written to be pasted as-is. Bracketed links point at the review page on this site, not at Amazon, so the reader meets the disclosure before the buy button.</p>
+    </div>
+    <div class="promo-grid">${cards}</div>
+  </div>
+</section>
+<section class="section">
+  <div class="wrap narrow prose">
+    <h2>Before anything is published</h2>
+    <ol>${promo.checklist.map((c) => `<li>${esc(c)}</li>`).join("")}</ol>
+    <p class="small">If a post fails the third question, it is a price post. Those go stale and, under the Program Policies, they are not ours to publish in the first place.</p>
+  </div>
+</section>`,
+    priority: "0.4",
+    changefreq: "monthly"
+  });
+}
+
 function feeds() {
   // Deterministic: the declared build date, not the wall clock. A build that
   // embeds `new Date()` can never pass a "is the output committed?" check.

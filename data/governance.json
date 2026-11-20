@@ -226,6 +226,42 @@
       "sourceLabel": "Google Search Central (verification meta tags)"
     },
     {
+      "id": "FLG-026",
+      "severity": "review",
+      "title": "Every specification cited the Amazon listing, including values the listing does not state",
+      "detail": "The source column on /products/ and /register/ linked every row to amazon.com/dp/<ASIN>, whether or not that page carried the value. Nine rows that had been recorded as 'unverified' are in fact published by the manufacturer, and three product pages had no manufacturer citation at all.",
+      "action": "Fixed. Each row now resolves to its own source: Amazon listing rows still link to the listing; manufacturer rows link to the page that states them (chefman.com, emerileveryday.com, thermomaven.com, chefiq.com). The build throws if a row claims a manufacturer source without a URL.",
+      "sourceUrl": "https://chefman.com/products/turbofry-touch-dual-window-air-fryer",
+      "sourceLabel": "Chefman product specification block"
+    },
+    {
+      "id": "FLG-027",
+      "severity": "review",
+      "title": "The 8-quart Chefman's 450°F was presented as its maximum temperature",
+      "detail": "The listing title says '450°F Hi-Fry Option'; the manufacturer states Hi-Fry 'raises the heat to 450°F for the last two minutes', against a normal range topping out at 400°F. This site had recorded 'Max temperature: 450°F (Hi-Fry)' and a guide called it 'the top of the range in this set'. That overstates a two-minute browning finish as a continuous capability.",
+      "action": "Corrected. The row now reads '400°F standard range; 450°F Hi-Fry for the final 2 minutes of a cycle', and the basket-vs-oven guide describes it the same way.",
+      "sourceUrl": "https://chefman.com/products/turbofry-8-qt-air-fryer-w-high-fry",
+      "sourceLabel": "Chefman product page, Hi-Fry description"
+    },
+    {
+      "id": "FLG-028",
+      "severity": "review",
+      "title": "Chefman's 8-quart family has at least five SKUs and the listing names none of them",
+      "detail": "chefman.com publishes RJ38-8T-BLACK (matte black) for the 8-qt Hi-Fry machine; retailer records for this ASIN give RJ38-SQSS-8T and a stainless-steel body of 12.75 x 13.5 x 10 in at 12.8 lb. The two disagree on colour and model, so no dimension, weight or wattage from either page can be attached to this listing.",
+      "action": "Left blank rather than guessed, and recorded on the product page. The figures are not in dispute; which SKU this listing ships is.",
+      "sourceUrl": "https://chefman.com/products/turbofry-8-qt-air-fryer-w-high-fry",
+      "sourceLabel": "Chefman 8 Qt Hi-Fry page (RJ38-8T-BLACK) vs the Amazon listing"
+    },
+    {
+      "id": "FLG-029",
+      "severity": "review",
+      "title": "Emeril's own page contradicts the Amazon listing on preset count",
+      "detail": "emerileveryday.com states '25 Cooking Pre-sets' in its specification block and '10-in-1' in the product description; the Amazon listing states 24 one-touch presets. Three different numbers for one feature.",
+      "action": "Recorded as 24 (the listing) with the manufacturer figure noted. Neither is published as settled. Unchanged from FLG-005's finding, now with the third number and its URL.",
+      "sourceUrl": "https://www.emerileveryday.com/products/emeril_lagasse_french_door_airfryer_360",
+      "sourceLabel": "Emeril Everyday specification block"
+    },
+    {
       "id": "SG-27",
       "severity": "review",
       "title": "Navigation labels: parallel row SG-27 has no source document in this repository",
