@@ -70,6 +70,7 @@ fourth site. Claim the scope here first and push the claim before writing code.
 | T30 | Reconcile the executive summary with the current gate output, state indexing precisely, and add a decision path an owner can act on | done | arena/d59cd471-wina | `EXECUTIVE_SUMMARY.md`, `COORDINATION.md` (this session section only) | Documentation only; no generated page, shared data or product claim changed. |
 | T31 | Populate the suggestions decision log from the decisions already written in the suggestion register, with a token legend and live counts | done | arena/d59cd471-wina | `data/suggestions.json`, `_src/build.mjs`, `assets/css/site.css`, `scripts/compliance-gate.mjs` | The reviewer surface the brief asks for. Every row mirrors a written decision; the gate now requires one dated row per suggestion and a token the register's status allows. |
 | T32 | End-to-end self-test of the collector contract, run in CI | done | arena/d59cd471-wina | `scripts/analytics-selftest.mjs`, `scripts/analytics-server.mjs`, `data/governance.json`, `.github/workflows/build.yml`, `package.json`, `README.md` | Found two real defects in the never-executed collector (FLG-041), both fixed. Nothing deployed; the client stays inert and FLG-011 stays open. |
+| T33 | Resolve FLG-037: buyer-action buttons and category copy no longer imply a price the site never shows | done | arena/508d0df8-wina | `_src/build.mjs`, `_src/pages-content.mjs`, `data/products.json`, `data/governance.json`, generated pages, `COORDINATION.md` (this row + T33 section) | Claimed as T27, renumbered at merge time. Copy-only; no product fact, price, link record, ledger, `scripts/` or `archive/` change |
 
 
 ---
@@ -1261,7 +1262,19 @@ While the PR (#34) was open, `main` advanced again (PR #35, arena/f5d87e09: thir
 - **Merge mechanics (for the next session):** five `main` advances landed while PR #36 was open (PRs #31/#33, #35, #40, #37/#39, #34), and `COORDINATION.md` plus the generated pages collided at each rebase. After the fifth, the rebase was aborted and this delta was re-applied by content onto `b2a9376` — small string-checked edits, then `node _src/build.mjs` to regenerate the 33 pages rather than hand-merging HTML. The branch was pushed with `--force-with-lease` only after confirming that every remote-only commit was this session's own superseded history; no other session's commit was dropped. `main`'s T28 and T30–T32 records and the FLG-036/FLG-040/FLG-041 rows are intact in this tree.
 - **Gates on the merged tree:** `node _src/build.mjs` → 33 pages, 32 in sitemap, "PASSED: all gates clear", and a second build leaves the tree unchanged. `node scripts/check-site.mjs` → 33 pages, 1,289 internal links, 121 Amazon links (99 sponsored), zero failures across all 13 checks. `node scripts/compliance-gate.mjs` → 1,314 checks, 0 failing, 1 warning (FLG-024, owner-only). `node scripts/publish-gate.mjs --committed` → 5 checks, 0 failing, 0 warning(s). Register: 45 flags, 0 duplicate ids.
 - **Post-merge re-run (after merging `main` f3f9541, PRs #42/#43/#44 — their shop-like design polish, decision log, and analytics self-test):** merged with one conflict, in `COORDINATION.md` only, resolved by keeping their T32 integration record in full and appending this section under it. `data/governance.json`, `_src/build.mjs`, `index.html` and `flagged/index.html` auto-merged; their new pages and copy were re-checked for the superseded wording — none remains, and no "cheapest/cheap" product claim survived in any served page. Gates on the merged tree: build 33 pages / 32 sitemap entries, "PASSED: all gates clear"; repository gate 33 pages, 1,295 internal links, 121 Amazon links (99 sponsored), zero failures; compliance 1,497 checks, 0 failing, 1 owner-only warning (FLG-024). Register: 46 flags, 0 duplicate ids, FLG-037 `resolved`.
-- **PR:** #36 — https://github.com/sassnarep3-star/WinA/pull/36 — merge and Pages deploy result recorded in the next commit.
+### PR and deploy record — T33
+
+| Item | Result |
+|---|---|
+| Pull request | **#36** — https://github.com/sassnarep3-star/WinA/pull/36 — `arena/508d0df8-wina` → `main` |
+| Merge | **merged**, squash, commit `62322cb`, 2026-11-20 06:40:41 UTC. No approval waited for. |
+| CI on the PR head | `Build and verify` ✓ · `gate` ✓ · `validate` ✓ · Pages deploy skipped on PRs by design |
+| CI after merge (`62322cb`) | `build` ✓ · `archive-gate (574fc8eb)` ✓ · `Build, verify and deploy` ✓ · `pages build and deployment` ✓ |
+| GitHub Pages | `pages/builds/latest` → `status: built`; latest main (`15642e4`, after later merges) also built and deployed successfully |
+| Live verification | Homepage fetched from `https://sassnarep3-star.github.io/WinA/`: all five product cards read **"View on Amazon →"**, the thermometer section head reads **"Two ways to stop guessing"**, and the ThermoMaven card reads **"A one-second read for a quick kitchen check."** No "Check price on Amazon" wording is served anywhere |
+| Merged with | `main` advanced six times while the PR was open (PRs #31/#33, #35, #40, #37/#39, #34, #42/#43/#44, #47); resolved by merge with content-level fixes, both sessions' board text kept verbatim, HTML regenerated from merged data rather than hand-merged |
+| Flagged, non-blocking | FLG-024 (owner-only Special Link tests) is the single remaining compliance warning; FLG-037 now renders as `resolved` on `/flagged/` with its source link |
+
 
 ---
 
