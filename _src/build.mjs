@@ -248,7 +248,7 @@ function buybox(p, slot) {
   <a class="btn btn--amazon" href="${special(p.asin)}"
      rel="sponsored nofollow noopener" target="_blank"
      data-affiliate="${p.asin}" data-slot="${slot}">
-     Check price on Amazon →
+     View on Amazon →
   </a>
   <p class="buybox__legal">Opens amazon.com. We earn a commission if you buy, at no extra cost to you. ${esc(
     site.associateStatement
@@ -325,7 +325,7 @@ function productCard(p, rank) {
   </div>
   <div class="pcard__foot">
     <a class="btn btn--amazon" href="${special(p.asin)}" rel="sponsored nofollow noopener"
-       target="_blank" data-affiliate="${p.asin}" data-slot="card">Check price on Amazon →</a>
+       target="_blank" data-affiliate="${p.asin}" data-slot="card">View on Amazon →</a>
     <p class="pcard__note">Sponsored. ${esc(site.associateStatement)}</p>
   </div>
 </article>`;
@@ -375,7 +375,7 @@ function frontPage() {
         <div class="pick__stat"><dt>Best for</dt><dd style="font-size:.86rem;font-family:var(--sans)">Two-part dinners</dd></div>
       </dl>
       <a class="btn btn--amazon" href="${special(lead.asin)}" rel="sponsored nofollow noopener"
-         target="_blank" data-affiliate="${lead.asin}" data-slot="hero">Check price on Amazon →</a>
+         target="_blank" data-affiliate="${lead.asin}" data-slot="hero">View on Amazon →</a>
       <p class="pcard__note">Sponsored. ${esc(site.associateStatement)}</p>
     </aside>
   </div>
@@ -409,8 +409,8 @@ function frontPage() {
   <div class="wrap">
     <div class="section__head section__head--split">
       <div>
-        <h2 class="section__title">The cheapest upgrade in the kitchen</h2>
-        <p class="section__dek">An air fryer you can hear and smell your way through. A roast you cannot. Two ways to stop guessing.</p>
+        <h2 class="section__title">Two ways to stop guessing</h2>
+        <p class="section__dek">An air fryer you can hear and smell your way through. A roast you cannot — that is what the thermometers are for.</p>
       </div>
       <a class="section__more" href="${url("/thermometers/")}">Both thermometers</a>
     </div>
