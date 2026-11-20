@@ -875,7 +875,28 @@ intended-ASIN blanks, price staleness, Search Console, five-event assumption, en
 | JSON-LD parse + disclosure-position sweep | PASS on all 15 pages |
 | `.github/workflows/gate.yml` | runs the two commands above on every push/PR, diff scoped to the archive |
 
-**Status:** done — see the deployment record lines below, filled after the merge and Pages deploy.
+**Status:** done.
+
+**PR / merge:** PR #26 — https://github.com/sassnarep3-star/WinA/pull/26 — **MERGED** into `main`
+by merge commit `55433d2695fc1fd538bc0a824eb0e0e2a8d64496` (2026-11-20 06:30:06 UTC); no approval
+was waited for. Two rounds of `COORDINATION.md`/`README.md` conflicts with `main` (PRs #21–#32
+landing mid-session) were resolved by keeping main's text **in full** and appending this session's
+record — no other session's text discarded; the merge-commit messages say so.
+
+**CI on the merge commit (all green):** `build` (14s) · `Build, verify and deploy` (36s) ·
+`archive-gate (574fc8eb)` (8s) · `pages build and deployment` (27s).
+
+**Pages deploy:** status `built` for `55433d2` → https://sassnarep3-star.github.io/WinA/
+
+**Live checks after deploy (2026-11-20):**
+- Root publication re-fetched with cache-buster `?fresh=574fc8eb` — "Counter Space" front page
+  serves the post-merge build (5 products spec-checked · 2 categories · 5 guides · 32 specs
+  confirmed at source), disclosure strip above the fold, every product CTA carries
+  `rel="sponsored"` + `tag=shopnow047c-20`.
+- This session's build re-fetched at
+  https://sassnarep3-star.github.io/WinA/archive/arena-574fc8eb-wina/ — disclosure strip, five
+  product cards with observed prices, tagged sponsored CTAs, five-guide cluster and the
+  analysis/suggestions/questions/flagged surfaces all present.
 
 ### Merge and deploy record — session `arena-8e69b462-wina` (T26)
 
