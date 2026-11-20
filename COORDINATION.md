@@ -501,3 +501,46 @@ build twice + diff          → no changes
 - **2026-11-20 — claim.** Claimed T19–T24. Branch `arena/27f76c22-wina`. The base commit given to this session (`d7abb68`, PR #18) is **not an ancestor of `main`** (merge-base returned nothing; `main` had moved to `425bfbd` with PRs #19–#22). Resolved with `git merge origin/main --allow-unrelated-histories`, main's file content kept at every add/add collision (same resolution rule as prior sessions), then the claim rows were re-applied as T19–T24 because T17/T18 had been taken on `main` in the meantime. Nothing from `main` was discarded or rewritten.
 - **Scope requested in this session's brief:** polished marketing look, catchy/trendy but honest articles, organic-traffic focus, a reviewed suggestions path, a question/information register, an executive summary, line-by-line verification with links for manual review, then PR → merge → deploy confirmation.
 - **Result sections appended below as work completes.**
+
+### Session arena-27f76c22 — results (2026-11-20)
+
+**T19 — editorial expansion (done).**
+- Two new guides in `_src/content.mjs`: **06** "Seven places an air fryer quietly beats a second oven" (`/guides/not-burn-the-rolls/`, technique cluster) and **07** "Cooking two holiday dishes at once: the two-temperature problem" (`/guides/holiday-batch/`, seasonal cluster). Both written in the established voice — decisions, not verdicts; every factual statement traceable to `data/products.json`; no testing claims, no counts stated in prose that could drift (the T18 guide-count gate now guards this and caught three stale "five guides" mentions during this pass — fixed in questions/seo/suggestions prose).
+- New collection page **/seasonal/** (seasonalPage in `_src/build.mjs`): holiday cluster hub with a 5-step sequence, the three air-fryer cards, both thermometer cards, links to both new guides, CollectionPage + ItemList JSON-LD, and an on-page disclosure that the topic is calendar-driven, not demand-driven. Registered in sitemap (priority 0.8).
+- Front page: seasonal banner section linking the cluster; guides grid now renders all seven; strip counts made data-driven (products 5, guides 7, tested 0, policy checks 10).
+- Navigation: "Holiday" label added between Compare and About (SG-27's source document is still absent, so labels remain unclaimed against any spec).
+
+**T20 — design polish (done).**
+- Two **generated** editorial images in `assets/img/` (`holiday-counter.jpg`, `counter-plan.jpg`): kitchen-counter scenes with **no products, no brands, no people, no text** — they cannot be mistaken for product photography (FLG-007 respected), and every page that uses them labels them on-page as illustrations. The seasonal hub's note and Q-26 record that generated brand imagery is an owner decision.
+- `layout()` now emits `og:image`, `og:image:alt` and `twitter:image` so shared links carry the brand scene.
+- CSS additions (`assets/css/site.css`): `.banner`, `.article-head--image` with scrim, `.steps` — same paper-and-ink register, responsive at 900px.
+
+**T21 — decision registers (done).**
+- **FLG-034** (review, new): the CHEF iQ specification source is a family page whose loaded default variant is the one-probe model (CQ60-1C-Z1-E), while the promoted listing is the three-probe Gen3 — found during T23; cited values are line-level and match the listing, so no spec changed and nothing was invented to close it.
+- **FLG-020** resolved (was: no seasonal content): seasonal content shipped as calendar-driven, with the limitation disclosed on-page; the open half is now Q-23.
+- **FLG-013** detail updated 5 → 7 guides (still below the Associates 10-post rule of thumb).
+- **SUG-17** (shipped): seasonal cluster now, annual November refresh. **SUG-18** (recommend): one technique article per month toward the 10-post bar. **SUG-19** (consider): one generated scene per collection. **SUG-20** (hold): no paid traffic before FLG-011 + FLG-004 close. **SUG-21** (consider): head-to-head thermometer page gated on query data.
+- **Q-23..Q-26** added: holiday demand unknown until SG-29; which guide earns impressions first (measurement plan); seasonal-cadence owner decision; generated-imagery owner decision.
+
+**T22 — executive summary refresh (done).** Summary now counts seven guides, names the seasonal collection and publisher imagery, and points the next-actions list at SUG-18, Q-23, Q-25 and the seasonal refresh.
+
+**T23 — line-by-line re-verification (done, 2026-11-20).** Independent of arena-301b1534's T18 (same date, fresh fetches):
+| Source re-checked | Result |
+|---|---|
+| `amazon.com/dp/B0CDY277D3` | Live; title matches register exactly |
+| `amazon.com/dp/B09B7SB46R` | Live; title matches register exactly |
+| `amazon.com/dp/B08DKYBTPH` | Live; title matches register exactly (note: listing title now carries ® on TurboFry — cosmetic, not recorded as a data change) |
+| `amazon.com/dp/B0DHZTCNR5` | Live; title matches register exactly |
+| `amazon.com/dp/B0DZFD6R9Z` | Live; title matches register exactly |
+| Associates Program Policies page | Live; "Updated: April 14, 2026" heading observed; the quoted clauses this site relies on (§2(b), §6(t), §6(w), §6(y), IP License) are present in the current text |
+| FTC Disclosures 101 | Live; "hard to miss", "material connection", and "You can't talk about your experience with a product you haven't tried" all confirmed verbatim |
+| chefman.com TurboFry Touch Dual-Window page | Live; model RJ38-SQPF-3TDB-2W confirmed on page; Hi-Fry 450°F, Sync, capacity as cited |
+| emerileveryday.com French Door AirFryer 360 | Live; 26-qt / 24.6 L / 16.9"D×15.8"W×14.8"H / 120 V / "25 Cooking Pre-sets" — the 24-vs-25 contradiction (FLG-029) still stands, correctly recorded as unresolved |
+| thermomaven.com F1 Stealth | Live; 1-second read, ±0.5°F, NIST/NSF logos (no certificate numbers published — still manufacturer claim), lifetime warranty w/ 30-day activation |
+| chefiq.com iQ Sense | Live; Wi-Fi+BT, 1000°F, 4 internal + 1 ambient sensors, air-fryer compatibility confirmed — **variant discrepancy logged as FLG-034** |
+
+Result of the pass: no data change required except FLG-034 (new) and FLG-020/FLG-013 (status/count updates). Every table row on the site still carries its own source link; unverified/withheld rows remain blank by design.
+
+**Gates after the pass:** `node _src/build.mjs` PASSED (33 pages, 32 sitemap entries, all checks). `node scripts/check-site.mjs`: "repository gate passed — safe to publish" (33 pages, 1,282 internal links, 111 Amazon anchors, 97 sponsored). Determinism verified: two consecutive builds produce byte-identical HTML.
+
+**T24 — integration:** PR + merge + deploy record appended below once complete.
