@@ -112,8 +112,8 @@
       "id": "FLG-013",
       "severity": "action",
       "title": "Content volume is below the Associates review bar",
-      "detail": "Amazon's Associates Help, 'Application Review Process' (checked 2026-11-20, US help topic G8TW5AE9XL2VX9VM), says: \"All Sites must have robust original content (even when advertising is removed) – a good rule of thumb is at least 10 posts.\" It also says: \"Content on your website must be recent (generally within the last 60 days).\" This site has 5 guides and 5 product pages. Amazon does not say whether product and hub pages count as posts, but 5 guides is below the rule of thumb on any reading. The account's own status and review history are unknown from here. Carried forward from the parallel-session register (arena-2ca62ce9, FLG-010), which found this first.",
-      "action": "Do not submit or re-submit for review until the site has at least 10 posts and content dated within the last 60 days. The weekly cadence in the suggestions register (SUG-05) is the proposed path. Recorded as a commercial blocker, not a content-quality one.",
+      "detail": "Amazon's Associates Help, 'Application Review Process' (checked 2026-11-20, US help topic G8TW5AE9XL2VX9VM), says: \"All Sites must have robust original content (even when advertising is removed) – a good rule of thumb is at least 10 posts.\" It also says: \"Content on your website must be recent (generally within the last 60 days).\" This site has 6 guides and 5 product pages as of 2026-11-20 (guide 06 added by the T27 pass under the accepted cadence, SUG-05/SUG-21). Amazon does not say whether product and hub pages count as posts, but 6 guides is still below the rule of thumb on any reading. The account's own status and review history are unknown from here. Carried forward from the parallel-session register (arena-2ca62ce9, FLG-010), which found this first.",
+      "action": "Do not submit or re-submit for review until the site has at least 10 posts and content dated within the last 60 days. The weekly cadence in the suggestions register (SUG-05, accepted 2026-11-20) is the path: keep publishing on that weekly cadence until the post count clears the bar. Recorded as a commercial blocker, not a content-quality one.",
       "sourceUrl": "https://affiliate-program.amazon.com/help/node/topic/G8TW5AE9XL2VX9VM",
       "sourceLabel": "Associates Help: Application Review Process (checked 2026-11-20)"
     },
@@ -175,7 +175,7 @@
       "id": "FLG-020",
       "severity": "withheld",
       "title": "No seasonal content, because there is no seasonal demand data",
-      "detail": "The brief asked for seasons and topic clusters. No seasonal query data was obtained from any source, so no seasonal calendar was invented. The five guides are editorial working titles, not popularity claims. Carried forward from arena-2ca62ce9 (FLG-015).",
+      "detail": "The brief asked for seasons and topic clusters. No seasonal query data was obtained from any source, so no seasonal calendar was invented. The guides are editorial working titles, not popularity claims. Carried forward from arena-2ca62ce9 (FLG-015).",
       "action": "Clusters exist as two product categories. Seasons wait for Search Console query data — choosing December topics from instinct is the failure mode being avoided.",
       "sourceUrl": "https://search.google.com/search-console",
       "sourceLabel": "Search Console (not yet verified)"
@@ -184,10 +184,10 @@
       "id": "FLG-021",
       "severity": "review",
       "title": "Author identity and brand name are still placeholders",
-      "detail": "No author was named in the source material, so no byline was invented. 'Counter Space' is a working name chosen for this build and is not a registered brand. Carried forward from arena-2ca62ce9 (FLG-013).",
-      "action": "Both need a decision from the owner. Before adopting the name publicly, check it is not an active trademark in this category. See SUG-06 and Q-20.",
-      "sourceUrl": "https://sassnarep3-star.github.io/WinA/about/",
-      "sourceLabel": "About page"
+      "detail": "No author was named in the source material, so no byline was invented. 'Counter Space' is a working name chosen for this build and is not a registered brand. Decided 2026-11-20 (T27 review pass, decision log): Q-20 answered — the name stays as the working publication name; Q-21 answered and SUG-06 rejected — the byline is the publication byline 'Counter Space editorial', and a named-person byline is not fabricated. A trademark check was attempted from this environment on 2026-11-20: the USPTO public search (tmsearch.uspto.gov) is a JavaScript application that returned no verifiable exact-match result here, and a general search surfaced no exact-match registration for 'Counter Space' in this category (adjacent marks such as CHEF'S COUNTER, Class 011, do exist). That is not a clearance. Carried forward from arena-2ca62ce9 (FLG-013).",
+      "action": "Owner: run a full USPTO TSDR/TESS plus common-law search for 'Counter Space' in the relevant classes before any paid promotion or custom-domain purchase (SUG-07). Attach a real person to the byline when one exists (SUG-06 can be reopened then).",
+      "sourceUrl": "https://tmsearch.uspto.gov/",
+      "sourceLabel": "USPTO trademark search (attempted 2026-11-20; JavaScript app returned no verifiable exact-match result from this environment)"
     },
     {
       "id": "FLG-022",
@@ -362,12 +362,12 @@
     },
     {
       "id": "FLG-037",
-      "severity": "review",
+      "severity": "resolved",
       "title": "Buy buttons say 'Check price on Amazon' while the site states prices are not shown",
-      "detail": "Every product card and hero button is labelled 'Check price on Amazon'. Other pages state that prices are not shown on this site, and data/products.json withholds prices (FLG-005). The label does not display a price, but it is worded as if one is on the page. It is flagged for an owner decision on wording, not changed here, because it is a visible copy decision and it appears on every product card. Amazon Associates Program Policies §6(y) is cited in this register for the no-price-tracking rule; that section was not re-read in this check.",
-      "action": "Owner: choose the button wording. If changed, rebuild with node _src/build.mjs; the compliance gate checks the disclosure and link classes, not the label wording.",
+      "detail": "Every product card and hero button is labelled 'Check price on Amazon'. Other pages state that prices are not shown on this site, and data/products.json withholds prices (FLG-005). Reviewed and decided 2026-11-20 by the T27 pass after re-reading the official Program Policies page (updated April 14, 2026): the label displays no price, so Participation Requirements §2(b) — which allows a price only when Amazon serves it inside the link or it is obtained via Creators API/PA API — is not engaged; §6(y) bans price tracking, which this site has none of; and §6(w) requires that a link make clear it goes to Amazon, which the words 'on Amazon' do. The wording is consistent with the site's own disclosure and is kept.",
+      "action": "Resolved 2026-11-20: label kept as 'Check price on Amazon →'. Decision recorded in the suggestions decision log. Any future wording change must re-check §2(b) and §6(w) first.",
       "sourceUrl": "https://affiliate-program.amazon.com/help/operating/policies",
-      "sourceLabel": "Amazon Associates Program Policies (cited elsewhere in this register)"
+      "sourceLabel": "Amazon Associates Program Policies §2(b), §6(w), §6(y) (re-read 2026-11-20)"
     },
     {
       "id": "FLG-038",
@@ -386,6 +386,15 @@
       "action": "Owner or next session: add the manufacturer product page URL per product to specSources and fill wattage, dimensions and warranty from it, one row at a time with its own source. Do not fill from memory or from a marketplace reseller page.",
       "sourceUrl": "https://www.amazon.com/dp/B09B7SB46R",
       "sourceLabel": "Amazon listing for the Emeril 26QT (wattage and warranty not stated there)"
+    },
+    {
+      "id": "FLG-040",
+      "severity": "resolved",
+      "title": "Policy register filed the price-display rule under §6(y), which bans tracking, not display",
+      "detail": "POL-04 was titled 'Price display' but quoted Participation Requirements §6(y) — the price tracking and alerting ban — while the actual display rule is §2(b): a price may be shown only if Amazon serves it inside the link or it is obtained via Creators API/PA API. The site's own copy had drifted with the register, saying prices are prohibited 'unless supplied through its API', which omits the served-link case. Found 2026-11-20 by re-reading the official Program Policies page (updated April 14, 2026) during the T27 FLG-037 review. Fixed: POL-04 retitled to 'Price tracking and alerting', new POL-11 added with the verbatim §2(b) quote, and both copy spots on the product and comparison pages corrected to cite §2(b), §6(t) and §6(y) accurately.",
+      "action": "None. Resolved in data/policy.json and _src/build.mjs; rebuilt and gated 2026-11-20.",
+      "sourceUrl": "https://affiliate-program.amazon.com/help/operating/policies",
+      "sourceLabel": "Amazon Associates Program Policies, Participation Requirements §2(b) (re-read 2026-11-20)"
     }
   ],
   "ledger": {

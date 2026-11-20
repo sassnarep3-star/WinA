@@ -249,6 +249,65 @@ Multi-function claims are the easiest thing in kitchen retail to inflate and the
       "Published response and accuracy figures are stated by the seller, not verified by us.",
       "For connected devices, ask what happens when the app stops being supported."
     ]
+  },
+  {
+    slug: "air-fryer-vs-toaster-oven",
+    number: "06",
+    title: "Air fryer vs. toaster oven: which one actually saves your counter?",
+    dek: "One is a drawer that does a few things very well. The other is a small oven that does many things adequately and wants a permanent corner. The decision is about your counter, your weeknights, and how much washing-up you will accept.",
+    category: "air-fryers",
+    readingTime: "6 min",
+    topics: ["category choice", "counter space", "combo units"],
+    intro: `If you already own a toaster oven, the question is not whether air fryers are good. It is whether a basket machine does anything your oven does not — and whether the combo unit that claims to be both is the honest answer.
+
+This is not the basket-versus-oven question from guide 01; that comparison sits between two kinds of air fryer. This is the question underneath it: air fryer, toaster oven, or one machine wearing both labels.`,
+    body: `
+<h2>Three machines, not two</h2>
+<p>The phrase "air fryer" now covers at least three different appliances, and the buying decision changes with which one you mean.</p>
+<p><strong>The basket machine.</strong> A drawer with a fan behind it. In this set: the Chefman 8-quart TurboFry — one 8-quart drawer, four functions (air fry, bake, dehydrate, frozen), a standard range to 400°F with a 450°F Hi-Fry finish for the final two minutes of a cycle. And the Chefman 6-quart dual basket — two independent 3-quart drawers, 5.67 L total, with Sync Finish holding the faster drawer so both land at once.</p>
+<p><strong>The toaster oven.</strong> A small oven with racks. It toasts, bakes and roasts, and it is the machine most people already own before they ever search for an air fryer.</p>
+<p><strong>The combo.</strong> The Emeril Lagasse 26QT French-door model is sold in exactly this overlap: an air fryer toaster oven. 26 quarts — 24.6 litres, from the manufacturer's own page — in a French-door chamber, countertop convection, six included accessories. Its preset count is flagged in our register because the manufacturer's own pages disagree with each other, so we do not quote a number we cannot pin down.</p>
+
+<h2>The counter maths nobody does before delivery day</h2>
+<p>Counter space is the only spec that never shrinks once the box is open. Two of the three machines publish their dimensions from the manufacturer, so the comparison can be made before ordering rather than after delivery.</p>
+<ul>
+  <li>Chefman 6-quart dual basket: <strong>13.38 × 11.81 × 10.63 in</strong> (chefman.com) — a footprint of about 158 square inches.</li>
+  <li>Emeril Lagasse 26QT: <strong>16.9 D × 15.8 W × 14.8 H in</strong> (emerileveryday.com) — about 267 square inches, and nearly fifteen inches tall.</li>
+  <li>Chefman 8-quart TurboFry: dimensions are <strong>not published in any source we could verify</strong>. The register leaves the cell blank rather than borrowing a number from a sibling SKU.</li>
+</ul>
+<p>The arithmetic is yours to check: depth times width, nothing else. The oven-style body claims roughly seventy per cent more counter than the dual-basket drawer — and it stands 14.8 inches tall, which matters if it is living under a cabinet. The full dimensions, with their sources, are in the <a href="{BASE}/register/">source register</a>.</p>
+<p>Before any of it: put a sheet of paper where the machine would live and leave it there for a day. If you have to move it to use the toaster, you already have your answer.</p>
+
+<h2>What each format is worse at</h2>
+<p>These are structural trade-offs implied by the form factors and the published dimensions — not test results. Nobody here has cooked in these machines.</p>
+<p><strong>The basket machine is worse at:</strong> anything that must lie flat in a pan, anything larger than the drawer, and anything you wanted to bake on two trays. It also owns its corner of the counter permanently, because a drawer unit that lives in a cupboard does not get used.</p>
+<p><strong>The oven and the combo are worse at:</strong> speed for a single portion — a large cavity takes longer to come up to temperature than a small sealed one, and we are not going to quote a preheat number we did not take — and washing. More racks, more accessories (six come with the Emeril), more surfaces after a two-person meal. If you are cooking one chicken breast, you are washing a small oven.</p>
+
+<h2>If you already own a toaster oven</h2>
+<p>Then the honest test is not a spec sheet. It is this: think about the last five weeknight cooks you actually did — not the ones you plan in January.</p>
+<ul>
+  <li>If four or five were piles of one thing that wants moving air — fries, wings, sprouts, chickpeas — a basket machine does a job your toaster oven does not, and the small single basket is the one to look at.</li>
+  <li>If any involved two things that need two temperatures at the same time, no toaster oven answers that. The dual basket does, with Sync Finish landing both drawers together. That is the entire argument for it, and it is a real one.</li>
+  <li>If most were toast, baked potatoes, a fillet on a tray, or a small roast, your toaster oven already does the air fryer's job — and a combo unit is only worth its footprint if you also want the air-fry mode in the same cavity.</li>
+</ul>
+
+<h2>The short decision</h2>
+<ol>
+  <li>Name the jobs you actually cook, not the ones the marketing lists.</li>
+  <li>Jobs are piles → a basket machine. Jobs are trays and slices → keep the toaster oven.</li>
+  <li>Two temperatures at once → the dual basket, regardless of what else you own.</li>
+  <li>One footprint for everything → the combo, after you measure the corner it will occupy.</li>
+  <li>Measure with paper first. Then choose the biggest machine that fits the paper — the rest of this decision is washing-up.</li>
+</ol>
+<p>Capacity questions are covered in <a href="{BASE}/guides/capacity/">the capacity checklist</a>; the washing-up trade is <a href="{BASE}/guides/cleanup/">cleanup and counter space</a>; and if you are choosing between two air fryers rather than between categories, start with <a href="{BASE}/guides/basket-vs-oven/">basket or oven-style</a>. All five products sit in <a href="{BASE}/compare/">one table</a>.</p>
+`,
+    takeaways: [
+      "Name the jobs you cook before comparing any spec — piles, trays, or two temperatures at once.",
+      "Published footprints: about 158 square inches for the dual basket versus about 267 for the 26-quart oven. Measure with paper first.",
+      "A dual basket answers two-temperature cooking; no single-chamber oven does.",
+      "The combo replaces more jobs and costs more counter and more washing than a basket.",
+      "Every dimension here is cited to a manufacturer page; the blanks stay blank."
+    ]
   }
 ];
 

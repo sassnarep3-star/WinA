@@ -15,6 +15,11 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(__dirname, "..");
 
 const read = (p) => JSON.parse(fs.readFileSync(path.join(ROOT, p), "utf8"));
+
+// Editorial numbers: prose spells counts out, the count gate still checks them.
+const NUM_WORD = ["zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten"];
+const spellNum = (n) => NUM_WORD[n] || String(n);
+const cap = (s) => s.charAt(0).toUpperCase() + s.slice(1);
 const data = read("data/products.json");
 const policy = read("data/policy.json");
 const gov = read("data/governance.json");
@@ -582,7 +587,7 @@ ${breadcrumb([
 
     <div class="note mt2">
       <p class="note__title">On what is missing from this page</p>
-      <p>Price, star rating, review count and product photography are all absent. Amazon's program policies prohibit displaying ratings, reviews or current prices unless supplied through its API, and prohibit price tracking outright. We have no API access, so we show nothing rather than something inaccurate. The gaps are listed on the <a href="${url(
+      <p>Price, star rating, review count and product photography are all absent. Amazon's program policies allow a price on this site only when Amazon serves it inside the link or it comes through its API, and allow ratings or reviews only through the API (Participation Requirements §2(b) and §6(t)). We have no API access, so we show nothing rather than something inaccurate. The gaps are listed on the <a href="${url(
         "/flagged/"
       )}">flagged for review</a> page.</p>
     </div>
@@ -770,7 +775,7 @@ ${breadcrumb([{ href: url("/"), label: "Home" }, { label: "Guides" }])}
   <div class="wrap">
     <p class="kicker">Buying guides</p>
     <h1 class="article-head__title">The questions people ask before they buy</h1>
-    <p class="article-head__dek">Five guides, each built around one decision. No rankings, no "best of" list, no claim that any of this was tested.</p>
+    <p class="article-head__dek">${cap(spellNum(guides.length))} guides, each built around one decision. No rankings, no "best of" list, no claim that any of this was tested.</p>
   </div>
 </div>
 <section class="section">
@@ -803,7 +808,7 @@ ${breadcrumb([{ href: url("/"), label: "Home" }, { label: "Guides" }])}
   pages.push({
     path: "/guides/",
     title: "Buying guides",
-    desc: "Five question-shaped guides to air fryers and thermometers: form factor, capacity, cleanup, and multi-function claims.",
+    desc: `${guides.length} question-shaped guides to air fryers and thermometers: form factor, capacity, cleanup, multi-function claims, thermometer choice, and the category question.`,
     html,
     priority: "0.8",
     changefreq: "weekly"
@@ -874,7 +879,7 @@ ${breadcrumb([{ href: url("/"), label: "Home" }, { label: "Compare" }])}
 
     <div class="note note--warn mt2">
       <p class="note__title">Why the price and rating rows are empty</p>
-      <p>Not an oversight and not laziness. Amazon prohibits displaying current prices or customer ratings unless they come from its Product Advertising API, and prohibits price tracking outright. We do not have API access. Every other blank row is a value we tried and failed to confirm — wattage, dimensions and warranty for all five products. Both categories of gap are published on the <a href="${url(
+      <p>Not an oversight and not laziness. Amazon's program policies allow a price on this site only when Amazon serves it inside the link or it comes through its API, and allow ratings or reviews only through the API (Participation Requirements §2(b) and §6(t) — both re-read on the official page, 2026-11-20). Price tracking outright is banned by §6(y). We have no API access. Every other blank row is a value we tried and failed to confirm — wattage, dimensions and warranty for all five products. Both categories of gap are published on the <a href="${url(
         "/flagged/"
       )}">flagged for review</a> page.</p>
     </div>
@@ -1440,7 +1445,7 @@ function renderTopicRoadmap() {
         )}</span></td>
       <td>${esc(t.title)}</td>
       <td class="small">${esc(t.intent)}</td>
-      <td><span class="pill pill--claim">${esc(t.status)}</span></td>
+      <td><span class="pill pill--${/published/i.test(t.status) ? "shipped" : "claim"}">${esc(t.status)}</span></td>
     </tr>`
       )
     )
@@ -1555,7 +1560,7 @@ ${breadcrumb([{ href: url("/"), label: "Home" }, { label: "Suggestions" }])}
   <div class="wrap">
     <div class="tablewrap" style="margin-bottom:1.5rem">
       <table class="data sortable">
-        <caption>Status key. Anything not marked "shipped" is waiting for a decision — nothing beyond the initial build has been implemented.</caption>
+        <caption>Status key. Anything not marked "shipped" is still open — an owner action, a later pass, or measured data. Every accept, reject, hold and defer is recorded with a date and a reason in the decision log below.</caption>
         <thead><tr><th scope="col">Status</th><th scope="col">Meaning</th><th scope="col">Count</th></tr></thead>
         <tbody>${suggestions.statusKey
           .map(
@@ -1632,7 +1637,7 @@ ${breadcrumb([{ href: url("/"), label: "Home" }, { label: "Executive summary" }]
     <h2>What exists</h2>
     <ul>
       <li><strong>A five-product publication</strong> — three air fryers, two thermometers — with individual pages, two category hubs, and a full comparison table.</li>
-      <li><strong>Five question-shaped guides</strong>, written as decisions rather than rankings.</li>
+      <li><strong>${guides.length} question-shaped guides</strong>, written as decisions rather than rankings.</li>
       <li><strong>A complete source register</strong>: ${policy.sources.length} primary sources and ${products.reduce(
         (n, p) => n + p.specs.length,
         0
@@ -1643,7 +1648,7 @@ ${breadcrumb([{ href: url("/"), label: "Home" }, { label: "Executive summary" }]
       <li><strong>Marketing copy for all five links</strong> — a social post, a newsletter paragraph and its mandatory disclosure per product, on <a href="${url(
         "/marketing/kit/"
       )}">the marketing kit</a>.</li>
-      <li><strong>Ten policy checks</strong> traced to the exact clause, with the text quoted verbatim so the summary can be audited.</li>
+      <li><strong>${policy.policy.length} policy checks</strong> traced to the exact clause, with the text quoted verbatim so the summary can be audited.</li>
       <li><strong>A publication gate</strong> in the build: it fails if any page loses its disclosure, or if any Amazon link loses its sponsored marking.</li>
       <li><strong>SEO foundations</strong>: sitemap, RSS feed, canonical URLs, structured data, and descriptions written for humans.</li>
       <li><strong>A defined measurement plan</strong>: five events, a self-hosted collector, and a ledger schema.</li>
@@ -1687,8 +1692,8 @@ ${breadcrumb([{ href: url("/"), label: "Home" }, { label: "Executive summary" }]
     </ol>
 
     <h2>The honest verdict</h2>
-    <p>What exists is a small, well-documented, compliant publication with five decent guides and five products. It is not yet a business: it has no traffic, no verified affiliate attribution, and no data. It is, however, built so that when those three things arrive, nothing has to be torn down — and so that nothing on it is a lie.</p>
-    <p>The main strategic risk is not technical. It is that five guides is not enough content to rank in a crowded category, and the plan for fixing that is a cadence, not a feature.</p>
+    <p>What exists is a small, well-documented, compliant publication with ${spellNum(guides.length)} decent guides and five products. It is not yet a business: it has no traffic, no verified affiliate attribution, and no data. It is, however, built so that when those three things arrive, nothing has to be torn down — and so that nothing on it is a lie.</p>
+    <p>The main strategic risk is not technical. It is that ${spellNum(guides.length)} guides is not enough content to rank in a crowded category, and the plan for fixing that is a cadence, not a feature.</p>
   </div>
 </section>
 `;

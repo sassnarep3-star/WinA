@@ -51,23 +51,23 @@
   <div class="wrap">
     <p class="kicker">Review before implementing</p>
     <h1 class="article-head__title">Suggestions</h1>
-    <p class="article-head__dek">A decision list, not a wish list. Each suggestion states what to do, why, what it costs, and what would make it a bad idea. Nothing here has been implemented beyond what is already live; the ones marked shipped were built in this pass because the brief asked for them directly. Everything else waits for a decision.</p>
+    <p class="article-head__dek">A decision list, not a wish list. Each suggestion states what to do, why, what it costs, and what would make it a bad idea. The T27 review pass on 2026-11-20 recorded a dated decision against every suggestion below — accept, reject, hold or defer — and implemented only the accepted items that need no owner credential. Anything not marked shipped is still open: waiting for an owner action, a later pass, or measured data.</p>
   </div>
 </div>
 <section class="section">
   <div class="wrap">
     <div class="tablewrap" style="margin-bottom:1.5rem">
       <table class="data sortable">
-        <caption>Status key. Anything not marked "shipped" is waiting for a decision — nothing beyond the initial build has been implemented.</caption>
+        <caption>Status key. Anything not marked "shipped" is still open — an owner action, a later pass, or measured data. Every accept, reject, hold and defer is recorded with a date and a reason in the decision log below.</caption>
         <thead><tr><th scope="col">Status</th><th scope="col">Meaning</th><th scope="col">Count</th></tr></thead>
         <tbody><tr>
           <td><span class="pill pill--shipped">shipped</span></td>
           <td>Already built on the live site in this pass.</td>
-          <td class="num">2</td>
+          <td class="num">8</td>
         </tr><tr>
           <td><span class="pill pill--recommend">recommend</span></td>
           <td>Highest confidence, do this before the others.</td>
-          <td class="num">12</td>
+          <td class="num">4</td>
         </tr><tr>
           <td><span class="pill pill--consider">consider</span></td>
           <td>Worth doing, but depends on an earlier decision.</td>
@@ -79,7 +79,7 @@
         </tr><tr>
           <td><span class="pill pill--reject">reject</span></td>
           <td>Would break a rule or mislead a reader.</td>
-          <td class="num">2</td>
+          <td class="num">4</td>
         </tr></tbody>
       </table>
     </div>
@@ -124,7 +124,7 @@
   </tr><tr>
     <td><code>SUG-02</code></td>
     <td><strong>Split into two publications, or pick one category and go deep</strong></td>
-    <td><span class="pill pill--recommend">recommend</span></td>
+    <td><span class="pill pill--reject">reject</span></td>
     <td class="num">9</td>
     <td class="small">Three air fryers and two thermometers are two different buying moments. Search engines reward a site that owns one topic. A small site trying to own 'kitchen gear' owns nothing.</td>
     <td class="small">Splitting means two domains, two sitemaps, twice the setup. Going deep on air fryers means the thermometers get a single supporting page.</td>
@@ -160,7 +160,7 @@
   </tr><tr>
     <td><code>SUG-06</code></td>
     <td><strong>Add a real author byline with a named person</strong></td>
-    <td><span class="pill pill--recommend">recommend</span></td>
+    <td><span class="pill pill--reject">reject</span></td>
     <td class="num">8</td>
     <td class="small">Unattributed buying advice reads as generated, which is precisely the failure the brief names. A byline with a short bio and a stated method is the cheapest credibility signal available.</td>
     <td class="small">Requires a real person willing to be named and accountable.</td>
@@ -169,7 +169,7 @@
   </tr><tr>
     <td><code>SUG-17</code></td>
     <td><strong>Adopt a written design brief and treat it as the single source for every visual change</strong></td>
-    <td><span class="pill pill--recommend">recommend</span></td>
+    <td><span class="pill pill--shipped">shipped</span></td>
     <td class="num">8</td>
     <td class="small">Without one, every page drifts toward the same templated look that reads as generated. A brief that states the visual system, the layout rules and the anti-slop constraints gives every later change a consistent target instead of a mood.</td>
     <td class="small">One document. The draft is on this page and can be adopted as-is or edited.</td>
@@ -178,7 +178,7 @@
   </tr><tr>
     <td><code>SUG-18</code></td>
     <td><strong>Replace generic visual defaults with an opinionated editorial type and color system</strong></td>
-    <td><span class="pill pill--recommend">recommend</span></td>
+    <td><span class="pill pill--shipped">shipped</span></td>
     <td class="num">8</td>
     <td class="small">A confident serif-display / sans-body system with a restrained palette and one accent reads as a real publication. Generic system fonts, blue-to-purple gradients and neon highlights are the most common tells of an AI-generated marketing page.</td>
     <td class="small">CSS and type work in the shared stylesheet.</td>
@@ -187,7 +187,7 @@
   </tr><tr>
     <td><code>SUG-20</code></td>
     <td><strong>Write in a concrete, human voice and ban filler phrases</strong></td>
-    <td><span class="pill pill--recommend">recommend</span></td>
+    <td><span class="pill pill--shipped">shipped</span></td>
     <td class="num">8</td>
     <td class="small">Generic marketing boilerplate is the other main slop tell. Specificity — named trade-offs, concrete numbers, a real point of view — reads human and is what helpful-content guidance rewards.</td>
     <td class="small">Editorial discipline. Add a banned-phrase list to the editorial standards so the gate can enforce it.</td>
@@ -196,7 +196,7 @@
   </tr><tr>
     <td><code>SUG-21</code></td>
     <td><strong>Publish to a topic roadmap on a cadence, adding each new guide to the sitemap and feed in the same commit</strong></td>
-    <td><span class="pill pill--recommend">recommend</span></td>
+    <td><span class="pill pill--shipped">shipped</span></td>
     <td class="num">8</td>
     <td class="small">Catchy, question-shaped topics are the traffic engine. A fixed cadence plus a feed keeps search and subscribers fresh, and the build already adds each guide to the sitemap and RSS automatically — that was a requirement, not a convenience.</td>
     <td class="small">A substantive guide each week, with its own verified spec pass.</td>
@@ -223,7 +223,7 @@
   </tr><tr>
     <td><code>SUG-19</code></td>
     <td><strong>Vary page layouts; stop repeating the same card grid in every section</strong></td>
-    <td><span class="pill pill--recommend">recommend</span></td>
+    <td><span class="pill pill--shipped">shipped</span></td>
     <td class="num">7</td>
     <td class="small">Identical repeated card grids are a primary tell of templated generation. A strong editorial hero, a reading column for guides, and at least one non-card treatment per page read as designed rather than emitted.</td>
     <td class="small">Template work in the build.</td>
@@ -232,7 +232,7 @@
   </tr><tr>
     <td><code>SUG-24</code></td>
     <td><strong>Add a decision log so suggestions are accepted or rejected with a recorded reason and date</strong></td>
-    <td><span class="pill pill--recommend">recommend</span></td>
+    <td><span class="pill pill--shipped">shipped</span></td>
     <td class="num">7</td>
     <td class="small">The brief asks for a reviewable path before implementing anything. A log makes each choice auditable, captures why something was rejected, and stops the same suggestion being re-litigated next session.</td>
     <td class="small">A small table on this page, populated by hand.</td>
@@ -416,7 +416,7 @@
       <td><strong>Air fryers</strong><br><span class="tiny muted">chefman-6-quart-dual-basket · chefman-8-quart-turbofry · emeril-lagasse-26qt-french-door</span></td>
       <td>Air fryer vs. toaster oven: which one actually saves your counter?</td>
       <td class="small">Category decision</td>
-      <td><span class="pill pill--claim">hypothesis</span></td>
+      <td><span class="pill pill--shipped">published as guide 06 (2026-11-20); demand unmeasured</span></td>
     </tr><tr>
       <td><strong>Air fryers</strong><br><span class="tiny muted">chefman-6-quart-dual-basket · chefman-8-quart-turbofry · emeril-lagasse-26qt-french-door</span></td>
       <td>How many quarts do you really need? A rule of thumb for one- and two-person kitchens</td>
@@ -472,7 +472,132 @@
       <table class="data sortable">
         <caption>Accept or reject a suggestion here before implementing it. Recorded so the choice is auditable and rejected items are not re-litigated.</caption>
         <thead><tr><th scope="col">Date</th><th scope="col">Decision</th><th scope="col">Item</th><th scope="col">Reason</th></tr></thead>
-        <tbody><tr><td colspan="4" style="text-align:center;padding:1.5rem;color:var(--ink-mute)"><strong style="display:block;font-family:var(--serif);font-size:1.05rem;color:var(--ink);margin-bottom:.3rem">No decisions recorded yet</strong>Each accepted or rejected suggestion is recorded here with a date and a one-line reason.</td></tr></tbody>
+        <tbody><tr>
+    <td>2026-11-20</td>
+    <td><span class="pill pill--accept" >accept</span></td>
+    <td><code>SUG-17</code></td>
+    <td class="small">Adopted as the single source for every visual change. The eight principles DB-01..DB-08 were checked against the live design system this pass: DB-01..DB-04 already implemented in site.css, DB-05..DB-08 enforced by the build gates.</td>
+  </tr><tr>
+    <td>2026-11-20</td>
+    <td><span class="pill pill--accept" >accept</span></td>
+    <td><code>SUG-18</code></td>
+    <td class="small">Verified already shipped: Iowan Old Style display serif, Inter body, one enamel-blue accent, warm paper, no gradients. Matches DB-01 and DB-02; no redesign needed.</td>
+  </tr><tr>
+    <td>2026-11-20</td>
+    <td><span class="pill pill--accept" >accept</span></td>
+    <td><code>SUG-19</code></td>
+    <td class="small">Verified already shipped: hero plus editor-pick plus stat strip plus shelf grid plus editorial guide list on the front page; reading column with aside on guides; tables on registers. Grids remain only where the page is a shelf.</td>
+  </tr><tr>
+    <td>2026-11-20</td>
+    <td><span class="pill pill--accept" >accept</span></td>
+    <td><code>SUG-20</code></td>
+    <td class="small">Standing voice rule in the content module, re-audited across the six guides this pass: concrete trade-offs, no filler, no claims of testing. Continues as a rule, not a project.</td>
+  </tr><tr>
+    <td>2026-11-20</td>
+    <td><span class="pill pill--accept" >accept</span></td>
+    <td><code>SUG-21</code></td>
+    <td class="small">First cadence step shipped: guide 06 taken from the roadmap and added to sitemap, feed and the count gates in the same build.</td>
+  </tr><tr>
+    <td>2026-11-20</td>
+    <td><span class="pill pill--accept" >accept</span></td>
+    <td><code>SUG-05</code></td>
+    <td class="small">Cadence accepted: a substantive guide each week; the first week is complete with guide 06. The eight-week review reads the query report, which stays blocked until Search Console is verified (FLG-009).</td>
+  </tr><tr>
+    <td>2026-11-20</td>
+    <td><span class="pill pill--accept" >accept</span></td>
+    <td><code>SUG-22</code></td>
+    <td class="small">Cluster linking adopted: guide 06 links into the air-fryer cluster (guides 01-03) and both hubs link it back. Implementation started, not finished; status stays consider until every guide cross-links.</td>
+  </tr><tr>
+    <td>2026-11-20</td>
+    <td><span class="pill pill--accept" >accept</span></td>
+    <td><code>SUG-24</code></td>
+    <td class="small">This log. Every accept, reject, hold and defer below is recorded with a date and a one-line reason so the choices are auditable and not re-litigated.</td>
+  </tr><tr>
+    <td>2026-11-20</td>
+    <td><span class="pill pill--reject" >reject</span></td>
+    <td><code>SUG-02</code></td>
+    <td class="small">One publication with two hubs until measured query data says otherwise. Splitting now would cut content volume against the Associates application content bar (FLG-013) with zero demand data (FLG-009). Q-03 answered with this decision.</td>
+  </tr><tr>
+    <td>2026-11-20</td>
+    <td><span class="pill pill--reject" >reject</span></td>
+    <td><code>SUG-06</code></td>
+    <td class="small">A named-person byline cannot be fabricated; the suggestion own risk column says so. Publication byline adopted instead and Q-21 answered. Reopen only when a real person is attached to the content.</td>
+  </tr><tr>
+    <td>2026-11-20</td>
+    <td><span class="pill pill--reject" >reject</span></td>
+    <td><code>SUG-12</code></td>
+    <td class="small">Confirmed: no price tracker, no price alerts, no deal feed. Section 6(y) bans price tracking (POL-04) and Section 2(b) restricts price display (POL-11).</td>
+  </tr><tr>
+    <td>2026-11-20</td>
+    <td><span class="pill pill--reject" >reject</span></td>
+    <td><code>SUG-13</code></td>
+    <td class="small">Confirmed: no near-duplicate pages to chase long-tail queries. Google helpful-content guidance linked in the suggestion forbids it and the build gates fail duplicate output.</td>
+  </tr><tr>
+    <td>2026-11-20</td>
+    <td><span class="pill pill--hold" >hold</span></td>
+    <td><code>SUG-14</code></td>
+    <td class="small">Hold confirmed: no reader capture until there is something worth sending, and the email backend does not exist yet (FLG-010).</td>
+  </tr><tr>
+    <td>2026-11-20</td>
+    <td><span class="pill pill--hold" >hold</span></td>
+    <td><code>SUG-15</code></td>
+    <td class="small">Hold confirmed: no paid search. POL-08 forbids bidding on Amazon marks, there is no budget, and there is no measurement to optimise against (FLG-011).</td>
+  </tr><tr>
+    <td>2026-11-20</td>
+    <td><span class="pill pill--hold" >hold</span></td>
+    <td><code>SUG-23</code></td>
+    <td class="small">Hold confirmed: no seasonal topics without measured demand (FLG-020). Instinct does not clear the kill criteria.</td>
+  </tr><tr>
+    <td>2026-11-20</td>
+    <td><span class="pill pill--defer" >defer</span></td>
+    <td><code>SUG-03</code></td>
+    <td class="small">API access stays an owner goal but is not a precondition for publishing: compliant publication without prices, ratings or images is possible (POL-03, POL-11), and the content bar (FLG-013) requires publishing now.</td>
+  </tr><tr>
+    <td>2026-11-20</td>
+    <td><span class="pill pill--defer" >defer</span></td>
+    <td><code>SUG-07</code></td>
+    <td class="small">Custom domain needs an owner purchase; nothing in this environment can buy one. Revisit together with FLG-013.</td>
+  </tr><tr>
+    <td>2026-11-20</td>
+    <td><span class="pill pill--defer" >defer</span></td>
+    <td><code>SUG-08</code></td>
+    <td class="small">The collector is written but needs a hosting account to deploy (FLG-011). Not claimable from this environment.</td>
+  </tr><tr>
+    <td>2026-11-20</td>
+    <td><span class="pill pill--defer" >defer</span></td>
+    <td><code>SUG-09</code></td>
+    <td class="small">A who-should-not-buy block on every product page is the next editorial pass after this one ships.</td>
+  </tr><tr>
+    <td>2026-11-20</td>
+    <td><span class="pill pill--defer" >defer</span></td>
+    <td><code>SUG-10</code></td>
+    <td class="small">Measured-dimension comparison table stays blocked: dimensions are unverified for several products (FLG-028). Two rows are already filled from manufacturer pages; expand as more verify.</td>
+  </tr><tr>
+    <td>2026-11-20</td>
+    <td><span class="pill pill--defer" >defer</span></td>
+    <td><code>SUG-11</code></td>
+    <td class="small">How-we-choose block: the About page already carries the method. Promote it to the front page in the next layout pass, not this one.</td>
+  </tr><tr>
+    <td>2026-11-20</td>
+    <td><span class="pill pill--defer" >defer</span></td>
+    <td><code>SUG-16</code></td>
+    <td class="small">Dated last-checked lines on product pages: every spec row already carries its source and status, so the line adds no evidence yet. Add it when the register gets its first re-check date.</td>
+  </tr><tr>
+    <td>2026-11-20</td>
+    <td><span class="pill pill--defer" >defer</span></td>
+    <td><code>SUG-04</code></td>
+    <td class="small">Special Links shipped earlier; the one-per-product proof step is owner-blocked in Associates Central (FLG-024). Nothing changes until that credential exists.</td>
+  </tr><tr>
+    <td>2026-11-20</td>
+    <td><span class="pill pill--accept" >accept</span></td>
+    <td><code>FLG-037</code></td>
+    <td class="small">Buy-button wording kept after re-reading the official Program Policies: the label shows no price (Section 2(b) not engaged), names Amazon as the destination (Section 6(w) satisfied), and tracks nothing (Section 6(y) satisfied). Flag resolved.</td>
+  </tr><tr>
+    <td>2026-11-20</td>
+    <td><span class="pill pill--accept" >accept</span></td>
+    <td><code>Q-20</code></td>
+    <td class="small">Publication name kept as 'Counter Space'. Trademark clearance attempted from this environment and not completed — it stays an owner action in FLG-021 before any paid promotion or domain purchase.</td>
+  </tr></tbody>
       </table>
     </div>
 

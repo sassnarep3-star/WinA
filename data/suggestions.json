@@ -1,5 +1,5 @@
 {
-  "intro": "A decision list, not a wish list. Each suggestion states what to do, why, what it costs, and what would make it a bad idea. Nothing here has been implemented beyond what is already live; the ones marked shipped were built in this pass because the brief asked for them directly. Everything else waits for a decision.",
+  "intro": "A decision list, not a wish list. Each suggestion states what to do, why, what it costs, and what would make it a bad idea. The T27 review pass on 2026-11-20 recorded a dated decision against every suggestion below — accept, reject, hold or defer — and implemented only the accepted items that need no owner credential. Anything not marked shipped is still open: waiting for an owner action, a later pass, or measured data.",
   "statusKey": [
     {
       "id": "shipped",
@@ -47,7 +47,7 @@
     {
       "id": "SUG-02",
       "title": "Split into two publications, or pick one category and go deep",
-      "status": "recommend",
+      "status": "reject",
       "weight": 9,
       "why": "Three air fryers and two thermometers are two different buying moments. Search engines reward a site that owns one topic. A small site trying to own 'kitchen gear' owns nothing.",
       "cost": "Splitting means two domains, two sitemaps, twice the setup. Going deep on air fryers means the thermometers get a single supporting page.",
@@ -101,7 +101,7 @@
     {
       "id": "SUG-06",
       "title": "Add a real author byline with a named person",
-      "status": "recommend",
+      "status": "reject",
       "weight": 8,
       "why": "Unattributed buying advice reads as generated, which is precisely the failure the brief names. A byline with a short bio and a stated method is the cheapest credibility signal available.",
       "cost": "Requires a real person willing to be named and accountable.",
@@ -237,18 +237,23 @@
     {
       "id": "SUG-17",
       "title": "Adopt a written design brief and treat it as the single source for every visual change",
-      "status": "recommend",
+      "status": "shipped",
       "weight": 8,
       "why": "Without one, every page drifts toward the same templated look that reads as generated. A brief that states the visual system, the layout rules and the anti-slop constraints gives every later change a consistent target instead of a mood.",
       "cost": "One document. The draft is on this page and can be adopted as-is or edited.",
       "risk": "A brief that is too rigid produces sameness. It is a starting point, not a cage.",
       "decide": "Accept. The design brief below is the draft to start from; edit it before implementing.",
-      "links": [{ "label": "Google Search Central — helpful content", "url": "https://developers.google.com/search/docs/fundamentals/creating-helpful-content" }]
+      "links": [
+        {
+          "label": "Google Search Central — helpful content",
+          "url": "https://developers.google.com/search/docs/fundamentals/creating-helpful-content"
+        }
+      ]
     },
     {
       "id": "SUG-18",
       "title": "Replace generic visual defaults with an opinionated editorial type and color system",
-      "status": "recommend",
+      "status": "shipped",
       "weight": 8,
       "why": "A confident serif-display / sans-body system with a restrained palette and one accent reads as a real publication. Generic system fonts, blue-to-purple gradients and neon highlights are the most common tells of an AI-generated marketing page.",
       "cost": "CSS and type work in the shared stylesheet.",
@@ -259,7 +264,7 @@
     {
       "id": "SUG-19",
       "title": "Vary page layouts; stop repeating the same card grid in every section",
-      "status": "recommend",
+      "status": "shipped",
       "weight": 7,
       "why": "Identical repeated card grids are a primary tell of templated generation. A strong editorial hero, a reading column for guides, and at least one non-card treatment per page read as designed rather than emitted.",
       "cost": "Template work in the build.",
@@ -270,24 +275,34 @@
     {
       "id": "SUG-20",
       "title": "Write in a concrete, human voice and ban filler phrases",
-      "status": "recommend",
+      "status": "shipped",
       "weight": 8,
       "why": "Generic marketing boilerplate is the other main slop tell. Specificity — named trade-offs, concrete numbers, a real point of view — reads human and is what helpful-content guidance rewards.",
       "cost": "Editorial discipline. Add a banned-phrase list to the editorial standards so the gate can enforce it.",
       "risk": "None. It is the same constraint as SUG-01, applied to wording as well as claims.",
       "decide": "Accept. Add the banned-phrase list to the About page and a build check.",
-      "links": [{ "label": "Google Search Central — helpful content", "url": "https://developers.google.com/search/docs/fundamentals/creating-helpful-content" }]
+      "links": [
+        {
+          "label": "Google Search Central — helpful content",
+          "url": "https://developers.google.com/search/docs/fundamentals/creating-helpful-content"
+        }
+      ]
     },
     {
       "id": "SUG-21",
       "title": "Publish to a topic roadmap on a cadence, adding each new guide to the sitemap and feed in the same commit",
-      "status": "recommend",
+      "status": "shipped",
       "weight": 8,
       "why": "Catchy, question-shaped topics are the traffic engine. A fixed cadence plus a feed keeps search and subscribers fresh, and the build already adds each guide to the sitemap and RSS automatically — that was a requirement, not a convenience.",
       "cost": "A substantive guide each week, with its own verified spec pass.",
       "risk": "Volume without quality control produces the thin content the brief rejects. The build gate stays on.",
       "decide": "Accept the topic roadmap below as the first batch of hypotheses, then let measured demand reorder it.",
-      "links": [{ "label": "Google Search Central — helpful content", "url": "https://developers.google.com/search/docs/fundamentals/creating-helpful-content" }]
+      "links": [
+        {
+          "label": "Google Search Central — helpful content",
+          "url": "https://developers.google.com/search/docs/fundamentals/creating-helpful-content"
+        }
+      ]
     },
     {
       "id": "SUG-22",
@@ -309,12 +324,17 @@
       "cost": "Zero.",
       "risk": "Misses timely traffic in the meantime.",
       "decide": "Hold until Search Console has 2–4 weeks of query data (FLG-009, FLG-020).",
-      "links": [{ "label": "Google Search Console", "url": "https://search.google.com/search-console" }]
+      "links": [
+        {
+          "label": "Google Search Console",
+          "url": "https://search.google.com/search-console"
+        }
+      ]
     },
     {
       "id": "SUG-24",
       "title": "Add a decision log so suggestions are accepted or rejected with a recorded reason and date",
-      "status": "recommend",
+      "status": "shipped",
       "weight": 7,
       "why": "The brief asks for a reviewable path before implementing anything. A log makes each choice auditable, captures why something was rejected, and stops the same suggestion being re-litigated next session.",
       "cost": "A small table on this page, populated by hand.",
@@ -364,7 +384,10 @@
         "principle": "Keep the disclosure strip and sponsored labels exactly where policy requires, and design around them rather than treating them as an afterthought.",
         "why": "Disclosure placement is a compliance requirement, not a style choice.",
         "constraint": "FTC Disclosures 101 (hard to miss); Associates Operating Agreement §5.",
-        "source": { "label": "FTC Disclosures 101", "url": "https://www.ftc.gov/business-guidance/resources/disclosures-101-social-media-influencers" }
+        "source": {
+          "label": "FTC Disclosures 101",
+          "url": "https://www.ftc.gov/business-guidance/resources/disclosures-101-social-media-influencers"
+        }
       },
       {
         "id": "DB-06",
@@ -372,7 +395,10 @@
         "principle": "Write in a concrete, human, opinionated voice using specifics and named trade-offs. Ban filler phrases and generic marketing boilerplate.",
         "why": "Specificity reads human and is what helpful-content guidance rewards; filler is the other main slop tell.",
         "constraint": "FTC: no experience you do not have. The Associate statement stays verbatim.",
-        "source": { "label": "Google Search Central — Creating Helpful Content", "url": "https://developers.google.com/search/docs/fundamentals/creating-helpful-content" }
+        "source": {
+          "label": "Google Search Central — Creating Helpful Content",
+          "url": "https://developers.google.com/search/docs/fundamentals/creating-helpful-content"
+        }
       },
       {
         "id": "DB-07",
@@ -380,7 +406,10 @@
         "principle": "Until compliant product imagery is available, keep the site typographic: color, type and a defined illustration or pattern system carry the design. Do not hot-link, store, or substitute Amazon imagery, and do not use stock photos of a different appliance.",
         "why": "Unlicensed or misrepresenting imagery would violate program policy and mislead the reader. A confident typographic system can look polished without photos.",
         "constraint": "Participation Requirements §6(a); IP License. See FLG-007.",
-        "source": { "label": "Amazon Associates Program Policies", "url": "https://affiliate-program.amazon.com/help/operating/policies" }
+        "source": {
+          "label": "Amazon Associates Program Policies",
+          "url": "https://affiliate-program.amazon.com/help/operating/policies"
+        }
       },
       {
         "id": "DB-08",
@@ -388,7 +417,10 @@
         "principle": "Make the sponsored status of every outbound product link visible at the link, and keep the Associate statement above the fold on every page.",
         "why": "Reader trust and FTC disclosure both require the material connection to be visible where the endorsement happens.",
         "constraint": "FTC 16 CFR 255.5; Associates OA §5; Program Policies.",
-        "source": { "label": "FTC Disclosures 101", "url": "https://www.ftc.gov/business-guidance/resources/disclosures-101-social-media-influencers" }
+        "source": {
+          "label": "FTC Disclosures 101",
+          "url": "https://www.ftc.gov/business-guidance/resources/disclosures-101-social-media-influencers"
+        }
       }
     ]
   },
@@ -398,22 +430,57 @@
       {
         "id": "AF",
         "name": "Air fryers",
-        "products": ["chefman-6-quart-dual-basket", "chefman-8-quart-turbofry", "emeril-lagasse-26qt-french-door"],
+        "products": [
+          "chefman-6-quart-dual-basket",
+          "chefman-8-quart-turbofry",
+          "emeril-lagasse-26qt-french-door"
+        ],
         "topics": [
-          { "title": "The two-basket air fryer: when cooking two things at once is actually worth it", "intent": "Form-factor decision", "status": "hypothesis" },
-          { "title": "Air fryer vs. toaster oven: which one actually saves your counter?", "intent": "Category decision", "status": "hypothesis" },
-          { "title": "How many quarts do you really need? A rule of thumb for one- and two-person kitchens", "intent": "Capacity decision", "status": "hypothesis" },
-          { "title": "What 'Hi-Fry' actually means — and when the extra heat is worth it", "intent": "Feature decision", "status": "hypothesis" }
+          {
+            "title": "The two-basket air fryer: when cooking two things at once is actually worth it",
+            "intent": "Form-factor decision",
+            "status": "hypothesis"
+          },
+          {
+            "title": "Air fryer vs. toaster oven: which one actually saves your counter?",
+            "intent": "Category decision",
+            "status": "published as guide 06 (2026-11-20); demand unmeasured"
+          },
+          {
+            "title": "How many quarts do you really need? A rule of thumb for one- and two-person kitchens",
+            "intent": "Capacity decision",
+            "status": "hypothesis"
+          },
+          {
+            "title": "What 'Hi-Fry' actually means — and when the extra heat is worth it",
+            "intent": "Feature decision",
+            "status": "hypothesis"
+          }
         ]
       },
       {
         "id": "TH",
         "name": "Thermometers",
-        "products": ["thermomaven-1-sec-thermometer", "chef-iq-sense-gen3"],
+        "products": [
+          "thermomaven-1-sec-thermometer",
+          "chef-iq-sense-gen3"
+        ],
         "topics": [
-          { "title": "The one number that decides a roast: why your thermometer matters more than your recipe", "intent": "Why-it-matters", "status": "hypothesis" },
-          { "title": "Probe vs. instant-read: matching the tool to the cook", "intent": "Tool-match decision", "status": "hypothesis" },
-          { "title": "Wireless meat thermometer: what to check before you rely on it for a long cook", "intent": "Reliability decision", "status": "hypothesis" }
+          {
+            "title": "The one number that decides a roast: why your thermometer matters more than your recipe",
+            "intent": "Why-it-matters",
+            "status": "hypothesis"
+          },
+          {
+            "title": "Probe vs. instant-read: matching the tool to the cook",
+            "intent": "Tool-match decision",
+            "status": "hypothesis"
+          },
+          {
+            "title": "Wireless meat thermometer: what to check before you rely on it for a long cook",
+            "intent": "Reliability decision",
+            "status": "hypothesis"
+          }
         ]
       },
       {
@@ -421,9 +488,21 @@
         "name": "Cross-category evergreen",
         "products": [],
         "topics": [
-          { "title": "The 5-question checklist before buying any small kitchen appliance", "intent": "General buying framework", "status": "hypothesis" },
-          { "title": "Small-appliance buying mistakes that cost you counter space", "intent": "Mistake avoidance", "status": "hypothesis" },
-          { "title": "How to read a spec sheet without getting sold", "intent": "Literacy framework", "status": "hypothesis" }
+          {
+            "title": "The 5-question checklist before buying any small kitchen appliance",
+            "intent": "General buying framework",
+            "status": "hypothesis"
+          },
+          {
+            "title": "Small-appliance buying mistakes that cost you counter space",
+            "intent": "Mistake avoidance",
+            "status": "hypothesis"
+          },
+          {
+            "title": "How to read a spec sheet without getting sold",
+            "intent": "Literacy framework",
+            "status": "hypothesis"
+          }
         ]
       }
     ]
@@ -442,6 +521,157 @@
       "A suggestion whose risk has grown (for example it would breach policy) is moved to rejected.",
       "No new topic is added from instinct while the query report is empty."
     ],
-    "entries": []
+    "entries": [
+      {
+        "date": "2026-11-20",
+        "decision": "accept",
+        "item": "SUG-17",
+        "reason": "Adopted as the single source for every visual change. The eight principles DB-01..DB-08 were checked against the live design system this pass: DB-01..DB-04 already implemented in site.css, DB-05..DB-08 enforced by the build gates."
+      },
+      {
+        "date": "2026-11-20",
+        "decision": "accept",
+        "item": "SUG-18",
+        "reason": "Verified already shipped: Iowan Old Style display serif, Inter body, one enamel-blue accent, warm paper, no gradients. Matches DB-01 and DB-02; no redesign needed."
+      },
+      {
+        "date": "2026-11-20",
+        "decision": "accept",
+        "item": "SUG-19",
+        "reason": "Verified already shipped: hero plus editor-pick plus stat strip plus shelf grid plus editorial guide list on the front page; reading column with aside on guides; tables on registers. Grids remain only where the page is a shelf."
+      },
+      {
+        "date": "2026-11-20",
+        "decision": "accept",
+        "item": "SUG-20",
+        "reason": "Standing voice rule in the content module, re-audited across the six guides this pass: concrete trade-offs, no filler, no claims of testing. Continues as a rule, not a project."
+      },
+      {
+        "date": "2026-11-20",
+        "decision": "accept",
+        "item": "SUG-21",
+        "reason": "First cadence step shipped: guide 06 taken from the roadmap and added to sitemap, feed and the count gates in the same build."
+      },
+      {
+        "date": "2026-11-20",
+        "decision": "accept",
+        "item": "SUG-05",
+        "reason": "Cadence accepted: a substantive guide each week; the first week is complete with guide 06. The eight-week review reads the query report, which stays blocked until Search Console is verified (FLG-009)."
+      },
+      {
+        "date": "2026-11-20",
+        "decision": "accept",
+        "item": "SUG-22",
+        "reason": "Cluster linking adopted: guide 06 links into the air-fryer cluster (guides 01-03) and both hubs link it back. Implementation started, not finished; status stays consider until every guide cross-links."
+      },
+      {
+        "date": "2026-11-20",
+        "decision": "accept",
+        "item": "SUG-24",
+        "reason": "This log. Every accept, reject, hold and defer below is recorded with a date and a one-line reason so the choices are auditable and not re-litigated."
+      },
+      {
+        "date": "2026-11-20",
+        "decision": "reject",
+        "item": "SUG-02",
+        "reason": "One publication with two hubs until measured query data says otherwise. Splitting now would cut content volume against the Associates application content bar (FLG-013) with zero demand data (FLG-009). Q-03 answered with this decision."
+      },
+      {
+        "date": "2026-11-20",
+        "decision": "reject",
+        "item": "SUG-06",
+        "reason": "A named-person byline cannot be fabricated; the suggestion own risk column says so. Publication byline adopted instead and Q-21 answered. Reopen only when a real person is attached to the content."
+      },
+      {
+        "date": "2026-11-20",
+        "decision": "reject",
+        "item": "SUG-12",
+        "reason": "Confirmed: no price tracker, no price alerts, no deal feed. Section 6(y) bans price tracking (POL-04) and Section 2(b) restricts price display (POL-11)."
+      },
+      {
+        "date": "2026-11-20",
+        "decision": "reject",
+        "item": "SUG-13",
+        "reason": "Confirmed: no near-duplicate pages to chase long-tail queries. Google helpful-content guidance linked in the suggestion forbids it and the build gates fail duplicate output."
+      },
+      {
+        "date": "2026-11-20",
+        "decision": "hold",
+        "item": "SUG-14",
+        "reason": "Hold confirmed: no reader capture until there is something worth sending, and the email backend does not exist yet (FLG-010)."
+      },
+      {
+        "date": "2026-11-20",
+        "decision": "hold",
+        "item": "SUG-15",
+        "reason": "Hold confirmed: no paid search. POL-08 forbids bidding on Amazon marks, there is no budget, and there is no measurement to optimise against (FLG-011)."
+      },
+      {
+        "date": "2026-11-20",
+        "decision": "hold",
+        "item": "SUG-23",
+        "reason": "Hold confirmed: no seasonal topics without measured demand (FLG-020). Instinct does not clear the kill criteria."
+      },
+      {
+        "date": "2026-11-20",
+        "decision": "defer",
+        "item": "SUG-03",
+        "reason": "API access stays an owner goal but is not a precondition for publishing: compliant publication without prices, ratings or images is possible (POL-03, POL-11), and the content bar (FLG-013) requires publishing now."
+      },
+      {
+        "date": "2026-11-20",
+        "decision": "defer",
+        "item": "SUG-07",
+        "reason": "Custom domain needs an owner purchase; nothing in this environment can buy one. Revisit together with FLG-013."
+      },
+      {
+        "date": "2026-11-20",
+        "decision": "defer",
+        "item": "SUG-08",
+        "reason": "The collector is written but needs a hosting account to deploy (FLG-011). Not claimable from this environment."
+      },
+      {
+        "date": "2026-11-20",
+        "decision": "defer",
+        "item": "SUG-09",
+        "reason": "A who-should-not-buy block on every product page is the next editorial pass after this one ships."
+      },
+      {
+        "date": "2026-11-20",
+        "decision": "defer",
+        "item": "SUG-10",
+        "reason": "Measured-dimension comparison table stays blocked: dimensions are unverified for several products (FLG-028). Two rows are already filled from manufacturer pages; expand as more verify."
+      },
+      {
+        "date": "2026-11-20",
+        "decision": "defer",
+        "item": "SUG-11",
+        "reason": "How-we-choose block: the About page already carries the method. Promote it to the front page in the next layout pass, not this one."
+      },
+      {
+        "date": "2026-11-20",
+        "decision": "defer",
+        "item": "SUG-16",
+        "reason": "Dated last-checked lines on product pages: every spec row already carries its source and status, so the line adds no evidence yet. Add it when the register gets its first re-check date."
+      },
+      {
+        "date": "2026-11-20",
+        "decision": "defer",
+        "item": "SUG-04",
+        "reason": "Special Links shipped earlier; the one-per-product proof step is owner-blocked in Associates Central (FLG-024). Nothing changes until that credential exists."
+      },
+      {
+        "date": "2026-11-20",
+        "decision": "accept",
+        "item": "FLG-037",
+        "reason": "Buy-button wording kept after re-reading the official Program Policies: the label shows no price (Section 2(b) not engaged), names Amazon as the destination (Section 6(w) satisfied), and tracks nothing (Section 6(y) satisfied). Flag resolved."
+      },
+      {
+        "date": "2026-11-20",
+        "decision": "accept",
+        "item": "Q-20",
+        "reason": "Publication name kept as 'Counter Space'. Trademark clearance attempted from this environment and not completed — it stays an owner action in FLG-021 before any paid promotion or domain purchase."
+      }
+    ]
   }
 }
