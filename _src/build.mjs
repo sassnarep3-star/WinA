@@ -1930,7 +1930,8 @@ ${breadcrumb([{ href: url("/"), label: "Home" }, { label: "Executive summary" }]
       <li><strong>Marketing copy for all five links</strong> — a social post, a newsletter paragraph and its mandatory disclosure per product, on <a href="${url(
         "/marketing/kit/"
       )}">the marketing kit</a>.</li>
-      <li><strong>Ten policy checks</strong> traced to the exact clause, with the text quoted verbatim so the summary can be audited.</li>
+      <li><strong>${policy.policy.length} policy checks</strong> traced to the exact clause, with the text quoted verbatim so the summary can be audited.</li>
+      <li><strong>A storefront, not a dashboard</strong>: a filterable shelf table of all five products, a shop-by department rail, form-factor diagrams captioned as drawings, a brand mark, an icon and a share card. Every verification surface is still reachable from the footer of every page.</li>
       <li><strong>A publication gate</strong> in the build: it fails if any page loses its disclosure, or if any Amazon link loses its sponsored marking.</li>
       <li><strong>SEO foundations</strong>: sitemap, RSS feed, canonical URLs, structured data, and descriptions written for humans.</li>
       <li><strong>A defined measurement plan</strong>: five events, a self-hosted collector, and a ledger schema.</li>
@@ -1947,17 +1948,19 @@ ${breadcrumb([{ href: url("/"), label: "Home" }, { label: "Executive summary" }]
       <li><strong>No traffic or conversion data.</strong> The site launched with this build. Search Console is unverified and the analytics collector is not deployed, so nothing is being measured yet.</li>
       <li><strong>No automated product research.</strong> The brief asked for an agent that identifies trending, high-converting products. Identifying "trending" requires a data source; without one, any such claim would be a fabrication with a chart attached. The pipeline is defined and its data inputs are documented as missing.</li>
       <li><strong>No revenue projection.</strong> Four unknowns multiplied together produce fiction.</li>
+      <li><strong>No product photographs.</strong> The figures on the product pages, shelf cards and front page are our own form-factor diagrams, and every one says so under the image. A diagram is not a photograph of the model (<a href="${url("/flagged/#FLG-037")}">FLG-037</a>).</li>
     </ul>
 
     <h2>What is unresolved</h2>
     <p>${gov.flagged.length} items on the <a href="${url(
       "/flagged/"
-    )}">flagged for review</a> page. Four matter commercially:</p>
+    )}">flagged for review</a> page. Five matter commercially:</p>
     <ol>
-      <li>The tracking ID <code>${esc(TAG)}</code> may not be enrolled. If it is not, nothing on this site earns anything.</li>
-      <li>The compliance status of the submitted <code>link.amazon</code> short links is genuinely unknown — we did not declare them invalid, we simply do not depend on them.</li>
-      <li>Search Console is unverified, so nobody knows whether the site is indexed.</li>
-      <li>No analytics collector is deployed, so no learning is happening.</li>
+      <li>The tracking ID <code>${esc(TAG)}</code> may not be enrolled. If it is not, nothing on this site earns anything (<a href="${url("/flagged/#FLG-004")}">FLG-004</a>).</li>
+      <li>Tagged product links are live for all five products while zero per-product Special Link tests are recorded (<a href="${url("/flagged/#FLG-024")}">FLG-024</a>).</li>
+      <li>The compliance status of the submitted <code>link.amazon</code> short links is genuinely unknown — we did not declare them invalid, we simply do not depend on them (<a href="${url("/flagged/#FLG-003")}">FLG-003</a>).</li>
+      <li>Search Console is unverified, so nobody knows whether the site is indexed (<a href="${url("/flagged/#FLG-009")}">FLG-009</a>).</li>
+      <li>Five guides sit below the Associates review guidance of roughly ten posts, and no analytics collector is deployed, so no learning is happening (<a href="${url("/flagged/#FLG-013")}">FLG-013</a>, <a href="${url("/flagged/#FLG-011")}">FLG-011</a>).</li>
     </ol>
 
     <h2>What to do next, in order</h2>
@@ -1968,7 +1971,7 @@ ${breadcrumb([{ href: url("/"), label: "Home" }, { label: "Executive summary" }]
       <li>Sign in to Associates and confirm one product link per product appears in the tracking report.</li>
       <li>Deploy the collector in <code>_worker/</code> and set the endpoint, then rebuild.</li>
       <li>Verify Search Console, replace the placeholder token, submit the sitemap.</li>
-      <li>Publish a new guide every week for eight weeks.</li>
+      <li>Publish on a fixed cadence for eight weeks — the register recommends a substantive guide each week, which is our inference from the recency guidance, not an Amazon requirement.</li>
       <li>At week eight, read the query report and replace the topic hypotheses with measured demand.</li>
       <li>Apply for Product Advertising API access once the account qualifies — it unlocks prices, ratings and images together.</li>
     </ol>
