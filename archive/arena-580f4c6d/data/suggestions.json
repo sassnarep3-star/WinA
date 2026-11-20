@@ -226,12 +226,12 @@
     {
       "id": "SUG-16",
       "title": "Publish a dated 'last checked' line on every product page",
-      "status": "consider",
+      "status": "shipped",
       "weight": 5,
       "why": "Specifications and availability change. A visible date tells the reader how much to trust the page, and forces the site to actually re-check.",
       "cost": "One field, refreshed on a schedule.",
       "risk": "A stale date is a public admission of neglect. That is the point.",
-      "decide": "Consider. Pages currently record the observation date in the register rather than on the page.",
+      "decide": "Shipped 2026-11-20 (arena-f515c465-wina, T37): each product in data/products.json carries a per-product specsVerifiedOn date; the date is refreshed by the verification pass whenever a row is re-verified.",
       "links": []
     },
     {
@@ -590,19 +590,56 @@
   "decisionLog": {
     "note": "Every entry below mirrors a decision already written into the register above, with the reason that was written at the time. Accepted items are already in the build; adopted items are decided but not yet built. Recommended and open items are the project's written position and still need the owner's acceptance; held and rejected items stay recorded so they are not re-litigated. A new decision is appended with its own date rather than editing an old row.",
     "decisionKey": [
-      { "id": "accepted", "label": "Accepted", "note": "Written as accepted and already built into the live site." },
-      { "id": "adopted", "label": "Adopted", "note": "Decided, with the date and the basis, but not yet built. Nothing is published by the decision itself." },
-      { "id": "recommended", "label": "Recommended", "note": "The project's written recommendation, with the reasoning and the risk. Not yet accepted by the owner." },
-      { "id": "open", "label": "Open", "note": "No recommendation to build yet: it needs an earlier decision, a credential, or a person." },
-      { "id": "hold", "label": "Hold", "note": "Deliberately not now, with the condition that would unblock it." },
-      { "id": "rejected", "label": "Rejected", "note": "Will not be built. Recorded so a later session does not build it in good faith." }
+      {
+        "id": "accepted",
+        "label": "Accepted",
+        "note": "Written as accepted and already built into the live site."
+      },
+      {
+        "id": "adopted",
+        "label": "Adopted",
+        "note": "Decided, with the date and the basis, but not yet built. Nothing is published by the decision itself."
+      },
+      {
+        "id": "recommended",
+        "label": "Recommended",
+        "note": "The project's written recommendation, with the reasoning and the risk. Not yet accepted by the owner."
+      },
+      {
+        "id": "open",
+        "label": "Open",
+        "note": "No recommendation to build yet: it needs an earlier decision, a credential, or a person."
+      },
+      {
+        "id": "hold",
+        "label": "Hold",
+        "note": "Deliberately not now, with the condition that would unblock it."
+      },
+      {
+        "id": "rejected",
+        "label": "Rejected",
+        "note": "Will not be built. Recorded so a later session does not build it in good faith."
+      }
     ],
     "statusToDecision": {
-      "shipped": ["accepted"],
-      "recommend": ["recommended", "adopted"],
-      "consider": ["open", "adopted"],
-      "hold": ["hold", "adopted"],
-      "reject": ["rejected"]
+      "shipped": [
+        "accepted"
+      ],
+      "recommend": [
+        "recommended",
+        "adopted"
+      ],
+      "consider": [
+        "open",
+        "adopted"
+      ],
+      "hold": [
+        "hold",
+        "adopted"
+      ],
+      "reject": [
+        "rejected"
+      ]
     },
     "rubric": [
       "Answer the blocking questions first (Q-04 enrolment, Q-09 testing, Q-16 measurement).",
@@ -617,35 +654,180 @@
       "No new topic is added from instinct while the query report is empty."
     ],
     "entries": [
-      { "date": "2026-11-20", "decision": "accepted", "item": "SUG-01", "reason": "Accepted and already live: every page writes about the decision instead of a verdict, because no product in this register has been tested." },
-      { "date": "2026-11-20", "decision": "recommended", "item": "SUG-02", "reason": "One site, air fryers in front, thermometers as the second section — which is the structure already in place. Confirm before a third category is added." },
-      { "date": "2026-11-20", "decision": "recommended", "item": "SUG-03", "reason": "Apply as soon as the account qualifies. Eligibility depends on qualifying sales first, so it stays tracked as Q-11 and Q-12." },
-      { "date": "2026-11-20", "decision": "accepted", "item": "SUG-04", "reason": "Accepted and live: outbound links are built as direct product-page links carrying the tracking ID. The proof step stays blocked on the owner's Associates Central sign-in (FLG-024)." },
-      { "date": "2026-11-20", "decision": "adopted", "item": "SUG-05", "reason": "Publishing cadence adopted: a new guide every Monday (New York time) for eight weeks, each added to the sitemap and feed in the same commit and passing the build and compliance gates. Basis: Associates Help 'Application Review Process' (FLG-013). This sets the schedule only; no new guide is published by this decision. Week-eight measurement waits on owner-connected Search Console and analytics (FLG-009, FLG-011)." },
-      { "date": "2026-11-20", "decision": "recommended", "item": "SUG-06", "reason": "Recommended, and it needs a real, named person who is accountable for the writing. A byline cannot be fabricated, so this waits on the owner." },
-      { "date": "2026-11-20", "decision": "recommended", "item": "SUG-07", "reason": "Move to an owned domain: the origin is a single config value, so the change is small." },
-      { "date": "2026-11-20", "decision": "recommended", "item": "SUG-08", "reason": "Deploy the collector that already ships in this repository to close FLG-011, rather than adding a third-party tracker." },
-      { "date": "2026-11-20", "decision": "open", "item": "SUG-09", "reason": "The product pages already carry a trade-off line. A fuller block is the next edit, and it should be written by someone who has the product in front of them." },
-      { "date": "2026-11-20", "decision": "open", "item": "SUG-10", "reason": "The comparison table shows sourced dimensions only. Wider tables wait until manufacturer sheets are gathered: a wrong dimension is worse than a blank." },
-      { "date": "2026-11-20", "decision": "open", "item": "SUG-11", "reason": "The About page already carries this, and the front page deliberately keeps process notes off the reader's path." },
-      { "date": "2026-11-20", "decision": "rejected", "item": "SUG-12", "reason": "A price tracker, price alert or deal feed is ruled out by the Program Policies. Recorded so no later session builds it." },
-      { "date": "2026-11-20", "decision": "rejected", "item": "SUG-13", "reason": "Near-duplicate pages to chase long-tail queries are what this publication exists not to be; the build gate refuses pages without unique content." },
-      { "date": "2026-11-20", "decision": "hold", "item": "SUG-14", "reason": "Hold until a guide cadence exists, then one email service and one welcome message." },
-      { "date": "2026-11-20", "decision": "hold", "item": "SUG-15", "reason": "Hold until the ledger holds real click and order data from first-party reports." },
-      { "date": "2026-11-20", "decision": "open", "item": "SUG-16", "reason": "The observation date is recorded in the register; printing a last-checked line on each page is the next edit." },
-      { "date": "2026-11-20", "decision": "recommended", "item": "SUG-17", "reason": "The design brief published below is the draft to start from, editable before any visual change is made." },
-      { "date": "2026-11-20", "decision": "recommended", "item": "SUG-18", "reason": "An editorial type and colour system in the shared stylesheet, behind the existing design tokens, mobile-first." },
-      { "date": "2026-11-20", "decision": "recommended", "item": "SUG-19", "reason": "Vary the layout instead of repeating one card grid, starting with the front page and the two category hubs." },
-      { "date": "2026-11-20", "decision": "recommended", "item": "SUG-20", "reason": "A concrete voice plus a banned-phrase list in the editorial standards, so the build can enforce it." },
-      { "date": "2026-11-20", "decision": "recommended", "item": "SUG-21", "reason": "The topic roadmap below is the first batch of hypotheses; measured demand reorders it later, never the other way round." },
-      { "date": "2026-11-20", "decision": "open", "item": "SUG-22", "reason": "Design the cluster map before the second batch, so internal links stay natural rather than forced." },
-      { "date": "2026-11-20", "decision": "hold", "item": "SUG-23", "reason": "Hold until Search Console holds two to four weeks of query data (FLG-009, FLG-020)." },
-      { "date": "2026-11-20", "decision": "accepted", "item": "SUG-24", "reason": "Accepted and live: this log is the record, and each row here mirrors a written decision with its reason and date." },
-      { "date": "2026-11-20", "decision": "accepted", "item": "SUG-25", "reason": "Shipped this pass: the seasonal cluster is live and is refreshed every November, with each linked spec re-checked against its source. The owner position at Q-25 decides whether it is adopted annually or retired in favour of SUG-23's hold once real query data exists; whichever loses is recorded, not deleted." },
-      { "date": "2026-11-20", "decision": "recommended", "item": "SUG-26", "reason": "Recommended: one technique article a month — jobs, not verdicts. It starts next month if the weekly cadence (SUG-05, SUG-21) is not adopted, and slots into the same calendar if it is. Each new guide enters the sitemap and feed in the same commit, per the standing rule." },
-      { "date": "2026-11-20", "decision": "open", "item": "SUG-27", "reason": "Consider after the seasonal deploy settles. The owner position on generated imagery is Q-26; the decision is taken per image rather than as a batch, with one warm editorial grade so the set reads as a single publication." },
-      { "date": "2026-11-20", "decision": "hold", "item": "SUG-28", "reason": "Hold until FLG-011 and FLG-004 close, and re-evaluate in the week after the first Associates report arrives." },
-      { "date": "2026-11-20", "decision": "open", "item": "SUG-29", "reason": "Consider, gated on measurement: build it only if the query report (Q-24) shows thermometer-comparison impressions. Until then the guide and the comparison table cover the intent." }
+      {
+        "date": "2026-11-20",
+        "decision": "accepted",
+        "item": "SUG-01",
+        "reason": "Accepted and already live: every page writes about the decision instead of a verdict, because no product in this register has been tested."
+      },
+      {
+        "date": "2026-11-20",
+        "decision": "recommended",
+        "item": "SUG-02",
+        "reason": "One site, air fryers in front, thermometers as the second section — which is the structure already in place. Confirm before a third category is added."
+      },
+      {
+        "date": "2026-11-20",
+        "decision": "recommended",
+        "item": "SUG-03",
+        "reason": "Apply as soon as the account qualifies. Eligibility depends on qualifying sales first, so it stays tracked as Q-11 and Q-12."
+      },
+      {
+        "date": "2026-11-20",
+        "decision": "accepted",
+        "item": "SUG-04",
+        "reason": "Accepted and live: outbound links are built as direct product-page links carrying the tracking ID. The proof step stays blocked on the owner's Associates Central sign-in (FLG-024)."
+      },
+      {
+        "date": "2026-11-20",
+        "decision": "adopted",
+        "item": "SUG-05",
+        "reason": "Publishing cadence adopted: a new guide every Monday (New York time) for eight weeks, each added to the sitemap and feed in the same commit and passing the build and compliance gates. Basis: Associates Help 'Application Review Process' (FLG-013). This sets the schedule only; no new guide is published by this decision. Week-eight measurement waits on owner-connected Search Console and analytics (FLG-009, FLG-011)."
+      },
+      {
+        "date": "2026-11-20",
+        "decision": "recommended",
+        "item": "SUG-06",
+        "reason": "Recommended, and it needs a real, named person who is accountable for the writing. A byline cannot be fabricated, so this waits on the owner."
+      },
+      {
+        "date": "2026-11-20",
+        "decision": "recommended",
+        "item": "SUG-07",
+        "reason": "Move to an owned domain: the origin is a single config value, so the change is small."
+      },
+      {
+        "date": "2026-11-20",
+        "decision": "recommended",
+        "item": "SUG-08",
+        "reason": "Deploy the collector that already ships in this repository to close FLG-011, rather than adding a third-party tracker."
+      },
+      {
+        "date": "2026-11-20",
+        "decision": "open",
+        "item": "SUG-09",
+        "reason": "The product pages already carry a trade-off line. A fuller block is the next edit, and it should be written by someone who has the product in front of them."
+      },
+      {
+        "date": "2026-11-20",
+        "decision": "open",
+        "item": "SUG-10",
+        "reason": "The comparison table shows sourced dimensions only. Wider tables wait until manufacturer sheets are gathered: a wrong dimension is worse than a blank."
+      },
+      {
+        "date": "2026-11-20",
+        "decision": "open",
+        "item": "SUG-11",
+        "reason": "The About page already carries this, and the front page deliberately keeps process notes off the reader's path."
+      },
+      {
+        "date": "2026-11-20",
+        "decision": "rejected",
+        "item": "SUG-12",
+        "reason": "A price tracker, price alert or deal feed is ruled out by the Program Policies. Recorded so no later session builds it."
+      },
+      {
+        "date": "2026-11-20",
+        "decision": "rejected",
+        "item": "SUG-13",
+        "reason": "Near-duplicate pages to chase long-tail queries are what this publication exists not to be; the build gate refuses pages without unique content."
+      },
+      {
+        "date": "2026-11-20",
+        "decision": "hold",
+        "item": "SUG-14",
+        "reason": "Hold until a guide cadence exists, then one email service and one welcome message."
+      },
+      {
+        "date": "2026-11-20",
+        "decision": "hold",
+        "item": "SUG-15",
+        "reason": "Hold until the ledger holds real click and order data from first-party reports."
+      },
+      {
+        "date": "2026-11-20",
+        "decision": "accepted",
+        "item": "SUG-16",
+        "reason": "Zero-credential, compliance-positive: a dated specs-check record. Accepted and shipped 2026-11-20 by arena-f515c465-wina (T37): a per-product specsVerifiedOn field in data/products.json, refreshed by the verification pass; the register and this log now agree."
+      },
+      {
+        "date": "2026-11-20",
+        "decision": "recommended",
+        "item": "SUG-17",
+        "reason": "The design brief published below is the draft to start from, editable before any visual change is made."
+      },
+      {
+        "date": "2026-11-20",
+        "decision": "recommended",
+        "item": "SUG-18",
+        "reason": "An editorial type and colour system in the shared stylesheet, behind the existing design tokens, mobile-first."
+      },
+      {
+        "date": "2026-11-20",
+        "decision": "recommended",
+        "item": "SUG-19",
+        "reason": "Vary the layout instead of repeating one card grid, starting with the front page and the two category hubs."
+      },
+      {
+        "date": "2026-11-20",
+        "decision": "recommended",
+        "item": "SUG-20",
+        "reason": "A concrete voice plus a banned-phrase list in the editorial standards, so the build can enforce it."
+      },
+      {
+        "date": "2026-11-20",
+        "decision": "recommended",
+        "item": "SUG-21",
+        "reason": "The topic roadmap below is the first batch of hypotheses; measured demand reorders it later, never the other way round."
+      },
+      {
+        "date": "2026-11-20",
+        "decision": "open",
+        "item": "SUG-22",
+        "reason": "Design the cluster map before the second batch, so internal links stay natural rather than forced."
+      },
+      {
+        "date": "2026-11-20",
+        "decision": "hold",
+        "item": "SUG-23",
+        "reason": "Hold until Search Console holds two to four weeks of query data (FLG-009, FLG-020)."
+      },
+      {
+        "date": "2026-11-20",
+        "decision": "accepted",
+        "item": "SUG-24",
+        "reason": "Accepted and live: this log is the record, and each row here mirrors a written decision with its reason and date."
+      },
+      {
+        "date": "2026-11-20",
+        "decision": "accepted",
+        "item": "SUG-25",
+        "reason": "Shipped this pass: the seasonal cluster is live and is refreshed every November, with each linked spec re-checked against its source. The owner position at Q-25 decides whether it is adopted annually or retired in favour of SUG-23's hold once real query data exists; whichever loses is recorded, not deleted."
+      },
+      {
+        "date": "2026-11-20",
+        "decision": "recommended",
+        "item": "SUG-26",
+        "reason": "Recommended: one technique article a month — jobs, not verdicts. It starts next month if the weekly cadence (SUG-05, SUG-21) is not adopted, and slots into the same calendar if it is. Each new guide enters the sitemap and feed in the same commit, per the standing rule."
+      },
+      {
+        "date": "2026-11-20",
+        "decision": "open",
+        "item": "SUG-27",
+        "reason": "Consider after the seasonal deploy settles. The owner position on generated imagery is Q-26; the decision is taken per image rather than as a batch, with one warm editorial grade so the set reads as a single publication."
+      },
+      {
+        "date": "2026-11-20",
+        "decision": "hold",
+        "item": "SUG-28",
+        "reason": "Hold until FLG-011 and FLG-004 close, and re-evaluate in the week after the first Associates report arrives."
+      },
+      {
+        "date": "2026-11-20",
+        "decision": "open",
+        "item": "SUG-29",
+        "reason": "Consider, gated on measurement: build it only if the query report (Q-24) shows thermometer-comparison impressions. Until then the guide and the comparison table cover the intent."
+      }
     ]
   },
   "designPrompt": {

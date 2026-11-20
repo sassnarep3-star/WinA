@@ -271,16 +271,20 @@ a reviewer-facing suggestions layer, and nothing had been built from them. The s
 this work ran: PR #28 merged a second, hand-authored site to the repository root, which is where GitHub
 Pages serves from, so the build that carries the compliance machinery — `_src/build.mjs`, the four
 gates under `scripts/`, the dated `data/*.json` registers — stopped being what readers and search
-engines see. The live front page that merge published prints six prices and three customer-rating
-counts and hot-links product imagery from `m.media-amazon.com`. Its own board records the imagery route
-as its FLG-005, so this is not a misunderstanding about whether the rules exist; it is a merge order.
-Under the clauses `data/policy.json` quotes verbatim — prices and ratings only from the Product
-Advertising API or Creatives, Program Content never stored or hot-linked outside approved tools —
-that is exposure on the account, and no gate on that tree would catch it.
+engines see. The front page that merge published printed
+six prices and three customer-rating counts and hot-linked product imagery from `m.media-amazon.com`.
+Half of that has since been fixed on that tree: PR #54 (`dccc21c`) removed every hand-copied price,
+rating, review count and badge from its served pages, cited Participation Requirements §6(t)/§6(y) and
+IP License §2(b) verbatim, and added gate rules R-10 and R-11 to `tools/check_site.py`. The imagery is
+still open there — three `m.media-amazon.com` anchors on its `index.html`, carried as its own FLG-005
+pending PA-API. So this is not a quarrel about whether the rules exist; it is a merge order, and the
+difference that matters is that this tree has a gate which fails the build when an `<img>` is served
+from anywhere but `/assets/img/`, so the rule cannot be reintroduced by a later copy edit.
 
 **What this branch does about it.** The publication's tree is restored at the root. The parallel build
-is preserved verbatim under `archive/arena-580f4c6d/` (58 files, `PRESERVED.md` explaining the why and
-how to reverse it), its guides were already absorbed by `406b523`, and its board sections are unioned
+is preserved verbatim under `archive/arena-580f4c6d/` (57 files snapshotted from `main`'s current tip,
+`PRESERVED.md` explaining the why and the reversal), its guides were already absorbed by `406b523`, its
+flags FLG-043 to FLG-048 are carried into this register under their own ids, and its board sections are unioned
 into `COORDINATION.md` so no decision of that session's is stranded in a folder. Nothing is deleted and
 no editorial work is discarded. FLG-043 carries the finding, the evidence and the reversal recipe.
 

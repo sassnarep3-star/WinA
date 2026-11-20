@@ -34,9 +34,15 @@
       "specs": [
         {
           "label": "Capacity",
-          "value": "6 qt total (2 × 3 qt) · 5.67 L",
+          "value": "6 qt / 5.67 L",
           "status": "verified",
           "source": "manufacturer"
+        },
+        {
+          "label": "Basket size",
+          "value": "2 × 3 qt, independently controlled",
+          "status": "verified",
+          "source": "amazon-listing"
         },
         {
           "label": "Form factor",
@@ -58,8 +64,8 @@
         },
         {
           "label": "Basket care",
-          "value": "Nonstick, listed dishwasher-safe",
-          "status": "claim",
+          "value": "Nonstick; both baskets listed dishwasher-safe",
+          "status": "verified",
           "source": "amazon-listing"
         },
         {
@@ -135,7 +141,8 @@
           "label": "chefman.com specification"
         }
       },
-      "modelNumber": "RJ38-SQPF-3TDB-2W"
+      "modelNumber": "RJ38-SQPF-3TDB-2W",
+      "specsVerifiedOn": "2026-11-20"
     },
     {
       "slug": "emeril-lagasse-26qt-french-door",
@@ -173,14 +180,20 @@
         },
         {
           "label": "Presets",
-          "value": "24 one-touch presets",
+          "value": "24 cooking presets, enumerated one by one in the owner's manual",
+          "status": "verified",
+          "source": "manufacturer"
+        },
+        {
+          "label": "Cooking presets named in the manual",
+          "value": "Airfry, Fries, Bacon, Grill, Eggs, Fish, Ribs, Defrost, Steak, Vegetables, Wings, Bake, Rotisserie, Toast, Chicken, Pizza, Pastry, Proof, Broil, Slow Cook, Roast, Dehydrate, Reheat, Warm",
           "status": "verified",
           "source": "manufacturer"
         },
         {
           "label": "Included accessories",
           "value": "Six cooking accessories",
-          "status": "verified",
+          "status": "claim",
           "source": "amazon-listing"
         },
         {
@@ -191,9 +204,9 @@
         },
         {
           "label": "Wattage",
-          "value": null,
-          "status": "unverified",
-          "source": null
+          "value": "1700 W, 120 V, 60 Hz",
+          "status": "verified",
+          "source": "manufacturer"
         },
         {
           "label": "Dimensions",
@@ -202,10 +215,16 @@
           "source": "manufacturer"
         },
         {
+          "label": "Temperature range",
+          "value": "75–500 °F / 25–260 °C; most presets cap at 450 °F, Grill and Steak reach 500 °F",
+          "status": "verified",
+          "source": "manufacturer"
+        },
+        {
           "label": "Warranty",
-          "value": null,
-          "status": "unverified",
-          "source": null
+          "value": "1 year, stated on the manufacturer's product page",
+          "status": "verified",
+          "source": "manufacturer"
         },
         {
           "label": "Price",
@@ -244,14 +263,32 @@
           "label": "emerileveryday.com specification"
         },
         "Presets": {
-          "url": "https://www.emerileveryday.com/products/emeril_lagasse_french_door_airfryer_360",
-          "label": "emerileveryday.com specification"
+          "url": "https://cdn.shopify.com/s/files/1/0687/4388/8948/files/FAFO-001_VN_32451_EF_IB_T22-5004282-C_1.pdf?v=1777990358",
+          "label": "emerileveryday.com owner's manual (FAFO-001)"
         },
         "Capacity": {
           "url": "https://www.emerileveryday.com/products/emeril_lagasse_french_door_airfryer_360",
           "label": "emerileveryday.com specification"
+        },
+        "Wattage": {
+          "url": "https://cdn.shopify.com/s/files/1/0687/4388/8948/files/FAFO-001_VN_32451_EF_IB_T22-5004282-C_1.pdf?v=1777990358",
+          "label": "emerileveryday.com owner's manual (FAFO-001)"
+        },
+        "Warranty": {
+          "url": "https://www.emerileveryday.com/products/emeril_lagasse_french_door_airfryer_360",
+          "label": "emerileveryday.com specification"
+        },
+        "Temperature range": {
+          "url": "https://cdn.shopify.com/s/files/1/0687/4388/8948/files/FAFO-001_VN_32451_EF_IB_T22-5004282-C_1.pdf?v=1777990358",
+          "label": "emerileveryday.com owner's manual (FAFO-001)"
+        },
+        "Cooking presets named in the manual": {
+          "url": "https://cdn.shopify.com/s/files/1/0687/4388/8948/files/FAFO-001_VN_32451_EF_IB_T22-5004282-C_1.pdf?v=1777990358",
+          "label": "emerileveryday.com owner's manual (FAFO-001)"
         }
-      }
+      },
+      "modelNumber": "FAFO-001",
+      "specsVerifiedOn": "2026-11-20"
     },
     {
       "slug": "chefman-8-quart-turbofry",
@@ -289,7 +326,7 @@
         },
         {
           "label": "Max temperature",
-          "value": "400°F standard range; 450°F Hi-Fry for the final 2 minutes of a cycle",
+          "value": "200–400 °F normal range, with a 450 °F Hi-Fry option (the listing does not say how long Hi-Fry runs)",
           "status": "verified",
           "source": "amazon-listing"
         },
@@ -300,34 +337,52 @@
           "source": "amazon-listing"
         },
         {
+          "label": "Cooking presets",
+          "value": "Four presets — French fries, chicken, meat, fish",
+          "status": "verified",
+          "source": "amazon-listing"
+        },
+        {
           "label": "Body material",
-          "value": "Stainless steel",
+          "value": "Plastic, stainless steel",
+          "status": "verified",
+          "source": "amazon-listing"
+        },
+        {
+          "label": "Controls",
+          "value": "Digital touch control with LED display",
+          "status": "verified",
+          "source": "amazon-listing"
+        },
+        {
+          "label": "Shake reminder",
+          "value": "LED shake reminder",
           "status": "verified",
           "source": "amazon-listing"
         },
         {
           "label": "Basket care",
-          "value": "Nonstick, listed dishwasher-safe",
-          "status": "claim",
+          "value": "Nonstick; basket and flat frying tray listed top-rack dishwasher safe",
+          "status": "verified",
           "source": "amazon-listing"
         },
         {
           "label": "Wattage",
-          "value": null,
-          "status": "unverified",
-          "source": null
+          "value": "1000 W, 120 V",
+          "status": "verified",
+          "source": "amazon-listing"
         },
         {
           "label": "Dimensions",
-          "value": null,
-          "status": "unverified",
-          "source": null
+          "value": "12.75 D × 13.5 W × 10 H in",
+          "status": "verified",
+          "source": "amazon-listing"
         },
         {
           "label": "Warranty",
-          "value": null,
-          "status": "unverified",
-          "source": null
+          "value": "1 year, provided by Chefman; cETL approved",
+          "status": "verified",
+          "source": "amazon-listing"
         },
         {
           "label": "Price",
@@ -360,7 +415,9 @@
       "submittedLink": "https://link.amazon/B00hJ57DV",
       "observedDestination": "https://www.amazon.com/dp/B08DKYBTPH",
       "observedOn": "2026-11-20",
-      "modelAmbiguity": "The 8-qt family spans at least five SKUs. chefman.com publishes RJ38-8T-BLACK (matte black, 8 qt/7.57 L, Hi-Fry 450 F, 1700 W/120 V); the listing re-fetched for this ASIN (12.8 lb, RJ38-SQSS-8T per retailer records) describes a stainless-steel body. Because the colour and model strings disagree, no dimension, weight or wattage is taken from the black SKU's page."
+      "modelNumber": "RJ38-SQSS-8T",
+      "modelNote": "Resolved 2026-11-20. This listing names its own model in the bullet points (\"1000 Watts/120 Volts - RJ38-SQSS-8T\"), and its product-information table gives 12.75\"D x 13.5\"W x 10\"H, stainless steel, 8 quarts, 200-400°F. chefman.com publishes a different SKU in the same 8-quart family (RJ38-8T-BLACK, matte black, 1700 W/120 V, 8 qt/7.57 L), so no dimension, weight, wattage or litre figure is taken from that page, and the Hi-Fry \"final two minutes\" wording that appears only there is not carried over. See FLG-028 and FLG-042.",
+      "specsVerifiedOn": "2026-11-20"
     },
     {
       "slug": "thermomaven-1-sec-thermometer",
@@ -397,6 +454,12 @@
           "source": "manufacturer"
         },
         {
+          "label": "Temperature range",
+          "value": "-58 to 572 °F (-49.9 to 299.9 °C)",
+          "status": "verified",
+          "source": "manufacturer"
+        },
+        {
           "label": "Water resistance",
           "value": "IP67, as stated in the listing title",
           "status": "verified",
@@ -404,7 +467,7 @@
         },
         {
           "label": "Display",
-          "value": "Auto-rotate bright LED",
+          "value": "0.83 in × 1.61 in LED, rotates 180°",
           "status": "verified",
           "source": "manufacturer"
         },
@@ -417,6 +480,12 @@
         {
           "label": "Type",
           "value": "Instant-read probe",
+          "status": "verified",
+          "source": "manufacturer"
+        },
+        {
+          "label": "Probe",
+          "value": "4.3 in long × 0.14 in diameter, tapering to 0.06 in",
           "status": "verified",
           "source": "manufacturer"
         },
@@ -481,8 +550,8 @@
           "label": "Amazon listing (title states IP67)"
         },
         "Battery type": {
-          "url": "https://www.thermomaven.com/products/f1-stealth",
-          "label": "thermomaven.com"
+          "url": "https://cdn.shopify.com/s/files/1/0828/4726/9152/files/HT07_user_manual.pdf?v=1733992221",
+          "label": "thermomaven.com owner's manual (HT07)"
         },
         "Warranty": {
           "url": "https://www.thermomaven.com/products/f1-stealth",
@@ -497,11 +566,20 @@
           "label": "thermomaven.com"
         },
         "Display": {
-          "url": "https://www.thermomaven.com/products/f1-stealth",
-          "label": "thermomaven.com"
+          "url": "https://cdn.shopify.com/s/files/1/0828/4726/9152/files/HT07_user_manual.pdf?v=1733992221",
+          "label": "thermomaven.com owner's manual (HT07)"
+        },
+        "Temperature range": {
+          "url": "https://cdn.shopify.com/s/files/1/0828/4726/9152/files/HT07_user_manual.pdf?v=1733992221",
+          "label": "thermomaven.com owner's manual (HT07)"
+        },
+        "Probe": {
+          "url": "https://cdn.shopify.com/s/files/1/0828/4726/9152/files/HT07_user_manual.pdf?v=1733992221",
+          "label": "thermomaven.com owner's manual (HT07)"
         }
       },
-      "modelNumber": "HT07"
+      "modelNumber": "HT07",
+      "specsVerifiedOn": "2026-11-20"
     },
     {
       "slug": "chef-iq-sense-gen3",
@@ -530,6 +608,12 @@
           "label": "Probes",
           "value": "3 ultra-thin probes",
           "status": "verified",
+          "source": "amazon-listing"
+        },
+        {
+          "label": "Probe size",
+          "value": "0.19 in thick, 4.75 in long",
+          "status": "verified",
           "source": "manufacturer"
         },
         {
@@ -551,6 +635,12 @@
           "source": "manufacturer"
         },
         {
+          "label": "Temperature range",
+          "value": "Internal 32–212 °F; ambient 32–1,000 °F",
+          "status": "verified",
+          "source": "manufacturer"
+        },
+        {
           "label": "Range",
           "value": "Stated unlimited over WiFi",
           "status": "claim",
@@ -566,19 +656,19 @@
           "label": "Generation",
           "value": "Gen3",
           "status": "verified",
-          "source": "manufacturer"
+          "source": "amazon-listing"
         },
         {
           "label": "App requirement",
-          "value": null,
-          "status": "unverified",
-          "source": null
+          "value": "Free CHEF iQ App",
+          "status": "verified",
+          "source": "manufacturer"
         },
         {
           "label": "Battery life",
-          "value": null,
-          "status": "unverified",
-          "source": null
+          "value": "70+ hours per charge",
+          "status": "verified",
+          "source": "manufacturer"
         },
         {
           "label": "Warranty",
@@ -643,9 +733,27 @@
         "Generation": {
           "url": "https://chefiq.com/products/iq-sense",
           "label": "chefiq.com"
+        },
+        "Probe size": {
+          "url": "https://chefiq.com/products/iq-sense",
+          "label": "chefiq.com specification"
+        },
+        "App requirement": {
+          "url": "https://chefiq.com/products/iq-sense",
+          "label": "chefiq.com"
+        },
+        "Battery life": {
+          "url": "https://chefiq.com/products/iq-sense",
+          "label": "chefiq.com"
+        },
+        "Temperature range": {
+          "url": "https://chefiq.com/products/iq-sense",
+          "label": "chefiq.com specification"
         }
       },
-      "modelNumber": "CQ60-1C-Z1-E"
+      "modelNumber": null,
+      "modelNote": "Blank on purpose. chefiq.com sells iQ Sense in 1-, 2-, 3- and 4-probe variants and the page read on 2026-11-20 shows the 1-probe variant, model CQ60-1C-Z1-E. This ASIN is the 3-probe listing, so that model code cannot be attached to it, and no official page states the 3-probe model code. No value is recorded rather than a wrong one. See FLG-043.",
+      "specsVerifiedOn": "2026-11-20"
     }
   ],
   "categories": [

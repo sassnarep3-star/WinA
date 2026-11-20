@@ -342,7 +342,7 @@
       "verdict": "One big drawer, four jobs, and the highest temperature in this set. The straightforward choice if you cook in single batches.",
       "why": [
         "A single 8-quart drawer is easier to fill, toss, and wash than two smaller ones when you are cooking one thing for everyone.",
-        "Hi-Fry adds a 450°F burst for the final two minutes of a cook, which is a browning finish rather than a full 450°F cycle.",
+        "Hi-Fry is the listing's own headline feature: a 450°F option rather than a 450°F cycle. The two-minute framing appears on chefman.com's black-SKU page, not on this ASIN, so it is not stated here.",
         "Bake, dehydrate and frozen modes stretch a single appliance across more of the week.",
         "Nonstick basket is listed as dishwasher-safe and the body is stainless steel."
       ],
@@ -450,7 +450,10 @@
         },
         "sourceLabel": "the B08DKYBTPH listing",
         "sourceUrl": "https://www.amazon.com/dp/B08DKYBTPH"
-      }
+      },
+      "modelNumber": "RJ38-SQSS-8T",
+      "modelNumberSource": "https://www.amazon.com/dp/B08DKYBTPH",
+      "modelNumberNote": "The model code is taken from this ASIN's own listing, not from chefman.com: the brand page carries RJ38-8T-BLACK, a matte-black sibling with different published wattage. Recorded as FLG-028 and, in the other register, FLG-045."
     },
     {
       "slug": "thermomaven-1-sec-thermometer",
@@ -748,14 +751,15 @@
           "label": "chefiq.com"
         }
       },
-      "modelNumber": "CQ60-1C-Z1-E",
+      "modelNumber": null,
       "verifiedOn": "2026-11-20",
       "figures": {
         "staysIn": true,
         "needsApp": true,
         "readTimeStated": null,
         "probes": 3
-      }
+      },
+      "modelNumberNote": "chefiq.com shows the code CQ60-1C-Z1-E under a '1 Probe' variant selector, while this ASIN's title states three probes. A one-probe code on a three-probe listing would misidentify the item, so the field is deliberately empty rather than filled from a page describing a different variant. FLG-041 records the source problem; the owner can close it by reading the code off a three-probe unit or the CHEF iQ support page."
     }
   ],
   "categories": [

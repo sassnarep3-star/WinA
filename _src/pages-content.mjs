@@ -261,12 +261,12 @@ export const promo = {
       slug: "chefman-8-quart-turbofry",
       hook: "One big drawer, four jobs, and a two-minute high-heat finish",
       social:
-        "One drawer means one temperature at a time — which is fine if you cook one thing well. 8 quarts, four functions, and a Hi-Fry burst to 450°F for the last two minutes that browns what 400°F left pale. → [review]",
+        "One drawer means one temperature at a time — which is fine if you cook one thing well. 8 quarts, four functions, and a Hi-Fry option to 450°F for the last two minutes that browns what 400°F left pale. → [review]",
       newsletter:
         "Single-basket machines get dismissed as the beginner option, and that is mostly wrong. One 8-quart drawer is easier to fill, toss and wash than two smaller ones, and it holds a lot of one thing. The Chefman TurboFry 4-in-1 adds a Hi-Fry finish — 450°F for the final two minutes, not a continuous 450°F cycle, which is a distinction the marketing copy elsewhere tends to blur. → [review]",
       disclosureNote:
         "Sponsored. As an Amazon Associate I earn from qualifying purchases.",
-      caution: "Hi-Fry is two minutes, not a range. Calling this a 450°F air fryer is the single easiest way to be wrong in public."
+      caution: "Hi-Fry is an option, not a range: the listing headlines 450°F, and the two-minute framing belongs to a different SKU\u2019s page. Calling this a 450°F air fryer is the single easiest way to be wrong in public."
     },
     {
       slug: "thermomaven-1-sec-thermometer",

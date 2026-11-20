@@ -347,15 +347,18 @@ brings the set to 9 with the count computed everywhere it is stated rather than 
   machines" fails the build.
 
 **Why this branch also touches the site root.** While the work ran, PR #28 merged a second, hand-authored
-site onto `main`, which is where Pages serves from: the generated publication, its four gates and its
-dated registers stopped being the live site. That root prints prices and customer-rating counts and
-hot-links product images from `m.media-amazon.com`, which the Associates Program Policies restrict to
-Product Advertising API or Creatives output — and no gate on that tree checks it. This branch restores
-the publication at the root and preserves the parallel build **verbatim** under
-`archive/arena-580f4c6d/` with a `PRESERVED.md` giving the reversal recipe; its holiday guides were
-already absorbed by `406b523`, and its own board sections are unioned into `COORDINATION.md`. The
-finding, its evidence and the way back are recorded as FLG-043, and T34's two handoff patches were
-applied at the same time (see `handoff/README.md` for the one place this build diverges, and why).
+site onto `main` — which is where Pages serves from — so the generated publication, its four gates and its
+dated registers stopped being the live site. That root displayed hand-copied prices and ratings until PR #54
+removed them there and added its own rules R-10/R-11 to `tools/check_site.py`; three product images
+hot-linked from `m.media-amazon.com` remain on its `index.html`, which that build's own register carries as
+an open item pending PA-API. The distinction this branch adds is not editorial taste: its image gate fails
+the build when an `<img>` is not served from `/assets/img/`, so the rule cannot be reintroduced by a later
+copy edit. This branch restores the publication at the root and preserves the parallel build **verbatim**
+under `archive/arena-580f4c6d/` (a snapshot of `main` at the tip this merge records, with `PRESERVED.md`
+giving the reversal recipe); its holiday guides were already absorbed here by `406b523`, and its board
+sections are unioned into `COORDINATION.md`, so nothing that session decided is stranded in a folder. The
+finding, its evidence and the way back are FLG-049; T34's two handoff patches were applied at the same time
+(see `handoff/README.md` for the one place this build diverges, and why).
 
 ```
 node _src/build.mjs              # 35 pages, then the gates: disclosure, links, claims, figures, images, voice, finder

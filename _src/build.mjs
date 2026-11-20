@@ -655,6 +655,19 @@ ${breadcrumb([
       <div class="fact"><dt>Main trade-off</dt><dd>${esc(p.tradeoff)}</dd></div>
       <div class="fact"><dt>ASIN</dt><dd>${esc(p.asin)}</dd></div>
       <div class="fact"><dt>Form factor</dt><dd>${esc(p.formFactor.replace(/-/g, " "))}</dd></div>
+      <div class="fact">
+        <dt>Model, as recorded</dt>
+        <dd${p.modelNumber ? "" : ' class="is-blank"'}>${
+          p.modelNumber ? esc(p.modelNumber) : "deliberately blank — see the note"
+        }</dd>
+        ${
+          p.modelNumberNote
+            ? `<p class="small muted" style="margin:.35rem 0 0">${esc(p.modelNumberNote)}</p>`
+            : p.modelNumberSource
+            ? `<p class="small muted" style="margin:.35rem 0 0">Taken from this ASIN's own listing, not from a sibling SKU's page.</p>`
+            : ""
+        }
+      </div>
     </dl>
 
     ${counterBlock(p, { esc, cite })}

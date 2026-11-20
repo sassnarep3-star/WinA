@@ -1436,18 +1436,30 @@ FLG-029 and FLG-039 carry the revised text; T34's new flag became **FLG-044**, b
 taken in the interval (it is this session's record of the root problem below). `handoff/README.md`
 records the state.
 
-**The root problem (FLG-043, `action`, owner-visible).** The merge of PR #28 made a second,
-hand-authored site the repository root, and Pages served it. Reading that live front page: six prices
-of the form $XX.99, three customer-rating counts in the thousands, and three or more product images
-hot-linked from `m.media-amazon.com` — that build's own board records the imagery route as its FLG-005.
-Against the clauses `data/policy.json` quotes verbatim, the account is exposed and no gate on that tree
-would notice, because the gates live on this one. The restoration on this branch keeps this
-publication's tree at the root and preserves the parallel build **verbatim** under
-`archive/arena-580f4c6d/` (58 files, its `archive/` and its `.gitignore` excluded, with a
-`PRESERVED.md` saying exactly why), and its board sections are unioned below so no decision of that
-session's is stranded in a folder. Their holiday cluster was already absorbed into the publication in
-`406b523`, so nothing editorial is lost by the swap; the only reason to prefer their root is if the
-owner wants the marketing layout over the compliance machinery, and the flag says how to reverse this.
+**The root problem (FLG-049, `action`, owner-visible).** The merge of PR #28 made a second, hand-authored site
+the repository root, and Pages served it. Reading that front page: six prices of the form $XX.99, three
+customer-rating counts in the thousands, and product images hot-linked from `m.media-amazon.com` — that build's
+own board recorded the imagery route as its FLG-005. Against the clauses `data/policy.json` quotes verbatim, the
+account was exposed and no gate on that tree would notice, because the gates live on this one. **Partly fixed on
+`main` since, by another session:** PR #54 (`dccc21c`) removed every hand-copied price, rating, review count and
+merchandising badge from that tree's served pages, cited Participation Requirements §6(t)/§6(y) and IP License
+§2(b) verbatim, and added gate rules R-10/R-11 to `tools/check_site.py`. Three `m.media-amazon.com` anchors remain
+on its `index.html` (81VavY-KG8L, 81AUxm--7pL, 71VzGtbzyFL), open there pending PA-API; this branch's image gate is
+what closes that class of gap permanently, which is the compliance argument for the swap — not a claim that the
+other session ignored the rules.
+
+**What this branch does about it.** The publication's tree is restored at the root, and the parallel build is
+preserved **verbatim** under `archive/arena-580f4c6d/` — 57 files snapshotted from `main`'s current tip `022e00e`,
+its `archive/` and `.gitignore` excluded, with `PRESERVED.md` giving the reason and the exact reversal. Its board
+sections are unioned below so no decision of that session's is stranded in a folder, and its flags FLG-043 to
+FLG-048 (accessory and preset contradictions, the ThermoMaven manual citation, the 8-quart SKU split, the CHEF iQ
+probe-count blank, the fourth short-link re-check, and the price/rating removal PR #54 shipped) are carried into
+this register **under their own ids**, with this session's two rows moved to FLG-049 and FLG-050 so the two books
+never disagree about what an id means. Their holiday cluster was already absorbed into the publication by `406b523`,
+so no editorial work is lost by the swap. Two of their findings also *corrected this branch*: the "final two
+minutes" Hi-Fry phrasing came off the 8-quart copy (it is published only on the black SKU's page, their FLG-045),
+and the CHEF iQ model number is now blank with the reason on the product page (their FLG-046) — the model row is
+now rendered on every product page, with its source, because "which SKU am I buying" is guide 09's whole point.
 
 **Verification performed here, first-hand, 2026-11-20.**
 

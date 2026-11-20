@@ -473,7 +473,7 @@ export const finder = {
   ],
   reasons: {
     "chefman-6-quart-dual-basket": "Two independent 3-quart baskets at two temperatures, with a Sync Finish that holds the faster one — the answer to the two-part dinner, in a 13.38 × 11.81 in footprint.",
-    "chefman-8-quart-turbofry": "One big 8-quart drawer at one temperature, with a Hi-Fry finish the listing puts at 450°F for the last two minutes. Simplest to use, easiest to forget about.",
+    "chefman-8-quart-turbofry": "One big 8-quart drawer at one temperature, with the Hi-Fry finish this listing headlines at 450°F. Simplest to use, easiest to forget about.",
     "emeril-lagasse-26qt-french-door": "A 26-quart chamber that takes a tray, listed by the brand for four to six people and ten functions. It replaces a toaster oven; it does not fit beside one.",
     "thermomaven-1-sec-thermometer": "A one-second instant-read with no app, no pairing and one AAA battery, from a brand page that states ±0.5°F accuracy and a 30-day window for registering its warranty terms.",
     "chef-iq-sense-gen3": "Three probes, four internal and one ambient sensor, Wi-Fi plus Bluetooth and a 1,000°F rating — leave-in monitoring for the long cook you do not want to babysit."
