@@ -166,6 +166,7 @@ shapes differ.
 
 ---
 | T40 | Final integration for this brief: claim first; run every gate on the combined tree; line-by-line re-verification against official sources; review stale open PRs #26/#28; PR `arena/05278ba2-wina` → `main`, merge, confirm Pages deploy, record result here | **done** | arena/05278ba2-wina | `COORDINATION.md` (this row + the arena/05278ba2-wina section only); `data/governance.json` (FLG-033/FLG-036 merge), `data/policy.json` (one source row), `data/{products,links}.json` (two exact title corrections), generated pages via build | Claimed 2026-11-20 immediately on session start per board rule 2 as **T27**; base `e886175` then equalled `main` and T27 was free. `main` advanced while this session worked: T27 was taken (arena-574fc8eb-wina, PR #39), then T28/T29, then T30-T32 (d59cd471, PR #44), then T33 (508d0df8, PR #36), then T34 (arena/1cf62cfb-wina, PR #38), then T35-T39 (266b1b8f and the T36-T39 sessions) — renumbered **T40** here at the seventh merge (T35-T39 were all taken on main while this session verified), no other session's row changed. Extends the existing build; no second site. |---
+| T41 | **Critical live-site repair:** resolve the committed git conflict markers (29 blocks across 10 files: `index.html`, `shop.html`, `questions.html`, `executive-summary.html`, `guides/*` ×3, `data-room/product-intent.html`, `data/links.json`, `data/suggestions.json`) that PRs #67/#68 merged into `main` and that GitHub Pages is now serving to readers; keep both sides’ intent (the compliant price/rating wording wins where they diverge); add a gate rule so conflict markers can never ship again; verify the deployed site is clean; PR → `main`, merge, confirm Pages deploy, record result here | claimed (in progress) | arena-126174a5-wina (session `arena-126174a5`) | `COORDINATION.md` (this row + the arena-126174a5-wina section only), the 10 marker-bearing files listed above, `tools/check_site.py` (one new rule), generated pages via rebuild if any generator exists | Claimed 2026-11-20 immediately on session start per board rule 2, before any edit. Base: `e339bad` (= `main` at claim time). Extends main’s build; no second site. T40 was taken by arena/05278ba2-wina; T41 was free on every remote branch when claimed. |
 
 ## Session arena/1323e80f-wina — T17 claim (2026-11-20)
 
@@ -6890,3 +6891,31 @@ corrections are both intact. `data/products.json` (my two title corrections) had
 
 **Owner-side items remain open and unchanged:** FLG-004 (tracking-ID enrolment), FLG-024 (0/5 Special Link tests — Associates sign-in), FLG-009/SG-29 (Search Console), FLG-011 (collector not hosted), FLG-013 (content volume vs the 10-post rule of thumb), FLG-036 (short links don't reproduce — normal-browser check), FLG-019 (intended-ASIN policy). None blocks the merge; all are on the Flagged for Review page (`data-room/flagged.html`, now rendering every registered flag after T39).
 
+
+---
+
+## Session arena/126174a5-wina — T41 claim (2026-11-20)
+
+- **Claim:** T41 — critical live-site repair. PRs #67 (arena/2739f0fb-wina) and #68
+  (arena/05278ba2-wina) merged into `main` with unresolved git conflict markers committed in
+  10 files (29 `<<<<<<< HEAD` blocks). GitHub Pages deployed `e339bad` and is serving the raw
+  markers to readers (verified with the page tool on
+  `https://sassnarep3-star.github.io/WinA/`). The current gate (`tools/check_site.py`, rules
+  R-01…R-11) does not look for conflict markers, so CI stayed green.
+- **Reason:** the brief requires a live site that is never broken; a page showing
+  `<<<<<<< HEAD` is broken for every reader and for search engines. Nobody had claimed the
+  repair when this session started (T41 free on `main` and every remote branch).
+- **Scope:** the 10 marker-bearing files (`index.html`, `shop.html`, `questions.html`,
+  `executive-summary.html`, `guides/air-fryer-capacity-checklist.html`,
+  `guides/basket-vs-oven-air-fryer.html`, `guides/multi-function-appliance-questions.html`,
+  `data-room/product-intent.html`, `data/links.json`, `data/suggestions.json`), one new rule in
+  `tools/check_site.py`, `COORDINATION.md` (this row + this section only). No product fact,
+  price, link record, or other session’s section is changed.
+- **Resolution rule:** where the two sides diverge, keep the wording that satisfies the merged
+  compliance posture (R-10/R-11: no displayed prices, no star ratings; §6(t)/§2(b) copy from
+  `origin/main`’s side), and keep `HEAD`’s side only where it adds structure the page needs.
+  Both sides’ meaning is preserved; nothing is dropped silently.
+- **Base:** `e339bad` (= `origin/main` at claim time). Extends the existing build; no second site.
+- **Status:** in progress.
+- **PR / merge:** pending.
+- **Deploy:** pending.
