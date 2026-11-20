@@ -9,19 +9,21 @@ deliberately not live, what the last verification pass found, and what is waitin
 
 ## 1. Where the project stands
 
-A 30-page affiliate publication is live and indexed-by-sitemap, covering three air fryers and two
-meat thermometers, with **82 tagged outbound product links**. It is not a mockup: every page is
+A 33-page affiliate publication is live and listed in a sitemap, covering three air fryers and two
+meat thermometers, with **99 tagged outbound product links**. It is not a mockup: every page is
 generated from a data register, and three independent gates run on every push and pull request.
+A published sitemap is not proof of indexing: whether any search engine has indexed this site is
+unverified, and Search Console has never been verified (FLG-009).
 
 | Surface | State |
 | --- | --- |
-| Reader pages | 30 total: front page + 404, 5 guides, 2 category hubs, 5 product pages, compare, register, a marketing kit, and the operations set (flagged, questions, suggestions, summary, dashboard, analytics, disclosure, privacy, about, seo, marketing, concept) |
-| Data registers | 5 products · 60 spec rows · 6 policy sources · 10 policy clauses quoted · 44 flag rows · 22 questions · 24 suggestions |
+| Reader pages | 33 total: front page + 404, 7 guides, a seasonal cluster, 2 category hubs, 5 product pages, compare, register, a marketing kit, and the operations set (flagged, questions, suggestions, summary, dashboard, analytics, disclosure, privacy, about, seo, marketing, concept) |
+| Data registers | 5 products · 60 spec rows · 6 policy sources · 10 policy clauses quoted · 46 flag rows · 26 questions · 29 suggestions |
 | Verification mix | 32 `verified` · 14 `unverified` · 10 `withheld` · 4 `claim`; **36 rows carry a value, 24 are blank with a reason**, and 22 of the valued rows cite a manufacturer page directly rather than the listing |
 | Compliance | OA §5 statement verbatim on all 30 pages; the disclosure precedes the first sponsored link on every page (asserted by byte offset, not by eyeball); `rel="sponsored nofollow noopener"` + `?tag=shopnow047c-20` on all 82 product links; the 8 submitted short links render as declared non-affiliate citations (`rel="nofollow"`, no tag). Counts from `scripts/compliance-gate.mjs`, cross-checked by `scripts/check-site.mjs` at 102 Amazon links / 82 sponsored |
-| Measurement | Five events defined; collector written but **not deployed**, so the client is inert by design |
+| Measurement | Five events defined; collector written but **not deployed**, so the client is inert by design. Its contract is now executed rather than asserted: `scripts/analytics-selftest.mjs` starts the collector and checks it end to end, and runs in CI (FLG-042) |
 | Money | **Zero** revenue claims; ledger holds 0 rows, by policy |
-| Gates | Three checkers, all green (~1,097 compliance assertions, 1,118 internal links verified, the builder's own 9 gates). CI fails if generated output is not committed, the build is not reproducible, or a compliance rule breaks — and Pages' deploy job now runs the compliance gate too, so a regression stops the release rather than reddening a check |
+| Gates | Three checkers, all green (~1,497 compliance assertions, 1,289 internal links verified, the builder's own 9 gates), plus the collector self-test. CI fails if generated output is not committed, the build is not reproducible, or a compliance rule breaks — and Pages' deploy job now runs the compliance gate too, so a regression stops the release rather than reddening a check |
 | History | Four prior session builds preserved under `archive/` (83 files), nothing deleted |
 
 ## 2. What the product question turned out to be
@@ -92,7 +94,7 @@ main lacked:
 
 ## 4. The one number that should worry the owner
 
-**80 tagged product links are live; 0 of 5 per-product Special Link tests are recorded.**
+**99 tagged product links are live; 0 of 5 per-product Special Link tests are recorded.**
 
 The rule this project set — one tested link per product, in the enrolled workflow, before scaling —
 was skipped, and it is recorded as an open action row (FLG-024). Nothing suggests the links are
@@ -110,9 +112,9 @@ unrecorded, so nobody can close the flag quietly. A duplicate row this session n
 | Account owner | Confirm `shopnow047c-20` exists in Associates Central for `amazon.com` and that the *registered* site URL matches this deployment (FLG-002, FLG-004) |
 | Account owner | Run the five link tests, record them in `data/special_link_tests.json` (FLG-024) |
 | Account owner | Verify the property in Search Console and submit `/sitemap.xml`; nobody currently knows if the site is indexed (FLG-009, SG-29) |
-| Account owner + you | Deploy the collector (Worker or `scripts/analytics-server.mjs`), then set `governance.analytics.enabled` + `site.analyticsEndpoint` (FLG-011, FLG-015) |
+| Account owner + you | Deploy the collector (Worker or `scripts/analytics-server.mjs`) — its contract is already covered by an automated self-test, so this is a hosting choice — then set `governance.analytics.enabled` + `site.analyticsEndpoint` (FLG-011, FLG-015) |
 | You | A domain you own: Amazon's review criteria include “You must own your website”, so a `github.io/WinA` sub-path is staging, not the submission (FLG-013) |
-| You | Content volume: ~10 original posts are expected at review; 5 guides + 5 product pages is thin (FLG-013) |
+| You | Content volume: ~10 original posts are expected at review; 5 guides + 5 product pages is thin (FLG-013). A cadence was adopted on 2026-11-20 — one new guide every Monday for eight weeks, each added to the sitemap and feed in the same commit (SUG-05 in the decision log) |
 | You | Choose a real byline and a brand that isn't a placeholder (FLG-021), and decide whether to buy the products for photography (FLG-007) |
 | No one | The 20 `unverified` spec rows: wattage, dimensions and warranty for all five products are *knowable* from the listing but were not captured; `npm run collect` is the route |
 
@@ -136,9 +138,10 @@ a row without dated first-party provenance is rejected by the gate.
 ---
 
 *Every count above was produced by running `node scripts/compliance-gate.mjs`,
-`node scripts/check-site.mjs` and `node _src/build.mjs` on this tree on 2026-11-20, and every claim
-on the site traces to a row in `data/policy.json` or `data/products.json`. The site's own copy of
-this summary is generated at `/summary/` from the same data, so the two cannot drift.*
+`node scripts/check-site.mjs`, `node scripts/analytics-selftest.mjs` and `node _src/build.mjs` on
+this tree on 2026-11-20, and every claim on the site traces to a row in `data/policy.json` or
+`data/products.json`. The site's own copy of this summary is generated at `/summary/` from the same
+data, so the two cannot drift.*
 
 ---
 
@@ -213,3 +216,47 @@ failures. `node scripts/compliance-gate.mjs` → 1,207 checks, 0 failing, 1 warn
 **Still owner-only, not attempted:** the Associates sign-in and the one-link-per-product Special Link
 test (FLG-004, FLG-024); Search Console (FLG-009); deploying the analytics collector (FLG-011).
 
+---
+
+## 10. Decisions before anything else, session `arena/d59cd471-wina` (2026-11-20)
+
+This section is the part of the summary an owner can act on without reading the repository. Each
+row is a decision gate: what is known now, what is missing, and the exact step that would settle
+it. The full question register with discovery actions is on `/questions/`; the suggestion register
+with a dated decision log is on `/suggestions/`.
+
+| Decision | What is known now | What is missing | How it is discovered |
+| --- | --- | --- | --- |
+| Is `shopnow047c-20` active for this property? | The tag is on every outbound product link. | Associates account status, marketplace enrolment, and whether the registered site matches this deployment (FLG-002, FLG-004). | Check Associates Central with the owner's access; record the confirmation. |
+| Do the five product links attribute? | Five tagged product destinations exist; the test register is empty. | The landing destination and the reporting line for each product (FLG-024). | Build and test one Special Link per product in the enrolled workflow; record date, destination, report line and tester in `data/special_link_tests.json`. |
+| Is the site indexed, and what do people search for? | Sitemap, feed, canonicals and robots are published. | Search Console verification, index status, impressions, clicks, queries (FLG-009, SG-29). | Verify the property, submit `/sitemap.xml`, then export dated query data. A sitemap is not an indexing receipt. |
+| Which topics come next? | The roadmap topics are labelled editorial hypotheses, not demand. | Search demand and page performance. | Rank from the Search Console export with `node scripts/next-topics.mjs`; keep the dated provenance trail. |
+| What may the affiliate program license? | Prices, ratings and images are withheld today. | This account's eligibility and permitted API/Creatives access (Q-11, Q-12). | Confirm eligibility and re-read the official Program Policies before using any product content. |
+| Should analytics run, and where? | The event definitions and the collector exist; the collector's contract is now covered by an automated self-test that runs in CI (FLG-041). | Hosting, endpoint, retention, notice wording, owner approval. | Review `/privacy/`, choose a host and retention window, deploy, test the endpoint, then enable the client. |
+| Is this publication ready for an account application? | It is live on a GitHub Pages project path with five guides and an adopted publishing cadence (SUG-05). | Review status, an owned domain, a real byline, and the owner's content plan (FLG-013, FLG-021). | Re-read the current Associates requirements, then decide on a domain and a named author before applying. |
+| Is an AI-driven platform justified now? | `/concept/` documents the design; nothing is connected to it. | Authorised product data, measured traffic, operating budget, a compliance review process. | Establish authorised data sources and a baseline first; automate only with human review, provenance and a rollback path. |
+
+**The order that works, by dependency:**
+
+1. **Monetisation gate.** Confirm the tracking ID and the registered site in Associates Central, run
+   the five link tests, and record them. Until then, do not describe affiliate earnings as working.
+2. **Measurement and search evidence.** Verify Search Console, submit the sitemap, and choose a host
+   for the collector — the code is done and tested, so this is a hosting decision, not a build.
+   Keep the ledger empty until dated first-party reports supply the numbers.
+3. **Publication choices.** Owned domain, a named accountable author, and a decision about genuine
+   product testing or photography. Do not imply testing that did not happen.
+4. **Cadence.** One guide every Monday for eight weeks, each added to the sitemap and feed in the
+   same commit, each with its own verified spec pass. Prioritise the ninth week from measured
+   queries, not from instinct.
+5. **Defer AI optimisation.** No product ranking, trend claim or revenue forecast without an
+   authorised source, a stated decision criterion, and a human compliance check.
+
+**What changed in this session, in one paragraph.** The suggestions page's decision log now carries
+a dated row for every suggestion, with a token legend and live counts, and the compliance gate
+requires that log to match the suggestion register — so the reviewer-facing surface cannot drift
+into looking like decisions were taken when they were not. The self-hosted collector, which had
+never been executed, was driven end to end by a new self-test that runs in CI; that test found two
+real defects — the server did not read the browser client's payload shape, so every click would
+have lost the ASIN, page and slot it was supposed to record, and the server crashed on start when
+an origin allow-list was set — and both are fixed (FLG-042). Nothing was deployed, no endpoint was
+configured, and the client remains inert.

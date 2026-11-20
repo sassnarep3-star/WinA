@@ -1547,6 +1547,8 @@ function renderDesignPrompt() {
 function renderDecisionLog() {
   const dl = suggestions.decisionLog;
   const entries = dl.entries;
+  const counts = {};
+  for (const e of entries) counts[e.decision] = (counts[e.decision] || 0) + 1;
   const rows = entries
     .map(
       (e) => `<tr>
@@ -1554,6 +1556,15 @@ function renderDecisionLog() {
     <td><span class="pill pill--${esc(e.decision)}" >${esc(e.decision)}</span></td>
     <td><code>${esc(e.item)}</code></td>
     <td class="small">${esc(e.reason)}</td>
+  </tr>`
+    )
+    .join("");
+  const key = (dl.decisionKey || [])
+    .map(
+      (k) => `<tr>
+    <td><span class="pill pill--${esc(k.id)}">${esc(k.label || k.id)}</span></td>
+    <td class="small">${esc(k.note)}</td>
+    <td class="num">${counts[k.id] || 0}</td>
   </tr>`
     )
     .join("");
@@ -1573,6 +1584,18 @@ function renderDecisionLog() {
         }</tbody>
       </table>
     </div>
+
+    ${
+      key
+        ? `<div class="tablewrap mt2">
+      <table class="data sortable">
+        <caption>What each decision state means, and how many suggestions currently sit in it.</caption>
+        <thead><tr><th scope="col">Decision</th><th scope="col">Meaning</th><th scope="col">Items</th></tr></thead>
+        <tbody>${key}</tbody>
+      </table>
+    </div>`
+        : ""
+    }
 
     <div class="tablewrap mt2">
       <table class="data sortable">
@@ -1846,7 +1869,7 @@ ${breadcrumb([{ href: url("/"), label: "Home" }, { label: "Measurement" }])}
 
     <h2 class="section__title" style="font-size:1.4rem;margin-top:2.5rem">Deploying it</h2>
     <div class="prose">
-      <p>The collector is in <code>_worker/</code> and is a single small handler with no third-party dependency. Deploy it, set the endpoint in the build config, rebuild, and the flag flips. The exact steps are in the repository README.</p>
+      <p>The collector is in <code>_worker/</code> and is a single small handler with no third-party dependency, and an equivalent dependency-free server ships at <code>scripts/analytics-server.mjs</code> for a host without Workers. Deploy one, set the endpoint in the build config, rebuild, and the flag flips. The exact steps are in the repository README, and <code>scripts/analytics-selftest.mjs</code> checks the contract on every build, so what gets deployed has been executed rather than assumed.</p>
       <p>Until that happens, this page is a plan rather than a report. It is marked as such deliberately, because a measurement page that implies data exists when it does not is worse than no measurement page.</p>
     </div>
   </div>

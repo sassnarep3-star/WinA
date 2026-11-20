@@ -457,6 +457,13 @@ table.data a { word-break: break-word; }
 .pill--recommend { background: var(--accent-wash); color: var(--accent); border-color: #c2d8dd; }
 .pill--consider { background: var(--warn-wash); color: var(--warn); border-color: #e8d3a8; }
 .pill--hold { background: #f0ece5; color: var(--ink-mute); border-color: var(--rule); }
+/* Decision-log states. Same colour logic as the status pills above: green = accepted and live,
+   accent = decided or recommended, amber = open, grey = held, clay = rejected. */
+.pill--accepted { background: var(--ok-wash); color: var(--ok); border-color: #c3dbcb; }
+.pill--adopted { background: var(--accent-wash); color: var(--accent); border-color: #c2d8dd; }
+.pill--recommended { background: var(--accent-wash); color: var(--accent); border-color: #c2d8dd; }
+.pill--open { background: var(--warn-wash); color: var(--warn); border-color: #e8d3a8; }
+.pill--rejected { background: var(--clay-wash); color: var(--stop); border-color: #e8c8bc; }
 .pill--reject { background: var(--clay-wash); color: var(--stop); border-color: #e8c8bc; }
 .pill--answered { background: var(--ok-wash); color: var(--ok); border-color: #c3dbcb; }
 .pill--unanswered { background: var(--warn-wash); color: var(--warn); border-color: #e8d3a8; }

@@ -113,6 +113,23 @@ To turn it on:
    through the same config.
 4. Rebuild and commit.
 
+**Or host the dependency-free collector in this repository instead**, on any host that can run
+Node 20+:
+
+```bash
+HOST=0.0.0.0 PORT=8080 STATE_DIR=/var/lib/cs DATA_DAYS=30 \
+ALLOWED_ORIGINS=https://sassnarep3-star.github.io \
+SUMMARY_TOKEN=<a long random string> \
+node scripts/analytics-server.mjs
+```
+
+It speaks the same payload as the worker — props nested under `p`, exactly as
+`assets/js/site.js` sends them — and stores the same row (day, event, path, ASIN, slot, coarse
+viewport class). `scripts/analytics-selftest.mjs` starts it on an ephemeral port and asserts the
+collector contract end to end, including that a click keeps the ASIN that earned it; it runs in
+CI, so the two collectors cannot drift apart unnoticed. (`ALLOWED_ORIGINS` for the server,
+`ALLOWED_ORIGIN` for the worker — the names differ because the runtimes differ.)
+
 The five events are defined in `data/governance.json` and documented at `/analytics/`.
 The collector stores a day bucket, event name, page path, ASIN and coarse viewport class.
 It does not store IP addresses, user agents, referrers, or any identifier.
@@ -262,6 +279,7 @@ The repository has no dependencies; every command is Node standard library.
 | `node scripts/collect.mjs` | Folds `data/inbox/*.json` into the register with provenance; refuses unsourced values, prices and ratings |
 | `node scripts/next-topics.mjs` | Ranks candidate guides from a Search Console export in `data/exports/`; refuses to rank without one |
 | `node scripts/analytics-server.mjs` | Self-hosted collector, same contract as `_worker/collector.js` (five events, key allow-list, 30-day retention, `/summary`) |
+| `node scripts/analytics-selftest.mjs` | Starts the collector on an ephemeral port and asserts its contract end to end; also compares the worker and the server against each other and against the register. Run in CI |
 
 Reading order for a reviewer: **`EXECUTIVE_SUMMARY.md`** (state of the project, one page) →
 `ARCHITECTURE.md` (why each piece is built this way, and the two human checkpoints) →
