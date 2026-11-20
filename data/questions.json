@@ -410,5 +410,138 @@
       "sourceUrl": "https://sassnarep3-star.github.io/WinA/flagged/",
       "sourceLabel": "FLG-007: the imagery constraint"
     }
-  ]
+  ],
+  "readiness": {
+    "intro": "The table below answers the question behind the questions: before a decision can be reasonably made, what is already known, what is not known, and what single discovery would close the gap. Nothing here is inferred — where a fact is not confirmed from a source, the cell says it is missing and names the action that would find it.",
+    "decisions": [
+      {
+        "id": "D-01",
+        "decision": "Whether the site can earn at all: tracking ID enrolment and one proven Special Link per product",
+        "have": [
+          "All five product identities are resolved and re-checked against the live listings (Q-01, Q-02, register).",
+          "The disclosure required by Operating Agreement §5 is on every page in the exact agreed words (Q-13).",
+          "The tracking ID has the form of a US store id and the marketplace matches (compliance gate rule)."
+        ],
+        "missing": [
+          "Whether shopnow047c-20 is actually enrolled in the Associates Program (Q-04).",
+          "Whether a click on a constructed Special Link produces a tracking-report line — 0 of 5 tests are recorded (FLG-024)."
+        ],
+        "blocking": [
+          "Q-04"
+        ],
+        "discover": "Owner: sign in to Associates Central, build one Special Link per product, click each logged out, and record the next day's report in data/special_link_tests.json (SUG-04). One pass settles both gaps.",
+        "ready": "no"
+      },
+      {
+        "id": "D-02",
+        "decision": "Whether the submitted link.amazon short links may be used in marketing at all",
+        "have": [
+          "The site does not depend on them: every buy button goes straight to the amazon.com product page with the tag (SUG-04, shipped).",
+          "The short links' observed destinations are logged per check and are not stable across fetches (FLG-036, FLG-040).",
+          "Amazon's ASIN definition is confirmed from Amazon's own page (FLG-033, resolved)."
+        ],
+        "missing": [
+          "A compliance determination for the short links themselves (Q-06) — genuinely unresolved in the policy text, and not asserted to be invalid."
+        ],
+        "blocking": [
+          "Q-06"
+        ],
+        "discover": "Owner: open each link in a normal browser and compare the landing page with the register; if the destinations hold, ask Associates support whether this link style is permitted, and keep the answer as the record.",
+        "ready": "partial"
+      },
+      {
+        "id": "D-03",
+        "decision": "Which topics to publish next",
+        "have": [
+          "Seven guides are live in two clusters plus a seasonal collection, and the Monday cadence is adopted in the decision log (SUG-05).",
+          "The topic roadmap exists, with every title labelled a hypothesis rather than a claim about demand."
+        ],
+        "missing": [
+          "Whether anyone searches for these products or these questions (Q-07).",
+          "Which of the seven guides earns the first impressions (Q-24).",
+          "Whether holiday scheduling content has measured demand (Q-23)."
+        ],
+        "blocking": [
+          "Q-07",
+          "Q-18",
+          "Q-23",
+          "Q-24"
+        ],
+        "discover": "Verify Search Console, keep the cadence, and choose the next month's topics from the query report instead of instinct — the kill criteria then drop anything with no measured demand after four weeks.",
+        "ready": "no"
+      },
+      {
+        "id": "D-04",
+        "decision": "Design and brand direction: how far to push the polished-marketing look now",
+        "have": [
+          "A written design brief (DB-01 to DB-08) and a copy-ready design prompt live on the suggestions page.",
+          "Generated, labelled kitchen-scene illustrations are shipped as samples (Q-26), so the imagery question can be judged by eye."
+        ],
+        "missing": [
+          "The brand identity decision: what this publication is called and who it is for (Q-20).",
+          "Whether generated illustrations are acceptable brand imagery, by the owner's standard (Q-26).",
+          "Whether there should be a named author (Q-21)."
+        ],
+        "blocking": [
+          "Q-20",
+          "Q-26"
+        ],
+        "discover": "Owner: read the design prompt and look at the shipped samples, then answer Q-20 and Q-26 in the decision log. Only then does a full design pass avoid rework (Path 3 on the suggestions page).",
+        "ready": "partial"
+      },
+      {
+        "id": "D-05",
+        "decision": "Seasonal strategy: adopt the November refresh or hold seasonal content",
+        "have": [
+          "A holiday collection is shipped as calendar-driven, with the SUG-23 versus SUG-25 disagreement kept visible on the page.",
+          "The topic is labelled as an editorial choice, not a demand claim."
+        ],
+        "missing": [
+          "Measured demand for holiday air-fryer scheduling content (Q-23).",
+          "The owner's adoption decision (Q-25)."
+        ],
+        "blocking": [
+          "Q-23",
+          "Q-25"
+        ],
+        "discover": "Read the November–December query report after Search Console is verified; until then, the owner's call is explicitly a judgment, recorded as such.",
+        "ready": "partial"
+      },
+      {
+        "id": "D-06",
+        "decision": "Category structure: one publication or two (SUG-02)",
+        "have": [
+          "Three air fryers and two thermometers, compared on verified specifications only (Q-03, Q-10)."
+        ],
+        "missing": [
+          "What commission each product actually pays (Q-05).",
+          "Which category draws measured clicks (Q-16)."
+        ],
+        "blocking": [
+          "Q-03",
+          "Q-05",
+          "Q-16"
+        ],
+        "discover": "Nothing measurable exists yet — that is the finding. Defer the decision until the ledger has rows; deciding it now would be instinct dressed as strategy (Path 4 on the suggestions page).",
+        "ready": "no"
+      },
+      {
+        "id": "D-07",
+        "decision": "Turning on measurement: the click counter, the collector, and the ledger",
+        "have": [
+          "Five events are defined (EV-01 to EV-05), the privacy-preserving collector is written and its contract tested, and the ledger schema admits measured rows only (Q-17)."
+        ],
+        "missing": [
+          "A deployed endpoint — nothing is being measured right now (Q-16, FLG-011).",
+          "Search Console verification and its real token (Q-18, FLG-009)."
+        ],
+        "blocking": [
+          "Q-16",
+          "Q-18"
+        ],
+        "discover": "Deploy the collector on any host reachable from the site's origin and replace the placeholder verification token; both are owner-side steps and both are recorded as blocked until done.",
+        "ready": "no"
+      }
+    ]
+  }
 }

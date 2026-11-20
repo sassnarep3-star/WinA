@@ -1374,6 +1374,57 @@ ${breadcrumb([{ href: url("/"), label: "Home" }, { label: "Campaign ledger" }])}
 /* ============================================================
    QUESTIONS
    ============================================================ */
+
+/* Decision-readiness map (T35, arena/2739f0fb-wina): the question behind the
+   questions — before a decision can be reasonably made, what is already known
+   from a source, what is not known, and the specific discovery that closes the
+   gap. Rendered from data/questions.json `readiness`; invents nothing. */
+function renderReadiness() {
+  const r = questions.readiness;
+  if (!r || !Array.isArray(r.decisions)) return "";
+  const readyLabel = { no: "not ready", partial: "partly ready", yes: "ready" };
+  const readyPill = { no: "open", partial: "hold", yes: "verified" };
+  const rows = r.decisions
+    .map(
+      (d) => `<tr>
+    <td><code>${esc(d.id)}</code></td>
+    <td><strong>${esc(d.decision)}</strong></td>
+    <td class="small">${d.have.map((h) => esc(h)).join("<br>")}</td>
+    <td class="small">${d.missing.map((m) => esc(m)).join("<br>")}</td>
+    <td class="small">${d.blocking.map((b) => `<code>${esc(b)}</code>`).join(" ")}</td>
+    <td class="small">${esc(d.discover)}</td>
+    <td><span class="pill pill--${readyPill[d.ready] || "open"}">${esc(
+        readyLabel[d.ready] || d.ready
+      )}</span></td>
+  </tr>`
+    )
+    .join("");
+  return `
+<section class="section" id="readiness">
+  <div class="wrap">
+    <div class="section__head">
+      <h2 class="section__title">Before you decide: what we know, what we do not</h2>
+      <p class="section__dek">${esc(r.intro)}</p>
+    </div>
+    <div class="tablewrap">
+      <table class="data sortable">
+        <caption>Decision readiness. "Already known" is what a source confirms. "Still missing" is what nothing here can confirm. "How to discover it" is the specific action that would close the gap — a suggestion to find the missing information, not a guess at it.</caption>
+        <thead>
+          <tr>
+            <th scope="col">ID</th><th scope="col">Decision</th>
+            <th scope="col">Already known</th><th scope="col">Still missing</th>
+            <th scope="col">Blocking questions</th><th scope="col">How to discover the missing information</th>
+            <th scope="col">Ready?</th>
+          </tr>
+        </thead>
+        <tbody>${rows}</tbody>
+      </table>
+    </div>
+  </div>
+</section>
+`;
+}
+
 function questionsPage() {
   const areas = Object.fromEntries(questions.areas.map((a) => [a.id, a.name]));
   const priorityOrder = { blocking: 0, high: 1, medium: 2, low: 3 };
@@ -1413,6 +1464,7 @@ ${breadcrumb([{ href: url("/"), label: "Home" }, { label: "Open questions" }])}
     <p class="article-head__dek">${esc(questions.intro)}</p>
   </div>
 </div>
+${renderReadiness()}
 <section class="section">
   <div class="wrap">
     <div class="strip" style="border:1px solid var(--rule);margin-bottom:2rem">
@@ -1447,7 +1499,7 @@ ${breadcrumb([{ href: url("/"), label: "Home" }, { label: "Open questions" }])}
   pages.push({
     path: "/questions/",
     title: "Open questions",
-    desc: "Every question that must be answered before further decisions: what we know, what we do not, and the specific action that would settle each one.",
+    desc: "Every question that must be answered before further decisions, plus a decision-readiness map: what is already known from a source, what is not known, and the specific discovery that would settle each gap.",
     html,
     priority: "0.6",
     changefreq: "weekly"
@@ -1620,6 +1672,58 @@ function renderDecisionLog() {
 /* ============================================================
    SUGGESTIONS
    ============================================================ */
+/* "Choose a path" menu (T35, arena/2739f0fb-wina): mutually exclusive directions
+   for the same limited effort, so a reviewer can pick one before anything is
+   implemented. Rendered from data/suggestions.json `paths`; invents nothing. */
+function renderPaths() {
+  const p = suggestions.paths;
+  if (!p || !Array.isArray(p.items)) return "";
+  const rows = p.items
+    .map(
+      (it) => `<tr>
+    <td><code>${esc(it.id)}</code></td>
+    <td><strong>${esc(it.name)}</strong></td>
+    <td class="small">${esc(it.first)}</td>
+    <td class="small">${it.changes.map((c) => `<code>${esc(c)}</code>`).join(" ")}</td>
+    <td class="small">${esc(it.cost)}</td>
+    <td class="small">${esc(it.risk)}</td>
+    <td class="small">${it.dependsOn.map((d) => `<code>${esc(d)}</code>`).join(" ")}<br>${esc(
+        it.discover
+      )}</td>
+    <td class="small">${esc(it.whenWrong)}</td>
+  </tr>`
+    )
+    .join("");
+  return `
+<section class="section" id="paths">
+  <div class="wrap">
+    <div class="section__head">
+      <h2 class="section__title">Choose a path before implementing anything</h2>
+      <p class="section__dek">${esc(p.intro)}</p>
+    </div>
+    <div class="tablewrap">
+      <table class="data sortable">
+        <caption>Four directions for the same limited effort. Read next to the readiness map on the open questions page. Path 1 and Path 2 run together happily; Path 3 and Path 4 compete with them for the same attention.</caption>
+        <thead>
+          <tr>
+            <th scope="col">ID</th><th scope="col">Path</th><th scope="col">What it changes first</th>
+            <th scope="col">Suggestions it implements</th><th scope="col">Cost</th>
+            <th scope="col">Risk</th><th scope="col">Depends on / how to discover</th>
+            <th scope="col">When it is the wrong choice</th>
+          </tr>
+        </thead>
+        <tbody>${rows}</tbody>
+      </table>
+    </div>
+    <div class="note mt2">
+      <p class="note__title">How to choose</p>
+      <p>${esc(p.howToChoose)}</p>
+    </div>
+  </div>
+</section>
+`;
+}
+
 function suggestionsPage() {
   // Highest weight first: these are the moves we are most confident about.
   const items = [...suggestions.suggestions].sort((a, b) => b.weight - a.weight);
@@ -1700,6 +1804,7 @@ ${breadcrumb([{ href: url("/"), label: "Home" }, { label: "Suggestions" }])}
   </div>
 </section>
 
+${renderPaths()}
 ${renderDesignBrief()}
 ${renderTopicRoadmap()}
 ${renderDesignPrompt()}
@@ -1708,7 +1813,7 @@ ${renderDecisionLog()}
   pages.push({
     path: "/suggestions/",
     title: "Suggestions",
-    desc: "A reviewable decision list: suggestions with rationale, cost, risk and a recommendation, plus a draft design brief, a topic roadmap of hypotheses, and a decision log. Nothing is implemented without a decision.",
+    desc: "A reviewable decision list with a choose-a-path menu: suggestions with rationale, cost, risk and a recommendation, four strategic paths with trade-offs, plus a draft design brief, a topic roadmap of hypotheses, and a decision log. Nothing is implemented without a decision.",
     html,
     priority: "0.6",
     changefreq: "weekly"
