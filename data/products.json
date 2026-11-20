@@ -660,21 +660,21 @@
         },
         {
           "label": "App requirement",
-          "value": "Free CHEF iQ App",
+          "value": "Free CHEF iQ App; required for use",
           "status": "verified",
           "source": "manufacturer"
         },
         {
           "label": "Battery life",
-          "value": "70+ hours per charge",
+          "value": "70+ hours per charge (probe)",
           "status": "verified",
           "source": "manufacturer"
         },
         {
           "label": "Warranty",
-          "value": null,
-          "status": "unverified",
-          "source": null
+          "value": "2 years, activated on first connection to the CHEF iQ App",
+          "status": "verified",
+          "source": "manufacturer"
         },
         {
           "label": "Price",
@@ -746,13 +746,17 @@
           "url": "https://chefiq.com/products/iq-sense",
           "label": "chefiq.com"
         },
+        "Warranty": {
+          "url": "https://cdn.shopify.com/s/files/1/0267/8118/8171/files/CQ60-ALL-SET-C_UG_OTP_050126.pdf",
+          "label": "CHEF iQ user guide (chefiq.com)"
+        },
         "Temperature range": {
           "url": "https://chefiq.com/products/iq-sense",
           "label": "chefiq.com specification"
         }
       },
       "modelNumber": null,
-      "modelNote": "Blank on purpose. chefiq.com sells iQ Sense in 1-, 2-, 3- and 4-probe variants and the page read on 2026-11-20 shows the 1-probe variant, model CQ60-1C-Z1-E. This ASIN is the 3-probe listing, so that model code cannot be attached to it, and no official page states the 3-probe model code. No value is recorded rather than a wrong one. See FLG-043.",
+      "modelNote": "Blank on purpose. chefiq.com sells iQ Sense in 1-, 2-, 3- and 4-probe variants and the page read on 2026-11-20 shows the 1-probe variant, model CQ60-1C-Z1-E. This ASIN is the 3-probe listing, so that model code cannot be attached to it, and no official page states the 3-probe model code. No value is recorded rather than a wrong one. See FLG-041 and FLG-046",
       "specsVerifiedOn": "2026-11-20"
     }
   ],

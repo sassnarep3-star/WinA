@@ -382,8 +382,8 @@
       "id": "FLG-039",
       "severity": "review",
       "title": "Spec coverage is uneven, and one product still has no confirmed warranty",
-      "detail": "50 of 70 spec rows carry a verified value (53 carry any value at all; 17 are blank with a reason). Per product, verified of total: Chefman 6-Quart Dual Basket 10/13; Emeril Lagasse 26QT French Door 9/13; Chefman 8-Quart TurboFry 12/15; ThermoMaven 1-Second Thermometer 9/14; CHEF iQ Sense Gen 3 10/15. Re-counted by script at the end of the 2026-11-20 line-by-line pass, after every valued row was re-checked against the page it cites. Coverage improved because the Chefman 8-Quart listing turned out to state its own wattage, dimensions and warranty, and because the Emeril manual supplied wattage, temperature range and the preset list. Still missing: CHEF iQ's warranty, the ThermoMaven calibration record, the CHEF iQ 3-probe model code (FLG-046) and the Emeril accessory count (FLG-043).",
-      "action": "Owner or next session: cite a warranty document for CHEF iQ before filling that row, and treat the ThermoMaven calibration record as unverifiable until a certificate number is published. Do not fill either from memory or from a marketplace reseller page.",
+      "detail": "50 of 70 spec rows carry a verified value (53 carry any value at all; 17 are blank with a reason). Per product, verified of total: Chefman 6-Quart Dual Basket 10/13; Emeril Lagasse 26QT French Door 9/13; Chefman 8-Quart TurboFry 12/15; ThermoMaven 1-Second Thermometer 9/14; CHEF iQ Sense Gen 3 10/15. Re-counted by script at the end of the 2026-11-20 line-by-line pass, after every valued row was re-checked against the page it cites. Coverage improved because the Chefman 8-Quart listing turned out to state its own wattage, dimensions and warranty, and because the Emeril manual supplied wattage, temperature range and the preset list. A second T35 pass (arena/d248d06c-wina) then filled the CHEF iQ Sense Gen 3 warranty (2 years, activated on first app connection) from the manufacturer's own user guide, cited in specSources — see FLG-048 for the 2-year-vs-1-year source conflict it raises. Still missing: the ThermoMaven calibration record, the CHEF iQ 3-probe model code (FLG-046) and the Emeril accessory count (FLG-043).",
+      "action": "Owner or next session: treat the ThermoMaven calibration record as unverifiable until a certificate number is published. The CHEF iQ warranty row is now cited to the manufacturer user guide (this session); confirm the 2-year term applies to the enrolled ASIN (FLG-048). Do not fill either from memory or from a marketplace reseller page.",
       "sourceUrl": "https://www.amazon.com/dp/B09B7SB46R",
       "sourceLabel": "Amazon listing for the Emeril 26QT (wattage and warranty not stated there)"
     },
@@ -467,6 +467,15 @@
       "action": "Resolved 2026-11-20 (session arena-f515c465-wina). All price figures, star ratings, review counts and badges removed from every served page and replaced with 'not shown / not reproduced' copy citing the rule. Gate rules R-10 (price figures) and R-11 (ratings, review counts, merchandising badges) added to tools/check_site.py; the G-3 row on data-room/compliance-gate.html documents R-03…R-11. Owner decision S-14 (FLG-009) stays open as the deliberate path to change the posture if PA-API access is ever granted (SUG-03) — never silently.",
       "sourceUrl": "https://affiliate-program.amazon.com/help/operating/policies",
       "sourceLabel": "Amazon Associates Program Policies — Participation Requirements §6(t), §6(y); IP License §2(b)"
+    },
+    {
+      "id": "FLG-049",
+      "severity": "review",
+      "title": "CHEF iQ Sense warranty: manufacturer's user guide says 2 years; retailer listings say 1 year",
+      "detail": "The CHEF iQ Sense Gen3 (B0DZFD6R9Z) Warranty row was filled from the manufacturer's own user guide PDF (CQ60-ALL-SET-C_UG_OTP_050126, hosted on chefiq.com's CDN), which states: 'RJ Brands, LLC d/b/a CHEF iQ offers a limited 2-year Warranty ... warranted against defects in material and workmanship ... for a period of 2 years from the date the Warranty is activated.' The warranty is activated by connecting the product to the CHEF iQ App. Retailer listings and third-party mirrors of an older user guide state a 1-year limited warranty. The register uses the manufacturer's current document (2 years, activated on first app connection). This is a real source conflict, not a resolved question: the register cannot show both, and the buyer-facing value follows the manufacturer's newest official document. Flagged so the owner can confirm which applies to the enrolled ASIN before the figure is relied on.",
+      "action": "Owner: open the CHEF iQ user guide on chefiq.com and confirm the 2-year term applies to this ASIN; if a retailer or Amazon listing states 1 year, record which document and date governs. The site shows the manufacturer figure with its citation; it does not display both.",
+      "sourceUrl": "https://cdn.shopify.com/s/files/1/0267/8118/8171/files/CQ60-ALL-SET-C_UG_OTP_050126.pdf",
+      "sourceLabel": "CHEF iQ iQ Sense User Guide (official, chefiq.com CDN), warranty terms"
     }
   ],
   "ledger": {
