@@ -16,7 +16,9 @@
 <meta property="og:title" content="Open questions — Counter Space">
 <meta property="og:description" content="Every question that must be answered before further decisions: what we know, what we do not, and the specific action that would settle each one.">
 <meta property="og:url" content="https://sassnarep3-star.github.io/WinA/questions/">
-<meta name="twitter:card" content="summary">
+<meta property="og:image" content="https://sassnarep3-star.github.io/WinA/assets/img/social-card.png">
+<meta property="og:image:alt" content="Counter Space — line drawing of two air fryers on a kitchen counter">
+<meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Open questions — Counter Space">
 <meta name="twitter:description" content="Every question that must be answered before further decisions: what we know, what we do not, and the specific action that would settle each one.">
 <link rel="alternate" type="application/rss+xml" title="Counter Space" href="/WinA/feed.xml">
@@ -66,10 +68,10 @@
   <div class="wrap">
     <div class="strip" style="border:1px solid var(--rule);margin-bottom:2rem">
       <div class="strip__inner">
-        <div class="strip__cell"><p class="strip__num">22</p><p class="strip__lab">Questions logged</p></div>
-        <div class="strip__cell"><p class="strip__num">6</p><p class="strip__lab">Blocking</p></div>
+        <div class="strip__cell"><p class="strip__num">27</p><p class="strip__lab">Questions logged</p></div>
+        <div class="strip__cell"><p class="strip__num">7</p><p class="strip__lab">Blocking</p></div>
         <div class="strip__cell"><p class="strip__num">4</p><p class="strip__lab">Answered</p></div>
-        <div class="strip__cell"><p class="strip__num">18</p><p class="strip__lab">Still open</p></div>
+        <div class="strip__cell"><p class="strip__num">23</p><p class="strip__lab">Still open</p></div>
       </div>
     </div>
 
@@ -86,7 +88,7 @@
         <tbody><tr>
     <td><code>Q-01</code></td>
     <td class="small">Product identity</td>
-    <td><strong>Which exact products do the five submitted links point to?</strong><br><span class="pill pill--blocking" style="margin-top:.4rem">blocking</span></td>
+    <td class="qcell"><strong>Which exact products do the five submitted links point to?</strong><br><span class="pill pill--blocking" style="margin-top:.4rem">blocking</span><details class="qmore"><summary>What we have, and why it matters</summary><p><strong>We have:</strong> Each short link was followed and the landing product page recorded on 2026-11-20.</p><p><strong>Why it matters:</strong> Everything downstream depends on the ASIN. A wrong ASIN sends a reader to the wrong product.</p></details></td>
     <td class="small">All five resolved. They are three air fryers and two meat thermometers, with ASINs B0CDY277D3, B09B7SB46R, B08DKYBTPH, B0DHZTCNR5 and B0DZFD6R9Z.</td>
     <td class="small">The intended ASIN for each link, as the requester meant it. None was supplied, so the field stays null.</td>
     <td class="small">Confirm the five ASINs against the Associates 'Product Links' view, or by eye against the product pages.</td>
@@ -96,7 +98,7 @@
   </tr><tr>
     <td><code>Q-02</code></td>
     <td class="small">Product identity</td>
-    <td><strong>Is the short code in each link the ASIN?</strong><br><span class="pill pill--blocking" style="margin-top:.4rem">blocking</span></td>
+    <td class="qcell"><strong>Is the short code in each link the ASIN?</strong><br><span class="pill pill--blocking" style="margin-top:.4rem">blocking</span><details class="qmore"><summary>What we have, and why it matters</summary><p><strong>We have:</strong> Observed by following each link: the code and the destination ASIN differ in all five cases.</p><p><strong>Why it matters:</strong> Anyone treating the code as an ASIN would build broken links.</p></details></td>
     <td class="small">No. The codes are not ASINs and do not match the destination ASINs.</td>
     <td class="small">What the short codes actually encode. That is not published.</td>
     <td class="small">Already settled by observation. No further work needed.</td>
@@ -105,7 +107,7 @@
   </tr><tr>
     <td><code>Q-04</code></td>
     <td class="small">Commercial terms</td>
-    <td><strong>Is shopnow047c-20 a live, enrolled Associates tracking ID?</strong><br><span class="pill pill--blocking" style="margin-top:.4rem">blocking</span></td>
+    <td class="qcell"><strong>Is shopnow047c-20 a live, enrolled Associates tracking ID?</strong><br><span class="pill pill--blocking" style="margin-top:.4rem">blocking</span><details class="qmore"><summary>What we have, and why it matters</summary><p><strong>We have:</strong> The ID itself, supplied by the requester.</p><p><strong>Why it matters:</strong> If it is not enrolled, every click on this site earns nothing and the site is a hobby.</p></details></td>
     <td class="small">Unconfirmed. It is applied to every outbound link, but confirming enrolment requires the Associates dashboard.</td>
     <td class="small">Proof it is active, and that it is the ID this site should use.</td>
     <td class="small">Sign in to Associates Central, open Account Settings, confirm the Store/Tracking ID list contains shopnow047c-20. Then click one link and confirm it appears in the tracking report.</td>
@@ -114,7 +116,7 @@
   </tr><tr>
     <td><code>Q-09</code></td>
     <td class="small">Editorial</td>
-    <td><strong>Has anyone here used these products?</strong><br><span class="pill pill--blocking" style="margin-top:.4rem">blocking</span></td>
+    <td class="qcell"><strong>Has anyone here used these products?</strong><br><span class="pill pill--blocking" style="margin-top:.4rem">blocking</span><details class="qmore"><summary>What we have, and why it matters</summary><p><strong>We have:</strong> Official listing specifications for each product.</p><p><strong>Why it matters:</strong> The FTC forbids describing experience you do not have. This single fact caps how confident the writing can honestly be.</p></details></td>
     <td class="small">No. No hands-on testing occurred and no page claims any.</td>
     <td class="small">Any hands-on experience, or a tester to provide it.</td>
     <td class="small">Either obtain review units and test them, or keep the site permanently in 'how to decide' voice rather than 'we tested' voice. Recommendation: state the policy on the About page and hold it.</td>
@@ -123,7 +125,7 @@
   </tr><tr>
     <td><code>Q-13</code></td>
     <td class="small">Compliance</td>
-    <td><strong>What disclosure is required, in what words, and where?</strong><br><span class="pill pill--blocking" style="margin-top:.4rem">blocking</span></td>
+    <td class="qcell"><strong>What disclosure is required, in what words, and where?</strong><br><span class="pill pill--blocking" style="margin-top:.4rem">blocking</span><details class="qmore"><summary>What we have, and why it matters</summary><p><strong>We have:</strong> Operating Agreement §5 for the exact sentence; FTC Disclosures 101 for placement.</p><p><strong>Why it matters:</strong> Violating §5 is a material breach, and a buried disclosure fails the FTC test.</p></details></td>
     <td class="small">&quot;As an Amazon Associate I earn from qualifying purchases.&quot; — under the masthead on every page and repeated in the footer, plus a plain-language sponsored note on every outbound link.</td>
     <td class="small">Nothing. Both requirements are explicit and quoted.</td>
     <td class="small">Settled. The build now fails if either placement disappears.</td>
@@ -132,16 +134,25 @@
   </tr><tr>
     <td><code>Q-16</code></td>
     <td class="small">Measurement</td>
-    <td><strong>Is anything being measured right now?</strong><br><span class="pill pill--blocking" style="margin-top:.4rem">blocking</span></td>
+    <td class="qcell"><strong>Is anything being measured right now?</strong><br><span class="pill pill--blocking" style="margin-top:.4rem">blocking</span><details class="qmore"><summary>What we have, and why it matters</summary><p><strong>We have:</strong> Event definitions and a self-hosted worker in _worker/.</p><p><strong>Why it matters:</strong> The brief requires click and conversion measurement before content. Clicks can be counted; orders cannot be invented.</p></details></td>
     <td class="small">No. The five events are defined and the client is written, but no collector is deployed, so the client is switched off.</td>
     <td class="small">A deployed endpoint, and a source of truth for orders — which can only be Associates reports.</td>
     <td class="small">Deploy the worker and set the endpoint, then rebuild. Orders come from the Associates report, entered by hand into the ledger with a date.</td>
     <td><span class="pill pill--blocked-on-deploy">blocked-on-deploy</span></td>
     <td class="small"><a href="https://sassnarep3-star.github.io/WinA/analytics/" rel="noopener" target="_blank">Measurement page</a></td>
   </tr><tr>
+    <td><code>Q-25</code></td>
+    <td class="small">Product identity</td>
+    <td class="qcell"><strong>Do the five submitted short links still land on the five recorded listings from a logged-out browser?</strong><br><span class="pill pill--blocking" style="margin-top:.4rem">blocking</span><details class="qmore"><summary>What we have, and why it matters</summary><p><strong>We have:</strong> Two dated observation sets, recorded separately from the intended-ASIN field, and a register row per link.</p><p><strong>Why it matters:</strong> If a supplied short link is unstable, it must not be used anywhere; if it is stable, the register should say so with a date rather than with a claim.</p></details></td>
+    <td class="small">Partly, and not reliably from this environment. Re-checked on 2026-11-20: B0f3GKalj reached /dp/B0DZFD6R9Z (the recorded product) and B04G1MEwY and B0c8moW59 both returned the amazon.com home page instead of their recorded listings. Two earlier sessions recorded all five as matching. The site is unaffected because every button links to a constructed /dp/ ASIN URL, not to a short link.</td>
+    <td class="small">A logged-out browser check of each short link, which is the only observation that settles whether the short links themselves are stable.</td>
+    <td class="small">Open each link in a private browser window, copy the final URL, and record it in data/links.json with the date. See FLG-036.</td>
+    <td><span class="pill pill--needs-review">needs-review</span></td>
+    <td class="small"><a href="https://link.amazon/B04G1MEwY" rel="nofollow noopener" target="_blank" data-nonaffiliate="true">Submitted short link, re-checked 2026-11-20</a></td>
+  </tr><tr>
     <td><code>Q-03</code></td>
     <td class="small">Product identity</td>
-    <td><strong>Do the five products belong to one niche, or two?</strong><br><span class="pill pill--high" style="margin-top:.4rem">high</span></td>
+    <td class="qcell"><strong>Do the five products belong to one niche, or two?</strong><br><span class="pill pill--high" style="margin-top:.4rem">high</span><details class="qmore"><summary>What we have, and why it matters</summary><p><strong>We have:</strong> Product categories from the official listings, plus an air-fryer reference on both thermometer listings.</p><p><strong>Why it matters:</strong> Search engines reward topical focus. Two unrelated categories on one small domain dilutes it.</p></details></td>
     <td class="small">Two, with a shared job: three air fryers and two meat thermometers. The overlap is real — the thermometer listings explicitly name air fryer as a supported use — but they are separate buying decisions.</td>
     <td class="small">Whether the requester wants one publication covering both, or two focused sites.</td>
     <td class="small">Decision, not research: confirm the intended scope. Recommendation is in the suggestions register (SUG-02).</td>
@@ -151,7 +162,7 @@
   </tr><tr>
     <td><code>Q-05</code></td>
     <td class="small">Commercial terms</td>
-    <td><strong>What commission does each product actually pay?</strong><br><span class="pill pill--high" style="margin-top:.4rem">high</span></td>
+    <td class="qcell"><strong>What commission does each product actually pay?</strong><br><span class="pill pill--high" style="margin-top:.4rem">high</span><details class="qmore"><summary>What we have, and why it matters</summary><p><strong>We have:</strong> Categories: air fryers fall under Home &amp; Kitchen; thermometers under Home &amp; Kitchen too.</p><p><strong>Why it matters:</strong> Without it, no ordering between products is defensible, and no revenue estimate is honest.</p></details></td>
     <td class="small">Not established. Rates vary by category and change; no current public table was verifiable at build time.</td>
     <td class="small">The current applicable rate, and any fixed-amount bounty for either category.</td>
     <td class="small">Associates Central publishes current rates and any bounty offers inside the account. Record the rate with the date it was read.</td>
@@ -160,7 +171,7 @@
   </tr><tr>
     <td><code>Q-06</code></td>
     <td class="small">Commercial terms</td>
-    <td><strong>Do the submitted link.amazon short links comply with the Operating Agreement?</strong><br><span class="pill pill--high" style="margin-top:.4rem">high</span></td>
+    <td class="qcell"><strong>Do the submitted link.amazon short links comply with the Operating Agreement?</strong><br><span class="pill pill--high" style="margin-top:.4rem">high</span><details class="qmore"><summary>What we have, and why it matters</summary><p><strong>We have:</strong> Participation Requirements §6(w) and §6(v), quoted verbatim in the policy register.</p><p><strong>Why it matters:</strong> If it is non-compliant, a site built on those links is at risk of termination.</p></details></td>
     <td class="small">Unresolved. Published policy clearly constrains third-party shorteners and requires the destination not be obscured. Whether Amazon's own short domain satisfies that is not stated in the text we could verify.</td>
     <td class="small">An authoritative statement about link.amazon specifically.</td>
     <td class="small">Ask Associates support directly and keep the written reply. Meanwhile the site does not depend on them — it links to amazon.com product pages.</td>
@@ -169,7 +180,7 @@
   </tr><tr>
     <td><code>Q-07</code></td>
     <td class="small">Demand</td>
-    <td><strong>Is anyone searching for these products or these questions?</strong><br><span class="pill pill--high" style="margin-top:.4rem">high</span></td>
+    <td class="qcell"><strong>Is anyone searching for these products or these questions?</strong><br><span class="pill pill--high" style="margin-top:.4rem">high</span><details class="qmore"><summary>What we have, and why it matters</summary><p><strong>We have:</strong> Eight guides are published: the working titles named in the brief, a thermometer guide, and three additions from the reader-polish pass of 2026-11-20 (a USDA-referenced doneness check, a capacity rule, and a feature-name literacy piece).</p><p><strong>Why it matters:</strong> The brief asks for trending, high-converting topics. Trending is a measurement, not a guess.</p></details></td>
     <td class="small">Unknown. No search volume data exists for this project, and none has been assumed.</td>
     <td class="small">Any impression, click, or query data. Search Console is not verified and the analytics collector is not deployed.</td>
     <td class="small">Verify Search Console, submit the sitemap, and read the Queries report after 2–4 weeks. That replaces instinct with measured demand.</td>
@@ -178,7 +189,7 @@
   </tr><tr>
     <td><code>Q-10</code></td>
     <td class="small">Editorial</td>
-    <td><strong>What can be stated as fact about each product?</strong><br><span class="pill pill--high" style="margin-top:.4rem">high</span></td>
+    <td class="qcell"><strong>What can be stated as fact about each product?</strong><br><span class="pill pill--high" style="margin-top:.4rem">high</span><details class="qmore"><summary>What we have, and why it matters</summary><p><strong>We have:</strong> A per-row status on every specification: verified, claim, unverified, or withheld.</p><p><strong>Why it matters:</strong> A spec table with invented numbers is worse than no table, because it looks authoritative.</p></details></td>
     <td class="small">Only what the official listing states: capacity, form factor, named features, included accessories, material.</td>
     <td class="small">Wattage, dimensions, warranty, and calibration records — none were verifiable from an official source.</td>
     <td class="small">Manufacturer specification sheets for wattage and dimensions; the warranty document for terms. Add each only with a source link.</td>
@@ -188,7 +199,7 @@
   </tr><tr>
     <td><code>Q-14</code></td>
     <td class="small">Compliance</td>
-    <td><strong>May we quote star ratings and review counts seen on the listing?</strong><br><span class="pill pill--high" style="margin-top:.4rem">high</span></td>
+    <td class="qcell"><strong>May we quote star ratings and review counts seen on the listing?</strong><br><span class="pill pill--high" style="margin-top:.4rem">high</span><details class="qmore"><summary>What we have, and why it matters</summary><p><strong>We have:</strong> The clause, quoted verbatim.</p><p><strong>Why it matters:</strong> Ratings are the most tempting shortcut on an affiliate page, and the most commonly violated.</p></details></td>
     <td class="small">No. §6(t) forbids it without Creatives or PA-API.</td>
     <td class="small">API access to obtain ratings legitimately.</td>
     <td class="small">PA-API. Until then, the fields stay visibly withheld rather than quietly blank.</td>
@@ -197,7 +208,7 @@
   </tr><tr>
     <td><code>Q-17</code></td>
     <td class="small">Measurement</td>
-    <td><strong>What belongs in the campaign ledger?</strong><br><span class="pill pill--high" style="margin-top:.4rem">high</span></td>
+    <td class="qcell"><strong>What belongs in the campaign ledger?</strong><br><span class="pill pill--high" style="margin-top:.4rem">high</span><details class="qmore"><summary>What we have, and why it matters</summary><p><strong>We have:</strong> A defined schema and an intentionally empty table.</p><p><strong>Why it matters:</strong> An empty honest ledger is useful. A ledger with placeholder numbers is a liability.</p></details></td>
     <td class="small">Only rows with a timestamp, source, channel, eligible sessions, clicks and reported orders from an authorized first-party report.</td>
     <td class="small">Any actual report.</td>
     <td class="small">After the first tracked week, export the Associates report and add one row per channel, citing the report date.</td>
@@ -206,25 +217,43 @@
   </tr><tr>
     <td><code>Q-18</code></td>
     <td class="small">Technical</td>
-    <td><strong>Will this site be indexed, and where?</strong><br><span class="pill pill--high" style="margin-top:.4rem">high</span></td>
+    <td class="qcell"><strong>Will this site be indexed, and where?</strong><br><span class="pill pill--high" style="margin-top:.4rem">high</span><details class="qmore"><summary>What we have, and why it matters</summary><p><strong>We have:</strong> A sitemap covering every public page, an RSS feed, and per-page canonical tags.</p><p><strong>Why it matters:</strong> One site indexed well beats five competing with each other.</p></details></td>
     <td class="small">GitHub Pages at /WinA/ is indexable, with a sitemap, feed, robots file and canonical URLs.</td>
     <td class="small">Search Console verification, so nobody can see whether indexing happened.</td>
     <td class="small">Replace the placeholder verification token, then submit sitemap.xml and check Coverage weekly until pages are indexed.</td>
     <td><span class="pill pill--built-unverified">built-unverified</span></td>
     <td class="small"><a href="https://sassnarep3-star.github.io/WinA/sitemap.xml" rel="noopener" target="_blank">Published sitemap</a></td>
   </tr><tr>
+    <td><code>Q-23</code></td>
+    <td class="small">Brand</td>
+    <td class="qcell"><strong>Does the front page tell a stranger what to do next within fifteen seconds?</strong><br><span class="pill pill--high" style="margin-top:.4rem">high</span><details class="qmore"><summary>What we have, and why it matters</summary><p><strong>We have:</strong> The structure, the copy and the links exist and pass the compliance gate; every band has a single next action.</p><p><strong>Why it matters:</strong> If comprehension fails here, no amount of later content or measurement matters, and it is the one quality question we can answer without traffic.</p></details></td>
+    <td class="small">Unknown. The page now opens on three products, a three-question router and one feature read, which is the structure a shop uses — but no reader has been observed using it.</td>
+    <td class="small">Any observation of a real person scanning it: what they read first, what they skipped, what they mistook for a review.</td>
+    <td class="small">Five people, ten minutes, one question after the first screen (SUG-28). Alternatively wait for the collector and read the first-screen exit pattern.</td>
+    <td><span class="pill pill--unanswered">unanswered</span></td>
+    <td class="small"><span class='faint'>—</span></td>
+  </tr><tr>
+    <td><code>Q-24</code></td>
+    <td class="small">Measurement</td>
+    <td class="qcell"><strong>Which guide earned the first impression, and did it earn a click?</strong><br><span class="pill pill--high" style="margin-top:.4rem">high</span><details class="qmore"><summary>What we have, and why it matters</summary><p><strong>We have:</strong> Event definitions, a worker implementation, and a rebuilt feed and sitemap that put each new guide where a crawler will find it.</p><p><strong>Why it matters:</strong> This is the question the whole cadence depends on. Without it the eighth guide is chosen by instinct, which is what the brief explicitly forbids.</p></details></td>
+    <td class="small">Nothing is recorded. The five events are defined and the collector exists, but no endpoint is deployed, so the answer is structurally unavailable until that changes.</td>
+    <td class="small">A hosted collector and the Search Console property.</td>
+    <td class="small">Deploy _worker/collector.js, set the endpoint in data/products.json, rebuild, then read the day buckets after four full weeks.</td>
+    <td><span class="pill pill--blocked-on-deploy">blocked-on-deploy</span></td>
+    <td class="small"><span class='faint'>—</span></td>
+  </tr><tr>
     <td><code>Q-08</code></td>
     <td class="small">Demand</td>
-    <td><strong>Which guide topic should be written next?</strong><br><span class="pill pill--medium" style="margin-top:.4rem">medium</span></td>
-    <td class="small">Hypothesis only. The capacity checklist is the best starting bet because it applies to all three air fryers and does not depend on any product outperforming another.</td>
+    <td class="qcell"><strong>Which guide topic should be written next?</strong><br><span class="pill pill--medium" style="margin-top:.4rem">medium</span><details class="qmore"><summary>What we have, and why it matters</summary><p><strong>We have:</strong> Five working titles, deliberately not framed as popularity claims.</p><p><strong>Why it matters:</strong> Publishing order is the main lever on a new site.</p></details></td>
+    <td class="small">Three roadmap titles were promoted on 2026-11-20: the USDA-referenced doneness check, the household capacity rule, and the feature-name literacy piece. The next one should come from the query report, not from the roadmap, because the report is still empty.</td>
     <td class="small">Evidence of which question people actually arrive with.</td>
-    <td class="small">Ship all five, then let Search Console query data reorder them. See SUG-05.</td>
-    <td><span class="pill pill--hypothesis">hypothesis</span></td>
+    <td class="small">Verify Search Console, wait for the first four full weeks of query data, then promote the topic with impressions and no page. Until then the remaining roadmap titles stay hypotheses.</td>
+    <td><span class="pill pill--partly-answered">partly-answered</span></td>
     <td class="small"><a href="https://sassnarep3-star.github.io/WinA/guides/" rel="noopener" target="_blank">The eight guides as published</a></td>
   </tr><tr>
     <td><code>Q-11</code></td>
     <td class="small">Editorial</td>
-    <td><strong>Can we show prices?</strong><br><span class="pill pill--medium" style="margin-top:.4rem">medium</span></td>
+    <td class="qcell"><strong>Can we show prices?</strong><br><span class="pill pill--medium" style="margin-top:.4rem">medium</span><details class="qmore"><summary>What we have, and why it matters</summary><p><strong>We have:</strong> §6(y) of the Participation Requirements.</p><p><strong>Why it matters:</strong> A buying guide without prices is a real limitation for the reader.</p></details></td>
     <td class="small">No. Not without API access, and price tracking is prohibited outright.</td>
     <td class="small">Creatives API or PA-API credentials, which would supply compliant, current pricing.</td>
     <td class="small">Apply for PA-API access once the account has qualifying sales. Then prices can come from the API and stay accurate automatically.</td>
@@ -233,16 +262,16 @@
   </tr><tr>
     <td><code>Q-12</code></td>
     <td class="small">Editorial</td>
-    <td><strong>Can we show product images?</strong><br><span class="pill pill--medium" style="margin-top:.4rem">medium</span></td>
-    <td class="small">Not lawfully with what we have. Program Content cannot be copied or hot-linked outside approved tooling, and substituting a different appliance's photo would misrepresent the item.</td>
+    <td class="qcell"><strong>Can we show product images?</strong><br><span class="pill pill--medium" style="margin-top:.4rem">medium</span><details class="qmore"><summary>What we have, and why it matters</summary><p><strong>We have:</strong> The constraint, quoted in the policy register.</p><p><strong>Why it matters:</strong> Images are the single biggest lever on whether a product page converts.</p></details></td>
+    <td class="small">Not from Amazon. Program Content — including listing imagery — may only be used through the approved creative tooling, and that access does not exist for this account (Q-11). The site therefore publishes its own original line drawings, each captioned as a schematic rather than a photograph, so nothing on the page claims to be the item.</td>
     <td class="small">Creatives API access, or manufacturer-supplied press assets with written permission.</td>
     <td class="small">PA-API/Creatives access is the correct route. Press kits are a fallback but add a per-brand permission burden.</td>
-    <td><span class="pill pill--blocked-on-access">blocked-on-access</span></td>
-    <td class="small"><a href="https://affiliate-program.amazon.com/help/operating/policies" rel="noopener" target="_blank">Participation Requirements §6(a)</a></td>
+    <td><span class="pill pill--answered-constrains-everything">answered-constrains-everything</span></td>
+    <td class="small"><a href="https://affiliate-program.amazon.com/help/operating/policies" rel="noopener" target="_blank">Associates Program Policies — Program Content and its permitted use</a></td>
   </tr><tr>
     <td><code>Q-15</code></td>
     <td class="small">Compliance</td>
-    <td><strong>Can the site run paid search ads?</strong><br><span class="pill pill--medium" style="margin-top:.4rem">medium</span></td>
+    <td class="qcell"><strong>Can the site run paid search ads?</strong><br><span class="pill pill--medium" style="margin-top:.4rem">medium</span><details class="qmore"><summary>What we have, and why it matters</summary><p><strong>We have:</strong> §6(f) and the Prohibited Paid Search Placement definition.</p><p><strong>Why it matters:</strong> An Amazon-branded ad campaign is a fast route to termination.</p></details></td>
     <td class="small">Only narrowly. No bidding on Amazon marks or misspellings, and paid results must send users to this site, not to Amazon.</td>
     <td class="small">Whether any ad budget exists at all.</td>
     <td class="small">If ads are ever considered, read the Prohibited Paid Search Placement definition in the Commission Income Statement first.</td>
@@ -251,7 +280,7 @@
   </tr><tr>
     <td><code>Q-19</code></td>
     <td class="small">Technical</td>
-    <td><strong>Is a project subpath the right home for this?</strong><br><span class="pill pill--medium" style="margin-top:.4rem">medium</span></td>
+    <td class="qcell"><strong>Is a project subpath the right home for this?</strong><br><span class="pill pill--medium" style="margin-top:.4rem">medium</span><details class="qmore"><summary>What we have, and why it matters</summary><p><strong>We have:</strong> A working build at a /WinA/ subpath with all links correctly prefixed.</p><p><strong>Why it matters:</strong> A reader deciding whether to trust a buying guide reads the URL. A subpath reads as a side project.</p></details></td>
     <td class="small">It works, but a custom domain would be better for brand and for cookie scope.</td>
     <td class="small">A domain name, and access to DNS.</td>
     <td class="small">Buy a domain, add a CNAME, enable HTTPS in Pages settings, then change baseurl in one place and rebuild.</td>
@@ -260,7 +289,7 @@
   </tr><tr>
     <td><code>Q-20</code></td>
     <td class="small">Brand</td>
-    <td><strong>What is this publication called, and who is it for?</strong><br><span class="pill pill--medium" style="margin-top:.4rem">medium</span></td>
+    <td class="qcell"><strong>What is this publication called, and who is it for?</strong><br><span class="pill pill--medium" style="margin-top:.4rem">medium</span><details class="qmore"><summary>What we have, and why it matters</summary><p><strong>We have:</strong> A name, voice, type system and colour palette applied consistently.</p><p><strong>Why it matters:</strong> Every editorial choice flows from the audience. Renaming later means rewriting the voice.</p></details></td>
     <td class="small">Working name 'Counter Space', for people deciding what earns counter space. Chosen for this build; not a permanent commitment.</td>
     <td class="small">Confirmation that the requester wants this name and audience.</td>
     <td class="small">Decision. Check the name is not already an active trademark in the same category before committing.</td>
@@ -269,16 +298,34 @@
   </tr><tr>
     <td><code>Q-22</code></td>
     <td class="small">Demand</td>
-    <td><strong>Is there any traffic source at all beyond organic search?</strong><br><span class="pill pill--medium" style="margin-top:.4rem">medium</span></td>
+    <td class="qcell"><strong>Is there any traffic source at all beyond organic search?</strong><br><span class="pill pill--medium" style="margin-top:.4rem">medium</span><details class="qmore"><summary>What we have, and why it matters</summary><p><strong>We have:</strong> An inert capture form and a feed.</p><p><strong>Why it matters:</strong> Organic search takes months. A site with no other channel is betting everything on one that has not started yet.</p></details></td>
     <td class="small">None configured. No social presence, no email list, no referrals.</td>
     <td class="small">An email service provider, and any distribution channel.</td>
     <td class="small">Pick one channel and commit, or accept a slow burn. Decide before spending effort on capture UI.</td>
     <td><span class="pill pill--unanswered">unanswered</span></td>
     <td class="small"><a href="https://sassnarep3-star.github.io/WinA/feed.xml" rel="noopener" target="_blank">Published feed, currently unconsumed</a></td>
   </tr><tr>
+    <td><code>Q-26</code></td>
+    <td class="small">Technical</td>
+    <td class="qcell"><strong>Who closes the three open parallel-site pull requests, and how?</strong><br><span class="pill pill--medium" style="margin-top:.4rem">medium</span><details class="qmore"><summary>What we have, and why it matters</summary><p><strong>We have:</strong> PR #26, PR #28 and PR #2 listed with their file sets, and a gate (duplicate-content and archive-integrity checks) that fails if a second site reaches the served root.</p><p><strong>Why it matters:</strong> Two canonical hosts with the same articles is the one SEO outcome this whole project was built to avoid.</p></details></td>
+    <td class="small">Unresolved. Three pull requests from other sessions add competing root-level sites. None was merged by this session; merging any as-is recreates the duplicate-content failure the board records twice.</td>
+    <td class="small">An owner decision: close them, or port only their verified data into data/ and rebuild.</td>
+    <td class="small">Review each PR's diff against the current build; keep data, reject the second site, and record the choice in the decision log.</td>
+    <td><span class="pill pill--decision-needed">decision-needed</span></td>
+    <td class="small"><a href="https://github.com/sassnarep3-star/WinA/pull/28" rel="noopener" target="_blank">Open PR #28 (duplicate site)</a></td>
+  </tr><tr>
+    <td><code>Q-27</code></td>
+    <td class="small">Editorial</td>
+    <td class="qcell"><strong>Is the visual result actually verified, or only structurally valid?</strong><br><span class="pill pill--medium" style="margin-top:.4rem">medium</span><details class="qmore"><summary>What we have, and why it matters</summary><p><strong>We have:</strong> Parsed HTML, deterministic builds, link and asset checks, and CSS that validates as balanced and is written mobile-first.</p><p><strong>Why it matters:</strong> The whole point of this pass was appearance. A claim about how it looks cannot be verified by a link checker, so it is recorded as unverified rather than asserted.</p></details></td>
+    <td class="small">Only structurally. Three gates pass — markup, links, compliance — but no browser render exists in this environment, so nothing has confirmed how the new type scale, art frames and grid bands look at 390px or on paper.</td>
+    <td class="small">A rendered screenshot on a small phone, a tablet and print preview, by a person.</td>
+    <td class="small">Open the site on a phone, or run any headless browser locally and capture three viewports. Report anything broken to the flag register.</td>
+    <td><span class="pill pill--unanswered">unanswered</span></td>
+    <td class="small"><span class='faint'>—</span></td>
+  </tr><tr>
     <td><code>Q-21</code></td>
     <td class="small">Brand</td>
-    <td><strong>Should there be an author identity?</strong><br><span class="pill pill--low" style="margin-top:.4rem">low</span></td>
+    <td class="qcell"><strong>Should there be an author identity?</strong><br><span class="pill pill--low" style="margin-top:.4rem">low</span><details class="qmore"><summary>What we have, and why it matters</summary><p><strong>We have:</strong> An editorial standards page describing method and constraints.</p><p><strong>Why it matters:</strong> An unattributed review site reads as generated. That is exactly the failure mode the brief rejects.</p></details></td>
     <td class="small">Yes, eventually. Search quality guidance and reader trust both reward a real, attributable author.</td>
     <td class="small">A named person, a bio, and any credentialed expertise to describe.</td>
     <td class="small">Decide who is accountable for the content. A byline requires a real person willing to be named.</td>

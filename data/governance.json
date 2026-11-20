@@ -218,10 +218,10 @@
     },
     {
       "id": "FLG-025",
-      "severity": "low",
+      "severity": "resolved",
       "title": "Placeholder site-verification token in every page head",
-      "detail": "Every generated page carries <meta name=\"google-site-verification\" content=\"REPLACE_WITH_REAL_TOKEN_FLG009\">. The value is a placeholder, not a verification token. It is not a credential and it does nothing, but it is a visible defect in the published HTML.",
-      "action": "Remove the tag from the layout in _src/build.mjs, or replace it with a real token from Search Console once the owner verifies the property (FLG-009). Not changed in this session; it belongs to the shared layout.",
+      "detail": "The placeholder google-site-verification token is no longer emitted. _src/build.mjs now writes an HTML comment in its place, naming what to add and when (after the owner verifies the property in Search Console). An empty or fake verification tag claims a verification that has not happened, and it was on every page of the live site.",
+      "action": "Owner: when the property is verified, put the real token in data/products.json (site.searchConsoleToken) or in the layout, and rebuild. Do not paste a token that has not been issued.",
       "sourceUrl": "https://developers.google.com/search/docs/fundamentals/creating-helpful-content",
       "sourceLabel": "Google Search Central (verification meta tags)"
     },
@@ -355,19 +355,55 @@
       "id": "FLG-036",
       "severity": "review",
       "title": "Re-check on 2026-11-20 did not reproduce the recorded destination for three submitted short links",
-      "detail": "On 2026-11-20 each submitted link.amazon URL was re-opened with the page tool. B02NbDxp3 (-> /dp/B09B7SB46R) and B00hJ57DV (-> /dp/B08DKYBTPH) matched data/links.json. B04G1MEwY and B0c8moW59 each returned the amazon.com home page on both attempts, not the recorded /dp/B0CDY277D3 and /dp/B0DHZTCNR5 pages. B0f3GKalj returned the home page on one attempt and the recorded /dp/B0DZFD6R9Z page on the other, so it is inconsistent. The recorded observations are kept unchanged. The cause is not known: it could be the short link, the redirect handling of the page tool, or a session-dependent redirect. The site is not affected, because every product button links to amazon.com/dp/<observed ASIN>?tag=shopnow047c-20 directly and not through the short links.",
+      "detail": "On 2026-11-20 each submitted link.amazon URL was re-opened with the page tool. B02NbDxp3 (-> /dp/B09B7SB46R) and B00hJ57DV (-> /dp/B08DKYBTPH) matched data/links.json. B04G1MEwY and B0c8moW59 each returned the amazon.com home page on both attempts, not the recorded /dp/B0CDY277D3 and /dp/B0DHZTCNR5 pages. B0f3GKalj returned the home page on one attempt and the recorded /dp/B0DZFD6R9Z page on the other, so it is inconsistent. The recorded observations are kept unchanged. The cause is not known: it could be the short link, the redirect handling of the page tool, or a session-dependent redirect. The site is not affected, because every product button links to amazon.com/dp/<observed ASIN>?tag=shopnow047c-20 directly and not through the short links. Second observation, same day (session arena-a88ebd48): B0f3GKalj reached the recorded /dp/B0DZFD6R9Z listing; B04G1MEwY and B0c8moW59 again returned the amazon.com home page. Across two sessions the two links pointing at the Chefman dual basket and the ThermoMaven have not reproduced once, while the other three reproduced at least once. Still not enough to call the short links broken — the fetch path here is not a browser — but enough that no product link on this site may route through them, which is how it is built.",
       "action": "Owner: open each of the five short links in a normal browser, logged out, and record the landing URL. If any short link lands somewhere other than its recorded /dp/ page, correct data/links.json and add a dated note. Do not rely on the recorded values until this is done.",
       "sourceUrl": "https://link.amazon/B04G1MEwY",
       "sourceLabel": "Submitted short link (re-checked 2026-11-20; see detail)"
     },
     {
       "id": "FLG-037",
-      "severity": "review",
+      "severity": "resolved",
       "title": "Buy buttons say 'Check price on Amazon' while the site states prices are not shown",
-      "detail": "Every product card and hero button is labelled 'Check price on Amazon'. Other pages state that prices are not shown on this site, and data/products.json withholds prices (FLG-005). The label does not display a price, but it is worded as if one is on the page. It is flagged for an owner decision on wording, not changed here, because it is a visible copy decision and it appears on every product card. Amazon Associates Program Policies §6(y) is cited in this register for the no-price-tracking rule; that section was not re-read in this check.",
-      "action": "Owner: choose the button wording. If changed, rebuild with node _src/build.mjs; the compliance gate checks the disclosure and link classes, not the label wording.",
+      "detail": "Resolved by the reader-polish pass of 2026-11-20. Every buy button — hero card, product card, buy box, guide sidebar — now reads 'See it on Amazon', which is what the link actually does. The explanation of why no price is printed stays in the buy box and on /disclosure/, so the reader is told the reason rather than left to wonder. §6(y) (no price tracking) and the API-only pricing rule are unchanged; nothing in this pass introduces a price.",
+      "action": "No owner action unless the wording is disliked. Changing it is a copy edit in _src/build.mjs, then node _src/build.mjs.",
       "sourceUrl": "https://affiliate-program.amazon.com/help/operating/policies",
       "sourceLabel": "Amazon Associates Program Policies (cited elsewhere in this register)"
+    },
+    {
+      "id": "FLG-038",
+      "severity": "action",
+      "title": "Three open pull requests from parallel sessions add competing sites at the served root",
+      "detail": "PR #26 (arena/574fc8eb-wina), PR #28 (arena/580f4c6d-wina, 'The Crisp Counter') and PR #2 (arena/2b309a82-wina) each add a full root-level site: their own index.html, stylesheet, dashboard pages, sitemap and feed. This branch did not merge, edit or close them. Merging either of the two newer ones as-is would put a second homepage and a second copy of every guide on the same origin — the exact failure this board already records twice, and the one that costs the most in search. Their verification work is real; the fix is a data port, not a merge.",
+      "action": "Owner: for each PR, take the verified data rows into data/ and close it, or ask for a re-open as a data-only branch. Do not merge a second site. Anything worth keeping from them is already archived by convention under archive/.",
+      "sourceUrl": "https://github.com/sassnarep3-star/WinA/pull/28",
+      "sourceLabel": "Open PR #28 — duplicate site (see also #26 and #2)"
+    },
+    {
+      "id": "FLG-039",
+      "severity": "review",
+      "title": "All imagery on the site is original line art, not product photography",
+      "detail": "The site now draws each product as a schematic (dual basket, single basket, French-door oven, instant-read, wireless leave-in) plus one generated line-art social card. No Amazon Program Content is used anywhere, and every drawing carries a caption saying it is not a photograph. That is a deliberate consequence of the Program Policies restriction on Program Content and of the missing API credential, not an oversight. It also means the site shows the shape of the decision rather than the item, and a reader who needs to see the real product has to click through.",
+      "action": "Owner: if photography matters commercially, it follows SUG-03 (PA-API or Creatives access) or a written brand licence. Never scraping listing images or hot-linking them.",
+      "sourceUrl": "https://affiliate-program.amazon.com/help/operating/policies",
+      "sourceLabel": "Associates Program Policies — Program Content"
+    },
+    {
+      "id": "FLG-040",
+      "severity": "low",
+      "title": "The social card is one uncompressed PNG (950,363 bytes) used site-wide",
+      "detail": "assets/img/social-card.png is referenced by og:image on every page. It renders correctly and is not loaded by the page itself, so it costs a crawler fetch, not a reader one — but it is unoptimised, it is site-wide rather than per-article, and no image sitemap entry exists for it. A per-guide card would be the next step, and it needs a build step that can rasterise, which this repository does not have.",
+      "action": "Owner or next session: run a lossy pass over the PNG (any optimiser), and add per-page og:image only when there is a deterministic way to produce the files in the build.",
+      "sourceUrl": "",
+      "sourceLabel": ""
+    },
+    {
+      "id": "FLG-041",
+      "severity": "review",
+      "title": "Visual QA was not possible in this sandbox: the polish pass is verified structurally, not visually",
+      "detail": "Every gate passes — generated pages, links, canonicals, disclosure position, claim bans, alt text on img elements, deterministic rebuild — but no browser ran in this environment, so how the new type scale, art frames, fit router and dark feature band actually render at 390 px, 768 px and on paper is unverified. Anyone reading 'the design is done' should read this row with it.",
+      "action": "Open the live site on a phone and in print preview. Report anything wrong to this register; a CSS fix is a one-line change and a rebuild.",
+      "sourceUrl": "",
+      "sourceLabel": ""
     }
   ],
   "ledger": {

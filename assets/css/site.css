@@ -940,3 +940,30 @@ table.data caption { text-align: left; font-size: .78rem; }
 }
 .honesty__stat dd a { color: var(--ink); }
 .guide-card .guide-link__read { color: var(--ink-faint); }
+
+/* --- paths board + decision states ----------------------------------- */
+.path__steps { list-style: none; margin: 0; padding: 0; display: grid; gap: .5rem; }
+.path__steps li {
+  display: grid; gap: .35rem .6rem; align-items: start;
+  grid-template-columns: auto 1fr; font-size: .85rem; color: var(--ink-soft);
+  border-top: 1px solid var(--rule-soft); padding-top: .5rem;
+}
+.path__steps li .ref { grid-column: 2; }
+.path__steps .ref code { font-size: .7rem; color: var(--ink-faint); }
+.pill--accept, .pill--done, .pill--shipped-step { background: var(--ok-wash); color: var(--ok); border-color: #c3dbcb; }
+.pill--defer, .pill--held { background: #f0ece5; color: var(--ink-mute); border-color: var(--rule); }
+.pill--decision-needed { white-space: nowrap; }
+.path p.small { margin: 0; }
+
+/* --- questions: expandable evidence, so the table stays scannable ----- */
+.qcell { min-width: 15rem; }
+.qmore { margin-top: .55rem; }
+.qmore summary {
+  cursor: pointer; font-size: .7rem; letter-spacing: .08em; text-transform: uppercase;
+  font-weight: 700; color: var(--accent); list-style: none;
+}
+.qmore summary::-webkit-details-marker { display: none; }
+.qmore summary::before { content: "＋ "; color: var(--clay); }
+.qmore[open] summary::before { content: "－ "; }
+.qmore p { margin: .5rem 0 0; font-size: .82rem; color: var(--ink-soft); }
+.qmore p strong { color: var(--ink); }

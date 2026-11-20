@@ -114,10 +114,16 @@ const NAV = [
  * Social card. Only advertised when the file actually exists in the tree —
  * declaring summary_large_image with no image is the slop tell it replaces.
  */
+/**
+ * Social card. `site.socialImage` is a repo-relative path — the same path
+ * under the site root — and the card is only advertised if the file is
+ * actually in the tree. Declaring summary_large_image with no image is the
+ * slop tell this replaces; declaring an image that 404s is worse.
+ */
 const SOCIAL_IMAGE = (() => {
-  const rel = site.socialImage;
-  if (!rel) return "";
-  return fs.existsSync(path.join(ROOT, rel.replace(/^\//, "").replace(BASE, ""))) ? abs(rel) : "";
+  const rel = (site.socialImage || "").replace(/^\/+/, "");
+  if (!rel || !fs.existsSync(path.join(ROOT, rel))) return "";
+  return abs("/" + rel);
 })();
 
 
@@ -1430,9 +1436,15 @@ function questionsPage() {
       (q) => `<tr>
     <td><code>${esc(q.id)}</code></td>
     <td class="small">${esc(areas[q.area] || q.area)}</td>
-    <td><strong>${esc(q.question)}</strong><br><span class="pill pill--${esc(
+    <td class="qcell"><strong>${esc(q.question)}</strong><br><span class="pill pill--${esc(
         q.priority
-      )}" style="margin-top:.4rem">${esc(q.priority)}</span></td>
+      )}" style="margin-top:.4rem">${esc(q.priority)}</span>${
+        q.have || q.matters
+          ? `<details class="qmore"><summary>What we have, and why it matters</summary><p><strong>We have:</strong> ${esc(
+              q.have || "nothing yet"
+            )}</p><p><strong>Why it matters:</strong> ${esc(q.matters || "")}</p></details>`
+          : ""
+      }</td>
     <td class="small">${esc(q.answer)}</td>
     <td class="small">${esc(q.missing)}</td>
     <td class="small">${esc(q.howToFind)}</td>
@@ -1565,6 +1577,65 @@ function renderTopicRoadmap() {
 </section>`;
 }
 
+/**
+ * The paths block. A sequence, not a menu: each option states its steps with
+ * their real state, so "choose the best path" is answerable from the page
+ * rather than from a chat log.
+ */
+const STEP_STATE = {
+  done: ["shipped", "done"],
+  todo: ["consider", "to do"],
+  blocked: ["action", "blocked — owner"],
+  hold: ["hold", "held"],
+  decision: ["decision-needed", "owner decision"]
+};
+
+function renderPaths() {
+  const pp = suggestions.paths;
+  if (!pp) return "";
+  const cards = pp.options
+    .map((o) => {
+      const steps = o.steps
+        .map(
+          (st) => {
+            const [pill, label] = STEP_STATE[st.state] || ["hold", st.state];
+            return `<li>
+      <span class="pill pill--${pill}">${esc(label)}</span>
+      <span>${esc(st.text)}</span>${st.ref ? `<span class="ref"><code>${esc(st.ref)}</code></span>` : ""}
+    </li>`;
+          }
+        )
+        .join("");
+      return `<article class="path${o.status === "picked" ? " path--pick" : ""}">
+    <p class="path__badge">${o.status === "picked" ? "Picked path" : o.status === "next" ? "Do next" : "Held"}</p>
+    <h3>Path ${esc(o.id)} — ${esc(o.name)}</h3>
+    <p class="small muted" style="margin:0">${esc(o.oneLiner)}</p>
+    <ol class="path__steps">${steps}</ol>
+    <dl>
+      <dt>Unlocks</dt><dd>${esc(o.unlocks)}</dd>
+      <dt>Cost</dt><dd>${esc(o.cost)}</dd>
+      <dt>Risk</dt><dd>${esc(o.risk)}</dd>
+      <dt>First signal it worked</dt><dd>${esc(o.firstSignal)}</dd>
+    </dl>
+  </article>`;
+    })
+    .join("");
+
+  return `<section class="section" id="paths">
+  <div class="wrap">
+    <div class="section__head">
+      <h2 class="section__title" style="font-size:1.4rem">Choose a path, not a wish</h2>
+      <p class="section__dek">${esc(pp.note)}</p>
+    </div>
+    <div class="path-grid">${cards}</div>
+    <div class="note mt2">
+      <p class="note__title">Why path ${esc(pp.pick)} is the one this pass took</p>
+      <p>${esc(pp.why)}</p>
+    </div>
+  </div>
+</section>`;
+}
+
 function renderDecisionLog() {
   const dl = suggestions.decisionLog;
   const entries = dl.entries;
@@ -1654,11 +1725,12 @@ ${breadcrumb([{ href: url("/"), label: "Home" }, { label: "Suggestions" }])}
     <p class="article-head__dek">${esc(suggestions.intro)}</p>
   </div>
 </div>
-<section class="section">
+${renderPaths()}
+<section class="section section--deep">
   <div class="wrap">
     <div class="tablewrap" style="margin-bottom:1.5rem">
       <table class="data sortable">
-        <caption>Status key. Anything not marked "shipped" is waiting for a decision — nothing beyond the initial build has been implemented.</caption>
+        <caption>Status key. "Shipped" rows are live on this site as of the reader-polish pass of 2026-11-20; everything else is waiting for a decision.</caption>
         <thead><tr><th scope="col">Status</th><th scope="col">Meaning</th><th scope="col">Count</th></tr></thead>
         <tbody>${suggestions.statusKey
           .map(
@@ -1688,7 +1760,7 @@ ${breadcrumb([{ href: url("/"), label: "Home" }, { label: "Suggestions" }])}
 
     <div class="note mt2">
       <p class="note__title">If you accept only three</p>
-      <p><strong>SUG-04</strong> — prove one affiliate link actually tracks, because nothing else matters if it does not. <strong>SUG-03</strong> — get API access, which unlocks prices, ratings and images at once. <strong>SUG-05</strong> — publish weekly for eight weeks, then let the query report choose the next topic instead of instinct.</p>
+      <p><strong>SUG-04</strong> — prove one affiliate link actually tracks, because nothing else matters if it does not. <strong>SUG-03</strong> — get API access, which unlocks prices, ratings and images at once. <strong>SUG-05</strong> — publish weekly, then let the query report choose the next topic instead of instinct. Those three are Path B step 2, Path C step 1 and the end of Path A, which is why the paths above are ordered the way they are.</p>
     </div>
 
     <div class="note note--stop mt1">

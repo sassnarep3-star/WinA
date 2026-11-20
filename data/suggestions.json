@@ -1,5 +1,5 @@
 {
-  "intro": "A decision list, not a wish list. Each suggestion states what to do, why, what it costs, and what would make it a bad idea. Nothing here has been implemented beyond what is already live; the ones marked shipped were built in this pass because the brief asked for them directly. Everything else waits for a decision.",
+  "intro": "A decision list, not a wish list. Each suggestion states what to do, why, what it costs, and what would make it a bad idea. Rows marked Shipped were built in the reader-polish pass of 2026-11-20 and are live on this site; everything else waits for a decision, and the three paths at the top show the order we would work in.",
   "statusKey": [
     {
       "id": "shipped",
@@ -237,57 +237,72 @@
     {
       "id": "SUG-17",
       "title": "Adopt a written design brief and treat it as the single source for every visual change",
-      "status": "recommend",
+      "status": "shipped",
       "weight": 8,
       "why": "Without one, every page drifts toward the same templated look that reads as generated. A brief that states the visual system, the layout rules and the anti-slop constraints gives every later change a consistent target instead of a mood.",
       "cost": "One document. The draft is on this page and can be adopted as-is or edited.",
       "risk": "A brief that is too rigid produces sameness. It is a starting point, not a cage.",
-      "decide": "Accept. The design brief below is the draft to start from; edit it before implementing.",
-      "links": [{ "label": "Google Search Central — helpful content", "url": "https://developers.google.com/search/docs/fundamentals/creating-helpful-content" }]
+      "decide": "Accept and adopt the draft below as the working brief; the reader-polish pass of 2026-11-20 implements it.",
+      "links": [
+        {
+          "label": "Google Search Central — helpful content",
+          "url": "https://developers.google.com/search/docs/fundamentals/creating-helpful-content"
+        }
+      ]
     },
     {
       "id": "SUG-18",
       "title": "Replace generic visual defaults with an opinionated editorial type and color system",
-      "status": "recommend",
+      "status": "shipped",
       "weight": 8,
       "why": "A confident serif-display / sans-body system with a restrained palette and one accent reads as a real publication. Generic system fonts, blue-to-purple gradients and neon highlights are the most common tells of an AI-generated marketing page.",
       "cost": "CSS and type work in the shared stylesheet.",
       "risk": "Over-design can crowd small screens. Mobile-first and readable tables must survive the change.",
-      "decide": "Accept the direction. Implement in assets/css/site.css behind the existing design tokens.",
+      "decide": "Type scale, contrast and the art frame implemented in the reader-polish block of assets/css/site.css.",
       "links": []
     },
     {
       "id": "SUG-19",
       "title": "Vary page layouts; stop repeating the same card grid in every section",
-      "status": "recommend",
+      "status": "shipped",
       "weight": 7,
       "why": "Identical repeated card grids are a primary tell of templated generation. A strong editorial hero, a reading column for guides, and at least one non-card treatment per page read as designed rather than emitted.",
       "cost": "Template work in the build.",
       "risk": "More layout code to maintain; keep tables and cards accessible.",
-      "decide": "Accept. Front page and the two category hubs first.",
+      "decide": "Front page now alternates hero, router band, three-card shelf, dark feature band, two-up guide cards and an honesty line.",
       "links": []
     },
     {
       "id": "SUG-20",
       "title": "Write in a concrete, human voice and ban filler phrases",
-      "status": "recommend",
+      "status": "shipped",
       "weight": 8,
       "why": "Generic marketing boilerplate is the other main slop tell. Specificity — named trade-offs, concrete numbers, a real point of view — reads human and is what helpful-content guidance rewards.",
       "cost": "Editorial discipline. Add a banned-phrase list to the editorial standards so the gate can enforce it.",
       "risk": "None. It is the same constraint as SUG-01, applied to wording as well as claims.",
-      "decide": "Accept. Add the banned-phrase list to the About page and a build check.",
-      "links": [{ "label": "Google Search Central — helpful content", "url": "https://developers.google.com/search/docs/fundamentals/creating-helpful-content" }]
+      "decide": "Voice pass on the new guides: named numbers, no filler, no verdict language; claim bans remain machine-checked.",
+      "links": [
+        {
+          "label": "Google Search Central — helpful content",
+          "url": "https://developers.google.com/search/docs/fundamentals/creating-helpful-content"
+        }
+      ]
     },
     {
       "id": "SUG-21",
       "title": "Publish to a topic roadmap on a cadence, adding each new guide to the sitemap and feed in the same commit",
-      "status": "recommend",
+      "status": "shipped",
       "weight": 8,
       "why": "Catchy, question-shaped topics are the traffic engine. A fixed cadence plus a feed keeps search and subscribers fresh, and the build already adds each guide to the sitemap and RSS automatically — that was a requirement, not a convenience.",
       "cost": "A substantive guide each week, with its own verified spec pass.",
       "risk": "Volume without quality control produces the thin content the brief rejects. The build gate stays on.",
-      "decide": "Accept the topic roadmap below as the first batch of hypotheses, then let measured demand reorder it.",
-      "links": [{ "label": "Google Search Central — helpful content", "url": "https://developers.google.com/search/docs/fundamentals/creating-helpful-content" }]
+      "decide": "Three roadmap titles published on 2026-11-20, each added to the sitemap and RSS feed in the same commit.",
+      "links": [
+        {
+          "label": "Google Search Central — helpful content",
+          "url": "https://developers.google.com/search/docs/fundamentals/creating-helpful-content"
+        }
+      ]
     },
     {
       "id": "SUG-22",
@@ -309,18 +324,97 @@
       "cost": "Zero.",
       "risk": "Misses timely traffic in the meantime.",
       "decide": "Hold until Search Console has 2–4 weeks of query data (FLG-009, FLG-020).",
-      "links": [{ "label": "Google Search Console", "url": "https://search.google.com/search-console" }]
+      "links": [
+        {
+          "label": "Google Search Console",
+          "url": "https://search.google.com/search-console"
+        }
+      ]
     },
     {
       "id": "SUG-24",
       "title": "Add a decision log so suggestions are accepted or rejected with a recorded reason and date",
-      "status": "recommend",
+      "status": "shipped",
       "weight": 7,
       "why": "The brief asks for a reviewable path before implementing anything. A log makes each choice auditable, captures why something was rejected, and stops the same suggestion being re-litigated next session.",
       "cost": "A small table on this page, populated by hand.",
       "risk": "None. It only records decisions already being made.",
-      "decide": "Accept. The decision log schema below is the record; entries are added as decisions are made.",
+      "decide": "The decision log below now carries its first eight entries, dated, with reasons.",
       "links": []
+    },
+    {
+      "id": "SUG-25",
+      "title": "Draw original line art instead of waiting for photography",
+      "status": "shipped",
+      "weight": 8,
+      "why": "An image-free page is the strongest 'generated' tell left on a site like this, and Program Content (listing images) may not be used without approved tools. Original schematics are the honest substitute: they are ours, they load instantly, they print, and they teach the shape of the decision.",
+      "cost": "Done. Each drawing is chosen from the product record, so a corrected spec changes the picture with it.",
+      "risk": "A schematic is not the item on your counter. Mitigated by a caption on every drawing and by linking out for the real photographs.",
+      "decide": "Shipped 2026-11-20 in _src/art.mjs.",
+      "links": [
+        {
+          "label": "Amazon Associates Program Policies",
+          "url": "https://affiliate-program.amazon.com/help/operating/policies"
+        }
+      ]
+    },
+    {
+      "id": "SUG-26",
+      "title": "Only advertise a social card when the image exists",
+      "status": "shipped",
+      "weight": 6,
+      "why": "Every page declared a large Twitter card and an image that did not exist, and carried a placeholder Search Console token. Both are exactly the kind of unfinished detail that reads as machine-made.",
+      "cost": "Done: the head template now emits og:image only if the file is in the tree, and the placeholder token is gone.",
+      "risk": "None. A missing card is smaller than a broken one.",
+      "decide": "Shipped 2026-11-20; FLG-025 closed as part of it.",
+      "links": []
+    },
+    {
+      "id": "SUG-27",
+      "title": "Add licensed product imagery through the API, never by scraping",
+      "status": "consider",
+      "weight": 7,
+      "why": "Photography is what a buyer wants, and the only compliant route is Amazon's own creative tooling or a licence from the brand. Scraping listing images or hot-linking them breaches the Program Policies and does not survive a takedown.",
+      "cost": "Blocked on API access (SUG-03). No work to do until then.",
+      "risk": "Anyone who 'just copies the image URL' puts the account at risk for the whole site.",
+      "decide": "Hold until PA-API or Creatives access exists; until then the schematics stay.",
+      "links": [
+        {
+          "label": "Program Policies",
+          "url": "https://affiliate-program.amazon.com/help/operating/policies"
+        }
+      ]
+    },
+    {
+      "id": "SUG-28",
+      "title": "Put the front page in front of five real readers before adding a ninth guide",
+      "status": "recommend",
+      "weight": 8,
+      "why": "There is no traffic yet, so there is no behavioural data. A short moderated read test is the only substitute, and it answers the one question this pass cannot: does a stranger know what to do next within fifteen seconds?",
+      "cost": "Five people, ten minutes each, one question after the first screen.",
+      "risk": "A small sample tells you about comprehension, not about demand.",
+      "decide": "Owner: run it, or wait for the collector and read clicks instead.",
+      "links": []
+    },
+    {
+      "id": "SUG-29",
+      "title": "Close the parallel duplicate-site pull requests before another session builds on them",
+      "status": "recommend",
+      "weight": 9,
+      "why": "Three open pull requests add competing root-level sites (their own index.html, assets, dashboard pages). Merging any of them alongside the current build recreates the duplicate-content failure this board already records twice, and it splits the canonical host the SEO work depends on.",
+      "cost": "A review pass per PR: keep the verified data, reject the second site.",
+      "risk": "Closing a session's work feels wasteful; the archive convention already preserves it without serving it.",
+      "decide": "Owner decision. Nothing on this branch merged them.",
+      "links": [
+        {
+          "label": "PR #26",
+          "url": "https://github.com/sassnarep3-star/WinA/pull/26"
+        },
+        {
+          "label": "PR #28",
+          "url": "https://github.com/sassnarep3-star/WinA/pull/28"
+        }
+      ]
     }
   ],
   "designBrief": {
@@ -364,7 +458,10 @@
         "principle": "Keep the disclosure strip and sponsored labels exactly where policy requires, and design around them rather than treating them as an afterthought.",
         "why": "Disclosure placement is a compliance requirement, not a style choice.",
         "constraint": "FTC Disclosures 101 (hard to miss); Associates Operating Agreement §5.",
-        "source": { "label": "FTC Disclosures 101", "url": "https://www.ftc.gov/business-guidance/resources/disclosures-101-social-media-influencers" }
+        "source": {
+          "label": "FTC Disclosures 101",
+          "url": "https://www.ftc.gov/business-guidance/resources/disclosures-101-social-media-influencers"
+        }
       },
       {
         "id": "DB-06",
@@ -372,7 +469,10 @@
         "principle": "Write in a concrete, human, opinionated voice using specifics and named trade-offs. Ban filler phrases and generic marketing boilerplate.",
         "why": "Specificity reads human and is what helpful-content guidance rewards; filler is the other main slop tell.",
         "constraint": "FTC: no experience you do not have. The Associate statement stays verbatim.",
-        "source": { "label": "Google Search Central — Creating Helpful Content", "url": "https://developers.google.com/search/docs/fundamentals/creating-helpful-content" }
+        "source": {
+          "label": "Google Search Central — Creating Helpful Content",
+          "url": "https://developers.google.com/search/docs/fundamentals/creating-helpful-content"
+        }
       },
       {
         "id": "DB-07",
@@ -380,7 +480,10 @@
         "principle": "Until compliant product imagery is available, keep the site typographic: color, type and a defined illustration or pattern system carry the design. Do not hot-link, store, or substitute Amazon imagery, and do not use stock photos of a different appliance.",
         "why": "Unlicensed or misrepresenting imagery would violate program policy and mislead the reader. A confident typographic system can look polished without photos.",
         "constraint": "Participation Requirements §6(a); IP License. See FLG-007.",
-        "source": { "label": "Amazon Associates Program Policies", "url": "https://affiliate-program.amazon.com/help/operating/policies" }
+        "source": {
+          "label": "Amazon Associates Program Policies",
+          "url": "https://affiliate-program.amazon.com/help/operating/policies"
+        }
       },
       {
         "id": "DB-08",
@@ -388,7 +491,10 @@
         "principle": "Make the sponsored status of every outbound product link visible at the link, and keep the Associate statement above the fold on every page.",
         "why": "Reader trust and FTC disclosure both require the material connection to be visible where the endorsement happens.",
         "constraint": "FTC 16 CFR 255.5; Associates OA §5; Program Policies.",
-        "source": { "label": "FTC Disclosures 101", "url": "https://www.ftc.gov/business-guidance/resources/disclosures-101-social-media-influencers" }
+        "source": {
+          "label": "FTC Disclosures 101",
+          "url": "https://www.ftc.gov/business-guidance/resources/disclosures-101-social-media-influencers"
+        }
       }
     ]
   },
@@ -398,22 +504,57 @@
       {
         "id": "AF",
         "name": "Air fryers",
-        "products": ["chefman-6-quart-dual-basket", "chefman-8-quart-turbofry", "emeril-lagasse-26qt-french-door"],
+        "products": [
+          "chefman-6-quart-dual-basket",
+          "chefman-8-quart-turbofry",
+          "emeril-lagasse-26qt-french-door"
+        ],
         "topics": [
-          { "title": "The two-basket air fryer: when cooking two things at once is actually worth it", "intent": "Form-factor decision", "status": "hypothesis" },
-          { "title": "Air fryer vs. toaster oven: which one actually saves your counter?", "intent": "Category decision", "status": "hypothesis" },
-          { "title": "How many quarts do you really need? A rule of thumb for one- and two-person kitchens", "intent": "Capacity decision", "status": "hypothesis" },
-          { "title": "What 'Hi-Fry' actually means — and when the extra heat is worth it", "intent": "Feature decision", "status": "hypothesis" }
+          {
+            "title": "The two-basket air fryer: when cooking two things at once is actually worth it",
+            "intent": "Form-factor decision",
+            "status": "hypothesis"
+          },
+          {
+            "title": "Air fryer vs. toaster oven: which one actually saves your counter?",
+            "intent": "Category decision",
+            "status": "hypothesis"
+          },
+          {
+            "title": "How many quarts do you really need? A rule of thumb for one- and two-person kitchens",
+            "intent": "Capacity decision",
+            "status": "hypothesis"
+          },
+          {
+            "title": "What 'Hi-Fry' actually means — and when the extra heat is worth it",
+            "intent": "Feature decision",
+            "status": "hypothesis"
+          }
         ]
       },
       {
         "id": "TH",
         "name": "Thermometers",
-        "products": ["thermomaven-1-sec-thermometer", "chef-iq-sense-gen3"],
+        "products": [
+          "thermomaven-1-sec-thermometer",
+          "chef-iq-sense-gen3"
+        ],
         "topics": [
-          { "title": "The one number that decides a roast: why your thermometer matters more than your recipe", "intent": "Why-it-matters", "status": "hypothesis" },
-          { "title": "Probe vs. instant-read: matching the tool to the cook", "intent": "Tool-match decision", "status": "hypothesis" },
-          { "title": "Wireless meat thermometer: what to check before you rely on it for a long cook", "intent": "Reliability decision", "status": "hypothesis" }
+          {
+            "title": "The one number that decides a roast: why your thermometer matters more than your recipe",
+            "intent": "Why-it-matters",
+            "status": "hypothesis"
+          },
+          {
+            "title": "Probe vs. instant-read: matching the tool to the cook",
+            "intent": "Tool-match decision",
+            "status": "hypothesis"
+          },
+          {
+            "title": "Wireless meat thermometer: what to check before you rely on it for a long cook",
+            "intent": "Reliability decision",
+            "status": "hypothesis"
+          }
         ]
       },
       {
@@ -421,9 +562,21 @@
         "name": "Cross-category evergreen",
         "products": [],
         "topics": [
-          { "title": "The 5-question checklist before buying any small kitchen appliance", "intent": "General buying framework", "status": "hypothesis" },
-          { "title": "Small-appliance buying mistakes that cost you counter space", "intent": "Mistake avoidance", "status": "hypothesis" },
-          { "title": "How to read a spec sheet without getting sold", "intent": "Literacy framework", "status": "hypothesis" }
+          {
+            "title": "The 5-question checklist before buying any small kitchen appliance",
+            "intent": "General buying framework",
+            "status": "hypothesis"
+          },
+          {
+            "title": "Small-appliance buying mistakes that cost you counter space",
+            "intent": "Mistake avoidance",
+            "status": "hypothesis"
+          },
+          {
+            "title": "How to read a spec sheet without getting sold",
+            "intent": "Literacy framework",
+            "status": "hypothesis"
+          }
         ]
       }
     ]
@@ -442,6 +595,184 @@
       "A suggestion whose risk has grown (for example it would breach policy) is moved to rejected.",
       "No new topic is added from instinct while the query report is empty."
     ],
-    "entries": []
+    "entries": [
+      {
+        "date": "2026-11-20",
+        "decision": "accept",
+        "item": "SUG-17 · SUG-18 · SUG-19",
+        "reason": "The draft brief was specific enough to build from. Implemented in the reader-polish block of the stylesheet so nothing above it was redefined."
+      },
+      {
+        "date": "2026-11-20",
+        "decision": "accept",
+        "item": "SUG-25",
+        "reason": "Imagery was the largest remaining generated-looking gap, and original schematics are the only art we are allowed to publish without API access."
+      },
+      {
+        "date": "2026-11-20",
+        "decision": "accept",
+        "item": "SUG-21",
+        "reason": "Three roadmap titles promoted in one commit with the sitemap and feed; still labelled hypotheses, because demand is still unmeasured."
+      },
+      {
+        "date": "2026-11-20",
+        "decision": "accept",
+        "item": "FLG-037 wording",
+        "reason": "'Check price on Amazon' sat above a page that explains it will not show prices. Buttons now read 'See it on Amazon' and the reason stays in the buy box."
+      },
+      {
+        "date": "2026-11-20",
+        "decision": "reject",
+        "item": "SUG-12 (again)",
+        "reason": "No price widget, no deal feed, no 'was/now' line — the ban was tested against this pass and stands: a marketing refresh is not a licence to display prices."
+      },
+      {
+        "date": "2026-11-20",
+        "decision": "reject",
+        "item": "scraped or AI-invented product photography",
+        "reason": "Listing images are Program Content; a synthetic photo of a specific appliance would misrepresent the item. Schematics only, each captioned."
+      },
+      {
+        "date": "2026-11-20",
+        "decision": "reject",
+        "item": "dark mode and hero gradients",
+        "reason": "Two obvious marketing flourishes, both declined: the paper identity is the brand, and a gradient hero is the most recognisable template tell."
+      },
+      {
+        "date": "2026-11-20",
+        "decision": "defer",
+        "item": "SUG-23 seasonal topics",
+        "reason": "Still no measured query data and no cadence history. The seasonal calendar waits for the query report, not for the calendar."
+      },
+      {
+        "date": "2026-11-20",
+        "decision": "defer",
+        "item": "Path B",
+        "reason": "Enrolment confirmation and the per-product link tests need the owner's account. Nothing here can substitute for that, so the register says so instead of guessing."
+      }
+    ]
+  },
+  "paths": {
+    "note": "Three coherent ways forward, in order. Each is a sequence, not a menu: a step is only worth doing once the step before it is done. The pick is recorded so the choice is explicit — changing it changes the order of work, not just a label. Everything in Path A is repository work; the two steps it cannot finish are gated on the owner, not on a decision we can make here.",
+    "pick": "A",
+    "why": "Path A is picked because it is the only path that can be completed without a credential, and it removes the two things a buyer notices first: a front page that opened with audit numbers, and a site with no imagery at all. Path B is the higher-value work and is listed next, unfinished on purpose, because it belongs to the account owner.",
+    "options": [
+      {
+        "id": "A",
+        "name": "Make it presentable, then make it measurable",
+        "status": "picked",
+        "oneLiner": "Ship the reader-facing polish that needs no access, then turn on measurement and let the data pick the next topic.",
+        "steps": [
+          {
+            "text": "Adopt the design brief and implement it: type scale, art system, layout variation",
+            "state": "done",
+            "ref": "SUG-17 · SUG-18 · SUG-19"
+          },
+          {
+            "text": "Replace the audit strip on the front page with a shopper router",
+            "state": "done",
+            "ref": "index hero + fit band"
+          },
+          {
+            "text": "Draw original schematics in place of the photography the program will not let us use",
+            "state": "done",
+            "ref": "FLG-039"
+          },
+          {
+            "text": "Publish the next roadmap titles and put them in the sitemap and feed in the same commit",
+            "state": "done",
+            "ref": "SUG-21"
+          },
+          {
+            "text": "Verify the property in Search Console and submit the sitemap",
+            "state": "blocked",
+            "ref": "FLG-009 · Q-18"
+          },
+          {
+            "text": "Deploy the collector so the five defined events actually record",
+            "state": "blocked",
+            "ref": "FLG-011 · Q-16"
+          },
+          {
+            "text": "At week eight, replace the topic hypotheses with measured queries",
+            "state": "todo",
+            "ref": "Q-08"
+          }
+        ],
+        "unlocks": "One indexable site that looks published rather than generated, and a reader-facing surface someone can judge in fifteen seconds.",
+        "cost": "Repository work only. No spend, no credential, nothing to wait for.",
+        "risk": "Polish without authority does not create traffic. That is exactly why this path ends in measurement rather than in more pages.",
+        "firstSignal": "Impressions for guide queries in Search Console; a non-empty click day-bucket from the collector."
+      },
+      {
+        "id": "B",
+        "name": "Prove the money path first",
+        "status": "next",
+        "oneLiner": "Before anything else grows, confirm the account, the tag and one real click per product.",
+        "steps": [
+          {
+            "text": "Confirm shopnow047c-20 is enrolled and this site is registered to it",
+            "state": "blocked",
+            "ref": "FLG-004 · Q-04"
+          },
+          {
+            "text": "Build one Special Link per product in Associates Central, click it logged out, record the destination and the next day's reporting line",
+            "state": "blocked",
+            "ref": "FLG-024 · data/special_link_tests.json"
+          },
+          {
+            "text": "Open the five submitted short links in a logged-out browser and reconcile them against the register",
+            "state": "todo",
+            "ref": "FLG-036 · Q-25"
+          },
+          {
+            "text": "Decide whether the supplied short links stay on the site at all",
+            "state": "decision",
+            "ref": "FLG-003"
+          }
+        ],
+        "unlocks": "Attribution confidence. Without it the site is a shop that cannot be shown to earn, and every later optimisation decision is guesswork.",
+        "cost": "About half an hour in a browser with the account open. No code changes.",
+        "risk": "None from doing it. Everything from skipping it: no other path can report orders until this one closes.",
+        "firstSignal": "A click in the Associates click report within 48 hours, then an order line."
+      },
+      {
+        "id": "C",
+        "name": "Build the merchandising layer",
+        "status": "hold",
+        "oneLiner": "API pricing, ratings, licensed imagery, email capture and a seasonal calendar — all of which depend on access and measured demand.",
+        "steps": [
+          {
+            "text": "Qualify for Product Advertising / Creatives API access, which requires qualifying sales first",
+            "state": "blocked",
+            "ref": "SUG-03 · Q-11"
+          },
+          {
+            "text": "Show prices and ratings from the API only, with the refresh interval documented",
+            "state": "blocked",
+            "ref": "POL-03 · POL-04"
+          },
+          {
+            "text": "Replace schematics with licensed product imagery where the licence allows it",
+            "state": "blocked",
+            "ref": "SUG-27 · Q-12"
+          },
+          {
+            "text": "Turn on reader capture once there is something worth sending",
+            "state": "hold",
+            "ref": "SUG-14"
+          },
+          {
+            "text": "Publish the seasonal calendar once measured demand justifies it",
+            "state": "hold",
+            "ref": "SUG-23"
+          }
+        ],
+        "unlocks": "Real merchandising: current prices, star ratings, product photography, and a list you own.",
+        "cost": "Account qualification, then API plumbing and a cache-refresh job. Weeks, not hours.",
+        "risk": "Building a data pipeline on unmeasured demand — and any price shown must come from the API or the program is breached.",
+        "firstSignal": "One PA-API response returning a live price for one of the five ASINs."
+      }
+    ]
   }
 }

@@ -70,7 +70,8 @@
       "howToFind": "Already settled by observation. No further work needed.",
       "status": "answered",
       "sourceUrl": "https://link.amazon/B04G1MEwY",
-      "sourceLabel": "Submitted short link"
+      "sourceLabel": "Submitted short link",
+      "sourceAsin": null
     },
     {
       "id": "Q-03",
@@ -99,7 +100,8 @@
       "howToFind": "Sign in to Associates Central, open Account Settings, confirm the Store/Tracking ID list contains shopnow047c-20. Then click one link and confirm it appears in the tracking report.",
       "status": "unanswered",
       "sourceUrl": "https://affiliate-program.amazon.com/",
-      "sourceLabel": "Associates Central (sign-in required)"
+      "sourceLabel": "Associates Central (sign-in required)",
+      "sourceAsin": null
     },
     {
       "id": "Q-05",
@@ -113,7 +115,8 @@
       "howToFind": "Associates Central publishes current rates and any bounty offers inside the account. Record the rate with the date it was read.",
       "status": "unanswered",
       "sourceUrl": "https://affiliate-program.amazon.com/help/operating/policies",
-      "sourceLabel": "Commission Income Statement"
+      "sourceLabel": "Commission Income Statement",
+      "sourceAsin": null
     },
     {
       "id": "Q-06",
@@ -127,7 +130,8 @@
       "howToFind": "Ask Associates support directly and keep the written reply. Meanwhile the site does not depend on them — it links to amazon.com product pages.",
       "status": "needs-review",
       "sourceUrl": "https://affiliate-program.amazon.com/help/operating/policies",
-      "sourceLabel": "Participation Requirements §6(w)"
+      "sourceLabel": "Participation Requirements §6(w)",
+      "sourceAsin": null
     },
     {
       "id": "Q-07",
@@ -135,27 +139,29 @@
       "priority": "high",
       "question": "Is anyone searching for these products or these questions?",
       "answer": "Unknown. No search volume data exists for this project, and none has been assumed.",
-      "have": "Eight guides are published: the four working titles named in the brief, one thermometer guide, and three added in the reader-polish pass of 2026-11-20 (a USDA-referenced doneness check, a capacity rule, and a feature-name literacy piece).", 
+      "have": "Eight guides are published: the working titles named in the brief, a thermometer guide, and three additions from the reader-polish pass of 2026-11-20 (a USDA-referenced doneness check, a capacity rule, and a feature-name literacy piece).",
       "missing": "Any impression, click, or query data. Search Console is not verified and the analytics collector is not deployed.",
       "matters": "The brief asks for trending, high-converting topics. Trending is a measurement, not a guess.",
       "howToFind": "Verify Search Console, submit the sitemap, and read the Queries report after 2–4 weeks. That replaces instinct with measured demand.",
       "status": "unanswered",
       "sourceUrl": "https://search.google.com/search-console",
-      "sourceLabel": "Search Console Queries report"
+      "sourceLabel": "Search Console Queries report",
+      "sourceAsin": null
     },
     {
       "id": "Q-08",
       "area": "demand",
       "priority": "medium",
       "question": "Which guide topic should be written next?",
-      "answer": "Hypothesis only. The capacity checklist is the best starting bet because it applies to all three air fryers and does not depend on any product outperforming another.",
+      "answer": "Three roadmap titles were promoted on 2026-11-20: the USDA-referenced doneness check, the household capacity rule, and the feature-name literacy piece. The next one should come from the query report, not from the roadmap, because the report is still empty.",
       "have": "Five working titles, deliberately not framed as popularity claims.",
       "missing": "Evidence of which question people actually arrive with.",
       "matters": "Publishing order is the main lever on a new site.",
-      "howToFind": "Ship all five, then let Search Console query data reorder them. See SUG-05.",
-      "status": "hypothesis",
+      "howToFind": "Verify Search Console, wait for the first four full weeks of query data, then promote the topic with impressions and no page. Until then the remaining roadmap titles stay hypotheses.",
+      "status": "partly-answered",
       "sourceUrl": "https://sassnarep3-star.github.io/WinA/guides/",
-      "sourceLabel": "The eight guides as published"
+      "sourceLabel": "The eight guides as published",
+      "sourceAsin": null
     },
     {
       "id": "Q-09",
@@ -169,7 +175,8 @@
       "howToFind": "Either obtain review units and test them, or keep the site permanently in 'how to decide' voice rather than 'we tested' voice. Recommendation: state the policy on the About page and hold it.",
       "status": "answered-constrains-everything",
       "sourceUrl": "https://www.ftc.gov/business-guidance/resources/disclosures-101-social-media-influencers",
-      "sourceLabel": "FTC: \"You can't talk about your experience with a product you haven't tried.\""
+      "sourceLabel": "FTC: \"You can't talk about your experience with a product you haven't tried.\"",
+      "sourceAsin": null
     },
     {
       "id": "Q-10",
@@ -198,21 +205,23 @@
       "howToFind": "Apply for PA-API access once the account has qualifying sales. Then prices can come from the API and stay accurate automatically.",
       "status": "blocked-on-access",
       "sourceUrl": "https://affiliate-program.amazon.com/help/operating/policies",
-      "sourceLabel": "Participation Requirements §6(y)"
+      "sourceLabel": "Participation Requirements §6(y)",
+      "sourceAsin": null
     },
     {
       "id": "Q-12",
       "area": "editorial",
       "priority": "medium",
       "question": "Can we show product images?",
-      "answer": "Not lawfully with what we have. Program Content cannot be copied or hot-linked outside approved tooling, and substituting a different appliance's photo would misrepresent the item.",
+      "answer": "Not from Amazon. Program Content — including listing imagery — may only be used through the approved creative tooling, and that access does not exist for this account (Q-11). The site therefore publishes its own original line drawings, each captioned as a schematic rather than a photograph, so nothing on the page claims to be the item.",
       "have": "The constraint, quoted in the policy register.",
       "missing": "Creatives API access, or manufacturer-supplied press assets with written permission.",
       "matters": "Images are the single biggest lever on whether a product page converts.",
       "howToFind": "PA-API/Creatives access is the correct route. Press kits are a fallback but add a per-brand permission burden.",
-      "status": "blocked-on-access",
+      "status": "answered-constrains-everything",
       "sourceUrl": "https://affiliate-program.amazon.com/help/operating/policies",
-      "sourceLabel": "Participation Requirements §6(a)"
+      "sourceLabel": "Associates Program Policies — Program Content and its permitted use",
+      "sourceAsin": null
     },
     {
       "id": "Q-13",
@@ -226,7 +235,8 @@
       "howToFind": "Settled. The build now fails if either placement disappears.",
       "status": "answered",
       "sourceUrl": "https://affiliate-program.amazon.com/help/operating/agreement",
-      "sourceLabel": "Operating Agreement §5"
+      "sourceLabel": "Operating Agreement §5",
+      "sourceAsin": null
     },
     {
       "id": "Q-14",
@@ -240,7 +250,8 @@
       "howToFind": "PA-API. Until then, the fields stay visibly withheld rather than quietly blank.",
       "status": "answered",
       "sourceUrl": "https://affiliate-program.amazon.com/help/operating/policies",
-      "sourceLabel": "Participation Requirements §6(t)"
+      "sourceLabel": "Participation Requirements §6(t)",
+      "sourceAsin": null
     },
     {
       "id": "Q-15",
@@ -254,7 +265,8 @@
       "howToFind": "If ads are ever considered, read the Prohibited Paid Search Placement definition in the Commission Income Statement first.",
       "status": "answered-with-caveat",
       "sourceUrl": "https://affiliate-program.amazon.com/help/operating/policies",
-      "sourceLabel": "Participation Requirements §6(f)"
+      "sourceLabel": "Participation Requirements §6(f)",
+      "sourceAsin": null
     },
     {
       "id": "Q-16",
@@ -268,7 +280,8 @@
       "howToFind": "Deploy the worker and set the endpoint, then rebuild. Orders come from the Associates report, entered by hand into the ledger with a date.",
       "status": "blocked-on-deploy",
       "sourceUrl": "https://sassnarep3-star.github.io/WinA/analytics/",
-      "sourceLabel": "Measurement page"
+      "sourceLabel": "Measurement page",
+      "sourceAsin": null
     },
     {
       "id": "Q-17",
@@ -282,7 +295,8 @@
       "howToFind": "After the first tracked week, export the Associates report and add one row per channel, citing the report date.",
       "status": "defined-empty",
       "sourceUrl": "https://sassnarep3-star.github.io/WinA/dashboard/",
-      "sourceLabel": "Ledger schema"
+      "sourceLabel": "Ledger schema",
+      "sourceAsin": null
     },
     {
       "id": "Q-18",
@@ -296,7 +310,8 @@
       "howToFind": "Replace the placeholder verification token, then submit sitemap.xml and check Coverage weekly until pages are indexed.",
       "status": "built-unverified",
       "sourceUrl": "https://sassnarep3-star.github.io/WinA/sitemap.xml",
-      "sourceLabel": "Published sitemap"
+      "sourceLabel": "Published sitemap",
+      "sourceAsin": null
     },
     {
       "id": "Q-19",
@@ -310,7 +325,8 @@
       "howToFind": "Buy a domain, add a CNAME, enable HTTPS in Pages settings, then change baseurl in one place and rebuild.",
       "status": "recommendation",
       "sourceUrl": "https://sassnarep3-star.github.io/WinA/",
-      "sourceLabel": "Current site"
+      "sourceLabel": "Current site",
+      "sourceAsin": null
     },
     {
       "id": "Q-20",
@@ -324,7 +340,8 @@
       "howToFind": "Decision. Check the name is not already an active trademark in the same category before committing.",
       "status": "decision-needed",
       "sourceUrl": "https://sassnarep3-star.github.io/WinA/about/",
-      "sourceLabel": "About page"
+      "sourceLabel": "About page",
+      "sourceAsin": null
     },
     {
       "id": "Q-21",
@@ -338,7 +355,8 @@
       "howToFind": "Decide who is accountable for the content. A byline requires a real person willing to be named.",
       "status": "decision-needed",
       "sourceUrl": "https://sassnarep3-star.github.io/WinA/about/",
-      "sourceLabel": "Editorial standards"
+      "sourceLabel": "Editorial standards",
+      "sourceAsin": null
     },
     {
       "id": "Q-22",
@@ -352,7 +370,83 @@
       "howToFind": "Pick one channel and commit, or accept a slow burn. Decide before spending effort on capture UI.",
       "status": "unanswered",
       "sourceUrl": "https://sassnarep3-star.github.io/WinA/feed.xml",
-      "sourceLabel": "Published feed, currently unconsumed"
+      "sourceLabel": "Published feed, currently unconsumed",
+      "sourceAsin": null
+    },
+    {
+      "id": "Q-23",
+      "area": "brand",
+      "priority": "high",
+      "question": "Does the front page tell a stranger what to do next within fifteen seconds?",
+      "answer": "Unknown. The page now opens on three products, a three-question router and one feature read, which is the structure a shop uses — but no reader has been observed using it.",
+      "have": "The structure, the copy and the links exist and pass the compliance gate; every band has a single next action.",
+      "missing": "Any observation of a real person scanning it: what they read first, what they skipped, what they mistook for a review.",
+      "matters": "If comprehension fails here, no amount of later content or measurement matters, and it is the one quality question we can answer without traffic.",
+      "howToFind": "Five people, ten minutes, one question after the first screen (SUG-28). Alternatively wait for the collector and read the first-screen exit pattern.",
+      "status": "unanswered",
+      "sourceUrl": "",
+      "sourceLabel": "",
+      "sourceAsin": null
+    },
+    {
+      "id": "Q-24",
+      "area": "measurement",
+      "priority": "high",
+      "question": "Which guide earned the first impression, and did it earn a click?",
+      "answer": "Nothing is recorded. The five events are defined and the collector exists, but no endpoint is deployed, so the answer is structurally unavailable until that changes.",
+      "have": "Event definitions, a worker implementation, and a rebuilt feed and sitemap that put each new guide where a crawler will find it.",
+      "missing": "A hosted collector and the Search Console property.",
+      "matters": "This is the question the whole cadence depends on. Without it the eighth guide is chosen by instinct, which is what the brief explicitly forbids.",
+      "howToFind": "Deploy _worker/collector.js, set the endpoint in data/products.json, rebuild, then read the day buckets after four full weeks.",
+      "status": "blocked-on-deploy",
+      "sourceUrl": "",
+      "sourceLabel": "",
+      "sourceAsin": null
+    },
+    {
+      "id": "Q-25",
+      "area": "identity",
+      "priority": "blocking",
+      "question": "Do the five submitted short links still land on the five recorded listings from a logged-out browser?",
+      "answer": "Partly, and not reliably from this environment. Re-checked on 2026-11-20: B0f3GKalj reached /dp/B0DZFD6R9Z (the recorded product) and B04G1MEwY and B0c8moW59 both returned the amazon.com home page instead of their recorded listings. Two earlier sessions recorded all five as matching. The site is unaffected because every button links to a constructed /dp/ ASIN URL, not to a short link.",
+      "have": "Two dated observation sets, recorded separately from the intended-ASIN field, and a register row per link.",
+      "missing": "A logged-out browser check of each short link, which is the only observation that settles whether the short links themselves are stable.",
+      "matters": "If a supplied short link is unstable, it must not be used anywhere; if it is stable, the register should say so with a date rather than with a claim.",
+      "howToFind": "Open each link in a private browser window, copy the final URL, and record it in data/links.json with the date. See FLG-036.",
+      "status": "needs-review",
+      "sourceUrl": "https://link.amazon/B04G1MEwY",
+      "sourceLabel": "Submitted short link, re-checked 2026-11-20",
+      "sourceAsin": null
+    },
+    {
+      "id": "Q-26",
+      "area": "technical",
+      "priority": "medium",
+      "question": "Who closes the three open parallel-site pull requests, and how?",
+      "answer": "Unresolved. Three pull requests from other sessions add competing root-level sites. None was merged by this session; merging any as-is recreates the duplicate-content failure the board records twice.",
+      "have": "PR #26, PR #28 and PR #2 listed with their file sets, and a gate (duplicate-content and archive-integrity checks) that fails if a second site reaches the served root.",
+      "missing": "An owner decision: close them, or port only their verified data into data/ and rebuild.",
+      "matters": "Two canonical hosts with the same articles is the one SEO outcome this whole project was built to avoid.",
+      "howToFind": "Review each PR's diff against the current build; keep data, reject the second site, and record the choice in the decision log.",
+      "status": "decision-needed",
+      "sourceUrl": "https://github.com/sassnarep3-star/WinA/pull/28",
+      "sourceLabel": "Open PR #28 (duplicate site)",
+      "sourceAsin": null
+    },
+    {
+      "id": "Q-27",
+      "area": "editorial",
+      "priority": "medium",
+      "question": "Is the visual result actually verified, or only structurally valid?",
+      "answer": "Only structurally. Three gates pass — markup, links, compliance — but no browser render exists in this environment, so nothing has confirmed how the new type scale, art frames and grid bands look at 390px or on paper.",
+      "have": "Parsed HTML, deterministic builds, link and asset checks, and CSS that validates as balanced and is written mobile-first.",
+      "missing": "A rendered screenshot on a small phone, a tablet and print preview, by a person.",
+      "matters": "The whole point of this pass was appearance. A claim about how it looks cannot be verified by a link checker, so it is recorded as unverified rather than asserted.",
+      "howToFind": "Open the site on a phone, or run any headless browser locally and capture three viewports. Report anything broken to the flag register.",
+      "status": "unanswered",
+      "sourceUrl": "",
+      "sourceLabel": "",
+      "sourceAsin": null
     }
   ]
 }
