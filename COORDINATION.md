@@ -189,6 +189,7 @@ shapes differ.
 | T28 | Third independent re-check of the five submitted short links (timestamped, per link); retry the official Amazon ASIN-definition source for FLG-033; adopt the publishing cadence (SUG-05) as a recorded decision | done | arena-f5d87e09-wina | `COORDINATION.md` (arena-f5d87e09-wina section only + this row), `data/governance.json` (FLG-033/FLG-036 notes only), `data/suggestions.json` (SUG-05 status only), generated `flagged/`, `suggestions/`, `summary/`, `register/` | Claimed 2026-11-20 on branch `arena/f5d87e09-wina` (base `e886175`, main unchanged at claim time). No product data, link record, or page copy changes unless a verified discrepancy is found. |
 | T29 | Product-intent confirmation record: one row per submitted link with intended ASIN (blank unless supplied), official listing URL, confirmation date, confirmation source, and observed redirect target kept in a separate dated field; close FLG-033 with an official Amazon ASIN definition; fresh dated re-check of the five short links | done | arena/6b0f2ddc-wina (session `arena-6b0f2ddc`) | `data/links.json`, `data/policy.json` (one source row), `data/governance.json` (FLG-033 closed to review; FLG-040 appended), `_src/build.mjs` (register link table only), `scripts/compliance-gate.mjs` (link-record rule only), `EXECUTIVE_SUMMARY.md` (T27 section and flag count only), `COORDINATION.md` (T27 section only), generated `register/`, `flagged/`, `summary/` | Claimed 2026-11-20 before any edit. Extends `main`'s build; no second site. Owner-side items (Associates sign-in, Special Link test, Search Console, collector deploy) are not claimed. | Result in the T27 section below. Extends `main`; no second site. Owner-side items not attempted. |
 | T34 | Re-verify the specification rows of `data/products.json` against their official pages (manufacturer pages, the HT07 user manual, and each ASIN's own listing); re-check the five submitted links (re-check only); record corrections as handoff patches for the integration session; publish every irregularity as a flag | done (requests open in `handoff/`) | arena/1cf62cfb-wina | `COORDINATION.md` (arena/1cf62cfb-wina section + this row), `handoff/` (new; not a shared output). No shared output changed on this branch. | Claimed first as T27 in 7533c52 on an out-of-date base; `main` already held T27 (arena/574fc8eb-wina) and T29 (arena/6b0f2ddc-wina), so this work is recorded as T34. Shared-output edits made in 62bfa89 were reverted to `main`'s tree by merge d9e533d; the edits are kept as `handoff/T29-products.patch` and `handoff/T34-governance.patch`. |
+| T35 | Apply the line-by-line verification instead of proposing it: every valued spec row re-checked against its own cited page, every quoted policy clause against the official text, five rows corrected or blanked, five flags added, reader copy corrected where it repeated a withdrawn claim | done | arena/b37e1a98-wina | `data/products.json`, `data/links.json`, `data/governance.json`, `data-room/{flagged,source-register}.html`, `compare.html`, `questions.html`, `guides/*.html`, `seasonal.html`, `COORDINATION.md` (this row + section) | Claimed as T27 on base `e886175`, renumbered twice on merge (T27 → T33 → T35) as `main` took T27–T34 while the branch was in flight. T34 proposed these corrections as patches under `handoff/`; this session applied them to the live tree and extended them with the policy-quote check. Gate `tools/check_site.py` passes. |
 
 ## Link resolution (verified by three independent sessions)
 
@@ -1485,3 +1486,54 @@ work on branch `session-<id>/<task>`, and keep to your file scope.
   merged (squash), confirmed GitHub Pages deploy: https://sassnarep3-star.github.io/WinA/ —
   final page check performed against the live URL. Merge result + PR link recorded here per rules.
   PR: https://github.com/sassnarep3-star/WinA/pull/1 (merged 2026-11-20).
+
+---
+
+## Session arena/b37e1a98-wina — T35 (2026-11-20)
+
+_Renumbered twice: claimed as T27 on base `e886175`, became T33 when `main` took T27–T32, and T35
+when it took T33 and T34 during this session. The branch name and file scope are unchanged._
+
+**What this pass did that the others did not.** T26, T29 and T34 each re-checked *part* of the
+register, and T34 found the same corrections this session found — but proposed them as patches under
+`handoff/` and left shared outputs to "the final integration session". This session applied them to
+the live tree, and added the one check nobody had run: **every quoted policy clause compared with the
+official text, word for word.**
+
+**Policy: 10 of 10 verbatim, nothing changed.** Sources confirmed current on the page: Operating
+Agreement **updated October 15, 2025** (OA §5, both clauses), Program Policies **updated April 14,
+2026** (§6(a), §6(f), §6(t), §6(v), §6(w), §6(y)), FTC *Disclosures 101* (November 2019 — "Place it
+so it's hard to miss", "You can't talk about your experience with a product you haven't tried"). Every
+`quote` field in `data/policy.json` matches its source exactly, allowing only for the source page's
+own bold markup.
+
+**Spec rows: 5 corrected or blanked, 10 added, none invented.** 60 → 70 rows, 32 → 50 `verified`,
+24 → 17 blank-with-a-reason.
+
+| # | Finding | Resolution | Flag |
+|---|---|---|---|
+| 1 | Chefman 8-qt wattage, dimensions and warranty were blank because chefman.com sells a different SKU. The listing's own closing bullet reads `1000 Watts/120 Volts - RJ38-SQSS-8T`; its product table gives `12.75"D x 13.5"W x 10"H`. | Filled from the listing; model recorded as RJ38-SQSS-8T | FLG-028 |
+| 2 | Emeril preset count was 24 / 25 / "10-in-1" in three places on one page. The owner's manual's accessory-position table enumerates exactly **24**. | Row cites the manual; the 24 names get their own row so the count can be checked | FLG-029 |
+| 3 | Emeril wattage and warranty were blank. | 1700 W / 120 V / 60 Hz from the manual's Appliance Specifications; 1 year from the page's warranty seal | — |
+| 4 | ThermoMaven "Display" and "Battery type" cited a product page that states neither. | Both re-cited to the HT07 manual with its exact figures | FLG-044 |
+| 5 | CHEF iQ model `CQ60-1C-Z1-E` is the manufacturer's **1-probe** variant; this ASIN is the 3-probe listing. | Field blanked rather than wrong | FLG-046 |
+
+**One claim withdrawn from reader copy.** "Hi-Fry for the final two minutes" is published only on
+chefman.com's page for *RJ38-8T-BLACK* (1700 W), not on this ASIN's listing (1000 W). Removed from
+the spec row and from every page that repeated it — `compare.html`, `questions.html`,
+`guides/seven-jobs-air-fryer-beats-oven.html`, `data-room/flagged.html`, `data-room/source-register.html`.
+`FLG-045` records it with both URLs.
+
+**Short links — a fourth independent re-check.** This run: `B0f3GKalj` reached `/dp/B0DZFD6R9Z`, the
+other four reached `https://www.amazon.com/`. Two earlier runs the same day saw `B02NbDxp3` and
+`B00hJ57DV` reach their product pages. Behaviour is therefore not a fixed property of particular
+links; `data/links.json` now holds four dated observations per link and never merges them. All five
+destination ASINs remain confirmed by fetching `/dp/<ASIN>` directly. **FLG-047.** The short links are
+still **not** claimed invalid (FLG-003) and nothing user-facing depends on them.
+
+**Gates:** `python3 tools/check_site.py` → PASS, 23 HTML pages, gates G-1/G-2/G-3. No page was added
+or removed, so the sitemap and feed are unchanged.
+
+**Not done, and why:** the one-link-per-product Special Link test (FLG-024), Search Console
+(FLG-009), the analytics collector (FLG-011) and reader capture (FLG-010) all need the owner's
+enrolled Associates account. No revenue, traffic or conversion figure is claimed anywhere.
