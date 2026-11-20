@@ -3,6 +3,13 @@ name: Build, verify and deploy
 # Order matters. If any gate fails, the deploy job never starts and the
 # previously published site stays live. A non-compliant or broken build
 # cannot reach readers through this workflow.
+#
+# Two independent gates run, deliberately written by different sessions:
+#   _src/build.mjs        — the authoring gate, which also builds the site
+#   scripts/check-site.mjs — an adversarial gate that reads the repo as served
+# Neither is required to trust the other. A defect that one gate cannot see
+# is the other's job to catch; that is how the unsponsored-link hole below
+# was found.
 
 on:
   push:
@@ -31,32 +38,32 @@ jobs:
         with:
           node-version: '20'
 
-      - uses: actions/setup-python@v5
-        with:
-          python-version: '3.11'
+      # Builds every page from data/ and runs the authoring gate.
+      - name: Build and gate the site
+        run: node _src/build.mjs
 
-      # Main site: generated at the repo root, which is the Pages source.
-      - name: Build main site
-        run: python3 tools/build.py
-
-      # Preview edition: generated into /v2/ from its own registers.
-      - name: Build v2 edition
-        run: node v2/src/scripts/build.mjs
-
-      # Gate the v2 edition's own invariants.
-      - name: Verify v2 edition
-        run: node v2/src/scripts/verify.mjs
-
-      # Gate the whole repository exactly as it will be served.
+      # Independent, adversarial gate over the repository as it will be served.
       - name: Verify repository
         run: node scripts/check-site.mjs
+
+      # Nothing from an earlier site build may survive at the root.
+      - name: No stale build artefacts
+        run: |
+          stale=""
+          for f in shop tools dashboard/analysis.html data/flags.json assets/analytics.js; do
+            [ -e "$f" ] && stale="$stale $f"
+          done
+          if [ -n "$stale" ]; then
+            echo "::error::Files from a prior site build are present:$stale"
+            exit 1
+          fi
 
       # The committed output must equal the built output, or reviewers are
       # reading something different from what ships.
       - name: Check the build is reproducible
         run: |
           if ! git diff --quiet; then
-            echo "::error::Committed files differ from a fresh build. Run python3 tools/build.py and node v2/src/scripts/build.mjs, then commit the result."
+            echo "::error::Committed files differ from a fresh build. Run node _src/build.mjs, then commit the result."
             git --no-pager diff --stat
             exit 1
           fi

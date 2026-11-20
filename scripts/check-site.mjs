@@ -76,6 +76,7 @@ const pricePattern =
 /* ------------------------------------------------------------- per-page */
 
 let amazonTotal = 0;
+  let amazonCitation = 0;
 let amazonSponsored = 0;
 
 for (const p of pages) {
@@ -108,8 +109,30 @@ for (const p of pages) {
     if (!isShoppingAmazon(m[1])) continue;
     amazonTotal++;
     const rel = (m[0].match(/rel="([^"]*)"/) || [, ''])[1];
-    if (/\bsponsored\b/.test(rel)) amazonSponsored++;
-    else fail('sponsored', `${file}: unsponsored Amazon link → ${m[1].slice(0, 68)}`);
+    const tag = m[0];
+    // Two permitted forms, and nothing else:
+    //   (a) monetised Special Link -> rel="sponsored"            (earns a commission)
+    //   (b) plain evidence citation -> rel="nofollow" + data-nonaffiliate="true"
+    //       (a tagless short link earns nothing; calling it sponsored is a false claim)
+    const sponsored = /\bsponsored\b/.test(rel);
+    const declared = /data-nonaffiliate="true"/.test(tag);
+    const carriesTag = /[?&]tag=/.test(m[1]);
+    if (sponsored && declared) {
+      fail('sponsored', `${file}: Amazon link is both sponsored and declared non-affiliate — ambiguous → ${m[1].slice(0, 68)}`);
+    } else if (sponsored) {
+      amazonSponsored++;
+      // a sponsored link with no tag earns nothing and misleads the reader
+      if (!carriesTag) {
+        fail('sponsored', `${file}: marked sponsored but carries no Associates tag → ${m[1].slice(0, 68)}`);
+      }
+    } else if (declared) {
+      amazonCitation++;
+      if (carriesTag) {
+        fail('sponsored', `${file}: declared non-affiliate but carries an Associates tag → ${m[1].slice(0, 68)}`);
+      }
+    } else {
+      fail('sponsored', `${file}: Amazon link is neither sponsored nor a declared citation → ${m[1].slice(0, 68)}`);
+    }
     if (!/\bnoopener\b/.test(rel)) {
       fail('sponsored', `${file}: Amazon link without rel=noopener → ${m[1].slice(0, 68)}`);
     }
@@ -237,9 +260,11 @@ function checkSitemap(sitemapFile, siteRoot, sitePrefix) {
 // Main site: served from the repository root.
 const mainListed = checkSitemap('sitemap.xml', HOST, '');
 
-// v2 edition: served from /v2/, with its own sitemap at /v2/sitemap.xml.
-const v2Root = `${HOST}/v2`;
-const v2Listed = checkSitemap('v2/sitemap.xml', v2Root, 'v2/');
+// Secondary edition: only checked when a v2/ tree is actually published.
+// main/ ships a single site at the root, so this must not fail in its absence.
+const v2Listed = existsSync(join(ROOT, 'v2/sitemap.xml'))
+  ? checkSitemap('v2/sitemap.xml', `${HOST}/v2`, 'v2/')
+  : new Set();
 
 // Every indexable page must appear in its own site's sitemap.
 for (const p of pages) {
@@ -249,6 +274,10 @@ for (const p of pages) {
   if (p.file === '404.html' || p.file === 'v2/404.html') continue; // never indexable
 
   const isV2 = p.file.startsWith('v2/');
+  if (isV2 && !existsSync(join(ROOT, 'v2/sitemap.xml'))) {
+    warn('sitemap', `secondary edition present but unpublished: ${p.file}`);
+    continue;
+  }
   const listed = isV2 ? v2Listed : mainListed;
   const local = isV2 ? p.file.slice(3) : p.file;
 

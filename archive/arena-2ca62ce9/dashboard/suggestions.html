@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Suggestions · The Counter Guide</title>
+<meta name="description" content="Options for open decisions.">
+<link rel="stylesheet" href="../assets/site.css">
+<link rel="alternate" type="application/rss+xml" title="The Counter Guide guides" href="../feed.xml">
+<script>window.CG_CONFIG = {"endpoint": null, "events": ["page_view", "outbound_click", "guide_view", "nav_click", "feed_subscribe_click"]};</script>
+<script src="../assets/analytics.js" defer></script>
+</head>
+<body>
+<header class="masthead">
+  <div class="wrap masthead-inner">
+    <a class="brand" href="../index.html">The Counter Guide</a>
+    <nav class="nav" aria-label="Main"><a href="../shop/index.html" class="">Shop</a><a href="../guides/index.html" class="">Guides</a><a href="../dashboard/index.html" class="active">Dashboard</a></nav>
+  </div>
+</header>
+<div class="disclosure" role="note"><div class="wrap">As an Amazon Associate I earn from qualifying purchases. <span class="muted">Links to Amazon are tagged and marked sponsored. Prices are not shown.</span></div></div>
+<main class="wrap">
+
+<section class="page-head">
+  <p class="kicker"><a href="index.html">Dashboard</a> / Suggestions</p>
+  <h1>Suggestions</h1>
+  <p class="lede">Suggestions are NOT implemented. Choose one option per item before any change is made. Each option lists its cost and what it would change.</p>
+</section>
+
+<section class="section decision" id="S-01">
+  <h2><span class="badge badge-info">S-01</span> Validate the submitted links and Tracking ID</h2>
+  <p>How should the submitted links be validated?</p>
+  <div class="table-wrap"><table class="data"><thead><tr><th>Option</th><th>Choice</th><th></th><th>What changes</th></tr></thead><tbody><tr><td><code>S-01-a</code></td><td>Owner runs one link per product in the Associates Product Linking tool and reports destination + tracking</td><td><strong>Recommended</strong></td><td>Confirms FLG-001 to FLG-004; the site then uses validated Special Links for each row.</td></tr><tr><td><code>S-01-b</code></td><td>Keep the current observed-listing links with the Tracking ID until validation</td><td></td><td>Already built. Links are unvalidated until option a is done.</td></tr><tr><td><code>S-01-c</code></td><td>Remove all outbound Amazon links until validated</td><td></td><td>Lowest compliance risk; no click path to products.</td></tr></tbody></table></div>
+</section>
+<section class="section decision" id="S-02">
+  <h2><span class="badge badge-info">S-02</span> Publishing cadence and content volume</h2>
+  <p>How often should new guides be published?</p>
+  <div class="table-wrap"><table class="data"><thead><tr><th>Option</th><th>Choice</th><th></th><th>What changes</th></tr></thead><tbody><tr><td><code>S-02-a</code></td><td>Two guides per month, each reviewed against sources before publication</td><td><strong>Recommended</strong></td><td>Keeps content recent for Associates review; needs owner time.</td></tr><tr><td><code>S-02-b</code></td><td>One guide per month</td><td></td><td>Lower effort; slower content build-up.</td></tr><tr><td><code>S-02-c</code></td><td>Publish only after analytics shows which queries get reads</td><td></td><td>Requires S-03 first; delays content.</td></tr></tbody></table></div>
+</section>
+<section class="section decision" id="S-03">
+  <h2><span class="badge badge-info">S-03</span> Analytics and the five events</h2>
+  <p>Which hosting and event set should analytics use?</p>
+  <div class="table-wrap"><table class="data"><thead><tr><th>Option</th><th>Choice</th><th></th><th>What changes</th></tr></thead><tbody><tr><td><code>S-03-a</code></td><td>Small serverless endpoint outside this repo, with the proposed five events</td><td><strong>Recommended</strong></td><td>Enables outbound-click counting; needs an external host and an endpoint URL.</td></tr><tr><td><code>S-03-b</code></td><td>Owner supplies a different five-event list</td><td></td><td>Replaces the proposed events in site.json and analytics.js.</td></tr><tr><td><code>S-03-c</code></td><td>No analytics; use Search Console only</td><td></td><td>No outbound-click data.</td></tr></tbody></table></div>
+</section>
+<section class="section decision" id="S-04">
+  <h2><span class="badge badge-info">S-04</span> Brand name</h2>
+  <p>What should the site be called?</p>
+  <div class="table-wrap"><table class="data"><thead><tr><th>Option</th><th>Choice</th><th></th><th>What changes</th></tr></thead><tbody><tr><td><code>S-04-a</code></td><td>Keep &#x27;The Counter Guide&#x27; (working name)</td><td></td><td>No change.</td></tr><tr><td><code>S-04-b</code></td><td>Owner supplies a name</td><td></td><td>Changes masthead, footer and feed title.</td></tr></tbody></table></div>
+</section>
+<section class="section decision" id="S-05">
+  <h2><span class="badge badge-info">S-05</span> Product detail data</h2>
+  <p>How should listing details (dimensions, warranty, returns) be captured?</p>
+  <div class="table-wrap"><table class="data"><thead><tr><th>Option</th><th>Choice</th><th></th><th>What changes</th></tr></thead><tbody><tr><td><code>S-05-a</code></td><td>Owner or integration session records each field from the listing&#x27;s Product information table with the date and URL</td><td><strong>Recommended</strong></td><td>Adds verified fields; blank fields stay flagged until then.</td></tr><tr><td><code>S-05-b</code></td><td>Leave the fields blank</td><td></td><td>No change.</td></tr></tbody></table></div>
+</section>
+<section class="section decision" id="S-06">
+  <h2><span class="badge badge-info">S-06</span> Prices and ratings</h2>
+  <p>Should prices and ratings appear on the site?</p>
+  <div class="table-wrap"><table class="data"><thead><tr><th>Option</th><th>Choice</th><th></th><th>What changes</th></tr></thead><tbody><tr><td><code>S-06-a</code></td><td>Pursue PA-API/Creators API access, then display data per policy</td><td></td><td>Requires eligibility and the API license; not verified here.</td></tr><tr><td><code>S-06-b</code></td><td>No prices or ratings; link to the listing</td><td><strong>Recommended</strong></td><td>Matches the current build; complies with Program Policies section 2(b).</td></tr></tbody></table></div>
+</section>
+<section class="section decision" id="S-07">
+  <h2><span class="badge badge-info">S-07</span> Reader capture (email)</h2>
+  <p>Should the site collect email?</p>
+  <div class="table-wrap"><table class="data"><thead><tr><th>Option</th><th>Choice</th><th></th><th>What changes</th></tr></thead><tbody><tr><td><code>S-07-a</code></td><td>Yes, double opt-in; Special Links allowed only in messages to opted-in readers, with an easy opt-out</td><td></td><td>Adds a signup form and an email tool; not built.</td></tr><tr><td><code>S-07-b</code></td><td>No email; RSS feed only</td><td><strong>Recommended</strong></td><td>Matches the current build (feed.xml).</td></tr></tbody></table></div>
+</section>
+<section class="section decision" id="S-08">
+  <h2><span class="badge badge-info">S-08</span> Which session&#x27;s site goes to main</h2>
+  <p>How should the parallel claim on arena/2b309a82-wina be handled?</p>
+  <div class="table-wrap"><table class="data"><thead><tr><th>Option</th><th>Choice</th><th></th><th>What changes</th></tr></thead><tbody><tr><td><code>S-08-a</code></td><td>Merge this branch to main as instructed; mark the other branch&#x27;s claim as superseded in COORDINATION.md</td><td><strong>Recommended</strong></td><td>This site goes live. The other branch&#x27;s site must be reconciled or closed before its work is merged, otherwise it conflicts.</td></tr><tr><td><code>S-08-b</code></td><td>Hold the merge until the owner has compared both COORDINATION.md boards</td><td></td><td>Delays the live site; the merge instruction was to proceed without waiting.</td></tr></tbody></table></div>
+</section>
+
+</main>
+<footer class="footer">
+  <div class="disclosure disclosure-footer" role="note"><div class="wrap">As an Amazon Associate I earn from qualifying purchases.</div></div>
+  <div class="wrap footer-grid">
+    <div>
+      <p class="brand-small">The Counter Guide</p>
+      <p class="small muted">Buyer questions for kitchen appliances, with every listing checked against its source</p>
+      <p class="small muted">Built 2026-11-20 from <code>data/*.json</code>. Every row cites an official source; unverified fields are blank and flagged.</p>
+    </div>
+    <div>
+      <p class="footer-h">Shop &amp; guides</p>
+      <ul class="plain">
+        <li><a href="../shop/index.html">Shop</a></li>
+        <li><a href="../shop/air-fryers-ovens.html">Air fryers &amp; ovens</a></li>
+        <li><a href="../shop/meat-thermometers.html">Meat thermometers</a></li>
+        <li><a href="../guides/index.html">Guides</a></li>
+        <li><a href="../feed.xml">RSS feed</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="footer-h">Dashboard</p>
+      <ul class="plain"><li><a href="../dashboard/register.html">Product register</a></li><li><a href="../dashboard/sources.html">Source register</a></li><li><a href="../dashboard/analysis.html">Analysis &amp; findings</a></li><li><a href="../dashboard/questions.html">Open questions</a></li><li><a href="../dashboard/suggestions.html">Suggestions</a></li><li><a href="../dashboard/flagged.html">Flagged for Review</a></li><li><a href="../dashboard/ledger.html">Campaign ledger</a></li><li><a href="../dashboard/analytics.html">Analytics status</a></li><li><a href="../dashboard/executive-summary.html">Executive summary</a></li></ul>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

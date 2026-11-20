@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://sassnarep3-star.github.io/WinA/v2/sitemap.xml

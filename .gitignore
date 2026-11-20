@@ -1,4 +1,6 @@
 node_modules/
+dist/
+_site/
 .DS_Store
 *.log
-# v2 build output is committed because GitHub Pages serves it from /v2/.
+.arena/
