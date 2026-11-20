@@ -262,7 +262,7 @@
       "sourceLabel": "Emeril Everyday specification block"
     },
     {
-      "id": "FLG-030",
+      "id": "FLG-034",
       "severity": "review",
       "title": "No design brief or brand-direction source; the site is deliberately typographic",
       "detail": "The brief asks for a polished marketing look, not an AI-generated one, but no design brief, brand guide or visual source was supplied. Because product imagery is withheld under program policy (FLG-007), the site is deliberately typographic and carries no photos. A draft design brief (designBrief) and anti-slop direction are now proposed on the suggestions page as recommendations; they are not verified facts and need an owner decision before implementation.",
@@ -271,7 +271,7 @@
       "sourceLabel": "Google Search Central — Creating Helpful, Reliable, People-First Content"
     },
     {
-      "id": "FLG-031",
+      "id": "FLG-035",
       "severity": "review",
       "title": "Topic roadmap titles are editorial hypotheses with no measured demand",
       "detail": "A catchy topic roadmap (topicRoadmap) has been proposed to feed the publishing cadence and design prompt. Every title is labelled a hypothesis. No search-volume, popularity, or product-superiority claim is made for any of them, and no query data exists to rank them. Seasonality is held until measured data arrives.",

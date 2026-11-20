@@ -435,9 +435,10 @@ marketing look, catchy topics, organic traffic, and explicit decisions before im
     popularity, or product-superiority claim is made.
   - `decisionLog` — review rubric, kill criteria, and an empty entries table so accept/reject
     decisions are recorded with a date and reason.
-- **`data/governance.json`** — **FLG-030** (no design brief/brand source; site deliberately
-  typographic because imagery is withheld, FLG-007) and **FLG-031** (topic roadmap titles are
-  hypotheses with no measured demand). Both published on `/flagged/`.
+- **`data/governance.json`** — **FLG-034** (no design brief/brand source; site deliberately
+  typographic because imagery is withheld, FLG-007) and **FLG-035** (topic roadmap titles are
+  hypotheses with no measured demand). Both published on `/flagged/`. Renumbered from
+  FLG-030/031 to avoid colliding with the parallel T18 session's FLG-030..033.
 - **`_src/build.mjs`** — renders the design brief, topic roadmap and decision log on
   `/suggestions/`; executive summary updated to reference the new layer and to put "review and
   record decisions" first in the next-actions list.
