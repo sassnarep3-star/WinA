@@ -1,0 +1,301 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Open questions — what we know, what's missing, and how to find out | The Crisp Counter</title>
+<meta name="description" content="A decision register for The Crisp Counter: every question that should be answered before a reasonable decision can be made, with what we know, what's missing, and the discovery path for each.">
+<link rel="canonical" href="https://sassnarep3-star.github.io/WinA/questions.html">
+<meta property="og:title" content="Open questions — The Crisp Counter">
+<meta property="og:description" content="What we know, what we don't, and what to ask next.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://sassnarep3-star.github.io/WinA/assets/img/hero.jpg">
+<meta name="cc-endpoint" content="">
+<link rel="alternate" type="application/rss+xml" title="The Crisp Counter" href="feed.xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..700;1,9..144,400..700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/site.css">
+</head>
+<body>
+<header class="masthead">
+  <div class="wrap masthead-row">
+    <a class="brand" href="index.html"><span class="brand-mark">◆</span> The Crisp Counter <small>measured kitchen buying</small></a>
+    <button class="nav-toggle" aria-expanded="false" aria-controls="site-nav">Menu</button>
+    <nav class="nav" id="site-nav" aria-label="Primary">
+      <a href="shop.html">Shop</a>
+      <a href="compare.html">Compare</a>
+      <a href="guides/index.html">Guides</a>
+      <a href="questions.html" aria-current="page">Questions</a>
+      <a href="suggestions.html">Suggestions</a>
+      <a href="data-room/index.html">Data room</a>
+      <a class="nav-cta" href="shop.html#the-lineup">See the lineup</a>
+    </nav>
+  </div>
+</header>
+<div class="disclosure-strip" id="disclosure">
+  <div class="wrap">
+    <span class="disclosure-badge">Disclosure</span>
+    <span><strong>The Crisp Counter is an Amazon Associate — we earn from qualifying purchases.</strong> Product links on this page are <em>sponsored</em> affiliate links where present. Facts were observed on official sources on November 20, 2026. <a href="data-room/compliance-gate.html">How we handle disclosure &amp; compliance</a>.</span>
+  </div>
+</div>
+
+<main>
+  <div class="wrap page-head">
+    <p class="breadcrumb"><a href="index.html">Home</a> / Open questions</p>
+    <h1>What we know, what's missing, and what to ask next</h1>
+    <p class="lede">No decision on this project should outrun its information. This register lists every question that needs an answer before a reasonable choice can be made — what we already know (with sources), what is missing, and the specific discovery step that would close the gap. Unanswered questions block specific decisions; those decisions are named.</p>
+  </div>
+
+  <section class="section tight" id="product-questions">
+    <div class="wrap">
+      <div class="section-head"><div><p class="eyebrow">Group A · Product &amp; listing data</p><h2>What we're selling</h2></div></div>
+      <div class="table-scroll">
+        <table class="data">
+          <caption>Facts referenced below were observed 2026-11-20 on official Amazon listings.</caption>
+          <thead>
+            <tr><th scope="col">ID</th><th scope="col">Question</th><th scope="col">What we know (source-linked)</th><th scope="col">What's missing</th><th scope="col">How to discover it</th><th scope="col">Blocks</th></tr>
+          </thead>
+          <tbody>
+            <tr id="q-identity">
+              <th scope="row">Q-01</th>
+              <td>What exactly does each submitted short link intend to sell?</td>
+              <td>All five <code>link.amazon/…</code> links resolve to live Amazon listings; observed targets recorded (<a href="data-room/product-intent.html">intent record</a>). Example: <a href="https://www.amazon.com/dp/B0CDY277D3" rel="nofollow">B0CDY277D3</a> = Chefman 6QT dual.</td>
+              <td>Owner confirmation that each observed target matches the <em>intended</em> product. Submitted identifiers are 9-char tokens, not canonical 10-char ASINs (FLG-001).</td>
+              <td>Owner signs the intent record's "confirmation date" column after comparing intended vs observed.</td>
+              <td>Scaling any link; PA-API image licensing</td>
+            </tr>
+            <tr>
+              <th scope="row">Q-02</th>
+              <td>Are the listing prices current enough to publish daily?</td>
+              <td>Single snapshot: e.g. TurboFry $69.99 (list $119.99), Emeril $149.99 (list $209.99) (<a href="https://www.amazon.com/dp/B08DKYBTPH" rel="nofollow">[3]</a> <a href="https://www.amazon.com/dp/B09B7SB46R" rel="nofollow">[2]</a>).</td>
+              <td>A re-observation cadence and a policy for stale prices.</td>
+              <td>Weekly manual or API-driven re-read of the five buy boxes; each page shows "observed" dates meanwhile (already shipped).</td>
+              <td>Proposal S-02, S-10</td>
+            </tr>
+            <tr>
+              <th scope="row">Q-03</th>
+              <td>Why do Chefman's title and bullets disagree on temperature range?</td>
+              <td>Title claims 450°F Hi-Fry; bullets say 200–400°F (<a href="https://www.amazon.com/dp/B08DKYBTPH" rel="nofollow">listing</a>).</td>
+              <td>Which figure represents normal operation vs the Hi-Fry burst mode.</td>
+              <td>Read the product manual (product-guides section of the listing) or ask the manufacturer; update FLG-004.</td>
+              <td>Any "max temperature" claim in content</td>
+            </tr>
+            <tr>
+              <th scope="row">Q-04</th>
+              <td>Is the Chefman dual 6 quarts or 6 liters?</td>
+              <td>Title says 6-quart (2 × 3QT); product-details row says 6 liters (<a href="https://www.amazon.com/dp/B0CDY277D3" rel="nofollow">listing</a>) — flagged FLG-007.</td>
+              <td>Manufacturer's precise usable volume.</td>
+              <td>Manual/spec sheet from Chefman; meanwhile our capacity guide explains the discrepancy instead of hiding it.</td>
+              <td>Precise capacity claims</td>
+            </tr>
+            <tr>
+              <th scope="row">Q-05</th>
+              <td>What are the missing spec cells (weight, some dimensions, warranties)?</td>
+              <td>Verified cells are filled and sourced in the <a href="compare.html#compare-table">comparison table</a>.</td>
+              <td>Weight for all units; Emeril dimensions &amp; dishwasher claim; warranties for 3 products.</td>
+              <td>Re-extract the "product details" and "additional information" blocks of each listing (they were outside the sections captured on 2026-11-20), or use PA-API attributes once available.</td>
+              <td>Counter-space and shipping guidance</td>
+            </tr>
+            <tr>
+              <th scope="row">Q-06</th>
+              <td>How do these products actually perform (noise, preheat, evenness)?</td>
+              <td>Nothing — we don't test. Ratings exist (e.g. 4.4★/16,892 on TurboFry, <a href="https://www.amazon.com/dp/B08DKYBTPH" rel="nofollow">[3]</a>) but are crowd opinion, not measurement.</td>
+              <td>First-hand test data or a lawful licensed source of third-party tests.</td>
+              <td>Owner-decided: purchase units for hands-on testing, or license test data. Until then we publish zero performance claims (methodology rule).</td>
+              <td>Any "best"/scoring content (proposal S-08 keeps scores off)</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="section tight" id="tracking-questions">
+    <div class="wrap">
+      <div class="section-head"><div><p class="eyebrow">Group B · Tracking &amp; compliance</p><h2>What earns, what's allowed</h2></div></div>
+      <div class="table-scroll">
+        <table class="data">
+          <caption>Policy sources: Associates Program Operating Agreement &amp; Program Policies, FTC Endorsement Guides (links in rows).</caption>
+          <thead>
+            <tr><th scope="col">ID</th><th scope="col">Question</th><th scope="col">What we know (source-linked)</th><th scope="col">What's missing</th><th scope="col">How to discover it</th><th scope="col">Blocks</th></tr>
+          </thead>
+          <tbody>
+            <tr id="q-tracking">
+              <th scope="row">Q-07</th>
+              <td>Is tracking ID <code>shopnow047c-20</code> enrolled and working?</td>
+              <td>Tag is applied to all product links; destinations are verified canonical listing URLs. Attribution itself is unobserved (FLG-002) — tagging rules: <a href="https://affiliate-program.amazon.com/help/operating/agreement" rel="nofollow">Operating Agreement</a>.</td>
+              <td>Confirmation from Associates reports that a test click registers.</td>
+              <td>Gate G-4: owner clicks one tagged link per product, then checks the Associates Earnings/Orders report for the click record.</td>
+              <td>Link scale-up; revenue reporting of any kind</td>
+            </tr>
+            <tr>
+              <th scope="row">Q-08</th>
+              <td>Are the submitted <code>link.amazon/…</code> short links compliant to keep using?</td>
+              <td>They resolve to real listings (recorded as <a href="data-room/product-intent.html">observed targets</a>). Their compliance status is <em>unresolved</em> — we neither endorse nor condemn them (FLG-003).</td>
+              <td>Amazon's position on this link format; the <a href="https://affiliate-program.amazon.com/help/operating/agreement" rel="nofollow">Operating Agreement</a> requires the tagged Special Link formats Amazon provides.</td>
+              <td>Ask Associates support; until answered, the site uses canonical <code>amazon.com/dp/&lt;ASIN&gt;?tag=…</code> links and keeps the short links only in the historical intent record.</td>
+              <td>Re-publishing the short links</td>
+            </tr>
+            <tr>
+              <th scope="row">Q-09</th>
+              <td>Is our disclosure placement and endorsement context acceptable?</td>
+              <td>Automated baseline shipped: strip under masthead on every page + footer repeat + rel="sponsored" + per-link labels; checker enforces presence (gate G-1/G-2).</td>
+              <td>Human sign-off that wording and placement meet the <a href="https://www.ftc.gov/business-guidance/resources/ftcs-endorsement-guides-what-people-are-asking" rel="nofollow">FTC "clear and conspicuous"</a> standard and the OA's <a href="https://affiliate-program.amazon.com/help/operating/policies" rel="nofollow">Participation Requirements</a>.</td>
+              <td>Gate G-5: owner reviews one mobile + one desktop view of the home, shop and a guide page against the FTC checklist on the <a href="data-room/compliance-gate.html">compliance page</a>.</td>
+              <td>Nothing blocks publishing; blocks the "compliance: done" claim</td>
+            </tr>
+            <tr>
+              <th scope="row">Q-10</th>
+              <td>May we hot-link product images from Amazon's CDN?</td>
+              <td>Thumbnails currently load from m.media-amazon.com (<a href="data-room/flagged.html">FLG-005</a>). The OA's IP license covers Program Content obtained via program tools (<a href="https://affiliate-program.amazon.com/help/operating/agreement" rel="nofollow">Operating Agreement</a>).</td>
+              <td>Whether direct hot-linking is covered without PA-API/SiteStripe sourcing.</td>
+              <td>Proposal S-04: replace with PA-API-sourced images at gate G-4; until then, thumbnails are documented as provisional.</td>
+              <td>Nothing blocks publishing; blocks the "image rights: settled" claim</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="section tight" id="growth-questions">
+    <div class="wrap">
+      <div class="section-head"><div><p class="eyebrow">Group C · Measurement &amp; growth</p><h2>What works</h2></div></div>
+      <div class="table-scroll">
+        <table class="data">
+          <caption>Campaign data enters the ledger only from authorized first-party reports (policy on the <a href="data-room/campaign-ledger.html">ledger page</a>).</caption>
+          <thead>
+            <tr><th scope="col">ID</th><th scope="col">Question</th><th scope="col">What we know (source-linked)</th><th scope="col">What's missing</th><th scope="col">How to discover it</th><th scope="col">Blocks</th></tr>
+          </thead>
+          <tbody>
+            <tr id="q-price-cadence">
+              <th scope="row">Q-11</th>
+              <td>What price-observation cadence can we sustain lawfully?</td>
+              <td>One snapshot exists (2026-11-20). No scraping automation has been approved — <a href="data-room/compliance-gate.html">gate G-7</a> covers automation policy.</td>
+              <td>Whether the owner's tooling route is PA-API, manual checks, or approved third-party data.</td>
+              <td>Decide at gate G-4 with the Associates account in hand; until then prices remain dated snapshots.</td>
+              <td>Proposal S-02 (price history)</td>
+            </tr>
+            <tr id="q-search-console">
+              <th scope="row">Q-12</th>
+              <td>Which queries do real visitors use to find us?</td>
+              <td>Nothing yet — no analytics, no Search Console. The five-event layer is live but fail-closed with no endpoint (<a href="data-room/measurement.html">spec</a>).</td>
+              <td>Analytics endpoint (G-6) + Search Console verification + 2–4 weeks of data.</td>
+              <td>Owner: deploy <a href="https://github.com/sassnarep3-star/WinA/blob/main/analytics/worker.js">analytics/worker.js</a>, add the Search Console HTML tag (hook already documented), wait for data.</td>
+              <td>Choosing the next guide topic (proposal S-05); all conversion optimization</td>
+            </tr>
+            <tr id="q-reader-capture">
+              <th scope="row">Q-13</th>
+              <td>Should reader capture be self-hosted or hosted?</td>
+              <td>The form is a deliberate no-op; <a href="feed.xml">RSS</a> works today. No addresses are stored anywhere (<a href="data-room/measurement.html">measurement spec</a>).</td>
+              <td>A processor decision and consent language; privacy policy update once addresses exist.</td>
+              <td>Proposal S-07 presents the two paths; owner picks.</td>
+              <td>Launch list going live</td>
+            </tr>
+            <tr>
+              <th scope="row">Q-14</th>
+              <td>What will the campaign ledger's first rows be?</td>
+              <td>Ledger schema is defined and intentionally empty: timestamp, source, channel, eligible sessions, clicks, reported orders — only from authorized first-party reports (<a href="data-room/campaign-ledger.html">ledger</a>).</td>
+              <td>First-party reports (Associates + endpoint data). No forecast or score is offered here, by policy.</td>
+              <td>After G-4/G-6, transcribe the first authorized report rows with provenance dates.</td>
+              <td>Any ROI-based prioritization</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="section tight" id="editorial-questions">
+    <div class="wrap">
+      <div class="section-head"><div><p class="eyebrow">Group D · Editorial</p><h2>What to say</h2></div></div>
+      <div class="table-scroll">
+        <table class="data">
+          <caption>Editorial hypotheses are labeled as such throughout the site and never presented as measured popularity.</caption>
+          <thead>
+            <tr><th scope="col">ID</th><th scope="col">Question</th><th scope="col">What we know (source-linked)</th><th scope="col">What's missing</th><th scope="col">How to discover it</th><th scope="col">Blocks</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">Q-15</th>
+              <td>Which of the four working guide topics resonates most?</td>
+              <td>All four are published and instrumented (<a href="guides/index.html">guides</a>); each fires guide_read events once G-6 is live.</td>
+              <td>guide_read + query data per guide.</td>
+              <td>Compare guide_read counts and Search Console queries after 2–4 weeks; double down on the winner.</td>
+              <td>Editorial calendar ordering</td>
+            </tr>
+            <tr>
+              <th scope="row">Q-16</th>
+              <td>What seasonal angle should ship for the holidays?</td>
+              <td>Return-window facts verified for Nov 1–Dec 31, 2026 purchases (returnable to Jan 31, 2027, per all five listings). Proposal S-03 drafts a gift hub.</td>
+              <td>Owner approval of S-03 before the Dec 10 window closes.</td>
+              <td>Verdict on <a href="suggestions.html#design">S-03</a> in the suggestions queue.</td>
+              <td>Holiday gift guide publication</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="section tight">
+    <div class="wrap">
+      <div class="callout">
+        <h3>How to answer anything in this register</h3>
+        <p class="muted">Reply with the question ID and the new fact plus its source (a link to the official page or report). The fact gets entered in the <a href="data-room/source-register.html">source register</a>, the affected row is un-flagged, and the blocked proposal re-enters the <a href="suggestions.html">queue</a> automatically in the next update.</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <p class="brand-foot">◆ The Crisp Counter</p>
+        <p>Straight answers before you buy. Question-shaped guides, a verified product lineup, and an open record of what we know — and what we don't.</p>
+      </div>
+      <div>
+        <h4>Shop &amp; learn</h4>
+        <ul>
+          <li><a href="shop.html">The lineup</a></li>
+          <li><a href="compare.html">Compare the five</a></li>
+          <li><a href="guides/index.html">Buyer guides</a></li>
+          <li><a href="questions.html">Open questions</a></li>
+          <li><a href="suggestions.html">Suggestions queue</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Publication</h4>
+        <ul>
+          <li><a href="executive-summary.html">Executive summary</a></li>
+          <li><a href="about.html">About &amp; method</a></li>
+          <li><a href="feed.xml">RSS feed</a></li>
+          <li><a href="sitemap.xml">Sitemap</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Data room</h4>
+        <ul>
+          <li><a href="data-room/index.html">Dashboard</a></li>
+          <li><a href="data-room/source-register.html">Source register</a></li>
+          <li><a href="data-room/product-intent.html">Product-intent record</a></li>
+          <li><a href="data-room/campaign-ledger.html">Campaign ledger</a></li>
+          <li><a href="data-room/measurement.html">Measurement spec</a></li>
+          <li><a href="data-room/compliance-gate.html">Compliance gate</a></li>
+          <li><a href="data-room/flagged.html">Flagged for Review</a></li>
+          <li><a href="data-room/method.html">Methodology</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="disclosure-block">
+      <strong>Disclosure (repeated):</strong> As an Amazon Associate, The Crisp Counter earns from qualifying purchases. Sponsored/affiliate links are marked and use rel="sponsored". Product names and images are the property of their rights holders; product thumbnails are served from Amazon's media CDN pending PA-API image licensing (FLG-005). This site does not sell products directly — purchases happen on Amazon under Amazon's terms.
+      <br>© <span data-year>2026</span> The Crisp Counter · <a href="data-room/flagged.html">Flagged for Review</a> · <a href="data-room/compliance-gate.html">Compliance</a>
+    </div>
+  </div>
+</footer>
+<script src="assets/js/analytics.js" defer></script>
+<script src="assets/js/site.js" defer></script>
+</body>
+</html>
