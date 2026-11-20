@@ -66,7 +66,8 @@ fourth site. Claim the scope here first and push the claim before writing code.
 | T15 | PR → `main`, merge, confirm Pages deploy | done | arena-ffa85037 → closed by arena-4b28af50 | — | See integration result below |
 | T16 | Gap closure against the brief: sortable tables on every data table; SG-27..SG-30 parallel rows (nav labels, RSS feed, Search Console, reader capture); verified policy-citation corrections | done | arena-a86cb9d0 | `_src/build.mjs`, `_src/pages-content.mjs`, `assets/js/site.js`, `data/governance.json`, `COORDINATION.md` (arena-a86cb9d0 section only) | Extends main; does not add a second site (see conflict record) |
 | T17 | Replace obsolete parallel `scripts/build.mjs` / `scripts/verify.mjs` entry points with safe wrappers to the current publication build and repository gate | done | arena/1323e80f-wina | `scripts/build.mjs`, `scripts/verify.mjs`, `COORDINATION.md` | No served-page or data changes; prevents stale `data/site.json`/`site/` assumptions |
-| T18 | Re-verify the five submitted links, the policy quotes against official pages, and the RSS feed; correct FLG-013 citation and SUG-04 status; publish verification log | done | arena-301b1534 | `COORDINATION.md` (arena-301b1534 section only), `data/governance.json`, `data/suggestions.json`, rebuilt `flagged/`, `suggestions/`, `register/` | Claimed 2026-11-20 as T18 (T17 was taken on main by arena/1323e80f-wina). Extends main's build; no second site. Owner-account items (Associates sign-in, Search Console, analytics deploy) stay blocked and are not claimed. |
+| T18 | Re-verify the five submitted links, the policy quotes against official pages, and the RSS feed; correct FLG-013 citation and SUG-04 status; publish verification log | done | arena-301b1534 | `COORDINATION.md` (arena-301b1534 section only), `data/governance.json`, `data/suggestions.json`, rebuilt `flagged/`, `suggestions/`, `register/` | Claimed 2026-11-20 as T18 (T17 was taken on main by arena-1323e80f-wina). Extends main's build; no second site. Owner-account items (Associates sign-in, Search Console, analytics deploy) stay blocked and are not claimed. |
+| T26 | Publication pass (2): self-hosted variable fonts + editorial type scale; illustration and stationery system (SVG, generated); category/service pages for the two "Dinner in one drawer / Hands off the grill" fronts; two new question-shaped guides (wrong-size, app-dependence); product pages get at-a-glance verdict, shelf card and reading path; `/decisions/` review table merging suggestion and decision-log state; regenerate nav, sitemap, feed and gate coverage | done | arena/3fb64024-wina | `_src/build.mjs`, `_src/content.mjs`, `_src/insurance.mjs` (new), `assets/css/site.css`, `assets/fonts/*` (new, OFL), `assets/img/*` (new, generated SVG), `data/suggestions.json` (decisions for SUG-25..29 only), `scripts/check-site.mjs` (asset extension allowlist), `index.html` + generated pages, this board's T26 row/section. **Not touched:** `data/products.json`, `data/policy.json`, `data/links.json`, `data/questions.json`, `data/special_link_tests.json`, other sessions' board sections | Extends main's build. No product fact, price, rating or test claim added. Every new claim is either a decision heuristic or labelled hypothesis. Sources: Amazon Associates Program Policies, Operating Agreement, FTC Disclosures 101, all re-read 2026-11-20 |
 
 ---
 
@@ -700,3 +701,39 @@ No value was inferred; the topic roadmap is explicitly hypothetical and the desi
 explicitly a recommendation. Nothing blocks the merge. (Note observed, not changed here: `main`'s
 board carries a duplicate T24 row identical to T22; left as-is since it is another session's
 record and out of this session's scope.)
+
+---
+
+## Session `arena/3fb64024-wina` — T26 claim (2026-11-20)
+
+**Claim, written before any code, and pushed first.** Scope is the row **T26** in the task board
+above. Branch `arena/3fb64024-wina`, base `80b45a1` (the merge of PR #24). One site, extended —
+this session read `origin/main` first, found a passing 30-page build with three independent gates,
+and is not starting a fifth site.
+
+**Why this task and not a new one.** No other claim is open on `main`: the board lists T01–T25 done
+and there is no unclaimed or in-progress row. The brief attached to this session asks for (a) a
+polished-marketing look rather than a register, (b) catchy question-shaped topics that can earn
+organic traffic, (c) a reviewable suggestions/decisions section, and (d) a standalone record of
+what is known, unknown and blocking. This build already has the last two (`/suggestions/`,
+`/questions/`); what it does not have is the first: a front-of-house design and a reason for a
+search engine to see a publication rather than a spec sheet.
+
+**Scope, and what is deliberately out of it.**
+
+| In scope | Out of scope, and why |
+|---|---|
+| `_src/build.mjs`, `_src/content.mjs`, new `_src/insurance.mjs` | `data/products.json` — 60 spec rows are another session's verified work (FLG-026..029). Not edited. |
+| `assets/css/site.css`, `assets/fonts/*`, `assets/img/*` | `data/policy.json`, `data/links.json` — quoted policy and resolved links are verification records. Not edited. |
+| `data/suggestions.json` — **new decision rows only** | `data/questions.json`, `data/special_link_tests.json` — not edited. |
+| `scripts/check-site.mjs` — the asset-extension allowlist only | `scripts/compliance-gate.mjs`, `scripts/publish-gate.mjs` — other sessions' gates, left intact. |
+| Generated pages, `sitemap.xml`, `feed.xml` | Every prior session's section of this board. Appended to, never rewritten. |
+
+**The no-fabrication rule this session holds itself to.** A design pass is where invented claims
+usually enter a site — a stock photo, a testimonial, a "best" badge, a number. This session adds
+**no** product photography, no rating, no price, no test result and no metric. The imagery it adds
+is drawn, labelled as illustration, and generated from the site's own palette. Any number it
+publishes must be countable from `data/` at build time, or it is not published.
+
+**Result.** See the T26 section at the end of this file for what was built, what was verified, and
+the irregularities left for review.
