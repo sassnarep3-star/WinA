@@ -90,6 +90,7 @@ fourth site. Claim the scope here first and push the claim before writing code.
 | T24 | Register hygiene: 5 dangling `SRC-02` refs repaired; citation-misattribution fixed in `_src/build.mjs`; FLG-024 extended with computed counts instead of adding a duplicate row | done | arena-4b28af50 | `data/{special_link_tests,governance,products}.json`, `_src/build.mjs` | HTML for all pages except `/flagged/` is byte-identical — the fixes are inert for current data |---
 | T25 | Design-prompt suggestion layer: polished-marketing design direction, catchy topic roadmap (hypotheses), organic-traffic levers, decision log — feeding the reviewable suggestions section | done | arena-829ea2fd-wina | `data/suggestions.json`, `data/governance.json`, `_src/build.mjs`, `COORDINATION.md` (arena-829ea2fd-wina section only), generated pages | Renumbered three times on merge (T17→T19→T21→T25) because T17, T19–T24 were taken on `main` first. Extends main's build; no second site. Verification of the 5 links re-done 2026-11-20 by this session |
 | T26 | Re-verify live site vs build, the five submitted links, and the FLG-033 ASIN-definition citation; record the owner-side blockers; no page or data change unless a verified defect is found | done | arena-8e69b462-wina | `COORDINATION.md` (arena-8e69b462-wina section only), `data/governance.json` (FLG-036, FLG-037 appended), generated `flagged/` + `summary/` | Claimed 2026-11-20. Branch `arena/8e69b462-wina` (base `80b45a1`, main has not advanced) |
+| T27 | Final integration: publish the first roadmap guide batch, correct the guide-count prose, reconcile the documentation counts against the data, and close the three superseded open PRs | in progress | arena/487af33a-wina | `_src/content.mjs`, `_src/build.mjs`, `data/questions.json`, `data/governance.json`, `data/suggestions.json`, `README.md`, `EXECUTIVE_SUMMARY.md`, `ARCHITECTURE.md`, `COORDINATION.md` | Claimed 2026-11-20 on branch `arena/487af33a-wina` (base `1065609` = current `main`). Integration pass: `main` builds clean (30 pages, all gates green). No product data, link record, or ASIN is changed; every new claim traces to an existing verified spec row |
 
 ## Link resolution (verified by three independent sessions)
 
@@ -740,3 +741,48 @@ No product data, link record, or page copy was changed.
 **Flag count:** 39 → 41. Gates re-run after the change: all pass.
 
 **Status:** done. PR and merge record below.
+
+---
+
+## Session arena/487af33a-wina — T27 claim (2026-11-20)
+
+**Claim (T27).** Final integration pass on `main` at `1065609`. Scope: `_src/content.mjs`,
+`_src/build.mjs`, `data/questions.json`, `data/governance.json`, `data/suggestions.json`,
+`README.md`, `EXECUTIVE_SUMMARY.md`, `ARCHITECTURE.md`, and this board. Nothing else.
+
+**Not claimed, not touched:** product data, `data/links.json`, `data/policy.json`, the Special
+Link test register, the tracking ID, the analytics endpoint, and every owner-side blocker
+(FLG-004, FLG-009, FLG-011, FLG-024). No ASIN, destination, price, rating, or review count is
+written anywhere by this session.
+
+**Why this session exists.** `main` builds clean and all three gates are green, so nothing here
+is a repair of a broken site. The remaining work is the convergence work the board has been
+deferring to "a final integration session":
+
+1. The approved topic roadmap (T25) has ten hypothesis topics and the site has published five
+   guides. The roadmap was accepted as "the first batch of hypotheses" (SUG-21) but no guide has
+   been published from it, so the roadmap and the site disagree about what exists.
+2. The guide-count prose is hard-coded to "five" in six places, so publishing from the roadmap
+   without fixing it would either fail the build's own guide-count guard or ship a false count.
+3. `README.md`, `EXECUTIVE_SUMMARY.md` and `ARCHITECTURE.md` state counts that were correct when
+   written and are now stale (37 flag rows vs 41, 16 suggestions vs 24, 27/29 pages vs 30, and
+   "5 sources" vs 6). Those files are the operator's map of the site; stale numbers in them are
+   the same class of defect as a stale spec row.
+4. PRs #2, #26 and #28 are open against superseded branches. Each would resurrect a parallel site
+   at the served root if merged. They are recorded here as reviewed and closed, not silently left
+   open for the next session to trip over.
+
+**Verification performed before claiming (2026-11-20, this session).**
+
+| Check | Method | Result |
+|---|---|---|
+| Baseline build | `node _src/build.mjs` | 30 pages, 29 in sitemap, all gates clear, tree clean |
+| Five submitted links re-opened | Page-tool fetch of each `link.amazon` URL | `B02NbDxp3`, `B00hJ57DV` → Amazon home page; `B0c8moW59` → Amazon home page; `B0f3GKalj` → fetch error. Recorded against FLG-036, not against `data/links.json` |
+| Amazon program policies | Page-tool fetch of the Commission Income Statement and IP License | Reachable and current (updated 2026-04-14). Commission schedule (`/help/operating/schedule`) requires an Associates sign-in, so no rate is asserted |
+| PR #2 diff | `gh pr diff 2` | Touches `COORDINATION.md` only. Its redirect table assigns `B04G1MEwY` to `B08DKYBTPH`, which contradicts the three-session-verified `B0CDY277D3`. Nothing salvageable |
+| PR #26 diff | `gh pr view 26 --json files` | Parallel root-level site (`compare.html`, `guides/*.html`, `data-room/*`). Nothing salvageable; conflicts with the served root |
+| PR #28 images | GitHub API download of all three JPEGs at `arena/580f4c6d-wina` | AI-generated product-style photographs with no license, credit, or provenance statement in the PR. `hero.jpg` and `season-holiday.jpg` depict appliances that are not the five submitted products. Not usable |
+| Archive integrity | `ls archive/` + `find` | Four prior builds on disk (83 files). The build gate requires ≥60 and passes |
+| Live site | Page-tool fetch of the published homepage | Live, disclosure present, five product buttons point at `amazon.com/dp/<ASIN>?tag=shopnow047c-20` |
+
+**Status:** claim pushed as its own commit before any source edit, per the board's rules.
