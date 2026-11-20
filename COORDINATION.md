@@ -89,7 +89,7 @@ fourth site. Claim the scope here first and push the claim before writing code.
 | T23 | Register: define the `manufacturer` source id that 22 spec rows already cite, and de-number FLG-024 so the register cannot drift out of date | done | arena-4b28af50 | `data/policy.json`, `data/governance.json` | Found by `scripts/compliance-gate.mjs`'s cross-reference rule on main's post-#22 data |
 | T24 | Register hygiene: 5 dangling `SRC-02` refs repaired; citation-misattribution fixed in `_src/build.mjs`; FLG-024 extended with computed counts instead of adding a duplicate row | done | arena-4b28af50 | `data/{special_link_tests,governance,products}.json`, `_src/build.mjs` | HTML for all pages except `/flagged/` is byte-identical — the fixes are inert for current data |---
 | T25 | Design-prompt suggestion layer: polished-marketing design direction, catchy topic roadmap (hypotheses), organic-traffic levers, decision log — feeding the reviewable suggestions section | done | arena-829ea2fd-wina | `data/suggestions.json`, `data/governance.json`, `_src/build.mjs`, `COORDINATION.md` (arena-829ea2fd-wina section only), generated pages | Renumbered three times on merge (T17→T19→T21→T25) because T17, T19–T24 were taken on `main` first. Extends main's build; no second site. Verification of the 5 links re-done 2026-11-20 by this session |
-| T26 | Line-by-line verification of the three reviewer-facing documents against `data/` and the gates; repair every stale figure; add a gate so the figures cannot drift again; complete the product-intent confirmation record with the four fields the brief names (intended ASIN, listing URL, confirmation date, source) | in progress | arena/f14580cb-wina | `README.md`, `ARCHITECTURE.md`, `EXECUTIVE_SUMMARY.md`, `data/links.json`, `scripts/docs-gate.mjs` (new), `.github/workflows/*.yml`, `_src/build.mjs` (link-intent table only), `data/governance.json` (new flag), `COORDINATION.md` (arena/f14580cb-wina section only) | Claimed 2026-11-20. Extends main's build; no second site. Owner-credential items (Associates sign-in, Search Console, analytics deploy) stay blocked and are not claimed. |
+| T26 | Line-by-line verification of the three reviewer-facing documents against `data/` and the gates; repair every stale figure; add a gate so the figures cannot drift again; close a two-link classification blind spot in `scripts/check-site.mjs` that made its total disagree with the compliance gate; complete the product-intent confirmation record with the four fields the brief names (intended ASIN, listing URL, confirmation date, source) | in progress | arena/f14580cb-wina | `README.md`, `ARCHITECTURE.md`, `EXECUTIVE_SUMMARY.md`, `data/links.json`, `scripts/docs-gate.mjs` (new), `scripts/check-site.mjs` (one matcher, handoff logged below), `.github/workflows/*.yml`, `_src/build.mjs` (link-intent table only), `data/governance.json` (new flags), `COORDINATION.md` (arena/f14580cb-wina section only) | Claimed 2026-11-20. Extends main's build; no second site. Owner-credential items (Associates sign-in, Search Console, analytics deploy) stay blocked and are not claimed. |
 
 ## Link resolution (verified by three independent sessions)
 
@@ -756,4 +756,84 @@ print — which is the same rule the ledger already follows.
 for register counts. No external claim was made or newly verified in this task; nothing here
 touches a product specification, a policy quotation or a reader-facing claim.
 
-**Status:** in progress — claim pushed before any file in scope was edited.
+### What was actually wrong, and what was done about it
+
+**Eleven stale figures in the three documents a reviewer is told to read first.** All eleven are
+in the table above. They were corrected; and rather than leave them to rot again, the numbers were
+split into two kinds:
+
+- **Facts about the register** (products, spec rows and their status census, policy sources,
+  clauses, flags, questions, suggestions, guides, pages) stay stated in prose **and** are now
+  checked against `data/` by `scripts/docs-gate.mjs` on every build, in `build.yml`, in
+  `pages.yml` (so a stale executive summary stops a deploy) and in `publish-gate.mjs`.
+- **Facts about a run** (assertion counts, "the build printed N", internal-link totals) are no
+  longer restated anywhere. The prose now names the command that prints them. A run fact written
+  into a file that is not regenerated is a run fact that will be wrong next week — which is
+  exactly how `README.md` came to describe a 27-page build on a 30-page site.
+
+`ARCHITECTURE.md`'s "~2,100 assertions total" went the same way: it is not cleanly computable,
+because the three gates count differently and `check-site.mjs` prints no assertion count at all.
+Replacing one unverifiable number with another would have been the same sin.
+
+**A two-link blind spot in the independently written gate.** `scripts/check-site.mjs` matched
+Amazon hrefs with a pattern that required a trailing slash after `/b/`, but a category browse node
+is written `/Air-Fryers/b?node=17659096011`. The two category-hub browse links were therefore
+outside the three-state rule that gate exists to enforce: its total read **94** Amazon links while
+`scripts/compliance-gate.mjs` read **96** on the same tree. Both links happened to be correctly
+declared `rel="nofollow" data-nonaffiliate="true"`, so nothing was broken — but the gate written
+to catch an undeclared Amazon anchor would not have caught one of those two. The pattern now
+accepts `/b/` and `/b?`, and both gates report **96 (80 sponsored)**. `scripts/check-site.mjs` was
+written by session `41096d21`; that session's work is merged and its claim long closed, so the
+change was taken over here rather than logged as a request, and the reasoning is recorded in the
+file itself and in FLG-037.
+
+**The product-intent record was three fields short of the four the brief names.** Per link it
+stored the intended ASIN (null, correctly) and the observed destination, but the confirmation date
+and the source existed only at file level. `data/links.json` now carries `confirmedOn`, `source`
+and `sourceUrl` on each of the five links, and `/register/` renders them as a **Source** column,
+so intended ASIN, official listing URL, confirmation date and source are all visible in one row.
+`intendedAsin` was not touched: nothing was promoted into it and `observedDestination` was not
+merged into it. The Source column is a declared non-affiliate citation, so it adds no monetised
+path.
+
+### Verification performed (2026-11-20, on the combined tree)
+
+| Check | Method | Result |
+|---|---|---|
+| Reviewer documents vs `data/` | `node scripts/docs-gate.mjs` | 15 checks, 0 failing |
+| Gate actually bites | injected a wrong figure (24 → 16 suggestions) | fails, naming the sentence: *"document says 16, data says 24"*; restored, passes |
+| Structural gate | `node scripts/check-site.mjs` | 30 pages · 1,120 internal links · 101 Amazon (80 sponsored) · pass |
+| Compliance gate | `node scripts/compliance-gate.mjs` | 1,098 checks, 0 failing, 1 warning (FLG-024, intentional) |
+| Build | `node _src/build.mjs` | 30 pages, 29 in sitemap, all gates clear |
+| Determinism | build twice, SHA-256 over every generated file | byte-identical |
+| Full publish path | `node scripts/publish-gate.mjs --committed` | all four gates run green; decision printed |
+| Intent record renders | read `/register/` link-resolution table | 6 rows (header + 5), Source column present on every row |
+| New flags published | read `/flagged/` | FLG-036 and FLG-037 present; register now 41 unique ids |
+| Injection: link classification | Source column anchors inspected | `rel="nofollow noopener"` + `data-nonaffiliate="true"`, no `tag=` |
+
+### Irregularities found, and where they now live
+
+Published rather than hidden: **FLG-036** (the eleven stale document figures — resolved, gated)
+and **FLG-037** (the two-link matcher blind spot — resolved). Neither blocks the merge.
+
+**Not changed here, and why:**
+
+- **`ARCHITECTURE.md`'s "~2,100 assertions"** was removed rather than corrected, because no
+  command reproduces it. A number that cannot be reproduced by running something is a number this
+  project should not print — the same rule the campaign ledger already follows.
+- **The `80 tagged product links are live` figure** in `EXECUTIVE_SUMMARY.md` was kept and is now
+  gated. It is the one number the document exists to put in front of the owner, so deleting it
+  would have been a worse trade than gating it.
+- **Owner-credential items stay blocked and unclaimed:** FLG-024 (the five Special Link tests),
+  FLG-004/FLG-002 (tracking-ID enrolment), FLG-009/SG-29 (Search Console), FLG-011 (analytics
+  deploy), FLG-010 (capture backend), FLG-013 (owned domain and content volume). Nothing in this
+  task could close any of them, and none of them is a code problem.
+- **A visual redesign was deliberately not implemented.** The brief asks for suggestions that feed
+  a design prompt and a section where a path is chosen *before* any change ships; SUG-17..SUG-24
+  and the decision log on `/suggestions/` are that section, and building the redesign here would
+  have pre-empted the owner's decision.
+- **Two stale PRs and two parallel-session PRs were not touched:** #2, #26 and #28 each propose a
+  separate root-level site, which is the collision this board's session-history section exists to
+  prevent. Merging any of them would put two front pages on one property.
+
+**Status:** done, pending PR, merge and deploy record below.
